@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      199 자
+      379 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,28 +242,28 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-auth-bypass-and-rce-in-infinite-wp-admin-panel/">Auth bypass and RCE in Infinite WP admin panel</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Infinite WP &lt;= 2.15.6</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>WordPress 웹사이트의 관리 솔루션 Infinite WP에서 비밀번호 재설정 방식의 결함을 이용해 admin panel에 접근할 수 있는 인증 우회 취약점이 발견되었습니다.</p>
-<pre><code class="hljs php">$hashValue = serialize(<span class="hljs-keyword">array</span>(<span class="hljs-string">&#x27;hashCode&#x27;</span> =&gt; <span class="hljs-string">&#x27;resetPassword&#x27;</span>, <span class="hljs-string">&#x27;uniqueTime&#x27;</span> =&gt; microtime(<span class="hljs-literal">true</span>), <span class="hljs-string">&#x27;userPin&#x27;</span> =&gt; $userDets[<span class="hljs-string">&#x27;userID&#x27;</span>]));
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>WordPress &#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xC758; &#xAD00;&#xB9AC; &#xC194;&#xB8E8;&#xC158; Infinite WP&#xC5D0;&#xC11C; &#xBE44;&#xBC00;&#xBC88;&#xD638; &#xC7AC;&#xC124;&#xC815; &#xBC29;&#xC2DD;&#xC758; &#xACB0;&#xD568;&#xC744; &#xC774;&#xC6A9;&#xD574; admin panel&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB294; &#xC778;&#xC99D; &#xC6B0;&#xD68C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs php">$hashValue = serialize(<span class="hljs-keyword">array</span>(<span class="hljs-string">&apos;hashCode&apos;</span> =&gt; <span class="hljs-string">&apos;resetPassword&apos;</span>, <span class="hljs-string">&apos;uniqueTime&apos;</span> =&gt; microtime(<span class="hljs-literal">true</span>), <span class="hljs-string">&apos;userPin&apos;</span> =&gt; $userDets[<span class="hljs-string">&apos;userID&apos;</span>]));
 $resetHash = sha1($hashValue);
 [...]
 $verificationURL = APP_URL.<span class="hljs-string">&quot;login.php?view=resetPasswordChange&amp;resetHash=&quot;</span>.$resetHash.<span class="hljs-string">&quot;&amp;transID=&quot;</span>.sha1($params[<span class="hljs-string">&quot;email&quot;</span>]);</code></pre>
 
-<p>비밀번호 재설정 링크를 생성하는 php코드입니다.  피해자의 <code>email</code>을 사전에 입수하고 <code>userID</code>,  <code>microtime(true)</code> 값을 유추할 수 있다면 누구나 유효한 링크를 타고 원하는 유저의 비밀번호를 재설정할 수 있습니다.</p>
+<p>&#xBE44;&#xBC00;&#xBC88;&#xD638; &#xC7AC;&#xC124;&#xC815; &#xB9C1;&#xD06C;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; php&#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.  &#xD53C;&#xD574;&#xC790;&#xC758; <code>email</code>&#xC744; &#xC0AC;&#xC804;&#xC5D0; &#xC785;&#xC218;&#xD558;&#xACE0; <code>userID</code>,  <code>microtime(true)</code> &#xAC12;&#xC744; &#xC720;&#xCD94;&#xD560; &#xC218; &#xC788;&#xB2E4;&#xBA74; &#xB204;&#xAD6C;&#xB098; &#xC720;&#xD6A8;&#xD55C; &#xB9C1;&#xD06C;&#xB97C; &#xD0C0;&#xACE0; &#xC6D0;&#xD558;&#xB294; &#xC720;&#xC800;&#xC758; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC7AC;&#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>userID<ul>
-<li>auto-increment integer입니다. manage-user라는 유료 addon을 구매하지 않았다면 기본값이 1입니다.</li>
+<li>auto-increment integer&#xC785;&#xB2C8;&#xB2E4;. manage-user&#xB77C;&#xB294; &#xC720;&#xB8CC; addon&#xC744; &#xAD6C;&#xB9E4;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xB2E4;&#xBA74; &#xAE30;&#xBCF8;&#xAC12;&#xC774; 1&#xC785;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
 <li>email<ul>
-<li>가입되지 않은 email 주소라면 <code>login.php?view=resetPassword&amp;errorMsg=resetPasswordEmailNotFound</code>로 redirect 됩니다. 이를 이용해 Infinite WP에 가입된 email인지 판별할 수 있습니다.</li>
+<li>&#xAC00;&#xC785;&#xB418;&#xC9C0; &#xC54A;&#xC740; email &#xC8FC;&#xC18C;&#xB77C;&#xBA74; <code>login.php?view=resetPassword&amp;errorMsg=resetPasswordEmailNotFound</code>&#xB85C; redirect &#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574; Infinite WP&#xC5D0; &#xAC00;&#xC785;&#xB41C; email&#xC778;&#xC9C0; &#xD310;&#xBCC4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
 <li>microtime(true)<ul>
-<li>microtime(true)의 값은 비밀번호 재설정 링크가 만들어질 때의 Unix timestamp입니다. Http date 해더 값을 이용해 유추가 가능합니다.</li>
+<li>microtime(true)&#xC758; &#xAC12;&#xC740; &#xBE44;&#xBC00;&#xBC88;&#xD638; &#xC7AC;&#xC124;&#xC815; &#xB9C1;&#xD06C;&#xAC00; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C8; &#xB54C;&#xC758; Unix timestamp&#xC785;&#xB2C8;&#xB2E4;. Http date &#xD574;&#xB354; &#xAC12;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC720;&#xCD94;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
 </ul>
-<p>생성된 링크는 24시간 동안 유효합니다. 공개된 POC는 위에서 설명한 세 값을 이용해 브루트포싱 공격을 시도하며 평균 1시간 내외로 유효한 링크를 찾아냅니다.</p>
+<p>&#xC0DD;&#xC131;&#xB41C; &#xB9C1;&#xD06C;&#xB294; 24&#xC2DC;&#xAC04; &#xB3D9;&#xC548; &#xC720;&#xD6A8;&#xD569;&#xB2C8;&#xB2E4;. &#xACF5;&#xAC1C;&#xB41C; POC&#xB294; &#xC704;&#xC5D0;&#xC11C; &#xC124;&#xBA85;&#xD55C; &#xC138; &#xAC12;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xBE0C;&#xB8E8;&#xD2B8;&#xD3EC;&#xC2F1; &#xACF5;&#xACA9;&#xC744; &#xC2DC;&#xB3C4;&#xD558;&#xBA70; &#xD3C9;&#xADE0; 1&#xC2DC;&#xAC04; &#xB0B4;&#xC678;&#xB85C; &#xC720;&#xD6A8;&#xD55C; &#xB9C1;&#xD06C;&#xB97C; &#xCC3E;&#xC544;&#xB0C5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -560,6 +560,45 @@ $verificationURL = APP_URL.<span class="hljs-string">&quot;login.php?view=resetP
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

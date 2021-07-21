@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      149 자
+      328 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -242,10 +242,10 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2020/9/30/the-anatomy-of-a-bug-door-dissecting-two-d-link-router-authentication-bypasses">THE ANATOMY OF A BUG DOOR: DISSECTING TWO D-LINK ROUTER AUTHENTICATION BYPASSES</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>D-LINK router</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>HNAP (Home Network Administration Protocol)는 Pure Networks Inc. 에서 개발 한 독점 SOAP 기반 프로토콜입니다. 현재는 이 프로토콜의 사용이 중단되었지만 여전히 업데이트되지 않은 많은 라우터들이 해당 프로토콜을 사용하고 있습니다.</p>
-<p>HNAP에서 발견된 두 가지 취약점은 다음과 같습니다.</p>
-<p>CVE-2020-8863은 <code>LoginPassword</code> 검증 과정에서 발생하는 authentication bypass 취약점입니다. <code>strncmp()</code> 에서 db 패스워드와 클라이언트가 입력한 <code>LoginPassword</code>를 <code>LoginPassword</code>의 size 만큼 비교하는데, 이때 <code>LoginPassword</code>에 빈 값을 전달하면 비교할 size가 0이 되어 무조건 인증에 성공하게 됩니다.</p>
-<p>CVE-2020-8864는 HNAP PrivateLogin 인증 알고리즘의 잘못된 구현으로 인해 발생하는 authentication bypass 취약점입니다. HNAP를 통해 인증할 때 서버는 일반적으로 Private key를 사용자의 암호를 기반으로 생성합니다. 그러나 로그인 요청 중 <code>PrivateLogin</code> 필드에 “Username” 값을 넣어 요청하면 “Username”값으로 Private key를 생성해  실제 관리자 암호를 몰라도 인증 챌린지 값을 알 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>HNAP (Home Network Administration Protocol)&#xB294; Pure Networks Inc. &#xC5D0;&#xC11C; &#xAC1C;&#xBC1C; &#xD55C; &#xB3C5;&#xC810; SOAP &#xAE30;&#xBC18; &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC785;&#xB2C8;&#xB2E4;. &#xD604;&#xC7AC;&#xB294; &#xC774; &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC758; &#xC0AC;&#xC6A9;&#xC774; &#xC911;&#xB2E8;&#xB418;&#xC5C8;&#xC9C0;&#xB9CC; &#xC5EC;&#xC804;&#xD788; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB9CE;&#xC740; &#xB77C;&#xC6B0;&#xD130;&#xB4E4;&#xC774; &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>HNAP&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xB450; &#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>CVE-2020-8863&#xC740; <code>LoginPassword</code> &#xAC80;&#xC99D; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; authentication bypass &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. <code>strncmp()</code> &#xC5D0;&#xC11C; db &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xC640; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC00; &#xC785;&#xB825;&#xD55C; <code>LoginPassword</code>&#xB97C; <code>LoginPassword</code>&#xC758; size &#xB9CC;&#xD07C; &#xBE44;&#xAD50;&#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; <code>LoginPassword</code>&#xC5D0; &#xBE48; &#xAC12;&#xC744; &#xC804;&#xB2EC;&#xD558;&#xBA74; &#xBE44;&#xAD50;&#xD560; size&#xAC00; 0&#xC774; &#xB418;&#xC5B4; &#xBB34;&#xC870;&#xAC74; &#xC778;&#xC99D;&#xC5D0; &#xC131;&#xACF5;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>CVE-2020-8864&#xB294; HNAP PrivateLogin &#xC778;&#xC99D; &#xC54C;&#xACE0;&#xB9AC;&#xC998;&#xC758; &#xC798;&#xBABB;&#xB41C; &#xAD6C;&#xD604;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xBC1C;&#xC0DD;&#xD558;&#xB294; authentication bypass &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. HNAP&#xB97C; &#xD1B5;&#xD574; &#xC778;&#xC99D;&#xD560; &#xB54C; &#xC11C;&#xBC84;&#xB294; &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C; Private key&#xB97C; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xC554;&#xD638;&#xB97C; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xB85C;&#xADF8;&#xC778; &#xC694;&#xCCAD; &#xC911; <code>PrivateLogin</code> &#xD544;&#xB4DC;&#xC5D0; &#x201C;Username&#x201D; &#xAC12;&#xC744; &#xB123;&#xC5B4; &#xC694;&#xCCAD;&#xD558;&#xBA74; &#x201C;Username&#x201D;&#xAC12;&#xC73C;&#xB85C; Private key&#xB97C; &#xC0DD;&#xC131;&#xD574;  &#xC2E4;&#xC81C; &#xAD00;&#xB9AC;&#xC790; &#xC554;&#xD638;&#xB97C; &#xBAB0;&#xB77C;&#xB3C4; &#xC778;&#xC99D; &#xCC4C;&#xB9B0;&#xC9C0; &#xAC12;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -548,6 +548,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      267 자
+      595 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      11
        분
     </span>
   
@@ -244,13 +244,13 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Valve Steam through 2021-04-10</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Valve의 PC 게임 런처 Steam에서 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://partner.steamgames.com/doc/sdk/api">Steamworks API</a>를 사용하여 원격 코드 실행을 할 수 있는 취약점이 발견되었습니다. Steamworks API는 게임 개발자들이 interface set을 통해 게임 내에서 다양한 Steam 기능에 접근할 수 있게 해주는 API입니다.</p>
-<p>취약점이 존재하는 함수는 <code>InviteUserToGame</code> 함수입니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Valve&#xC758; PC &#xAC8C;&#xC784; &#xB7F0;&#xCC98; Steam&#xC5D0;&#xC11C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://partner.steamgames.com/doc/sdk/api">Steamworks API</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Steamworks API&#xB294; &#xAC8C;&#xC784; &#xAC1C;&#xBC1C;&#xC790;&#xB4E4;&#xC774; interface set&#xC744; &#xD1B5;&#xD574; &#xAC8C;&#xC784; &#xB0B4;&#xC5D0;&#xC11C; &#xB2E4;&#xC591;&#xD55C; Steam &#xAE30;&#xB2A5;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD574;&#xC8FC;&#xB294; API&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xD568;&#xC218;&#xB294; <code>InviteUserToGame</code> &#xD568;&#xC218;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">InviteUserToGame</span><span class="hljs-params">(CSteamID steamIDFriend, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *pchConnectString)</span></span>;</code></pre>
 
-<p>해당 함수는 친구가 게임을 시작하지 않은 경우 게임 프로세스에서 친구를 매개 변수로 지정하여 Command line 끝에 추가됩니다. 게임 내 콘솔이 존재하는 경우 게임 내 콘솔에서 실행이 되지만 Source Engine 게임의 경우 콘솔 command를 지정할 때 제한이 없습니다. 따라서 원하는 게임 명령을 임의로 실행할 수 있습니다.</p>
-<p>많은 source engine 게임에는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.valvesoftware.com/wiki/Source_RCON_Protocol">Source RCON Protocol</a>이 존재합니다. 이 프로토콜을 사용하여 서버 소유자가 게임 클라이언트에서 수행하는 것과 동일한 방식으로 게임 서버 context에서 콘솔 명령을 실행할 수 있습니다. 게임 서버에 연결하기 위해서는 <code>rcon_address</code>와 <code>rcon_password</code> 명령을 통해 연결을 인증해야 합니다. 해커가 <code>InviteUserToGame</code>의 두 번째 파라미터를 <code>+rcon_address ip:port +rcon&quot;</code>으로 설정하여 초대를 보내면 해당 초대를 수락한 사용자는 어떠한 알림도 없이 해당 주소로 연결이 됩니다. 악의적인 RCON 서버를 호스팅 하는 해커는 <code>SERVERDATA_SCREENSHOT_RESPONSE</code> 패킷을 통해 RCON 서버에 연결된 사용자에게 임의의 ZIP archive 파일(<code>screenshot.jpg</code>)을 업로드할 수 있습니다.</p>
-<p>아카이브 내의 <code>screanshot.jpg</code> 파일 정보를 검색하는 <code>CRConClient::SaveRemoteScreenshot</code> 함수가 호출되면 <code>FindZipItem</code>이 호출됩니다. <code>FindZipItem</code>에서 <code>lufseek</code>을 사용할 때 내부 파일 포인터인 <code>s-&gt;cur_file_info_internal.offset_curfile</code> 부분을 수정하여 스택을 조작할 수 있습니다. 파일 스트림이 <code>0xFFFFFFFE</code>을 가리키면 <code>lufread</code>에서 언더플로우가 발생하게 되어 offset을 손상시킨 후 ROP chain을 구성할 수 있습니다. 해당 취약점의 POC는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/floesen/CVE-2021-30481">github</a>에서 확인하실 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; &#xCE5C;&#xAD6C;&#xAC00; &#xAC8C;&#xC784;&#xC744; &#xC2DC;&#xC791;&#xD558;&#xC9C0; &#xC54A;&#xC740; &#xACBD;&#xC6B0; &#xAC8C;&#xC784; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xCE5C;&#xAD6C;&#xB97C; &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xB85C; &#xC9C0;&#xC815;&#xD558;&#xC5EC; Command line &#xB05D;&#xC5D0; &#xCD94;&#xAC00;&#xB429;&#xB2C8;&#xB2E4;. &#xAC8C;&#xC784; &#xB0B4; &#xCF58;&#xC194;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xACBD;&#xC6B0; &#xAC8C;&#xC784; &#xB0B4; &#xCF58;&#xC194;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xC774; &#xB418;&#xC9C0;&#xB9CC; Source Engine &#xAC8C;&#xC784;&#xC758; &#xACBD;&#xC6B0; &#xCF58;&#xC194; command&#xB97C; &#xC9C0;&#xC815;&#xD560; &#xB54C; &#xC81C;&#xD55C;&#xC774; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC6D0;&#xD558;&#xB294; &#xAC8C;&#xC784; &#xBA85;&#xB839;&#xC744; &#xC784;&#xC758;&#xB85C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB9CE;&#xC740; source engine &#xAC8C;&#xC784;&#xC5D0;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.valvesoftware.com/wiki/Source_RCON_Protocol">Source RCON Protocol</a>&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC11C;&#xBC84; &#xC18C;&#xC720;&#xC790;&#xAC00; &#xAC8C;&#xC784; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xD558;&#xB294; &#xAC83;&#xACFC; &#xB3D9;&#xC77C;&#xD55C; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xAC8C;&#xC784; &#xC11C;&#xBC84; context&#xC5D0;&#xC11C; &#xCF58;&#xC194; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xAC8C;&#xC784; &#xC11C;&#xBC84;&#xC5D0; &#xC5F0;&#xACB0;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; <code>rcon_address</code>&#xC640; <code>rcon_password</code> &#xBA85;&#xB839;&#xC744; &#xD1B5;&#xD574; &#xC5F0;&#xACB0;&#xC744; &#xC778;&#xC99D;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xAC00; <code>InviteUserToGame</code>&#xC758; &#xB450; &#xBC88;&#xC9F8; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; <code>+rcon_address ip:port +rcon&quot;</code>&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD558;&#xC5EC; &#xCD08;&#xB300;&#xB97C; &#xBCF4;&#xB0B4;&#xBA74; &#xD574;&#xB2F9; &#xCD08;&#xB300;&#xB97C; &#xC218;&#xB77D;&#xD55C; &#xC0AC;&#xC6A9;&#xC790;&#xB294; &#xC5B4;&#xB5A0;&#xD55C; &#xC54C;&#xB9BC;&#xB3C4; &#xC5C6;&#xC774; &#xD574;&#xB2F9; &#xC8FC;&#xC18C;&#xB85C; &#xC5F0;&#xACB0;&#xC774; &#xB429;&#xB2C8;&#xB2E4;. &#xC545;&#xC758;&#xC801;&#xC778; RCON &#xC11C;&#xBC84;&#xB97C; &#xD638;&#xC2A4;&#xD305; &#xD558;&#xB294; &#xD574;&#xCEE4;&#xB294; <code>SERVERDATA_SCREENSHOT_RESPONSE</code> &#xD328;&#xD0B7;&#xC744; &#xD1B5;&#xD574; RCON &#xC11C;&#xBC84;&#xC5D0; &#xC5F0;&#xACB0;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xC5D0;&#xAC8C; &#xC784;&#xC758;&#xC758; ZIP archive &#xD30C;&#xC77C;(<code>screenshot.jpg</code>)&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC544;&#xCE74;&#xC774;&#xBE0C; &#xB0B4;&#xC758; <code>screanshot.jpg</code> &#xD30C;&#xC77C; &#xC815;&#xBCF4;&#xB97C; &#xAC80;&#xC0C9;&#xD558;&#xB294; <code>CRConClient::SaveRemoteScreenshot</code> &#xD568;&#xC218;&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xBA74; <code>FindZipItem</code>&#xC774; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;. <code>FindZipItem</code>&#xC5D0;&#xC11C; <code>lufseek</code>&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xB54C; &#xB0B4;&#xBD80; &#xD30C;&#xC77C; &#xD3EC;&#xC778;&#xD130;&#xC778; <code>s-&gt;cur_file_info_internal.offset_curfile</code> &#xBD80;&#xBD84;&#xC744; &#xC218;&#xC815;&#xD558;&#xC5EC; &#xC2A4;&#xD0DD;&#xC744; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD30C;&#xC77C; &#xC2A4;&#xD2B8;&#xB9BC;&#xC774; <code>0xFFFFFFFE</code>&#xC744; &#xAC00;&#xB9AC;&#xD0A4;&#xBA74; <code>lufread</code>&#xC5D0;&#xC11C; &#xC5B8;&#xB354;&#xD50C;&#xB85C;&#xC6B0;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xAC8C; &#xB418;&#xC5B4; offset&#xC744; &#xC190;&#xC0C1;&#xC2DC;&#xD0A8; &#xD6C4; ROP chain&#xC744; &#xAD6C;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC758; POC&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/floesen/CVE-2021-30481">github</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD558;&#xC2E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -551,6 +551,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

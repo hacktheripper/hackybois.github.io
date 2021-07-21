@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      153 자
+      301 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -240,7 +240,7 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-windows-installer-elevation-of-privileges-vulnerability/">SSD Advisory – Windows Installer Elevation of Privileges Vulnerability</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-windows-installer-elevation-of-privileges-vulnerability/">SSD Advisory &#x2013; Windows Installer Elevation of Privileges Vulnerability</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Windows Installer</p>
 <p><strong>Affected Versions</strong></p>
 <ul>
@@ -252,14 +252,14 @@
 <li>Windows 2016</li>
 <li>Windows 2019</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SSD Secure Disclosure program에 제보된 CVE-2020-16902입니다. Windows Installer는 소프트웨어의 설치, 관리, 제거에 사용되는 Windows 컴포넌트입니다. <code>SetSecurity()</code>의 race condition 문제로 인해 Windows installer는 패치와 패치 우회가 반복되고 있습니다. 지금 소개하는 CVE-2020-16902도 마찬가지입니다.</p>
-<p>Windows Installer는 설치 스크립트를 실행하면서 두 가지 작업을 추가로 병행합니다. 설치 작업의 실패를 대비해 roll back script (<code>.RBS</code>)를 작성하고, 설치 작업 중 삭제되는 모든 파일들을 복제해 c:\Config.Msi에 저장합니다. <code>.RBS</code>를 작성하기 전에 특정 루틴을 거치는데, 아래와 같습니다.</p>
-<pre><code class="hljs angelscript"><span class="hljs-number">1.</span> Config.Msi 속 임시파일들을 생성
-<span class="hljs-number">2.</span> Config.Msi 삭제
-<span class="hljs-number">3.</span> Config.Msi 존재 여부 확인
-<span class="hljs-number">4.</span> Config.Msi 생성</code></pre>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SSD Secure Disclosure program&#xC5D0; &#xC81C;&#xBCF4;&#xB41C; CVE-2020-16902&#xC785;&#xB2C8;&#xB2E4;. Windows Installer&#xB294; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xC758; &#xC124;&#xCE58;, &#xAD00;&#xB9AC;, &#xC81C;&#xAC70;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; Windows &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xC785;&#xB2C8;&#xB2E4;. <code>SetSecurity()</code>&#xC758; race condition &#xBB38;&#xC81C;&#xB85C; &#xC778;&#xD574; Windows installer&#xB294; &#xD328;&#xCE58;&#xC640; &#xD328;&#xCE58; &#xC6B0;&#xD68C;&#xAC00; &#xBC18;&#xBCF5;&#xB418;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC9C0;&#xAE08; &#xC18C;&#xAC1C;&#xD558;&#xB294; CVE-2020-16902&#xB3C4; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Windows Installer&#xB294; &#xC124;&#xCE58; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74;&#xC11C; &#xB450; &#xAC00;&#xC9C0; &#xC791;&#xC5C5;&#xC744; &#xCD94;&#xAC00;&#xB85C; &#xBCD1;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xC124;&#xCE58; &#xC791;&#xC5C5;&#xC758; &#xC2E4;&#xD328;&#xB97C; &#xB300;&#xBE44;&#xD574; roll back script (<code>.RBS</code>)&#xB97C; &#xC791;&#xC131;&#xD558;&#xACE0;, &#xC124;&#xCE58; &#xC791;&#xC5C5; &#xC911; &#xC0AD;&#xC81C;&#xB418;&#xB294; &#xBAA8;&#xB4E0; &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xBCF5;&#xC81C;&#xD574; c:\Config.Msi&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. <code>.RBS</code>&#xB97C; &#xC791;&#xC131;&#xD558;&#xAE30; &#xC804;&#xC5D0; &#xD2B9;&#xC815; &#xB8E8;&#xD2F4;&#xC744; &#xAC70;&#xCE58;&#xB294;&#xB370;, &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs angelscript"><span class="hljs-number">1.</span> Config.Msi &#xC18D; &#xC784;&#xC2DC;&#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xC0DD;&#xC131;
+<span class="hljs-number">2.</span> Config.Msi &#xC0AD;&#xC81C;
+<span class="hljs-number">3.</span> Config.Msi &#xC874;&#xC7AC; &#xC5EC;&#xBD80; &#xD655;&#xC778;
+<span class="hljs-number">4.</span> Config.Msi &#xC0DD;&#xC131;</code></pre>
 
-<p>3번 과정에서 Config.Msi 디렉토리가 여전히 존재한다면 <code>SetSecurity()</code>를 사용하는 코드가 실행되며 기존 취약점(CVE-2020-1302)이 그대로 다시 악용될 수 있습니다.</p>
+<p>3&#xBC88; &#xACFC;&#xC815;&#xC5D0;&#xC11C; Config.Msi &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xAC00; &#xC5EC;&#xC804;&#xD788; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;&#xBA74; <code>SetSecurity()</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xBA70; &#xAE30;&#xC874; &#xCDE8;&#xC57D;&#xC810;(CVE-2020-1302)&#xC774; &#xADF8;&#xB300;&#xB85C; &#xB2E4;&#xC2DC; &#xC545;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -564,6 +564,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

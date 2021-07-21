@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      158 자
+      356 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -245,9 +245,9 @@
 <li>Windows 7/8.1/10</li>
 <li>Windows Server 2008/2012/2016/2019</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft Windows의 소프트웨어 설치, 유지, 제거를 위한 인스톨러인 MSI에서 서드 파티 애플리케이션을 통해 권한 상승을 할 수 있는 취약점이 발견되었습니다.</p>
-<p>MSI 패키지가 설치되는 동안 패키지의 복사본은 자동으로 생성된 이름을 갖고 숨김 폴더 <code>C:\Windows\Installer</code>에 생성됩니다. 시스템에 있는 모든 사용자들은 <code>msiexec /fa C:\Windows\Installer\&lt;filename&gt;.msi</code> 명령을 실행하거나 관련된 API/COM 함수를 직접적으로 호출하여 패키지를 재설치할 수 있습니다.</p>
-<p>패키지에 따라 재설치할 때 <code>NT Authority/SYSTEM</code> 컨텍스트로 새로운 MSIEXEC 프로세스를 생성합니다. 설치된 서드 파티 애플리케이션을 재설치하는 동안 <code>NT Authority/SYSTEM</code> 컨텍스트에서 <code>cmd.exe</code>가 호출됩니다. 해당 프로세스가 실행되는 동안 프로세스에 낮은 권한의 사용자에 속하는 환경 변수가 적용되어있습니다. <code>C:\Windows\System32\cmd.exe</code>로 설정되어 있는 변수 <code>ComSpec</code>의 값을 변경하면 <code>NT Authority/SYSTEM</code> 권한으로 <code>ComSpec</code>에 설정된 애플리케이션이 실행됩니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft Windows&#xC758; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; &#xC124;&#xCE58;, &#xC720;&#xC9C0;, &#xC81C;&#xAC70;&#xB97C; &#xC704;&#xD55C; &#xC778;&#xC2A4;&#xD1A8;&#xB7EC;&#xC778; MSI&#xC5D0;&#xC11C; &#xC11C;&#xB4DC; &#xD30C;&#xD2F0; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744; &#xD1B5;&#xD574; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>MSI &#xD328;&#xD0A4;&#xC9C0;&#xAC00; &#xC124;&#xCE58;&#xB418;&#xB294; &#xB3D9;&#xC548; &#xD328;&#xD0A4;&#xC9C0;&#xC758; &#xBCF5;&#xC0AC;&#xBCF8;&#xC740; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xC0DD;&#xC131;&#xB41C; &#xC774;&#xB984;&#xC744; &#xAC16;&#xACE0; &#xC228;&#xAE40; &#xD3F4;&#xB354; <code>C:\Windows\Installer</code>&#xC5D0; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;. &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC788;&#xB294; &#xBAA8;&#xB4E0; &#xC0AC;&#xC6A9;&#xC790;&#xB4E4;&#xC740; <code>msiexec /fa C:\Windows\Installer\&lt;filename&gt;.msi</code> &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xAC70;&#xB098; &#xAD00;&#xB828;&#xB41C; API/COM &#xD568;&#xC218;&#xB97C; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xD328;&#xD0A4;&#xC9C0;&#xB97C; &#xC7AC;&#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD328;&#xD0A4;&#xC9C0;&#xC5D0; &#xB530;&#xB77C; &#xC7AC;&#xC124;&#xCE58;&#xD560; &#xB54C; <code>NT Authority/SYSTEM</code> &#xCEE8;&#xD14D;&#xC2A4;&#xD2B8;&#xB85C; &#xC0C8;&#xB85C;&#xC6B4; MSIEXEC &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xC124;&#xCE58;&#xB41C; &#xC11C;&#xB4DC; &#xD30C;&#xD2F0; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744; &#xC7AC;&#xC124;&#xCE58;&#xD558;&#xB294; &#xB3D9;&#xC548; <code>NT Authority/SYSTEM</code> &#xCEE8;&#xD14D;&#xC2A4;&#xD2B8;&#xC5D0;&#xC11C; <code>cmd.exe</code>&#xAC00; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xB3D9;&#xC548; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; &#xB0AE;&#xC740; &#xAD8C;&#xD55C;&#xC758; &#xC0AC;&#xC6A9;&#xC790;&#xC5D0; &#xC18D;&#xD558;&#xB294; &#xD658;&#xACBD; &#xBCC0;&#xC218;&#xAC00; &#xC801;&#xC6A9;&#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>C:\Windows\System32\cmd.exe</code>&#xB85C; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xBCC0;&#xC218; <code>ComSpec</code>&#xC758; &#xAC12;&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xBA74; <code>NT Authority/SYSTEM</code> &#xAD8C;&#xD55C;&#xC73C;&#xB85C; <code>ComSpec</code>&#xC5D0; &#xC124;&#xC815;&#xB41C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC774; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/03/11/idioth/2021-03-11/1.png" srcset="/img/loading.gif"></p>
 
             </div>
@@ -266,9 +266,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
@@ -551,6 +551,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

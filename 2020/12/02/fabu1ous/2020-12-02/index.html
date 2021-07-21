@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      215 자
+      436 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -246,19 +246,18 @@
 <li>Cisco AMP &lt;= v7.2.13</li>
 <li>Morphisec Unified Threat Prevention Platform &lt;= v4.1.2</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>madCodeHook은 다양한 API hooking 기능을 지원하는 third party 라이브러리입니다. madCodeHook라이브러리에 포함된 <code>ExprevDriver.sys</code>라는 드라이버는 유저 모드 프로세스에 <code>Protector32.dll</code> 혹은 <code>Protector64.dll</code>을 삽입해 그 프로세스를 보호 및 감시할 수 있습니다. DLL injection 공격을 방지하는 기능과 프로세스 모니터링 기능을 제공하므로 몇몇 보안 제품에서 madCodeHook 라이브러리를 사용합니다.</p>
-<p>아이러니하게도 DLL injection을 방지하기 위해 사용되는 <code>ExprevDriver.sys</code> 드라이버에 path redirection을 이용한 toctou 취약점이 존재하고, 해커는 이를 악용해 DLL injection을 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>madCodeHook&#xC740; &#xB2E4;&#xC591;&#xD55C; API hooking &#xAE30;&#xB2A5;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; third party &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC785;&#xB2C8;&#xB2E4;. madCodeHook&#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0; &#xD3EC;&#xD568;&#xB41C; <code>ExprevDriver.sys</code>&#xB77C;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; <code>Protector32.dll</code> &#xD639;&#xC740; <code>Protector64.dll</code>&#xC744; &#xC0BD;&#xC785;&#xD574; &#xADF8; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xBCF4;&#xD638; &#xBC0F; &#xAC10;&#xC2DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. DLL injection &#xACF5;&#xACA9;&#xC744; &#xBC29;&#xC9C0;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xACFC; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1; &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xBBC0;&#xB85C; &#xBA87;&#xBA87; &#xBCF4;&#xC548; &#xC81C;&#xD488;&#xC5D0;&#xC11C; madCodeHook &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC544;&#xC774;&#xB7EC;&#xB2C8;&#xD558;&#xAC8C;&#xB3C4; DLL injection&#xC744; &#xBC29;&#xC9C0;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>ExprevDriver.sys</code> &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; path redirection&#xC744; &#xC774;&#xC6A9;&#xD55C; toctou &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xACE0;, &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; DLL injection&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p>실제  <code>Protector64.dll</code>이 존재하는 디렉터리를 가리키는 juction을 생성합니다.</p>
-<pre><code class="hljs powershell">“mklink /J C:\users\&lt;username&gt;\Desktop\exprev C:\Program Files\Cisco\AMP\exprev”</code></pre>
-</li>
-<li><p><code>ExprevDriver.sys</code>에 IOCTL을 넘겨줍니다.</p>
-<pre><code class="hljs latex">“C:<span class="hljs-tag">\<span class="hljs-name">users</span></span><span class="hljs-tag">\<span class="hljs-name">&lt;</span></span>username&gt;<span class="hljs-tag">\<span class="hljs-name">Desktop</span></span><span class="hljs-tag">\<span class="hljs-name">exprev</span></span><span class="hljs-tag">\<span class="hljs-name">Protector</span></span>64.dll”</code></pre>
+<li><p>&#xC2E4;&#xC81C;  <code>Protector64.dll</code>&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; juction&#xC744; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs powershell">&#x201C;mklink /J C:\users\&lt;username&gt;\Desktop\exprev C:\Program Files\Cisco\AMP\exprev&#x201D;</code></pre></li>
+<li><p><code>ExprevDriver.sys</code>&#xC5D0; IOCTL&#xC744; &#xB118;&#xACA8;&#xC90D;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs latex">&#x201C;C:<span class="hljs-tag">\<span class="hljs-name">users</span></span><span class="hljs-tag">\<span class="hljs-name">&lt;</span></span>username&gt;<span class="hljs-tag">\<span class="hljs-name">Desktop</span></span><span class="hljs-tag">\<span class="hljs-name">exprev</span></span><span class="hljs-tag">\<span class="hljs-name">Protector</span></span>64.dll&#x201D;</code></pre>
 
-<p>IOCTL을 사용해  <code>ExprevDriver.sys</code>가 삽입할 DLL의 경로와 대상 프로세스를 지정할 수 있습니다.  <code>ExprevDriver.sys</code>는 DLL을 삽입하기 전에 DLL의 전자서명을 검증하는 단계를 거치는데,  IOCTL로 설정된 경로를 사용합니다. Protector64.dll의 경로를 1번에서 만들어 둔 juction으로 설정해줍니다.</p>
+<p>IOCTL&#xC744; &#xC0AC;&#xC6A9;&#xD574;  <code>ExprevDriver.sys</code>&#xAC00; &#xC0BD;&#xC785;&#xD560; DLL&#xC758; &#xACBD;&#xB85C;&#xC640; &#xB300;&#xC0C1; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  <code>ExprevDriver.sys</code>&#xB294; DLL&#xC744; &#xC0BD;&#xC785;&#xD558;&#xAE30; &#xC804;&#xC5D0; DLL&#xC758; &#xC804;&#xC790;&#xC11C;&#xBA85;&#xC744; &#xAC80;&#xC99D;&#xD558;&#xB294; &#xB2E8;&#xACC4;&#xB97C; &#xAC70;&#xCE58;&#xB294;&#xB370;,  IOCTL&#xB85C; &#xC124;&#xC815;&#xB41C; &#xACBD;&#xB85C;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. Protector64.dll&#xC758; &#xACBD;&#xB85C;&#xB97C; 1&#xBC88;&#xC5D0;&#xC11C; &#xB9CC;&#xB4E4;&#xC5B4; &#xB454; juction&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>디렉터리 juction을 삭제하고 가짜 <code>Protector64.dll</code>을 생성합니다.</p>
-<p>DLL의 전자서명 검증 이후 juction을 삭제하고 2번 단계에서 지정해준 경로에 <code>Protector64.dll</code>라는 이름의 악성 DLL을 생성합니다.</p>
+<li><p>&#xB514;&#xB809;&#xD130;&#xB9AC; juction&#xC744; &#xC0AD;&#xC81C;&#xD558;&#xACE0; &#xAC00;&#xC9DC; <code>Protector64.dll</code>&#xC744; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>DLL&#xC758; &#xC804;&#xC790;&#xC11C;&#xBA85; &#xAC80;&#xC99D; &#xC774;&#xD6C4; juction&#xC744; &#xC0AD;&#xC81C;&#xD558;&#xACE0; 2&#xBC88; &#xB2E8;&#xACC4;&#xC5D0;&#xC11C; &#xC9C0;&#xC815;&#xD574;&#xC900; &#xACBD;&#xB85C;&#xC5D0; <code>Protector64.dll</code>&#xB77C;&#xB294; &#xC774;&#xB984;&#xC758; &#xC545;&#xC131; DLL&#xC744; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
 
@@ -278,9 +277,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
@@ -561,6 +560,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

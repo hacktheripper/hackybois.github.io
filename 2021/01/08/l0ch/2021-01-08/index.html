@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      105 자
+      255 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -241,16 +241,16 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/code-byter/CVE-2020-29669">https://github.com/code-byter/CVE-2020-29669</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Macally WIFISD2-2A82 Travel Router (펌웨어 버전 : 2.000.010)</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>무선 미디어 공유가 가능한 WIFI SD 허브인 Macally WIFISD2-2A82 제품에서 root로 권한 상승이 가능한 취약점이 공개되었습니다.</p>
-<p>취약점의 세부 공격 단계는 아래와 같습니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Macally WIFISD2-2A82 Travel Router (&#xD38C;&#xC6E8;&#xC5B4; &#xBC84;&#xC804; : 2.000.010)</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xBB34;&#xC120; &#xBBF8;&#xB514;&#xC5B4; &#xACF5;&#xC720;&#xAC00; &#xAC00;&#xB2A5;&#xD55C; WIFI SD &#xD5C8;&#xBE0C;&#xC778; Macally WIFISD2-2A82 &#xC81C;&#xD488;&#xC5D0;&#xC11C; root&#xB85C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xACF5;&#xACA9; &#xB2E8;&#xACC4;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>해커는 웹 인터페이스에서 게스트 계정으로 로그인합니다.</li>
-<li>패스워드 재설정 페이지에서 admin의 패스워드로 설정할 값을 입력합니다.</li>
-<li>BurpSuite로 해당 요청에서 <code>name</code> 필드값을 admin으로 변경해 요청하면 admin의 패스워드가 재설정됩니다.</li>
-<li>telnet을 통해 admin과 재설정한 패스워드를 입력해 접속하면 <code>/etc/passwd</code> 의 root를 포함한 모든 계정의 패스워드 해시를 유출할 수 있습니다.</li>
+<li>&#xD574;&#xCEE4;&#xB294; &#xC6F9; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xC5D0;&#xC11C; &#xAC8C;&#xC2A4;&#xD2B8; &#xACC4;&#xC815;&#xC73C;&#xB85C; &#xB85C;&#xADF8;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xC7AC;&#xC124;&#xC815; &#xD398;&#xC774;&#xC9C0;&#xC5D0;&#xC11C; admin&#xC758; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB85C; &#xC124;&#xC815;&#xD560; &#xAC12;&#xC744; &#xC785;&#xB825;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>BurpSuite&#xB85C; &#xD574;&#xB2F9; &#xC694;&#xCCAD;&#xC5D0;&#xC11C; <code>name</code> &#xD544;&#xB4DC;&#xAC12;&#xC744; admin&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xD574; &#xC694;&#xCCAD;&#xD558;&#xBA74; admin&#xC758; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xAC00; &#xC7AC;&#xC124;&#xC815;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>telnet&#xC744; &#xD1B5;&#xD574; admin&#xACFC; &#xC7AC;&#xC124;&#xC815;&#xD55C; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xC785;&#xB825;&#xD574; &#xC811;&#xC18D;&#xD558;&#xBA74; <code>/etc/passwd</code> &#xC758; root&#xB97C; &#xD3EC;&#xD568;&#xD55C; &#xBAA8;&#xB4E0; &#xACC4;&#xC815;&#xC758; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xD574;&#xC2DC;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>해당 취약점을 악용하면 패스워드 해시를 크래킹해 root 쉘에 접근할 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xD574;&#xC2DC;&#xB97C; &#xD06C;&#xB798;&#xD0B9;&#xD574; root &#xC258;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -553,6 +553,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

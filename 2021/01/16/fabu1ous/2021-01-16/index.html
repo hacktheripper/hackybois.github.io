@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      165 자
+      343 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -242,15 +242,15 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.blazeinfosec.com/attack-of-the-clones-2-git-command-client-remote-code-execution-strikes-back/">https://blog.blazeinfosec.com/attack-of-the-clones-2-git-command-client-remote-code-execution-strikes-back/</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Git Credential Manager core &lt; 2.0.289</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>악성 repository를 fork 한 피해자의 시스템에 임의의 실행파일을 실행시킬 수 있는 CVE-2020-26233에 대한 세부 정보가 공개되었습니다. 유사한 취약점으로 <a href="https://hackyboiz.github.io/2020/11/06/l0ch/2020-11-06/">CVE-2020-27955</a>가 있습니다.</p>
-<p>git clone은 기본적으로 top-level 디렉터리를 clone 한 후 새로운 git 프로세스를 생성해 재귀적으로 submodule들을 clone 합니다. 만약 repository의 root디렉터리 안에 git.exe라는 이름의 실행파일이 있다면 Git Credential Manager core가 configuration을 읽는 과정에서 해당 파일을 실행하게 됩니다.</p>
-<p>이런 취약점이 발생하는 이유는 다음과 같습니다. 만약 git.exe를 실행하라는 명령어를 받으면 Windows는 우선적으로 현재 디렉터리에 git.exe 실행파일이 있는지 확인하고, 없을 때만 %PATH% 환경 변수를 순회하면서 git.exe를 찾아 실행합니다. </p>
-<p>PoC는 아래와 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC545;&#xC131; repository&#xB97C; fork &#xD55C; &#xD53C;&#xD574;&#xC790;&#xC758; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC784;&#xC758;&#xC758; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC744; &#xC2E4;&#xD589;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xB294; CVE-2020-26233&#xC5D0; &#xB300;&#xD55C; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC720;&#xC0AC;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; <a href="https://hackyboiz.github.io/2020/11/06/l0ch/2020-11-06/">CVE-2020-27955</a>&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>git clone&#xC740; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; top-level &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; clone &#xD55C; &#xD6C4; &#xC0C8;&#xB85C;&#xC6B4; git &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD574; &#xC7AC;&#xADC0;&#xC801;&#xC73C;&#xB85C; submodule&#xB4E4;&#xC744; clone &#xD569;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; repository&#xC758; root&#xB514;&#xB809;&#xD130;&#xB9AC; &#xC548;&#xC5D0; git.exe&#xB77C;&#xB294; &#xC774;&#xB984;&#xC758; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC774; &#xC788;&#xB2E4;&#xBA74; Git Credential Manager core&#xAC00; configuration&#xC744; &#xC77D;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB7F0; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xC774;&#xC720;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; git.exe&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB77C;&#xB294; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xBC1B;&#xC73C;&#xBA74; Windows&#xB294; &#xC6B0;&#xC120;&#xC801;&#xC73C;&#xB85C; &#xD604;&#xC7AC; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; git.exe &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC774; &#xC788;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0;, &#xC5C6;&#xC744; &#xB54C;&#xB9CC; %PATH% &#xD658;&#xACBD; &#xBCC0;&#xC218;&#xB97C; &#xC21C;&#xD68C;&#xD558;&#xBA74;&#xC11C; git.exe&#xB97C; &#xCC3E;&#xC544; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>PoC&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>새로운 Repository생성, 혹은 기존 Repository에 파일 추가할 수 있는 권한 획득</li>
-<li>windows 실행파일의 파일명을 git.exe로 수정해 업로드</li>
-<li>임의의 사용자가 Repository를 fork 하기를 기다림</li>
-<li>RCE 성공</li>
+<li>&#xC0C8;&#xB85C;&#xC6B4; Repository&#xC0DD;&#xC131;, &#xD639;&#xC740; &#xAE30;&#xC874; Repository&#xC5D0; &#xD30C;&#xC77C; &#xCD94;&#xAC00;&#xD560; &#xC218; &#xC788;&#xB294; &#xAD8C;&#xD55C; &#xD68D;&#xB4DD;</li>
+<li>windows &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC758; &#xD30C;&#xC77C;&#xBA85;&#xC744; git.exe&#xB85C; &#xC218;&#xC815;&#xD574; &#xC5C5;&#xB85C;&#xB4DC;</li>
+<li>&#xC784;&#xC758;&#xC758; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; Repository&#xB97C; fork &#xD558;&#xAE30;&#xB97C; &#xAE30;&#xB2E4;&#xB9BC;</li>
+<li>RCE &#xC131;&#xACF5;</li>
 </ol>
 
             </div>
@@ -552,6 +552,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

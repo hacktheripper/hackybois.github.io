@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      186 자
+      400 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -241,29 +241,29 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.oversecured.com/Two-weeks-of-securing-Samsung-devices-Part-1/">Two weeks of securing Samsung devices: Part 1</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Samsung mobile 기본 앱</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Oversecured 팀이 삼성 모바일 기기에 기본 제공되는 앱에서 다수의 취약점을 발견했습니다. 해커는 해당 취약점들을 악용해 타겟 기기의 연락처, 통화, SMS/MMS에 접근하여 편집하고 관리자 권한으로 임의의 앱을 설치할 수 있습니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Samsung mobile &#xAE30;&#xBCF8; &#xC571;</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Oversecured &#xD300;&#xC774; &#xC0BC;&#xC131; &#xBAA8;&#xBC14;&#xC77C; &#xAE30;&#xAE30;&#xC5D0; &#xAE30;&#xBCF8; &#xC81C;&#xACF5;&#xB418;&#xB294; &#xC571;&#xC5D0;&#xC11C; &#xB2E4;&#xC218;&#xC758; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xC744; &#xC545;&#xC6A9;&#xD574; &#xD0C0;&#xAC9F; &#xAE30;&#xAE30;&#xC758; &#xC5F0;&#xB77D;&#xCC98;, &#xD1B5;&#xD654;, SMS/MMS&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xC5EC; &#xD3B8;&#xC9D1;&#xD558;&#xACE0; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC784;&#xC758;&#xC758; &#xC571;&#xC744; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><p>CVE-2021-25388</p>
-<p>Knox Core는 URI 파라미터 검증이 미흡해 해커가 임의의 앱을 설치하거나 임의의 파일을 탈취할 수 있습니다. </p>
+<p>Knox Core&#xB294; URI &#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC80;&#xC99D;&#xC774; &#xBBF8;&#xD761;&#xD574; &#xD574;&#xCEE4;&#xAC00; &#xC784;&#xC758;&#xC758; &#xC571;&#xC744; &#xC124;&#xCE58;&#xD558;&#xAC70;&#xB098; &#xC784;&#xC758;&#xC758; &#xD30C;&#xC77C;&#xC744; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 </li>
 <li><p>CVE-2021-25356</p>
-<p>Managed Provisioning은 모든 상호작용의 승인을 확인하기 위한 보안 검사가 있습니다. 하지만 <code>com.samsung.knox.container.requestId</code>값이 설정되어있다면 이를 무시할 수 있어 해커는 임의의 앱을 설치하고 관리자 권한을 부여할 수 있습니다.</p>
+<p>Managed Provisioning&#xC740; &#xBAA8;&#xB4E0; &#xC0C1;&#xD638;&#xC791;&#xC6A9;&#xC758; &#xC2B9;&#xC778;&#xC744; &#xD655;&#xC778;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xBCF4;&#xC548; &#xAC80;&#xC0AC;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>com.samsung.knox.container.requestId</code>&#xAC12;&#xC774; &#xC124;&#xC815;&#xB418;&#xC5B4;&#xC788;&#xB2E4;&#xBA74; &#xC774;&#xB97C; &#xBB34;&#xC2DC;&#xD560; &#xC218; &#xC788;&#xC5B4; &#xD574;&#xCEE4;&#xB294; &#xC784;&#xC758;&#xC758; &#xC571;&#xC744; &#xC124;&#xCE58;&#xD558;&#xACE0; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC744; &#xBD80;&#xC5EC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-25391</p>
-<p>Secure Folder는 Intent redirection 취약점이 있어 해커가 읽기, 쓰기 작업을 가로챌 수 있습니다.</p>
+<p>Secure Folder&#xB294; Intent redirection &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC788;&#xC5B4; &#xD574;&#xCEE4;&#xAC00; &#xC77D;&#xAE30;, &#xC4F0;&#xAE30; &#xC791;&#xC5C5;&#xC744; &#xAC00;&#xB85C;&#xCC4C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-25393</p>
-<p>SecSetting은 intent에 대한 부적절한 sanitization 때문에 해커가 system uid 데이터에 접근 할 수 있습니다.</p>
+<p>SecSetting&#xC740; intent&#xC5D0; &#xB300;&#xD55C; &#xBD80;&#xC801;&#xC808;&#xD55C; sanitization &#xB54C;&#xBB38;&#xC5D0; &#xD574;&#xCEE4;&#xAC00; system uid &#xB370;&#xC774;&#xD130;&#xC5D0; &#xC811;&#xADFC; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-25392</p>
-<p>Samsung Dex는 부적절한 백업 경로 설정 때문에 해커가 이를 변경해 크리티컬 데이터를 노출시킬 수 있습니다.</p>
+<p>Samsung Dex&#xB294; &#xBD80;&#xC801;&#xC808;&#xD55C; &#xBC31;&#xC5C5; &#xACBD;&#xB85C; &#xC124;&#xC815; &#xB54C;&#xBB38;&#xC5D0; &#xD574;&#xCEE4;&#xAC00; &#xC774;&#xB97C; &#xBCC0;&#xACBD;&#xD574; &#xD06C;&#xB9AC;&#xD2F0;&#xCEEC; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB178;&#xCD9C;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-25397</p>
-<p>TelephonyUI의 부적절한 Access control 때문에 해커는 TelephonyUI의 파일에 대한 쓰기 작업을 할 수 있습니다.</p>
+<p>TelephonyUI&#xC758; &#xBD80;&#xC801;&#xC808;&#xD55C; Access control &#xB54C;&#xBB38;&#xC5D0; &#xD574;&#xCEE4;&#xB294; TelephonyUI&#xC758; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD55C; &#xC4F0;&#xAE30; &#xC791;&#xC5C5;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-25390</p>
-<p>PhotoTable의 Intent redirection 취약점은 해커가 임의의 파일에 접근할 수 있게 합니다.</p>
+<p>PhotoTable&#xC758; Intent redirection &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD574;&#xCEE4;&#xAC00; &#xC784;&#xC758;&#xC758; &#xD30C;&#xC77C;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
 
@@ -564,6 +564,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

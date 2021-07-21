@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      253 자
+      470 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        분
     </span>
   
@@ -240,13 +240,13 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://movaxbx.ru/2021/03/13/new-old-bugs-in-the-linux-kernel/?utm_source=rss&utm_medium=rss&utm_campaign=new-old-bugs-in-the-linux-kernel">New Old Bugs in the Linux Kernel</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://movaxbx.ru/2021/03/13/new-old-bugs-in-the-linux-kernel/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=new-old-bugs-in-the-linux-kernel">New Old Bugs in the Linux Kernel</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Linux 배포판(RHEL 8.1, 8.2 및 8.3에서 테스트됨)</li>
+<li>Linux &#xBC30;&#xD3EC;&#xD310;(RHEL 8.1, 8.2 &#xBC0F; 8.3&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xB428;)</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Linux 커널의 하위 시스템인 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/SCSI">SCSI (Small Computer System Interface)</a>이 포함된 배포판에서 heap buffer overflow을 통한 권한 상승 취약점이 발견되었습니다. 해당 취약점은 15년간 존재했던 것으로 알려졌습니다.</p>
-<p>취약점은 <code>iscsi_session_get_param</code> 함수에 존재합니다. 유저는 호스트 이름, 유저 이름과 같은 iSCSI 연결과 관련된 속성을 설정하는 iSCSI 하위 시스템에 netlink 메시지를 보낼 수 있습니다. netlink 메시지의 최대 길이는 시스템에 따라 <code>2^32</code> 또는 <code>2^16</code> 크기입니다.</p>
-<pre><code class="hljs c"><span class="hljs-keyword">switch</span>(param) &#123;
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Linux &#xCEE4;&#xB110;&#xC758; &#xD558;&#xC704; &#xC2DC;&#xC2A4;&#xD15C;&#xC778; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/SCSI">SCSI (Small Computer System Interface)</a>&#xC774; &#xD3EC;&#xD568;&#xB41C; &#xBC30;&#xD3EC;&#xD310;&#xC5D0;&#xC11C; heap buffer overflow&#xC744; &#xD1B5;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; 15&#xB144;&#xAC04; &#xC874;&#xC7AC;&#xD588;&#xB358; &#xAC83;&#xC73C;&#xB85C; &#xC54C;&#xB824;&#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; <code>iscsi_session_get_param</code> &#xD568;&#xC218;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC720;&#xC800;&#xB294; &#xD638;&#xC2A4;&#xD2B8; &#xC774;&#xB984;, &#xC720;&#xC800; &#xC774;&#xB984;&#xACFC; &#xAC19;&#xC740; iSCSI &#xC5F0;&#xACB0;&#xACFC; &#xAD00;&#xB828;&#xB41C; &#xC18D;&#xC131;&#xC744; &#xC124;&#xC815;&#xD558;&#xB294; iSCSI &#xD558;&#xC704; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; netlink &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xBCF4;&#xB0BC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. netlink &#xBA54;&#xC2DC;&#xC9C0;&#xC758; &#xCD5C;&#xB300; &#xAE38;&#xC774;&#xB294; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xB530;&#xB77C; <code>2^32</code> &#xB610;&#xB294; <code>2^16</code> &#xD06C;&#xAE30;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs c"><span class="hljs-keyword">switch</span>(param) {
 ...
 	<span class="hljs-keyword">case</span> ISCSI_PARAM_USERNAME:
 		len = <span class="hljs-built_in">sprintf</span>(buf, <span class="hljs-string">&quot;%s\\n&quot;</span>, session-&gt;username);
@@ -268,9 +268,9 @@
 		<span class="hljs-keyword">break</span>;
 ...</code></pre>
 
-<p>메시지의 각 속성은 <code>sprintf</code> 함수로 처리되고 할당되는 버퍼 크기는 커널의 <code>PAGE_SIZE</code>로 설정되며 크기에 대한 검사가 없습니다. 따라서 속성을 <code>PAGE_SIZE</code>보다 많이 입력하면 buffer overflow를 트리거할 수 있습니다.</p>
-<p>현재까지 확인된 취약한 배포판은 <code>libiscsi</code> 커널 모듈을 자동 로드하는 CentOS 및 RHEL 버전 8.1, 8.2, 8.3이며 다른 배포판 또한 해당 모듈이 로드되어 있으면 공격 조건을 만족합니다. 그 외 CVE-2021-27363(커널 포인터 유출 취약점), CVE-2021-27364(커널 OOB read 취약점) 또한 동일한 SCSI 라이브러리에서 발견되었습니다.</p>
-<p>취약점의 패치 히스토리는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/torvalds/linux/commit/ec98ea7070e94cc25a422ec97d1421e28d97b7ee#diff-156a34b787dc5569ae3b78903bbda80af9e2264786c6cb8efb16c7ee32bd4bca">torvalds/linux</a> 에서 확인할 수 있습니다.</p>
+<p>&#xBA54;&#xC2DC;&#xC9C0;&#xC758; &#xAC01; &#xC18D;&#xC131;&#xC740; <code>sprintf</code> &#xD568;&#xC218;&#xB85C; &#xCC98;&#xB9AC;&#xB418;&#xACE0; &#xD560;&#xB2F9;&#xB418;&#xB294; &#xBC84;&#xD37C; &#xD06C;&#xAE30;&#xB294; &#xCEE4;&#xB110;&#xC758; <code>PAGE_SIZE</code>&#xB85C; &#xC124;&#xC815;&#xB418;&#xBA70; &#xD06C;&#xAE30;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC18D;&#xC131;&#xC744; <code>PAGE_SIZE</code>&#xBCF4;&#xB2E4; &#xB9CE;&#xC774; &#xC785;&#xB825;&#xD558;&#xBA74; buffer overflow&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD604;&#xC7AC;&#xAE4C;&#xC9C0; &#xD655;&#xC778;&#xB41C; &#xCDE8;&#xC57D;&#xD55C; &#xBC30;&#xD3EC;&#xD310;&#xC740; <code>libiscsi</code> &#xCEE4;&#xB110; &#xBAA8;&#xB4C8;&#xC744; &#xC790;&#xB3D9; &#xB85C;&#xB4DC;&#xD558;&#xB294; CentOS &#xBC0F; RHEL &#xBC84;&#xC804; 8.1, 8.2, 8.3&#xC774;&#xBA70; &#xB2E4;&#xB978; &#xBC30;&#xD3EC;&#xD310; &#xB610;&#xD55C; &#xD574;&#xB2F9; &#xBAA8;&#xB4C8;&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA74; &#xACF5;&#xACA9; &#xC870;&#xAC74;&#xC744; &#xB9CC;&#xC871;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xC678; CVE-2021-27363(&#xCEE4;&#xB110; &#xD3EC;&#xC778;&#xD130; &#xC720;&#xCD9C; &#xCDE8;&#xC57D;&#xC810;), CVE-2021-27364(&#xCEE4;&#xB110; OOB read &#xCDE8;&#xC57D;&#xC810;) &#xB610;&#xD55C; &#xB3D9;&#xC77C;&#xD55C; SCSI &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58; &#xD788;&#xC2A4;&#xD1A0;&#xB9AC;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/torvalds/linux/commit/ec98ea7070e94cc25a422ec97d1421e28d97b7ee#diff-156a34b787dc5569ae3b78903bbda80af9e2264786c6cb8efb16c7ee32bd4bca">torvalds/linux</a> &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -288,9 +288,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
@@ -577,6 +577,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

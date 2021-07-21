@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      151 자
+      234 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      4
        분
     </span>
   
@@ -248,17 +248,17 @@
 <li>Ubuntu 20.04.1 ( GNU Screen 4.08.00, Windows WSL )</li>
 <li>Ubuntu 20.04 ( GNU Screen 4.08.00 )</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>GNU Screen은 여러 프로세스의 터미널을 한 화면에서 조작할 수 있게 도와주는 multiplexer로, Mac OSX와 대부분의 Linux 배포판에 포함되어있습니다. GNU Screen 4.8.0 이전 버전은 특정 UTF-8 문자 조합을 처리하는 과정에서 취약점(CVE-2021-26937)이 발생합니다. 해커는 이를 악용해 원격 시스템을 대상으로 invalid write access와 Dos를 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>GNU Screen&#xC740; &#xC5EC;&#xB7EC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xD130;&#xBBF8;&#xB110;&#xC744; &#xD55C; &#xD654;&#xBA74;&#xC5D0;&#xC11C; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB3C4;&#xC640;&#xC8FC;&#xB294; multiplexer&#xB85C;, Mac OSX&#xC640; &#xB300;&#xBD80;&#xBD84;&#xC758; Linux &#xBC30;&#xD3EC;&#xD310;&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. GNU Screen 4.8.0 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC740; &#xD2B9;&#xC815; UTF-8 &#xBB38;&#xC790; &#xC870;&#xD569;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xCDE8;&#xC57D;&#xC810;(CVE-2021-26937)&#xC774; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xC6D0;&#xACA9; &#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xB300;&#xC0C1;&#xC73C;&#xB85C; invalid write access&#xC640; Dos&#xB97C; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!combchars[i])
-&#123;
+{
 	combchars[i] = (strcut comchar *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(struct combchar));
 	<span class="hljs-keyword">if</span> (!comchars[i])
 		<span class="hljs-keyword">return</span>;
 	combchars[i]-&gt;prev = i;
 	combchars[i]-&gt;next = i;
-&#125;</code></pre>
+}</code></pre>
 
-<p>encode.c의 일부 코드입니다. <code>comchars[i]</code>의 out-of-range로 인해 특정 UTF-8 문자열이 화면에 출력되면 GNU Screen이 비정상 종료됩니다.</p>
+<p>encode.c&#xC758; &#xC77C;&#xBD80; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. <code>comchars[i]</code>&#xC758; out-of-range&#xB85C; &#xC778;&#xD574; &#xD2B9;&#xC815; UTF-8 &#xBB38;&#xC790;&#xC5F4;&#xC774; &#xD654;&#xBA74;&#xC5D0; &#xCD9C;&#xB825;&#xB418;&#xBA74; GNU Screen&#xC774; &#xBE44;&#xC815;&#xC0C1; &#xC885;&#xB8CC;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a><strong>PoC</strong></h2><p><img src="/2021/02/17/fabu1ous/2021-02-17/1.png" srcset="/img/loading.gif"></p>
 
             </div>
@@ -558,6 +558,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

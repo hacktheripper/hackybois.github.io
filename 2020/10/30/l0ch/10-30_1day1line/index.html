@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      121 자
+      210 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -242,9 +242,9 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/research/CVE-2020-6449-exploit-chrome-uaf">Exploiting a textbook use-after-free in Chrome</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Chrome version: master branch build 79956ba, asan build 80.3987.132 Operating System: Ubuntu 18.04</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>CVE-2020-6449는 Chrome에서 사용하는 blink 엔진의 <code>WebAudio</code> 모듈에서 발생하는 Use-After-Free 취약점 입니다. </p>
-<p>취약점은 <code>DeferredTaskHandler::BreakConnections</code> 에서 발생합니다. 일반적으로 <code>active_source_handlers_</code>는 <code>finished_source_handlers_</code> 의 원시 포인터를 활성 상태로 유지하는 역할을 하며 사용이 완료된 이후에는 할당된 <code>active_source_handlers_</code> 와 <code>finished_source_handlers_</code> 가 같이 free되어야 합니다.</p>
-<p>그러나 컨텍스트를 삭제하여 <code>BaseAudioContext::Uninitialize</code> 가 실행된 이후 <code>DeferredTaskHandler::ClearHandlersToBeDeleted</code> 를 호출하면 <code>active_source_handlers_</code> 만 free되고 <code>finished_source_handlers_</code> 에 free된 포인터가 남게 됩니다. 이후 <code>DeferredTaskHandler::BreakConnections</code> 를 호출해 UAF 취약점을 트리거할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>CVE-2020-6449&#xB294; Chrome&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; blink &#xC5D4;&#xC9C4;&#xC758; <code>WebAudio</code> &#xBAA8;&#xB4C8;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; Use-After-Free &#xCDE8;&#xC57D;&#xC810; &#xC785;&#xB2C8;&#xB2E4;. </p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; <code>DeferredTaskHandler::BreakConnections</code> &#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C; <code>active_source_handlers_</code>&#xB294; <code>finished_source_handlers_</code> &#xC758; &#xC6D0;&#xC2DC; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xD65C;&#xC131; &#xC0C1;&#xD0DC;&#xB85C; &#xC720;&#xC9C0;&#xD558;&#xB294; &#xC5ED;&#xD560;&#xC744; &#xD558;&#xBA70; &#xC0AC;&#xC6A9;&#xC774; &#xC644;&#xB8CC;&#xB41C; &#xC774;&#xD6C4;&#xC5D0;&#xB294; &#xD560;&#xB2F9;&#xB41C; <code>active_source_handlers_</code> &#xC640; <code>finished_source_handlers_</code> &#xAC00; &#xAC19;&#xC774; free&#xB418;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB7EC;&#xB098; &#xCEE8;&#xD14D;&#xC2A4;&#xD2B8;&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xC5EC; <code>BaseAudioContext::Uninitialize</code> &#xAC00; &#xC2E4;&#xD589;&#xB41C; &#xC774;&#xD6C4; <code>DeferredTaskHandler::ClearHandlersToBeDeleted</code> &#xB97C; &#xD638;&#xCD9C;&#xD558;&#xBA74; <code>active_source_handlers_</code> &#xB9CC; free&#xB418;&#xACE0; <code>finished_source_handlers_</code> &#xC5D0; free&#xB41C; &#xD3EC;&#xC778;&#xD130;&#xAC00; &#xB0A8;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; <code>DeferredTaskHandler::BreakConnections</code> &#xB97C; &#xD638;&#xCD9C;&#xD574; UAF &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/research/garbage-collection-uaf-chrome_gc">https://securitylab.github.com/research/garbage-collection-uaf-chrome_gc</a></p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/advisories/GHSL-2020-040-chrome">https://securitylab.github.com/advisories/GHSL-2020-040-chrome</a></p>
 
@@ -551,6 +551,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

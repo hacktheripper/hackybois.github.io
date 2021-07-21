@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      165 자
+      342 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -242,8 +242,8 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-netgear-nighthawk-r7000-httpd-preauth-rce/">NETGEAR Nightawk R7000 PreAuth RCE</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Netgear Nighthawk R7000 firmware &lt;= 1.0.11.116</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>NETGEAR R7000 라우터에서 인증 절차를 무시하고 원격 코드를 실행할 수 있는 취약점이 발견되었습니다. 해당 취약점은 HTTP 요청을 처리하는 과정에서 user supplied data에 대한 검증 미흡으로 발생하고 이를 악용해 해커는 루트 권한의 원격 코드 실행을 할 수 있습니다. 유저는 Httpd의  <code>/backup.cgi</code> URL을 통해  파일을 업로드할 수 있습니다. 두 개의 변수로 해당 파일의 크기를 표현하는데  그중 하나는 HTTP POST Request Header의 <code>Content-length</code> 값을, 다른 하나는 HTTP POST Request Body의 <code>Content-length</code> 값을 사용합니다.</p>
-<p>프로그램은 <code>malloc</code>을 호출해 파일의 데이터를 저장하기 위한  <code>Content-length+600</code> 크기의 청크를 할당합니다. HTTP POST Request Header의 <code>Content-length</code>는 유저가 제어할 수 있는 데이터이므로 임의 크기의 chunk를 할당할 수 있습니다. 그 후  <code>memcpy</code>를 사용해 할당된 청크에 파일 데이터를 옮기는데 HTTP POST Request Body의 <code>Content-length</code> 크기만큼 데이터를 복사합니다. 마찬가지로 HTTP POST Request Body의 <code>Content-length</code>는 유저 제어가 가능한 데이터로 heap overflow를 발생시킬 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>NETGEAR R7000 &#xB77C;&#xC6B0;&#xD130;&#xC5D0;&#xC11C; &#xC778;&#xC99D; &#xC808;&#xCC28;&#xB97C; &#xBB34;&#xC2DC;&#xD558;&#xACE0; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; HTTP &#xC694;&#xCCAD;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; user supplied data&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC99D; &#xBBF8;&#xD761;&#xC73C;&#xB85C; &#xBC1C;&#xC0DD;&#xD558;&#xACE0; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xD574;&#xCEE4;&#xB294; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC758; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC720;&#xC800;&#xB294; Httpd&#xC758;  <code>/backup.cgi</code> URL&#xC744; &#xD1B5;&#xD574;  &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB450; &#xAC1C;&#xC758; &#xBCC0;&#xC218;&#xB85C; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC758; &#xD06C;&#xAE30;&#xB97C; &#xD45C;&#xD604;&#xD558;&#xB294;&#xB370;  &#xADF8;&#xC911; &#xD558;&#xB098;&#xB294; HTTP POST Request Header&#xC758; <code>Content-length</code> &#xAC12;&#xC744;, &#xB2E4;&#xB978; &#xD558;&#xB098;&#xB294; HTTP POST Request Body&#xC758; <code>Content-length</code> &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; <code>malloc</code>&#xC744; &#xD638;&#xCD9C;&#xD574; &#xD30C;&#xC77C;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xAE30; &#xC704;&#xD55C;  <code>Content-length+600</code> &#xD06C;&#xAE30;&#xC758; &#xCCAD;&#xD06C;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. HTTP POST Request Header&#xC758; <code>Content-length</code>&#xB294; &#xC720;&#xC800;&#xAC00; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xB294; &#xB370;&#xC774;&#xD130;&#xC774;&#xBBC0;&#xB85C; &#xC784;&#xC758; &#xD06C;&#xAE30;&#xC758; chunk&#xB97C; &#xD560;&#xB2F9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4;  <code>memcpy</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xD560;&#xB2F9;&#xB41C; &#xCCAD;&#xD06C;&#xC5D0; &#xD30C;&#xC77C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC62E;&#xAE30;&#xB294;&#xB370; HTTP POST Request Body&#xC758; <code>Content-length</code> &#xD06C;&#xAE30;&#xB9CC;&#xD07C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; HTTP POST Request Body&#xC758; <code>Content-length</code>&#xB294; &#xC720;&#xC800; &#xC81C;&#xC5B4;&#xAC00; &#xAC00;&#xB2A5;&#xD55C; &#xB370;&#xC774;&#xD130;&#xB85C; heap overflow&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -544,6 +544,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      124 자
+      302 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -242,15 +242,15 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/detail?id=2175">Windows Filtering Platform Token Access Check EoP</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Windows 10 20H2</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows Filtering Platform(WFP)의 TCP/IP 드라이버는 token impersonation level에 대한 검증 미흡으로 발생하는 방화벽 정책 우회 및 권한상승 취약점이 패치되었습니다. </p>
-<p>WFP는 네트워크 필터링을 생성하기 위한 API 및 시스템 서비스들입니다. 소캣에 작업이 들어오면 기본 필터링 엔진 및 Windows 방화벽에서 구성한 정책에 따라 작업이 허용되는지 확인하는데 그 필터링 정책은 호출자의 토큰 상태에 따라 달라집니다. 하지만 이 정책들을 다음과 같은 문제로 인해 우회할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows Filtering Platform(WFP)&#xC758; TCP/IP &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; token impersonation level&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC99D; &#xBBF8;&#xD761;&#xC73C;&#xB85C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xBC29;&#xD654;&#xBCBD; &#xC815;&#xCC45; &#xC6B0;&#xD68C; &#xBC0F; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>WFP&#xB294; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xD544;&#xD130;&#xB9C1;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xAE30; &#xC704;&#xD55C; API &#xBC0F; &#xC2DC;&#xC2A4;&#xD15C; &#xC11C;&#xBE44;&#xC2A4;&#xB4E4;&#xC785;&#xB2C8;&#xB2E4;. &#xC18C;&#xCEA3;&#xC5D0; &#xC791;&#xC5C5;&#xC774; &#xB4E4;&#xC5B4;&#xC624;&#xBA74; &#xAE30;&#xBCF8; &#xD544;&#xD130;&#xB9C1; &#xC5D4;&#xC9C4; &#xBC0F; Windows &#xBC29;&#xD654;&#xBCBD;&#xC5D0;&#xC11C; &#xAD6C;&#xC131;&#xD55C; &#xC815;&#xCC45;&#xC5D0; &#xB530;&#xB77C; &#xC791;&#xC5C5;&#xC774; &#xD5C8;&#xC6A9;&#xB418;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294;&#xB370; &#xADF8; &#xD544;&#xD130;&#xB9C1; &#xC815;&#xCC45;&#xC740; &#xD638;&#xCD9C;&#xC790;&#xC758; &#xD1A0;&#xD070; &#xC0C1;&#xD0DC;&#xC5D0; &#xB530;&#xB77C; &#xB2EC;&#xB77C;&#xC9D1;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xC774; &#xC815;&#xCC45;&#xB4E4;&#xC744; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBB38;&#xC81C;&#xB85C; &#xC778;&#xD574; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><p>PsReferenceImpersonationToken을 호출해 토큰을 TOKEN_ACCESS_INFORMATION 구조체로 변환할 때 impersonation level이 SecurityImpersonation 이상인지 확인하지 않습니다.</p>
+<li><p>PsReferenceImpersonationToken&#xC744; &#xD638;&#xCD9C;&#xD574; &#xD1A0;&#xD070;&#xC744; TOKEN_ACCESS_INFORMATION &#xAD6C;&#xC870;&#xCCB4;&#xB85C; &#xBCC0;&#xD658;&#xD560; &#xB54C; impersonation level&#xC774; SecurityImpersonation &#xC774;&#xC0C1;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>TCP/IP 드라이버는 토큰 impersonating 도중에 소캣 생성을 허용합니다.</p>
+<li><p>TCP/IP &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; &#xD1A0;&#xD070; impersonating &#xB3C4;&#xC911;&#xC5D0; &#xC18C;&#xCEA3; &#xC0DD;&#xC131;&#xC744; &#xD5C8;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
-<p>일반 사용자가 시스템 토큰을 캡처하고 impersonat 할 수 있게 되므로 해커는 이를 악용해 방화벽 정책에 의해 명시적으로 허용되지 않는 작업을 수행할 수 있게 됩니다.</p>
+<p>&#xC77C;&#xBC18; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC2DC;&#xC2A4;&#xD15C; &#xD1A0;&#xD070;&#xC744; &#xCEA1;&#xCC98;&#xD558;&#xACE0; impersonat &#xD560; &#xC218; &#xC788;&#xAC8C; &#xB418;&#xBBC0;&#xB85C; &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xBC29;&#xD654;&#xBCBD; &#xC815;&#xCC45;&#xC5D0; &#xC758;&#xD574; &#xBA85;&#xC2DC;&#xC801;&#xC73C;&#xB85C; &#xD5C8;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xB294; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -553,6 +553,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

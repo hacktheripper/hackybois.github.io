@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      152 자
+      401 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -244,11 +244,11 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>여러 사이버 보안 연구원들이 Microsoft Windows를 타깃으로 한 Revenge RAT, LimeRAT, AsyncRAT, Houdini, Vjw0rm 등의 RAT에 AutoHotkey(AHK) 스크립트 언어를 사용하는 것이 발견하였습니다.</p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.autohotkey.com/">AutoHotkey(AHK)</a>는 Windows 애플리케이션에서 매크로, 소프트웨어 자동화 등에 사용되는 오픈 소스 커스텀 스크립트 언어입니다.</p>
-<p>AHK 악성 파일은 <code>FileInstall</code> 명령어를 통해 AHK 인터프리터, AHK 스크립트, 파일들을 포함하여 독립적인 실행 파일로 만들어집니다. 악성코드 제작자들은 정상적인 프로그램으로 위장하기 위해 악성 스크립트와 정상적인 파일들을 묶어서 악성 실행 파일을 생성하였습니다. RAT 악성코드 감염은 AHK 실행 파일에서 시작되며 공격 체인과 상관없이 VBScript를 드롭하고 실행하여 RAT 파일을 로드합니다.</p>
-<p>3월 31일에 발견된 악성코드는 AHK 실행 파일을 통해 RAT 파일을 드롭하고 배치 스크립트를 통해 Microsoft Defender를 비활성화하였습니다. 또 다른 악성코드는 피해자의 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/Hosts_(file)">hosts 파일</a>을 변조하여 유명한 악성코드들이 접근하는 것을 막았습니다.</p>
-<p>다른 악성코드들 또한 AHK 실행 파일에서 VBScript나 Powershell을 통해 RAT 파일을 드롭하고, Microsoft Defender를 비활성화하는 등의 공통점이 발견되었습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC5EC;&#xB7EC; &#xC0AC;&#xC774;&#xBC84; &#xBCF4;&#xC548; &#xC5F0;&#xAD6C;&#xC6D0;&#xB4E4;&#xC774; Microsoft Windows&#xB97C; &#xD0C0;&#xAE43;&#xC73C;&#xB85C; &#xD55C; Revenge RAT, LimeRAT, AsyncRAT, Houdini, Vjw0rm &#xB4F1;&#xC758; RAT&#xC5D0; AutoHotkey(AHK) &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC5B8;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774; &#xBC1C;&#xACAC;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.autohotkey.com/">AutoHotkey(AHK)</a>&#xB294; Windows &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C; &#xB9E4;&#xD06C;&#xB85C;, &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; &#xC790;&#xB3D9;&#xD654; &#xB4F1;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xC624;&#xD508; &#xC18C;&#xC2A4; &#xCEE4;&#xC2A4;&#xD140; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC5B8;&#xC5B4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>AHK &#xC545;&#xC131; &#xD30C;&#xC77C;&#xC740; <code>FileInstall</code> &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD1B5;&#xD574; AHK &#xC778;&#xD130;&#xD504;&#xB9AC;&#xD130;, AHK &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;, &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xD3EC;&#xD568;&#xD558;&#xC5EC; &#xB3C5;&#xB9BD;&#xC801;&#xC778; &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;. &#xC545;&#xC131;&#xCF54;&#xB4DC; &#xC81C;&#xC791;&#xC790;&#xB4E4;&#xC740; &#xC815;&#xC0C1;&#xC801;&#xC778; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC73C;&#xB85C; &#xC704;&#xC7A5;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC545;&#xC131; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC640; &#xC815;&#xC0C1;&#xC801;&#xC778; &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xBB36;&#xC5B4;&#xC11C; &#xC545;&#xC131; &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;. RAT &#xC545;&#xC131;&#xCF54;&#xB4DC; &#xAC10;&#xC5FC;&#xC740; AHK &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xC2DC;&#xC791;&#xB418;&#xBA70; &#xACF5;&#xACA9; &#xCCB4;&#xC778;&#xACFC; &#xC0C1;&#xAD00;&#xC5C6;&#xC774; VBScript&#xB97C; &#xB4DC;&#xB86D;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD558;&#xC5EC; RAT &#xD30C;&#xC77C;&#xC744; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>3&#xC6D4; 31&#xC77C;&#xC5D0; &#xBC1C;&#xACAC;&#xB41C; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB294; AHK &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC744; &#xD1B5;&#xD574; RAT &#xD30C;&#xC77C;&#xC744; &#xB4DC;&#xB86D;&#xD558;&#xACE0; &#xBC30;&#xCE58; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xD1B5;&#xD574; Microsoft Defender&#xB97C; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610; &#xB2E4;&#xB978; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB294; &#xD53C;&#xD574;&#xC790;&#xC758; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/Hosts_(file)">hosts &#xD30C;&#xC77C;</a>&#xC744; &#xBCC0;&#xC870;&#xD558;&#xC5EC; &#xC720;&#xBA85;&#xD55C; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB4E4;&#xC774; &#xC811;&#xADFC;&#xD558;&#xB294; &#xAC83;&#xC744; &#xB9C9;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xB978; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB4E4; &#xB610;&#xD55C; AHK &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; VBScript&#xB098; Powershell&#xC744; &#xD1B5;&#xD574; RAT &#xD30C;&#xC77C;&#xC744; &#xB4DC;&#xB86D;&#xD558;&#xACE0;, Microsoft Defender&#xB97C; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xD558;&#xB294; &#xB4F1;&#xC758; &#xACF5;&#xD1B5;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -555,6 +555,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

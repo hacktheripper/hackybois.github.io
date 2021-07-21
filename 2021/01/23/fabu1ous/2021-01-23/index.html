@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      175 자
+      326 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -240,27 +240,25 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/1/20/three-bugs-in-orions-belt-chaining-multiple-bugs-for-unauthenticated-rce-in-the-solarwinds-orion-platform">Three bugs in orion’s belt: Chaining multiple bugs for rce</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/1/20/three-bugs-in-orions-belt-chaining-multiple-bugs-for-unauthenticated-rce-in-the-solarwinds-orion-platform">Three bugs in orion&#x2019;s belt: Chaining multiple bugs for rce</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>SolarWinds Orion Platform</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ZDI에서 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.solarwinds.com/securityadvisory#anchor1">SunBurst</a> 사건과 관련된 3가지 취약점의 세부 정보를 공개했습니다. </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ZDI&#xC5D0;&#xC11C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.solarwinds.com/securityadvisory#anchor1">SunBurst</a> &#xC0AC;&#xAC74;&#xACFC; &#xAD00;&#xB828;&#xB41C; 3&#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xB97C; &#xACF5;&#xAC1C;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <ul>
 <li><p>CVE-2020-14005</p>
-<p>Alert Management 권한을 가진 SolarWinds 사용자는 SolarWinds Orion Platform의 web-based GUI 혹은 REST API를 통해 관리자 권한으로 원격 코드 실행을 할 수 있습니다. Alert Management 권한을 가진 사용자는 네트워크 이벤트를 처리할 VBS script의 경로를 지정할 수 있는데, 이 VBS script를 해석하고 실행할 interpreter의 경로 또한 API request의 내용을 조작해 임의로 설정이 가능합니다. 따라서 interpreter 대신 cmd.exe를 실행해 command injection을 할 수 있습니다.</p>
+<p>Alert Management &#xAD8C;&#xD55C;&#xC744; &#xAC00;&#xC9C4; SolarWinds &#xC0AC;&#xC6A9;&#xC790;&#xB294; SolarWinds Orion Platform&#xC758; web-based GUI &#xD639;&#xC740; REST API&#xB97C; &#xD1B5;&#xD574; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Alert Management &#xAD8C;&#xD55C;&#xC744; &#xAC00;&#xC9C4; &#xC0AC;&#xC6A9;&#xC790;&#xB294; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xCC98;&#xB9AC;&#xD560; VBS script&#xC758; &#xACBD;&#xB85C;&#xB97C; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xB294;&#xB370;, &#xC774; VBS script&#xB97C; &#xD574;&#xC11D;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD560; interpreter&#xC758; &#xACBD;&#xB85C; &#xB610;&#xD55C; API request&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xC870;&#xC791;&#xD574; &#xC784;&#xC758;&#xB85C; &#xC124;&#xC815;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; interpreter &#xB300;&#xC2E0; cmd.exe&#xB97C; &#xC2E4;&#xD589;&#xD574; command injection&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
-</ul>
-<ul>
 <li><p>CVE-2020-27869</p>
-<p>특정 네트워크 이벤트 발생 시 서버로 보낼 GET 혹은 POST Request를 Configure Action 기능으로 설정할 수 있습니다. 해당 기능에서 SQL injection이 가능해 관리자 계정을 탈취할 수 있습니다.</p>
+<p>&#xD2B9;&#xC815; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC774;&#xBCA4;&#xD2B8; &#xBC1C;&#xC0DD; &#xC2DC; &#xC11C;&#xBC84;&#xB85C; &#xBCF4;&#xB0BC; GET &#xD639;&#xC740; POST Request&#xB97C; Configure Action &#xAE30;&#xB2A5;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xAE30;&#xB2A5;&#xC5D0;&#xC11C; SQL injection&#xC774; &#xAC00;&#xB2A5;&#xD574; &#xAD00;&#xB9AC;&#xC790; &#xACC4;&#xC815;&#xC744; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs reasonml">...
 
-<span class="hljs-keyword">if</span> (messageWithMacros.<span class="hljs-constructor">Contains(<span class="hljs-string">&quot;$&#123;SQL:&quot;</span>)</span>)
-&#123; 
+<span class="hljs-keyword">if</span> (messageWithMacros.<span class="hljs-constructor">Contains(<span class="hljs-string">&quot;${SQL:&quot;</span>)</span>)
+{ 
                     MacroParser.<span class="hljs-constructor">PrepareMacroStringForSQL(<span class="hljs-params">ref</span> <span class="hljs-params">messageWithMacros</span>)</span>;
-&#125;
+}
 
 ...</code></pre>
 
-<p>서버에 보낼 POST request를 임의의 문자열로 지정할 수 있습니다. 만약 해당 문자열이 <code>$&#123;SQL:</code>를 포함하면 그 뒤에 따라오는 문자열을 SQL statement로 인식하고 처리하게 됩니다.</p>
+<p>&#xC11C;&#xBC84;&#xC5D0; &#xBCF4;&#xB0BC; POST request&#xB97C; &#xC784;&#xC758;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xB85C; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; &#xD574;&#xB2F9; &#xBB38;&#xC790;&#xC5F4;&#xC774; <code>${SQL:</code>&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xBA74; &#xADF8; &#xB4A4;&#xC5D0; &#xB530;&#xB77C;&#xC624;&#xB294; &#xBB38;&#xC790;&#xC5F4;&#xC744; SQL statement&#xB85C; &#xC778;&#xC2DD;&#xD558;&#xACE0; &#xCC98;&#xB9AC;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
 <ul>
@@ -564,6 +562,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

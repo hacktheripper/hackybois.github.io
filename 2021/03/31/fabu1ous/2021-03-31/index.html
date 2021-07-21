@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      195 자
+      356 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,14 +242,14 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/3/25/cve-2021-25646-getting-code-execution-on-apache-druid">CVE-2021-25646 : Getting Code Execution on Apache Druid</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Apache Druid &lt;= 0.20.0</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Apache Druid는 Request를 통해 사용자 제공 JavaScript코드를 실행하는 기능이  있습니다. 이 기능은 신뢰도가 높은 환경에서 사용하기 위한 것이므로 기본적으로 비활성화되어 있습니다. 그러나 Druid 0.20.0 이전 버전에서는 서버 구성에 관계없이 사용자가 제공한 JavaScript 코드를 실행할 수 있는 취약점(CVE-2021-25646)이 발견되었습니다. 해커는 해당 취약점을 악용해 Druid 서버 프로세스의 권한으로 타겟 시스템에서 원격 코드실행을 할 수 있습니다. </p>
-<p>CVE-2021-25646은 Apache Druid의 Jackson이 JavaScript 타입의 JSON 데이터 구문을 파싱하는 과정에서 발생합니다. </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Apache Druid&#xB294; Request&#xB97C; &#xD1B5;&#xD574; &#xC0AC;&#xC6A9;&#xC790; &#xC81C;&#xACF5; JavaScript&#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC774;  &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xAE30;&#xB2A5;&#xC740; &#xC2E0;&#xB8B0;&#xB3C4;&#xAC00; &#xB192;&#xC740; &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xAC83;&#xC774;&#xBBC0;&#xB85C; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; Druid 0.20.0 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC5D0;&#xC11C;&#xB294; &#xC11C;&#xBC84; &#xAD6C;&#xC131;&#xC5D0; &#xAD00;&#xACC4;&#xC5C6;&#xC774; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC81C;&#xACF5;&#xD55C; JavaScript &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;(CVE-2021-25646)&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; Druid &#xC11C;&#xBC84; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xD0C0;&#xAC9F; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC;&#xC2E4;&#xD589;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>CVE-2021-25646&#xC740; Apache Druid&#xC758; Jackson&#xC774; JavaScript &#xD0C0;&#xC785;&#xC758; JSON &#xB370;&#xC774;&#xD130; &#xAD6C;&#xBB38;&#xC744; &#xD30C;&#xC2F1;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs java"><span class="hljs-meta">@JsonCreator</span> 
 <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">JavaScriptDimFilter</span><span class="hljs-params">(<span class="hljs-meta">@JsonProperty(&quot;dimension&quot;)</span> String dimension, <span class="hljs-meta">@JsonProperty(&quot;function&quot;)</span> </span></span>
 <span class="hljs-function"><span class="hljs-params">            String function, <span class="hljs-meta">@JsonProperty(&quot;extractionFn&quot;)</span> <span class="hljs-meta">@Nullable</span> ExtractionFn extractionFn, </span></span>
 <span class="hljs-function"><span class="hljs-params">            <span class="hljs-meta">@JsonProperty(&quot;filterTuning&quot;)</span> <span class="hljs-meta">@Nullable</span> FilterTuning filterTuning, </span></span>
 <span class="hljs-function"><span class="hljs-params">            <span class="hljs-meta">@JacksonInject</span> JavaScriptConfig config)</span> </span>
-<span class="hljs-function"></span>&#123; 
+<span class="hljs-function"></span>{ 
   Preconditions.checkArgument(dimension != <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;dimension must not be null&quot;</span>); 
   Preconditions.checkArgument(function != <span class="hljs-keyword">null</span>, <span class="hljs-string">&quot;function must not be null&quot;</span>); 
   <span class="hljs-keyword">this</span>.dimension = dimension; 
@@ -257,9 +257,9 @@
   <span class="hljs-keyword">this</span>.extractionFn = extractionFn; 
   <span class="hljs-keyword">this</span>.filterTuning = filterTuning; 
   <span class="hljs-keyword">this</span>.config = config; 
-&#125;</code></pre>
+}</code></pre>
 
-<p>JSON 데이터의  <code>name</code>속성이  “”일 때 빈 키값을 JavaScriptDimFilter 클래스의  <code>config</code>파라미터에 바인딩 시킬 수 있습니다. 따라서 해커는 JavaScript 실행 설정을 활성화하여 <code>function</code> 키값으로 제공한 JavaScript 코드를 실핼할 수 있습니다.</p>
+<p>JSON &#xB370;&#xC774;&#xD130;&#xC758;  <code>name</code>&#xC18D;&#xC131;&#xC774;  &#x201C;&#x201D;&#xC77C; &#xB54C; &#xBE48; &#xD0A4;&#xAC12;&#xC744; JavaScriptDimFilter &#xD074;&#xB798;&#xC2A4;&#xC758;  <code>config</code>&#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC5D0; &#xBC14;&#xC778;&#xB529; &#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xD574;&#xCEE4;&#xB294; JavaScript &#xC2E4;&#xD589; &#xC124;&#xC815;&#xC744; &#xD65C;&#xC131;&#xD654;&#xD558;&#xC5EC; <code>function</code> &#xD0A4;&#xAC12;&#xC73C;&#xB85C; &#xC81C;&#xACF5;&#xD55C; JavaScript &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD57C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -558,6 +558,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

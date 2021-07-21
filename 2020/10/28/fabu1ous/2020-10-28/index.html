@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      110 자
+      206 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -254,11 +254,11 @@
 <li>Windows Defender Antivirus</li>
 <li>Windows Defender Antispyware</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><code>Herpaderping</code>이라는 Detection Evasion 기술입니다. 디스크에 존재하는 실행파일을 Process object의 생성과 Initial Thread 삽입 과정 사이에서 수정하는 탐지 우회 방법이 존재합니다. 이를 방지하고자 파일에 write 작업이 있었는지 확인하는 <code>on-write scanning</code>이 도입됐습니다. 문제는 이 <code>on-write scanning</code>이 <code>IRP_MJ_CLEANUP</code>(== file handle close)이 발생하기 전까지 파일의 수정 여부를 검사하지 않는다는 겁니다. 따라서 아래와 같은 순서로 우회가 가능합니다.</p>
-<pre><code class="hljs angelscript"><span class="hljs-number">1.</span> CreateFile (File handle을 계속 열어놓는다.)
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><code>Herpaderping</code>&#xC774;&#xB77C;&#xB294; Detection Evasion &#xAE30;&#xC220;&#xC785;&#xB2C8;&#xB2E4;. &#xB514;&#xC2A4;&#xD06C;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC744; Process object&#xC758; &#xC0DD;&#xC131;&#xACFC; Initial Thread &#xC0BD;&#xC785; &#xACFC;&#xC815; &#xC0AC;&#xC774;&#xC5D0;&#xC11C; &#xC218;&#xC815;&#xD558;&#xB294; &#xD0D0;&#xC9C0; &#xC6B0;&#xD68C; &#xBC29;&#xBC95;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xBC29;&#xC9C0;&#xD558;&#xACE0;&#xC790; &#xD30C;&#xC77C;&#xC5D0; write &#xC791;&#xC5C5;&#xC774; &#xC788;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294; <code>on-write scanning</code>&#xC774; &#xB3C4;&#xC785;&#xB410;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBB38;&#xC81C;&#xB294; &#xC774; <code>on-write scanning</code>&#xC774; <code>IRP_MJ_CLEANUP</code>(== file handle close)&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xAE30; &#xC804;&#xAE4C;&#xC9C0; &#xD30C;&#xC77C;&#xC758; &#xC218;&#xC815; &#xC5EC;&#xBD80;&#xB97C; &#xAC80;&#xC0AC;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;&#xB294; &#xAC81;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC740; &#xC21C;&#xC11C;&#xB85C; &#xC6B0;&#xD68C;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs angelscript"><span class="hljs-number">1.</span> CreateFile (File handle&#xC744; &#xACC4;&#xC18D; &#xC5F4;&#xC5B4;&#xB193;&#xB294;&#xB2E4;.)
 <span class="hljs-number">2.</span> NtCreateSectioin
 <span class="hljs-number">3.</span> NtCreatePrcessex
-<span class="hljs-number">4.</span> 실행파일 수정
+<span class="hljs-number">4.</span> &#xC2E4;&#xD589;&#xD30C;&#xC77C; &#xC218;&#xC815;
 <span class="hljs-number">5.</span> NtCreateThreadEx
 <span class="hljs-number">6.</span> CloseFile (IRP_MJ_ClEANUP)</code></pre>
 
@@ -560,6 +560,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

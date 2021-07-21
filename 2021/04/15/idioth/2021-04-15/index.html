@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      331 자
+      693 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      13
        분
     </span>
   
@@ -242,13 +242,13 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securelist.com/zero-day-vulnerability-in-desktop-window-manager-cve-2021-28310-used-in-the-wild/101898/">Zero-day vulnerability in Desktop Window Manager (CVE-2021-28310) used in the wild</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Windows OS 빌드 19041.928 이하 버전</li>
+<li>Windows OS &#xBE4C;&#xB4DC; 19041.928 &#xC774;&#xD558; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows 데스크톱 창 관리자(Desktop Window Manager, <code>dwm.exe</code>)의 <code>dwmcore.dll</code>에서 out-of-bounds write 취약점이 발견되었습니다. 해커는 DirectComposition API를 사용하여 오프셋을 조작하여 데이터를 쓸 수 있습니다.</p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/directcomp/directcomposition-portal">DirectComposition</a>은 다양한 소스(GDI, DirectX 등)의 비트맵을 지원하는 변환, 효과, 애니메이션 비트맵 구성을 위해 Windows 8에서 도입된 Windows 구성 요소입니다. DirectComposition API는 <code>win32kbase.sys</code> 드라이버에 구현되어 있으며 관련된 syscall은 <code>NtDComposition</code>으로 시작합니다.</p>
-<p>취약점을 트리거하기 위해서 3개의 syscall이 필요합니다. <code>NtDCompositionCreateChannel</code>은 <code>NtDCompositionProcessChannelBatchBuffer</code>와 함께 채널을 초기화하여 kernel batch mode에서 처리되도록 여러 개의 DirectComposition을 전송합니다. 커널에 의해 명령어가 처리되지만 명령어들은 다른 포맷으로 serialize 되어 Local Procedure Call(LPC) 프로토콜에서 Desktop Window Manager(<code>dwm.exe</code>)로 전달되고 화면에 출력됩니다. 이 프로시저는 <code>NtDCompositionCommitChannel</code>에 의해 초기화됩니다.</p>
-<p>해당 취약점을 트리거하기 위해서는 3가지 명령어(<code>CreateResource</code>, <code>ReleaseResource</code>, <code>SetResourceBufferProperty</code>)를 사용해야 합니다. <code>dwmcore.dll</code>의 <code>CPropertySet::ProcessSetPropertyValue</code> 함수는 <code>SetResourceBufferProperty</code>를 호출합니다. D2DVector2로 expression type이 설정된 <code>SetResourceBufferProperty</code>의 경우 <code>CPropertySet::ProcessSetPropertyValue</code>에서 업데이트 여부에 따라 <code>CPropertySet::AddProperty&lt;D2DVector2&gt;</code> 혹은 <code>CPropertySet::UpdateProperty&lt;D2DVector2&gt;</code>를 호출하여 명령어를 설정합니다. 이때 <code>UpdateProperty</code>에서 <code>propertyId</code>가 리소스에 추가된 property 수보다 작은지 확인하지 않아 property 배열 내부 데이터에 대한 두 가지 검사를 우회하면 <code>propertiesData</code> 버퍼를 지나 OOB write가 가능합니다. 해커가 <code>dwm.exe</code> 프로세스에서 객체를 할당하고 해제할 수 있으면 heap spray를 통해 이 검사를 우회할 수 있습니다.</p>
-<p>검사를 우회한 후 조작된 <code>propertyId</code>로 명령을 전송하면 <code>NtDCompositionProcessChannelBatchBuffer</code>에서 에러를 반환하고 명령어가 <code>dwm.exe</code>에 전송되지 않습니다. kernel mode <code>UpdateProperty&lt;D2DVector2&gt;</code>의 <code>propertiesCount</code> 검사는 user mode에서의 악성 명령 실행을 방지합니다. 하지만 kernel mode <code>AddProperty</code>는 user mode와 유사하게 작동하며 생성된 property의 <code>propertyId</code>와 <code>storageOffset</code>이 제공된 값과 동일한지만 확인하고 다르면 에러를 반환합니다. <code>AddProperty</code>를 통해 새 속성을 추가하여 함수가 에러를 반환하면 kernel mode와 user mode 동일 리소스 간에 property 수의 불일치가 발생하여 kernel mode <code>propertiesCount</code> 검사를 우회하여 <code>dwm.exe</code>에서 명령어 실행이 가능합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows &#xB370;&#xC2A4;&#xD06C;&#xD1B1; &#xCC3D; &#xAD00;&#xB9AC;&#xC790;(Desktop Window Manager, <code>dwm.exe</code>)&#xC758; <code>dwmcore.dll</code>&#xC5D0;&#xC11C; out-of-bounds write &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; DirectComposition API&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC624;&#xD504;&#xC14B;&#xC744; &#xC870;&#xC791;&#xD558;&#xC5EC; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/directcomp/directcomposition-portal">DirectComposition</a>&#xC740; &#xB2E4;&#xC591;&#xD55C; &#xC18C;&#xC2A4;(GDI, DirectX &#xB4F1;)&#xC758; &#xBE44;&#xD2B8;&#xB9F5;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xBCC0;&#xD658;, &#xD6A8;&#xACFC;, &#xC560;&#xB2C8;&#xBA54;&#xC774;&#xC158; &#xBE44;&#xD2B8;&#xB9F5; &#xAD6C;&#xC131;&#xC744; &#xC704;&#xD574; Windows 8&#xC5D0;&#xC11C; &#xB3C4;&#xC785;&#xB41C; Windows &#xAD6C;&#xC131; &#xC694;&#xC18C;&#xC785;&#xB2C8;&#xB2E4;. DirectComposition API&#xB294; <code>win32kbase.sys</code> &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA70; &#xAD00;&#xB828;&#xB41C; syscall&#xC740; <code>NtDComposition</code>&#xC73C;&#xB85C; &#xC2DC;&#xC791;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; 3&#xAC1C;&#xC758; syscall&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. <code>NtDCompositionCreateChannel</code>&#xC740; <code>NtDCompositionProcessChannelBatchBuffer</code>&#xC640; &#xD568;&#xAED8; &#xCC44;&#xB110;&#xC744; &#xCD08;&#xAE30;&#xD654;&#xD558;&#xC5EC; kernel batch mode&#xC5D0;&#xC11C; &#xCC98;&#xB9AC;&#xB418;&#xB3C4;&#xB85D; &#xC5EC;&#xB7EC; &#xAC1C;&#xC758; DirectComposition&#xC744; &#xC804;&#xC1A1;&#xD569;&#xB2C8;&#xB2E4;. &#xCEE4;&#xB110;&#xC5D0; &#xC758;&#xD574; &#xBA85;&#xB839;&#xC5B4;&#xAC00; &#xCC98;&#xB9AC;&#xB418;&#xC9C0;&#xB9CC; &#xBA85;&#xB839;&#xC5B4;&#xB4E4;&#xC740; &#xB2E4;&#xB978; &#xD3EC;&#xB9F7;&#xC73C;&#xB85C; serialize &#xB418;&#xC5B4; Local Procedure Call(LPC) &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC5D0;&#xC11C; Desktop Window Manager(<code>dwm.exe</code>)&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xACE0; &#xD654;&#xBA74;&#xC5D0; &#xCD9C;&#xB825;&#xB429;&#xB2C8;&#xB2E4;. &#xC774; &#xD504;&#xB85C;&#xC2DC;&#xC800;&#xB294; <code>NtDCompositionCommitChannel</code>&#xC5D0; &#xC758;&#xD574; &#xCD08;&#xAE30;&#xD654;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; 3&#xAC00;&#xC9C0; &#xBA85;&#xB839;&#xC5B4;(<code>CreateResource</code>, <code>ReleaseResource</code>, <code>SetResourceBufferProperty</code>)&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. <code>dwmcore.dll</code>&#xC758; <code>CPropertySet::ProcessSetPropertyValue</code> &#xD568;&#xC218;&#xB294; <code>SetResourceBufferProperty</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. D2DVector2&#xB85C; expression type&#xC774; &#xC124;&#xC815;&#xB41C; <code>SetResourceBufferProperty</code>&#xC758; &#xACBD;&#xC6B0; <code>CPropertySet::ProcessSetPropertyValue</code>&#xC5D0;&#xC11C; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xC5EC;&#xBD80;&#xC5D0; &#xB530;&#xB77C; <code>CPropertySet::AddProperty&lt;D2DVector2&gt;</code> &#xD639;&#xC740; <code>CPropertySet::UpdateProperty&lt;D2DVector2&gt;</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>UpdateProperty</code>&#xC5D0;&#xC11C; <code>propertyId</code>&#xAC00; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xCD94;&#xAC00;&#xB41C; property &#xC218;&#xBCF4;&#xB2E4; &#xC791;&#xC740;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC544; property &#xBC30;&#xC5F4; &#xB0B4;&#xBD80; &#xB370;&#xC774;&#xD130;&#xC5D0; &#xB300;&#xD55C; &#xB450; &#xAC00;&#xC9C0; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xBA74; <code>propertiesData</code> &#xBC84;&#xD37C;&#xB97C; &#xC9C0;&#xB098; OOB write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xAC00; <code>dwm.exe</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xAC1D;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xACE0; &#xD574;&#xC81C;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA74; heap spray&#xB97C; &#xD1B5;&#xD574; &#xC774; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD55C; &#xD6C4; &#xC870;&#xC791;&#xB41C; <code>propertyId</code>&#xB85C; &#xBA85;&#xB839;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xBA74; <code>NtDCompositionProcessChannelBatchBuffer</code>&#xC5D0;&#xC11C; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xACE0; &#xBA85;&#xB839;&#xC5B4;&#xAC00; <code>dwm.exe</code>&#xC5D0; &#xC804;&#xC1A1;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. kernel mode <code>UpdateProperty&lt;D2DVector2&gt;</code>&#xC758; <code>propertiesCount</code> &#xAC80;&#xC0AC;&#xB294; user mode&#xC5D0;&#xC11C;&#xC758; &#xC545;&#xC131; &#xBA85;&#xB839; &#xC2E4;&#xD589;&#xC744; &#xBC29;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; kernel mode <code>AddProperty</code>&#xB294; user mode&#xC640; &#xC720;&#xC0AC;&#xD558;&#xAC8C; &#xC791;&#xB3D9;&#xD558;&#xBA70; &#xC0DD;&#xC131;&#xB41C; property&#xC758; <code>propertyId</code>&#xC640; <code>storageOffset</code>&#xC774; &#xC81C;&#xACF5;&#xB41C; &#xAC12;&#xACFC; &#xB3D9;&#xC77C;&#xD55C;&#xC9C0;&#xB9CC; &#xD655;&#xC778;&#xD558;&#xACE0; &#xB2E4;&#xB974;&#xBA74; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. <code>AddProperty</code>&#xB97C; &#xD1B5;&#xD574; &#xC0C8; &#xC18D;&#xC131;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xD568;&#xC218;&#xAC00; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xBA74; kernel mode&#xC640; user mode &#xB3D9;&#xC77C; &#xB9AC;&#xC18C;&#xC2A4; &#xAC04;&#xC5D0; property &#xC218;&#xC758; &#xBD88;&#xC77C;&#xCE58;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC5EC; kernel mode <code>propertiesCount</code> &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xC5EC; <code>dwm.exe</code>&#xC5D0;&#xC11C; &#xBA85;&#xB839;&#xC5B4; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -549,6 +549,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

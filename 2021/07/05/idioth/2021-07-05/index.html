@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      237 자
+      496 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        분
     </span>
   
@@ -244,24 +244,24 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Kerberos S4U2self</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>티켓을 기반으로 동작하는 컴퓨터 네트워크 인증 암호화 프로토콜 Kerberos의 <a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.harmj0y.net/blog/activedirectory/S4U2pwnage/">S4U2self extension을 악용</a>하여 권한 상승이 가능합니다. 해당 기술은 새로 발견된 것은 아니며 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/GhostPack/Rubeus#constrained-delegation-abuse">Rubeus manual</a>과 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://exploit.ph/revisiting-delegate-2-thyself.html">Charlie Clark의 게시글</a>에서 상세 내용을 확인할 수 있습니다.</p>
-<p>S4U2proxy와 관련된 시스템 간에 작업은 권한을 가진 계정이 활성화 되어 있어야 하지만, SPN을 사용하는 모든 사용자는 S4U2self를 호출할 수 있습니다. Active Directory에서 네트워크 서비스 계정과 AppPool identities는 컴퓨터 계정의 역할을 할 수 있습니다. 따라서 네트워크 서비스 계정으로 실행되는 MSSQL이나, AppPool을 사용하는 IIS 등이 실행 중일 경우 S4U2self를 호출하여 모든 유저가 자신의 서비스 티켓을 요청할 수 있습니다. 이를 통해 권한 상승을 하는 방법은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD2F0;&#xCF13;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xB3D9;&#xC791;&#xD558;&#xB294; &#xCEF4;&#xD4E8;&#xD130; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC778;&#xC99D; &#xC554;&#xD638;&#xD654; &#xD504;&#xB85C;&#xD1A0;&#xCF5C; Kerberos&#xC758; <a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.harmj0y.net/blog/activedirectory/S4U2pwnage/">S4U2self extension&#xC744; &#xC545;&#xC6A9;</a>&#xD558;&#xC5EC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xAE30;&#xC220;&#xC740; &#xC0C8;&#xB85C; &#xBC1C;&#xACAC;&#xB41C; &#xAC83;&#xC740; &#xC544;&#xB2C8;&#xBA70; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/GhostPack/Rubeus#constrained-delegation-abuse">Rubeus manual</a>&#xACFC; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://exploit.ph/revisiting-delegate-2-thyself.html">Charlie Clark&#xC758; &#xAC8C;&#xC2DC;&#xAE00;</a>&#xC5D0;&#xC11C; &#xC0C1;&#xC138; &#xB0B4;&#xC6A9;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>S4U2proxy&#xC640; &#xAD00;&#xB828;&#xB41C; &#xC2DC;&#xC2A4;&#xD15C; &#xAC04;&#xC5D0; &#xC791;&#xC5C5;&#xC740; &#xAD8C;&#xD55C;&#xC744; &#xAC00;&#xC9C4; &#xACC4;&#xC815;&#xC774; &#xD65C;&#xC131;&#xD654; &#xB418;&#xC5B4; &#xC788;&#xC5B4;&#xC57C; &#xD558;&#xC9C0;&#xB9CC;, SPN&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xBAA8;&#xB4E0; &#xC0AC;&#xC6A9;&#xC790;&#xB294; S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Active Directory&#xC5D0;&#xC11C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC11C;&#xBE44;&#xC2A4; &#xACC4;&#xC815;&#xACFC; AppPool identities&#xB294; &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; &#xC5ED;&#xD560;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC11C;&#xBE44;&#xC2A4; &#xACC4;&#xC815;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; MSSQL&#xC774;&#xB098;, AppPool&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; IIS &#xB4F1;&#xC774; &#xC2E4;&#xD589; &#xC911;&#xC77C; &#xACBD;&#xC6B0; S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xBAA8;&#xB4E0; &#xC720;&#xC800;&#xAC00; &#xC790;&#xC2E0;&#xC758; &#xC11C;&#xBE44;&#xC2A4; &#xD2F0;&#xCF13;&#xC744; &#xC694;&#xCCAD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>TGT 가져오기</li>
+<li>TGT &#xAC00;&#xC838;&#xC624;&#xAE30;</li>
 </ol>
-<p>S4U2self를 호출하기 위해서는 TGT 또는 컴퓨터 계정의 자격 증명이 필요합니다. 컴퓨터 계정의 TGT는 Rubues의<code>tgt::deleg</code> trick을 통해 가져올 수 있습니다.</p>
+<p>S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; TGT &#xB610;&#xB294; &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; &#xC790;&#xACA9; &#xC99D;&#xBA85;&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; TGT&#xB294; Rubues&#xC758;<code>tgt::deleg</code> trick&#xC744; &#xD1B5;&#xD574; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;tgtdeleg /nowrap&quot;</span></code></pre>
 
 <ol start="2">
-<li>SPN 수정</li>
+<li>SPN &#xC218;&#xC815;</li>
 </ol>
-<p>위의 TGT를 사용하여 S4U2self를 호출하여 도메인 관리자에 대한 티켓을 요청할 수 있습니다. </p>
+<p>&#xC704;&#xC758; TGT&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xB3C4;&#xBA54;&#xC778; &#xAD00;&#xB9AC;&#xC790;&#xC5D0; &#xB300;&#xD55C; &#xD2F0;&#xCF13;&#xC744; &#xC694;&#xCCAD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;s4u /self /nowrap /impersonateuser:doadmin /ticket:base64blob&quot;</span></code></pre>
 
-<p>기본적으로 S4U2self를 통해 가져온 티켓의 SPN은 해커가 실행 중인  <code>Computername$</code>으로 설정되어 있습니다. 따라서 유효한 SPN이 아니므로 티켓을 사용할 수 없지만, <code>tgssub</code>와 <code>/altservice</code>를 사용하여 해당 부분을 수정할 수 있습니다.</p>
+<p>&#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; S4U2self&#xB97C; &#xD1B5;&#xD574; &#xAC00;&#xC838;&#xC628; &#xD2F0;&#xCF13;&#xC758; SPN&#xC740; &#xD574;&#xCEE4;&#xAC00; &#xC2E4;&#xD589; &#xC911;&#xC778;  <code>Computername$</code>&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC720;&#xD6A8;&#xD55C; SPN&#xC774; &#xC544;&#xB2C8;&#xBBC0;&#xB85C; &#xD2F0;&#xCF13;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC;, <code>tgssub</code>&#xC640; <code>/altservice</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD574;&#xB2F9; &#xBD80;&#xBD84;&#xC744; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;tgssub /altservice:http/adsec-00.contoso.com /ticket:base64blob&quot;</span></code></pre>
 
-<p>그 후 다른 호스트에서 티켓을 복사해 사용할 수 있습니다.</p>
+<p>&#xADF8; &#xD6C4; &#xB2E4;&#xB978; &#xD638;&#xC2A4;&#xD2B8;&#xC5D0;&#xC11C; &#xD2F0;&#xCF13;&#xC744; &#xBCF5;&#xC0AC;&#xD574; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="https://cyberstoph.org/img/7_tgssub_ptt_2.png" srcset="/img/loading.gif" alt="tgtdeleg"></p>
 
             </div>
@@ -565,6 +565,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

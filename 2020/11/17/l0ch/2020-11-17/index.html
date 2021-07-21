@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      191 자
+      407 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -241,20 +241,20 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/detail?id=2073">Samsung NPU (Neural Processing Unit) memory corruption in shared memory parsing</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Samsung’s Exynos-based devices (including Neural Processing Unit)</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>삼성의 엑시노스 모바일 프로세서에 포함된 NPU(Neural Processing Unit)는 머신러닝 연산에 사용됩니다. 이러한 NPU의 Neural Network Feature Maps를 패키징하는데 사용되는 <code>NCP</code> 구조체의 입력 값 검증을 하지 않아 memory corruption이 발생하는 취약점이 발견되었습니다.</p>
-<p>Convolution Neural Network Feature Maps(IFM / OFM)을 패키징하는 <code>npu_session_s_graph</code> 에서는 먼저<code>__get_session_info</code> 를 호출해 사용자 영역 ION 메모리 버퍼를 커널 메모리에 매핑합니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Samsung&#x2019;s Exynos-based devices (including Neural Processing Unit)</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC0BC;&#xC131;&#xC758; &#xC5D1;&#xC2DC;&#xB178;&#xC2A4; &#xBAA8;&#xBC14;&#xC77C; &#xD504;&#xB85C;&#xC138;&#xC11C;&#xC5D0; &#xD3EC;&#xD568;&#xB41C; NPU(Neural Processing Unit)&#xB294; &#xBA38;&#xC2E0;&#xB7EC;&#xB2DD; &#xC5F0;&#xC0B0;&#xC5D0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; NPU&#xC758; Neural Network Feature Maps&#xB97C; &#xD328;&#xD0A4;&#xC9D5;&#xD558;&#xB294;&#xB370; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>NCP</code> &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xC785;&#xB825; &#xAC12; &#xAC80;&#xC99D;&#xC744; &#xD558;&#xC9C0; &#xC54A;&#xC544; memory corruption&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Convolution Neural Network Feature Maps(IFM / OFM)&#xC744; &#xD328;&#xD0A4;&#xC9D5;&#xD558;&#xB294; <code>npu_session_s_graph</code> &#xC5D0;&#xC11C;&#xB294; &#xBA3C;&#xC800;<code>__get_session_info</code> &#xB97C; &#xD638;&#xCD9C;&#xD574; &#xC0AC;&#xC6A9;&#xC790; &#xC601;&#xC5ED; ION &#xBA54;&#xBAA8;&#xB9AC; &#xBC84;&#xD37C;&#xB97C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB9E4;&#xD551;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
-<p>ION - process 간 메모리 공유를 위한 메모리 할당자</p>
+<p>ION - process &#xAC04; &#xBA54;&#xBAA8;&#xB9AC; &#xACF5;&#xC720;&#xB97C; &#xC704;&#xD55C; &#xBA54;&#xBAA8;&#xB9AC; &#xD560;&#xB2F9;&#xC790;</p>
 </blockquote>
-<p>그리고 <code>__config_sesison_info</code>를 호출해 매핑된 메모리를 파싱하는데, 아래와 같은 과정에서 취약점을 트리거할 수 있습니다.</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; <code>__config_sesison_info</code>&#xB97C; &#xD638;&#xCD9C;&#xD574; &#xB9E4;&#xD551;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD30C;&#xC2F1;&#xD558;&#xB294;&#xB370;, &#xC544;&#xB798;&#xC640; &#xAC19;&#xC740; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>__pilot_parsing_ncp</code> 에서 <code>temp_IFM_av</code> 버퍼의 크기는 사용자 영역 공유 메모리에서 가져온  <code>ncp-&gt; memory_vector_cnt</code> 을 사용해 먼저 계산됩니다.</li>
-<li>TOCTOU 버그를 트리거해 사용자 영역에서 <code>ncp-&gt; memory_vector_cnt</code> 의 값을 더 큰 값으로 변경합니다.</li>
-<li>이후 <code>__second_parsing_ncp</code> 에서 <code>ncp-&gt; memory_vector_cnt</code> 를 다시 읽어 <code>temp_IFM_av</code> 버퍼에 복사합니다.</li>
-<li>2단계에서 큰 값으로 변경된 <code>ncp-&gt; memory_vector_cnt</code> 로 인해 <code>temp_IFM_av</code> 버퍼의 사이즈보다 더 많은 값을 복사하게 되고 이때 bounds check를 하지 않아 heap buffer overflow가 발생합니다.</li>
+<li><code>__pilot_parsing_ncp</code> &#xC5D0;&#xC11C; <code>temp_IFM_av</code> &#xBC84;&#xD37C;&#xC758; &#xD06C;&#xAE30;&#xB294; &#xC0AC;&#xC6A9;&#xC790; &#xC601;&#xC5ED; &#xACF5;&#xC720; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC628;  <code>ncp-&gt; memory_vector_cnt</code> &#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xBA3C;&#xC800; &#xACC4;&#xC0B0;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>TOCTOU &#xBC84;&#xADF8;&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD574; &#xC0AC;&#xC6A9;&#xC790; &#xC601;&#xC5ED;&#xC5D0;&#xC11C; <code>ncp-&gt; memory_vector_cnt</code> &#xC758; &#xAC12;&#xC744; &#xB354; &#xD070; &#xAC12;&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xC774;&#xD6C4; <code>__second_parsing_ncp</code> &#xC5D0;&#xC11C; <code>ncp-&gt; memory_vector_cnt</code> &#xB97C; &#xB2E4;&#xC2DC; &#xC77D;&#xC5B4; <code>temp_IFM_av</code> &#xBC84;&#xD37C;&#xC5D0; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>2&#xB2E8;&#xACC4;&#xC5D0;&#xC11C; &#xD070; &#xAC12;&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xB41C; <code>ncp-&gt; memory_vector_cnt</code> &#xB85C; &#xC778;&#xD574; <code>temp_IFM_av</code> &#xBC84;&#xD37C;&#xC758; &#xC0AC;&#xC774;&#xC988;&#xBCF4;&#xB2E4; &#xB354; &#xB9CE;&#xC740; &#xAC12;&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xAC8C; &#xB418;&#xACE0; &#xC774;&#xB54C; bounds check&#xB97C; &#xD558;&#xC9C0; &#xC54A;&#xC544; heap buffer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>해당 취약점을 이용하면 커널 스레드 스택을 포함해 vmap의 커널 버퍼 범위를 벗어나 데이터를 쓸 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC774;&#xC6A9;&#xD558;&#xBA74; &#xCEE4;&#xB110; &#xC2A4;&#xB808;&#xB4DC; &#xC2A4;&#xD0DD;&#xC744; &#xD3EC;&#xD568;&#xD574; vmap&#xC758; &#xCEE4;&#xB110; &#xBC84;&#xD37C; &#xBC94;&#xC704;&#xB97C; &#xBC97;&#xC5B4;&#xB098; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -563,6 +563,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

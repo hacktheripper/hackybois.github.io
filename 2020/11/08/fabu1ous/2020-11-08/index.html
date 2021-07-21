@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      140 자
+      270 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -241,9 +241,9 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://sayfer.io/blog/dynamic-loading-in-android-applications-with-proc-maps/">Detecting Dynamic Loading in Android Applications With /proc/maps</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Android 10 API 29 이상 버전</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Android application은 dynamic loading을 통해 run-time 도중 어느 시점에라도 코드를 메모리에 로드할 수 있습니다. API level 29부턴 이 dynamic loading을 악용해 apk의 정적 검사를 피해 가는 악성코드들을 막기 위해 apk에 속하지 않은 코드의 load를 막고 있습니다. 하지만 여전히 DexClassLoader에 의한 .dex 파일의 dynamic loading이 가능해 여전히 악용에 사용될 수 있습니다.</p>
-<p>모든 프로세스는 각각 <code>/proc/[PID]</code>라는 디렉터리를 갖고, 그중 <code>/proc/[PID]/maps</code>라는 파일은 프로세스의 매핑된 메모리가 기록돼있습니다.  따라서 프로세스가 어떠한 파일에 접근하면 <code>/proc/[PID]/maps</code>에 기록이 남습니다. 이 기록을 통해 프로세스가 <code>/data/data</code> 디렉터리 속 .dex 접근 여부를 검사해 dynamic loading을 탐지할 수 있습니다. </p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Android 10 API 29 &#xC774;&#xC0C1; &#xBC84;&#xC804;</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Android application&#xC740; dynamic loading&#xC744; &#xD1B5;&#xD574; run-time &#xB3C4;&#xC911; &#xC5B4;&#xB290; &#xC2DC;&#xC810;&#xC5D0;&#xB77C;&#xB3C4; &#xCF54;&#xB4DC;&#xB97C; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. API level 29&#xBD80;&#xD134; &#xC774; dynamic loading&#xC744; &#xC545;&#xC6A9;&#xD574; apk&#xC758; &#xC815;&#xC801; &#xAC80;&#xC0AC;&#xB97C; &#xD53C;&#xD574; &#xAC00;&#xB294; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB4E4;&#xC744; &#xB9C9;&#xAE30; &#xC704;&#xD574; apk&#xC5D0; &#xC18D;&#xD558;&#xC9C0; &#xC54A;&#xC740; &#xCF54;&#xB4DC;&#xC758; load&#xB97C; &#xB9C9;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xC5EC;&#xC804;&#xD788; DexClassLoader&#xC5D0; &#xC758;&#xD55C; .dex &#xD30C;&#xC77C;&#xC758; dynamic loading&#xC774; &#xAC00;&#xB2A5;&#xD574; &#xC5EC;&#xC804;&#xD788; &#xC545;&#xC6A9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBAA8;&#xB4E0; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; &#xAC01;&#xAC01; <code>/proc/[PID]</code>&#xB77C;&#xB294; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xAC16;&#xACE0;, &#xADF8;&#xC911; <code>/proc/[PID]/maps</code>&#xB77C;&#xB294; &#xD30C;&#xC77C;&#xC740; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xB9E4;&#xD551;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xAE30;&#xB85D;&#xB3FC;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  &#xB530;&#xB77C;&#xC11C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC5B4;&#xB5A0;&#xD55C; &#xD30C;&#xC77C;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xBA74; <code>/proc/[PID]/maps</code>&#xC5D0; &#xAE30;&#xB85D;&#xC774; &#xB0A8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xAE30;&#xB85D;&#xC744; &#xD1B5;&#xD574; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; <code>/data/data</code> &#xB514;&#xB809;&#xD130;&#xB9AC; &#xC18D; .dex &#xC811;&#xADFC; &#xC5EC;&#xBD80;&#xB97C; &#xAC80;&#xC0AC;&#xD574; dynamic loading&#xC744; &#xD0D0;&#xC9C0;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.android.com/reference/dalvik/system/DexClassLoader">https://developer.android.com/reference/dalvik/system/DexClassLoader</a></p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.android.com/about/versions/10/behavior-changes-10">https://developer.android.com/about/versions/10/behavior-changes-10</a></p>
 
@@ -544,6 +544,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      861 자
+      966 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      17
+      19
        분
     </span>
   
@@ -240,47 +240,47 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h1 id="문제-개요"><a href="#문제-개요" class="headerlink" title="문제 개요"></a>문제 개요</h1><p><img src="/2020/12/29/fabu1ous/no-g/1.png" srcset="/img/loading.gif"></p>
-<p>음계(Scale)를 알파벳으로 나타내곤 합니다. 음이름이라고 하죠.</p>
-<p>라(A), 시(B), 도(C), 레(D), 미(E) , 파(F), 솔(G)</p>
-<p>16진수(HEX) 또한 알파벳을 사용해 수를 표현합니다.</p>
+              <h1 id="&#xBB38;&#xC81C;-&#xAC1C;&#xC694;"><a href="#&#xBB38;&#xC81C;-&#xAC1C;&#xC694;" class="headerlink" title="&#xBB38;&#xC81C; &#xAC1C;&#xC694;"></a>&#xBB38;&#xC81C; &#xAC1C;&#xC694;</h1><p><img src="/2020/12/29/fabu1ous/no-g/1.png" srcset="/img/loading.gif"></p>
+<p>&#xC74C;&#xACC4;(Scale)&#xB97C; &#xC54C;&#xD30C;&#xBCB3;&#xC73C;&#xB85C; &#xB098;&#xD0C0;&#xB0B4;&#xACE4; &#xD569;&#xB2C8;&#xB2E4;. &#xC74C;&#xC774;&#xB984;&#xC774;&#xB77C;&#xACE0; &#xD558;&#xC8E0;.</p>
+<p>&#xB77C;(A), &#xC2DC;(B), &#xB3C4;(C), &#xB808;(D), &#xBBF8;(E) , &#xD30C;(F), &#xC194;(G)</p>
+<p>16&#xC9C4;&#xC218;(HEX) &#xB610;&#xD55C; &#xC54C;&#xD30C;&#xBCB3;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xC218;&#xB97C; &#xD45C;&#xD604;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>10(A), 11(B), 12(C), 13(D), 14(E), 15(F)</p>
 <p><img src="/2020/12/29/fabu1ous/no-g/hint.jpg" srcset="/img/loading.gif"></p>
-<p>악보에 그려진 음표를 알파벳으로, 그 알파벳을 hex값으로 치환하고 연결된 음표들끼리 hex값을 더해 ASCII로 변환하면 하나의 문자가 됩니다.</p>
-<p>예 ) 라라라 → chr(0xa+0xa+0xa) → ‘\x1e’</p>
-<p>hex에는 G가 없기 때문에 악보의 제목이 ‘No G’입니다. </p>
-<p>제가 의도한 풀이 접근 방식은 이렇습니다.</p>
+<p>&#xC545;&#xBCF4;&#xC5D0; &#xADF8;&#xB824;&#xC9C4; &#xC74C;&#xD45C;&#xB97C; &#xC54C;&#xD30C;&#xBCB3;&#xC73C;&#xB85C;, &#xADF8; &#xC54C;&#xD30C;&#xBCB3;&#xC744; hex&#xAC12;&#xC73C;&#xB85C; &#xCE58;&#xD658;&#xD558;&#xACE0; &#xC5F0;&#xACB0;&#xB41C; &#xC74C;&#xD45C;&#xB4E4;&#xB07C;&#xB9AC; hex&#xAC12;&#xC744; &#xB354;&#xD574; ASCII&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xBA74; &#xD558;&#xB098;&#xC758; &#xBB38;&#xC790;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC608; ) &#xB77C;&#xB77C;&#xB77C; &#x2192; chr(0xa+0xa+0xa) &#x2192; &#x2018;\x1e&#x2019;</p>
+<p>hex&#xC5D0;&#xB294; G&#xAC00; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC545;&#xBCF4;&#xC758; &#xC81C;&#xBAA9;&#xC774; &#x2018;No G&#x2019;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p>&#xC81C;&#xAC00; &#xC758;&#xB3C4;&#xD55C; &#xD480;&#xC774; &#xC811;&#xADFC; &#xBC29;&#xC2DD;&#xC740; &#xC774;&#xB807;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>제목에서 힌트를 얻어 음이름을 찾아본다.</li>
-<li>첫 여섯 음의 hex값을 더해봤더니 ‘X’가 나온다.</li>
-<li>flag 형식이 ‘XMAS{}’이므로 2번 과정을 몇 번 더 반복해 본다.</li>
+<li>&#xC81C;&#xBAA9;&#xC5D0;&#xC11C; &#xD78C;&#xD2B8;&#xB97C; &#xC5BB;&#xC5B4; &#xC74C;&#xC774;&#xB984;&#xC744; &#xCC3E;&#xC544;&#xBCF8;&#xB2E4;.</li>
+<li>&#xCCAB; &#xC5EC;&#xC12F; &#xC74C;&#xC758; hex&#xAC12;&#xC744; &#xB354;&#xD574;&#xBD24;&#xB354;&#xB2C8; &#x2018;X&#x2019;&#xAC00; &#xB098;&#xC628;&#xB2E4;.</li>
+<li>flag &#xD615;&#xC2DD;&#xC774; &#x2018;XMAS{}&#x2019;&#xC774;&#xBBC0;&#xB85C; 2&#xBC88; &#xACFC;&#xC815;&#xC744; &#xBA87; &#xBC88; &#xB354; &#xBC18;&#xBCF5;&#xD574; &#xBCF8;&#xB2E4;.</li>
 </ol>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><pre><code class="hljs python">note = [<span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>
-, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>
-, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>
-, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>
-, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>
-, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>
-, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>
-, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>
-, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>
-, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>
-, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>
-, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>
-, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>
-, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>
-, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>
-, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>
-, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>
-, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>, <span class="hljs-string">&#x27;la&#x27;</span>, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;ti&#x27;</span>
-, <span class="hljs-string">&#x27;do&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;re&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>, <span class="hljs-string">&#x27;fa&#x27;</span>, <span class="hljs-string">&#x27;mi&#x27;</span>]
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><pre><code class="hljs python">note = [<span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>
+, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>
+, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>
+, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>
+, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>
+, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>
+, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>
+, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>
+, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>
+, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>
+, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>
+, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>
+, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>
+, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>
+, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>
+, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>
+, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>
+, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>, <span class="hljs-string">&apos;la&apos;</span>, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;ti&apos;</span>
+, <span class="hljs-string">&apos;do&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;re&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>, <span class="hljs-string">&apos;fa&apos;</span>, <span class="hljs-string">&apos;mi&apos;</span>]
 
 idx = [<span class="hljs-number">6</span>, <span class="hljs-number">6</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">9</span>
 , <span class="hljs-number">4</span>, <span class="hljs-number">8</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">5</span>
@@ -299,49 +299,49 @@ pre_chk = <span class="hljs-number">0</span>
 	result = <span class="hljs-number">0</span>
 	
 	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(buf)):
-		 <span class="hljs-keyword">if</span>(buf[i] == <span class="hljs-string">&#x27;la&#x27;</span>):
+		 <span class="hljs-keyword">if</span>(buf[i] == <span class="hljs-string">&apos;la&apos;</span>):
 		 	result += <span class="hljs-number">0xa</span>
-		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&#x27;ti&#x27;</span>):
+		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&apos;ti&apos;</span>):
 		 	result += <span class="hljs-number">0xb</span>
-		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&#x27;do&#x27;</span>):
+		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&apos;do&apos;</span>):
 		 	result += <span class="hljs-number">0xc</span>
-		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&#x27;re&#x27;</span>):
+		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&apos;re&apos;</span>):
 		 	result += <span class="hljs-number">0xd</span>
-		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&#x27;mi&#x27;</span>):
+		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&apos;mi&apos;</span>):
 		 	result += <span class="hljs-number">0xe</span>
-		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&#x27;fa&#x27;</span>):
+		 <span class="hljs-keyword">elif</span>(buf[i] == <span class="hljs-string">&apos;fa&apos;</span>):
 		 	result += <span class="hljs-number">0xf</span>
 			
 	flag.append(chr(result))
-	print(<span class="hljs-string">&#x27;&#x27;</span>.join(flag))
+	print(<span class="hljs-string">&apos;&apos;</span>.join(flag))
 	pre_chk += cur_chk</code></pre>
 
 <pre><code class="hljs plain">X
 XM
 XMA
 XMAS
-XMAS&#123;
-XMAS&#123;7
-XMAS&#123;7h
-XMAS&#123;7he
-XMAS&#123;7her
-XMAS&#123;7her3
-XMAS&#123;7her3_
-XMAS&#123;7her3_i
-XMAS&#123;7her3_i5
-XMAS&#123;7her3_i5_
-XMAS&#123;7her3_i5_n
-XMAS&#123;7her3_i5_no
-XMAS&#123;7her3_i5_no_
-XMAS&#123;7her3_i5_no_G
-XMAS&#123;7her3_i5_no_G_
-XMAS&#123;7her3_i5_no_G_i
-XMAS&#123;7her3_i5_no_G_in
-XMAS&#123;7her3_i5_no_G_in_
-XMAS&#123;7her3_i5_no_G_in_H
-XMAS&#123;7her3_i5_no_G_in_H3
-XMAS&#123;7her3_i5_no_G_in_H3X
-XMAS&#123;7her3_i5_no_G_in_H3X&#125;</code></pre>
+XMAS{
+XMAS{7
+XMAS{7h
+XMAS{7he
+XMAS{7her
+XMAS{7her3
+XMAS{7her3_
+XMAS{7her3_i
+XMAS{7her3_i5
+XMAS{7her3_i5_
+XMAS{7her3_i5_n
+XMAS{7her3_i5_no
+XMAS{7her3_i5_no_
+XMAS{7her3_i5_no_G
+XMAS{7her3_i5_no_G_
+XMAS{7her3_i5_no_G_i
+XMAS{7her3_i5_no_G_in
+XMAS{7her3_i5_no_G_in_
+XMAS{7her3_i5_no_G_in_H
+XMAS{7her3_i5_no_G_in_H3
+XMAS{7her3_i5_no_G_in_H3X
+XMAS{7her3_i5_no_G_in_H3X}</code></pre>
             </div>
             <hr>
             <div>
@@ -403,9 +403,9 @@ XMAS&#123;7her3_i5_no_G_in_H3X&#125;</code></pre>
                 <article class="post-prev col-6">
                   
                   
-                  <a href="/2020/12/29/fabu1ous/oil-system/">
+                  <a href="/2020/12/29/fabu1ous/match-maker/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - oil system</span>
+                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - Match Maker</span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   
@@ -413,8 +413,8 @@ XMAS&#123;7her3_i5_no_G_in_H3X&#125;</code></pre>
                 <article class="post-next col-6">
                   
                   
-                  <a href="/2020/12/29/idioth/christmasctf2020-angrforge/">
-                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - angrforge</span>
+                  <a href="/2020/12/29/fabu1ous/oil-system/">
+                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - oil system</span>
                     <span class="visible-mobile">Next</span>
                     <i class="iconfont icon-arrowright"></i>
                   </a>
@@ -641,6 +641,45 @@ XMAS&#123;7her3_i5_no_G_in_H3X&#125;</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      372 자
+      708 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      14
        분
     </span>
   
@@ -244,35 +244,35 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Facebook</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>일반 페이스북 유저가 비공개로 돌리거나 삭제한 콘텐츠나 직원이 업로드한 파일을 다운로드할 수 있는 취약점이 발견되었습니다. 해당 취약점을 통해 유효한 파일 URL이 존재하더라도 일반 유저가 접근할 수 없는 <code>interncache-cln.fbcdn.net</code>과 같은 내부 CDN으로부터 파일을 받아올 수 있습니다.</p>
-<p>다운로드할 파일은 파일(핸들)의 id를 표현하는 암호화된 문자열을 통해 식별할 수 있습니다. 이전 URL이나 파일 핸들을 알면 내부 CDN에 직원이 업로드한 파일에 접근이 가능합니다. 취약점을 악용하기 위한 세팅은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC77C;&#xBC18; &#xD398;&#xC774;&#xC2A4;&#xBD81; &#xC720;&#xC800;&#xAC00; &#xBE44;&#xACF5;&#xAC1C;&#xB85C; &#xB3CC;&#xB9AC;&#xAC70;&#xB098; &#xC0AD;&#xC81C;&#xD55C; &#xCF58;&#xD150;&#xCE20;&#xB098; &#xC9C1;&#xC6D0;&#xC774; &#xC5C5;&#xB85C;&#xB4DC;&#xD55C; &#xD30C;&#xC77C;&#xC744; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD574; &#xC720;&#xD6A8;&#xD55C; &#xD30C;&#xC77C; URL&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xC77C;&#xBC18; &#xC720;&#xC800;&#xAC00; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC5C6;&#xB294; <code>interncache-cln.fbcdn.net</code>&#xACFC; &#xAC19;&#xC740; &#xB0B4;&#xBD80; CDN&#xC73C;&#xB85C;&#xBD80;&#xD130; &#xD30C;&#xC77C;&#xC744; &#xBC1B;&#xC544;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD560; &#xD30C;&#xC77C;&#xC740; &#xD30C;&#xC77C;(&#xD578;&#xB4E4;)&#xC758; id&#xB97C; &#xD45C;&#xD604;&#xD558;&#xB294; &#xC554;&#xD638;&#xD654;&#xB41C; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xD1B5;&#xD574; &#xC2DD;&#xBCC4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xC804; URL&#xC774;&#xB098; &#xD30C;&#xC77C; &#xD578;&#xB4E4;&#xC744; &#xC54C;&#xBA74; &#xB0B4;&#xBD80; CDN&#xC5D0; &#xC9C1;&#xC6D0;&#xC774; &#xC5C5;&#xB85C;&#xB4DC;&#xD55C; &#xD30C;&#xC77C;&#xC5D0; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xC138;&#xD305;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>https://www.facebook.com/collabsmanager/start/</code>에서 Creator 등록합니다.</li>
-<li>승인되면, <code>https://www.facebook.com/collabsmanager/</code>에 접속하여 로그인합니다. <code>https://business.facebook.com/collabsmanager/creator/creator_portfolio/&#123;ID&#125;/</code>와 유사한 URL로 리다이렉트 되어야 합니다.</li>
+<li><code>https://www.facebook.com/collabsmanager/start/</code>&#xC5D0;&#xC11C; Creator &#xB4F1;&#xB85D;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xC2B9;&#xC778;&#xB418;&#xBA74;, <code>https://www.facebook.com/collabsmanager/</code>&#xC5D0; &#xC811;&#xC18D;&#xD558;&#xC5EC; &#xB85C;&#xADF8;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. <code>https://business.facebook.com/collabsmanager/creator/creator_portfolio/{ID}/</code>&#xC640; &#xC720;&#xC0AC;&#xD55C; URL&#xB85C; &#xB9AC;&#xB2E4;&#xC774;&#xB809;&#xD2B8; &#xB418;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>Creator 등록이 완료되면, 다음 순서로 취약점을 트리거할 수 있습니다.</p>
+<p>Creator &#xB4F1;&#xB85D;&#xC774; &#xC644;&#xB8CC;&#xB418;&#xBA74;, &#xB2E4;&#xC74C; &#xC21C;&#xC11C;&#xB85C; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>request 반복을 위해 BurpSuite 같은 프록시 실행</li>
-<li>“Introduction”에서 “Edit” 클릭</li>
-<li>“Add Video”를 클릭하여 비디오 업로드</li>
-<li>업로드가 완료되면 “Delete” 버튼을 눌러 업로드된 비디오 삭제</li>
-<li>BurpSuite history에서 다음과 같은 3개의 엔드포인트 획득<ol>
+<li>request &#xBC18;&#xBCF5;&#xC744; &#xC704;&#xD574; BurpSuite &#xAC19;&#xC740; &#xD504;&#xB85D;&#xC2DC; &#xC2E4;&#xD589;</li>
+<li>&#x201C;Introduction&#x201D;&#xC5D0;&#xC11C; &#x201C;Edit&#x201D; &#xD074;&#xB9AD;</li>
+<li>&#x201C;Add Video&#x201D;&#xB97C; &#xD074;&#xB9AD;&#xD558;&#xC5EC; &#xBE44;&#xB514;&#xC624; &#xC5C5;&#xB85C;&#xB4DC;</li>
+<li>&#xC5C5;&#xB85C;&#xB4DC;&#xAC00; &#xC644;&#xB8CC;&#xB418;&#xBA74; &#x201C;Delete&#x201D; &#xBC84;&#xD2BC;&#xC744; &#xB20C;&#xB7EC; &#xC5C5;&#xB85C;&#xB4DC;&#xB41C; &#xBE44;&#xB514;&#xC624; &#xC0AD;&#xC81C;</li>
+<li>BurpSuite history&#xC5D0;&#xC11C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; 3&#xAC1C;&#xC758; &#xC5D4;&#xB4DC;&#xD3EC;&#xC778;&#xD2B8; &#xD68D;&#xB4DD;<ol>
 <li><code>https://vupload-edge.facebook.com/ajax/video/upload/requests/start/</code></li>
 <li><code>https://vupload-edge.facebook.com/ajax/video/upload/requests/receive/</code></li>
 <li><code>https://business.facebook.com/branded_content/creator_profile/pitch_deck_video/async/save/</code></li>
 </ol>
 </li>
-<li><code>file_extension</code> 파라미터 값을 <code>jpg</code>로 수정 후 <code>https://vupload-edge.facebook.com/ajax/video/upload/requests/start/</code>에 request를 보내면 response의 <code>video_id</code> XXXXXXXX를 받을 수 있습니다.</li>
-<li><code>video_id</code> 파라미터 값을 XXXXXXXX로 수정 후 <code>https://vupload-edge.facebook.com/ajax/video/upload/requests/receive/</code>에 request를 보냅니다.</li>
-<li><code>fpuploader_video_file_chunk</code> 파라미터 값을 다음과 같은 값으로 변경합니다.<ul>
+<li><code>file_extension</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC12;&#xC744; <code>jpg</code>&#xB85C; &#xC218;&#xC815; &#xD6C4; <code>https://vupload-edge.facebook.com/ajax/video/upload/requests/start/</code>&#xC5D0; request&#xB97C; &#xBCF4;&#xB0B4;&#xBA74; response&#xC758; <code>video_id</code> XXXXXXXX&#xB97C; &#xBC1B;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li><code>video_id</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC12;&#xC744; XXXXXXXX&#xB85C; &#xC218;&#xC815; &#xD6C4; <code>https://vupload-edge.facebook.com/ajax/video/upload/requests/receive/</code>&#xC5D0; request&#xB97C; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;.</li>
+<li><code>fpuploader_video_file_chunk</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC12;&#xC744; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xAC12;&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;.<ul>
 <li><code>1:dW5kZWZpbmVk:application/octet-stream:GBapFAFK2bAstIUBAAAAAACthEIbbj07AACa:e:1568148336:ARa5BNCPUwoIKBVqyao</code></li>
 </ul>
 </li>
 </ol>
-<p><code>GBapFAFK2bAstIUBAAAAAACthEIbbj07AACa</code>는 파일의 HANDLE이며, CDN에 업로드된 파일을 나타냅니다. 이 핸들 값을 수정하여 다운로드할 파일을 지정할 수 있습니다.(ex.<code>GFxcvkCRANjMRgABANB4MEoAAAAAbnsvAAAB </code>) 핸들 값을 수정한 후 <code>start_offset</code>과 <code>end_offset</code> 값을 얻기 위해 response를 받습니다.</p>
+<p><code>GBapFAFK2bAstIUBAAAAAACthEIbbj07AACa</code>&#xB294; &#xD30C;&#xC77C;&#xC758; HANDLE&#xC774;&#xBA70;, CDN&#xC5D0; &#xC5C5;&#xB85C;&#xB4DC;&#xB41C; &#xD30C;&#xC77C;&#xC744; &#xB098;&#xD0C0;&#xB0C5;&#xB2C8;&#xB2E4;. &#xC774; &#xD578;&#xB4E4; &#xAC12;&#xC744; &#xC218;&#xC815;&#xD558;&#xC5EC; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD560; &#xD30C;&#xC77C;&#xC744; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.(ex.<code>GFxcvkCRANjMRgABANB4MEoAAAAAbnsvAAAB </code>) &#xD578;&#xB4E4; &#xAC12;&#xC744; &#xC218;&#xC815;&#xD55C; &#xD6C4; <code>start_offset</code>&#xACFC; <code>end_offset</code> &#xAC12;&#xC744; &#xC5BB;&#xAE30; &#xC704;&#xD574; response&#xB97C; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol start="9">
-<li><code>video_id</code>를 XXXXXXX로 바꾼 후 <code>https://business.facebook.com/branded_content/creator_profile/pitch_dec_video/async/save/</code>에 request를 보냅니다.</li>
-<li><code>https://business.facebook.com/collabsmanager/creator/creator_portfolio/&#123;ID&#125;/</code>에 접속하여 비디오 플레이어 source tag의 <code>src</code> 값을 확인하면 수정된 핸들 값에 해당하는 <code>scontent.*.fbcdn.net</code> 도메인을 가진 파일 URL을 찾을 수 있습니다. 해당 파일 URL은 내부 CDN에 존재하는 파일이 공용 CDN에서 접근할 수 있는 파일로 복사된 것입니다.</li>
+<li><code>video_id</code>&#xB97C; XXXXXXX&#xB85C; &#xBC14;&#xAFBC; &#xD6C4; <code>https://business.facebook.com/branded_content/creator_profile/pitch_dec_video/async/save/</code>&#xC5D0; request&#xB97C; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;.</li>
+<li><code>https://business.facebook.com/collabsmanager/creator/creator_portfolio/{ID}/</code>&#xC5D0; &#xC811;&#xC18D;&#xD558;&#xC5EC; &#xBE44;&#xB514;&#xC624; &#xD50C;&#xB808;&#xC774;&#xC5B4; source tag&#xC758; <code>src</code> &#xAC12;&#xC744; &#xD655;&#xC778;&#xD558;&#xBA74; &#xC218;&#xC815;&#xB41C; &#xD578;&#xB4E4; &#xAC12;&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; <code>scontent.*.fbcdn.net</code> &#xB3C4;&#xBA54;&#xC778;&#xC744; &#xAC00;&#xC9C4; &#xD30C;&#xC77C; URL&#xC744; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD30C;&#xC77C; URL&#xC740; &#xB0B4;&#xBD80; CDN&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xD30C;&#xC77C;&#xC774; &#xACF5;&#xC6A9; CDN&#xC5D0;&#xC11C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB294; &#xD30C;&#xC77C;&#xB85C; &#xBCF5;&#xC0AC;&#xB41C; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -572,6 +572,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

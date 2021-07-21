@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      158 자
+      396 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,10 +242,10 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://xlab.tencent.com/en/2021/01/11/cve-2020-9971-abusing-xpc-service-to-elevate-privilege/">CVE-2020-9971 Abusing XPC Service mechanism to elevate privilege in macOS/iOS</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>macOS &lt; Big Sur<br>iOS  &lt; 13.5</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>launchd는 macOS에서 <code>inetd</code>, <code>xinted</code>를 대체하는 서비스 관리 데몬입니다.<br>이러한 <code>launchd</code> 애플리케이션에서 프로세스 간 통신 프로토콜을 제공하는 XPC 서비스를 관리할 때 권한 상승이 가능한 취약점의 세부 정보가 공개되었습니다.</p>
-<p><code>launchd</code>는 <code>launchd process domain</code> 을 통해 XPC 서비스를 지정된 프로세스로 제한할 수 있으며 프로세스 도메인은 소유자 프로세스만 수정이 가능합니다. 그러나 Big Sur 이전의 <code>launchd</code>에서 프로세스 도메인에 XPC를 추가할 때 호출자 pid와 프로세스 도메인의 소유자 pid를 확인하지 않아 프로세스가 다른 임의의 프로세스에 XPC 서비스를 추가할 수 있습니다.</p>
-<p>해당 취약점을 악용하면 해커의 프로세스(애플리케이션)가 루트 권한으로 실행되는 프로세스의 도메인에 임의의 사용자 지정 XPC 서비스를 추가할 수 있고, 추가된 XPC 서비스가 루트 권한으로 실행됩니다.</p>
-<p>iOS 또한 macOS와 동일한 <code>launchd</code> 로직을 사용하고 있으며 iOS 13.5 이전 버전에 같은 취약점이 존재합니다. 애플은 호출자 pid가 대상 프로세스 도메인의 소유자인지 확인하는 코드를 추가해 해당 취약점을 패치했습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>launchd&#xB294; macOS&#xC5D0;&#xC11C; <code>inetd</code>, <code>xinted</code>&#xB97C; &#xB300;&#xCCB4;&#xD558;&#xB294; &#xC11C;&#xBE44;&#xC2A4; &#xAD00;&#xB9AC; &#xB370;&#xBAAC;&#xC785;&#xB2C8;&#xB2E4;.<br>&#xC774;&#xB7EC;&#xD55C; <code>launchd</code> &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xAC04; &#xD1B5;&#xC2E0; &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xB294; XPC &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xAD00;&#xB9AC;&#xD560; &#xB54C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>launchd</code>&#xB294; <code>launchd process domain</code> &#xC744; &#xD1B5;&#xD574; XPC &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xC9C0;&#xC815;&#xB41C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB85C; &#xC81C;&#xD55C;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xB3C4;&#xBA54;&#xC778;&#xC740; &#xC18C;&#xC720;&#xC790; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB9CC; &#xC218;&#xC815;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; Big Sur &#xC774;&#xC804;&#xC758; <code>launchd</code>&#xC5D0;&#xC11C; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xB3C4;&#xBA54;&#xC778;&#xC5D0; XPC&#xB97C; &#xCD94;&#xAC00;&#xD560; &#xB54C; &#xD638;&#xCD9C;&#xC790; pid&#xC640; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xB3C4;&#xBA54;&#xC778;&#xC758; &#xC18C;&#xC720;&#xC790; pid&#xB97C; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xB2E4;&#xB978; &#xC784;&#xC758;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; XPC &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xCD94;&#xAC00;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xD574;&#xCEE4;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;(&#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;)&#xAC00; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xB3C4;&#xBA54;&#xC778;&#xC5D0; &#xC784;&#xC758;&#xC758; &#xC0AC;&#xC6A9;&#xC790; &#xC9C0;&#xC815; XPC &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xCD94;&#xAC00;&#xD560; &#xC218; &#xC788;&#xACE0;, &#xCD94;&#xAC00;&#xB41C; XPC &#xC11C;&#xBE44;&#xC2A4;&#xAC00; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>iOS &#xB610;&#xD55C; macOS&#xC640; &#xB3D9;&#xC77C;&#xD55C; <code>launchd</code> &#xB85C;&#xC9C1;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xC73C;&#xBA70; iOS 13.5 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC5D0; &#xAC19;&#xC740; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC560;&#xD50C;&#xC740; &#xD638;&#xCD9C;&#xC790; pid&#xAC00; &#xB300;&#xC0C1; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xB3C4;&#xBA54;&#xC778;&#xC758; &#xC18C;&#xC720;&#xC790;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD574; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD328;&#xCE58;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -550,6 +550,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

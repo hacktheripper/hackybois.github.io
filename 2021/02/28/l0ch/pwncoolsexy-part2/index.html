@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2.2k 자
+      3.7k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      43
+      74
        분
     </span>
   
@@ -240,33 +240,33 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p>안녕하세요! L0ch입니다. 오늘은 이전 글에서 예고한 대로 NT heap의 Low Fragmentation Heap에 대해 쓰려고 했지만..  Windows Heap에 대한 전반적인 정리와 같이 쓰는 것이 좋을 것 같아 Windows Heap으로 주제를 확장해봤습니다. 그래서! 오늘은 WIndows가 Heap을 어떻게 관리하는지 하나씩 뜯어보면서 살펴보도록 할게요!</p>
-<h1 id="Windows-Heap"><a href="#Windows-Heap" class="headerlink" title="Windows Heap"></a>Windows Heap</h1><p>윈도우의 Heap 할당 메커니즘은 NT Heap과 Windows 10에서 추가된 Segment Heap 두 가지가 존재합니다. NT Heap은 Windows의 기본 memory allocator이며 Segment Heap은 최근에 도입된 만큼 더 효율적인 memory allocator입니다.</p>
-<p>여담으로 Segment Heap은 도입 초기에는 일부 시스템 프로세스, MS 엣지 브라우저, UWP(Universal Windows Platform) 앱 등에서만 사용하고 있었으나 2020년 5월 업데이트 (버전 2004, 빌드 19041)로 일반적인 Win32 어플리케이션도 사용할 수 있게 되었다고 합니다.. 만 아직은 일반적인 어플리케이션에서는 NT Heap을 사용하는 추세죠. 메모리 잡아먹는 하마 크롬도 Segment Heap을 적용한 패치 이후 메모리 사용량은 줄였지만 성능 저하도 같이 나타나서 다시 비활성화했다고 하네요..ㅋㅋ</p>
+              <p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694;! L0ch&#xC785;&#xB2C8;&#xB2E4;. &#xC624;&#xB298;&#xC740; &#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xC608;&#xACE0;&#xD55C; &#xB300;&#xB85C; NT heap&#xC758; Low Fragmentation Heap&#xC5D0; &#xB300;&#xD574; &#xC4F0;&#xB824;&#xACE0; &#xD588;&#xC9C0;&#xB9CC;..  Windows Heap&#xC5D0; &#xB300;&#xD55C; &#xC804;&#xBC18;&#xC801;&#xC778; &#xC815;&#xB9AC;&#xC640; &#xAC19;&#xC774; &#xC4F0;&#xB294; &#xAC83;&#xC774; &#xC88B;&#xC744; &#xAC83; &#xAC19;&#xC544; Windows Heap&#xC73C;&#xB85C; &#xC8FC;&#xC81C;&#xB97C; &#xD655;&#xC7A5;&#xD574;&#xBD24;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB798;&#xC11C;! &#xC624;&#xB298;&#xC740; WIndows&#xAC00; Heap&#xC744; &#xC5B4;&#xB5BB;&#xAC8C; &#xAD00;&#xB9AC;&#xD558;&#xB294;&#xC9C0; &#xD558;&#xB098;&#xC529; &#xB72F;&#xC5B4;&#xBCF4;&#xBA74;&#xC11C; &#xC0B4;&#xD3B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD560;&#xAC8C;&#xC694;!</p>
+<h1 id="Windows-Heap"><a href="#Windows-Heap" class="headerlink" title="Windows Heap"></a>Windows Heap</h1><p>&#xC708;&#xB3C4;&#xC6B0;&#xC758; Heap &#xD560;&#xB2F9; &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC740; NT Heap&#xACFC; Windows 10&#xC5D0;&#xC11C; &#xCD94;&#xAC00;&#xB41C; Segment Heap &#xB450; &#xAC00;&#xC9C0;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. NT Heap&#xC740; Windows&#xC758; &#xAE30;&#xBCF8; memory allocator&#xC774;&#xBA70; Segment Heap&#xC740; &#xCD5C;&#xADFC;&#xC5D0; &#xB3C4;&#xC785;&#xB41C; &#xB9CC;&#xD07C; &#xB354; &#xD6A8;&#xC728;&#xC801;&#xC778; memory allocator&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC5EC;&#xB2F4;&#xC73C;&#xB85C; Segment Heap&#xC740; &#xB3C4;&#xC785; &#xCD08;&#xAE30;&#xC5D0;&#xB294; &#xC77C;&#xBD80; &#xC2DC;&#xC2A4;&#xD15C; &#xD504;&#xB85C;&#xC138;&#xC2A4;, MS &#xC5E3;&#xC9C0; &#xBE0C;&#xB77C;&#xC6B0;&#xC800;, UWP(Universal Windows Platform) &#xC571; &#xB4F1;&#xC5D0;&#xC11C;&#xB9CC; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xC5C8;&#xC73C;&#xB098; 2020&#xB144; 5&#xC6D4; &#xC5C5;&#xB370;&#xC774;&#xD2B8; (&#xBC84;&#xC804; 2004, &#xBE4C;&#xB4DC; 19041)&#xB85C; &#xC77C;&#xBC18;&#xC801;&#xC778; Win32 &#xC5B4;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xB3C4; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB418;&#xC5C8;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.. &#xB9CC; &#xC544;&#xC9C1;&#xC740; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xC5B4;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C;&#xB294; NT Heap&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xCD94;&#xC138;&#xC8E0;. &#xBA54;&#xBAA8;&#xB9AC; &#xC7A1;&#xC544;&#xBA39;&#xB294; &#xD558;&#xB9C8; &#xD06C;&#xB86C;&#xB3C4; Segment Heap&#xC744; &#xC801;&#xC6A9;&#xD55C; &#xD328;&#xCE58; &#xC774;&#xD6C4; &#xBA54;&#xBAA8;&#xB9AC; &#xC0AC;&#xC6A9;&#xB7C9;&#xC740; &#xC904;&#xC600;&#xC9C0;&#xB9CC; &#xC131;&#xB2A5; &#xC800;&#xD558;&#xB3C4; &#xAC19;&#xC774; &#xB098;&#xD0C0;&#xB098;&#xC11C; &#xB2E4;&#xC2DC; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xD588;&#xB2E4;&#xACE0; &#xD558;&#xB124;&#xC694;..&#x314B;&#x314B;</p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%201.png" srcset="/img/loading.gif"></p>
-<p>Segment Heap에 대해서는 다음에 다뤄보도록 하고, 이번 글에서는 NT Heap에 대해 정리해보겠습니다. </p>
-<h1 id="NT-Heap"><a href="#NT-Heap" class="headerlink" title="NT Heap"></a>NT Heap</h1><p>NT Heap에 대한 Overview부터 짚고 넘어가 볼까요?</p>
+<p>Segment Heap&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB294; &#xB2E4;&#xC74C;&#xC5D0; &#xB2E4;&#xB904;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACE0;, &#xC774;&#xBC88; &#xAE00;&#xC5D0;&#xC11C;&#xB294; NT Heap&#xC5D0; &#xB300;&#xD574; &#xC815;&#xB9AC;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<h1 id="NT-Heap"><a href="#NT-Heap" class="headerlink" title="NT Heap"></a>NT Heap</h1><p>NT Heap&#xC5D0; &#xB300;&#xD55C; Overview&#xBD80;&#xD130; &#xC9DA;&#xACE0; &#xB118;&#xC5B4;&#xAC00; &#xBCFC;&#xAE4C;&#xC694;?</p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%202.png" srcset="/img/loading.gif"></p>
-<p>위 사진은 일반적인 <code>malloc()</code>과 <code>free()</code>를 사용해 Heap을 할당할 때의 내부 할당 프로세스입니다. </p>
-<p>NT Heap은 크게 Front-End와 Back-End로 나눠지며 Front-End가 이후에 설명할 Low Fragmentation Heap(LFH)을 의미합니다. LFH가 비활성화되어 있다면 Heap 메모리 할당 시 Front-End를 건너뛰고 바로 Back-End로 넘어갑니다.</p>
-<h1 id="Low-Fragmentation-Heap"><a href="#Low-Fragmentation-Heap" class="headerlink" title="Low Fragmentation Heap"></a>Low Fragmentation Heap</h1><p>Heap Fragmentation(단편화)은 반복되는 할당과 해제 이후 가용 메모리가 작고 불연속적으로 나뉜 상태를 말합니다. 이러한 단편화가 발생하면 가용 메모리보다 작은 크기에 대해 할당을 요청해도 연속적인 메모리 구간 확보가 되지 않아 메모리 할당 요청이 실패할 수 있습니다.</p>
+<p>&#xC704; &#xC0AC;&#xC9C4;&#xC740; &#xC77C;&#xBC18;&#xC801;&#xC778; <code>malloc()</code>&#xACFC; <code>free()</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD574; Heap&#xC744; &#xD560;&#xB2F9;&#xD560; &#xB54C;&#xC758; &#xB0B4;&#xBD80; &#xD560;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p>NT Heap&#xC740; &#xD06C;&#xAC8C; Front-End&#xC640; Back-End&#xB85C; &#xB098;&#xB220;&#xC9C0;&#xBA70; Front-End&#xAC00; &#xC774;&#xD6C4;&#xC5D0; &#xC124;&#xBA85;&#xD560; Low Fragmentation Heap(LFH)&#xC744; &#xC758;&#xBBF8;&#xD569;&#xB2C8;&#xB2E4;. LFH&#xAC00; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4; &#xC788;&#xB2E4;&#xBA74; Heap &#xBA54;&#xBAA8;&#xB9AC; &#xD560;&#xB2F9; &#xC2DC; Front-End&#xB97C; &#xAC74;&#xB108;&#xB6F0;&#xACE0; &#xBC14;&#xB85C; Back-End&#xB85C; &#xB118;&#xC5B4;&#xAC11;&#xB2C8;&#xB2E4;.</p>
+<h1 id="Low-Fragmentation-Heap"><a href="#Low-Fragmentation-Heap" class="headerlink" title="Low Fragmentation Heap"></a>Low Fragmentation Heap</h1><p>Heap Fragmentation(&#xB2E8;&#xD3B8;&#xD654;)&#xC740; &#xBC18;&#xBCF5;&#xB418;&#xB294; &#xD560;&#xB2F9;&#xACFC; &#xD574;&#xC81C; &#xC774;&#xD6C4; &#xAC00;&#xC6A9; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC791;&#xACE0; &#xBD88;&#xC5F0;&#xC18D;&#xC801;&#xC73C;&#xB85C; &#xB098;&#xB25C; &#xC0C1;&#xD0DC;&#xB97C; &#xB9D0;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; &#xB2E8;&#xD3B8;&#xD654;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xBA74; &#xAC00;&#xC6A9; &#xBA54;&#xBAA8;&#xB9AC;&#xBCF4;&#xB2E4; &#xC791;&#xC740; &#xD06C;&#xAE30;&#xC5D0; &#xB300;&#xD574; &#xD560;&#xB2F9;&#xC744; &#xC694;&#xCCAD;&#xD574;&#xB3C4; &#xC5F0;&#xC18D;&#xC801;&#xC778; &#xBA54;&#xBAA8;&#xB9AC; &#xAD6C;&#xAC04; &#xD655;&#xBCF4;&#xAC00; &#xB418;&#xC9C0; &#xC54A;&#xC544; &#xBA54;&#xBAA8;&#xB9AC; &#xD560;&#xB2F9; &#xC694;&#xCCAD;&#xC774; &#xC2E4;&#xD328;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%203.png" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>단편화로 인해 가용 메모리가 충분한데도 할당이 실패할 수 있다.</p>
+<p>&#xB2E8;&#xD3B8;&#xD654;&#xB85C; &#xC778;&#xD574; &#xAC00;&#xC6A9; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xCDA9;&#xBD84;&#xD55C;&#xB370;&#xB3C4; &#xD560;&#xB2F9;&#xC774; &#xC2E4;&#xD328;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 </blockquote>
-<p>초기 윈도우에서도 이런 단편화 이슈가 존재했으며 MS는 이런 단편화 이슈를 해결하기 위해 LFH를 도입했고 vista부터 시스템에서 자동으로 설정되면서 본격적으로 사용되기 시작했습니다.</p>
-<p>LFH는 동일한 크기의 Heap 메모리를 여러 번 할당하다 보면 자동으로 활성화됩니다. 간단한 테스트 코드로 어느 시점에서 LFH가 활성화되는지 볼까요?</p>
+<p>&#xCD08;&#xAE30; &#xC708;&#xB3C4;&#xC6B0;&#xC5D0;&#xC11C;&#xB3C4; &#xC774;&#xB7F0; &#xB2E8;&#xD3B8;&#xD654; &#xC774;&#xC288;&#xAC00; &#xC874;&#xC7AC;&#xD588;&#xC73C;&#xBA70; MS&#xB294; &#xC774;&#xB7F0; &#xB2E8;&#xD3B8;&#xD654; &#xC774;&#xC288;&#xB97C; &#xD574;&#xACB0;&#xD558;&#xAE30; &#xC704;&#xD574; LFH&#xB97C; &#xB3C4;&#xC785;&#xD588;&#xACE0; vista&#xBD80;&#xD130; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xBA74;&#xC11C; &#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xB418;&#xAE30; &#xC2DC;&#xC791;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>LFH&#xB294; &#xB3D9;&#xC77C;&#xD55C; &#xD06C;&#xAE30;&#xC758; Heap &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC5EC;&#xB7EC; &#xBC88; &#xD560;&#xB2F9;&#xD558;&#xB2E4; &#xBCF4;&#xBA74; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xD65C;&#xC131;&#xD654;&#xB429;&#xB2C8;&#xB2E4;. &#xAC04;&#xB2E8;&#xD55C; &#xD14C;&#xC2A4;&#xD2B8; &#xCF54;&#xB4DC;&#xB85C; &#xC5B4;&#xB290; &#xC2DC;&#xC810;&#xC5D0;&#xC11C; LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB418;&#xB294;&#xC9C0; &#xBCFC;&#xAE4C;&#xC694;?</p>
 <pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> CHUNK_SIZE 0x300</span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
     <span class="hljs-keyword">int</span> i;
     LPVOID chunk;
     HANDLE defaultHeap = GetProcessHeap();
     <span class="hljs-keyword">int</span> prev_chunk = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">30</span>; i++) &#123;
+    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">30</span>; i++) {
         chunk = HeapAlloc(defaultHeap, <span class="hljs-number">0</span>, CHUNK_SIZE);
         <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[%d] Chunk 0x%p   &quot;</span>, i, chunk);
 
@@ -275,45 +275,45 @@
         <span class="hljs-keyword">else</span>
             <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;\n&quot;</span>);
         prev_chunk = (<span class="hljs-keyword">int</span>)chunk;
-    &#125;
+    }
 
     system(<span class="hljs-string">&quot;PAUSE&quot;</span>);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
 <p><img src="Untitled 4.png" srcset="/img/loading.gif" height="550px" width="500px"></p>
 
-<p>동일한 크기의 Heap을 연속적으로 할당했을 때의 결과입니다. </p>
+<p>&#xB3D9;&#xC77C;&#xD55C; &#xD06C;&#xAE30;&#xC758; Heap&#xC744; &#xC5F0;&#xC18D;&#xC801;&#xC73C;&#xB85C; &#xD560;&#xB2F9;&#xD588;&#xC744; &#xB54C;&#xC758; &#xACB0;&#xACFC;&#xC785;&#xB2C8;&#xB2E4;. </p>
 <ul>
-<li>인덱스 0과 1을 제외한 인덱스 16까지의 chunk 사이 거리가 일정함</li>
-<li>인덱스 17부터 chunk 간 거리가 일정하지 않음</li>
+<li>&#xC778;&#xB371;&#xC2A4; 0&#xACFC; 1&#xC744; &#xC81C;&#xC678;&#xD55C; &#xC778;&#xB371;&#xC2A4; 16&#xAE4C;&#xC9C0;&#xC758; chunk &#xC0AC;&#xC774; &#xAC70;&#xB9AC;&#xAC00; &#xC77C;&#xC815;&#xD568;</li>
+<li>&#xC778;&#xB371;&#xC2A4; 17&#xBD80;&#xD130; chunk &#xAC04; &#xAC70;&#xB9AC;&#xAC00; &#xC77C;&#xC815;&#xD558;&#xC9C0; &#xC54A;&#xC74C;</li>
 </ul>
-<p>메모리 상황에 따라 조금씩의 차이는 있지만 대부분 이러한 특성을 가지고 있습니다.</p>
-<p>chunk가 LFH에 의해 관리되고 있는지는 Windbg에서 다음 명령어로 확인할 수 있습니다.</p>
+<p>&#xBA54;&#xBAA8;&#xB9AC; &#xC0C1;&#xD669;&#xC5D0; &#xB530;&#xB77C; &#xC870;&#xAE08;&#xC529;&#xC758; &#xCC28;&#xC774;&#xB294; &#xC788;&#xC9C0;&#xB9CC; &#xB300;&#xBD80;&#xBD84; &#xC774;&#xB7EC;&#xD55C; &#xD2B9;&#xC131;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>chunk&#xAC00; LFH&#xC5D0; &#xC758;&#xD574; &#xAD00;&#xB9AC;&#xB418;&#xACE0; &#xC788;&#xB294;&#xC9C0;&#xB294; Windbg&#xC5D0;&#xC11C; &#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC5B4;&#xB85C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">!hepa -x [Chunk Address]</code></pre>
 
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%205.png" srcset="/img/loading.gif"></p>
-<p>위 사진에서 인덱스 0 ~ 16 사이 일정한 거리로 할당되는 chunk들은 LFH로 관리되지 않고, 인덱스 17부터 무작위의 거리를 갖는 chunk는 LFH로 관리되고 있음을 확인할 수 있습니다. </p>
-<p>여기서 LFH의 특징 한 가지를 알 수 있습니다!</p>
+<p>&#xC704; &#xC0AC;&#xC9C4;&#xC5D0;&#xC11C; &#xC778;&#xB371;&#xC2A4; 0 ~ 16 &#xC0AC;&#xC774; &#xC77C;&#xC815;&#xD55C; &#xAC70;&#xB9AC;&#xB85C; &#xD560;&#xB2F9;&#xB418;&#xB294; chunk&#xB4E4;&#xC740; LFH&#xB85C; &#xAD00;&#xB9AC;&#xB418;&#xC9C0; &#xC54A;&#xACE0;, &#xC778;&#xB371;&#xC2A4; 17&#xBD80;&#xD130; &#xBB34;&#xC791;&#xC704;&#xC758; &#xAC70;&#xB9AC;&#xB97C; &#xAC16;&#xB294; chunk&#xB294; LFH&#xB85C; &#xAD00;&#xB9AC;&#xB418;&#xACE0; &#xC788;&#xC74C;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xC5EC;&#xAE30;&#xC11C; LFH&#xC758; &#xD2B9;&#xC9D5; &#xD55C; &#xAC00;&#xC9C0;&#xB97C; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <blockquote>
-<p>LFH가 활성화되면 Heap Chunk 간 거리가 무작위로 할당된다.</p>
+<p>LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB418;&#xBA74; Heap Chunk &#xAC04; &#xAC70;&#xB9AC;&#xAC00; &#xBB34;&#xC791;&#xC704;&#xB85C; &#xD560;&#xB2F9;&#xB41C;&#xB2E4;.</p>
 </blockquote>
-<p>이는 Windows에서 Exploit을 진행할 때 Heap을 원하는 대로 세팅하는 Heap Grooming을 더 어렵게 만들어 reliable 한 exploit 제작을 어렵게 합니다. </p>
+<p>&#xC774;&#xB294; Windows&#xC5D0;&#xC11C; Exploit&#xC744; &#xC9C4;&#xD589;&#xD560; &#xB54C; Heap&#xC744; &#xC6D0;&#xD558;&#xB294; &#xB300;&#xB85C; &#xC138;&#xD305;&#xD558;&#xB294; Heap Grooming&#xC744; &#xB354; &#xC5B4;&#xB835;&#xAC8C; &#xB9CC;&#xB4E4;&#xC5B4; reliable &#xD55C; exploit &#xC81C;&#xC791;&#xC744; &#xC5B4;&#xB835;&#xAC8C; &#xD569;&#xB2C8;&#xB2E4;. </p>
 <ul>
-<li>16KB(0x4000) 보다 큰 Heap을 할당할 경우에는 LFH가 관리하지 않습니다.</li>
+<li>16KB(0x4000) &#xBCF4;&#xB2E4; &#xD070; Heap&#xC744; &#xD560;&#xB2F9;&#xD560; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; LFH&#xAC00; &#xAD00;&#xB9AC;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ul>
-<h1 id="NT-Heap-Analysis"><a href="#NT-Heap-Analysis" class="headerlink" title="NT Heap Analysis"></a>NT Heap Analysis</h1><p>이제 NT Heap을 본격적으로 분석해보겠습니다! 우선 Heap 관리에 사용되는 구조체와 역할에 대해 정리하겠습니다.</p>
-<h2 id="HEAP"><a href="#HEAP" class="headerlink" title="_HEAP"></a>_HEAP</h2><p>memory allocator의 핵심 구조체로, 전체 Heap을 관리할 때 쓰입니다. 굳이 분류하자면 NT Heap보다 상위의 구조체로 프로세스에 할당된 Heap의 시작에 위치하는 구조체입니다.</p>
-<p>동일한 테스트 코드를 실행한 뒤 Windbg에서 직접 확인해볼게요. </p>
+<h1 id="NT-Heap-Analysis"><a href="#NT-Heap-Analysis" class="headerlink" title="NT Heap Analysis"></a>NT Heap Analysis</h1><p>&#xC774;&#xC81C; NT Heap&#xC744; &#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; &#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! &#xC6B0;&#xC120; Heap &#xAD00;&#xB9AC;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC640; &#xC5ED;&#xD560;&#xC5D0; &#xB300;&#xD574; &#xC815;&#xB9AC;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="HEAP"><a href="#HEAP" class="headerlink" title="_HEAP"></a>_HEAP</h2><p>memory allocator&#xC758; &#xD575;&#xC2EC; &#xAD6C;&#xC870;&#xCCB4;&#xB85C;, &#xC804;&#xCCB4; Heap&#xC744; &#xAD00;&#xB9AC;&#xD560; &#xB54C; &#xC4F0;&#xC785;&#xB2C8;&#xB2E4;. &#xAD73;&#xC774; &#xBD84;&#xB958;&#xD558;&#xC790;&#xBA74; NT Heap&#xBCF4;&#xB2E4; &#xC0C1;&#xC704;&#xC758; &#xAD6C;&#xC870;&#xCCB4;&#xB85C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; &#xD560;&#xB2F9;&#xB41C; Heap&#xC758; &#xC2DC;&#xC791;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB3D9;&#xC77C;&#xD55C; &#xD14C;&#xC2A4;&#xD2B8; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD55C; &#xB4A4; Windbg&#xC5D0;&#xC11C; &#xC9C1;&#xC811; &#xD655;&#xC778;&#xD574;&#xBCFC;&#xAC8C;&#xC694;. </p>
 <p><img src="Untitled 6.png" srcset="/img/loading.gif" height="560px" width="500px"></p>
 
-<p>프로세스의 Heap List는 PEB의 <code>ProcessHeaps</code> 필드에 위치합니다. <code>dt _PEB @$peb</code> 명령어로 모든 PEB 필드 값을 출력할 수 있습니다. </p>
+<p>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; Heap List&#xB294; PEB&#xC758; <code>ProcessHeaps</code> &#xD544;&#xB4DC;&#xC5D0; &#xC704;&#xCE58;&#xD569;&#xB2C8;&#xB2E4;. <code>dt _PEB @$peb</code> &#xBA85;&#xB839;&#xC5B4;&#xB85C; &#xBAA8;&#xB4E0; PEB &#xD544;&#xB4DC; &#xAC12;&#xC744; &#xCD9C;&#xB825;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs text">0:001&gt; dt _PEB @$peb
 ntdll!_PEB
-   +0x000 InheritedAddressSpace : 0 &#x27;&#x27;
-   +0x001 ReadImageFileExecOptions : 0 &#x27;&#x27;
-   +0x002 BeingDebugged    : 0x1 &#x27;&#x27;
-   +0x003 BitField         : 0x4 &#x27;&#x27;
+   +0x000 InheritedAddressSpace : 0 &apos;&apos;
+   +0x001 ReadImageFileExecOptions : 0 &apos;&apos;
+   +0x002 BeingDebugged    : 0x1 &apos;&apos;
+   +0x003 BitField         : 0x4 &apos;&apos;
    +0x003 ImageUsesLargePages : 0y0
    +0x003 IsProtectedProcess : 0y0
    +0x003 IsImageDynamicallyRelocated : 0y1
@@ -332,13 +332,13 @@ ntdll!_PEB
 ...</code></pre>
 
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%207.png" srcset="/img/loading.gif"></p>
-<p>너무 많으니 우리가 찾으려는 필드명으로 검색해보죠</p>
-<pre><code class="hljs c">?? ((_PEB*) @$peb)-&gt;ProcessHeaps <span class="hljs-comment">// PEB-&gt;ProcessHeaps 필드값 출력</span></code></pre>
+<p>&#xB108;&#xBB34; &#xB9CE;&#xC73C;&#xB2C8; &#xC6B0;&#xB9AC;&#xAC00; &#xCC3E;&#xC73C;&#xB824;&#xB294; &#xD544;&#xB4DC;&#xBA85;&#xC73C;&#xB85C; &#xAC80;&#xC0C9;&#xD574;&#xBCF4;&#xC8E0;</p>
+<pre><code class="hljs c">?? ((_PEB*) @$peb)-&gt;ProcessHeaps <span class="hljs-comment">// PEB-&gt;ProcessHeaps &#xD544;&#xB4DC;&#xAC12; &#xCD9C;&#xB825;</span></code></pre>
 
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%208.png" srcset="/img/loading.gif"></p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%209.png" srcset="/img/loading.gif"></p>
-<p><code>ProcessHeaps</code> 는 <code>_Heap</code> 구조체를 가리키는 포인터 배열을 가리킵니다. 포인터 배열에는 Heap 주소들이 나열되어 있네요. </p>
-<p>첫 번째 구조체를 확인해볼게요. <code>_HEAP</code> 은  <code>dt _HEAP [Address]</code> 로 확인할 수 있습니다.</p>
+<p><code>ProcessHeaps</code> &#xB294; <code>_Heap</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; &#xD3EC;&#xC778;&#xD130; &#xBC30;&#xC5F4;&#xC744; &#xAC00;&#xB9AC;&#xD0B5;&#xB2C8;&#xB2E4;. &#xD3EC;&#xC778;&#xD130; &#xBC30;&#xC5F4;&#xC5D0;&#xB294; Heap &#xC8FC;&#xC18C;&#xB4E4;&#xC774; &#xB098;&#xC5F4;&#xB418;&#xC5B4; &#xC788;&#xB124;&#xC694;. </p>
+<p>&#xCCAB; &#xBC88;&#xC9F8; &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xD655;&#xC778;&#xD574;&#xBCFC;&#xAC8C;&#xC694;. <code>_HEAP</code> &#xC740;  <code>dt _HEAP [Address]</code> &#xB85C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs text">0:001&gt; dt _HEAP 000001cd`c8f90000
 ntdll!_HEAP
    +0x000 Segment          : _HEAP_SEGMENT
@@ -358,8 +358,8 @@ ntdll!_HEAP
 ...
    +0x198 FrontEndHeap     : 0x000001cd`c8f20000 Void
    +0x1a0 FrontHeapLockCount : 0
-   +0x1a2 FrontEndHeapType : 0x2 &#x27;&#x27;
-   +0x1a3 RequestedFrontEndHeapType : 0x2 &#x27;&#x27;
+   +0x1a2 FrontEndHeapType : 0x2 &apos;&apos;
+   +0x1a3 RequestedFrontEndHeapType : 0x2 &apos;&apos;
    +0x1a8 FrontEndHeapUsageData : 0x000001cd`c8f98210  &quot;&quot;
    +0x1b0 FrontEndHeapMaximumIndex : 0x402
    +0x1b2 FrontEndHeapStatusBitmap : [129]  &quot;x&quot;
@@ -367,23 +367,23 @@ ntdll!_HEAP
    +0x2b0 TuningParameters : _HEAP_TUNING_PARAMETERS</code></pre>
 
 <ul>
-<li>0x7c EncodeFlagMask : Heap chunk header가 인코딩 되었는지를 나타내는 필드. 처음 Heap을 초기화할 때 <code>0x100000</code>으로 설정됨</li>
-<li>0x080 Encoding : Heap header의 변조를 방지하기 위해 XOR 인코딩을 할 때 사용됨</li>
-<li>0x138 BlocksIndex : <code>_HEAP_LIST_LOOKUP</code> 구조체를 가리킴  <code>_HEAP_LIST_LOOKUP</code> 구조체는 Back-End에서 Heap chunk들을 관리하기 위해 사용됨</li>
-<li>0x150 FreeLists : 할당 해제된 Heap Chunk들의 <code>_HEAP_ENTRY</code> 구조체를 가리킴</li>
-<li>0x198 FrontEndHeap : LFH가 활성화된 경우 할당된 <code>_LFH_HEAP</code> 구조체를 가리킴</li>
-<li>0x1a2 FrontEndHeapType : LFH 활성화 여부를 나타내며 <code>0x0</code> 이면 비활성화, <code>0x2</code>면 활성화된 상태. <code>HeapQueryInformaton()</code> 함수를 통해 LFH 활성화 여부를 구별할 때 사용됨</li>
-<li>0x1a8 FrontEndHeapUsageData : 할당되는 Chunk의 수를 기록하며 일정 수준에 도달하면 Front-End(LFH)를 활성화</li>
+<li>0x7c EncodeFlagMask : Heap chunk header&#xAC00; &#xC778;&#xCF54;&#xB529; &#xB418;&#xC5C8;&#xB294;&#xC9C0;&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xB294; &#xD544;&#xB4DC;. &#xCC98;&#xC74C; Heap&#xC744; &#xCD08;&#xAE30;&#xD654;&#xD560; &#xB54C; <code>0x100000</code>&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB428;</li>
+<li>0x080 Encoding : Heap header&#xC758; &#xBCC0;&#xC870;&#xB97C; &#xBC29;&#xC9C0;&#xD558;&#xAE30; &#xC704;&#xD574; XOR &#xC778;&#xCF54;&#xB529;&#xC744; &#xD560; &#xB54C; &#xC0AC;&#xC6A9;&#xB428;</li>
+<li>0x138 BlocksIndex : <code>_HEAP_LIST_LOOKUP</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;  <code>_HEAP_LIST_LOOKUP</code> &#xAD6C;&#xC870;&#xCCB4;&#xB294; Back-End&#xC5D0;&#xC11C; Heap chunk&#xB4E4;&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xB428;</li>
+<li>0x150 FreeLists : &#xD560;&#xB2F9; &#xD574;&#xC81C;&#xB41C; Heap Chunk&#xB4E4;&#xC758; <code>_HEAP_ENTRY</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;</li>
+<li>0x198 FrontEndHeap : LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB41C; &#xACBD;&#xC6B0; &#xD560;&#xB2F9;&#xB41C; <code>_LFH_HEAP</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;</li>
+<li>0x1a2 FrontEndHeapType : LFH &#xD65C;&#xC131;&#xD654; &#xC5EC;&#xBD80;&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xBA70; <code>0x0</code> &#xC774;&#xBA74; &#xBE44;&#xD65C;&#xC131;&#xD654;, <code>0x2</code>&#xBA74; &#xD65C;&#xC131;&#xD654;&#xB41C; &#xC0C1;&#xD0DC;. <code>HeapQueryInformaton()</code> &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; LFH &#xD65C;&#xC131;&#xD654; &#xC5EC;&#xBD80;&#xB97C; &#xAD6C;&#xBCC4;&#xD560; &#xB54C; &#xC0AC;&#xC6A9;&#xB428;</li>
+<li>0x1a8 FrontEndHeapUsageData : &#xD560;&#xB2F9;&#xB418;&#xB294; Chunk&#xC758; &#xC218;&#xB97C; &#xAE30;&#xB85D;&#xD558;&#xBA70; &#xC77C;&#xC815; &#xC218;&#xC900;&#xC5D0; &#xB3C4;&#xB2EC;&#xD558;&#xBA74; Front-End(LFH)&#xB97C; &#xD65C;&#xC131;&#xD654;</li>
 </ul>
-<p><code>FrontEndHeap</code>에 유효한 주소 값이 있고 <code>FrontEndHeapType</code> 값이 <code>0x2</code>인걸로 LFH가 활성화되어 Heap 메모리들을 관리하는 것을 확인할 수 있습니다.</p>
-<h2 id="Back-End-Structure"><a href="#Back-End-Structure" class="headerlink" title="Back-End Structure"></a>Back-End Structure</h2><p>실질적인 Heap의 할당 및 해제를 관리하는 NT Heap의 Back-End 구조체입니다.</p>
-<h3 id="HEAP-ENTRY"><a href="#HEAP-ENTRY" class="headerlink" title="_HEAP_ENTRY"></a>_HEAP_ENTRY</h3><p>할당된 HEAP Chunk의 header 구조체입니다. 앞서 <code>_HEAP</code>의 <code>Encoding</code> 필드 설명대로 header의 변조를 방지하기 위해 XOR 인코딩을 하기 때문에 디코딩 과정을 거쳐야 확인할 수 있습니다.</p>
-<p>LFH로 관리되는지 아닌지에 따라 XOR 인코딩 방식이 다르며 직접 디코딩해보면서 <code>_HEAP_ENTRY</code> 값을 확인해보겠습니다.</p>
+<p><code>FrontEndHeap</code>&#xC5D0; &#xC720;&#xD6A8;&#xD55C; &#xC8FC;&#xC18C; &#xAC12;&#xC774; &#xC788;&#xACE0; <code>FrontEndHeapType</code> &#xAC12;&#xC774; <code>0x2</code>&#xC778;&#xAC78;&#xB85C; LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4; Heap &#xBA54;&#xBAA8;&#xB9AC;&#xB4E4;&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="Back-End-Structure"><a href="#Back-End-Structure" class="headerlink" title="Back-End Structure"></a>Back-End Structure</h2><p>&#xC2E4;&#xC9C8;&#xC801;&#xC778; Heap&#xC758; &#xD560;&#xB2F9; &#xBC0F; &#xD574;&#xC81C;&#xB97C; &#xAD00;&#xB9AC;&#xD558;&#xB294; NT Heap&#xC758; Back-End &#xAD6C;&#xC870;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<h3 id="HEAP-ENTRY"><a href="#HEAP-ENTRY" class="headerlink" title="_HEAP_ENTRY"></a>_HEAP_ENTRY</h3><p>&#xD560;&#xB2F9;&#xB41C; HEAP Chunk&#xC758; header &#xAD6C;&#xC870;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;. &#xC55E;&#xC11C; <code>_HEAP</code>&#xC758; <code>Encoding</code> &#xD544;&#xB4DC; &#xC124;&#xBA85;&#xB300;&#xB85C; header&#xC758; &#xBCC0;&#xC870;&#xB97C; &#xBC29;&#xC9C0;&#xD558;&#xAE30; &#xC704;&#xD574; XOR &#xC778;&#xCF54;&#xB529;&#xC744; &#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB514;&#xCF54;&#xB529; &#xACFC;&#xC815;&#xC744; &#xAC70;&#xCCD0;&#xC57C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>LFH&#xB85C; &#xAD00;&#xB9AC;&#xB418;&#xB294;&#xC9C0; &#xC544;&#xB2CC;&#xC9C0;&#xC5D0; &#xB530;&#xB77C; XOR &#xC778;&#xCF54;&#xB529; &#xBC29;&#xC2DD;&#xC774; &#xB2E4;&#xB974;&#xBA70; &#xC9C1;&#xC811; &#xB514;&#xCF54;&#xB529;&#xD574;&#xBCF4;&#xBA74;&#xC11C; <code>_HEAP_ENTRY</code> &#xAC12;&#xC744; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%2010.png" srcset="/img/loading.gif"></p>
-<p>LFH가 활성화되지 않은 인덱스 0의 Chunk header는 <code>_Heap</code>의 Encode 필드와 XOR 연산으로 인코딩 됩니다. 이 두 값을 XOR 한 결과로 <code>chunk+0x10</code>(16 bytes 단위이므로 0x18을 수정)을 수정하면 아래와 같이 디코딩된 <code>_HEAP_ENTRY</code>를 확인할 수 있습니다.</p>
+<p>LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC778;&#xB371;&#xC2A4; 0&#xC758; Chunk header&#xB294; <code>_Heap</code>&#xC758; Encode &#xD544;&#xB4DC;&#xC640; XOR &#xC5F0;&#xC0B0;&#xC73C;&#xB85C; &#xC778;&#xCF54;&#xB529; &#xB429;&#xB2C8;&#xB2E4;. &#xC774; &#xB450; &#xAC12;&#xC744; XOR &#xD55C; &#xACB0;&#xACFC;&#xB85C; <code>chunk+0x10</code>(16 bytes &#xB2E8;&#xC704;&#xC774;&#xBBC0;&#xB85C; 0x18&#xC744; &#xC218;&#xC815;)&#xC744; &#xC218;&#xC815;&#xD558;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xB514;&#xCF54;&#xB529;&#xB41C; <code>_HEAP_ENTRY</code>&#xB97C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%2011.png" srcset="/img/loading.gif"></p>
-<h3 id="FreeLists-HEAP-ENTRY"><a href="#FreeLists-HEAP-ENTRY" class="headerlink" title="FreeLists(_HEAP_ENTRY)"></a>FreeLists(_HEAP_ENTRY)</h3><p>chunk가 해제되면 size에 따라 FreeList에 배치됩니다. </p>
-<p>FreeLists의 구조는 glibc의 unstored bin과 유사하며 해제된 chunk의 <code>_HEAP_ENTRY</code> 를 가리킵니다. </p>
+<h3 id="FreeLists-HEAP-ENTRY"><a href="#FreeLists-HEAP-ENTRY" class="headerlink" title="FreeLists(_HEAP_ENTRY)"></a>FreeLists(_HEAP_ENTRY)</h3><p>chunk&#xAC00; &#xD574;&#xC81C;&#xB418;&#xBA74; size&#xC5D0; &#xB530;&#xB77C; FreeList&#xC5D0; &#xBC30;&#xCE58;&#xB429;&#xB2C8;&#xB2E4;. </p>
+<p>FreeLists&#xC758; &#xAD6C;&#xC870;&#xB294; glibc&#xC758; unstored bin&#xACFC; &#xC720;&#xC0AC;&#xD558;&#xBA70; &#xD574;&#xC81C;&#xB41C; chunk&#xC758; <code>_HEAP_ENTRY</code> &#xB97C; &#xAC00;&#xB9AC;&#xD0B5;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%2012.png" srcset="/img/loading.gif"></p>
 <pre><code class="hljs text">0:001&gt; dx -r1 (*((ntdll!_LIST_ENTRY *)0x1cdc8f90150))
 (*((ntdll!_LIST_ENTRY *)0x1cdc8f90150))                 [Type: _LIST_ENTRY]
@@ -410,7 +410,7 @@ ntdll!_HEAP
     [+0x000] Flink            : 0x1cdc8f951d0 [Type: _LIST_ENTRY *]
     [+0x008] Blink            : 0x1cdc8f93100 [Type: _LIST_ENTRY *]</code></pre>
 
-<h3 id="HEAP-LIST-LOOKUP"><a href="#HEAP-LIST-LOOKUP" class="headerlink" title="_HEAP_LIST_LOOKUP"></a>_HEAP_LIST_LOOKUP</h3><p><code>_HEAP</code>의 <code>BlocksIndex</code>필드에서 참조하는 구조체로 다양한 크기의 해제된 chunk를 관리하는 데 사용되어 Best Fit 정책을 사용하는 NT Heap에서 적절한 chunk를 빠르게 찾을 수 있습니다.</p>
+<h3 id="HEAP-LIST-LOOKUP"><a href="#HEAP-LIST-LOOKUP" class="headerlink" title="_HEAP_LIST_LOOKUP"></a>_HEAP_LIST_LOOKUP</h3><p><code>_HEAP</code>&#xC758; <code>BlocksIndex</code>&#xD544;&#xB4DC;&#xC5D0;&#xC11C; &#xCC38;&#xC870;&#xD558;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xB85C; &#xB2E4;&#xC591;&#xD55C; &#xD06C;&#xAE30;&#xC758; &#xD574;&#xC81C;&#xB41C; chunk&#xB97C; &#xAD00;&#xB9AC;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB418;&#xC5B4; Best Fit &#xC815;&#xCC45;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; NT Heap&#xC5D0;&#xC11C; &#xC801;&#xC808;&#xD55C; chunk&#xB97C; &#xBE60;&#xB974;&#xAC8C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs text">0:001&gt; dt _HEAP_LIST_LOOKUP 0x000001cd`c8f902e8
 ntdll!_HEAP_LIST_LOOKUP
    +0x000 ExtendedLookup   : 0x000001cd`c8f9ab70 _HEAP_LIST_LOOKUP
@@ -424,28 +424,28 @@ ntdll!_HEAP_LIST_LOOKUP
    +0x030 ListHints        : 0x000001cd`c8f90330  -&gt; (null)</code></pre>
 
 <ul>
-<li>0x000 ExtendedLookup : 다음 <code>_HEAP_LIST_LOOKUP</code> 구조체를 가리킴</li>
-<li>0x008 ArrySize : chunk의 최대 사이즈 &gt;&gt; 4 로, 설정된 실제 최대 사이즈는 0x800</li>
-<li>0x010 ItemCount : 관리 중인 chunk의 수</li>
-<li>0x014 OutOfRangeItems : 최대 관리 가능한 사이즈를 넘은 chunk의 수</li>
-<li>0x018 BaseIndex : <code>_HEAP_LIST_LOOKUP</code> 에서 관리되는 chunk의 시작 index, ListHint에서 적절한 크기의 해제된 chunk를 찾을 때도 사용됨. 현재 BaseIndex의 최댓값은 다음 BlocksIndex의 BaseIndex</li>
-<li>0x020 ListHead : 해제된 chunk list의 Head</li>
-<li>0x028 ListsInUseUlong : ListHint가 가리키는 chunk들 중 사용 가능한 chunk를 가리킴</li>
-<li>0x030 ListHints : 적절한 크기의 chunk를 빠르게 찾기 위한 Back-End 할당자의 핵심으로 같은 크기의 해제된 chunk list를 가리키는 주소 배열(각 요소는 0x10 size)</li>
+<li>0x000 ExtendedLookup : &#xB2E4;&#xC74C; <code>_HEAP_LIST_LOOKUP</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;</li>
+<li>0x008 ArrySize : chunk&#xC758; &#xCD5C;&#xB300; &#xC0AC;&#xC774;&#xC988; &gt;&gt; 4 &#xB85C;, &#xC124;&#xC815;&#xB41C; &#xC2E4;&#xC81C; &#xCD5C;&#xB300; &#xC0AC;&#xC774;&#xC988;&#xB294; 0x800</li>
+<li>0x010 ItemCount : &#xAD00;&#xB9AC; &#xC911;&#xC778; chunk&#xC758; &#xC218;</li>
+<li>0x014 OutOfRangeItems : &#xCD5C;&#xB300; &#xAD00;&#xB9AC; &#xAC00;&#xB2A5;&#xD55C; &#xC0AC;&#xC774;&#xC988;&#xB97C; &#xB118;&#xC740; chunk&#xC758; &#xC218;</li>
+<li>0x018 BaseIndex : <code>_HEAP_LIST_LOOKUP</code> &#xC5D0;&#xC11C; &#xAD00;&#xB9AC;&#xB418;&#xB294; chunk&#xC758; &#xC2DC;&#xC791; index, ListHint&#xC5D0;&#xC11C; &#xC801;&#xC808;&#xD55C; &#xD06C;&#xAE30;&#xC758; &#xD574;&#xC81C;&#xB41C; chunk&#xB97C; &#xCC3E;&#xC744; &#xB54C;&#xB3C4; &#xC0AC;&#xC6A9;&#xB428;. &#xD604;&#xC7AC; BaseIndex&#xC758; &#xCD5C;&#xB313;&#xAC12;&#xC740; &#xB2E4;&#xC74C; BlocksIndex&#xC758; BaseIndex</li>
+<li>0x020 ListHead : &#xD574;&#xC81C;&#xB41C; chunk list&#xC758; Head</li>
+<li>0x028 ListsInUseUlong : ListHint&#xAC00; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; chunk&#xB4E4; &#xC911; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;&#xD55C; chunk&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;</li>
+<li>0x030 ListHints : &#xC801;&#xC808;&#xD55C; &#xD06C;&#xAE30;&#xC758; chunk&#xB97C; &#xBE60;&#xB974;&#xAC8C; &#xCC3E;&#xAE30; &#xC704;&#xD55C; Back-End &#xD560;&#xB2F9;&#xC790;&#xC758; &#xD575;&#xC2EC;&#xC73C;&#xB85C; &#xAC19;&#xC740; &#xD06C;&#xAE30;&#xC758; &#xD574;&#xC81C;&#xB41C; chunk list&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; &#xC8FC;&#xC18C; &#xBC30;&#xC5F4;(&#xAC01; &#xC694;&#xC18C;&#xB294; 0x10 size)</li>
 </ul>
-<h2 id="Front-End-Structure"><a href="#Front-End-Structure" class="headerlink" title="Front-End Structure"></a>Front-End Structure</h2><p>Front-End는 Low Fragmentation Heap 과정이며 메모리 할당 및 해제에 직접적으로 관여하지는 않습니다.</p>
-<h3 id="HEAP-USERDATA-HEADER"><a href="#HEAP-USERDATA-HEADER" class="headerlink" title="_HEAP_USERDATA_HEADER"></a>_HEAP_USERDATA_HEADER</h3><p>UserBlock의 header 역할을 하는 구조체이며 XOR 연산으로 인코딩 되어 있습니다. LFH chunk는  <code>_HEAP_ENTRY</code> 의 <code>SubSegmentCode</code> 필드에 인코딩 결괏값을 저장합니다. </p>
+<h2 id="Front-End-Structure"><a href="#Front-End-Structure" class="headerlink" title="Front-End Structure"></a>Front-End Structure</h2><p>Front-End&#xB294; Low Fragmentation Heap &#xACFC;&#xC815;&#xC774;&#xBA70; &#xBA54;&#xBAA8;&#xB9AC; &#xD560;&#xB2F9; &#xBC0F; &#xD574;&#xC81C;&#xC5D0; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xAD00;&#xC5EC;&#xD558;&#xC9C0;&#xB294; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h3 id="HEAP-USERDATA-HEADER"><a href="#HEAP-USERDATA-HEADER" class="headerlink" title="_HEAP_USERDATA_HEADER"></a>_HEAP_USERDATA_HEADER</h3><p>UserBlock&#xC758; header &#xC5ED;&#xD560;&#xC744; &#xD558;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC774;&#xBA70; XOR &#xC5F0;&#xC0B0;&#xC73C;&#xB85C; &#xC778;&#xCF54;&#xB529; &#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. LFH chunk&#xB294;  <code>_HEAP_ENTRY</code> &#xC758; <code>SubSegmentCode</code> &#xD544;&#xB4DC;&#xC5D0; &#xC778;&#xCF54;&#xB529; &#xACB0;&#xAD0F;&#xAC12;&#xC744; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%2013.png" srcset="/img/loading.gif"></p>
 <pre><code class="hljs c">(SubSegmentCode ^ pLFHKey ^ &amp;_HEAP ^ (&amp;_HEAP_ENTRY &gt;&gt; <span class="hljs-number">4</span>)) &lt;&lt; <span class="hljs-number">0xc</span></code></pre>
 
-<p>의 결괏값이 chunk 주소로부터의 <code>_HEAP_USERDATA_HEADER</code> 오프셋으로, 아래와 같이 확인할 수 있습니다.</p>
+<p>&#xC758; &#xACB0;&#xAD0F;&#xAC12;&#xC774; chunk &#xC8FC;&#xC18C;&#xB85C;&#xBD80;&#xD130;&#xC758; <code>_HEAP_USERDATA_HEADER</code> &#xC624;&#xD504;&#xC14B;&#xC73C;&#xB85C;, &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%2014.png" srcset="/img/loading.gif"></p>
 <ul>
-<li>0x000 SubSegment : UserBlock의 SubSegment 주소를 가리킴</li>
-<li>0x018 EncodedOffsets : chunk header의 무결성 검증에 사용됨</li>
-<li>0x020 BusyBitmap : chunk가 사용 중인지를 나타냄</li>
+<li>0x000 SubSegment : UserBlock&#xC758; SubSegment &#xC8FC;&#xC18C;&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;</li>
+<li>0x018 EncodedOffsets : chunk header&#xC758; &#xBB34;&#xACB0;&#xC131; &#xAC80;&#xC99D;&#xC5D0; &#xC0AC;&#xC6A9;&#xB428;</li>
+<li>0x020 BusyBitmap : chunk&#xAC00; &#xC0AC;&#xC6A9; &#xC911;&#xC778;&#xC9C0;&#xB97C; &#xB098;&#xD0C0;&#xB0C4;</li>
 </ul>
-<h3 id="LFH-HEAP"><a href="#LFH-HEAP" class="headerlink" title="_LFH_HEAP"></a>_LFH_HEAP</h3><p>LFH chunk를 관리하기 위해 사용되는 구조체이며 <code>_HEAP</code> 의 <code>FrontEndHeap</code> 필드에서 참조합니다.</p>
+<h3 id="LFH-HEAP"><a href="#LFH-HEAP" class="headerlink" title="_LFH_HEAP"></a>_LFH_HEAP</h3><p>LFH chunk&#xB97C; &#xAD00;&#xB9AC;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC774;&#xBA70; <code>_HEAP</code> &#xC758; <code>FrontEndHeap</code> &#xD544;&#xB4DC;&#xC5D0;&#xC11C; &#xCC38;&#xC870;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs text">0:001&gt; dt _LFH_HEAP 0x000001cd`c8f20000
 ntdll!_LFH_HEAP
    +0x000 Lock             : _RTL_SRWLOCK
@@ -469,11 +469,11 @@ ntdll!_LFH_HEAP
    +0xcc0 LocalData        : [1] _HEAP_LOCAL_DATA</code></pre>
 
 <ul>
-<li><p>0x018 Heap : 현재 _LFH_HEAP 참조하는 _HEAP 구조체의 시작을 가리킴</p>
+<li><p>0x018 Heap : &#xD604;&#xC7AC; _LFH_HEAP &#xCC38;&#xC870;&#xD558;&#xB294; _HEAP &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xC2DC;&#xC791;&#xC744; &#xAC00;&#xB9AC;&#xD0B4;</p>
 </li>
-<li><p>0x2a4 Buckets : 할당 요청된 chunk 크기와 일치하는 메모리 영역 배열</p>
+<li><p>0x2a4 Buckets : &#xD560;&#xB2F9; &#xC694;&#xCCAD;&#xB41C; chunk &#xD06C;&#xAE30;&#xC640; &#xC77C;&#xCE58;&#xD558;&#xB294; &#xBA54;&#xBAA8;&#xB9AC; &#xC601;&#xC5ED; &#xBC30;&#xC5F4;</p>
 </li>
-<li><p>0x4a8 SegmentInfoArrays : <code>_HEAP_LOCAL_SEGMENT_INFO</code> 구조체 배열을 가리키며 chunk를 크기별로 각각의 SubSegment로 관리하기 위해 사용됨</p>
+<li><p>0x4a8 SegmentInfoArrays : <code>_HEAP_LOCAL_SEGMENT_INFO</code> &#xAD6C;&#xC870;&#xCCB4; &#xBC30;&#xC5F4;&#xC744; &#xAC00;&#xB9AC;&#xD0A4;&#xBA70; chunk&#xB97C; &#xD06C;&#xAE30;&#xBCC4;&#xB85C; &#xAC01;&#xAC01;&#xC758; SubSegment&#xB85C; &#xAD00;&#xB9AC;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xB428;</p>
   <pre><code class="hljs text">0:001&gt; dx -r1 (*((ntdll!_HEAP_LOCAL_SEGMENT_INFO * (*)[129])0x1cdc8f204a8))
 (*((ntdll!_HEAP_LOCAL_SEGMENT_INFO * (*)[129])0x1cdc8f204a8))                 [Type: _HEAP_LOCAL_SEGMENT_INFO * [129]]
     [0]              : 0x0 [Type: _HEAP_LOCAL_SEGMENT_INFO *]
@@ -483,25 +483,24 @@ ntdll!_LFH_HEAP
     [4]              : 0x1cdc8f20fc0 [Type: _HEAP_LOCAL_SEGMENT_INFO *]
     [5]              : 0x1cdc8f21080 [Type: _HEAP_LOCAL_SEGMENT_INFO *]
     [6]              : 0x0 [Type: _HEAP_LOCAL_SEGMENT_INFO *]
-...</code></pre>
-</li>
-<li><p>0xcc0 LocalData : _HEAP_LOCAL_DATA를 가리키며 LFH의 주소를 검색하는 데 사용됨</p>
+...</code></pre></li>
+<li><p>0xcc0 LocalData : _HEAP_LOCAL_DATA&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xBA70; LFH&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xAC80;&#xC0C9;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB428;</p>
 </li>
 </ul>
-<h3 id="HEAP-BUCKET"><a href="#HEAP-BUCKET" class="headerlink" title="_HEAP_BUCKET"></a>_HEAP_BUCKET</h3><p>LFH가 chunk를 할당할 때 참조하며 Bucket을 관리하기 위해 사용됩니다. <code>_LFH_HEAP</code>의 Buckets 필드에서 참조합니다.</p>
+<h3 id="HEAP-BUCKET"><a href="#HEAP-BUCKET" class="headerlink" title="_HEAP_BUCKET"></a>_HEAP_BUCKET</h3><p>LFH&#xAC00; chunk&#xB97C; &#xD560;&#xB2F9;&#xD560; &#xB54C; &#xCC38;&#xC870;&#xD558;&#xBA70; Bucket&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. <code>_LFH_HEAP</code>&#xC758; Buckets &#xD544;&#xB4DC;&#xC5D0;&#xC11C; &#xCC38;&#xC870;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs text">0:001&gt; dt _HEAP_BUCKET 0x1cdc8f202a4
 ntdll!_HEAP_BUCKET
    +0x000 BlockUnits       : 1
-   +0x002 SizeIndex        : 0 &#x27;&#x27;
+   +0x002 SizeIndex        : 0 &apos;&apos;
    +0x003 UseAffinity      : 0y0
    +0x003 DebugFlags       : 0y00
-   +0x003 Flags            : 0 &#x27;&#x27;</code></pre>
+   +0x003 Flags            : 0 &apos;&apos;</code></pre>
 
 <ul>
-<li>0x000 BlockUnits : Bucket이 가리키는 chunk의 크기 &gt;&gt; 4</li>
-<li>0x002 SizeIndex : 해당 Bucket의 index값. <code>_LFH_HEAP</code>의 <code>SegmentInfoArrays</code> 배열의 index 값으로도 사용됨</li>
+<li>0x000 BlockUnits : Bucket&#xC774; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; chunk&#xC758; &#xD06C;&#xAE30; &gt;&gt; 4</li>
+<li>0x002 SizeIndex : &#xD574;&#xB2F9; Bucket&#xC758; index&#xAC12;. <code>_LFH_HEAP</code>&#xC758; <code>SegmentInfoArrays</code> &#xBC30;&#xC5F4;&#xC758; index &#xAC12;&#xC73C;&#xB85C;&#xB3C4; &#xC0AC;&#xC6A9;&#xB428;</li>
 </ul>
-<h3 id="HEAP-LOCAL-SEGMENT-INFO"><a href="#HEAP-LOCAL-SEGMENT-INFO" class="headerlink" title="_HEAP_LOCAL_SEGMENT_INFO"></a>_HEAP_LOCAL_SEGMENT_INFO</h3><p>SubSegment를 관리하는 구조체이며 <code>_LFH_HEAP</code> 의 <code>SegmentInfoArrays</code> 필드에서 참조합니다.</p>
+<h3 id="HEAP-LOCAL-SEGMENT-INFO"><a href="#HEAP-LOCAL-SEGMENT-INFO" class="headerlink" title="_HEAP_LOCAL_SEGMENT_INFO"></a>_HEAP_LOCAL_SEGMENT_INFO</h3><p>SubSegment&#xB97C; &#xAD00;&#xB9AC;&#xD558;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC774;&#xBA70; <code>_LFH_HEAP</code> &#xC758; <code>SegmentInfoArrays</code> &#xD544;&#xB4DC;&#xC5D0;&#xC11C; &#xCC38;&#xC870;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs text">0:001&gt; dx -r1 ((ntdll!_HEAP_LOCAL_SEGMENT_INFO *)0x1cdc8f20e40)
 ((ntdll!_HEAP_LOCAL_SEGMENT_INFO *)0x1cdc8f20e40)                 : 0x1cdc8f20e40 [Type: _HEAP_LOCAL_SEGMENT_INFO *]
     [+0x000] LocalData        : 0x1cdc8f20cc0 [Type: _HEAP_LOCAL_DATA *]
@@ -514,7 +513,7 @@ ntdll!_HEAP_BUCKET
     [+0x0ae] LastUsed         : 0x0 [Type: unsigned short]
     [+0x0b0] NoThrashCount    : 0x0 [Type: unsigned short]</code></pre>
 
-<h3 id="HEAP-SUBSEGMENT"><a href="#HEAP-SUBSEGMENT" class="headerlink" title="_HEAP_SUBSEGMENT"></a>_HEAP_SUBSEGMENT</h3><p>LFH로 할당한 chunk들을 크기별로 관리할 때 사용하는 구조체입니다. <code>_HEAP_LOCAL_SEGMENT_INFO</code>의 <code>ActiveSubsegment</code> 필드와 <code>Cacheditems</code> 필드에서 참조합니다.</p>
+<h3 id="HEAP-SUBSEGMENT"><a href="#HEAP-SUBSEGMENT" class="headerlink" title="_HEAP_SUBSEGMENT"></a>_HEAP_SUBSEGMENT</h3><p>LFH&#xB85C; &#xD560;&#xB2F9;&#xD55C; chunk&#xB4E4;&#xC744; &#xD06C;&#xAE30;&#xBCC4;&#xB85C; &#xAD00;&#xB9AC;&#xD560; &#xB54C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;. <code>_HEAP_LOCAL_SEGMENT_INFO</code>&#xC758; <code>ActiveSubsegment</code> &#xD544;&#xB4DC;&#xC640; <code>Cacheditems</code> &#xD544;&#xB4DC;&#xC5D0;&#xC11C; &#xCC38;&#xC870;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs text">0:001&gt; dx -r1 ((ntdll!_HEAP_SUBSEGMENT *)0x1cdc8fa3170)
 ((ntdll!_HEAP_SUBSEGMENT *)0x1cdc8fa3170)                 : 0x1cdc8fa3170 [Type: _HEAP_SUBSEGMENT *]
     [+0x000] LocalInfo        : 0x1cdc8f20e40 [Type: _HEAP_LOCAL_SEGMENT_INFO *]
@@ -541,14 +540,14 @@ ntdll!_HEAP_BUCKET
 ...</code></pre>
 
 <ul>
-<li>0x000 LocalInfo : 현재 SubSegment의 <code>_HEAP_LOCAL_SEGMENT_INFO</code> 를 가리킴</li>
-<li>0x008 UserBlock : 현재 SubSegment의 UserBlock(<code>_HEAP_USERDATA_HEADER</code>)를 가리킴</li>
-<li>0x020 AggregateExchg : <code>_INTERLOCK_SEQ</code> 구조체를 참조하며 UserBlock의 해제된 chunk 개수를 나타냄. LFH는 이를 사용하여 Userblock에서 할당해야 하는지 결정함</li>
-<li>0x024 BlockSize : UserBlock의 각 chunk 크기 &gt;&gt; 4</li>
-<li>0x028 BlockCount : UserBlock에 할당된 chunk의 개수</li>
-<li>0x02a SizeIndex : UserBlock에 해당하는 SizeIndex(<code>_HEAP_LOCAL_SEGMENT_INFO</code>의 <code>BucketIndex</code>와 같은 값)</li>
+<li>0x000 LocalInfo : &#xD604;&#xC7AC; SubSegment&#xC758; <code>_HEAP_LOCAL_SEGMENT_INFO</code> &#xB97C; &#xAC00;&#xB9AC;&#xD0B4;</li>
+<li>0x008 UserBlock : &#xD604;&#xC7AC; SubSegment&#xC758; UserBlock(<code>_HEAP_USERDATA_HEADER</code>)&#xB97C; &#xAC00;&#xB9AC;&#xD0B4;</li>
+<li>0x020 AggregateExchg : <code>_INTERLOCK_SEQ</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xCC38;&#xC870;&#xD558;&#xBA70; UserBlock&#xC758; &#xD574;&#xC81C;&#xB41C; chunk &#xAC1C;&#xC218;&#xB97C; &#xB098;&#xD0C0;&#xB0C4;. LFH&#xB294; &#xC774;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; Userblock&#xC5D0;&#xC11C; &#xD560;&#xB2F9;&#xD574;&#xC57C; &#xD558;&#xB294;&#xC9C0; &#xACB0;&#xC815;&#xD568;</li>
+<li>0x024 BlockSize : UserBlock&#xC758; &#xAC01; chunk &#xD06C;&#xAE30; &gt;&gt; 4</li>
+<li>0x028 BlockCount : UserBlock&#xC5D0; &#xD560;&#xB2F9;&#xB41C; chunk&#xC758; &#xAC1C;&#xC218;</li>
+<li>0x02a SizeIndex : UserBlock&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; SizeIndex(<code>_HEAP_LOCAL_SEGMENT_INFO</code>&#xC758; <code>BucketIndex</code>&#xC640; &#xAC19;&#xC740; &#xAC12;)</li>
 </ul>
-<h3 id="INTERLOCK-SEQ"><a href="#INTERLOCK-SEQ" class="headerlink" title="_INTERLOCK_SEQ"></a>_INTERLOCK_SEQ</h3><p>할당, 해제된 chunk의 개수를 구할 때 참조하는 구조체입니다. <code>_HEAP_SUBSEGMENT</code>의 <code>AggregateExchg</code> 필드에서  참조합니다.</p>
+<h3 id="INTERLOCK-SEQ"><a href="#INTERLOCK-SEQ" class="headerlink" title="_INTERLOCK_SEQ"></a>_INTERLOCK_SEQ</h3><p>&#xD560;&#xB2F9;, &#xD574;&#xC81C;&#xB41C; chunk&#xC758; &#xAC1C;&#xC218;&#xB97C; &#xAD6C;&#xD560; &#xB54C; &#xCC38;&#xC870;&#xD558;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;. <code>_HEAP_SUBSEGMENT</code>&#xC758; <code>AggregateExchg</code> &#xD544;&#xB4DC;&#xC5D0;&#xC11C;  &#xCC38;&#xC870;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs text">0:001&gt; dx -r1 (*((ntdll!_INTERLOCK_SEQ *)0x1cdc8fa3190))
 (*((ntdll!_INTERLOCK_SEQ *)0x1cdc8fa3190))                 [Type: _INTERLOCK_SEQ]
     [+0x000] Depth            : 0x7 [Type: unsigned short]
@@ -558,13 +557,13 @@ ntdll!_HEAP_BUCKET
     [+0x000] Exchg            : 131079 [Type: long]</code></pre>
 
 <ul>
-<li>0x000 Depth : UserBlock에 남아있는 해제 된 청크 개수</li>
+<li>0x000 Depth : UserBlock&#xC5D0; &#xB0A8;&#xC544;&#xC788;&#xB294; &#xD574;&#xC81C; &#xB41C; &#xCCAD;&#xD06C; &#xAC1C;&#xC218;</li>
 </ul>
-<p>네 이번 글은 여기서 끝입니다. 뭔가 마무리가 찝찝한 것 같죠..? 생각도 못한 구조체 개수로 이번에도 역시나 분량조절에 실패해버렸.. ㅎㅎ;  </p>
+<p>&#xB124; &#xC774;&#xBC88; &#xAE00;&#xC740; &#xC5EC;&#xAE30;&#xC11C; &#xB05D;&#xC785;&#xB2C8;&#xB2E4;. &#xBB54;&#xAC00; &#xB9C8;&#xBB34;&#xB9AC;&#xAC00; &#xCC1D;&#xCC1D;&#xD55C; &#xAC83; &#xAC19;&#xC8E0;..? &#xC0DD;&#xAC01;&#xB3C4; &#xBABB;&#xD55C; &#xAD6C;&#xC870;&#xCCB4; &#xAC1C;&#xC218;&#xB85C; &#xC774;&#xBC88;&#xC5D0;&#xB3C4; &#xC5ED;&#xC2DC;&#xB098; &#xBD84;&#xB7C9;&#xC870;&#xC808;&#xC5D0; &#xC2E4;&#xD328;&#xD574;&#xBC84;&#xB838;.. &#x314E;&#x314E;;  </p>
 <p><img src="/2021/02/28/l0ch/pwncoolsexy-part2/Untitled%2015.jpg" srcset="/img/loading.gif"></p>
-<p>NT Heap의 자세한 memory allocate process는 다음 글에서 소개할 예정이며 폰쿨섹시 시리즈는 다음 글로 돌아오겠습니다!</p>
+<p>NT Heap&#xC758; &#xC790;&#xC138;&#xD55C; memory allocate process&#xB294; &#xB2E4;&#xC74C; &#xAE00;&#xC5D0;&#xC11C; &#xC18C;&#xAC1C;&#xD560; &#xC608;&#xC815;&#xC774;&#xBA70; &#xD3F0;&#xCFE8;&#xC139;&#xC2DC; &#xC2DC;&#xB9AC;&#xC988;&#xB294; &#xB2E4;&#xC74C; &#xAE00;&#xB85C; &#xB3CC;&#xC544;&#xC624;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <blockquote>
-<p>P.S : 아 그리고 이건 몰래 말씀드리는 건데(속닥) 곧 특별한 게시글이 올라올 예정이니(속닥) 기대해주세요!</p>
+<p>P.S : &#xC544; &#xADF8;&#xB9AC;&#xACE0; &#xC774;&#xAC74; &#xBAB0;&#xB798; &#xB9D0;&#xC500;&#xB4DC;&#xB9AC;&#xB294; &#xAC74;&#xB370;(&#xC18D;&#xB2E5;) &#xACE7; &#xD2B9;&#xBCC4;&#xD55C; &#xAC8C;&#xC2DC;&#xAE00;&#xC774; &#xC62C;&#xB77C;&#xC62C; &#xC608;&#xC815;&#xC774;&#xB2C8;(&#xC18D;&#xB2E5;) &#xAE30;&#xB300;&#xD574;&#xC8FC;&#xC138;&#xC694;!</p>
 </blockquote>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.slideshare.net/AngelBoy1/windows-10-nt-heap-exploitation-english-version">https://www.slideshare.net/AngelBoy1/windows-10-nt-heap-exploitation-english-version</a></p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://null2root.github.io/blog/2020/02/07/LazyFragmentationHeap-WCTF2019-writeup.html">https://null2root.github.io/blog/2020/02/07/LazyFragmentationHeap-WCTF2019-writeup.html</a></p>
@@ -873,6 +872,45 @@ ntdll!_HEAP_BUCKET
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

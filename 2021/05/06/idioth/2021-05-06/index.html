@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      247 자
+      529 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      10
        분
     </span>
   
@@ -244,29 +244,29 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ICMP 터널링을 사용하여 통신 탐지를 우회한 뒤 감염된 PC에서 지속적으로 임의 명령을 수행하는 백도어가 발견되었습니다.</p>
-<p>해당 악성코드는 데이터베이스, 메시지 큐 및 파일 시스템과 같은 여러 리소스 관리자에 걸쳐있는 트랜잭션을 조정하는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator">msdtc</a>(Microsoft Distributed Transaction Coordinator)를 통해 악성 DLL <code>oci.dll</code>을 호출하여 지속성을 유지합니다. 또한 msdtc를 시작 프로그램으로 설정하기 위해 SYSTEM 권한을 필요로 하며 멀웨어를 설치할 때 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows-server/administration/windows-commands/sc-config">SC Command</a>를 사용하여 윈도우 시스템 디렉터리에 <code>oci.dll</code>를 설치하고 msdtc를 시작 프로그램으로 등록합니다.</p>
-<p><code>oci.dll</code>은 통신에 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EC%9D%B8%ED%84%B0%EB%84%B7_%EC%A0%9C%EC%96%B4_%EB%A9%94%EC%8B%9C%EC%A7%80_%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C">ICMP(Internet Control Message Protocol)</a>을 사용합니다. ICMP는 네트워크 계층 프로토콜로 ICMP 패킷과 연계되는 TCP, UDP 포트 번호가 존재하지 않아 <code>netstat</code>에서 통신을 숨길 수 있습니다.</p>
-<p>ICMP 프로토콜을 통해 통신을 하기 위해 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/ICMP_tunnel">ICMP 터널링</a>을 사용합니다. IPv4 네트워크에서 ICMP 패킷은 IPv4 헤더, ICMP 헤더, ICMP 데이터로 구성되어 있습니다. Type 8 (Echo, ping) ICMP 메시지를 전송하여 명령을 수행하며 패킷 데이터 형식은 다음과 같습니다.</p>
-<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ICMPData</span> &#123;</span>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ICMP &#xD130;&#xB110;&#xB9C1;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD1B5;&#xC2E0; &#xD0D0;&#xC9C0;&#xB97C; &#xC6B0;&#xD68C;&#xD55C; &#xB4A4; &#xAC10;&#xC5FC;&#xB41C; PC&#xC5D0;&#xC11C; &#xC9C0;&#xC18D;&#xC801;&#xC73C;&#xB85C; &#xC784;&#xC758; &#xBA85;&#xB839;&#xC744; &#xC218;&#xD589;&#xD558;&#xB294; &#xBC31;&#xB3C4;&#xC5B4;&#xAC00; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB294; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;, &#xBA54;&#xC2DC;&#xC9C0; &#xD050; &#xBC0F; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xACFC; &#xAC19;&#xC740; &#xC5EC;&#xB7EC; &#xB9AC;&#xC18C;&#xC2A4; &#xAD00;&#xB9AC;&#xC790;&#xC5D0; &#xAC78;&#xCCD0;&#xC788;&#xB294; &#xD2B8;&#xB79C;&#xC7AD;&#xC158;&#xC744; &#xC870;&#xC815;&#xD558;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator">msdtc</a>(Microsoft Distributed Transaction Coordinator)&#xB97C; &#xD1B5;&#xD574; &#xC545;&#xC131; DLL <code>oci.dll</code>&#xC744; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xC9C0;&#xC18D;&#xC131;&#xC744; &#xC720;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; msdtc&#xB97C; &#xC2DC;&#xC791; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD558;&#xAE30; &#xC704;&#xD574; SYSTEM &#xAD8C;&#xD55C;&#xC744; &#xD544;&#xC694;&#xB85C; &#xD558;&#xBA70; &#xBA40;&#xC6E8;&#xC5B4;&#xB97C; &#xC124;&#xCE58;&#xD560; &#xB54C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows-server/administration/windows-commands/sc-config">SC Command</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC708;&#xB3C4;&#xC6B0; &#xC2DC;&#xC2A4;&#xD15C; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; <code>oci.dll</code>&#xB97C; &#xC124;&#xCE58;&#xD558;&#xACE0; msdtc&#xB97C; &#xC2DC;&#xC791; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC73C;&#xB85C; &#xB4F1;&#xB85D;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>oci.dll</code>&#xC740; &#xD1B5;&#xC2E0;&#xC5D0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EC%9D%B8%ED%84%B0%EB%84%B7_%EC%A0%9C%EC%96%B4_%EB%A9%94%EC%8B%9C%EC%A7%80_%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C">ICMP(Internet Control Message Protocol)</a>&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. ICMP&#xB294; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xACC4;&#xCE35; &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xB85C; ICMP &#xD328;&#xD0B7;&#xACFC; &#xC5F0;&#xACC4;&#xB418;&#xB294; TCP, UDP &#xD3EC;&#xD2B8; &#xBC88;&#xD638;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xC544; <code>netstat</code>&#xC5D0;&#xC11C; &#xD1B5;&#xC2E0;&#xC744; &#xC228;&#xAE38; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>ICMP &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xD1B5;&#xD574; &#xD1B5;&#xC2E0;&#xC744; &#xD558;&#xAE30; &#xC704;&#xD574; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/ICMP_tunnel">ICMP &#xD130;&#xB110;&#xB9C1;</a>&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. IPv4 &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC5D0;&#xC11C; ICMP &#xD328;&#xD0B7;&#xC740; IPv4 &#xD5E4;&#xB354;, ICMP &#xD5E4;&#xB354;, ICMP &#xB370;&#xC774;&#xD130;&#xB85C; &#xAD6C;&#xC131;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Type 8 (Echo, ping) ICMP &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xC5EC; &#xBA85;&#xB839;&#xC744; &#xC218;&#xD589;&#xD558;&#xBA70; &#xD328;&#xD0B7; &#xB370;&#xC774;&#xD130; &#xD615;&#xC2DD;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">ICMPData</span> {</span>
 	<span class="hljs-keyword">char</span> cmd[<span class="hljs-number">10</span>];    <span class="hljs-comment">// bot command</span>
 	<span class="hljs-keyword">char</span> args[<span class="hljs-number">512</span>];  <span class="hljs-comment">// extra parameter</span>
 	<span class="hljs-keyword">char</span> cmd_line[<span class="hljs-number">258</span>];  <span class="hljs-comment">// command line</span>
 	<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> dest_port; <span class="hljs-comment">// destination port</span>
 	<span class="hljs-keyword">char</span> dest_addr[<span class="hljs-number">4</span>];  <span class="hljs-comment">// destination IP address</span>
-&#125;</code></pre>
+}</code></pre>
 
-<p>Pingback에서 지원하는 명령어는 다음과 같습니다.</p>
+<p>Pingback&#xC5D0;&#xC11C; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xBA85;&#xB839;&#xC5B4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><strong>shell</strong> - 쉘 실행</li>
-<li><strong>download</strong> - 3개의 모드가 존재<ul>
-<li>Mode 1: 해커의 호스트에 감염된 PC를 다시 연결</li>
-<li>Mode 2: 감염된 PC가 지정된 포트에 소켓을 열고 해커의 연결을 기다림</li>
-<li>Mode 3: ICMP 기반으로 매우 느리고 현재 구현 상 flow control을 신뢰할 수 없음</li>
+<li><strong>shell</strong> - &#xC258; &#xC2E4;&#xD589;</li>
+<li><strong>download</strong> - 3&#xAC1C;&#xC758; &#xBAA8;&#xB4DC;&#xAC00; &#xC874;&#xC7AC;<ul>
+<li>Mode 1: &#xD574;&#xCEE4;&#xC758; &#xD638;&#xC2A4;&#xD2B8;&#xC5D0; &#xAC10;&#xC5FC;&#xB41C; PC&#xB97C; &#xB2E4;&#xC2DC; &#xC5F0;&#xACB0;</li>
+<li>Mode 2: &#xAC10;&#xC5FC;&#xB41C; PC&#xAC00; &#xC9C0;&#xC815;&#xB41C; &#xD3EC;&#xD2B8;&#xC5D0; &#xC18C;&#xCF13;&#xC744; &#xC5F4;&#xACE0; &#xD574;&#xCEE4;&#xC758; &#xC5F0;&#xACB0;&#xC744; &#xAE30;&#xB2E4;&#xB9BC;</li>
+<li>Mode 3: ICMP &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xB9E4;&#xC6B0; &#xB290;&#xB9AC;&#xACE0; &#xD604;&#xC7AC; &#xAD6C;&#xD604; &#xC0C1; flow control&#xC744; &#xC2E0;&#xB8B0;&#xD560; &#xC218; &#xC5C6;&#xC74C;</li>
 </ul>
 </li>
-<li><strong>upload</strong> - 다운로드 명령과 비슷하게 3개의 모드를 지원함</li>
-<li><strong>exec</strong> - 감염된 PC에서 명령어를 실행함</li>
+<li><strong>upload</strong> - &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xBA85;&#xB839;&#xACFC; &#xBE44;&#xC2B7;&#xD558;&#xAC8C; 3&#xAC1C;&#xC758; &#xBAA8;&#xB4DC;&#xB97C; &#xC9C0;&#xC6D0;&#xD568;</li>
+<li><strong>exec</strong> - &#xAC10;&#xC5FC;&#xB41C; PC&#xC5D0;&#xC11C; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC2E4;&#xD589;&#xD568;</li>
 </ul>
 
             </div>
@@ -568,6 +568,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

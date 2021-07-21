@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      230 자
+      508 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      10
        분
     </span>
   
@@ -242,8 +242,8 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/6/30/cve-2021-26892-an-authorization-bypass-on-the-microsoft-windows-efi-system-partition">AN AUTHORIZATION BYPASS ON THE MICROSOFT WINDOWS EFI SYSTEM PARTITION</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Windows Extensible Firmware Interface</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows Extensible Firmware Interface의 보안 기능을 우회하는 방법이 발견됐습니다. UEFI는 BIOS를 대체하는 펌웨어 규격으로 부팅 시 프로세서가 실행하는 첫 인스트럭션을 담고 있습니다. UEFI는 EFI System Partiton(이하 ESP)를 포함한 boot device를 탐색하는 작업을 합니다. ESP는 FAT 파일 시스템 포맷을 따르며 OS를 실행하기 위해 펌웨어가 파싱하는 <code>.EFI</code>파일(부트로더라고도 불림)을 담고 있습니다. FAT 파일 시스템은 ACL이나 보안 정책을 파일에 기록하지 않기 때문에 Windows에 마운트 되면 누구나 그 안에 있는 모든 파일에 읽기 또는 쓰기 작업을 할 수 있습니다. 부팅에 필요한 critical 파일을 누구나 접근할 수 있다면 악성코드를 담은 bootkit으로 대체되는 등의 문제가 발생할 수 있습니다. 따라서 Windows는 부팅이 완료된 이후에 ESP가 마운트 되는 것을 제한하고, 만약 마운트 됐다 하더라도 관리자 권한이 없다면 해당 볼륨에 어떠한 작업도 허용하지 않습니다.</p>
-<p>하지만 <code>CreateFile</code> API와 ESP 볼륨 이름을 포함한 절대 경로를 통해 관리자 권한 없이 ESP 내부에 존재하는 임의의 <code>.EFI</code> 파일 핸들을 얻어 해당 파일의 내용을 백지화할 수 있습니다. 이미 존재하는 파일에 대해 <code>dwDesiredAccess</code> 값이 없고 <code>dwCreateDisposition</code> 에 <code>CREATE_ALWAYS</code>  플래그를 사용한 <code>CreateFile</code> 요청은 대상 파일의 크기를 0으로 축소합니다. 이를 악용해 관리자 권한이 없는 사용자라도 critical한 <code>.EFI</code> 파일의 내용을 지워버릴 수 있고 해당 시스템이 부팅하지 못하도록 만들 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows Extensible Firmware Interface&#xC758; &#xBCF4;&#xC548; &#xAE30;&#xB2A5;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xBC1C;&#xACAC;&#xB410;&#xC2B5;&#xB2C8;&#xB2E4;. UEFI&#xB294; BIOS&#xB97C; &#xB300;&#xCCB4;&#xD558;&#xB294; &#xD38C;&#xC6E8;&#xC5B4; &#xADDC;&#xACA9;&#xC73C;&#xB85C; &#xBD80;&#xD305; &#xC2DC; &#xD504;&#xB85C;&#xC138;&#xC11C;&#xAC00; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xCCAB; &#xC778;&#xC2A4;&#xD2B8;&#xB7ED;&#xC158;&#xC744; &#xB2F4;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. UEFI&#xB294; EFI System Partiton(&#xC774;&#xD558; ESP)&#xB97C; &#xD3EC;&#xD568;&#xD55C; boot device&#xB97C; &#xD0D0;&#xC0C9;&#xD558;&#xB294; &#xC791;&#xC5C5;&#xC744; &#xD569;&#xB2C8;&#xB2E4;. ESP&#xB294; FAT &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C; &#xD3EC;&#xB9F7;&#xC744; &#xB530;&#xB974;&#xBA70; OS&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xAE30; &#xC704;&#xD574; &#xD38C;&#xC6E8;&#xC5B4;&#xAC00; &#xD30C;&#xC2F1;&#xD558;&#xB294; <code>.EFI</code>&#xD30C;&#xC77C;(&#xBD80;&#xD2B8;&#xB85C;&#xB354;&#xB77C;&#xACE0;&#xB3C4; &#xBD88;&#xB9BC;)&#xC744; &#xB2F4;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. FAT &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC740; ACL&#xC774;&#xB098; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC744; &#xD30C;&#xC77C;&#xC5D0; &#xAE30;&#xB85D;&#xD558;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; Windows&#xC5D0; &#xB9C8;&#xC6B4;&#xD2B8; &#xB418;&#xBA74; &#xB204;&#xAD6C;&#xB098; &#xADF8; &#xC548;&#xC5D0; &#xC788;&#xB294; &#xBAA8;&#xB4E0; &#xD30C;&#xC77C;&#xC5D0; &#xC77D;&#xAE30; &#xB610;&#xB294; &#xC4F0;&#xAE30; &#xC791;&#xC5C5;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBD80;&#xD305;&#xC5D0; &#xD544;&#xC694;&#xD55C; critical &#xD30C;&#xC77C;&#xC744; &#xB204;&#xAD6C;&#xB098; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB2E4;&#xBA74; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xB2F4;&#xC740; bootkit&#xC73C;&#xB85C; &#xB300;&#xCCB4;&#xB418;&#xB294; &#xB4F1;&#xC758; &#xBB38;&#xC81C;&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; Windows&#xB294; &#xBD80;&#xD305;&#xC774; &#xC644;&#xB8CC;&#xB41C; &#xC774;&#xD6C4;&#xC5D0; ESP&#xAC00; &#xB9C8;&#xC6B4;&#xD2B8; &#xB418;&#xB294; &#xAC83;&#xC744; &#xC81C;&#xD55C;&#xD558;&#xACE0;, &#xB9CC;&#xC57D; &#xB9C8;&#xC6B4;&#xD2B8; &#xB410;&#xB2E4; &#xD558;&#xB354;&#xB77C;&#xB3C4; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC774; &#xC5C6;&#xB2E4;&#xBA74; &#xD574;&#xB2F9; &#xBCFC;&#xB968;&#xC5D0; &#xC5B4;&#xB5A0;&#xD55C; &#xC791;&#xC5C5;&#xB3C4; &#xD5C8;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; <code>CreateFile</code> API&#xC640; ESP &#xBCFC;&#xB968; &#xC774;&#xB984;&#xC744; &#xD3EC;&#xD568;&#xD55C; &#xC808;&#xB300; &#xACBD;&#xB85C;&#xB97C; &#xD1B5;&#xD574; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C; &#xC5C6;&#xC774; ESP &#xB0B4;&#xBD80;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xC784;&#xC758;&#xC758; <code>.EFI</code> &#xD30C;&#xC77C; &#xD578;&#xB4E4;&#xC744; &#xC5BB;&#xC5B4; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xBC31;&#xC9C0;&#xD654;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xBBF8; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD574; <code>dwDesiredAccess</code> &#xAC12;&#xC774; &#xC5C6;&#xACE0; <code>dwCreateDisposition</code> &#xC5D0; <code>CREATE_ALWAYS</code>  &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C; <code>CreateFile</code> &#xC694;&#xCCAD;&#xC740; &#xB300;&#xC0C1; &#xD30C;&#xC77C;&#xC758; &#xD06C;&#xAE30;&#xB97C; 0&#xC73C;&#xB85C; &#xCD95;&#xC18C;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC774; &#xC5C6;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xB77C;&#xB3C4; critical&#xD55C; <code>.EFI</code> &#xD30C;&#xC77C;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xC9C0;&#xC6CC;&#xBC84;&#xB9B4; &#xC218; &#xC788;&#xACE0; &#xD574;&#xB2F9; &#xC2DC;&#xC2A4;&#xD15C;&#xC774; &#xBD80;&#xD305;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xB3C4;&#xB85D; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function">HANDLE <span class="hljs-title">CreateFileA</span><span class="hljs-params">(</span></span>
 <span class="hljs-function"><span class="hljs-params">  LPCSTR                lpFileName,</span></span>
 <span class="hljs-function"><span class="hljs-params">  DWORD                 dwDesiredAccess,</span></span>
@@ -253,8 +253,6 @@
 <span class="hljs-function"><span class="hljs-params">  DWORD                 dwFlagsAndAttributes,</span></span>
 <span class="hljs-function"><span class="hljs-params">  HANDLE                hTemplateFile</span></span>
 <span class="hljs-function"><span class="hljs-params">)</span></span>;</code></pre>
-
-
 
 
             </div>
@@ -558,6 +556,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

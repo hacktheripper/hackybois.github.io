@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      116 자
+      273 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -242,10 +242,10 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://talosintelligence.com/vulnerability_reports/TALOS-2021-1238">Webkit WebCore::GraphicsContext use-after-free vulnerability</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>WebKitGTK 2.30.4</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>WebkitGTK 2.30.4의 GraphicsContext는 특정 이벤트를 핸들 할 때 use-after-free 취약점이 발생합니다. Webkit은 오픈소스 웹 콘텐츠 엔진으로 브라우저를 비롯한 여러 응용프로그램에서 사용합니다.</p>
-<p>Webkit의 <code>fillText()</code> 함수는 HTMLCanvasElement 내부 특정 좌표에 문자열을 출력합니다. HTMLCanvasElement는 <code>m_width</code>와 <code>m_height</code>값을 갖고 있는데 이에 맞춰 <code>fillText()</code> 함수가 출력할 문자열의 좌표가 유효한 범위 내에 있는지 검사합니다.</p>
-<p>HTMLCanvasElement는 백그라운드에서 수행된 변경 사항에 따라 <code>m_height</code> 값을 업데이트하지만 업데이트되기 이전의 <code>m_height</code>값을 사용해 메모리를 할당합니다. 또한 <code>fillGradient()</code> 함수가 호출되면 업데이트되기 이전의 값을 사용해 할당 해제된 메모리에 접근합니다.</p>
-<p>위 취약점을 악용한 웹사이트에 접속할 경우 information leak 및 추가 memory corruption에 의한 피해를 볼 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>WebkitGTK 2.30.4&#xC758; GraphicsContext&#xB294; &#xD2B9;&#xC815; &#xC774;&#xBCA4;&#xD2B8;&#xB97C; &#xD578;&#xB4E4; &#xD560; &#xB54C; use-after-free &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. Webkit&#xC740; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xC6F9; &#xCF58;&#xD150;&#xCE20; &#xC5D4;&#xC9C4;&#xC73C;&#xB85C; &#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xB97C; &#xBE44;&#xB86F;&#xD55C; &#xC5EC;&#xB7EC; &#xC751;&#xC6A9;&#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Webkit&#xC758; <code>fillText()</code> &#xD568;&#xC218;&#xB294; HTMLCanvasElement &#xB0B4;&#xBD80; &#xD2B9;&#xC815; &#xC88C;&#xD45C;&#xC5D0; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xCD9C;&#xB825;&#xD569;&#xB2C8;&#xB2E4;. HTMLCanvasElement&#xB294; <code>m_width</code>&#xC640; <code>m_height</code>&#xAC12;&#xC744; &#xAC16;&#xACE0; &#xC788;&#xB294;&#xB370; &#xC774;&#xC5D0; &#xB9DE;&#xCDB0; <code>fillText()</code> &#xD568;&#xC218;&#xAC00; &#xCD9C;&#xB825;&#xD560; &#xBB38;&#xC790;&#xC5F4;&#xC758; &#xC88C;&#xD45C;&#xAC00; &#xC720;&#xD6A8;&#xD55C; &#xBC94;&#xC704; &#xB0B4;&#xC5D0; &#xC788;&#xB294;&#xC9C0; &#xAC80;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>HTMLCanvasElement&#xB294; &#xBC31;&#xADF8;&#xB77C;&#xC6B4;&#xB4DC;&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xB41C; &#xBCC0;&#xACBD; &#xC0AC;&#xD56D;&#xC5D0; &#xB530;&#xB77C; <code>m_height</code> &#xAC12;&#xC744; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD558;&#xC9C0;&#xB9CC; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB418;&#xAE30; &#xC774;&#xC804;&#xC758; <code>m_height</code>&#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; <code>fillGradient()</code> &#xD568;&#xC218;&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xBA74; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB418;&#xAE30; &#xC774;&#xC804;&#xC758; &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xD560;&#xB2F9; &#xD574;&#xC81C;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC811;&#xADFC;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC704; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD55C; &#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xC5D0; &#xC811;&#xC18D;&#xD560; &#xACBD;&#xC6B0; information leak &#xBC0F; &#xCD94;&#xAC00; memory corruption&#xC5D0; &#xC758;&#xD55C; &#xD53C;&#xD574;&#xB97C; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -546,6 +546,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      236 자
+      420 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -252,10 +252,10 @@
 <li>Windows Server, version 2004</li>
 <li>Windows Server, version 20H2</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>2020년 12월 8일에 마이크로소프트에서 DNS Resolver addressing spoofing 취약점에 대한 보안 공지(<a target="_blank" rel="external nofollow noopener noreferrer" href="https://msrc.microsoft.com/update-guide/vulnerability/ADV200013">ADV200013</a>)가 발표됐습니다. 마이크로소프트는 해당 취약점을 통한 DNS cache poisoning attack을 막기 위해 DNS UDP 패킷의 크기를 제한하는 권고를 했습니다.</p>
-<p>해당 취약점은 Windows TCP/IP stack에 제공되는 DNS Resolver Component에 존재합니다. DNS Resolver에 영향을 미치는 IP 조각화에 의해 DNS cache poisoning 취약점이 발생하며 해당 취약점을 exploit 한 해커는 DNS forwarder나 DNS Resolver에 의해 cache 된 DNS packet을 스푸핑 할 수 있습니다. 취약점을 성공적으로 exploit 하면 해커는 수정된 DNS record를 사용하여 해커의 웹사이트로 redirect 시킬 수 있습니다.</p>
-<p>해당 취약점을 방지하기 위해 <code>MaximumUdpPacketSize</code> 레지스트리 값을 1,221 bytes로 수정해야 합니다. 수정된 후 DNS Resolver는 1,221 bytes보다 큰 모든 response를 TCP로 받아서 Windows Server 기반 DNS server에서 해당 취약점을 악용하려는 시도를 막을 수 있습니다.</p>
-<p>DNS server가 실행되는 모든 Windows Server에서 관리자 권한 파워 쉘이나 원격 세션을 통한 아래의 명령줄을 실행하면 UDP 패킷 크기의 레지스트리 값을 변경할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>2020&#xB144; 12&#xC6D4; 8&#xC77C;&#xC5D0; &#xB9C8;&#xC774;&#xD06C;&#xB85C;&#xC18C;&#xD504;&#xD2B8;&#xC5D0;&#xC11C; DNS Resolver addressing spoofing &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD55C; &#xBCF4;&#xC548; &#xACF5;&#xC9C0;(<a target="_blank" rel="external nofollow noopener noreferrer" href="https://msrc.microsoft.com/update-guide/vulnerability/ADV200013">ADV200013</a>)&#xAC00; &#xBC1C;&#xD45C;&#xB410;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB9C8;&#xC774;&#xD06C;&#xB85C;&#xC18C;&#xD504;&#xD2B8;&#xB294; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD55C; DNS cache poisoning attack&#xC744; &#xB9C9;&#xAE30; &#xC704;&#xD574; DNS UDP &#xD328;&#xD0B7;&#xC758; &#xD06C;&#xAE30;&#xB97C; &#xC81C;&#xD55C;&#xD558;&#xB294; &#xAD8C;&#xACE0;&#xB97C; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; Windows TCP/IP stack&#xC5D0; &#xC81C;&#xACF5;&#xB418;&#xB294; DNS Resolver Component&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. DNS Resolver&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCE58;&#xB294; IP &#xC870;&#xAC01;&#xD654;&#xC5D0; &#xC758;&#xD574; DNS cache poisoning &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xBA70; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; exploit &#xD55C; &#xD574;&#xCEE4;&#xB294; DNS forwarder&#xB098; DNS Resolver&#xC5D0; &#xC758;&#xD574; cache &#xB41C; DNS packet&#xC744; &#xC2A4;&#xD478;&#xD551; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; exploit &#xD558;&#xBA74; &#xD574;&#xCEE4;&#xB294; &#xC218;&#xC815;&#xB41C; DNS record&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD574;&#xCEE4;&#xC758; &#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xB85C; redirect &#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xBC29;&#xC9C0;&#xD558;&#xAE30; &#xC704;&#xD574; <code>MaximumUdpPacketSize</code> &#xB808;&#xC9C0;&#xC2A4;&#xD2B8;&#xB9AC; &#xAC12;&#xC744; 1,221 bytes&#xB85C; &#xC218;&#xC815;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC218;&#xC815;&#xB41C; &#xD6C4; DNS Resolver&#xB294; 1,221 bytes&#xBCF4;&#xB2E4; &#xD070; &#xBAA8;&#xB4E0; response&#xB97C; TCP&#xB85C; &#xBC1B;&#xC544;&#xC11C; Windows Server &#xAE30;&#xBC18; DNS server&#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xB824;&#xB294; &#xC2DC;&#xB3C4;&#xB97C; &#xB9C9;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>DNS server&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xBAA8;&#xB4E0; Windows Server&#xC5D0;&#xC11C; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C; &#xD30C;&#xC6CC; &#xC258;&#xC774;&#xB098; &#xC6D0;&#xACA9; &#xC138;&#xC158;&#xC744; &#xD1B5;&#xD55C; &#xC544;&#xB798;&#xC758; &#xBA85;&#xB839;&#xC904;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xBA74; UDP &#xD328;&#xD0B7; &#xD06C;&#xAE30;&#xC758; &#xB808;&#xC9C0;&#xC2A4;&#xD2B8;&#xB9AC; &#xAC12;&#xC744; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs powershell"><span class="hljs-variable">$RegPath</span> = <span class="hljs-string">&quot;HKLM:\System\CurrentControlSet\Services\DNS\Parameters&quot;</span>
 
 <span class="hljs-built_in">New-ItemProperty</span> <span class="hljs-literal">-Path</span> <span class="hljs-variable">$RegPath</span> <span class="hljs-literal">-Name</span> MaximumUdpPacketSize `
@@ -565,6 +565,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

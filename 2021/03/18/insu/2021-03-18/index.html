@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      195 자
+      315 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -244,9 +244,9 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>CoreGraphics, Big Sur version 11.1</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>macOS CoreGraphics에서 폰트를 렌더링 할 때 out-of-bound write가 가능한 취약점이 발견되었습니다. 해당 취약점은 glyphs를 bitmap으로 렌더링 할 때 CoreGraphics library의 범위 검증 미흡으로 인해 발생합니다. glyph bitmap을 렌더링 하기 위한 delta 기반의 anti-aliasing 알고리즘은 <code>2^30</code>보다 작은 좌표만 올바르게 처리할 수 있습니다. 그러나 이 좌표에 대한 검사가 존재하지 않습니다. 취약점이 존재하는 코드는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>macOS CoreGraphics&#xC5D0;&#xC11C; &#xD3F0;&#xD2B8;&#xB97C; &#xB80C;&#xB354;&#xB9C1; &#xD560; &#xB54C; out-of-bound write&#xAC00; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; glyphs&#xB97C; bitmap&#xC73C;&#xB85C; &#xB80C;&#xB354;&#xB9C1; &#xD560; &#xB54C; CoreGraphics library&#xC758; &#xBC94;&#xC704; &#xAC80;&#xC99D; &#xBBF8;&#xD761;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. glyph bitmap&#xC744; &#xB80C;&#xB354;&#xB9C1; &#xD558;&#xAE30; &#xC704;&#xD55C; delta &#xAE30;&#xBC18;&#xC758; anti-aliasing &#xC54C;&#xACE0;&#xB9AC;&#xC998;&#xC740; <code>2^30</code>&#xBCF4;&#xB2E4; &#xC791;&#xC740; &#xC88C;&#xD45C;&#xB9CC; &#xC62C;&#xBC14;&#xB974;&#xAC8C; &#xCC98;&#xB9AC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xC774; &#xC88C;&#xD45C;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">if</span> ( v96 &gt;&gt; <span class="hljs-number">12</span> == v94 &gt;&gt; <span class="hljs-number">12</span> )
-              &#123;
+              {
                 v106 = v101 - v100;
 (<span class="hljs-number">1</span>)             v107 = (v96 + v94) &gt;&gt; <span class="hljs-number">13</span>;
                 v108 = v96 - v94;
@@ -258,9 +258,9 @@
 (<span class="hljs-number">2</span>)             *(_WORD *)(v86 + <span class="hljs-number">2</span> * v107) += v109;
 (<span class="hljs-number">3</span>)             *(_WORD *)(v86 + <span class="hljs-number">2</span> * v107 + <span class="hljs-number">2</span>) += v106 - v109;
                 v90 = v160;
-              &#125;</code></pre>
+              }</code></pre>
 
-<p>(1)에서 두 좌표의 중간 지점을 계산하고 숫자로 변환합니다. 이때 x 좌표는 둘 다 <code>-2^30</code>보다 작으므로 두 값을 더할 경우 integer overflow가 발생하여 값이 큰 양의 정수가 됩니다. 이로 인해 (2)와 (3)에서 oob write가 발생합니다.</p>
+<p>(1)&#xC5D0;&#xC11C; &#xB450; &#xC88C;&#xD45C;&#xC758; &#xC911;&#xAC04; &#xC9C0;&#xC810;&#xC744; &#xACC4;&#xC0B0;&#xD558;&#xACE0; &#xC22B;&#xC790;&#xB85C; &#xBCC0;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; x &#xC88C;&#xD45C;&#xB294; &#xB458; &#xB2E4; <code>-2^30</code>&#xBCF4;&#xB2E4; &#xC791;&#xC73C;&#xBBC0;&#xB85C; &#xB450; &#xAC12;&#xC744; &#xB354;&#xD560; &#xACBD;&#xC6B0; integer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC5EC; &#xAC12;&#xC774; &#xD070; &#xC591;&#xC758; &#xC815;&#xC218;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB85C; &#xC778;&#xD574; (2)&#xC640; (3)&#xC5D0;&#xC11C; oob write&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -563,6 +563,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

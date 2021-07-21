@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      139 자
+      219 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -242,25 +242,25 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/4/22/cve-2021-20226-a-reference-counting-bug-in-the-linux-kernel-iouring-subsystem">CVE-2021-20226</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Linux kernel 5.6</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Linux kernel 5.1에서 하나의 시스템콜로 여러 I/O작업을 수행할 수 있는 io_uring(비동기 I/O) 기능이 도입되었습니다. Linux kernel 5.6으로 올라오면서 해당 기능에 취약점이 생겼습니다. 시스템 콜이 커널 쓰레드로 <code>files_structure</code>를 전달해도 <code>io_grab_files()</code>의 reference counter가 증가하지 않아 <code>IORING_OP_CLOSE</code>작업이 진행되는 동안 <code>files_structure</code>의 존재 유무를 판단하지 못하게 됩니다. 즉, 해당 <code>files_structure</code>가 할당 해체된 이후에도 접근할 수 있게 되고 DoS로 이어질 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Linux kernel 5.1&#xC5D0;&#xC11C; &#xD558;&#xB098;&#xC758; &#xC2DC;&#xC2A4;&#xD15C;&#xCF5C;&#xB85C; &#xC5EC;&#xB7EC; I/O&#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; io_uring(&#xBE44;&#xB3D9;&#xAE30; I/O) &#xAE30;&#xB2A5;&#xC774; &#xB3C4;&#xC785;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Linux kernel 5.6&#xC73C;&#xB85C; &#xC62C;&#xB77C;&#xC624;&#xBA74;&#xC11C; &#xD574;&#xB2F9; &#xAE30;&#xB2A5;&#xC5D0; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC0DD;&#xACBC;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC2DC;&#xC2A4;&#xD15C; &#xCF5C;&#xC774; &#xCEE4;&#xB110; &#xC4F0;&#xB808;&#xB4DC;&#xB85C; <code>files_structure</code>&#xB97C; &#xC804;&#xB2EC;&#xD574;&#xB3C4; <code>io_grab_files()</code>&#xC758; reference counter&#xAC00; &#xC99D;&#xAC00;&#xD558;&#xC9C0; &#xC54A;&#xC544; <code>IORING_OP_CLOSE</code>&#xC791;&#xC5C5;&#xC774; &#xC9C4;&#xD589;&#xB418;&#xB294; &#xB3D9;&#xC548; <code>files_structure</code>&#xC758; &#xC874;&#xC7AC; &#xC720;&#xBB34;&#xB97C; &#xD310;&#xB2E8;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xC989;, &#xD574;&#xB2F9; <code>files_structure</code>&#xAC00; &#xD560;&#xB2F9; &#xD574;&#xCCB4;&#xB41C; &#xC774;&#xD6C4;&#xC5D0;&#xB3C4; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB418;&#xACE0; DoS&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">io_grab_files</span><span class="hljs-params">(struct io_kiocb *req)</span> </span>
-<span class="hljs-function"></span>&#123; 
+<span class="hljs-function"></span>{ 
 <span class="hljs-comment">// ... </span>
  
     rcu_read_lock(); 
     spin_lock_irq(&amp;ctx-&gt;inflight_lock);spin_lock_irq(&amp;ctx-&gt;inflight_lock); 
  
-    <span class="hljs-keyword">if</span> (fcheck(ctx-&gt;ring_fd) == ctx-&gt;ring_file) &#123; 
+    <span class="hljs-keyword">if</span> (fcheck(ctx-&gt;ring_fd) == ctx-&gt;ring_file) { 
         list_add(&amp;req-&gt;inflight_entry, &amp;ctx-&gt;inflight_list); 
         req-&gt;flags |= REQ_F_INFLIGHT; 
         req-&gt;work.files = current-&gt;files;  <span class="hljs-comment">// vuln here</span>
         ret = <span class="hljs-number">0</span>; 
-    &#125; 
+    } 
     spin_unlock_irq(&amp;ctx-&gt;inflight_lock); 
     rcu_read_unlock(); 
  
     <span class="hljs-keyword">return</span> ret; 
-&#125;</code></pre>
+}</code></pre>
 
 
             </div>
@@ -560,6 +560,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      170 자
+      346 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -245,15 +245,15 @@
 <li>Ivanti Unified Endpoint Manager &lt;= 2020.1.1</li>
 </ul>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><strong>CVE-2020-13770: Named pipe token impersonation</strong></p>
-<p>해당 취약점은 프로세스가 named pipe object를 열 때 보안 attribute가 부적절하여 발생한 취약점입니다. </p>
-<p><code>CreateFile</code>의 <code>dwFlagsAndAttributes</code> 인자가 아래와 같은 attribute일 때 취약점이 발생합니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; named pipe object&#xB97C; &#xC5F4; &#xB54C; &#xBCF4;&#xC548; attribute&#xAC00; &#xBD80;&#xC801;&#xC808;&#xD558;&#xC5EC; &#xBC1C;&#xC0DD;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p><code>CreateFile</code>&#xC758; <code>dwFlagsAndAttributes</code> &#xC778;&#xC790;&#xAC00; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC740; attribute&#xC77C; &#xB54C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>SECURITY_DELEGATION</li>
 <li>SECURITY_IMPERSONATION</li>
 </ul>
-<p>위의 두 attribute 중 하나로 named pipe를 열면 서버는 클라이언트 토큰을 얻고 추후 access check에 사용합니다. pipe 서버는 pipe 클라이언트의 권한, security context 등을 사용할 수 있으므로 서버보다 클라이언트의 권한이 높으면 서버는 권한 상승을 할 수 있습니다.</p>
+<p>&#xC704;&#xC758; &#xB450; attribute &#xC911; &#xD558;&#xB098;&#xB85C; named pipe&#xB97C; &#xC5F4;&#xBA74; &#xC11C;&#xBC84;&#xB294; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xD1A0;&#xD070;&#xC744; &#xC5BB;&#xACE0; &#xCD94;&#xD6C4; access check&#xC5D0; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. pipe &#xC11C;&#xBC84;&#xB294; pipe &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC758; &#xAD8C;&#xD55C;, security context &#xB4F1;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xC11C;&#xBC84;&#xBCF4;&#xB2E4; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC758; &#xAD8C;&#xD55C;&#xC774; &#xB192;&#xC73C;&#xBA74; &#xC11C;&#xBC84;&#xB294; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><strong>CVE-2020-13771: DLL search order hijacking</strong></p>
-<p>해당 취약점은 윈도우의 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows/win32/dlls/dynamic-link-library-search-order">DLL Search Order</a>를 이용한 취약점입니다. <code>SafeDllSearchMode</code> 설정에 관계없이 프로세스가 DLL 파일을 찾지 못하면 환경 변수 PATH에서 파일을 찾습니다. 해커가 환경 변수에 등록된 폴더에 조작된 DLL 파일을 배치하면 취약한 프로세스가 해당 DLL을 로드하고 그 프로세스의 context로 <code>DllMain</code>이 실행되어 권한상승을 할 수 있습니다. 해당 프로그램에서 악용할 수 있는 dll 파일은 아래와 같습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC708;&#xB3C4;&#xC6B0;&#xC758; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows/win32/dlls/dynamic-link-library-search-order">DLL Search Order</a>&#xB97C; &#xC774;&#xC6A9;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. <code>SafeDllSearchMode</code> &#xC124;&#xC815;&#xC5D0; &#xAD00;&#xACC4;&#xC5C6;&#xC774; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; DLL &#xD30C;&#xC77C;&#xC744; &#xCC3E;&#xC9C0; &#xBABB;&#xD558;&#xBA74; &#xD658;&#xACBD; &#xBCC0;&#xC218; PATH&#xC5D0;&#xC11C; &#xD30C;&#xC77C;&#xC744; &#xCC3E;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xAC00; &#xD658;&#xACBD; &#xBCC0;&#xC218;&#xC5D0; &#xB4F1;&#xB85D;&#xB41C; &#xD3F4;&#xB354;&#xC5D0; &#xC870;&#xC791;&#xB41C; DLL &#xD30C;&#xC77C;&#xC744; &#xBC30;&#xCE58;&#xD558;&#xBA74; &#xCDE8;&#xC57D;&#xD55C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xD574;&#xB2F9; DLL&#xC744; &#xB85C;&#xB4DC;&#xD558;&#xACE0; &#xADF8; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; context&#xB85C; <code>DllMain</code>&#xC774; &#xC2E4;&#xD589;&#xB418;&#xC5B4; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xC545;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; dll &#xD30C;&#xC77C;&#xC740; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>ldprofileui.dll</li>
 <li>wfapi.dll</li>
@@ -278,9 +278,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
@@ -569,6 +569,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

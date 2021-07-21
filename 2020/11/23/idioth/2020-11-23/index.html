@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      147 자
+      307 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -242,12 +242,12 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.trendmicro.com/en_us/research/20/k/cve-2020-17053-use-after-free-ie-vulnerability.html">CVE-2020-17053: Use-After-Free IE Vulnerability</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>NVIDIA GeForce Experience 3.20.5.70 이전 버전</li>
+<li>NVIDIA GeForce Experience 3.20.5.70 &#xC774;&#xC804; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>NVDIA GeForce Experience의 GeForce 그래픽카드가 설치된 장비로 원격 게임을 지원하는 GAMESTREAM 기능에서 Local Privilege Escalation 취약점이 발견되었습니다.</p>
-<p>nvcontainer.exe 프로세스는 user impersonation 없이 <code>C:\\ProgramData\\NVIDIA Corporation\\ShadowPlay\\</code> 디렉터리에 <code>CaptureCore.log</code> 파일을 쓰거나 생성합니다. 이때 상위 폴더 상속으로 인해 모든 사용자는 해당 파일과 파일이 있는 폴더에 모든 권한을 갖습니다. 하지만 <code>CaptureCore.log</code> 파일을 삭제한 후 GAMESTREAM을 재시작하면 <code>nvspapi64.dll</code>에서 소프트 링크와 하드 링크에 대한 검사를 진행하여 심볼릭 링크 파일을 삭제합니다. 이 작업은 <code>nvspapi64.dll</code>에서 수행되는데 검사를 진행한 후 <code>CaptureCore.log</code>에 대한 핸들을 닫고 최종 경로를 가져와 작업을 수행하기 위해 다시 핸들을 엽니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>NVDIA GeForce Experience&#xC758; GeForce &#xADF8;&#xB798;&#xD53D;&#xCE74;&#xB4DC;&#xAC00; &#xC124;&#xCE58;&#xB41C; &#xC7A5;&#xBE44;&#xB85C; &#xC6D0;&#xACA9; &#xAC8C;&#xC784;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; GAMESTREAM &#xAE30;&#xB2A5;&#xC5D0;&#xC11C; Local Privilege Escalation &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>nvcontainer.exe &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; user impersonation &#xC5C6;&#xC774; <code>C:\\ProgramData\\NVIDIA Corporation\\ShadowPlay\\</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; <code>CaptureCore.log</code> &#xD30C;&#xC77C;&#xC744; &#xC4F0;&#xAC70;&#xB098; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xC0C1;&#xC704; &#xD3F4;&#xB354; &#xC0C1;&#xC18D;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xBAA8;&#xB4E0; &#xC0AC;&#xC6A9;&#xC790;&#xB294; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xACFC; &#xD30C;&#xC77C;&#xC774; &#xC788;&#xB294; &#xD3F4;&#xB354;&#xC5D0; &#xBAA8;&#xB4E0; &#xAD8C;&#xD55C;&#xC744; &#xAC16;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>CaptureCore.log</code> &#xD30C;&#xC77C;&#xC744; &#xC0AD;&#xC81C;&#xD55C; &#xD6C4; GAMESTREAM&#xC744; &#xC7AC;&#xC2DC;&#xC791;&#xD558;&#xBA74; <code>nvspapi64.dll</code>&#xC5D0;&#xC11C; &#xC18C;&#xD504;&#xD2B8; &#xB9C1;&#xD06C;&#xC640; &#xD558;&#xB4DC; &#xB9C1;&#xD06C;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xC5EC; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C; &#xD30C;&#xC77C;&#xC744; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xC791;&#xC5C5;&#xC740; <code>nvspapi64.dll</code>&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xB418;&#xB294;&#xB370; &#xAC80;&#xC0AC;&#xB97C; &#xC9C4;&#xD589;&#xD55C; &#xD6C4; <code>CaptureCore.log</code>&#xC5D0; &#xB300;&#xD55C; &#xD578;&#xB4E4;&#xC744; &#xB2EB;&#xACE0; &#xCD5C;&#xC885; &#xACBD;&#xB85C;&#xB97C; &#xAC00;&#xC838;&#xC640; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD558;&#xAE30; &#xC704;&#xD574; &#xB2E4;&#xC2DC; &#xD578;&#xB4E4;&#xC744; &#xC5FD;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/11/23/idioth/2020-11-23/image.png" srcset="/img/loading.gif"></p>
-<p>이를 활용하여 특정 파일에 대한 access event를 catch 하는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/fileio/opportunistic-locks">OpLock</a>을 CaptureCore.log에 설정한 후 검사를 진행하면 OpLock이 트리거 되어 C:\Windows\System32 폴더에 arbitrary file creation이 가능합니다.</p>
+<p>&#xC774;&#xB97C; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; &#xD2B9;&#xC815; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD55C; access event&#xB97C; catch &#xD558;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/fileio/opportunistic-locks">OpLock</a>&#xC744; CaptureCore.log&#xC5D0; &#xC124;&#xC815;&#xD55C; &#xD6C4; &#xAC80;&#xC0AC;&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xBA74; OpLock&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB418;&#xC5B4; C:\Windows\System32 &#xD3F4;&#xB354;&#xC5D0; arbitrary file creation&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -265,9 +265,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/toctou/">toctou</a>
                   
@@ -548,6 +548,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

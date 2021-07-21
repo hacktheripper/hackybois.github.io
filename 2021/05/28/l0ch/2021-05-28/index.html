@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      179 자
+      388 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -244,16 +244,16 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>MalwareFox AntiMalware 2.74.0.150</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>안티 멀웨어 소프트웨어인 MalwareFox에서 발견된 로컬 권한 상승 취약점의 세부 정보 및 PoC가 공개되었습니다. 공개된 취약점은 두 가지로, 모두 MalwareFox의 <code>zam64.sys</code> 및 <code>zam32.sys</code> 드라이버에 존재합니다. </p>
-<h3 id="CVE-2021-31727"><a href="#CVE-2021-31727" class="headerlink" title="CVE-2021-31727"></a>CVE-2021-31727</h3><p><code>zam64.sys</code>/<code>zam32.sys</code> 드라이버의 IOCTL <code>0x80002014</code> 및 <code>0x80002018</code> 은 unrestricted disk read/write가 가능합니다. 해커는 이를 악용해 부트 섹터를 덮어쓰거나 메모리 상의 코드를 덮어쓰는 방식으로 권한 상승을 트리거할 수 있습니다.</p>
-<h3 id="CVE-2021-31728"><a href="#CVE-2021-31728" class="headerlink" title="CVE-2021-31728"></a>CVE-2021-31728</h3><p>IOCTL <code>0x80002040</code>은 UserBuffer에서 복사되는 대상 버퍼인 NonPagedPool에서 커널 메모리가 할당되며 입력 버퍼가 <code>0x1000</code> bytes보다 커 쉘코드에 사용될 수 있습니다. IOCTL <code>0x80002018</code> 은 miniport 드라이버의 IRP_MJ_SCSI_HANDLER에 대한 함수를 설정할 수 있으며 사용자 입력에 의해 지정된 드라이버에 SCSI 요청을 보내 이를 이용해 쉘코드를 실행할 수 있습니다.</p>
-<p>위 취약점을 악용하면 아래 방법으로 드라이버 컨텍스트의 ring0 코드를 실행해 시스템 권한으로 프로세스를 실행 가능합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC548;&#xD2F0; &#xBA40;&#xC6E8;&#xC5B4; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xC778; MalwareFox&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4; &#xBC0F; PoC&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xACF5;&#xAC1C;&#xB41C; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB450; &#xAC00;&#xC9C0;&#xB85C;, &#xBAA8;&#xB450; MalwareFox&#xC758; <code>zam64.sys</code> &#xBC0F; <code>zam32.sys</code> &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<h3 id="CVE-2021-31727"><a href="#CVE-2021-31727" class="headerlink" title="CVE-2021-31727"></a>CVE-2021-31727</h3><p><code>zam64.sys</code>/<code>zam32.sys</code> &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC758; IOCTL <code>0x80002014</code> &#xBC0F; <code>0x80002018</code> &#xC740; unrestricted disk read/write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xBD80;&#xD2B8; &#xC139;&#xD130;&#xB97C; &#xB36E;&#xC5B4;&#xC4F0;&#xAC70;&#xB098; &#xBA54;&#xBAA8;&#xB9AC; &#xC0C1;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xB36E;&#xC5B4;&#xC4F0;&#xB294; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h3 id="CVE-2021-31728"><a href="#CVE-2021-31728" class="headerlink" title="CVE-2021-31728"></a>CVE-2021-31728</h3><p>IOCTL <code>0x80002040</code>&#xC740; UserBuffer&#xC5D0;&#xC11C; &#xBCF5;&#xC0AC;&#xB418;&#xB294; &#xB300;&#xC0C1; &#xBC84;&#xD37C;&#xC778; NonPagedPool&#xC5D0;&#xC11C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xBA70; &#xC785;&#xB825; &#xBC84;&#xD37C;&#xAC00; <code>0x1000</code> bytes&#xBCF4;&#xB2E4; &#xCEE4; &#xC258;&#xCF54;&#xB4DC;&#xC5D0; &#xC0AC;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. IOCTL <code>0x80002018</code> &#xC740; miniport &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC758; IRP_MJ_SCSI_HANDLER&#xC5D0; &#xB300;&#xD55C; &#xD568;&#xC218;&#xB97C; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825;&#xC5D0; &#xC758;&#xD574; &#xC9C0;&#xC815;&#xB41C; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; SCSI &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0B4; &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574; &#xC258;&#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC704; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xC544;&#xB798; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xCEE8;&#xD14D;&#xC2A4;&#xD2B8;&#xC758; ring0 &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD574; &#xC2DC;&#xC2A4;&#xD15C; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC2E4;&#xD589; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>IOCTL <code>0x80002010</code>으로 <code>\.\ZemanaAntiMalware</code> 에 대한 핸들을 가져옴</li>
-<li>IOCTL <code>0x80002040</code>으로 NonPagedPool에 커널 메모리 할당</li>
-<li><code>SystemBigPoolInformation</code>로 할당된 커널 메모리 검색</li>
-<li>IOCTL <code>0x80002044</code>로 miniport 드라이버 구성</li>
-<li>IOCTL <code>0x80002014</code> 또는 <code>0x80002018</code>로 해커가 정의한 miniport 드라이버 실행</li>
+<li>IOCTL <code>0x80002010</code>&#xC73C;&#xB85C; <code>\.\ZemanaAntiMalware</code> &#xC5D0; &#xB300;&#xD55C; &#xD578;&#xB4E4;&#xC744; &#xAC00;&#xC838;&#xC634;</li>
+<li>IOCTL <code>0x80002040</code>&#xC73C;&#xB85C; NonPagedPool&#xC5D0; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC; &#xD560;&#xB2F9;</li>
+<li><code>SystemBigPoolInformation</code>&#xB85C; &#xD560;&#xB2F9;&#xB41C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC; &#xAC80;&#xC0C9;</li>
+<li>IOCTL <code>0x80002044</code>&#xB85C; miniport &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xAD6C;&#xC131;</li>
+<li>IOCTL <code>0x80002014</code> &#xB610;&#xB294; <code>0x80002018</code>&#xB85C; &#xD574;&#xCEE4;&#xAC00; &#xC815;&#xC758;&#xD55C; miniport &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC2E4;&#xD589;</li>
 </ol>
 
             </div>
@@ -272,9 +272,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
@@ -561,6 +561,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

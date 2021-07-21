@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      93 자
+      197 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      3
        분
     </span>
   
@@ -245,9 +245,9 @@
 <li>ilo.org</li>
 <li>unep.org</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>유엔에서 Git Credentials이 노출된 endpoint를 통해 직원들의 기록 및 프로젝트, 보고서 등의 정보에 접근할 수 있는 취약점이 발견되었습니다. ilo.org의 하위 도메인에 노출된 .git content가 존재합니다. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/arthaud/git-dumper">git-dumper</a>를 사용하여 프로젝트 폴더를 덤프할 수 있고 코드에 노출된 자격 증명으로 mysql 데이터베이스와 survey management platform에 접근할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC720;&#xC5D4;&#xC5D0;&#xC11C; Git Credentials&#xC774; &#xB178;&#xCD9C;&#xB41C; endpoint&#xB97C; &#xD1B5;&#xD574; &#xC9C1;&#xC6D0;&#xB4E4;&#xC758; &#xAE30;&#xB85D; &#xBC0F; &#xD504;&#xB85C;&#xC81D;&#xD2B8;, &#xBCF4;&#xACE0;&#xC11C; &#xB4F1;&#xC758; &#xC815;&#xBCF4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. ilo.org&#xC758; &#xD558;&#xC704; &#xB3C4;&#xBA54;&#xC778;&#xC5D0; &#xB178;&#xCD9C;&#xB41C; .git content&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/arthaud/git-dumper">git-dumper</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xD3F4;&#xB354;&#xB97C; &#xB364;&#xD504;&#xD560; &#xC218; &#xC788;&#xACE0; &#xCF54;&#xB4DC;&#xC5D0; &#xB178;&#xCD9C;&#xB41C; &#xC790;&#xACA9; &#xC99D;&#xBA85;&#xC73C;&#xB85C; mysql &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4;&#xC640; survey management platform&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/01/11/idioth/2021-01-11/image0.png" srcset="/img/loading.gif"></p>
-<p>또한 unep.org에서  <code>.git-credentials</code>가 노출된 서브 도메인이 존재합니다. GitHub credentials를 통해 private project에 접근할 수 있고 데이터베이스 및 각종 애플리케이션 정보에 접근할 수 있습니다.</p>
+<p>&#xB610;&#xD55C; unep.org&#xC5D0;&#xC11C;  <code>.git-credentials</code>&#xAC00; &#xB178;&#xCD9C;&#xB41C; &#xC11C;&#xBE0C; &#xB3C4;&#xBA54;&#xC778;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. GitHub credentials&#xB97C; &#xD1B5;&#xD574; private project&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xACE0; &#xB370;&#xC774;&#xD130;&#xBCA0;&#xC774;&#xC2A4; &#xBC0F; &#xAC01;&#xC885; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158; &#xC815;&#xBCF4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/01/11/idioth/2021-01-11/image1.png" srcset="/img/loading.gif"></p>
 
             </div>
@@ -547,6 +547,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

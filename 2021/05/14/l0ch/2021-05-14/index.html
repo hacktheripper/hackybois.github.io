@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      149 자
+      262 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -245,26 +245,26 @@
 <li>IntelliJ IDEA</li>
 <li>Android Studio</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>IntelliJ와 Android Studio에서 악성 저장소를 가져올 때 임의 코드 실행 취약점이 발견되어 GitHub Security Lab에 세부 정보가 공개되었습니다.</p>
-<p>Groovy를 기반으로 한 오픈소스 빌드 도구인 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gradle/gradle">Gradle</a> 을 clone 또는 checkout할 때 IntelliJ와 Android Studio는 유저 확인단계를 생략하고 빌드 스크립트를 실행합니다. 이를 악용한 해커가 악성 저장소를 타겟에 clone 혹은 checkout 하도록 유도하면 다음과 같이 Gradle의 <code>exec</code>가 타겟의 상호작용 없이 malware dropper 기능을 수행할 수 있습니다.</p>
-<pre><code class="hljs python">apply plugin: <span class="hljs-string">&#x27;java&#x27;</span>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>IntelliJ&#xC640; Android Studio&#xC5D0;&#xC11C; &#xC545;&#xC131; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xAC00;&#xC838;&#xC62C; &#xB54C; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; GitHub Security Lab&#xC5D0; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Groovy&#xB97C; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xD55C; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xBE4C;&#xB4DC; &#xB3C4;&#xAD6C;&#xC778; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gradle/gradle">Gradle</a> &#xC744; clone &#xB610;&#xB294; checkout&#xD560; &#xB54C; IntelliJ&#xC640; Android Studio&#xB294; &#xC720;&#xC800; &#xD655;&#xC778;&#xB2E8;&#xACC4;&#xB97C; &#xC0DD;&#xB7B5;&#xD558;&#xACE0; &#xBE4C;&#xB4DC; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD55C; &#xD574;&#xCEE4;&#xAC00; &#xC545;&#xC131; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xD0C0;&#xAC9F;&#xC5D0; clone &#xD639;&#xC740; checkout &#xD558;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD558;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; Gradle&#xC758; <code>exec</code>&#xAC00; &#xD0C0;&#xAC9F;&#xC758; &#xC0C1;&#xD638;&#xC791;&#xC6A9; &#xC5C6;&#xC774; malware dropper &#xAE30;&#xB2A5;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python">apply plugin: <span class="hljs-string">&apos;java&apos;</span>
 
 sourceCompatibility = <span class="hljs-number">1.8</span>
 targetCompatibility = <span class="hljs-number">1.8</span>
 
-void checkRequirements()&#123;
-    <span class="hljs-keyword">exec</span> &#123;
-      executable <span class="hljs-string">&#x27;touch&#x27;</span>
-      args <span class="hljs-string">&#x27;/tmp/pwned_from_gradle&#x27;</span>
-    &#125;
+void checkRequirements(){
+    <span class="hljs-keyword">exec</span> {
+      executable <span class="hljs-string">&apos;touch&apos;</span>
+      args <span class="hljs-string">&apos;/tmp/pwned_from_gradle&apos;</span>
+    }
 
-&#125;
+}
 
-build&#123;
+build{
     checkRequirements();
-&#125;</code></pre>
+}</code></pre>
 
-<p>MS의 Visual Studio에서도 비슷한 유형의 취약점(CVE-2020-17156)이 패치된 적이 있으며 이는 오픈소스 저장소를 이용할 때 주의를 기울일 필요가 있음을 의미합니다.</p>
+<p>MS&#xC758; Visual Studio&#xC5D0;&#xC11C;&#xB3C4; &#xBE44;&#xC2B7;&#xD55C; &#xC720;&#xD615;&#xC758; &#xCDE8;&#xC57D;&#xC810;(CVE-2020-17156)&#xC774; &#xD328;&#xCE58;&#xB41C; &#xC801;&#xC774; &#xC788;&#xC73C;&#xBA70; &#xC774;&#xB294; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xC774;&#xC6A9;&#xD560; &#xB54C; &#xC8FC;&#xC758;&#xB97C; &#xAE30;&#xC6B8;&#xC77C; &#xD544;&#xC694;&#xAC00; &#xC788;&#xC74C;&#xC744; &#xC758;&#xBBF8;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -565,6 +565,45 @@ build&#123;
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

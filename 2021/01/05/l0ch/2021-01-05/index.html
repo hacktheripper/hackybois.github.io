@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      131 자
+      308 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -241,16 +241,16 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.wpsec.com/contact-form-7-vulnerability/">https://blog.wpsec.com/contact-form-7-vulnerability/</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Contact Form ≤ 7 5.3.1</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>WordPress 플러그인인 Contact Form 7은 폼메일 플러그인으로 폼메일 양식을 쉽게 생성할 수 있어 인기 있는 플러그인 중 하나입니다. 해당 플러그인에서 허용되지 않은 확장자 필터링을 우회해 업로드할 수 있는 취약점이 발견되었습니다.</p>
-<p>취약점의 세부 정보는 다음과 같습니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Contact Form &#x2264; 7 5.3.1</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>WordPress &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC778; Contact Form 7&#xC740; &#xD3FC;&#xBA54;&#xC77C; &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC73C;&#xB85C; &#xD3FC;&#xBA54;&#xC77C; &#xC591;&#xC2DD;&#xC744; &#xC27D;&#xAC8C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC5B4; &#xC778;&#xAE30; &#xC788;&#xB294; &#xD50C;&#xB7EC;&#xADF8;&#xC778; &#xC911; &#xD558;&#xB098;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC5D0;&#xC11C; &#xD5C8;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xD655;&#xC7A5;&#xC790; &#xD544;&#xD130;&#xB9C1;&#xC744; &#xC6B0;&#xD68C;&#xD574; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>해커는 특수 문자가 포함된 이중 확장자 파일을 업로드할 수 있습니다. ex) <code>mal.php .jpg</code> (공백  = \t)</li>
-<li>Contact Form 7은 업로드된 파일 이름에서 특수 문자를 제거하지 않아 첫 번째 확장자 이후 구분 문자로 인해 두 번째 파일 확장자를 버립니다.</li>
-<li>결과적으로 업로드되는 파일 이름은 <code>mal.php</code>가 되고 업로드에 성공합니다.</li>
-<li>해커는 임의 코드 실행을 통해 업로드된 파일에 접근 및 실행이 가능합니다.</li>
+<li>&#xD574;&#xCEE4;&#xB294; &#xD2B9;&#xC218; &#xBB38;&#xC790;&#xAC00; &#xD3EC;&#xD568;&#xB41C; &#xC774;&#xC911; &#xD655;&#xC7A5;&#xC790; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. ex) <code>mal.php .jpg</code> (&#xACF5;&#xBC31;  = \t)</li>
+<li>Contact Form 7&#xC740; &#xC5C5;&#xB85C;&#xB4DC;&#xB41C; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xC5D0;&#xC11C; &#xD2B9;&#xC218; &#xBB38;&#xC790;&#xB97C; &#xC81C;&#xAC70;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xCCAB; &#xBC88;&#xC9F8; &#xD655;&#xC7A5;&#xC790; &#xC774;&#xD6C4; &#xAD6C;&#xBD84; &#xBB38;&#xC790;&#xB85C; &#xC778;&#xD574; &#xB450; &#xBC88;&#xC9F8; &#xD30C;&#xC77C; &#xD655;&#xC7A5;&#xC790;&#xB97C; &#xBC84;&#xB9BD;&#xB2C8;&#xB2E4;.</li>
+<li>&#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB85C; &#xC5C5;&#xB85C;&#xB4DC;&#xB418;&#xB294; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xC740; <code>mal.php</code>&#xAC00; &#xB418;&#xACE0; &#xC5C5;&#xB85C;&#xB4DC;&#xC5D0; &#xC131;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD574;&#xCEE4;&#xB294; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD1B5;&#xD574; &#xC5C5;&#xB85C;&#xB4DC;&#xB41C; &#xD30C;&#xC77C;&#xC5D0; &#xC811;&#xADFC; &#xBC0F; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>해커는 이를 악용해 서버에 웹쉘과 같은 파일을 제한 없이 업로드할 수 있습니다.</p>
+<p>&#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xC11C;&#xBC84;&#xC5D0; &#xC6F9;&#xC258;&#xACFC; &#xAC19;&#xC740; &#xD30C;&#xC77C;&#xC744; &#xC81C;&#xD55C; &#xC5C6;&#xC774; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/dn9uy3n/Check-WP-CVE-2020-35489">https://github.com/dn9uy3n/Check-WP-CVE-2020-35489</a></p>
 
             </div>
@@ -554,6 +554,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

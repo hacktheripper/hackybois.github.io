@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      172 자
+      433 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -242,18 +242,18 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2020/12/21/cve-2020-7468-turning-imprisonment-to-advantage-in-the-freebsd-ftpd-chroot-jail">CVE-2020-7468: TURNING IMPRISONMENT TO ADVANTAGE IN THE FREEBSD FTPD CHROOT JAIL</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>FreeBSD ftpd</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>FreeBSD의 ftp 데몬에서 root 로 권한 상승이 가능한 취약점이 발견되었습니다.</p>
-<p>취약점은 <code>chroot</code> 함수의 로그인 처리 부분의 결함으로 인해 발생합니다.</p>
-<p><code>chroot</code> 함수에서 <code>chdir</code>이 실패할 경우 ftpd는 <code>chroot</code>의 jail에서 새로운 로그인 연결을 기다립니다. 이를 이용해 강제로 <code>chdir</code>이 실패하도록 유도하면 해커가 업로드한 파일을 시스템 파일인 것처럼 속일 수 있습니다.</p>
-<p>취약점의 상세 공격 단계는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>FreeBSD&#xC758; ftp &#xB370;&#xBAAC;&#xC5D0;&#xC11C; root &#xB85C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; <code>chroot</code> &#xD568;&#xC218;&#xC758; &#xB85C;&#xADF8;&#xC778; &#xCC98;&#xB9AC; &#xBD80;&#xBD84;&#xC758; &#xACB0;&#xD568;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>chroot</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>chdir</code>&#xC774; &#xC2E4;&#xD328;&#xD560; &#xACBD;&#xC6B0; ftpd&#xB294; <code>chroot</code>&#xC758; jail&#xC5D0;&#xC11C; &#xC0C8;&#xB85C;&#xC6B4; &#xB85C;&#xADF8;&#xC778; &#xC5F0;&#xACB0;&#xC744; &#xAE30;&#xB2E4;&#xB9BD;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574; &#xAC15;&#xC81C;&#xB85C; <code>chdir</code>&#xC774; &#xC2E4;&#xD328;&#xD558;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD558;&#xBA74; &#xD574;&#xCEE4;&#xAC00; &#xC5C5;&#xB85C;&#xB4DC;&#xD55C; &#xD30C;&#xC77C;&#xC744; &#xC2DC;&#xC2A4;&#xD15C; &#xD30C;&#xC77C;&#xC778; &#xAC83;&#xCC98;&#xB7FC; &#xC18D;&#xC77C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC0C1;&#xC138; &#xACF5;&#xACA9; &#xB2E8;&#xACC4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>해커가 FTP 유저 계정으로 로그인합니다.</li>
-<li><code>etc/spwd.db</code> 에 임의의 root 패스워드를 설정해 업로드합니다.</li>
-<li><code>chmod 0</code> 으로 홈 디렉터리에 대한 권한을 변경하고 유저 계정으로 다시 로그인합니다.</li>
-<li>3번으로 인해 로그인 중 <code>chdir</code>이 실패하고 <code>ftpd chroot jail</code> 내부에서 새로운 연결을 기다립니다. 이후 모든 시스템 파일 액세스는 해커 계정의 홈 디렉터리를 기준으로 이루어집니다.</li>
-<li>결과적으로 이후 root로 로그인할 때 해커가 업로드한 <code>etc/spwd.db</code> 의 root 패스워드 테이블을 참조해 패스워드를 검증하고 해커가 root 계정에 접근할 수 있습니다.</li>
+<li>&#xD574;&#xCEE4;&#xAC00; FTP &#xC720;&#xC800; &#xACC4;&#xC815;&#xC73C;&#xB85C; &#xB85C;&#xADF8;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>etc/spwd.db</code> &#xC5D0; &#xC784;&#xC758;&#xC758; root &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xC124;&#xC815;&#xD574; &#xC5C5;&#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>chmod 0</code> &#xC73C;&#xB85C; &#xD648; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xB300;&#xD55C; &#xAD8C;&#xD55C;&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xACE0; &#xC720;&#xC800; &#xACC4;&#xC815;&#xC73C;&#xB85C; &#xB2E4;&#xC2DC; &#xB85C;&#xADF8;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>3&#xBC88;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xB85C;&#xADF8;&#xC778; &#xC911; <code>chdir</code>&#xC774; &#xC2E4;&#xD328;&#xD558;&#xACE0; <code>ftpd chroot jail</code> &#xB0B4;&#xBD80;&#xC5D0;&#xC11C; &#xC0C8;&#xB85C;&#xC6B4; &#xC5F0;&#xACB0;&#xC744; &#xAE30;&#xB2E4;&#xB9BD;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; &#xBAA8;&#xB4E0; &#xC2DC;&#xC2A4;&#xD15C; &#xD30C;&#xC77C; &#xC561;&#xC138;&#xC2A4;&#xB294; &#xD574;&#xCEE4; &#xACC4;&#xC815;&#xC758; &#xD648; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</li>
+<li>&#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB85C; &#xC774;&#xD6C4; root&#xB85C; &#xB85C;&#xADF8;&#xC778;&#xD560; &#xB54C; &#xD574;&#xCEE4;&#xAC00; &#xC5C5;&#xB85C;&#xB4DC;&#xD55C; <code>etc/spwd.db</code> &#xC758; root &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xD14C;&#xC774;&#xBE14;&#xC744; &#xCC38;&#xC870;&#xD574; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xAC80;&#xC99D;&#xD558;&#xACE0; &#xD574;&#xCEE4;&#xAC00; root &#xACC4;&#xC815;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>해당 취약점을 악용하면 리버스쉘을 실행시키는 명령어를 포함한 파일을 업로드해 root 권한으로 쉘을 실행하고, chroot jail을 벗어나 임의의 명령어 또한 실행할 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xB9AC;&#xBC84;&#xC2A4;&#xC258;&#xC744; &#xC2E4;&#xD589;&#xC2DC;&#xD0A4;&#xB294; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD3EC;&#xD568;&#xD55C; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD574; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC258;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xACE0;, chroot jail&#xC744; &#xBC97;&#xC5B4;&#xB098; &#xC784;&#xC758;&#xC758; &#xBA85;&#xB839;&#xC5B4; &#xB610;&#xD55C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -271,9 +271,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   
@@ -560,6 +560,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

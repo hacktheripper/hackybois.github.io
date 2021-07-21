@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      155 자
+      364 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -245,11 +245,11 @@
 <li>PsExec v2.2 all the way back to v1.72 (2006)</li>
 </ul>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><blockquote>
-<p>아직 패치되지 않은 취약점입니다.</p>
+<p>&#xC544;&#xC9C1; &#xD328;&#xCE58;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
 </blockquote>
-<p>SysInternals Suite에서 원격으로 애플리케이션을 실행할 수 있는 PsExec에서 Local Privilege Escalation 취약점이 발견됐습니다. 해당 취약점은 글을 작성한 시점의 버전인 PsExec v2.2까지 영향을 미치며 아직 패치되지 않았습니다.</p>
-<p>PsExec 클라이언트와 원격 PSEXESVC 서비스는 named pipe를 통해 통신합니다. 그 중 <code>\\PSEXESVC</code> 파이프는 실행할 응용 프로그램, 명령줄 데이터 등 PsExec 클라이언트의 명령을 분석하여 실행하는 역할을 합니다. <code>\\PSEXESVC</code> 파이프는 Administrator만 read/write 권한을 가져 권한이 낮은 사용자가 파이프에 read\write 하는 것을 막습니다.</p>
-<p>하지만 PSEXESVC가 <code>\\PSEXESVC</code> 파이프를 생성할 때 파이프가 이미 존재할 경우 해당 <code>\\PSEXESVC</code> 파이프의 handle을 가져옵니다. 따라서 낮은 권한의 애플리케이션이 PSEXESVC가 실행되기 전에 <code>\\PSEXESVC</code> 파이프를 생성하면 PSEXESVC는 자신이 생성한 파이프가 아닌 이미 존재하는 파이프의 handle을 가져옵니다. PSEXESVC가 낮은 권한으로 생성된 <code>\\PSEXESVC</code> 파이프의 handle을 가져오면 PSEXESVC을 통해 SYSTEM 권한으로 명령, 응용 프로그램 실행이 가능합니다.</p>
+<p>SysInternals Suite&#xC5D0;&#xC11C; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; PsExec&#xC5D0;&#xC11C; Local Privilege Escalation &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB410;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xAE00;&#xC744; &#xC791;&#xC131;&#xD55C; &#xC2DC;&#xC810;&#xC758; &#xBC84;&#xC804;&#xC778; PsExec v2.2&#xAE4C;&#xC9C0; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCE58;&#xBA70; &#xC544;&#xC9C1; &#xD328;&#xCE58;&#xB418;&#xC9C0; &#xC54A;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>PsExec &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC640; &#xC6D0;&#xACA9; PSEXESVC &#xC11C;&#xBE44;&#xC2A4;&#xB294; named pipe&#xB97C; &#xD1B5;&#xD574; &#xD1B5;&#xC2E0;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xC911; <code>\\PSEXESVC</code> &#xD30C;&#xC774;&#xD504;&#xB294; &#xC2E4;&#xD589;&#xD560; &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;, &#xBA85;&#xB839;&#xC904; &#xB370;&#xC774;&#xD130; &#xB4F1; PsExec &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC758; &#xBA85;&#xB839;&#xC744; &#xBD84;&#xC11D;&#xD558;&#xC5EC; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xC5ED;&#xD560;&#xC744; &#xD569;&#xB2C8;&#xB2E4;. <code>\\PSEXESVC</code> &#xD30C;&#xC774;&#xD504;&#xB294; Administrator&#xB9CC; read/write &#xAD8C;&#xD55C;&#xC744; &#xAC00;&#xC838; &#xAD8C;&#xD55C;&#xC774; &#xB0AE;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xD30C;&#xC774;&#xD504;&#xC5D0; read\write &#xD558;&#xB294; &#xAC83;&#xC744; &#xB9C9;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; PSEXESVC&#xAC00; <code>\\PSEXESVC</code> &#xD30C;&#xC774;&#xD504;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xB54C; &#xD30C;&#xC774;&#xD504;&#xAC00; &#xC774;&#xBBF8; &#xC874;&#xC7AC;&#xD560; &#xACBD;&#xC6B0; &#xD574;&#xB2F9; <code>\\PSEXESVC</code> &#xD30C;&#xC774;&#xD504;&#xC758; handle&#xC744; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xB0AE;&#xC740; &#xAD8C;&#xD55C;&#xC758; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC774; PSEXESVC&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xAE30; &#xC804;&#xC5D0; <code>\\PSEXESVC</code> &#xD30C;&#xC774;&#xD504;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xBA74; PSEXESVC&#xB294; &#xC790;&#xC2E0;&#xC774; &#xC0DD;&#xC131;&#xD55C; &#xD30C;&#xC774;&#xD504;&#xAC00; &#xC544;&#xB2CC; &#xC774;&#xBBF8; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xD30C;&#xC774;&#xD504;&#xC758; handle&#xC744; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;. PSEXESVC&#xAC00; &#xB0AE;&#xC740; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC0DD;&#xC131;&#xB41C; <code>\\PSEXESVC</code> &#xD30C;&#xC774;&#xD504;&#xC758; handle&#xC744; &#xAC00;&#xC838;&#xC624;&#xBA74; PSEXESVC&#xC744; &#xD1B5;&#xD574; SYSTEM &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xBA85;&#xB839;, &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -550,6 +550,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

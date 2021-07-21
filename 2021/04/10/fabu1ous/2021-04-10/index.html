@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      156 자
+      362 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,9 +242,9 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://research.checkpoint.com/2021/new-wormable-android-malware-spreads-by-creating-auto-replies-to-messages-in-whatsapp/">WhatsApp Auto-reply Malware</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Android WhatsApp</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Check Point Research가 Google Play Store에서 사용자의 WhatsApp 메시지를 통해 확산되는 악성 애플리케이션을 발견했습니다. 해당 악성 앱은 Flix Online이라는 이름으로 Google Play Store에 등록되어 있었고 피해자의 모바일 기기 속 WhatsApp 메시지로 확산되는 웜(Worm)입니다. Check Point는 WhatsApp과 같이 정상적인 앱의 데이터를 조작하거나 탈취할 수 있다는 점에서 해당 웜을 혁신적이고 위험한 새로운 기술이라 평가하고 있습니다.</p>
-<p>Flix Online이 기기에 설치되면 사용자에게 ‘Overlay’, ‘Battery Optimization Ignore’, ‘Notification’ 권한을 요청합니다. 이중 핵심이 되는 ‘Notification’ 권한은 Flix Online이 모바일 기기가 받는 모든 메시지에 대한 알림에 접근, 답장, 해제할 수 있게 합니다. Flix Online은 <code>OnNotificationPosted</code> 콜백을 사용해 알림 패키지의  <code>status.BarNotification0.getPackageName()</code>을 검사해 알림 패키지의 근원지가 WhatsApp인지 판단합니다. 그 후 해당 알림을 제거함과 동시에 제목 및 내용을 탈취합니다. 또한 Inline reply 컴포넌트를 사용해 추가 감염을 위한 답장을 전송합니다.</p>
-<p>두 달 동안 Flix Online 앱은 약 500번 다운로드되었고 현재는 Google Play Store에서 삭제되었습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Check Point Research&#xAC00; Google Play Store&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xC790;&#xC758; WhatsApp &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xD1B5;&#xD574; &#xD655;&#xC0B0;&#xB418;&#xB294; &#xC545;&#xC131; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xC545;&#xC131; &#xC571;&#xC740; Flix Online&#xC774;&#xB77C;&#xB294; &#xC774;&#xB984;&#xC73C;&#xB85C; Google Play Store&#xC5D0; &#xB4F1;&#xB85D;&#xB418;&#xC5B4; &#xC788;&#xC5C8;&#xACE0; &#xD53C;&#xD574;&#xC790;&#xC758; &#xBAA8;&#xBC14;&#xC77C; &#xAE30;&#xAE30; &#xC18D; WhatsApp &#xBA54;&#xC2DC;&#xC9C0;&#xB85C; &#xD655;&#xC0B0;&#xB418;&#xB294; &#xC6DC;(Worm)&#xC785;&#xB2C8;&#xB2E4;. Check Point&#xB294; WhatsApp&#xACFC; &#xAC19;&#xC774; &#xC815;&#xC0C1;&#xC801;&#xC778; &#xC571;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC870;&#xC791;&#xD558;&#xAC70;&#xB098; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xB2E4;&#xB294; &#xC810;&#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xC6DC;&#xC744; &#xD601;&#xC2E0;&#xC801;&#xC774;&#xACE0; &#xC704;&#xD5D8;&#xD55C; &#xC0C8;&#xB85C;&#xC6B4; &#xAE30;&#xC220;&#xC774;&#xB77C; &#xD3C9;&#xAC00;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Flix Online&#xC774; &#xAE30;&#xAE30;&#xC5D0; &#xC124;&#xCE58;&#xB418;&#xBA74; &#xC0AC;&#xC6A9;&#xC790;&#xC5D0;&#xAC8C; &#x2018;Overlay&#x2019;, &#x2018;Battery Optimization Ignore&#x2019;, &#x2018;Notification&#x2019; &#xAD8C;&#xD55C;&#xC744; &#xC694;&#xCCAD;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xC911; &#xD575;&#xC2EC;&#xC774; &#xB418;&#xB294; &#x2018;Notification&#x2019; &#xAD8C;&#xD55C;&#xC740; Flix Online&#xC774; &#xBAA8;&#xBC14;&#xC77C; &#xAE30;&#xAE30;&#xAC00; &#xBC1B;&#xB294; &#xBAA8;&#xB4E0; &#xBA54;&#xC2DC;&#xC9C0;&#xC5D0; &#xB300;&#xD55C; &#xC54C;&#xB9BC;&#xC5D0; &#xC811;&#xADFC;, &#xB2F5;&#xC7A5;, &#xD574;&#xC81C;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD569;&#xB2C8;&#xB2E4;. Flix Online&#xC740; <code>OnNotificationPosted</code> &#xCF5C;&#xBC31;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xC54C;&#xB9BC; &#xD328;&#xD0A4;&#xC9C0;&#xC758;  <code>status.BarNotification0.getPackageName()</code>&#xC744; &#xAC80;&#xC0AC;&#xD574; &#xC54C;&#xB9BC; &#xD328;&#xD0A4;&#xC9C0;&#xC758; &#xADFC;&#xC6D0;&#xC9C0;&#xAC00; WhatsApp&#xC778;&#xC9C0; &#xD310;&#xB2E8;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xD574;&#xB2F9; &#xC54C;&#xB9BC;&#xC744; &#xC81C;&#xAC70;&#xD568;&#xACFC; &#xB3D9;&#xC2DC;&#xC5D0; &#xC81C;&#xBAA9; &#xBC0F; &#xB0B4;&#xC6A9;&#xC744; &#xD0C8;&#xCDE8;&#xD569;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; Inline reply &#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCD94;&#xAC00; &#xAC10;&#xC5FC;&#xC744; &#xC704;&#xD55C; &#xB2F5;&#xC7A5;&#xC744; &#xC804;&#xC1A1;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB450; &#xB2EC; &#xB3D9;&#xC548; Flix Online &#xC571;&#xC740; &#xC57D; 500&#xBC88; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xB418;&#xC5C8;&#xACE0; &#xD604;&#xC7AC;&#xB294; Google Play Store&#xC5D0;&#xC11C; &#xC0AD;&#xC81C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -545,6 +545,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

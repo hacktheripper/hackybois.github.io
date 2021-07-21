@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 자
+      2.5k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      21
+      50
        분
     </span>
   
@@ -240,103 +240,103 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p>안녕하세요! 한 달 만에 돌아온 윈도우 드라이버 시리즈입니다. 지난번 커널 디버깅 세팅에 이어 본격적으로 윈도우 third-party 드라이버 원데이를 분석해볼 건데요, 이제 보니까 시리즈 제목을 뭐같이 짓긴 했네요. 내가 왜 저랬을까..? </p>
+              <p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694;! &#xD55C; &#xB2EC; &#xB9CC;&#xC5D0; &#xB3CC;&#xC544;&#xC628; &#xC708;&#xB3C4;&#xC6B0; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC2DC;&#xB9AC;&#xC988;&#xC785;&#xB2C8;&#xB2E4;. &#xC9C0;&#xB09C;&#xBC88; &#xCEE4;&#xB110; &#xB514;&#xBC84;&#xAE45; &#xC138;&#xD305;&#xC5D0; &#xC774;&#xC5B4; &#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; &#xC708;&#xB3C4;&#xC6B0; third-party &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC6D0;&#xB370;&#xC774;&#xB97C; &#xBD84;&#xC11D;&#xD574;&#xBCFC; &#xAC74;&#xB370;&#xC694;, &#xC774;&#xC81C; &#xBCF4;&#xB2C8;&#xAE4C; &#xC2DC;&#xB9AC;&#xC988; &#xC81C;&#xBAA9;&#xC744; &#xBB50;&#xAC19;&#xC774; &#xC9D3;&#xAE34; &#xD588;&#xB124;&#xC694;. &#xB0B4;&#xAC00; &#xC65C; &#xC800;&#xB7AC;&#xC744;&#xAE4C;..? </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled.png"></p>
 <blockquote>
-<p>다음 파트는 공대 “아저씨”가 알려주는 드라이버 취약점으로 돌아오겠습니다…</p>
+<p>&#xB2E4;&#xC74C; &#xD30C;&#xD2B8;&#xB294; &#xACF5;&#xB300; &#x201C;&#xC544;&#xC800;&#xC528;&#x201D;&#xAC00; &#xC54C;&#xB824;&#xC8FC;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xB3CC;&#xC544;&#xC624;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;&#x2026;</p>
 </blockquote>
 <h1 id="AMD-Ryzen-Master"><a href="#AMD-Ryzen-Master" class="headerlink" title="AMD Ryzen Master"></a>AMD Ryzen Master</h1><p><img src="/2021/07/14/l0ch/windows-driver-part2/AMD.png" srcset="/img/loading.gif" alt="windows-driver-part2/AMD.png"></p>
-<p>오늘 분석할 AMD Ryzen Master는 라이젠 CPU를 사용하시는 분들 중 오버클럭에 관심이 있다면 들어보셨을 익숙한 유틸리티입니다! 저도 작년에 라이젠 CPU를 처음 사서 인생 첫 오버클럭을 하려고 했는데, 바이오스 메뉴에서 뭘 어떻게 해야 할지 몰라서 얼타다가 마우스 클릭 몇 번에 오버클럭이 짠 하고 된다길래 유용하게 썼었죠. 물론 재부팅할 때마다 설정 적용해줘야 하는 게 귀찮아서 결국 바이오스에서 설정했습니다 ㅋㅋ!</p>
+<p>&#xC624;&#xB298; &#xBD84;&#xC11D;&#xD560; AMD Ryzen Master&#xB294; &#xB77C;&#xC774;&#xC820; CPU&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC2DC;&#xB294; &#xBD84;&#xB4E4; &#xC911; &#xC624;&#xBC84;&#xD074;&#xB7ED;&#xC5D0; &#xAD00;&#xC2EC;&#xC774; &#xC788;&#xB2E4;&#xBA74; &#xB4E4;&#xC5B4;&#xBCF4;&#xC168;&#xC744; &#xC775;&#xC219;&#xD55C; &#xC720;&#xD2F8;&#xB9AC;&#xD2F0;&#xC785;&#xB2C8;&#xB2E4;! &#xC800;&#xB3C4; &#xC791;&#xB144;&#xC5D0; &#xB77C;&#xC774;&#xC820; CPU&#xB97C; &#xCC98;&#xC74C; &#xC0AC;&#xC11C; &#xC778;&#xC0DD; &#xCCAB; &#xC624;&#xBC84;&#xD074;&#xB7ED;&#xC744; &#xD558;&#xB824;&#xACE0; &#xD588;&#xB294;&#xB370;, &#xBC14;&#xC774;&#xC624;&#xC2A4; &#xBA54;&#xB274;&#xC5D0;&#xC11C; &#xBB58; &#xC5B4;&#xB5BB;&#xAC8C; &#xD574;&#xC57C; &#xD560;&#xC9C0; &#xBAB0;&#xB77C;&#xC11C; &#xC5BC;&#xD0C0;&#xB2E4;&#xAC00; &#xB9C8;&#xC6B0;&#xC2A4; &#xD074;&#xB9AD; &#xBA87; &#xBC88;&#xC5D0; &#xC624;&#xBC84;&#xD074;&#xB7ED;&#xC774; &#xC9E0; &#xD558;&#xACE0; &#xB41C;&#xB2E4;&#xAE38;&#xB798; &#xC720;&#xC6A9;&#xD558;&#xAC8C; &#xC37C;&#xC5C8;&#xC8E0;. &#xBB3C;&#xB860; &#xC7AC;&#xBD80;&#xD305;&#xD560; &#xB54C;&#xB9C8;&#xB2E4; &#xC124;&#xC815; &#xC801;&#xC6A9;&#xD574;&#xC918;&#xC57C; &#xD558;&#xB294; &#xAC8C; &#xADC0;&#xCC2E;&#xC544;&#xC11C; &#xACB0;&#xAD6D; &#xBC14;&#xC774;&#xC624;&#xC2A4;&#xC5D0;&#xC11C; &#xC124;&#xC815;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4; &#x314B;&#x314B;!</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%201.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%201.png"></p>
 <blockquote>
-<p>오버클럭도 못하는 컴알못ㅜ</p>
+<p>&#xC624;&#xBC84;&#xD074;&#xB7ED;&#xB3C4; &#xBABB;&#xD558;&#xB294; &#xCEF4;&#xC54C;&#xBABB;&#x315C;</p>
 </blockquote>
-<p>이건 여담인데, 지금 쓰는 CPU가 오버클럭 안한 순정상태에서는 블루스크린 뜨는데 오버클럭 하면 멀쩡하더라구요. 수율이 좋길래 그냥 쓰고 있는데.. 뭔가 찝찝한 건 기분 탓일 거야 아마</p>
+<p>&#xC774;&#xAC74; &#xC5EC;&#xB2F4;&#xC778;&#xB370;, &#xC9C0;&#xAE08; &#xC4F0;&#xB294; CPU&#xAC00; &#xC624;&#xBC84;&#xD074;&#xB7ED; &#xC548;&#xD55C; &#xC21C;&#xC815;&#xC0C1;&#xD0DC;&#xC5D0;&#xC11C;&#xB294; &#xBE14;&#xB8E8;&#xC2A4;&#xD06C;&#xB9B0; &#xB728;&#xB294;&#xB370; &#xC624;&#xBC84;&#xD074;&#xB7ED; &#xD558;&#xBA74; &#xBA40;&#xCA61;&#xD558;&#xB354;&#xB77C;&#xAD6C;&#xC694;. &#xC218;&#xC728;&#xC774; &#xC88B;&#xAE38;&#xB798; &#xADF8;&#xB0E5; &#xC4F0;&#xACE0; &#xC788;&#xB294;&#xB370;.. &#xBB54;&#xAC00; &#xCC1D;&#xCC1D;&#xD55C; &#xAC74; &#xAE30;&#xBD84; &#xD0D3;&#xC77C; &#xAC70;&#xC57C; &#xC544;&#xB9C8;</p>
 <blockquote>
-<p>본인(새컴 맞춰서 신남) : 님들 시퓨 순정은 블루스크린 뜨는데 오버클럭 하면 잘 돌아감 ㅋㅋ 신기하죠<br>??? : 우린 그걸 초기 불량이라고 부르기로 했어요.</p>
+<p>&#xBCF8;&#xC778;(&#xC0C8;&#xCEF4; &#xB9DE;&#xCDB0;&#xC11C; &#xC2E0;&#xB0A8;) : &#xB2D8;&#xB4E4; &#xC2DC;&#xD4E8; &#xC21C;&#xC815;&#xC740; &#xBE14;&#xB8E8;&#xC2A4;&#xD06C;&#xB9B0; &#xB728;&#xB294;&#xB370; &#xC624;&#xBC84;&#xD074;&#xB7ED; &#xD558;&#xBA74; &#xC798; &#xB3CC;&#xC544;&#xAC10; &#x314B;&#x314B; &#xC2E0;&#xAE30;&#xD558;&#xC8E0;<br>??? : &#xC6B0;&#xB9B0; &#xADF8;&#xAC78; &#xCD08;&#xAE30; &#xBD88;&#xB7C9;&#xC774;&#xB77C;&#xACE0; &#xBD80;&#xB974;&#xAE30;&#xB85C; &#xD588;&#xC5B4;&#xC694;.</p>
 </blockquote>
-<p>…? </p>
+<p>&#x2026;? </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%202.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%202.png"></p>
 <blockquote>
-<p>그래도 1년째 잘 쓰고 있습니다..</p>
+<p>&#xADF8;&#xB798;&#xB3C4; 1&#xB144;&#xC9F8; &#xC798; &#xC4F0;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;..</p>
 </blockquote>
-<p>아무튼 오늘은 작년에 공개된 AMD Ryzen Master의 권한상승 취약점 CVE-2020-12928 을 분석해보도록 하겠습니다! OS환경은 Windows 10 빌드 19043.1083에서, 타겟인 AMD Ryzen Master는 취약한 AMDRyzenMasterDriverV15 버전의 드라이버가 포함된  2.1.1.1472 버전에서 진행했습니다. </p>
-<p>구버전 찾는데 하루 종일 걸려버림 ㅎㅎ. .</p>
+<p>&#xC544;&#xBB34;&#xD2BC; &#xC624;&#xB298;&#xC740; &#xC791;&#xB144;&#xC5D0; &#xACF5;&#xAC1C;&#xB41C; AMD Ryzen Master&#xC758; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810; CVE-2020-12928 &#xC744; &#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! OS&#xD658;&#xACBD;&#xC740; Windows 10 &#xBE4C;&#xB4DC; 19043.1083&#xC5D0;&#xC11C;, &#xD0C0;&#xAC9F;&#xC778; AMD Ryzen Master&#xB294; &#xCDE8;&#xC57D;&#xD55C; AMDRyzenMasterDriverV15 &#xBC84;&#xC804;&#xC758; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xAC00; &#xD3EC;&#xD568;&#xB41C;  2.1.1.1472 &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xAD6C;&#xBC84;&#xC804; &#xCC3E;&#xB294;&#xB370; &#xD558;&#xB8E8; &#xC885;&#xC77C; &#xAC78;&#xB824;&#xBC84;&#xB9BC; &#x314E;&#x314E;. .</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%203.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%203.png"></p>
 <blockquote>
-<p>아 구버전 구하기 진짜 너무 어려웠다 ㅁㄴㅇㄹㄴㅇㅁㄹㅇㅁ</p>
+<p>&#xC544; &#xAD6C;&#xBC84;&#xC804; &#xAD6C;&#xD558;&#xAE30; &#xC9C4;&#xC9DC; &#xB108;&#xBB34; &#xC5B4;&#xB824;&#xC6E0;&#xB2E4; &#x3141;&#x3134;&#x3147;&#x3139;&#x3134;&#x3147;&#x3141;&#x3139;&#x3147;&#x3141;</p>
 </blockquote>
-<p>이제.. 설치하고 설치 경로를 찾아가보면</p>
+<p>&#xC774;&#xC81C;.. &#xC124;&#xCE58;&#xD558;&#xACE0; &#xC124;&#xCE58; &#xACBD;&#xB85C;&#xB97C; &#xCC3E;&#xC544;&#xAC00;&#xBCF4;&#xBA74;</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/tempsnip.png" srcset="/img/loading.gif" alt="windows-driver-part2/tempsnip.png"></p>
-<p>오늘의 주인공 드라이버는 위 경로에서 찾을 수 있습니다.</p>
-<h1 id="Kernel-Driver-Driver-Exploit"><a href="#Kernel-Driver-Driver-Exploit" class="headerlink" title="Kernel Driver / Driver Exploit"></a>Kernel Driver / Driver Exploit</h1><p>본격적으로 분석을 하기 전에 드라이버가 어떤 것인지, 취약점에는 어떤 것이 있는지부터 알아봐야 합니다.</p>
-<p>Windows Kernel은 모듈화가 되어 있으며 Core Kernel(Microkernel)과 Device Driver 두 가지로 나눌 수 있습니다. Core 모듈에는 Kernel의 핵심적인 기능이 구현되어 있고 대부분의 커널 기능은 driver 형태로 모듈화 되어 구현됩니다. 이러한 모듈화의 장점은 확장성과 유지보수가 용이하다는 점이 있겠네요!</p>
+<p>&#xC624;&#xB298;&#xC758; &#xC8FC;&#xC778;&#xACF5; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; &#xC704; &#xACBD;&#xB85C;&#xC5D0;&#xC11C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h1 id="Kernel-Driver-Driver-Exploit"><a href="#Kernel-Driver-Driver-Exploit" class="headerlink" title="Kernel Driver / Driver Exploit"></a>Kernel Driver / Driver Exploit</h1><p>&#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; &#xBD84;&#xC11D;&#xC744; &#xD558;&#xAE30; &#xC804;&#xC5D0; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xAC00; &#xC5B4;&#xB5A4; &#xAC83;&#xC778;&#xC9C0;, &#xCDE8;&#xC57D;&#xC810;&#xC5D0;&#xB294; &#xC5B4;&#xB5A4; &#xAC83;&#xC774; &#xC788;&#xB294;&#xC9C0;&#xBD80;&#xD130; &#xC54C;&#xC544;&#xBD10;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Windows Kernel&#xC740; &#xBAA8;&#xB4C8;&#xD654;&#xAC00; &#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA70; Core Kernel(Microkernel)&#xACFC; Device Driver &#xB450; &#xAC00;&#xC9C0;&#xB85C; &#xB098;&#xB20C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Core &#xBAA8;&#xB4C8;&#xC5D0;&#xB294; Kernel&#xC758; &#xD575;&#xC2EC;&#xC801;&#xC778; &#xAE30;&#xB2A5;&#xC774; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xACE0; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xCEE4;&#xB110; &#xAE30;&#xB2A5;&#xC740; driver &#xD615;&#xD0DC;&#xB85C; &#xBAA8;&#xB4C8;&#xD654; &#xB418;&#xC5B4; &#xAD6C;&#xD604;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; &#xBAA8;&#xB4C8;&#xD654;&#xC758; &#xC7A5;&#xC810;&#xC740; &#xD655;&#xC7A5;&#xC131;&#xACFC; &#xC720;&#xC9C0;&#xBCF4;&#xC218;&#xAC00; &#xC6A9;&#xC774;&#xD558;&#xB2E4;&#xB294; &#xC810;&#xC774; &#xC788;&#xACA0;&#xB124;&#xC694;!</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%204.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%204.png"></p>
 <blockquote>
-<p>Windows NT 계열의 커널 아키텍처</p>
+<p>Windows NT &#xACC4;&#xC5F4;&#xC758; &#xCEE4;&#xB110; &#xC544;&#xD0A4;&#xD14D;&#xCC98;</p>
 </blockquote>
-<p>Windows에서 드라이버는 특정 이벤트가 발생할 때 커널 컨텍스트에서 실행되는 코드를 포함하는 모듈로 정의할 수 있습니다. 정리하면 커널 권한이 필요한 작업이 필요할 때 실행되는 코드를 모듈화 한 것입니다.  </p>
-<p>위 사진에서 볼 수 있듯이 Windows는 User mode와 Kernel mode로 권한이 나뉘어 있습니다. User mode에서 실행되는 어플리케이션이 커널 권한이 필요한 작업을 요구할 때 커널 권한에 직접적으로 접근하는 것이 아닌 커널 권한으로 실행되는 드라이버에게 요청을 보내 간접적으로 수행하는 것이죠. 이때 User mode 어플리케이션은 I/O Manger를 통해 드라이버에게 요청을 보내는데, IOCTL(I/O Control) 코드로 드라이버가 어떤 기능을 수행할지를 결정합니다.</p>
-<p>그렇다면, 이런 드라이버에서 찾을 수 있는 취약점은 어떤 것이 있을지 감이 오지 않나요?</p>
-<p>드라이버의 취약점 공격에 성공하면 유저 권한의 어플리케이션으로는 할 수 없는 높은 권한에서의 임의 명령어 실행이 가능하고 타겟에게 더 큰 피해를 끼칠 수 있습니다. 이를 권한 상승 취약점(Privilege Escalation)이라고 부릅니다.</p>
-<p>그런데 Microsoft가 바보도 아니고 커널 권한으로 돌아가는 드라이버는 좀 더 보안에 신경을 써서 개발했을 거 같지 않나요? 문제는 이 드라이버는 MS가 아닌 제삼자(third-party)도 개발하고 배포할 수 있어 발생합니다. </p>
-<p>third-party driver는 보통 커널 레벨의 높은 권한을 요구하는 백신이나 하드웨어를 직접 제어하는 마우스, 모니터 드라이버, 하드웨어 모니터링 등의 제조사 유틸리티에서 많이 사용합니다. Microsoft가 Windows 커널과 자기네 드라이버를 아무리 심혈을 기울여 버그 없이 내놓는다고 해도 이런 third-party driver들이 있는 한 권한 상승 취약점은 팡팡 터질 것 같네요!</p>
+<p>Windows&#xC5D0;&#xC11C; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; &#xD2B9;&#xC815; &#xC774;&#xBCA4;&#xD2B8;&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xB54C; &#xCEE4;&#xB110; &#xCEE8;&#xD14D;&#xC2A4;&#xD2B8;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xB294; &#xBAA8;&#xB4C8;&#xB85C; &#xC815;&#xC758;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC815;&#xB9AC;&#xD558;&#xBA74; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC774; &#xD544;&#xC694;&#xD55C; &#xC791;&#xC5C5;&#xC774; &#xD544;&#xC694;&#xD560; &#xB54C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xBAA8;&#xB4C8;&#xD654; &#xD55C; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.  </p>
+<p>&#xC704; &#xC0AC;&#xC9C4;&#xC5D0;&#xC11C; &#xBCFC; &#xC218; &#xC788;&#xB4EF;&#xC774; Windows&#xB294; User mode&#xC640; Kernel mode&#xB85C; &#xAD8C;&#xD55C;&#xC774; &#xB098;&#xB258;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. User mode&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xC5B4;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC774; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC774; &#xD544;&#xC694;&#xD55C; &#xC791;&#xC5C5;&#xC744; &#xC694;&#xAD6C;&#xD560; &#xB54C; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC5D0; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xC811;&#xADFC;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2CC; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xAC8C; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0B4; &#xAC04;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC774;&#xC8E0;. &#xC774;&#xB54C; User mode &#xC5B4;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC740; I/O Manger&#xB97C; &#xD1B5;&#xD574; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xAC8C; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0B4;&#xB294;&#xB370;, IOCTL(I/O Control) &#xCF54;&#xB4DC;&#xB85C; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xAC00; &#xC5B4;&#xB5A4; &#xAE30;&#xB2A5;&#xC744; &#xC218;&#xD589;&#xD560;&#xC9C0;&#xB97C; &#xACB0;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB807;&#xB2E4;&#xBA74;, &#xC774;&#xB7F0; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xC11C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC5B4;&#xB5A4; &#xAC83;&#xC774; &#xC788;&#xC744;&#xC9C0; &#xAC10;&#xC774; &#xC624;&#xC9C0; &#xC54A;&#xB098;&#xC694;?</p>
+<p>&#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC758; &#xCDE8;&#xC57D;&#xC810; &#xACF5;&#xACA9;&#xC5D0; &#xC131;&#xACF5;&#xD558;&#xBA74; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC758; &#xC5B4;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC73C;&#xB85C;&#xB294; &#xD560; &#xC218; &#xC5C6;&#xB294; &#xB192;&#xC740; &#xAD8C;&#xD55C;&#xC5D0;&#xC11C;&#xC758; &#xC784;&#xC758; &#xBA85;&#xB839;&#xC5B4; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xACE0; &#xD0C0;&#xAC9F;&#xC5D0;&#xAC8C; &#xB354; &#xD070; &#xD53C;&#xD574;&#xB97C; &#xB07C;&#xCE60; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;(Privilege Escalation)&#xC774;&#xB77C;&#xACE0; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB7F0;&#xB370; Microsoft&#xAC00; &#xBC14;&#xBCF4;&#xB3C4; &#xC544;&#xB2C8;&#xACE0; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xB3CC;&#xC544;&#xAC00;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; &#xC880; &#xB354; &#xBCF4;&#xC548;&#xC5D0; &#xC2E0;&#xACBD;&#xC744; &#xC368;&#xC11C; &#xAC1C;&#xBC1C;&#xD588;&#xC744; &#xAC70; &#xAC19;&#xC9C0; &#xC54A;&#xB098;&#xC694;? &#xBB38;&#xC81C;&#xB294; &#xC774; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; MS&#xAC00; &#xC544;&#xB2CC; &#xC81C;&#xC0BC;&#xC790;(third-party)&#xB3C4; &#xAC1C;&#xBC1C;&#xD558;&#xACE0; &#xBC30;&#xD3EC;&#xD560; &#xC218; &#xC788;&#xC5B4; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>third-party driver&#xB294; &#xBCF4;&#xD1B5; &#xCEE4;&#xB110; &#xB808;&#xBCA8;&#xC758; &#xB192;&#xC740; &#xAD8C;&#xD55C;&#xC744; &#xC694;&#xAD6C;&#xD558;&#xB294; &#xBC31;&#xC2E0;&#xC774;&#xB098; &#xD558;&#xB4DC;&#xC6E8;&#xC5B4;&#xB97C; &#xC9C1;&#xC811; &#xC81C;&#xC5B4;&#xD558;&#xB294; &#xB9C8;&#xC6B0;&#xC2A4;, &#xBAA8;&#xB2C8;&#xD130; &#xB4DC;&#xB77C;&#xC774;&#xBC84;, &#xD558;&#xB4DC;&#xC6E8;&#xC5B4; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1; &#xB4F1;&#xC758; &#xC81C;&#xC870;&#xC0AC; &#xC720;&#xD2F8;&#xB9AC;&#xD2F0;&#xC5D0;&#xC11C; &#xB9CE;&#xC774; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. Microsoft&#xAC00; Windows &#xCEE4;&#xB110;&#xACFC; &#xC790;&#xAE30;&#xB124; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB97C; &#xC544;&#xBB34;&#xB9AC; &#xC2EC;&#xD608;&#xC744; &#xAE30;&#xC6B8;&#xC5EC; &#xBC84;&#xADF8; &#xC5C6;&#xC774; &#xB0B4;&#xB193;&#xB294;&#xB2E4;&#xACE0; &#xD574;&#xB3C4; &#xC774;&#xB7F0; third-party driver&#xB4E4;&#xC774; &#xC788;&#xB294; &#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD321;&#xD321; &#xD130;&#xC9C8; &#xAC83; &#xAC19;&#xB124;&#xC694;!</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%205.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%205.png"></p>
 <blockquote>
-<p>요즘 핫한 PrintNightmare같은 프린터 스풀러 취약점이 터지는 거 보면 마소도 뭐.. 갈 길이 먼 것 같지만요 ㅎㅎ;;</p>
+<p>&#xC694;&#xC998; &#xD56B;&#xD55C; PrintNightmare&#xAC19;&#xC740; &#xD504;&#xB9B0;&#xD130; &#xC2A4;&#xD480;&#xB7EC; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD130;&#xC9C0;&#xB294; &#xAC70; &#xBCF4;&#xBA74; &#xB9C8;&#xC18C;&#xB3C4; &#xBB50;.. &#xAC08; &#xAE38;&#xC774; &#xBA3C; &#xAC83; &#xAC19;&#xC9C0;&#xB9CC;&#xC694; &#x314E;&#x314E;;;</p>
 </blockquote>
-<p>오늘 글을 보기 전 드라이버 익스플로잇에 대한 아래 번역글을 읽어보면 도움이 됩니다!</p>
+<p>&#xC624;&#xB298; &#xAE00;&#xC744; &#xBCF4;&#xAE30; &#xC804; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC5D0; &#xB300;&#xD55C; &#xC544;&#xB798; &#xBC88;&#xC5ED;&#xAE00;&#xC744; &#xC77D;&#xC5B4;&#xBCF4;&#xBA74; &#xB3C4;&#xC6C0;&#xC774; &#xB429;&#xB2C8;&#xB2E4;!</p>
 <p><a href="https://hackyboiz.github.io/2021/04/21/l0ch/exploiting-driver/">[Translation] Exploiting System Mechanic Driver Part 1</a></p>
 <p><a href="https://hackyboiz.github.io/2021/04/28/l0ch/exploiting-driver-part2/">[Translation] Exploiting System Mechanic Driver Part 2</a></p>
-<h1 id="Vulnerability-Analysis"><a href="#Vulnerability-Analysis" class="headerlink" title="Vulnerability Analysis"></a>Vulnerability Analysis</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>이제 본격적으로 취약점을 분석해볼 차례입니다! 먼저 드라이버 서비스가 동작중인지 확인부터 해보겠습니다.</p>
+<h1 id="Vulnerability-Analysis"><a href="#Vulnerability-Analysis" class="headerlink" title="Vulnerability Analysis"></a>Vulnerability Analysis</h1><h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>&#xC774;&#xC81C; &#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xBD84;&#xC11D;&#xD574;&#xBCFC; &#xCC28;&#xB840;&#xC785;&#xB2C8;&#xB2E4;! &#xBA3C;&#xC800; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC11C;&#xBE44;&#xC2A4;&#xAC00; &#xB3D9;&#xC791;&#xC911;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xBD80;&#xD130; &#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/2.png" srcset="/img/loading.gif" alt="windows-driver-part2/2.png"></p>
-<p>WinObj로 확인해보면 AMDRyzenMasterDriverV15 디바이스가 올라온 것을 볼 수 있네요. </p>
-<p><code>AMDRyzenMasterDriverV15.sys</code> 를 IDA로 열자마자 바로 <code>DriverEntry</code> 부터 찾아보죠</p>
+<p>WinObj&#xB85C; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xBA74; AMDRyzenMasterDriverV15 &#xB514;&#xBC14;&#xC774;&#xC2A4;&#xAC00; &#xC62C;&#xB77C;&#xC628; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB124;&#xC694;. </p>
+<p><code>AMDRyzenMasterDriverV15.sys</code> &#xB97C; IDA&#xB85C; &#xC5F4;&#xC790;&#xB9C8;&#xC790; &#xBC14;&#xB85C; <code>DriverEntry</code> &#xBD80;&#xD130; &#xCC3E;&#xC544;&#xBCF4;&#xC8E0;</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%206.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%206.png"></p>
-<p><code>sub_140008A5C</code>로 가볼까요?</p>
+<p><code>sub_140008A5C</code>&#xB85C; &#xAC00;&#xBCFC;&#xAE4C;&#xC694;?</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/tempsnip%201.png" srcset="/img/loading.gif" alt="windows-driver-part2/tempsnip%201.png"></p>
-<p><code>DriverEntry</code>에서 첫 번째 매개변수로 <code>PDRIVER_OBJECT</code> 를 줬으니 매개변수 <code>a1</code>의 type을 <code>PDRIVER_OBJECT</code>로 변환합니다. 여기선 dispatch routine을 찾을 수 없네요.  <code>PDRIVER_OBJECT</code>를 매개변수로 전달하는 함수를 더 찾아보겠습니다. <code>sub_1400046AC</code>를 볼까요? </p>
+<p><code>DriverEntry</code>&#xC5D0;&#xC11C; &#xCCAB; &#xBC88;&#xC9F8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; <code>PDRIVER_OBJECT</code> &#xB97C; &#xC92C;&#xC73C;&#xB2C8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218; <code>a1</code>&#xC758; type&#xC744; <code>PDRIVER_OBJECT</code>&#xB85C; &#xBCC0;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. &#xC5EC;&#xAE30;&#xC120; dispatch routine&#xC744; &#xCC3E;&#xC744; &#xC218; &#xC5C6;&#xB124;&#xC694;.  <code>PDRIVER_OBJECT</code>&#xB97C; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xC804;&#xB2EC;&#xD558;&#xB294; &#xD568;&#xC218;&#xB97C; &#xB354; &#xCC3E;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. <code>sub_1400046AC</code>&#xB97C; &#xBCFC;&#xAE4C;&#xC694;? </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/tempsnip2.png" srcset="/img/loading.gif" alt="windows-driver-part2/tempsnip2.png"></p>
-<p>이번에는 <code>DRIVER_OBJECT-&gt;MajorFunction[14]</code>에 dispatch routine을 할당하는 코드를 찾을 수 있습니다! 장치명도 보이네요. </p>
+<p>&#xC774;&#xBC88;&#xC5D0;&#xB294; <code>DRIVER_OBJECT-&gt;MajorFunction[14]</code>&#xC5D0; dispatch routine&#xC744; &#xD560;&#xB2F9;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;! &#xC7A5;&#xCE58;&#xBA85;&#xB3C4; &#xBCF4;&#xC774;&#xB124;&#xC694;. </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%207.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%207.png"></p>
-<p>dispatch routine에는 IOCTL 코드와 코드 별 루틴을 볼 수 있습니다.</p>
-<h2 id="MmMapIoSpace"><a href="#MmMapIoSpace" class="headerlink" title="MmMapIoSpace"></a>MmMapIoSpace</h2><p>이제 함수 하나를 중점적으로 보면서 취약점을 찾아볼 텐데요, 타겟은 <code>MmMapIoSpace</code>로 정하겠습니다! <code>MmMapIoSpace</code>는 물리 주소를 가상 페이지 주소에 매핑하는 함수로, 함수 원형은 다음과 같습니다.</p>
+<p>dispatch routine&#xC5D0;&#xB294; IOCTL &#xCF54;&#xB4DC;&#xC640; &#xCF54;&#xB4DC; &#xBCC4; &#xB8E8;&#xD2F4;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="MmMapIoSpace"><a href="#MmMapIoSpace" class="headerlink" title="MmMapIoSpace"></a>MmMapIoSpace</h2><p>&#xC774;&#xC81C; &#xD568;&#xC218; &#xD558;&#xB098;&#xB97C; &#xC911;&#xC810;&#xC801;&#xC73C;&#xB85C; &#xBCF4;&#xBA74;&#xC11C; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xCC3E;&#xC544;&#xBCFC; &#xD150;&#xB370;&#xC694;, &#xD0C0;&#xAC9F;&#xC740; <code>MmMapIoSpace</code>&#xB85C; &#xC815;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! <code>MmMapIoSpace</code>&#xB294; &#xBB3C;&#xB9AC; &#xC8FC;&#xC18C;&#xB97C; &#xAC00;&#xC0C1; &#xD398;&#xC774;&#xC9C0; &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xD558;&#xB294; &#xD568;&#xC218;&#xB85C;, &#xD568;&#xC218; &#xC6D0;&#xD615;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function">PVOID <span class="hljs-title">MmMapIoSpace</span><span class="hljs-params">(</span></span>
-<span class="hljs-function"><span class="hljs-params">  PHYSICAL_ADDRESS    PhysicalAddress,  <span class="hljs-comment">// 매핑할 물리적 주소</span></span></span>
-<span class="hljs-function"><span class="hljs-params">  SIZE_T              NumberOfBytes,   <span class="hljs-comment">//매핑할 바이트 수</span></span></span>
-<span class="hljs-function"><span class="hljs-params">  MEMORY_CACHING_TYPE CacheType       <span class="hljs-comment">//매핑하는 데 사용할 캐시 속성을 나타내는 MEMORY_CACHING_TYPE 값</span></span></span>
+<span class="hljs-function"><span class="hljs-params">  PHYSICAL_ADDRESS    PhysicalAddress,  <span class="hljs-comment">// &#xB9E4;&#xD551;&#xD560; &#xBB3C;&#xB9AC;&#xC801; &#xC8FC;&#xC18C;</span></span></span>
+<span class="hljs-function"><span class="hljs-params">  SIZE_T              NumberOfBytes,   <span class="hljs-comment">//&#xB9E4;&#xD551;&#xD560; &#xBC14;&#xC774;&#xD2B8; &#xC218;</span></span></span>
+<span class="hljs-function"><span class="hljs-params">  MEMORY_CACHING_TYPE CacheType       <span class="hljs-comment">//&#xB9E4;&#xD551;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xD560; &#xCE90;&#xC2DC; &#xC18D;&#xC131;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; MEMORY_CACHING_TYPE &#xAC12;</span></span></span>
 <span class="hljs-function"><span class="hljs-params">)</span></span>;</code></pre>
 
-<p>왠지 이 함수 매개변수를 제어할 수 있으면 아주 좋은 공격 벡터가 될 것 같죠? </p>
-<p><code>MmMapIoSpace</code> 관련 취약점은 MSI Dragon Center 권한상승을 다루는 하루한줄(<a href="https://hackyboiz.github.io/2021/06/22/l0ch/2021-06-22/">CVE-2021-29337: MSI Dragon Center의 로컬 권한 상승 취약점</a>) 에서도 언급된 적이 있었습니다. </p>
+<p>&#xC660;&#xC9C0; &#xC774; &#xD568;&#xC218; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA74; &#xC544;&#xC8FC; &#xC88B;&#xC740; &#xACF5;&#xACA9; &#xBCA1;&#xD130;&#xAC00; &#xB420; &#xAC83; &#xAC19;&#xC8E0;? </p>
+<p><code>MmMapIoSpace</code> &#xAD00;&#xB828; &#xCDE8;&#xC57D;&#xC810;&#xC740; MSI Dragon Center &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9;&#xC744; &#xB2E4;&#xB8E8;&#xB294; &#xD558;&#xB8E8;&#xD55C;&#xC904;(<a href="https://hackyboiz.github.io/2021/06/22/l0ch/2021-06-22/">CVE-2021-29337: MSI Dragon Center&#xC758; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;</a>) &#xC5D0;&#xC11C;&#xB3C4; &#xC5B8;&#xAE09;&#xB41C; &#xC801;&#xC774; &#xC788;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%208.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%208.png"></p>
 <blockquote>
-<p>이때 오늘 글 예고를 하기도 했었죠 ㅎㅎ</p>
+<p>&#xC774;&#xB54C; &#xC624;&#xB298; &#xAE00; &#xC608;&#xACE0;&#xB97C; &#xD558;&#xAE30;&#xB3C4; &#xD588;&#xC5C8;&#xC8E0; &#x314E;&#x314E;</p>
 </blockquote>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/33.png" srcset="/img/loading.gif" alt="windows-driver-part2/33.png"></p>
-<p>cross reference view로 본 <code>MmMapIoSpace</code>를 호출하는 함수 리스트입니다. <code>sub_140007278</code> 함수를 보도록 할게요.</p>
+<p>cross reference view&#xB85C; &#xBCF8; <code>MmMapIoSpace</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xD568;&#xC218; &#xB9AC;&#xC2A4;&#xD2B8;&#xC785;&#xB2C8;&#xB2E4;. <code>sub_140007278</code> &#xD568;&#xC218;&#xB97C; &#xBCF4;&#xB3C4;&#xB85D; &#xD560;&#xAC8C;&#xC694;.</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%209.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%209.png"></p>
-<p>코드를 보고 분석해보면 간단하게 다음과 같이 정리가 가능합니다.</p>
+<p>&#xCF54;&#xB4DC;&#xB97C; &#xBCF4;&#xACE0; &#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xBA74; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC815;&#xB9AC;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><code>MmMapIoSpace</code> 함수에 매개변수 <code>a1</code>와 <code>a2</code>를 각각 매핑하길 원하는 물리 주소와 길이를 전달합니다.</li>
-<li><code>BaseAddress</code>에는 <code>MmMapIoSpace</code>의 반환 값인 물리 주소가 매핑된 가상 페이지 주소가 들어갑니다.</li>
-<li><code>BaseAddress</code>가 NULL인지 확인하고 아니면 <code>NumberOfBytes</code>만큼 <code>a3</code> 버퍼의 값을 복사합니다.</li>
-<li>복사가 완료되면 매핑된 주소를 매핑 해제하고 정상적으로 종료됩니다.</li>
+<li><code>MmMapIoSpace</code> &#xD568;&#xC218;&#xC5D0; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218; <code>a1</code>&#xC640; <code>a2</code>&#xB97C; &#xAC01;&#xAC01; &#xB9E4;&#xD551;&#xD558;&#xAE38; &#xC6D0;&#xD558;&#xB294; &#xBB3C;&#xB9AC; &#xC8FC;&#xC18C;&#xC640; &#xAE38;&#xC774;&#xB97C; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>BaseAddress</code>&#xC5D0;&#xB294; <code>MmMapIoSpace</code>&#xC758; &#xBC18;&#xD658; &#xAC12;&#xC778; &#xBB3C;&#xB9AC; &#xC8FC;&#xC18C;&#xAC00; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xD398;&#xC774;&#xC9C0; &#xC8FC;&#xC18C;&#xAC00; &#xB4E4;&#xC5B4;&#xAC11;&#xB2C8;&#xB2E4;.</li>
+<li><code>BaseAddress</code>&#xAC00; NULL&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0; &#xC544;&#xB2C8;&#xBA74; <code>NumberOfBytes</code>&#xB9CC;&#xD07C; <code>a3</code> &#xBC84;&#xD37C;&#xC758; &#xAC12;&#xC744; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xBCF5;&#xC0AC;&#xAC00; &#xC644;&#xB8CC;&#xB418;&#xBA74; &#xB9E4;&#xD551;&#xB41C; &#xC8FC;&#xC18C;&#xB97C; &#xB9E4;&#xD551; &#xD574;&#xC81C;&#xD558;&#xACE0; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC885;&#xB8CC;&#xB429;&#xB2C8;&#xB2E4;.</li>
 </ul>
-<p>해당 함수는 커널 메모리에 바이트 단위로 무언가를 쓰는 루틴으로 보입니다. 함수를 호출하는 dispatch routine으로 올라가 볼게요.</p>
+<p>&#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xBC14;&#xC774;&#xD2B8; &#xB2E8;&#xC704;&#xB85C; &#xBB34;&#xC5B8;&#xAC00;&#xB97C; &#xC4F0;&#xB294; &#xB8E8;&#xD2F4;&#xC73C;&#xB85C; &#xBCF4;&#xC785;&#xB2C8;&#xB2E4;. &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; dispatch routine&#xC73C;&#xB85C; &#xC62C;&#xB77C;&#xAC00; &#xBCFC;&#xAC8C;&#xC694;.</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%2010.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%2010.png"></p>
-<p>IOCTL 코드가 <code>0x81112F0C</code>일때 함수를 호출하네요. </p>
-<p><code>MmMapIoSpace</code>를 호출하는 다른 함수인 <code>sub_1400063D0</code>을 보겠습니다.  </p>
+<p>IOCTL &#xCF54;&#xB4DC;&#xAC00; <code>0x81112F0C</code>&#xC77C;&#xB54C; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB124;&#xC694;. </p>
+<p><code>MmMapIoSpace</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xB2E4;&#xB978; &#xD568;&#xC218;&#xC778; <code>sub_1400063D0</code>&#xC744; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.  </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%2011.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%2011.png"></p>
-<p>위 함수는 비슷해 보이긴 하지만 한 가지가 다르네요?  <code>sub_140007278</code> 함수와 반대로 커널 메모리를 바이트 단위로 쓰는 루틴인 것 같습니다.</p>
+<p>&#xC704; &#xD568;&#xC218;&#xB294; &#xBE44;&#xC2B7;&#xD574; &#xBCF4;&#xC774;&#xAE34; &#xD558;&#xC9C0;&#xB9CC; &#xD55C; &#xAC00;&#xC9C0;&#xAC00; &#xB2E4;&#xB974;&#xB124;&#xC694;?  <code>sub_140007278</code> &#xD568;&#xC218;&#xC640; &#xBC18;&#xB300;&#xB85C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xBC14;&#xC774;&#xD2B8; &#xB2E8;&#xC704;&#xB85C; &#xC4F0;&#xB294; &#xB8E8;&#xD2F4;&#xC778; &#xAC83; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%2012.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%2012.png"></p>
-<p>IOCTL <code>0x81112F08</code>일 때 해당 함수 루틴을 수행합니다.</p>
-<p>위 두 함수의 <code>MmMapIoSpace</code> 로 전달되는 매개변수와 복사할 메모리 주소를 제어할 수 있으면 임의 쓰기 및 임의 읽기가 가능할 것 같다는 느낌적인 느낌이 오지 않나요?! 바로 테스트를 해볼게요.</p>
+<p>IOCTL <code>0x81112F08</code>&#xC77C; &#xB54C; &#xD574;&#xB2F9; &#xD568;&#xC218; &#xB8E8;&#xD2F4;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC704; &#xB450; &#xD568;&#xC218;&#xC758; <code>MmMapIoSpace</code> &#xB85C; &#xC804;&#xB2EC;&#xB418;&#xB294; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC640; &#xBCF5;&#xC0AC;&#xD560; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xB97C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA74; &#xC784;&#xC758; &#xC4F0;&#xAE30; &#xBC0F; &#xC784;&#xC758; &#xC77D;&#xAE30;&#xAC00; &#xAC00;&#xB2A5;&#xD560; &#xAC83; &#xAC19;&#xB2E4;&#xB294; &#xB290;&#xB08C;&#xC801;&#xC778; &#xB290;&#xB08C;&#xC774; &#xC624;&#xC9C0; &#xC54A;&#xB098;&#xC694;?! &#xBC14;&#xB85C; &#xD14C;&#xC2A4;&#xD2B8;&#xB97C; &#xD574;&#xBCFC;&#xAC8C;&#xC694;.</p>
 <pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>
-<span class="hljs-function"></span>&#123;
+<span class="hljs-function"></span>{
     HANDLE dHandle;
     WCHAR DeviceLink[] = <span class="hljs-string">L&quot;\\\\.\\AMDRyzenMasterDriverV15&quot;</span>;
     DWORD dwRet = <span class="hljs-number">0</span>;
@@ -356,33 +356,33 @@
     );
 
     <span class="hljs-keyword">if</span> (dHandle == INVALID_HANDLE_VALUE)
-    &#123;
+    {
         <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;Get Device Handle Fail! : 0x%X \n&quot;</span>, GetLastError());
         <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-    &#125;
+    }
     
-    BYTE input_buff[<span class="hljs-number">0x100</span>] = &#123; <span class="hljs-number">0</span>, &#125;;
+    BYTE input_buff[<span class="hljs-number">0x100</span>] = { <span class="hljs-number">0</span>, };
     <span class="hljs-keyword">if</span> (!DeviceIoControl(dHandle, <span class="hljs-number">0x81112F0C</span>, input_buff, <span class="hljs-number">0x40</span>, output_buff, <span class="hljs-number">0x100c</span>, &amp;dwRet, <span class="hljs-number">0</span>))
-    &#123;
+    {
         <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;DeviceIOControl Fail : 0x%X \n&quot;</span>, GetLastError());
         CloseHandle(dHandle);
         <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-    &#125;
+    }
 
     CloseHandle(dHandle);
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
-<p>위 코드에 대해서는 다음 파트에서 자세하게 설명하기로 하고, 지금은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-deviceiocontrol">DeviceIoControl</a> 를 호출하는 부분만 보면 됩니다.</p>
+<p>&#xC704; &#xCF54;&#xB4DC;&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB294; &#xB2E4;&#xC74C; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; &#xC790;&#xC138;&#xD558;&#xAC8C; &#xC124;&#xBA85;&#xD558;&#xAE30;&#xB85C; &#xD558;&#xACE0;, &#xC9C0;&#xAE08;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-deviceiocontrol">DeviceIoControl</a> &#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xB9CC; &#xBCF4;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">DeviceIoControl(dHandle, <span class="hljs-number">0x81112F0C</span>, input_buff, <span class="hljs-number">0x40</span>, output_buff, <span class="hljs-number">0x100c</span>, &amp;dwRet, <span class="hljs-number">0</span>)</code></pre>
 
-<p>IOCTL code <code>0x81112F0C</code> 로 요청을 보내는데 input buffer와 output buffer를 사이즈와 함께 전달합니다. 여기서는 input buffer 내용을 모두 NULL로 채워서 전달했습니다.  </p>
+<p>IOCTL code <code>0x81112F0C</code> &#xB85C; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0B4;&#xB294;&#xB370; input buffer&#xC640; output buffer&#xB97C; &#xC0AC;&#xC774;&#xC988;&#xC640; &#xD568;&#xAED8; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;. &#xC5EC;&#xAE30;&#xC11C;&#xB294; input buffer &#xB0B4;&#xC6A9;&#xC744; &#xBAA8;&#xB450; NULL&#xB85C; &#xCC44;&#xC6CC;&#xC11C; &#xC804;&#xB2EC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.  </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/BSOD.png" srcset="/img/loading.gif" alt="windows-driver-part2/BSOD.png"></p>
 <blockquote>
-<p>블루스크린 겟!  : )</p>
+<p>&#xBE14;&#xB8E8;&#xC2A4;&#xD06C;&#xB9B0; &#xAC9F;!  : )</p>
 </blockquote>
-<p>다음 파트에서는 파트 1의 커널 디버깅으로 크래시를 동적 분석한 뒤 익스플로잇까지 해보도록 하겠습니다. 다음에 만나요 안녕!</p>
+<p>&#xB2E4;&#xC74C; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C;&#xB294; &#xD30C;&#xD2B8; 1&#xC758; &#xCEE4;&#xB110; &#xB514;&#xBC84;&#xAE45;&#xC73C;&#xB85C; &#xD06C;&#xB798;&#xC2DC;&#xB97C; &#xB3D9;&#xC801; &#xBD84;&#xC11D;&#xD55C; &#xB4A4; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xAE4C;&#xC9C0; &#xD574;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2E4;&#xC74C;&#xC5D0; &#xB9CC;&#xB098;&#xC694; &#xC548;&#xB155;!</p>
 
             </div>
             <hr>
@@ -693,6 +693,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

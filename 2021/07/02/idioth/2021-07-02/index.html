@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      238 자
+      583 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      11
        분
     </span>
   
@@ -242,20 +242,20 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.microsoft.com/security/blog/2021/06/30/microsoft-finds-new-netgear-firmware-vulnerabilities-that-could-lead-to-identity-theft-and-full-system-compromise/">Microsoft finds new NETGEAR firmware vulnerabilities that could lead to identity theft and full system compromise</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>NETGEAR DGN-2200v1 시리즈</li>
+<li>NETGEAR DGN-2200v1 &#xC2DC;&#xB9AC;&#xC988;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>마이크로소프트에서 NETGEAR DGN-2200v1 시리즈 라우터에서 네트워크 보안을 손상시킬 수 있는 세 가지 취약점을 발견하였습니다.</p>
-<p><strong>인증 우회를 통한 라우터 관리자 페이지 접근</strong></p>
-<p>HTTPd 내부 처리 코드에서 <code>strstr</code>을 사용하여 전체 문자열에서 <code>.jpg</code>, <code>.gif</code>, <code>ess_</code> 등의 문자열이 마지막에 존재하는지 확인합니다. 따라서 GET 파라미터를 통해 인증이 필요한 페이지 뒤에 해당 필터링이 걸린 문자를 넣으면 인증을 우회하고 페이지에 접근이 가능합니다.</p>
-<pre><code class="hljs asciidoc">예시) <span class="hljs-link">http://127</span>[<span class="hljs-string">.</span>]<span class="hljs-link">0[.]0</span>[<span class="hljs-string">.</span>]<span class="hljs-link">1/admin.htm?pic.gif</span></code></pre>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xB9C8;&#xC774;&#xD06C;&#xB85C;&#xC18C;&#xD504;&#xD2B8;&#xC5D0;&#xC11C; NETGEAR DGN-2200v1 &#xC2DC;&#xB9AC;&#xC988; &#xB77C;&#xC6B0;&#xD130;&#xC5D0;&#xC11C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xBCF4;&#xC548;&#xC744; &#xC190;&#xC0C1;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xB294; &#xC138; &#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xBC1C;&#xACAC;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><strong>&#xC778;&#xC99D; &#xC6B0;&#xD68C;&#xB97C; &#xD1B5;&#xD55C; &#xB77C;&#xC6B0;&#xD130; &#xAD00;&#xB9AC;&#xC790; &#xD398;&#xC774;&#xC9C0; &#xC811;&#xADFC;</strong></p>
+<p>HTTPd &#xB0B4;&#xBD80; &#xCC98;&#xB9AC; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; <code>strstr</code>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC804;&#xCCB4; &#xBB38;&#xC790;&#xC5F4;&#xC5D0;&#xC11C; <code>.jpg</code>, <code>.gif</code>, <code>ess_</code> &#xB4F1;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xC774; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; GET &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xD1B5;&#xD574; &#xC778;&#xC99D;&#xC774; &#xD544;&#xC694;&#xD55C; &#xD398;&#xC774;&#xC9C0; &#xB4A4;&#xC5D0; &#xD574;&#xB2F9; &#xD544;&#xD130;&#xB9C1;&#xC774; &#xAC78;&#xB9B0; &#xBB38;&#xC790;&#xB97C; &#xB123;&#xC73C;&#xBA74; &#xC778;&#xC99D;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xACE0; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs asciidoc">&#xC608;&#xC2DC;) <span class="hljs-link">http://127</span>[<span class="hljs-string">.</span>]<span class="hljs-link">0[.]0</span>[<span class="hljs-string">.</span>]<span class="hljs-link">1/admin.htm?pic.gif</span></code></pre>
 
 
 
-<p><strong>Cryptographic side-channel을 통해 저장된 라우터 자격 증명 가져오기</strong></p>
-<p>라우터에서 HTTPd 페이지에 인증해야하는 경우 HTTP basic authentication이 필요합니다. 사용자 이름과 비밀번호는 base64로 인코딩되고 HTTP 헤더로 전송된 후 라우터의 메모리에 저장된 이름과 비밀번호와 비교해 확인합니다. 라우터는 파일 시스템 외부에 있는 NVRAM에 인증 정보를 저장하므로 이를 추출할 수 있습니다.</p>
-<p>하지만 인증 부분에서 이름과 비밀번호를 <code>strcmp</code>를 사용하여 비교합니다. <code>strcmp</code>는 NUL을 만나거나 일치하지 않는 부분이 생길 때까지 문자열을 비교하므로 실패할 때까지 걸리는 시간을 통해 side-channel attack이 가능합니다.</p>
-<p><strong>저장된 민감한 정보 탐색</strong></p>
-<p>위에서 설명드린 인증 우회 취약점으로 인증이 필요한 페이지에 접근하는 것 뿐만 아니라 라우터의 설정 백업/복구 기능을 사용하여 사용자 이름, 비밀번호를 가져올 수 있습니다. <code>http://router_addr:8080/NETGEAR_DGN2200[.]cfg?pic[.]gif</code>로 접근하면 설정 파일을 얻을 수 있습니다. 해당 파일은 DES로 암호화 되어있으며, 백업/복구 기능의 코드에서 <code>NtgrBak</code> 키를 통해 암호화 됩니다. 이를 통해 해커는 NVRAM에 저장된 암호를 얻을 수 있습니다.</p>
+<p><strong>Cryptographic side-channel&#xC744; &#xD1B5;&#xD574; &#xC800;&#xC7A5;&#xB41C; &#xB77C;&#xC6B0;&#xD130; &#xC790;&#xACA9; &#xC99D;&#xBA85; &#xAC00;&#xC838;&#xC624;&#xAE30;</strong></p>
+<p>&#xB77C;&#xC6B0;&#xD130;&#xC5D0;&#xC11C; HTTPd &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC778;&#xC99D;&#xD574;&#xC57C;&#xD558;&#xB294; &#xACBD;&#xC6B0; HTTP basic authentication&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790; &#xC774;&#xB984;&#xACFC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB294; base64&#xB85C; &#xC778;&#xCF54;&#xB529;&#xB418;&#xACE0; HTTP &#xD5E4;&#xB354;&#xB85C; &#xC804;&#xC1A1;&#xB41C; &#xD6C4; &#xB77C;&#xC6B0;&#xD130;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xC774;&#xB984;&#xACFC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xC640; &#xBE44;&#xAD50;&#xD574; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xB77C;&#xC6B0;&#xD130;&#xB294; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C; &#xC678;&#xBD80;&#xC5D0; &#xC788;&#xB294; NVRAM&#xC5D0; &#xC778;&#xC99D; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xBBC0;&#xB85C; &#xC774;&#xB97C; &#xCD94;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC778;&#xC99D; &#xBD80;&#xBD84;&#xC5D0;&#xC11C; &#xC774;&#xB984;&#xACFC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; <code>strcmp</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBE44;&#xAD50;&#xD569;&#xB2C8;&#xB2E4;. <code>strcmp</code>&#xB294; NUL&#xC744; &#xB9CC;&#xB098;&#xAC70;&#xB098; &#xC77C;&#xCE58;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xC0DD;&#xAE38; &#xB54C;&#xAE4C;&#xC9C0; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xBE44;&#xAD50;&#xD558;&#xBBC0;&#xB85C; &#xC2E4;&#xD328;&#xD560; &#xB54C;&#xAE4C;&#xC9C0; &#xAC78;&#xB9AC;&#xB294; &#xC2DC;&#xAC04;&#xC744; &#xD1B5;&#xD574; side-channel attack&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><strong>&#xC800;&#xC7A5;&#xB41C; &#xBBFC;&#xAC10;&#xD55C; &#xC815;&#xBCF4; &#xD0D0;&#xC0C9;</strong></p>
+<p>&#xC704;&#xC5D0;&#xC11C; &#xC124;&#xBA85;&#xB4DC;&#xB9B0; &#xC778;&#xC99D; &#xC6B0;&#xD68C; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xC778;&#xC99D;&#xC774; &#xD544;&#xC694;&#xD55C; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xAC83; &#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xB77C;&#xC6B0;&#xD130;&#xC758; &#xC124;&#xC815; &#xBC31;&#xC5C5;/&#xBCF5;&#xAD6C; &#xAE30;&#xB2A5;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xC790; &#xC774;&#xB984;, &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>http://router_addr:8080/NETGEAR_DGN2200[.]cfg?pic[.]gif</code>&#xB85C; &#xC811;&#xADFC;&#xD558;&#xBA74; &#xC124;&#xC815; &#xD30C;&#xC77C;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC740; DES&#xB85C; &#xC554;&#xD638;&#xD654; &#xB418;&#xC5B4;&#xC788;&#xC73C;&#xBA70;, &#xBC31;&#xC5C5;/&#xBCF5;&#xAD6C; &#xAE30;&#xB2A5;&#xC758; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; <code>NtgrBak</code> &#xD0A4;&#xB97C; &#xD1B5;&#xD574; &#xC554;&#xD638;&#xD654; &#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xCEE4;&#xB294; NVRAM&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xC554;&#xD638;&#xB97C; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -558,6 +558,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

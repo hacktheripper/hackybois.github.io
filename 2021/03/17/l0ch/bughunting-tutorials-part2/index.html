@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      588 자
+      1.6k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      11
+      32
        분
     </span>
   
@@ -240,49 +240,49 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p><a href="https://hackyboiz.github.io/2021/03/07/l0ch/bughunting-tutorial/">버그헌팅 튜토리얼 Part 1</a></p>
-<p>지난 Part 1에 이어 타깃 프로그램 선정과 취약점이 발생한 파일 포맷을 분석해보도록 하겠습니다!</p>
-<h1 id="버그바운티-KMPlayer"><a href="#버그바운티-KMPlayer" class="headerlink" title="버그바운티 - KMPlayer"></a>버그바운티 - KMPlayer</h1><p>제가 예시로 들 프로그램은 KMPlayer입니다. 다들 KMPlayer 아시죠?? 쓰시는 분들도 있을 거고</p>
+              <p><a href="https://hackyboiz.github.io/2021/03/07/l0ch/bughunting-tutorial/">&#xBC84;&#xADF8;&#xD5CC;&#xD305; &#xD29C;&#xD1A0;&#xB9AC;&#xC5BC; Part 1</a></p>
+<p>&#xC9C0;&#xB09C; Part 1&#xC5D0; &#xC774;&#xC5B4; &#xD0C0;&#xAE43; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC120;&#xC815;&#xACFC; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD55C; &#xD30C;&#xC77C; &#xD3EC;&#xB9F7;&#xC744; &#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<h1 id="&#xBC84;&#xADF8;&#xBC14;&#xC6B4;&#xD2F0;-KMPlayer"><a href="#&#xBC84;&#xADF8;&#xBC14;&#xC6B4;&#xD2F0;-KMPlayer" class="headerlink" title="&#xBC84;&#xADF8;&#xBC14;&#xC6B4;&#xD2F0; - KMPlayer"></a>&#xBC84;&#xADF8;&#xBC14;&#xC6B4;&#xD2F0; - KMPlayer</h1><p>&#xC81C;&#xAC00; &#xC608;&#xC2DC;&#xB85C; &#xB4E4; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; KMPlayer&#xC785;&#xB2C8;&#xB2E4;. &#xB2E4;&#xB4E4; KMPlayer &#xC544;&#xC2DC;&#xC8E0;?? &#xC4F0;&#xC2DC;&#xB294; &#xBD84;&#xB4E4;&#xB3C4; &#xC788;&#xC744; &#xAC70;&#xACE0;</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image0.jpg" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>출처 : 네이버 소프트웨어 자료실</p>
+<p>&#xCD9C;&#xCC98; : &#xB124;&#xC774;&#xBC84; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; &#xC790;&#xB8CC;&#xC2E4;</p>
 </blockquote>
-<p>KMPlayer의 경우 원래는 동영상 플레이어이지만 음악도 플레이해주고 사진도 볼 수 있습니다. 제가 찾았던 취약점은 사진 포맷 중 하나인 .dib 포맷에서 발생한 힙 오버플로우 취약점입니다. 올해(2017년) 4 월인가 제보하고 7 월에 패치가 되었네요.</p>
+<p>KMPlayer&#xC758; &#xACBD;&#xC6B0; &#xC6D0;&#xB798;&#xB294; &#xB3D9;&#xC601;&#xC0C1; &#xD50C;&#xB808;&#xC774;&#xC5B4;&#xC774;&#xC9C0;&#xB9CC; &#xC74C;&#xC545;&#xB3C4; &#xD50C;&#xB808;&#xC774;&#xD574;&#xC8FC;&#xACE0; &#xC0AC;&#xC9C4;&#xB3C4; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC81C;&#xAC00; &#xCC3E;&#xC558;&#xB358; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC0AC;&#xC9C4; &#xD3EC;&#xB9F7; &#xC911; &#xD558;&#xB098;&#xC778; .dib &#xD3EC;&#xB9F7;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD55C; &#xD799; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. &#xC62C;&#xD574;(2017&#xB144;) 4 &#xC6D4;&#xC778;&#xAC00; &#xC81C;&#xBCF4;&#xD558;&#xACE0; 7 &#xC6D4;&#xC5D0; &#xD328;&#xCE58;&#xAC00; &#xB418;&#xC5C8;&#xB124;&#xC694;.</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image1.png" srcset="/img/loading.gif"></p>
-<p>이 취약점으로 설명을 하는 이유는 다음과 같습니다.</p>
+<p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xC124;&#xBA85;&#xC744; &#xD558;&#xB294; &#xC774;&#xC720;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>dib 포맷은 압축하지 않고 그냥 비트맵 정보를 raw 하게 저장할 수 있기 때문에 분석을 할 때나 익스를 할 때나 아주 편합니다. 따라서 입문자분들이 처음 공부를 할 때 매우 쉽게 접근할 수 있다고 생각했습니다.</li>
-<li>분석할 코드 커버리지가 작고 취약점이 단순합니다. 그리고 뮤테이트 해야 할 바이트도 적고요. 말 그대로 쉬워서??</li>
-<li>KMPlayer는 예전 버전을 다운 받을 수 있습니다. 다른 건 취약점을 찾아도 환경 구성이 안되면 이런 글을 쓸 수가 없어요 ㅠㅠ </li>
+<li>dib &#xD3EC;&#xB9F7;&#xC740; &#xC555;&#xCD95;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xADF8;&#xB0E5; &#xBE44;&#xD2B8;&#xB9F5; &#xC815;&#xBCF4;&#xB97C; raw &#xD558;&#xAC8C; &#xC800;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBD84;&#xC11D;&#xC744; &#xD560; &#xB54C;&#xB098; &#xC775;&#xC2A4;&#xB97C; &#xD560; &#xB54C;&#xB098; &#xC544;&#xC8FC; &#xD3B8;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC785;&#xBB38;&#xC790;&#xBD84;&#xB4E4;&#xC774; &#xCC98;&#xC74C; &#xACF5;&#xBD80;&#xB97C; &#xD560; &#xB54C; &#xB9E4;&#xC6B0; &#xC27D;&#xAC8C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xBD84;&#xC11D;&#xD560; &#xCF54;&#xB4DC; &#xCEE4;&#xBC84;&#xB9AC;&#xC9C0;&#xAC00; &#xC791;&#xACE0; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xB2E8;&#xC21C;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xBBA4;&#xD14C;&#xC774;&#xD2B8; &#xD574;&#xC57C; &#xD560; &#xBC14;&#xC774;&#xD2B8;&#xB3C4; &#xC801;&#xACE0;&#xC694;. &#xB9D0; &#xADF8;&#xB300;&#xB85C; &#xC26C;&#xC6CC;&#xC11C;??</li>
+<li>KMPlayer&#xB294; &#xC608;&#xC804; &#xBC84;&#xC804;&#xC744; &#xB2E4;&#xC6B4; &#xBC1B;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2E4;&#xB978; &#xAC74; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xCC3E;&#xC544;&#xB3C4; &#xD658;&#xACBD; &#xAD6C;&#xC131;&#xC774; &#xC548;&#xB418;&#xBA74; &#xC774;&#xB7F0; &#xAE00;&#xC744; &#xC4F8; &#xC218;&#xAC00; &#xC5C6;&#xC5B4;&#xC694; &#x3160;&#x3160; </li>
 </ol>
-<p>그래서 이제 시작해보죠 ㅋㅋㅋ 일단 먼저 취약점이 존재하는 버전을 다운 받아 보죠.</p>
+<p>&#xADF8;&#xB798;&#xC11C; &#xC774;&#xC81C; &#xC2DC;&#xC791;&#xD574;&#xBCF4;&#xC8E0; &#x314B;&#x314B;&#x314B; &#xC77C;&#xB2E8; &#xBA3C;&#xC800; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xBC84;&#xC804;&#xC744; &#xB2E4;&#xC6B4; &#xBC1B;&#xC544; &#xBCF4;&#xC8E0;.</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image2.png" srcset="/img/loading.gif"></p>
-<p>제가 익스플로잇을 진행했던 버전은 4.1.5.8입니다. 사실 4.2.1.4 이전 버전 아무거나 다운 받으셔도 되는 데 제가 찾아 놓은 가젯이나 정보들이 다 저 버전이어서 익스 다시 짜기 귀찮기 때문에 그냥 이 버전으로 진행하겠습니다 ㅋㅋㅋ</p>
-<p>그리고 이제 시드 파일을 만들 건데 만든 파일을 뜯어보면서 dib 파일 포맷에 대해서 간단히 알아보도록 할게요. </p>
-<p>앞서 말했다시피 dib 포맷은 무압축 비트맵 이미지 포맷입니다. 구조가 매우 간단하고 비트맵 정보들이 어떠한 가공도 되지 않고 바로 저장되어 있죠. (압축하는 것도 있기는 해요 하지만 그냥 넘어갈게여) </p>
-<p>포맷은 두 개의 구조체와 비트맵 정보로 이루어져 있습니다. 일단 파일을 만들어볼게요. 개꿀인 게 윈도우에 기본으로 있는 그림판을 사용해서 dib 파일을 만들 수 있습니다.</p>
+<p>&#xC81C;&#xAC00; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC744; &#xC9C4;&#xD589;&#xD588;&#xB358; &#xBC84;&#xC804;&#xC740; 4.1.5.8&#xC785;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC2E4; 4.2.1.4 &#xC774;&#xC804; &#xBC84;&#xC804; &#xC544;&#xBB34;&#xAC70;&#xB098; &#xB2E4;&#xC6B4; &#xBC1B;&#xC73C;&#xC154;&#xB3C4; &#xB418;&#xB294; &#xB370; &#xC81C;&#xAC00; &#xCC3E;&#xC544; &#xB193;&#xC740; &#xAC00;&#xC82F;&#xC774;&#xB098; &#xC815;&#xBCF4;&#xB4E4;&#xC774; &#xB2E4; &#xC800; &#xBC84;&#xC804;&#xC774;&#xC5B4;&#xC11C; &#xC775;&#xC2A4; &#xB2E4;&#xC2DC; &#xC9DC;&#xAE30; &#xADC0;&#xCC2E;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xADF8;&#xB0E5; &#xC774; &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xC9C4;&#xD589;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4; &#x314B;&#x314B;&#x314B;</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; &#xC774;&#xC81C; &#xC2DC;&#xB4DC; &#xD30C;&#xC77C;&#xC744; &#xB9CC;&#xB4E4; &#xAC74;&#xB370; &#xB9CC;&#xB4E0; &#xD30C;&#xC77C;&#xC744; &#xB72F;&#xC5B4;&#xBCF4;&#xBA74;&#xC11C; dib &#xD30C;&#xC77C; &#xD3EC;&#xB9F7;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xAC04;&#xB2E8;&#xD788; &#xC54C;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD560;&#xAC8C;&#xC694;. </p>
+<p>&#xC55E;&#xC11C; &#xB9D0;&#xD588;&#xB2E4;&#xC2DC;&#xD53C; dib &#xD3EC;&#xB9F7;&#xC740; &#xBB34;&#xC555;&#xCD95; &#xBE44;&#xD2B8;&#xB9F5; &#xC774;&#xBBF8;&#xC9C0; &#xD3EC;&#xB9F7;&#xC785;&#xB2C8;&#xB2E4;. &#xAD6C;&#xC870;&#xAC00; &#xB9E4;&#xC6B0; &#xAC04;&#xB2E8;&#xD558;&#xACE0; &#xBE44;&#xD2B8;&#xB9F5; &#xC815;&#xBCF4;&#xB4E4;&#xC774; &#xC5B4;&#xB5A0;&#xD55C; &#xAC00;&#xACF5;&#xB3C4; &#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xBC14;&#xB85C; &#xC800;&#xC7A5;&#xB418;&#xC5B4; &#xC788;&#xC8E0;. (&#xC555;&#xCD95;&#xD558;&#xB294; &#xAC83;&#xB3C4; &#xC788;&#xAE30;&#xB294; &#xD574;&#xC694; &#xD558;&#xC9C0;&#xB9CC; &#xADF8;&#xB0E5; &#xB118;&#xC5B4;&#xAC08;&#xAC8C;&#xC5EC;) </p>
+<p>&#xD3EC;&#xB9F7;&#xC740; &#xB450; &#xAC1C;&#xC758; &#xAD6C;&#xC870;&#xCCB4;&#xC640; &#xBE44;&#xD2B8;&#xB9F5; &#xC815;&#xBCF4;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC838; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC77C;&#xB2E8; &#xD30C;&#xC77C;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xBCFC;&#xAC8C;&#xC694;. &#xAC1C;&#xAFC0;&#xC778; &#xAC8C; &#xC708;&#xB3C4;&#xC6B0;&#xC5D0; &#xAE30;&#xBCF8;&#xC73C;&#xB85C; &#xC788;&#xB294; &#xADF8;&#xB9BC;&#xD310;&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; dib &#xD30C;&#xC77C;&#xC744; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image3.png" srcset="/img/loading.gif"></p>
-<p>여기에서는 24 비트 비트맵의 dib 포맷을 사용할 겁니다. 24 비트인 이유는 RGB를 표현하기 위해서 한 픽셀을 표현하는 데 3 바이트를 사용하기 때문입니다.</p>
-<p>이렇게 먼저 저장을 하고 아무 색이나 넣어볼게요. 그런 다음 저장하고 hxd로 봅니다. 저는 그냥 회색으로 칠해보았는 데 헥스로 보니까 아래처럼 나오네요.</p>
+<p>&#xC5EC;&#xAE30;&#xC5D0;&#xC11C;&#xB294; 24 &#xBE44;&#xD2B8; &#xBE44;&#xD2B8;&#xB9F5;&#xC758; dib &#xD3EC;&#xB9F7;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xAC81;&#xB2C8;&#xB2E4;. 24 &#xBE44;&#xD2B8;&#xC778; &#xC774;&#xC720;&#xB294; RGB&#xB97C; &#xD45C;&#xD604;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xD55C; &#xD53D;&#xC140;&#xC744; &#xD45C;&#xD604;&#xD558;&#xB294; &#xB370; 3 &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB807;&#xAC8C; &#xBA3C;&#xC800; &#xC800;&#xC7A5;&#xC744; &#xD558;&#xACE0; &#xC544;&#xBB34; &#xC0C9;&#xC774;&#xB098; &#xB123;&#xC5B4;&#xBCFC;&#xAC8C;&#xC694;. &#xADF8;&#xB7F0; &#xB2E4;&#xC74C; &#xC800;&#xC7A5;&#xD558;&#xACE0; hxd&#xB85C; &#xBD05;&#xB2C8;&#xB2E4;. &#xC800;&#xB294; &#xADF8;&#xB0E5; &#xD68C;&#xC0C9;&#xC73C;&#xB85C; &#xCE60;&#xD574;&#xBCF4;&#xC558;&#xB294; &#xB370; &#xD5E5;&#xC2A4;&#xB85C; &#xBCF4;&#xB2C8;&#xAE4C; &#xC544;&#xB798;&#xCC98;&#xB7FC; &#xB098;&#xC624;&#xB124;&#xC694;.</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image4.jpg" srcset="/img/loading.gif"></p>
-<p>음 딱 봐도 위에 빨간 부분이 헤더 정보이고 뒤에서 비트맵 정보인 거 같죠?? 이렇게<br>간단한 포맷 처음 보는 거 같죠?? ㅇㅈ? ㅇㅇㅈ</p>
-<p>그럼 이제 빨간색 박스 부분의 정보가 뭔지 간단하게만 알아볼게요. 참고로 다른 포맷으로 진행할 때에도 포맷을 알고 리버싱을 진행하는 게 좀 더 편합니다. 특히 리버싱을 진행할 때에는 해당 부분이 어떤 역할을 하는 지 그래서 우리가 익스플로잇에 어떻게 활용을 할 수 있는지 알 수 있죠. 확실히 리버싱 속도를 향상시켜 주기는 합니다.</p>
-<p>일단 첫 번째 구조체를 보면</p>
+<p>&#xC74C; &#xB531; &#xBD10;&#xB3C4; &#xC704;&#xC5D0; &#xBE68;&#xAC04; &#xBD80;&#xBD84;&#xC774; &#xD5E4;&#xB354; &#xC815;&#xBCF4;&#xC774;&#xACE0; &#xB4A4;&#xC5D0;&#xC11C; &#xBE44;&#xD2B8;&#xB9F5; &#xC815;&#xBCF4;&#xC778; &#xAC70; &#xAC19;&#xC8E0;?? &#xC774;&#xB807;&#xAC8C;<br>&#xAC04;&#xB2E8;&#xD55C; &#xD3EC;&#xB9F7; &#xCC98;&#xC74C; &#xBCF4;&#xB294; &#xAC70; &#xAC19;&#xC8E0;?? &#x3147;&#x3148;? &#x3147;&#x3147;&#x3148;</p>
+<p>&#xADF8;&#xB7FC; &#xC774;&#xC81C; &#xBE68;&#xAC04;&#xC0C9; &#xBC15;&#xC2A4; &#xBD80;&#xBD84;&#xC758; &#xC815;&#xBCF4;&#xAC00; &#xBB54;&#xC9C0; &#xAC04;&#xB2E8;&#xD558;&#xAC8C;&#xB9CC; &#xC54C;&#xC544;&#xBCFC;&#xAC8C;&#xC694;. &#xCC38;&#xACE0;&#xB85C; &#xB2E4;&#xB978; &#xD3EC;&#xB9F7;&#xC73C;&#xB85C; &#xC9C4;&#xD589;&#xD560; &#xB54C;&#xC5D0;&#xB3C4; &#xD3EC;&#xB9F7;&#xC744; &#xC54C;&#xACE0; &#xB9AC;&#xBC84;&#xC2F1;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xB294; &#xAC8C; &#xC880; &#xB354; &#xD3B8;&#xD569;&#xB2C8;&#xB2E4;. &#xD2B9;&#xD788; &#xB9AC;&#xBC84;&#xC2F1;&#xC744; &#xC9C4;&#xD589;&#xD560; &#xB54C;&#xC5D0;&#xB294; &#xD574;&#xB2F9; &#xBD80;&#xBD84;&#xC774; &#xC5B4;&#xB5A4; &#xC5ED;&#xD560;&#xC744; &#xD558;&#xB294; &#xC9C0; &#xADF8;&#xB798;&#xC11C; &#xC6B0;&#xB9AC;&#xAC00; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC5D0; &#xC5B4;&#xB5BB;&#xAC8C; &#xD65C;&#xC6A9;&#xC744; &#xD560; &#xC218; &#xC788;&#xB294;&#xC9C0; &#xC54C; &#xC218; &#xC788;&#xC8E0;. &#xD655;&#xC2E4;&#xD788; &#xB9AC;&#xBC84;&#xC2F1; &#xC18D;&#xB3C4;&#xB97C; &#xD5A5;&#xC0C1;&#xC2DC;&#xCF1C; &#xC8FC;&#xAE30;&#xB294; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC77C;&#xB2E8; &#xCCAB; &#xBC88;&#xC9F8; &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xBCF4;&#xBA74;</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image5.png" srcset="/img/loading.gif"></p>
-<p>이렇게 되어 있습니다.</p>
-<p>첫 번째는 당연히 헤더가 들어가 있고 뒤에 파일의 전체 사이즈 그리고 마지막은 비트맵 정보가 시작되는 오프셋을 저장하고 있습니다.</p>
-<p>그리고 두 번째 오프셋을 볼게여</p>
+<p>&#xC774;&#xB807;&#xAC8C; &#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCCAB; &#xBC88;&#xC9F8;&#xB294; &#xB2F9;&#xC5F0;&#xD788; &#xD5E4;&#xB354;&#xAC00; &#xB4E4;&#xC5B4;&#xAC00; &#xC788;&#xACE0; &#xB4A4;&#xC5D0; &#xD30C;&#xC77C;&#xC758; &#xC804;&#xCCB4; &#xC0AC;&#xC774;&#xC988; &#xADF8;&#xB9AC;&#xACE0; &#xB9C8;&#xC9C0;&#xB9C9;&#xC740; &#xBE44;&#xD2B8;&#xB9F5; &#xC815;&#xBCF4;&#xAC00; &#xC2DC;&#xC791;&#xB418;&#xB294; &#xC624;&#xD504;&#xC14B;&#xC744; &#xC800;&#xC7A5;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; &#xB450; &#xBC88;&#xC9F8; &#xC624;&#xD504;&#xC14B;&#xC744; &#xBCFC;&#xAC8C;&#xC5EC;</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image6.png" srcset="/img/loading.gif"></p>
-<p>이미지의 가로 세로 길이, 해상도, 압축 여부 등등이 저장되어 있습니다. 이 구조체는 좀 더 많네요? 위 구조체는 저장하는 데만 쓰이고 실제 출력할 때에는 아래 구조체의 정보를 사용한다고 합니다. 하지만 딱히 익스에는 도움이 안 되니 그냥 이정도만 알고 필요한 거는 뒤에서 진행하면서 알아보도록 할게요. 더 알고 싶은 분은 아래 링크를 참고하시면 될 거 같습니다.</p>
+<p>&#xC774;&#xBBF8;&#xC9C0;&#xC758; &#xAC00;&#xB85C; &#xC138;&#xB85C; &#xAE38;&#xC774;, &#xD574;&#xC0C1;&#xB3C4;, &#xC555;&#xCD95; &#xC5EC;&#xBD80; &#xB4F1;&#xB4F1;&#xC774; &#xC800;&#xC7A5;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xAD6C;&#xC870;&#xCCB4;&#xB294; &#xC880; &#xB354; &#xB9CE;&#xB124;&#xC694;? &#xC704; &#xAD6C;&#xC870;&#xCCB4;&#xB294; &#xC800;&#xC7A5;&#xD558;&#xB294; &#xB370;&#xB9CC; &#xC4F0;&#xC774;&#xACE0; &#xC2E4;&#xC81C; &#xCD9C;&#xB825;&#xD560; &#xB54C;&#xC5D0;&#xB294; &#xC544;&#xB798; &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xC815;&#xBCF4;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xB531;&#xD788; &#xC775;&#xC2A4;&#xC5D0;&#xB294; &#xB3C4;&#xC6C0;&#xC774; &#xC548; &#xB418;&#xB2C8; &#xADF8;&#xB0E5; &#xC774;&#xC815;&#xB3C4;&#xB9CC; &#xC54C;&#xACE0; &#xD544;&#xC694;&#xD55C; &#xAC70;&#xB294; &#xB4A4;&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD558;&#xBA74;&#xC11C; &#xC54C;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD560;&#xAC8C;&#xC694;. &#xB354; &#xC54C;&#xACE0; &#xC2F6;&#xC740; &#xBD84;&#xC740; &#xC544;&#xB798; &#xB9C1;&#xD06C;&#xB97C; &#xCC38;&#xACE0;&#xD558;&#xC2DC;&#xBA74; &#xB420; &#xAC70; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.soulfree.net/186">http://www.soulfree.net/186</a></p>
-<p>이제 헤더 정보들도 알았고 퍼저에 돌려볼 건데 퍼저를 돌리기 전에 분석을 좀 더 편하게 하기 위해서 저만의 데이터를 넣을 겁니다.</p>
+<p>&#xC774;&#xC81C; &#xD5E4;&#xB354; &#xC815;&#xBCF4;&#xB4E4;&#xB3C4; &#xC54C;&#xC558;&#xACE0; &#xD37C;&#xC800;&#xC5D0; &#xB3CC;&#xB824;&#xBCFC; &#xAC74;&#xB370; &#xD37C;&#xC800;&#xB97C; &#xB3CC;&#xB9AC;&#xAE30; &#xC804;&#xC5D0; &#xBD84;&#xC11D;&#xC744; &#xC880; &#xB354; &#xD3B8;&#xD558;&#xAC8C; &#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xC800;&#xB9CC;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB123;&#xC744; &#xAC81;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image7.jpg" srcset="/img/loading.gif"></p>
-<p>비트맵 정보가 들어있는 부분의 앞부분을 제 닉네임으로 바꾸었는데요. 이렇게 하면 나중에 크래시 분석을 할 때 내 파일이 어디에 로드되었는지 확인하기 편합니다. 따라서 다른 메모리에는 없을 법한 문자열로 채워주는 게 좋죠. AAAA 나 BBBB 이런 거는 단순해서 다른 쓰레기 데이터에도 존재하기 때문에 저는 제 닉네임을 주로 사용하는 편입니다. 추가적으로 파일 맨 뒤에도 비슷하게 넣어주면 끝까지 다 로드되었는 지도 알 수 있겠죠? 이렇게 시드 파일을 만들고 퍼저를 돌리면 됩니다. </p>
-<p>두 파트에 거쳐 워밍업이 마무리 됐네요..! 네 이제 시작이라는 뜻입니다 ㅋㅋㅋㅋㅋㅋㅋㅋ</p>
-<p>다음 글에서는 본격적으로 퍼저의 크래시 정보를 통해 취약점을 분석하고 익스플로잇을 해볼 건데요. 본격적인 삽질에 주의해주시기 바랍니다 ㅎㅎ 그럼 Part 3로 돌아오겠습니다!</p>
-<h2 id="Part-3-예고"><a href="#Part-3-예고" class="headerlink" title="Part 3 예고"></a>Part 3 예고</h2><p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image8.png" srcset="/img/loading.gif"></p>
+<p>&#xBE44;&#xD2B8;&#xB9F5; &#xC815;&#xBCF4;&#xAC00; &#xB4E4;&#xC5B4;&#xC788;&#xB294; &#xBD80;&#xBD84;&#xC758; &#xC55E;&#xBD80;&#xBD84;&#xC744; &#xC81C; &#xB2C9;&#xB124;&#xC784;&#xC73C;&#xB85C; &#xBC14;&#xAFB8;&#xC5C8;&#xB294;&#xB370;&#xC694;. &#xC774;&#xB807;&#xAC8C; &#xD558;&#xBA74; &#xB098;&#xC911;&#xC5D0; &#xD06C;&#xB798;&#xC2DC; &#xBD84;&#xC11D;&#xC744; &#xD560; &#xB54C; &#xB0B4; &#xD30C;&#xC77C;&#xC774; &#xC5B4;&#xB514;&#xC5D0; &#xB85C;&#xB4DC;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xAE30; &#xD3B8;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xB2E4;&#xB978; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xB294; &#xC5C6;&#xC744; &#xBC95;&#xD55C; &#xBB38;&#xC790;&#xC5F4;&#xB85C; &#xCC44;&#xC6CC;&#xC8FC;&#xB294; &#xAC8C; &#xC88B;&#xC8E0;. AAAA &#xB098; BBBB &#xC774;&#xB7F0; &#xAC70;&#xB294; &#xB2E8;&#xC21C;&#xD574;&#xC11C; &#xB2E4;&#xB978; &#xC4F0;&#xB808;&#xAE30; &#xB370;&#xC774;&#xD130;&#xC5D0;&#xB3C4; &#xC874;&#xC7AC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC800;&#xB294; &#xC81C; &#xB2C9;&#xB124;&#xC784;&#xC744; &#xC8FC;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xD3B8;&#xC785;&#xB2C8;&#xB2E4;. &#xCD94;&#xAC00;&#xC801;&#xC73C;&#xB85C; &#xD30C;&#xC77C; &#xB9E8; &#xB4A4;&#xC5D0;&#xB3C4; &#xBE44;&#xC2B7;&#xD558;&#xAC8C; &#xB123;&#xC5B4;&#xC8FC;&#xBA74; &#xB05D;&#xAE4C;&#xC9C0; &#xB2E4; &#xB85C;&#xB4DC;&#xB418;&#xC5C8;&#xB294; &#xC9C0;&#xB3C4; &#xC54C; &#xC218; &#xC788;&#xACA0;&#xC8E0;? &#xC774;&#xB807;&#xAC8C; &#xC2DC;&#xB4DC; &#xD30C;&#xC77C;&#xC744; &#xB9CC;&#xB4E4;&#xACE0; &#xD37C;&#xC800;&#xB97C; &#xB3CC;&#xB9AC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. </p>
+<p>&#xB450; &#xD30C;&#xD2B8;&#xC5D0; &#xAC70;&#xCCD0; &#xC6CC;&#xBC0D;&#xC5C5;&#xC774; &#xB9C8;&#xBB34;&#xB9AC; &#xB410;&#xB124;&#xC694;..! &#xB124; &#xC774;&#xC81C; &#xC2DC;&#xC791;&#xC774;&#xB77C;&#xB294; &#xB73B;&#xC785;&#xB2C8;&#xB2E4; &#x314B;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B;&#x314B;</p>
+<p>&#xB2E4;&#xC74C; &#xAE00;&#xC5D0;&#xC11C;&#xB294; &#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; &#xD37C;&#xC800;&#xC758; &#xD06C;&#xB798;&#xC2DC; &#xC815;&#xBCF4;&#xB97C; &#xD1B5;&#xD574; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xBD84;&#xC11D;&#xD558;&#xACE0; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC744; &#xD574;&#xBCFC; &#xAC74;&#xB370;&#xC694;. &#xBCF8;&#xACA9;&#xC801;&#xC778; &#xC0BD;&#xC9C8;&#xC5D0; &#xC8FC;&#xC758;&#xD574;&#xC8FC;&#xC2DC;&#xAE30; &#xBC14;&#xB78D;&#xB2C8;&#xB2E4; &#x314E;&#x314E; &#xADF8;&#xB7FC; Part 3&#xB85C; &#xB3CC;&#xC544;&#xC624;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<h2 id="Part-3-&#xC608;&#xACE0;"><a href="#Part-3-&#xC608;&#xACE0;" class="headerlink" title="Part 3 &#xC608;&#xACE0;"></a>Part 3 &#xC608;&#xACE0;</h2><p><img src="/2021/03/17/l0ch/bughunting-tutorials-part2/image8.png" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>고생은 이제부터 시작..</p>
+<p>&#xACE0;&#xC0DD;&#xC740; &#xC774;&#xC81C;&#xBD80;&#xD130; &#xC2DC;&#xC791;..</p>
 </blockquote>
 
             </div>
@@ -584,6 +584,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

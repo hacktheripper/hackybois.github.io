@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.1k 자
+      2.4k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      22
+      47
        분
     </span>
   
@@ -240,79 +240,79 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h1 id="번역-추신"><a href="#번역-추신" class="headerlink" title="번역 추신"></a>번역 추신</h1><p>Hackyboiz 블로그 운영 초반에 CFG와 XFG에 대한 연구글을 작성하고 있었습니다. CFG Bitmap 생성 부분을 공부하다가 머리가 뻐근해서 잠시 멈춘다는 게 아예 무산되버렸네요. 연구팀 형님 한분께서 해당 글을 작성하던 저를 보시곤 “메모리 커럽션은 이제 어떻게 하냐 ㅋㅋㅋ?” 이런 말씀을 하셨죠. 그래서 CFG bypass라는 제목의 글을 그냥 지나칠 수가 없더군요. 이런 이유로 이번에 읽은 글 하나 번역해서 올립니다.</p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://iamelli0t.github.io/2021/04/10/RPC-Bypass-CFG.html">원문: Exploiting Windows RPC to bypass CFG mitigation</a></p>
-<h1 id="머릿말"><a href="#머릿말" class="headerlink" title="머릿말"></a>머릿말</h1><p>브라우저 렌더 프로세스 익스플로잇의 보편적인 방법은 다음과 같습니다. 취약점을 공격하여 메모리에 대한 임의의 유저 모드 읽기/쓰기 권한을 가져온 후 execution flow를 탈취하기 위해 DOM/js 객체의 vtable을 변조합니다. 그다음 ROP chain에 의해 호출된 VirtualProtect가 쉘 코드 메모리를 PAGE_EXECUTE_READWITE로 수정하고 execution flow가 최종적으로 쉘 코드로 이동합니다. Windows 8.1 이후로 Microsoft는 CFG(Control Flow Guard) 보호 기법을 도입하여 indirect function call(vtable을 참조하는 함수 호출 방식)을 활용한 vtable overwrite 공격을 감지 및 방지하고 있습니다.</p>
-<p>하지만, 여기서 끝나면 섭섭하죠. CFG 보호 기법을 우회하는 새로운 방법이 등장했습니다. 예를 들어 chackra/jscript9에서는 스택의 리턴 주소를 변조하여 code execution flow를 가로채고, v8의 경우에는 실행 가능한 메모리 속성이 있는 WebAssembly를 사용해 쉘 코드를 실행합니다. 2020년 12월, Microsoft는 Intel Tiger Lake CPU를 기반으로 한 CET(Control-flow Enforcement Technology) 보호 기법을 Windows1020H1에 도입했습니다. 따라서 CET 환경에서 CFG를 우회하는 방법은 취약점 익스플로잇의 새로운 문제가 됐습니다.</p>
-<p>저희는 실제 공격에 사용된 <a href="https://hackyboiz.github.io/2021/03/26/l0ch/2021-03-26/">CVE-2021-26411</a>의 샘플을 분석하던 중 Windows RPC(Remote Procdure Call)를 사용하여 CFG 보호 기법을 우회하는 새로운 방법을 발견했습니다. 이 방법은 ROP chain에 의존하지 않습니다. 가짜 RPC_MESSAGE를 구성하는 것으로 rpcrt4!NdrServerCall2를 수동으로 호출하여 임의 코드 실행(Arbitrary Code Execution)을 할 수 있습니다.</p>
-<h1 id="CVE-2021-25411"><a href="#CVE-2021-25411" class="headerlink" title="CVE-2021-25411"></a>CVE-2021-25411</h1><p>저의 블로그 글 “<a target="_blank" rel="external nofollow noopener noreferrer" href="https://iamelli0t.github.io/2021/03/12/CVE-2021-26411.html">CVE-2021-26411: Internet Explorer mshtml use-after-free</a>“에서 root cause를 분석했습니다. removeAttributeNode()는 nodeValue의 valueOf 콜백을 트리거합니다. 콜백 중에 clearAttributes()가 수동으로 호출되어 nodeValue에 저장된 BSTR를 미리 해제합니다. 콜백 값이 반환된 후 nodeValue 객체가 있는 경우 UAF(Use-After-Free)가 발생합니다.</p>
-<p>Windows 3월 패치에서 해당 취약점을 수정하기 위해 CAttrArray::Destroy함수에 객체를 삭제하기 전에 인덱스를 검사하는 코드를 추가했습니다.</p>
+              <h1 id="&#xBC88;&#xC5ED;-&#xCD94;&#xC2E0;"><a href="#&#xBC88;&#xC5ED;-&#xCD94;&#xC2E0;" class="headerlink" title="&#xBC88;&#xC5ED; &#xCD94;&#xC2E0;"></a>&#xBC88;&#xC5ED; &#xCD94;&#xC2E0;</h1><p>Hackyboiz &#xBE14;&#xB85C;&#xADF8; &#xC6B4;&#xC601; &#xCD08;&#xBC18;&#xC5D0; CFG&#xC640; XFG&#xC5D0; &#xB300;&#xD55C; &#xC5F0;&#xAD6C;&#xAE00;&#xC744; &#xC791;&#xC131;&#xD558;&#xACE0; &#xC788;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. CFG Bitmap &#xC0DD;&#xC131; &#xBD80;&#xBD84;&#xC744; &#xACF5;&#xBD80;&#xD558;&#xB2E4;&#xAC00; &#xBA38;&#xB9AC;&#xAC00; &#xBED0;&#xADFC;&#xD574;&#xC11C; &#xC7A0;&#xC2DC; &#xBA48;&#xCD98;&#xB2E4;&#xB294; &#xAC8C; &#xC544;&#xC608; &#xBB34;&#xC0B0;&#xB418;&#xBC84;&#xB838;&#xB124;&#xC694;. &#xC5F0;&#xAD6C;&#xD300; &#xD615;&#xB2D8; &#xD55C;&#xBD84;&#xAED8;&#xC11C; &#xD574;&#xB2F9; &#xAE00;&#xC744; &#xC791;&#xC131;&#xD558;&#xB358; &#xC800;&#xB97C; &#xBCF4;&#xC2DC;&#xACE4; &#x201C;&#xBA54;&#xBAA8;&#xB9AC; &#xCEE4;&#xB7FD;&#xC158;&#xC740; &#xC774;&#xC81C; &#xC5B4;&#xB5BB;&#xAC8C; &#xD558;&#xB0D0; &#x314B;&#x314B;&#x314B;?&#x201D; &#xC774;&#xB7F0; &#xB9D0;&#xC500;&#xC744; &#xD558;&#xC168;&#xC8E0;. &#xADF8;&#xB798;&#xC11C; CFG bypass&#xB77C;&#xB294; &#xC81C;&#xBAA9;&#xC758; &#xAE00;&#xC744; &#xADF8;&#xB0E5; &#xC9C0;&#xB098;&#xCE60; &#xC218;&#xAC00; &#xC5C6;&#xB354;&#xAD70;&#xC694;. &#xC774;&#xB7F0; &#xC774;&#xC720;&#xB85C; &#xC774;&#xBC88;&#xC5D0; &#xC77D;&#xC740; &#xAE00; &#xD558;&#xB098; &#xBC88;&#xC5ED;&#xD574;&#xC11C; &#xC62C;&#xB9BD;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://iamelli0t.github.io/2021/04/10/RPC-Bypass-CFG.html">&#xC6D0;&#xBB38;: Exploiting Windows RPC to bypass CFG mitigation</a></p>
+<h1 id="&#xBA38;&#xB9BF;&#xB9D0;"><a href="#&#xBA38;&#xB9BF;&#xB9D0;" class="headerlink" title="&#xBA38;&#xB9BF;&#xB9D0;"></a>&#xBA38;&#xB9BF;&#xB9D0;</h1><p>&#xBE0C;&#xB77C;&#xC6B0;&#xC800; &#xB80C;&#xB354; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC758; &#xBCF4;&#xD3B8;&#xC801;&#xC778; &#xBC29;&#xBC95;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xACF5;&#xACA9;&#xD558;&#xC5EC; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB300;&#xD55C; &#xC784;&#xC758;&#xC758; &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xC77D;&#xAE30;/&#xC4F0;&#xAE30; &#xAD8C;&#xD55C;&#xC744; &#xAC00;&#xC838;&#xC628; &#xD6C4; execution flow&#xB97C; &#xD0C8;&#xCDE8;&#xD558;&#xAE30; &#xC704;&#xD574; DOM/js &#xAC1D;&#xCCB4;&#xC758; vtable&#xC744; &#xBCC0;&#xC870;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB2E4;&#xC74C; ROP chain&#xC5D0; &#xC758;&#xD574; &#xD638;&#xCD9C;&#xB41C; VirtualProtect&#xAC00; &#xC258; &#xCF54;&#xB4DC; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; PAGE_EXECUTE_READWITE&#xB85C; &#xC218;&#xC815;&#xD558;&#xACE0; execution flow&#xAC00; &#xCD5C;&#xC885;&#xC801;&#xC73C;&#xB85C; &#xC258; &#xCF54;&#xB4DC;&#xB85C; &#xC774;&#xB3D9;&#xD569;&#xB2C8;&#xB2E4;. Windows 8.1 &#xC774;&#xD6C4;&#xB85C; Microsoft&#xB294; CFG(Control Flow Guard) &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC744; &#xB3C4;&#xC785;&#xD558;&#xC5EC; indirect function call(vtable&#xC744; &#xCC38;&#xC870;&#xD558;&#xB294; &#xD568;&#xC218; &#xD638;&#xCD9C; &#xBC29;&#xC2DD;)&#xC744; &#xD65C;&#xC6A9;&#xD55C; vtable overwrite &#xACF5;&#xACA9;&#xC744; &#xAC10;&#xC9C0; &#xBC0F; &#xBC29;&#xC9C0;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC;, &#xC5EC;&#xAE30;&#xC11C; &#xB05D;&#xB098;&#xBA74; &#xC12D;&#xC12D;&#xD558;&#xC8E0;. CFG &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xBC29;&#xBC95;&#xC774; &#xB4F1;&#xC7A5;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4; chackra/jscript9&#xC5D0;&#xC11C;&#xB294; &#xC2A4;&#xD0DD;&#xC758; &#xB9AC;&#xD134; &#xC8FC;&#xC18C;&#xB97C; &#xBCC0;&#xC870;&#xD558;&#xC5EC; code execution flow&#xB97C; &#xAC00;&#xB85C;&#xCC44;&#xACE0;, v8&#xC758; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xC2E4;&#xD589; &#xAC00;&#xB2A5;&#xD55C; &#xBA54;&#xBAA8;&#xB9AC; &#xC18D;&#xC131;&#xC774; &#xC788;&#xB294; WebAssembly&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. 2020&#xB144; 12&#xC6D4;, Microsoft&#xB294; Intel Tiger Lake CPU&#xB97C; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xD55C; CET(Control-flow Enforcement Technology) &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC744; Windows1020H1&#xC5D0; &#xB3C4;&#xC785;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; CET &#xD658;&#xACBD;&#xC5D0;&#xC11C; CFG&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xCDE8;&#xC57D;&#xC810; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC758; &#xC0C8;&#xB85C;&#xC6B4; &#xBB38;&#xC81C;&#xAC00; &#xB410;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC800;&#xD76C;&#xB294; &#xC2E4;&#xC81C; &#xACF5;&#xACA9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB41C; <a href="https://hackyboiz.github.io/2021/03/26/l0ch/2021-03-26/">CVE-2021-26411</a>&#xC758; &#xC0D8;&#xD50C;&#xC744; &#xBD84;&#xC11D;&#xD558;&#xB358; &#xC911; Windows RPC(Remote Procdure Call)&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; CFG &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xBC29;&#xBC95;&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xBC29;&#xBC95;&#xC740; ROP chain&#xC5D0; &#xC758;&#xC874;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xAC00;&#xC9DC; RPC_MESSAGE&#xB97C; &#xAD6C;&#xC131;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; rpcrt4!NdrServerCall2&#xB97C; &#xC218;&#xB3D9;&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;(Arbitrary Code Execution)&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h1 id="CVE-2021-25411"><a href="#CVE-2021-25411" class="headerlink" title="CVE-2021-25411"></a>CVE-2021-25411</h1><p>&#xC800;&#xC758; &#xBE14;&#xB85C;&#xADF8; &#xAE00; &#x201C;<a target="_blank" rel="external nofollow noopener noreferrer" href="https://iamelli0t.github.io/2021/03/12/CVE-2021-26411.html">CVE-2021-26411: Internet Explorer mshtml use-after-free</a>&#x201C;&#xC5D0;&#xC11C; root cause&#xB97C; &#xBD84;&#xC11D;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. removeAttributeNode()&#xB294; nodeValue&#xC758; valueOf &#xCF5C;&#xBC31;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD569;&#xB2C8;&#xB2E4;. &#xCF5C;&#xBC31; &#xC911;&#xC5D0; clearAttributes()&#xAC00; &#xC218;&#xB3D9;&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xB418;&#xC5B4; nodeValue&#xC5D0; &#xC800;&#xC7A5;&#xB41C; BSTR&#xB97C; &#xBBF8;&#xB9AC; &#xD574;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;. &#xCF5C;&#xBC31; &#xAC12;&#xC774; &#xBC18;&#xD658;&#xB41C; &#xD6C4; nodeValue &#xAC1D;&#xCCB4;&#xAC00; &#xC788;&#xB294; &#xACBD;&#xC6B0; UAF(Use-After-Free)&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Windows 3&#xC6D4; &#xD328;&#xCE58;&#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC218;&#xC815;&#xD558;&#xAE30; &#xC704;&#xD574; CAttrArray::Destroy&#xD568;&#xC218;&#xC5D0; &#xAC1D;&#xCCB4;&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xAE30; &#xC804;&#xC5D0; &#xC778;&#xB371;&#xC2A4;&#xB97C; &#xAC80;&#xC0AC;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/1.png" srcset="/img/loading.gif"></p>
-<p>메모리 크기를 제어할 수 있는 UAF 취약점의 경우, 서로 다른 type의 포인터(BSTR과 Dictionary.item)가 재사용 메모리를 가리키게 하여 type confusion에 의한 포인터 노출 및 포인터 참조 해제를 달성할 수 있습니다.</p>
+<p>&#xBA54;&#xBAA8;&#xB9AC; &#xD06C;&#xAE30;&#xB97C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xB294; UAF &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xACBD;&#xC6B0;, &#xC11C;&#xB85C; &#xB2E4;&#xB978; type&#xC758; &#xD3EC;&#xC778;&#xD130;(BSTR&#xACFC; Dictionary.item)&#xAC00; &#xC7AC;&#xC0AC;&#xC6A9; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xAC8C; &#xD558;&#xC5EC; type confusion&#xC5D0; &#xC758;&#xD55C; &#xD3EC;&#xC778;&#xD130; &#xB178;&#xCD9C; &#xBC0F; &#xD3EC;&#xC778;&#xD130; &#xCC38;&#xC870; &#xD574;&#xC81C;&#xB97C; &#xB2EC;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/2.png" srcset="/img/loading.gif"></p>
-<h1 id="Windows-RPC-introduction-and-exploitation"><a href="#Windows-RPC-introduction-and-exploitation" class="headerlink" title="Windows RPC introduction and exploitation"></a>Windows RPC introduction and exploitation</h1><p>Windows RPC는 분산된 클라이언트/서버 function call 시나리오를 지원하는 데 사용됩니다. Windows RPC에 의해 클라이언트는 서버 함수를 로컬 함수 호출인 것처럼 사용할 수 있습니다. 다음 사진은 Windows RPC의 기본 아키텍처입니다.</p>
+<h1 id="Windows-RPC-introduction-and-exploitation"><a href="#Windows-RPC-introduction-and-exploitation" class="headerlink" title="Windows RPC introduction and exploitation"></a>Windows RPC introduction and exploitation</h1><p>Windows RPC&#xB294; &#xBD84;&#xC0B0;&#xB41C; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;/&#xC11C;&#xBC84; function call &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. Windows RPC&#xC5D0; &#xC758;&#xD574; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xB294; &#xC11C;&#xBC84; &#xD568;&#xC218;&#xB97C; &#xB85C;&#xCEEC; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC778; &#xAC83;&#xCC98;&#xB7FC; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2E4;&#xC74C; &#xC0AC;&#xC9C4;&#xC740; Windows RPC&#xC758; &#xAE30;&#xBCF8; &#xC544;&#xD0A4;&#xD14D;&#xCC98;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/3.png" srcset="/img/loading.gif"></p>
-<p>클라이언트/서버 프로그램은 호출 매개 변수 혹은 리턴 값을 lower-level Stub 함수로 전달합니다. Stub 함수는 NDR(Network Data Representation) 포맷으로 데이터를 캡슐화하는 역할을 담당합니다. Runtime library를 통한 통신을 rpcrt4.dll에 의해 제공됩니다.</p>
-<p>다음은 idl 예제입니다.</p>
+<p>&#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;/&#xC11C;&#xBC84; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xD638;&#xCD9C; &#xB9E4;&#xAC1C; &#xBCC0;&#xC218; &#xD639;&#xC740; &#xB9AC;&#xD134; &#xAC12;&#xC744; lower-level Stub &#xD568;&#xC218;&#xB85C; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;. Stub &#xD568;&#xC218;&#xB294; NDR(Network Data Representation) &#xD3EC;&#xB9F7;&#xC73C;&#xB85C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xCEA1;&#xC290;&#xD654;&#xD558;&#xB294; &#xC5ED;&#xD560;&#xC744; &#xB2F4;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. Runtime library&#xB97C; &#xD1B5;&#xD55C; &#xD1B5;&#xC2E0;&#xC744; rpcrt4.dll&#xC5D0; &#xC758;&#xD574; &#xC81C;&#xACF5;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xC740; idl &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">[
 	uuid(<span class="hljs-string">&quot;1BC6D261-B697-47C2-AF83-8AE25922C0FF&quot;</span>),
 	version(<span class="hljs-number">1.0</span>)
 ]
 
 interface HelloRPC
-&#123;
+{
 	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, <span class="hljs-keyword">int</span> y)</span></span>;
-&#125;</code></pre>
+}</code></pre>
 
 
 
-<p>클라이언트가 add 함수를 호출할 때 서버는 rpcrt4.dll로부터 처리 요청을 수신하고 rpcrt4!NdrServerCall2를 호출합니다.</p>
+<p>&#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC00; add &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C; &#xC11C;&#xBC84;&#xB294; rpcrt4.dll&#xB85C;&#xBD80;&#xD130; &#xCC98;&#xB9AC; &#xC694;&#xCCAD;&#xC744; &#xC218;&#xC2E0;&#xD558;&#xACE0; rpcrt4!NdrServerCall2&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/4.png" srcset="/img/loading.gif"></p>
-<p>rpcrt4!NdrServerCall2에는 함수 인덱스 및 매개 변수와 같은 중요한 데이터를 포함한 PRPC_MESSAGE만을 매개변수로 받습니다. 서버 RPC_MESSAGE 구조체와 main sub data 구조체는 다음과 같습니다.</p>
+<p>rpcrt4!NdrServerCall2&#xC5D0;&#xB294; &#xD568;&#xC218; &#xC778;&#xB371;&#xC2A4; &#xBC0F; &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xC640; &#xAC19;&#xC740; &#xC911;&#xC694;&#xD55C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xD3EC;&#xD568;&#xD55C; PRPC_MESSAGE&#xB9CC;&#xC744; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC11C;&#xBC84; RPC_MESSAGE &#xAD6C;&#xC870;&#xCCB4;&#xC640; main sub data &#xAD6C;&#xC870;&#xCCB4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/5.png" srcset="/img/loading.gif"></p>
-<p>앞서 언급한 그림과 같이, RPC_MESSAGE 구조체에서 함수 호출에 중요한 두 가지 변수는 Buffer와 RpcInterfaceInformation입니다. Buffer는 함수의 매개 변수를 저장하고 RpcInterfaceInformation은 RPC_SERVER_INTERFACE 구조체를 가리키고 있습니다. RPC_SERVER_INTERFACE 구조체는 서버 프로그램 인터페이스 정보를 담고 있는데, 여기서 DispatchTable(+0x2c)은 runtime library와 stub 함수의 인터페이스 함수 포인터를 저장하고, InterpreterInfo(+0x3c)는 MIDL_SERVER_INFO를 가리킵니다. MIDL_SERVER_INFO 구조체는 서버 IDL 인터페이스 정보를 저장하고, DispatchTable(+0x4)은 서버 루틴 함수의 포인터 배열을 담고 있습니다.</p>
-<p>다음은 RPC_MESSAGE 구조체의 예제입니다.</p>
-<p>위에서 제시한 idl에 따르면, 클라이언트가 add(0x111, 0x222)를 호출하면 서버 프로그램이 rpcrt4!NdrServerCall2에 break 합니다.</p>
+<p>&#xC55E;&#xC11C; &#xC5B8;&#xAE09;&#xD55C; &#xADF8;&#xB9BC;&#xACFC; &#xAC19;&#xC774;, RPC_MESSAGE &#xAD6C;&#xC870;&#xCCB4;&#xC5D0;&#xC11C; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC5D0; &#xC911;&#xC694;&#xD55C; &#xB450; &#xAC00;&#xC9C0; &#xBCC0;&#xC218;&#xB294; Buffer&#xC640; RpcInterfaceInformation&#xC785;&#xB2C8;&#xB2E4;. Buffer&#xB294; &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xACE0; RpcInterfaceInformation&#xC740; RPC_SERVER_INTERFACE &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. RPC_SERVER_INTERFACE &#xAD6C;&#xC870;&#xCCB4;&#xB294; &#xC11C;&#xBC84; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xC815;&#xBCF4;&#xB97C; &#xB2F4;&#xACE0; &#xC788;&#xB294;&#xB370;, &#xC5EC;&#xAE30;&#xC11C; DispatchTable(+0x2c)&#xC740; runtime library&#xC640; stub &#xD568;&#xC218;&#xC758; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xACE0;, InterpreterInfo(+0x3c)&#xB294; MIDL_SERVER_INFO&#xB97C; &#xAC00;&#xB9AC;&#xD0B5;&#xB2C8;&#xB2E4;. MIDL_SERVER_INFO &#xAD6C;&#xC870;&#xCCB4;&#xB294; &#xC11C;&#xBC84; IDL &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xACE0;, DispatchTable(+0x4)&#xC740; &#xC11C;&#xBC84; &#xB8E8;&#xD2F4; &#xD568;&#xC218;&#xC758; &#xD3EC;&#xC778;&#xD130; &#xBC30;&#xC5F4;&#xC744; &#xB2F4;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xC740; RPC_MESSAGE &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xC608;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC704;&#xC5D0;&#xC11C; &#xC81C;&#xC2DC;&#xD55C; idl&#xC5D0; &#xB530;&#xB974;&#xBA74;, &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC00; add(0x111, 0x222)&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xBA74; &#xC11C;&#xBC84; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; rpcrt4!NdrServerCall2&#xC5D0; break &#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/6.png" srcset="/img/loading.gif"></p>
-<p>동적 디버깅을 통해 얻은 메모리 덤프를 보면 위에서 분석한 RPC_MESSAGE 구조체와 일치하며 add 함수는 MIDL_SERVER_INFO.DispatchTable에 저장되어 있음을 알 수 있습니다.</p>
-<p>이제, rpcrt4!NdrServerCall2가 어떻게 RPC_MESSAGE를 참조해서 add 함수를 호출하는지 분석해봅시다.</p>
-<p>rpcrt4!NdrServerCall2는 rpcrt4!NdrStubCall2를 호출합니다. rpcrt4!NdrStubCall2는 MIDL_SERVER_INFO.DispatchTable과 RPC_MESSAGE.ProcNum을 참조해 함수 포인터 주소를 계산합니다. 그리고 함수 포인터와 함수의 매개 변수, 매개 변수의 길이를 rpcrt4!Invoke로 전달합니다.</p>
+<p>&#xB3D9;&#xC801; &#xB514;&#xBC84;&#xAE45;&#xC744; &#xD1B5;&#xD574; &#xC5BB;&#xC740; &#xBA54;&#xBAA8;&#xB9AC; &#xB364;&#xD504;&#xB97C; &#xBCF4;&#xBA74; &#xC704;&#xC5D0;&#xC11C; &#xBD84;&#xC11D;&#xD55C; RPC_MESSAGE &#xAD6C;&#xC870;&#xCCB4;&#xC640; &#xC77C;&#xCE58;&#xD558;&#xBA70; add &#xD568;&#xC218;&#xB294; MIDL_SERVER_INFO.DispatchTable&#xC5D0; &#xC800;&#xC7A5;&#xB418;&#xC5B4; &#xC788;&#xC74C;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xC81C;, rpcrt4!NdrServerCall2&#xAC00; &#xC5B4;&#xB5BB;&#xAC8C; RPC_MESSAGE&#xB97C; &#xCC38;&#xC870;&#xD574;&#xC11C; add &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294;&#xC9C0; &#xBD84;&#xC11D;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
+<p>rpcrt4!NdrServerCall2&#xB294; rpcrt4!NdrStubCall2&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. rpcrt4!NdrStubCall2&#xB294; MIDL_SERVER_INFO.DispatchTable&#xACFC; RPC_MESSAGE.ProcNum&#xC744; &#xCC38;&#xC870;&#xD574; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130; &#xC8FC;&#xC18C;&#xB97C; &#xACC4;&#xC0B0;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xC640; &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;, &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xC758; &#xAE38;&#xC774;&#xB97C; rpcrt4!Invoke&#xB85C; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/7.png" srcset="/img/loading.gif"></p>
-<p>드디어 rpcrt4!Invoke가 서버로부터 받은 함수를 호출합니다.</p>
+<p>&#xB4DC;&#xB514;&#xC5B4; rpcrt4!Invoke&#xAC00; &#xC11C;&#xBC84;&#xB85C;&#xBD80;&#xD130; &#xBC1B;&#xC740; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/8.png" srcset="/img/loading.gif"></p>
-<p>위의 분석을 기반으로 임의의 메모리에 대한 읽기/쓰기 권한을 얻은 후 가짜 RPC_MESSAGE를 생성, 원하는 함수와 그 매개 변수를 설정, rpcrt4!NdrServerCall2 호출을 통해 원하는 어떤 함수던 구현할 수 있게 됩니다.</p>
-<p>다음으로 해결해야 할 문제는 두 가지가 있습니다.</p>
+<p>&#xC704;&#xC758; &#xBD84;&#xC11D;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xC784;&#xC758;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB300;&#xD55C; &#xC77D;&#xAE30;/&#xC4F0;&#xAE30; &#xAD8C;&#xD55C;&#xC744; &#xC5BB;&#xC740; &#xD6C4; &#xAC00;&#xC9DC; RPC_MESSAGE&#xB97C; &#xC0DD;&#xC131;, &#xC6D0;&#xD558;&#xB294; &#xD568;&#xC218;&#xC640; &#xADF8; &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xB97C; &#xC124;&#xC815;, rpcrt4!NdrServerCall2 &#xD638;&#xCD9C;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xD558;&#xB294; &#xC5B4;&#xB5A4; &#xD568;&#xC218;&#xB358; &#xAD6C;&#xD604;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xC73C;&#xB85C; &#xD574;&#xACB0;&#xD574;&#xC57C; &#xD560; &#xBB38;&#xC81C;&#xB294; &#xB450; &#xAC00;&#xC9C0;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>어떻게 하면 javascript를 통해 rpcrt4!NdrServerCall2를 호출할 수 있는가?</li>
-<li>rpc4!Invoke에서 서버 루틴 함수를 호출할 때 체크하는 CFG는 어떻게 해결할 것인가?</li>
+<li>&#xC5B4;&#xB5BB;&#xAC8C; &#xD558;&#xBA74; javascript&#xB97C; &#xD1B5;&#xD574; rpcrt4!NdrServerCall2&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294;&#xAC00;?</li>
+<li>rpc4!Invoke&#xC5D0;&#xC11C; &#xC11C;&#xBC84; &#xB8E8;&#xD2F4; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C; &#xCCB4;&#xD06C;&#xD558;&#xB294; CFG&#xB294; &#xC5B4;&#xB5BB;&#xAC8C; &#xD574;&#xACB0;&#xD560; &#xAC83;&#xC778;&#xAC00;?</li>
 </ol>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/9.png" srcset="/img/loading.gif"></p>
-<p>위 사진을 통해 서버 루틴 함수 호출은 indirect function call이고, CFG 검사가 있다는 것을 알 수 있습니다.</p>
-<p>먼저 첫 번째 문제(어떻게 하면 javascript를 통해 rpcrt4!NdrServerCall2를 호출할 수 있는가?)를 해결하겠습니다. DOM 객체 vtable의 함수 포인터를 rpcrt4!NdrServerCall2로 바꿀 수 있습니다. 왜냐하면 rpcrt4!NdrServerCall2는 CFGBitmap에 기록된(화이트리스팅된) 함수이며 CFG 검사가 비정상 동작으로 판단하지 않기 때문입니다. 실제 공격에 사용된 샘플은 MSHTML!CAttribut::normalize를 rpcrt4!NdrServerCall2로 바꿔 칩니다. 그다음 javascript에서 “xyz.normalize()”를 호출해 결과적으론 rpcrt4!NdrServerCall2를 호출합니다.</p>
-<p>두 번째 문제(rpc4!Invoke에서 서버 루틴 함수를 호출할 때 체크하는 CFG는 어떻게 해결할 것인가?)는 다음과 같은 방법으로 해결합니다.</p>
+<p>&#xC704; &#xC0AC;&#xC9C4;&#xC744; &#xD1B5;&#xD574; &#xC11C;&#xBC84; &#xB8E8;&#xD2F4; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC740; indirect function call&#xC774;&#xACE0;, CFG &#xAC80;&#xC0AC;&#xAC00; &#xC788;&#xB2E4;&#xB294; &#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBA3C;&#xC800; &#xCCAB; &#xBC88;&#xC9F8; &#xBB38;&#xC81C;(&#xC5B4;&#xB5BB;&#xAC8C; &#xD558;&#xBA74; javascript&#xB97C; &#xD1B5;&#xD574; rpcrt4!NdrServerCall2&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294;&#xAC00;?)&#xB97C; &#xD574;&#xACB0;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. DOM &#xAC1D;&#xCCB4; vtable&#xC758; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xB97C; rpcrt4!NdrServerCall2&#xB85C; &#xBC14;&#xAFC0; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC65C;&#xB0D0;&#xD558;&#xBA74; rpcrt4!NdrServerCall2&#xB294; CFGBitmap&#xC5D0; &#xAE30;&#xB85D;&#xB41C;(&#xD654;&#xC774;&#xD2B8;&#xB9AC;&#xC2A4;&#xD305;&#xB41C;) &#xD568;&#xC218;&#xC774;&#xBA70; CFG &#xAC80;&#xC0AC;&#xAC00; &#xBE44;&#xC815;&#xC0C1; &#xB3D9;&#xC791;&#xC73C;&#xB85C; &#xD310;&#xB2E8;&#xD558;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC785;&#xB2C8;&#xB2E4;. &#xC2E4;&#xC81C; &#xACF5;&#xACA9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB41C; &#xC0D8;&#xD50C;&#xC740; MSHTML!CAttribut::normalize&#xB97C; rpcrt4!NdrServerCall2&#xB85C; &#xBC14;&#xAFD4; &#xCE69;&#xB2C8;&#xB2E4;. &#xADF8;&#xB2E4;&#xC74C; javascript&#xC5D0;&#xC11C; &#x201C;xyz.normalize()&#x201D;&#xB97C; &#xD638;&#xCD9C;&#xD574; &#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB860; rpcrt4!NdrServerCall2&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB450; &#xBC88;&#xC9F8; &#xBB38;&#xC81C;(rpc4!Invoke&#xC5D0;&#xC11C; &#xC11C;&#xBC84; &#xB8E8;&#xD2F4; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xB54C; &#xCCB4;&#xD06C;&#xD558;&#xB294; CFG&#xB294; &#xC5B4;&#xB5BB;&#xAC8C; &#xD574;&#xACB0;&#xD560; &#xAC83;&#xC778;&#xAC00;?)&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xD574;&#xACB0;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>가짜 RPC_MESSAGE와 rpcrt4!NdrServerCall2를 사용해 VirtualProtect를 호출, RPCRT4!__guard_check_ical_fptr의 메모리 권한을 PAGE_EXECUTE_READWITE로 수정</li>
-<li>rpcrt4!__guard_check_icall_fptr에 저장된 포인터 ntdll!LdrpValidateUserCallTarget를 ntdll!KiFastSystemCallRet으로 수정해 rpcrt4.dll에 대한 CFG 검사를 비활성화</li>
-<li>RPC4!__guard_check_icall_fptr의 메모리를 복구</li>
+<li>&#xAC00;&#xC9DC; RPC_MESSAGE&#xC640; rpcrt4!NdrServerCall2&#xB97C; &#xC0AC;&#xC6A9;&#xD574; VirtualProtect&#xB97C; &#xD638;&#xCD9C;, RPCRT4!__guard_check_ical_fptr&#xC758; &#xBA54;&#xBAA8;&#xB9AC; &#xAD8C;&#xD55C;&#xC744; PAGE_EXECUTE_READWITE&#xB85C; &#xC218;&#xC815;</li>
+<li>rpcrt4!__guard_check_icall_fptr&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xD3EC;&#xC778;&#xD130; ntdll!LdrpValidateUserCallTarget&#xB97C; ntdll!KiFastSystemCallRet&#xC73C;&#xB85C; &#xC218;&#xC815;&#xD574; rpcrt4.dll&#xC5D0; &#xB300;&#xD55C; CFG &#xAC80;&#xC0AC;&#xB97C; &#xBE44;&#xD65C;&#xC131;&#xD654;</li>
+<li>RPC4!__guard_check_icall_fptr&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xBCF5;&#xAD6C;</li>
 </ol>
-<pre><code class="hljs c"><span class="hljs-function">function <span class="hljs-title">killCfg</span><span class="hljs-params">(addr)</span> </span>&#123;
+<pre><code class="hljs c"><span class="hljs-function">function <span class="hljs-title">killCfg</span><span class="hljs-params">(addr)</span> </span>{
   var cfgobj = <span class="hljs-keyword">new</span> CFGObject(addr)
   <span class="hljs-keyword">if</span> (!cfgobj.getCFGValue()) 
     <span class="hljs-keyword">return</span>
   var guard_check_icall_fptr_address = cfgobj.getCFGAddress()
-  var KiFastSystemCallRet = getProcAddr(ntdll, &#x27;KiFastSystemCallRet&#x27;)
+  var KiFastSystemCallRet = getProcAddr(ntdll, &apos;KiFastSystemCallRet&apos;)
   var tmpBuffer = createArrayBuffer(<span class="hljs-number">4</span>)
   call2(VirtualProtect, [guard_check_icall_fptr_address, <span class="hljs-number">0x1000</span>, <span class="hljs-number">0x40</span>, tmpBuffer])
   write(guard_check_icall_fptr_address, KiFastSystemCallRet, <span class="hljs-number">32</span>)
   call2(VirtualProtect, [guard_check_icall_fptr_address, <span class="hljs-number">0x1000</span>, read(tmpBuffer, <span class="hljs-number">32</span>), tmpBuffer])
   <span class="hljs-built_in">map</span>.<span class="hljs-keyword">delete</span>(tmpBuffer)
-&#125;</code></pre>
+}</code></pre>
 
 
 
-<p>두 가지 문제를 해결한 후, rpcrt4.dll에 대한 CFG가 꺼져있으므로 가짜 RPC_MESSAGE를 사용해 원하는 함수(버퍼에 쉘 코드를 담고 있는 함수) 포인터를 호출할 수 있습니다. 샘플은 mis.dll+0x5000에 쉘 코드를 덮어쓰고 rpcrt4!NdrServerCall2를 통해 쉘 코드를 실행합니다.</p>
+<p>&#xB450; &#xAC00;&#xC9C0; &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD55C; &#xD6C4;, rpcrt4.dll&#xC5D0; &#xB300;&#xD55C; CFG&#xAC00; &#xAEBC;&#xC838;&#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xAC00;&#xC9DC; RPC_MESSAGE&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xC6D0;&#xD558;&#xB294; &#xD568;&#xC218;(&#xBC84;&#xD37C;&#xC5D0; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xB2F4;&#xACE0; &#xC788;&#xB294; &#xD568;&#xC218;) &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC0D8;&#xD50C;&#xC740; mis.dll+0x5000&#xC5D0; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xB36E;&#xC5B4;&#xC4F0;&#xACE0; rpcrt4!NdrServerCall2&#xB97C; &#xD1B5;&#xD574; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">var shellcode = <span class="hljs-keyword">new</span> Uint8Array([<span class="hljs-number">0xcc</span>])
-var msi = call2(LoadLibraryExA, [newStr(&#x27;msi.dll&#x27;), 0, 1]) + 0x5000
+var msi = call2(LoadLibraryExA, [newStr(&apos;msi.dll&apos;), 0, 1]) + 0x5000
 var tmpBuffer = createArrayBuffer(<span class="hljs-number">4</span>)
 call2(VirtualProtect, [msi, shellcode.length, <span class="hljs-number">0x4</span>, tmpBuffer])
 writeData(msi, shellcode)
@@ -321,9 +321,9 @@ call2(msi, [])</code></pre>
 
 
 
-<p>다음은 익스플로잇에 성공한 스크린샷입니다.</p>
+<p>&#xB2E4;&#xC74C;&#xC740; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC5D0; &#xC131;&#xACF5;&#xD55C; &#xC2A4;&#xD06C;&#xB9B0;&#xC0F7;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/14/fabu1ous/cfg-bypass/10.png" srcset="/img/loading.gif"></p>
-<h1 id="Some-thoughts"><a href="#Some-thoughts" class="headerlink" title="Some thoughts"></a>Some thoughts</h1><p>실제 공격에 사용된 CVE-2021-26411 샘플은 CFG 보호 기법을 익스플로잇 하는 새로운 기술을 담고 있습니다. 해당 익스플로잇 기법은 ROP에 의존하지 않아도 되며 RPC_MESSAGE를 통해 임의 코드 실행(Arbitrary Code Execution)을 달성할 수 있습니다. 또한 간결하고 신뢰도(성공률)가 높습니다. 앞으로 CFG 보호 기법을 효과적으로 우회하기 위한 방법으로 통용될 것이라 생각합니다.</p>
+<h1 id="Some-thoughts"><a href="#Some-thoughts" class="headerlink" title="Some thoughts"></a>Some thoughts</h1><p>&#xC2E4;&#xC81C; &#xACF5;&#xACA9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB41C; CVE-2021-26411 &#xC0D8;&#xD50C;&#xC740; CFG &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC744; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787; &#xD558;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xAE30;&#xC220;&#xC744; &#xB2F4;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787; &#xAE30;&#xBC95;&#xC740; ROP&#xC5D0; &#xC758;&#xC874;&#xD558;&#xC9C0; &#xC54A;&#xC544;&#xB3C4; &#xB418;&#xBA70; RPC_MESSAGE&#xB97C; &#xD1B5;&#xD574; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;(Arbitrary Code Execution)&#xC744; &#xB2EC;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xAC04;&#xACB0;&#xD558;&#xACE0; &#xC2E0;&#xB8B0;&#xB3C4;(&#xC131;&#xACF5;&#xB960;)&#xAC00; &#xB192;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC55E;&#xC73C;&#xB85C; CFG &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC744; &#xD6A8;&#xACFC;&#xC801;&#xC73C;&#xB85C; &#xC6B0;&#xD68C;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xD1B5;&#xC6A9;&#xB420; &#xAC83;&#xC774;&#xB77C; &#xC0DD;&#xAC01;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>[1] <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/secbp/control-flow-guard">https://docs.microsoft.com/en-us/windows/win32/secbp/control-flow-guard</a></p>
 <p>[2] <a target="_blank" rel="external nofollow noopener noreferrer" href="https://windows-internals.com/cet-on-windows/">https://windows-internals.com/cet-on-windows/</a></p>
 <p>[3] <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/rpc/rpc-start-page">https://docs.microsoft.com/en-us/windows/win32/rpc/rpc-start-page</a></p>
@@ -629,6 +629,45 @@ call2(msi, [])</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

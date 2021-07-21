@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      116 자
+      233 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -243,16 +243,16 @@
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/detail?id=2144">OOB Write in NFC stack when handling MIFARE Classic TLVs</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Android-10</p>
 <p>Android-11</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>악성 NFC 패킷을 통한 안드로이드 RCE 취약점이 발견되었습니다. 안드로이드 NFC는 함수<code>rw_mfc_handle_read_op()</code>를 사용해  블록 단위 요청을 보내고 MFC(MIFARE Classic) 카드로부터 NDEF(NFC Data Exchange Format)를 받아옵니다. 함수 <code>rw_mfc_handle_read_op()</code> 는 STATE에 따라 다음과 같이 동작합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>&#xC545;&#xC131; NFC &#xD328;&#xD0B7;&#xC744; &#xD1B5;&#xD55C; &#xC548;&#xB4DC;&#xB85C;&#xC774;&#xB4DC; RCE &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC548;&#xB4DC;&#xB85C;&#xC774;&#xB4DC; NFC&#xB294; &#xD568;&#xC218;<code>rw_mfc_handle_read_op()</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD574;  &#xBE14;&#xB85D; &#xB2E8;&#xC704; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0B4;&#xACE0; MFC(MIFARE Classic) &#xCE74;&#xB4DC;&#xB85C;&#xBD80;&#xD130; NDEF(NFC Data Exchange Format)&#xB97C; &#xBC1B;&#xC544;&#xC635;&#xB2C8;&#xB2E4;. &#xD568;&#xC218; <code>rw_mfc_handle_read_op()</code> &#xB294; STATE&#xC5D0; &#xB530;&#xB77C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xB3D9;&#xC791;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li><p>RW_MFC_STATE_DETECT_TLV</p>
-<p>블록의 TLV를 파싱해  <code>p_mfc-&gt;ndef_length</code>값을 저장하고 그에 맞는 버퍼를 할당합니다.</p>
+<p>&#xBE14;&#xB85D;&#xC758; TLV&#xB97C; &#xD30C;&#xC2F1;&#xD574;  <code>p_mfc-&gt;ndef_length</code>&#xAC12;&#xC744; &#xC800;&#xC7A5;&#xD558;&#xACE0; &#xADF8;&#xC5D0; &#xB9DE;&#xB294; &#xBC84;&#xD37C;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>RW_MFC_STATE_READ_NDEF</p>
-<p>블록의 TLV를 다시 디코딩해 <code>p_mfc-&gt;ndef_length</code>값을 업데이트한 뒤 버퍼에 데이터를 복사합니다.</p>
+<p>&#xBE14;&#xB85D;&#xC758; TLV&#xB97C; &#xB2E4;&#xC2DC; &#xB514;&#xCF54;&#xB529;&#xD574; <code>p_mfc-&gt;ndef_length</code>&#xAC12;&#xC744; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD55C; &#xB4A4; &#xBC84;&#xD37C;&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
-<p>악성 NFC 패킷을 통해 두 STATE에서 서로 다른 <code>p_mfc-&gt;ndef_length</code>값을 사용하도록 유도할 수 있습니다. 따라서 buffer overflow가 발생할 수 있으며 이를 악용해 원격 코드 실행 공격을 할 수 있습니다.</p>
+<p>&#xC545;&#xC131; NFC &#xD328;&#xD0B7;&#xC744; &#xD1B5;&#xD574; &#xB450; STATE&#xC5D0;&#xC11C; &#xC11C;&#xB85C; &#xB2E4;&#xB978; <code>p_mfc-&gt;ndef_length</code>&#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; buffer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xACF5;&#xACA9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -553,6 +553,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

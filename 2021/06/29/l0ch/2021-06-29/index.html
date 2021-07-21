@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      186 자
+      311 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -246,27 +246,27 @@
 <li>Lenovo Thinkpad</li>
 <li>Dell XPS 13</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Realtek의 오디오 드라이버에서 OOB Access 취약점이 발견되어 세부 정보 및 PoC가 공개되었습니다.</p>
-<p>취약점은 오디오 드라이버 <code>RTKVHD64.sys</code>에서 발생합니다. 해당 드라이버는 초기화 중 <code>PcAddAdapterDevice</code> 함수의 파라미터인 <code>StartDevice</code>에 의해 호출된 <code>InitDeviceExtension</code> 함수에서 커널 풀에 <code>MEVT</code> 구조체를 할당합니다.</p>
-<pre><code class="hljs c">devext-&gt;unk-&gt;events = ExAllocatePoolWithTag(pooltype, 0x5F0ui64, &#x27;mEvt&#x27;);
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Realtek&#xC758; &#xC624;&#xB514;&#xC624; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xC11C; OOB Access &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4; &#xBC0F; PoC&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC624;&#xB514;&#xC624; &#xB4DC;&#xB77C;&#xC774;&#xBC84; <code>RTKVHD64.sys</code>&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB294; &#xCD08;&#xAE30;&#xD654; &#xC911; <code>PcAddAdapterDevice</code> &#xD568;&#xC218;&#xC758; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC778; <code>StartDevice</code>&#xC5D0; &#xC758;&#xD574; &#xD638;&#xCD9C;&#xB41C; <code>InitDeviceExtension</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xCEE4;&#xB110; &#xD480;&#xC5D0; <code>MEVT</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs c">devext-&gt;unk-&gt;events = ExAllocatePoolWithTag(pooltype, 0x5F0ui64, &apos;mEvt&apos;);
 
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">EVT</span> &#123;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">EVT</span> {</span>
     PKSPIN_LOCK lock;
     PVOID       event;
     UINT64      someflag;
-&#125; <span class="hljs-comment">/* sizeof == 0x18 */</span>
+} <span class="hljs-comment">/* sizeof == 0x18 */</span>
 
-<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MEVT</span> &#123;</span>
+<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">MEVT</span> {</span>
     <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">EVT</span> <span class="hljs-title">array</span>[63];</span>
     UINT64 flags;
-&#125; <span class="hljs-comment">/* sizeof == 0x18*63 + 8 == 0x5f0 */</span></code></pre>
+} <span class="hljs-comment">/* sizeof == 0x18*63 + 8 == 0x5f0 */</span></code></pre>
 
-<p><code>MEVT</code>의 <code>EVT</code> 구조체는 63개의 고정된 크기의 배열입니다.</p>
+<p><code>MEVT</code>&#xC758; <code>EVT</code> &#xAD6C;&#xC870;&#xCCB4;&#xB294; 63&#xAC1C;&#xC758; &#xACE0;&#xC815;&#xB41C; &#xD06C;&#xAE30;&#xC758; &#xBC30;&#xC5F4;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">input_index = *(_DWORD *)IrpSystemBuffer;
 v5 = Crash(mevts, <span class="hljs-built_in">stack</span>-&gt;FileObject, unk, &amp;mevts-&gt;<span class="hljs-built_in">array</span>[input_index].event,
         (KSPIN_LOCK *)&amp;mevts-&gt;<span class="hljs-built_in">array</span>[input_index]);</code></pre>
 
-<p>드라이버에 <code>0x225f04</code> IOCTL 코드를 전송하면 유저버퍼인 <code>IrpSystemBuffer</code>의 첫 번째 DWORD 데이터가 <code>input_index</code>에 저장됩니다. <code>input_index</code>는 위 <code>Crash</code> 함수에서 <code>(KSPIN_LOCK *)&amp;mevts-&gt;array[input_index]</code>와 같이 <code>MEVT</code>의 <code>EVT</code> 배열에 접근할 때 인덱스로 사용됩니다. 따라서 해커는 IOCTL 입력 버퍼를 통해 <code>input_index</code>를 임의의 값으로 설정할 수 있어 Out Of Bound Access로 이어집니다.</p>
+<p>&#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; <code>0x225f04</code> IOCTL &#xCF54;&#xB4DC;&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xBA74; &#xC720;&#xC800;&#xBC84;&#xD37C;&#xC778; <code>IrpSystemBuffer</code>&#xC758; &#xCCAB; &#xBC88;&#xC9F8; DWORD &#xB370;&#xC774;&#xD130;&#xAC00; <code>input_index</code>&#xC5D0; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. <code>input_index</code>&#xB294; &#xC704; <code>Crash</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>(KSPIN_LOCK *)&amp;mevts-&gt;array[input_index]</code>&#xC640; &#xAC19;&#xC774; <code>MEVT</code>&#xC758; <code>EVT</code> &#xBC30;&#xC5F4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xB54C; &#xC778;&#xB371;&#xC2A4;&#xB85C; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xD574;&#xCEE4;&#xB294; IOCTL &#xC785;&#xB825; &#xBC84;&#xD37C;&#xB97C; &#xD1B5;&#xD574; <code>input_index</code>&#xB97C; &#xC784;&#xC758;&#xC758; &#xAC12;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC5B4; Out Of Bound Access&#xB85C; &#xC774;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -575,6 +575,45 @@ v5 = Crash(mevts, <span class="hljs-built_in">stack</span>-&gt;FileObject, unk, 
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      492 자
+      1.3k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      9
+      25
        분
     </span>
   
@@ -240,67 +240,67 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h1 id="서론"><a href="#서론" class="headerlink" title="서론"></a>서론</h1><p>안녕하세요! L0ch입니다. 지난번 pwn cool sexy 시리즈에 이어 새로운 시리즈로 돌아왔습니다!  그 사이에 기말고사 기간이 된 건 덤.. </p>
+              <h1 id="&#xC11C;&#xB860;"><a href="#&#xC11C;&#xB860;" class="headerlink" title="&#xC11C;&#xB860;"></a>&#xC11C;&#xB860;</h1><p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694;! L0ch&#xC785;&#xB2C8;&#xB2E4;. &#xC9C0;&#xB09C;&#xBC88; pwn cool sexy &#xC2DC;&#xB9AC;&#xC988;&#xC5D0; &#xC774;&#xC5B4; &#xC0C8;&#xB85C;&#xC6B4; &#xC2DC;&#xB9AC;&#xC988;&#xB85C; &#xB3CC;&#xC544;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;!  &#xADF8; &#xC0AC;&#xC774;&#xC5D0; &#xAE30;&#xB9D0;&#xACE0;&#xC0AC; &#xAE30;&#xAC04;&#xC774; &#xB41C; &#xAC74; &#xB364;.. </p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%201.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%201.png"></p>
 <blockquote>
-<p>과거의 나야.. 너 기말도 망했어</p>
+<p>&#xACFC;&#xAC70;&#xC758; &#xB098;&#xC57C;.. &#xB108; &#xAE30;&#xB9D0;&#xB3C4; &#xB9DD;&#xD588;&#xC5B4;</p>
 </blockquote>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%202.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%202.png"></p>
-<p>교수님 종강좀요ㅠㅠㅠ</p>
-<p>이번 시리즈에서는 하루한줄을 보다 보면 꽤 자주 나오는 Windows third-party driver의 권한상승 취약점을 다룰 예정입니다! </p>
+<p>&#xAD50;&#xC218;&#xB2D8; &#xC885;&#xAC15;&#xC880;&#xC694;&#x3160;&#x3160;&#x3160;</p>
+<p>&#xC774;&#xBC88; &#xC2DC;&#xB9AC;&#xC988;&#xC5D0;&#xC11C;&#xB294; &#xD558;&#xB8E8;&#xD55C;&#xC904;&#xC744; &#xBCF4;&#xB2E4; &#xBCF4;&#xBA74; &#xAF64; &#xC790;&#xC8FC; &#xB098;&#xC624;&#xB294; Windows third-party driver&#xC758; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xB2E4;&#xB8F0; &#xC608;&#xC815;&#xC785;&#xB2C8;&#xB2E4;! </p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%203.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%203.png"></p>
 <blockquote>
-<p>이 드라이버 아님ㅎㅎ;</p>
+<p>&#xC774; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC544;&#xB2D8;&#x314E;&#x314E;;</p>
 </blockquote>
-<p>예시를 하나 들어보자면.. 최근 이슈가 된 Dell의 BIOS 업데이트에 사용되는 드라이버에서 나온 <a href="https://hackyboiz.github.io/2021/05/07/l0ch/2021-05-07/">[하루한줄] CVE-2021-21551: 수억 대의 Dell PC에 영향을 주는 권한 상승 취약점 </a> 정도가 있겠네요. 대충 심각한 취약점인건 알겠는데 IOCTL은 뭐고… <code>EPROCESS</code>? 토큰을 어떻게 덮어 쓴다는 건지 또 권한상승은 어떻게 한다는 건지.. 정말 모르는 용어, 개념 투성이네요. 공부할게 너무 많지만 ㅠㅠㅠ 하나씩 공부하다보면 언젠가는 드라이버 취약점을 찾을수도 있겠죠?</p>
-<p>오늘은 시리즈 첫 글이니 가볍게 디버깅 환경 세팅으로 시작해서 앞으로 간단한 exploit 예제를 다루고, one-day 분석하는 것을 끝으로 마무리하려고 합니다. 이번 시리즈도 길어질 것 같은 예감이 드는 건.. 기분 탓인가..?</p>
-<h1 id="준비"><a href="#준비" class="headerlink" title="준비"></a>준비</h1><p>우선 디버깅 세팅부터 해야 합니다. 커널 디버깅은 유저 모드 애플리케이션과 달리 로컬에서 디버깅할 수 없습니다. 완전히 불가능한 것은 아니지만 제약사항이 많죠. 그래서! 보통은 원격지 PC를 하나 구성해 디버거를 세팅합니다.</p>
-<p>이전에는 named pipe를 사용해 가상 시리얼 포트로 커널 디버깅을 했지만 시리얼 포트 속도의 한계로 KDNET 네트워크 디버깅을 사용하며 필요한 준비는 아래와 같습니다.</p>
-<p><strong>1. 호스트 Windows와 VMware or Hyper-V의 게스트 Windows</strong></p>
-<p>Windbg를 사용해 커널을 분석할 것이기 때문에 분석대상이 되는 디버기 Windows와 분석을 진행할 Windows가 각각 필요합니다. 호스트가 Windows 환경이면 게스트 Windows VM 하나만 올리면 됩니다. </p>
+<p>&#xC608;&#xC2DC;&#xB97C; &#xD558;&#xB098; &#xB4E4;&#xC5B4;&#xBCF4;&#xC790;&#xBA74;.. &#xCD5C;&#xADFC; &#xC774;&#xC288;&#xAC00; &#xB41C; Dell&#xC758; BIOS &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xC11C; &#xB098;&#xC628; <a href="https://hackyboiz.github.io/2021/05/07/l0ch/2021-05-07/">[&#xD558;&#xB8E8;&#xD55C;&#xC904;] CVE-2021-21551: &#xC218;&#xC5B5; &#xB300;&#xC758; Dell PC&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xC8FC;&#xB294; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810; </a> &#xC815;&#xB3C4;&#xAC00; &#xC788;&#xACA0;&#xB124;&#xC694;. &#xB300;&#xCDA9; &#xC2EC;&#xAC01;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC778;&#xAC74; &#xC54C;&#xACA0;&#xB294;&#xB370; IOCTL&#xC740; &#xBB50;&#xACE0;&#x2026; <code>EPROCESS</code>? &#xD1A0;&#xD070;&#xC744; &#xC5B4;&#xB5BB;&#xAC8C; &#xB36E;&#xC5B4; &#xC4F4;&#xB2E4;&#xB294; &#xAC74;&#xC9C0; &#xB610; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9;&#xC740; &#xC5B4;&#xB5BB;&#xAC8C; &#xD55C;&#xB2E4;&#xB294; &#xAC74;&#xC9C0;.. &#xC815;&#xB9D0; &#xBAA8;&#xB974;&#xB294; &#xC6A9;&#xC5B4;, &#xAC1C;&#xB150; &#xD22C;&#xC131;&#xC774;&#xB124;&#xC694;. &#xACF5;&#xBD80;&#xD560;&#xAC8C; &#xB108;&#xBB34; &#xB9CE;&#xC9C0;&#xB9CC; &#x3160;&#x3160;&#x3160; &#xD558;&#xB098;&#xC529; &#xACF5;&#xBD80;&#xD558;&#xB2E4;&#xBCF4;&#xBA74; &#xC5B8;&#xC820;&#xAC00;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xCC3E;&#xC744;&#xC218;&#xB3C4; &#xC788;&#xACA0;&#xC8E0;?</p>
+<p>&#xC624;&#xB298;&#xC740; &#xC2DC;&#xB9AC;&#xC988; &#xCCAB; &#xAE00;&#xC774;&#xB2C8; &#xAC00;&#xBCCD;&#xAC8C; &#xB514;&#xBC84;&#xAE45; &#xD658;&#xACBD; &#xC138;&#xD305;&#xC73C;&#xB85C; &#xC2DC;&#xC791;&#xD574;&#xC11C; &#xC55E;&#xC73C;&#xB85C; &#xAC04;&#xB2E8;&#xD55C; exploit &#xC608;&#xC81C;&#xB97C; &#xB2E4;&#xB8E8;&#xACE0;, one-day &#xBD84;&#xC11D;&#xD558;&#xB294; &#xAC83;&#xC744; &#xB05D;&#xC73C;&#xB85C; &#xB9C8;&#xBB34;&#xB9AC;&#xD558;&#xB824;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xBC88; &#xC2DC;&#xB9AC;&#xC988;&#xB3C4; &#xAE38;&#xC5B4;&#xC9C8; &#xAC83; &#xAC19;&#xC740; &#xC608;&#xAC10;&#xC774; &#xB4DC;&#xB294; &#xAC74;.. &#xAE30;&#xBD84; &#xD0D3;&#xC778;&#xAC00;..?</p>
+<h1 id="&#xC900;&#xBE44;"><a href="#&#xC900;&#xBE44;" class="headerlink" title="&#xC900;&#xBE44;"></a>&#xC900;&#xBE44;</h1><p>&#xC6B0;&#xC120; &#xB514;&#xBC84;&#xAE45; &#xC138;&#xD305;&#xBD80;&#xD130; &#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xCEE4;&#xB110; &#xB514;&#xBC84;&#xAE45;&#xC740; &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xACFC; &#xB2EC;&#xB9AC; &#xB85C;&#xCEEC;&#xC5D0;&#xC11C; &#xB514;&#xBC84;&#xAE45;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC644;&#xC804;&#xD788; &#xBD88;&#xAC00;&#xB2A5;&#xD55C; &#xAC83;&#xC740; &#xC544;&#xB2C8;&#xC9C0;&#xB9CC; &#xC81C;&#xC57D;&#xC0AC;&#xD56D;&#xC774; &#xB9CE;&#xC8E0;. &#xADF8;&#xB798;&#xC11C;! &#xBCF4;&#xD1B5;&#xC740; &#xC6D0;&#xACA9;&#xC9C0; PC&#xB97C; &#xD558;&#xB098; &#xAD6C;&#xC131;&#xD574; &#xB514;&#xBC84;&#xAC70;&#xB97C; &#xC138;&#xD305;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xC804;&#xC5D0;&#xB294; named pipe&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xAC00;&#xC0C1; &#xC2DC;&#xB9AC;&#xC5BC; &#xD3EC;&#xD2B8;&#xB85C; &#xCEE4;&#xB110; &#xB514;&#xBC84;&#xAE45;&#xC744; &#xD588;&#xC9C0;&#xB9CC; &#xC2DC;&#xB9AC;&#xC5BC; &#xD3EC;&#xD2B8; &#xC18D;&#xB3C4;&#xC758; &#xD55C;&#xACC4;&#xB85C; KDNET &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xB514;&#xBC84;&#xAE45;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA70; &#xD544;&#xC694;&#xD55C; &#xC900;&#xBE44;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><strong>1. &#xD638;&#xC2A4;&#xD2B8; Windows&#xC640; VMware or Hyper-V&#xC758; &#xAC8C;&#xC2A4;&#xD2B8; Windows</strong></p>
+<p>Windbg&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCEE4;&#xB110;&#xC744; &#xBD84;&#xC11D;&#xD560; &#xAC83;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBD84;&#xC11D;&#xB300;&#xC0C1;&#xC774; &#xB418;&#xB294; &#xB514;&#xBC84;&#xAE30; Windows&#xC640; &#xBD84;&#xC11D;&#xC744; &#xC9C4;&#xD589;&#xD560; Windows&#xAC00; &#xAC01;&#xAC01; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. &#xD638;&#xC2A4;&#xD2B8;&#xAC00; Windows &#xD658;&#xACBD;&#xC774;&#xBA74; &#xAC8C;&#xC2A4;&#xD2B8; Windows VM &#xD558;&#xB098;&#xB9CC; &#xC62C;&#xB9AC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/05/30/l0ch/windows-driver/tempsnip.png" srcset="/img/loading.gif" alt="windows-driver/tempsnip.png"></p>
 <blockquote>
 <p>?</p>
 </blockquote>
-<p>네 저는 맥을 사용하기 때문에…..  Windows VM 두개를 올려서 진행했습니다. </p>
-<p>네? 어디서 뭐가 돌아가는 소리 안나냐구요?</p>
+<p>&#xB124; &#xC800;&#xB294; &#xB9E5;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0;&#x2026;..  Windows VM &#xB450;&#xAC1C;&#xB97C; &#xC62C;&#xB824;&#xC11C; &#xC9C4;&#xD589;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xB124;? &#xC5B4;&#xB514;&#xC11C; &#xBB50;&#xAC00; &#xB3CC;&#xC544;&#xAC00;&#xB294; &#xC18C;&#xB9AC; &#xC548;&#xB098;&#xB0D0;&#xAD6C;&#xC694;?</p>
 <p>.</p>
 <p>.</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%204.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%204.png"></p>
 <blockquote>
-<p>이륙한드아아ㅏㅏ !!!</p>
+<p>&#xC774;&#xB959;&#xD55C;&#xB4DC;&#xC544;&#xC544;&#x314F;&#x314F; !!!</p>
 </blockquote>
-<p>맥이 잘 버텨주고 있으니 다행이네요 ㅎㅎ 아님말고<br>글에서는 편의상 호스트 OS가 Windows라고 가정하고 분석할 디버기 Windows를 게스트라고 부르겠습니다! </p>
-<p><strong>2. 블루스크린을 친구처럼 생각하는 강인한 멘탈(?)</strong></p>
-<p>사실 취약점 찾는 입장에서 블루스크린은 곧 크래시기 때문에 블루스크린을 본다면 개이득이죠ㅋㅋ  </p>
+<p>&#xB9E5;&#xC774; &#xC798; &#xBC84;&#xD168;&#xC8FC;&#xACE0; &#xC788;&#xC73C;&#xB2C8; &#xB2E4;&#xD589;&#xC774;&#xB124;&#xC694; &#x314E;&#x314E; &#xC544;&#xB2D8;&#xB9D0;&#xACE0;<br>&#xAE00;&#xC5D0;&#xC11C;&#xB294; &#xD3B8;&#xC758;&#xC0C1; &#xD638;&#xC2A4;&#xD2B8; OS&#xAC00; Windows&#xB77C;&#xACE0; &#xAC00;&#xC815;&#xD558;&#xACE0; &#xBD84;&#xC11D;&#xD560; &#xB514;&#xBC84;&#xAE30; Windows&#xB97C; &#xAC8C;&#xC2A4;&#xD2B8;&#xB77C;&#xACE0; &#xBD80;&#xB974;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
+<p><strong>2. &#xBE14;&#xB8E8;&#xC2A4;&#xD06C;&#xB9B0;&#xC744; &#xCE5C;&#xAD6C;&#xCC98;&#xB7FC; &#xC0DD;&#xAC01;&#xD558;&#xB294; &#xAC15;&#xC778;&#xD55C; &#xBA58;&#xD0C8;(?)</strong></p>
+<p>&#xC0AC;&#xC2E4; &#xCDE8;&#xC57D;&#xC810; &#xCC3E;&#xB294; &#xC785;&#xC7A5;&#xC5D0;&#xC11C; &#xBE14;&#xB8E8;&#xC2A4;&#xD06C;&#xB9B0;&#xC740; &#xACE7; &#xD06C;&#xB798;&#xC2DC;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBE14;&#xB8E8;&#xC2A4;&#xD06C;&#xB9B0;&#xC744; &#xBCF8;&#xB2E4;&#xBA74; &#xAC1C;&#xC774;&#xB4DD;&#xC774;&#xC8E0;&#x314B;&#x314B;  </p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%205.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%205.png"></p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%206.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%206.png"></p>
 <blockquote>
-<p>편안-</p>
+<p>&#xD3B8;&#xC548;-</p>
 </blockquote>
-<p>멘탈까지 준비가 모두 되었다? 바로 디버깅 세팅으로 고고고</p>
-<h1 id="Setting-Up-Debugging"><a href="#Setting-Up-Debugging" class="headerlink" title="Setting Up Debugging"></a>Setting Up Debugging</h1><p>먼저 게스트와 호스트 Windows에 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows-hardware/drivers/debugger/debugger-download-tools">Windbg</a>를 설치합니다. 호스트 Windows에는 Windbg Preview를 설치해 사용해도 되지만 Windbg Preview는 kdnet이 없기 때문에 게스트 Windows에는 Windbg를 SDK로 설치해야 합니다!</p>
+<p>&#xBA58;&#xD0C8;&#xAE4C;&#xC9C0; &#xC900;&#xBE44;&#xAC00; &#xBAA8;&#xB450; &#xB418;&#xC5C8;&#xB2E4;? &#xBC14;&#xB85C; &#xB514;&#xBC84;&#xAE45; &#xC138;&#xD305;&#xC73C;&#xB85C; &#xACE0;&#xACE0;&#xACE0;</p>
+<h1 id="Setting-Up-Debugging"><a href="#Setting-Up-Debugging" class="headerlink" title="Setting Up Debugging"></a>Setting Up Debugging</h1><p>&#xBA3C;&#xC800; &#xAC8C;&#xC2A4;&#xD2B8;&#xC640; &#xD638;&#xC2A4;&#xD2B8; Windows&#xC5D0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows-hardware/drivers/debugger/debugger-download-tools">Windbg</a>&#xB97C; &#xC124;&#xCE58;&#xD569;&#xB2C8;&#xB2E4;. &#xD638;&#xC2A4;&#xD2B8; Windows&#xC5D0;&#xB294; Windbg Preview&#xB97C; &#xC124;&#xCE58;&#xD574; &#xC0AC;&#xC6A9;&#xD574;&#xB3C4; &#xB418;&#xC9C0;&#xB9CC; Windbg Preview&#xB294; kdnet&#xC774; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xAC8C;&#xC2A4;&#xD2B8; Windows&#xC5D0;&#xB294; Windbg&#xB97C; SDK&#xB85C; &#xC124;&#xCE58;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/tempsnip%201.png" srcset="/img/loading.gif" alt="windows-driver/tempsnip%201.png"></p>
-<p>Windbg 설치를 끝냈으면 게스트 VM 설정→Network Adapter에서 Network connection을 Bridged로 설정해 호스트와 통신할 수 있게 설정한 뒤 통신이 잘 되는지 테스트를 해봅니다.</p>
+<p>Windbg &#xC124;&#xCE58;&#xB97C; &#xB05D;&#xB0C8;&#xC73C;&#xBA74; &#xAC8C;&#xC2A4;&#xD2B8; VM &#xC124;&#xC815;&#x2192;Network Adapter&#xC5D0;&#xC11C; Network connection&#xC744; Bridged&#xB85C; &#xC124;&#xC815;&#xD574; &#xD638;&#xC2A4;&#xD2B8;&#xC640; &#xD1B5;&#xC2E0;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xC124;&#xC815;&#xD55C; &#xB4A4; &#xD1B5;&#xC2E0;&#xC774; &#xC798; &#xB418;&#xB294;&#xC9C0; &#xD14C;&#xC2A4;&#xD2B8;&#xB97C; &#xD574;&#xBD05;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%207.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%207.png"></p>
-<p>핑 테스트 할 때는 호스트와 게스트 모두 방화벽에서 ICMP 인바운드 허용하는 것 잊지 마세요!</p>
+<p>&#xD551; &#xD14C;&#xC2A4;&#xD2B8; &#xD560; &#xB54C;&#xB294; &#xD638;&#xC2A4;&#xD2B8;&#xC640; &#xAC8C;&#xC2A4;&#xD2B8; &#xBAA8;&#xB450; &#xBC29;&#xD654;&#xBCBD;&#xC5D0;&#xC11C; ICMP &#xC778;&#xBC14;&#xC6B4;&#xB4DC; &#xD5C8;&#xC6A9;&#xD558;&#xB294; &#xAC83; &#xC78A;&#xC9C0; &#xB9C8;&#xC138;&#xC694;!</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%208.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%208.png"></p>
-<p>정상적으로 통신이 되는 걸 확인했으면 호스트의 host name을 확인합니다.</p>
+<p>&#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xD1B5;&#xC2E0;&#xC774; &#xB418;&#xB294; &#xAC78; &#xD655;&#xC778;&#xD588;&#xC73C;&#xBA74; &#xD638;&#xC2A4;&#xD2B8;&#xC758; host name&#xC744; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%209.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%209.png"></p>
-<p>게스트에서 cmd를 관리자 권한으로 실행해 다음과 같이 <code>kdnet.exe</code>을 실행합니다. 이때 포트는 50000 ~ 50039 범위 안에서 줍니다.</p>
+<p>&#xAC8C;&#xC2A4;&#xD2B8;&#xC5D0;&#xC11C; cmd&#xB97C; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xD574; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; <code>kdnet.exe</code>&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xD3EC;&#xD2B8;&#xB294; 50000 ~ 50039 &#xBC94;&#xC704; &#xC548;&#xC5D0;&#xC11C; &#xC90D;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs angelscript">&gt; kdnet.exe &lt;host name&gt; <span class="hljs-number">50001</span></code></pre>
 
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2010.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%2010.png"></p>
-<p>해당 머신을 디버깅하기 위해 커맨드를 호스트 머신에서 실행하라고 하네요! 빨간 박스의 커맨드를 복사해놓습니다.</p>
-<p>이제 호스트의 Windbg Preview를 실행하고 Start debugging → Attach to Kernel → Net 에서 포트와 커맨드를 입력합니다.</p>
+<p>&#xD574;&#xB2F9; &#xBA38;&#xC2E0;&#xC744; &#xB514;&#xBC84;&#xAE45;&#xD558;&#xAE30; &#xC704;&#xD574; &#xCEE4;&#xB9E8;&#xB4DC;&#xB97C; &#xD638;&#xC2A4;&#xD2B8; &#xBA38;&#xC2E0;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD558;&#xB77C;&#xACE0; &#xD558;&#xB124;&#xC694;! &#xBE68;&#xAC04; &#xBC15;&#xC2A4;&#xC758; &#xCEE4;&#xB9E8;&#xB4DC;&#xB97C; &#xBCF5;&#xC0AC;&#xD574;&#xB193;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xC81C; &#xD638;&#xC2A4;&#xD2B8;&#xC758; Windbg Preview&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xACE0; Start debugging &#x2192; Attach to Kernel &#x2192; Net &#xC5D0;&#xC11C; &#xD3EC;&#xD2B8;&#xC640; &#xCEE4;&#xB9E8;&#xB4DC;&#xB97C; &#xC785;&#xB825;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2011.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%2011.png"></p>
-<p>OK를 눌러 Windbg Preview가 대기 상태가 되면 게스트를 <code>shutdown -r -t 0</code> 으로 재부팅해줍니다. </p>
-<p>재부팅하면..!</p>
+<p>OK&#xB97C; &#xB20C;&#xB7EC; Windbg Preview&#xAC00; &#xB300;&#xAE30; &#xC0C1;&#xD0DC;&#xAC00; &#xB418;&#xBA74; &#xAC8C;&#xC2A4;&#xD2B8;&#xB97C; <code>shutdown -r -t 0</code> &#xC73C;&#xB85C; &#xC7AC;&#xBD80;&#xD305;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;. </p>
+<p>&#xC7AC;&#xBD80;&#xD305;&#xD558;&#xBA74;..!</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2012.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%2012.png"></p>
-<p>잘 붙은 것 같죠? 디버기 머신인 게스트 Windows도 확인해볼게요.</p>
+<p>&#xC798; &#xBD99;&#xC740; &#xAC83; &#xAC19;&#xC8E0;? &#xB514;&#xBC84;&#xAE30; &#xBA38;&#xC2E0;&#xC778; &#xAC8C;&#xC2A4;&#xD2B8; Windows&#xB3C4; &#xD655;&#xC778;&#xD574;&#xBCFC;&#xAC8C;&#xC694;.</p>
 <p><img src="/2021/05/30/l0ch/windows-driver/Untitled%2013.png" srcset="/img/loading.gif" alt="windows-driver/Untitled%2013.png"></p>
-<p>디버거가 붙은 상태에서 부팅되면 우측 하단에 테스트 모드와 빌드 버전 정보가 표시되는 것을 확인할 수 있습니다. </p>
-<p>다음 파트부터는 본격적으로 Windows의 third-party driver와 취약점, one-day 분석까지 알아보도록 하겠습니다 ㅎㅎ</p>
+<p>&#xB514;&#xBC84;&#xAC70;&#xAC00; &#xBD99;&#xC740; &#xC0C1;&#xD0DC;&#xC5D0;&#xC11C; &#xBD80;&#xD305;&#xB418;&#xBA74; &#xC6B0;&#xCE21; &#xD558;&#xB2E8;&#xC5D0; &#xD14C;&#xC2A4;&#xD2B8; &#xBAA8;&#xB4DC;&#xC640; &#xBE4C;&#xB4DC; &#xBC84;&#xC804; &#xC815;&#xBCF4;&#xAC00; &#xD45C;&#xC2DC;&#xB418;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xB2E4;&#xC74C; &#xD30C;&#xD2B8;&#xBD80;&#xD130;&#xB294; &#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; Windows&#xC758; third-party driver&#xC640; &#xCDE8;&#xC57D;&#xC810;, one-day &#xBD84;&#xC11D;&#xAE4C;&#xC9C0; &#xC54C;&#xC544;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4; &#x314E;&#x314E;</p>
 
             </div>
             <hr>
@@ -609,6 +609,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      158 자
+      336 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -241,13 +241,13 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/advisories/GHSL-2020-202-gdm3-LPE-unresponsive-accounts-daemon">Local Privilege Escalation (LPE) in Ubuntu gdm3 - CVE-2020-16125</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>gdm version ≤ 3.36.3-0ubuntu0.20.04.1</p>
-<p>accountsservice version ≤ 0.6.55-0ubuntu12 ~ 20.04.1</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>gdm3에서 시스템 권한의 계정을 만들어 권한 상승이 가능한 취약점이 발견되었습니다.</p>
-<p>gdm3(gnome display manager)은 그래픽 인터페이스로 로그인 및 사용자 인증을 처리하는데, 새로 설치된 시스템 등의 이유로 사용자 계정을 찾을 수 없을 때 <code>gnome-initial-setup</code> 을 호출하고 sudo 그룹의 새로운 계정을 만들 수 있습니다.</p>
-<p>gdm3에서는 기존 계정을 찾기 위해 D-Bus 메소드 호출을 사용해 <code>accountsservice</code> 데몬의 <code>look_for_existing_users_sync</code> 에서 기존 사용자 목록을 가져옵니다. 이때 서비스 거부 공격으로 <code>accountsservice</code> 데몬이 응답하지 않도록 하면 D-Bus 메소드 호출이 시간 초과로 인해 연결이 실패하고 <code>priv→have_existing_user_accounts</code> 의 기본값인 false가 유지됩니다.</p>
-<p>이후<code>wants_initial_setup</code> 에서 <code>priv→have_existing_user_accounts</code>가 false면 gdm3는 현재 시스템에 계정이 없는 것으로 인식하고 <code>gnome-initial-setup</code>을 호출해 시스템 권한의 계정을 생성할 수 있습니다.</p>
-<p>해당 취약점의 패치는 <code>priv-&gt;have_existing_user_accounts</code>의 기본값을 true로 수정하는 것으로 적용되었습니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>gdm version &#x2264; 3.36.3-0ubuntu0.20.04.1</p>
+<p>accountsservice version &#x2264; 0.6.55-0ubuntu12 ~ 20.04.1</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>gdm3&#xC5D0;&#xC11C; &#xC2DC;&#xC2A4;&#xD15C; &#xAD8C;&#xD55C;&#xC758; &#xACC4;&#xC815;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>gdm3(gnome display manager)&#xC740; &#xADF8;&#xB798;&#xD53D; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB85C; &#xB85C;&#xADF8;&#xC778; &#xBC0F; &#xC0AC;&#xC6A9;&#xC790; &#xC778;&#xC99D;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294;&#xB370;, &#xC0C8;&#xB85C; &#xC124;&#xCE58;&#xB41C; &#xC2DC;&#xC2A4;&#xD15C; &#xB4F1;&#xC758; &#xC774;&#xC720;&#xB85C; &#xC0AC;&#xC6A9;&#xC790; &#xACC4;&#xC815;&#xC744; &#xCC3E;&#xC744; &#xC218; &#xC5C6;&#xC744; &#xB54C; <code>gnome-initial-setup</code> &#xC744; &#xD638;&#xCD9C;&#xD558;&#xACE0; sudo &#xADF8;&#xB8F9;&#xC758; &#xC0C8;&#xB85C;&#xC6B4; &#xACC4;&#xC815;&#xC744; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>gdm3&#xC5D0;&#xC11C;&#xB294; &#xAE30;&#xC874; &#xACC4;&#xC815;&#xC744; &#xCC3E;&#xAE30; &#xC704;&#xD574; D-Bus &#xBA54;&#xC18C;&#xB4DC; &#xD638;&#xCD9C;&#xC744; &#xC0AC;&#xC6A9;&#xD574; <code>accountsservice</code> &#xB370;&#xBAAC;&#xC758; <code>look_for_existing_users_sync</code> &#xC5D0;&#xC11C; &#xAE30;&#xC874; &#xC0AC;&#xC6A9;&#xC790; &#xBAA9;&#xB85D;&#xC744; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xC11C;&#xBE44;&#xC2A4; &#xAC70;&#xBD80; &#xACF5;&#xACA9;&#xC73C;&#xB85C; <code>accountsservice</code> &#xB370;&#xBAAC;&#xC774; &#xC751;&#xB2F5;&#xD558;&#xC9C0; &#xC54A;&#xB3C4;&#xB85D; &#xD558;&#xBA74; D-Bus &#xBA54;&#xC18C;&#xB4DC; &#xD638;&#xCD9C;&#xC774; &#xC2DC;&#xAC04; &#xCD08;&#xACFC;&#xB85C; &#xC778;&#xD574; &#xC5F0;&#xACB0;&#xC774; &#xC2E4;&#xD328;&#xD558;&#xACE0; <code>priv&#x2192;have_existing_user_accounts</code> &#xC758; &#xAE30;&#xBCF8;&#xAC12;&#xC778; false&#xAC00; &#xC720;&#xC9C0;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xD6C4;<code>wants_initial_setup</code> &#xC5D0;&#xC11C; <code>priv&#x2192;have_existing_user_accounts</code>&#xAC00; false&#xBA74; gdm3&#xB294; &#xD604;&#xC7AC; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xACC4;&#xC815;&#xC774; &#xC5C6;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xC778;&#xC2DD;&#xD558;&#xACE0; <code>gnome-initial-setup</code>&#xC744; &#xD638;&#xCD9C;&#xD574; &#xC2DC;&#xC2A4;&#xD15C; &#xAD8C;&#xD55C;&#xC758; &#xACC4;&#xC815;&#xC744; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58;&#xB294; <code>priv-&gt;have_existing_user_accounts</code>&#xC758; &#xAE30;&#xBCF8;&#xAC12;&#xC744; true&#xB85C; &#xC218;&#xC815;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xC801;&#xC6A9;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -265,9 +265,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
@@ -554,6 +554,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

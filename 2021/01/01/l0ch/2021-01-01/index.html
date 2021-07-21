@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      133 자
+      314 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -242,11 +242,11 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blogs.360.cn/post/CVE-2020-17057%20detail%20and%20exploit.html">CVE-2020-17057 Microsoft Windows DirectComposition Uninitialized Pointer Privilege Escalation Vulnerability</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Microsoft Windows</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft가 2년 전에 발견한 취약점을 패치함으로써 취약점의 세부 정보가 공개되었습니다. 해당 취약점은 Windows 커널 모드의 그래픽 구성 요소인 <code>DirectComposition</code> 에서 발생하는 초기화되지 않은 pool 메모리 참조입니다.</p>
-<p><code>DirectComposition</code> 은 리소스 생성/해제/속성 설정 등의 작업을 수행하는 <code>NtDCompositionProcessChannelBatchBuffer</code> syscall을 사용합니다.</p>
-<p><code>DirectComposition::CInteractionTrackerMarshaler::SetBufferProperty</code> 에서는 한 쌍의 리소스 객체를 처리합니다. 첫 번째 리소스 객체가 초기화되고 두 번째 리소스 객체 타입이 <code>0x57</code>이 아니라면 두 번째 리소스 객체가 초기화되지 않습니다.</p>
-<p>이후 <code>DirectComposition::CInteractionTrackerMarshaler::ReleaseManipulationReferences</code> 에서 할당된 한 쌍의 리소스 객체를 해제하기 위해 별도의 검증 없이<code>DirectComposition::CApplicationChannel::ReleaseResource</code> 을 호출하는데, 이때 초기화되지 않은 두 번째 리소스 객체 포인터를 참조하게 되어 커널 크래시가 발생합니다.</p>
-<p>이를 악용하면 리소스 객체 포인터 테이블을 spray 해 임의 객체를 해제하는 등 해제된 메모리를 조작할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft&#xAC00; 2&#xB144; &#xC804;&#xC5D0; &#xBC1C;&#xACAC;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD328;&#xCE58;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; Windows &#xCEE4;&#xB110; &#xBAA8;&#xB4DC;&#xC758; &#xADF8;&#xB798;&#xD53D; &#xAD6C;&#xC131; &#xC694;&#xC18C;&#xC778; <code>DirectComposition</code> &#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; pool &#xBA54;&#xBAA8;&#xB9AC; &#xCC38;&#xC870;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p><code>DirectComposition</code> &#xC740; &#xB9AC;&#xC18C;&#xC2A4; &#xC0DD;&#xC131;/&#xD574;&#xC81C;/&#xC18D;&#xC131; &#xC124;&#xC815; &#xB4F1;&#xC758; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD558;&#xB294; <code>NtDCompositionProcessChannelBatchBuffer</code> syscall&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>DirectComposition::CInteractionTrackerMarshaler::SetBufferProperty</code> &#xC5D0;&#xC11C;&#xB294; &#xD55C; &#xC30D;&#xC758; &#xB9AC;&#xC18C;&#xC2A4; &#xAC1D;&#xCCB4;&#xB97C; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xCCAB; &#xBC88;&#xC9F8; &#xB9AC;&#xC18C;&#xC2A4; &#xAC1D;&#xCCB4;&#xAC00; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xACE0; &#xB450; &#xBC88;&#xC9F8; &#xB9AC;&#xC18C;&#xC2A4; &#xAC1D;&#xCCB4; &#xD0C0;&#xC785;&#xC774; <code>0x57</code>&#xC774; &#xC544;&#xB2C8;&#xB77C;&#xBA74; &#xB450; &#xBC88;&#xC9F8; &#xB9AC;&#xC18C;&#xC2A4; &#xAC1D;&#xCCB4;&#xAC00; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xD6C4; <code>DirectComposition::CInteractionTrackerMarshaler::ReleaseManipulationReferences</code> &#xC5D0;&#xC11C; &#xD560;&#xB2F9;&#xB41C; &#xD55C; &#xC30D;&#xC758; &#xB9AC;&#xC18C;&#xC2A4; &#xAC1D;&#xCCB4;&#xB97C; &#xD574;&#xC81C;&#xD558;&#xAE30; &#xC704;&#xD574; &#xBCC4;&#xB3C4;&#xC758; &#xAC80;&#xC99D; &#xC5C6;&#xC774;<code>DirectComposition::CApplicationChannel::ReleaseResource</code> &#xC744; &#xD638;&#xCD9C;&#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB450; &#xBC88;&#xC9F8; &#xB9AC;&#xC18C;&#xC2A4; &#xAC1D;&#xCCB4; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xCC38;&#xC870;&#xD558;&#xAC8C; &#xB418;&#xC5B4; &#xCEE4;&#xB110; &#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xB9AC;&#xC18C;&#xC2A4; &#xAC1D;&#xCCB4; &#xD3EC;&#xC778;&#xD130; &#xD14C;&#xC774;&#xBE14;&#xC744; spray &#xD574; &#xC784;&#xC758; &#xAC1D;&#xCCB4;&#xB97C; &#xD574;&#xC81C;&#xD558;&#xB294; &#xB4F1; &#xD574;&#xC81C;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -549,6 +549,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

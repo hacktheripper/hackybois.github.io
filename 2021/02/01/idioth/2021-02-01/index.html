@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      204 자
+      479 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        분
     </span>
   
@@ -242,13 +242,13 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://community.riskiq.com/article/a068810a">LogoKit: Simple, Effective, and Deceptive</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>악성 URL에 접근하는 사람</li>
+<li>&#xC545;&#xC131; URL&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xC0AC;&#xB78C;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>RiskIQ에서 DOM(Document Object Model)과 상호 작용하여 HTML form data를 동적으로 생성하는 피싱 키트인 LogoKit을 발견했습니다.</p>
-<p>LogoKit은 복잡한 레이아웃과 다양한 파일을 활용하는 다른 피싱 키트와 달리 embeddable한 자바스크립트 함수를 모아뒀으며 DOM과의 상호 작용을 통해 사용자 상호 작용 없이 페이지 내의 콘텐츠와 HTML form data를 동적으로 변경할 수 있습니다.</p>
-<p>LogoKit은 피해자의 이메일이 포함된 URL(<code>phishingpage[.]site/login.html#victim@company.com</code>)을 이메일로 전송합니다. URL에 포함된 이메일은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Location/hash">location hash</a>로 사용자/회사 도메인으로 나뉘어 저장되며 회사 도메인 로고를 가져옵니다. 또한 <code>username</code> 필드에 이메일을 자동으로 채워 피해자가 비밀번호를 입력하도록 유도합니다. 피해자가 비밀번호를 입력하면 이메일이 유효한 지 확인하기 위해서 첫 번째 입력은 암호가 틀렸으니 다시 입력하라는 메시지를 표시하고 두 번째 입력에서 이메일과 암호를 외부로 전송한 후 회사 사이트로 리다이렉션 합니다.</p>
-<p>Logokit는 규모가 작고 회사 로그인 포털을 모방하는 식의 간단한 방법을 통해 구축이 가능하며, Firebase, Github, Oracle Cloud 등 신뢰할 수 있는 공개 서비스에 Javascript를 호스팅 할 수 있으므로 매우 위협적입니다. 또한 타깃 당 단일 URL을 갖고 회사 로고를 사용하므로 쉽게 위협에 노출될 수 있으므로 많은 주의가 필요합니다.</p>
-<p>LogoKit 피싱 링크의 예시 : <code>hxxps://324634XXXa2616-dot-XXXX-301XX4.df.r.appspot.com/#recruitmentXXX@XXX.com</code></p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>RiskIQ&#xC5D0;&#xC11C; DOM(Document Object Model)&#xACFC; &#xC0C1;&#xD638; &#xC791;&#xC6A9;&#xD558;&#xC5EC; HTML form data&#xB97C; &#xB3D9;&#xC801;&#xC73C;&#xB85C; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xD53C;&#xC2F1; &#xD0A4;&#xD2B8;&#xC778; LogoKit&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>LogoKit&#xC740; &#xBCF5;&#xC7A1;&#xD55C; &#xB808;&#xC774;&#xC544;&#xC6C3;&#xACFC; &#xB2E4;&#xC591;&#xD55C; &#xD30C;&#xC77C;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xB294; &#xB2E4;&#xB978; &#xD53C;&#xC2F1; &#xD0A4;&#xD2B8;&#xC640; &#xB2EC;&#xB9AC; embeddable&#xD55C; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xD568;&#xC218;&#xB97C; &#xBAA8;&#xC544;&#xB480;&#xC73C;&#xBA70; DOM&#xACFC;&#xC758; &#xC0C1;&#xD638; &#xC791;&#xC6A9;&#xC744; &#xD1B5;&#xD574; &#xC0AC;&#xC6A9;&#xC790; &#xC0C1;&#xD638; &#xC791;&#xC6A9; &#xC5C6;&#xC774; &#xD398;&#xC774;&#xC9C0; &#xB0B4;&#xC758; &#xCF58;&#xD150;&#xCE20;&#xC640; HTML form data&#xB97C; &#xB3D9;&#xC801;&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>LogoKit&#xC740; &#xD53C;&#xD574;&#xC790;&#xC758; &#xC774;&#xBA54;&#xC77C;&#xC774; &#xD3EC;&#xD568;&#xB41C; URL(<code>phishingpage[.]site/login.html#victim@company.com</code>)&#xC744; &#xC774;&#xBA54;&#xC77C;&#xB85C; &#xC804;&#xC1A1;&#xD569;&#xB2C8;&#xB2E4;. URL&#xC5D0; &#xD3EC;&#xD568;&#xB41C; &#xC774;&#xBA54;&#xC77C;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.mozilla.org/en-US/docs/Web/API/Location/hash">location hash</a>&#xB85C; &#xC0AC;&#xC6A9;&#xC790;/&#xD68C;&#xC0AC; &#xB3C4;&#xBA54;&#xC778;&#xC73C;&#xB85C; &#xB098;&#xB258;&#xC5B4; &#xC800;&#xC7A5;&#xB418;&#xBA70; &#xD68C;&#xC0AC; &#xB3C4;&#xBA54;&#xC778; &#xB85C;&#xACE0;&#xB97C; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; <code>username</code> &#xD544;&#xB4DC;&#xC5D0; &#xC774;&#xBA54;&#xC77C;&#xC744; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xCC44;&#xC6CC; &#xD53C;&#xD574;&#xC790;&#xAC00; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC785;&#xB825;&#xD558;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD569;&#xB2C8;&#xB2E4;. &#xD53C;&#xD574;&#xC790;&#xAC00; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC785;&#xB825;&#xD558;&#xBA74; &#xC774;&#xBA54;&#xC77C;&#xC774; &#xC720;&#xD6A8;&#xD55C; &#xC9C0; &#xD655;&#xC778;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xCCAB; &#xBC88;&#xC9F8; &#xC785;&#xB825;&#xC740; &#xC554;&#xD638;&#xAC00; &#xD2C0;&#xB838;&#xC73C;&#xB2C8; &#xB2E4;&#xC2DC; &#xC785;&#xB825;&#xD558;&#xB77C;&#xB294; &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xD45C;&#xC2DC;&#xD558;&#xACE0; &#xB450; &#xBC88;&#xC9F8; &#xC785;&#xB825;&#xC5D0;&#xC11C; &#xC774;&#xBA54;&#xC77C;&#xACFC; &#xC554;&#xD638;&#xB97C; &#xC678;&#xBD80;&#xB85C; &#xC804;&#xC1A1;&#xD55C; &#xD6C4; &#xD68C;&#xC0AC; &#xC0AC;&#xC774;&#xD2B8;&#xB85C; &#xB9AC;&#xB2E4;&#xC774;&#xB809;&#xC158; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Logokit&#xB294; &#xADDC;&#xBAA8;&#xAC00; &#xC791;&#xACE0; &#xD68C;&#xC0AC; &#xB85C;&#xADF8;&#xC778; &#xD3EC;&#xD138;&#xC744; &#xBAA8;&#xBC29;&#xD558;&#xB294; &#xC2DD;&#xC758; &#xAC04;&#xB2E8;&#xD55C; &#xBC29;&#xBC95;&#xC744; &#xD1B5;&#xD574; &#xAD6C;&#xCD95;&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xBA70;, Firebase, Github, Oracle Cloud &#xB4F1; &#xC2E0;&#xB8B0;&#xD560; &#xC218; &#xC788;&#xB294; &#xACF5;&#xAC1C; &#xC11C;&#xBE44;&#xC2A4;&#xC5D0; Javascript&#xB97C; &#xD638;&#xC2A4;&#xD305; &#xD560; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xB9E4;&#xC6B0; &#xC704;&#xD611;&#xC801;&#xC785;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xD0C0;&#xAE43; &#xB2F9; &#xB2E8;&#xC77C; URL&#xC744; &#xAC16;&#xACE0; &#xD68C;&#xC0AC; &#xB85C;&#xACE0;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBBC0;&#xB85C; &#xC27D;&#xAC8C; &#xC704;&#xD611;&#xC5D0; &#xB178;&#xCD9C;&#xB420; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xB9CE;&#xC740; &#xC8FC;&#xC758;&#xAC00; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>LogoKit &#xD53C;&#xC2F1; &#xB9C1;&#xD06C;&#xC758; &#xC608;&#xC2DC; : <code>hxxps://324634XXXa2616-dot-XXXX-301XX4.df.r.appspot.com/#recruitmentXXX@XXX.com</code></p>
 
             </div>
             <hr>
@@ -551,6 +551,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

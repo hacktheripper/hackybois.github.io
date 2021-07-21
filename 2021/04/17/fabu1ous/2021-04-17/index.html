@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      146 자
+      258 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -242,7 +242,7 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://packetstormsecurity.com/files/162190/SA-20210414-0.txt">CVE-2021-28459</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Microsoft Azure DevOps Server 2020.0.1</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Azure DevOps Server는 팀 단위의 소프트워어 개발 협업 툴입니다. 프로젝트 파일 업로드 권한을 갖는 해커는 프로젝트의 Collection Setting에 접근해 Reflected XSS 공격을 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Azure DevOps Server&#xB294; &#xD300; &#xB2E8;&#xC704;&#xC758; &#xC18C;&#xD504;&#xD2B8;&#xC6CC;&#xC5B4; &#xAC1C;&#xBC1C; &#xD611;&#xC5C5; &#xD234;&#xC785;&#xB2C8;&#xB2E4;. &#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC; &#xAD8C;&#xD55C;&#xC744; &#xAC16;&#xB294; &#xD574;&#xCEE4;&#xB294; &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xC758; Collection Setting&#xC5D0; &#xC811;&#xADFC;&#xD574; Reflected XSS &#xACF5;&#xACA9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ProcessTemplate</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">metadata</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>XSS here: <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">x</span> <span class="hljs-attr">onerror</span>=<span class="hljs-string">alert(document.URL)</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span>
@@ -250,8 +250,8 @@
     <span class="hljs-tag">&lt;<span class="hljs-name">version</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;aa12a345-00a0-1f11-ba00-b12345b12345&quot;</span> <span class="hljs-attr">major</span>=<span class="hljs-string">&quot;1&quot;</span> <span class="hljs-attr">minor</span>=<span class="hljs-string">&quot;0&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span></code></pre>
 
-<p>프로젝트 파일을 업로드할 권한이 있는 인증된 사용자는 Collection Setting &gt; Process에 <code>.zip</code>파일 형태로 프로세스 탬플릿을 업로드할 수 있습니다. 탬플릿 구조에 따르면 <code>ProcessTemplate.xml</code> 파일은 <code>&lt;name&gt;</code>을 포함해야 하는데 XSS 취약점이 있어 악용할 수 있습니다.</p>
-<p>탬플릿 업로드 시 프로세스 템플릿이 변경되었다는 메세지를 띄우며 삽입된 JavaScript가 실행됩니다.</p>
+<p>&#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xAD8C;&#xD55C;&#xC774; &#xC788;&#xB294; &#xC778;&#xC99D;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xB294; Collection Setting &gt; Process&#xC5D0; <code>.zip</code>&#xD30C;&#xC77C; &#xD615;&#xD0DC;&#xB85C; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xD0EC;&#xD50C;&#xB9BF;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD0EC;&#xD50C;&#xB9BF; &#xAD6C;&#xC870;&#xC5D0; &#xB530;&#xB974;&#xBA74; <code>ProcessTemplate.xml</code> &#xD30C;&#xC77C;&#xC740; <code>&lt;name&gt;</code>&#xC744; &#xD3EC;&#xD568;&#xD574;&#xC57C; &#xD558;&#xB294;&#xB370; XSS &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC788;&#xC5B4; &#xC545;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD0EC;&#xD50C;&#xB9BF; &#xC5C5;&#xB85C;&#xB4DC; &#xC2DC; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xD15C;&#xD50C;&#xB9BF;&#xC774; &#xBCC0;&#xACBD;&#xB418;&#xC5C8;&#xB2E4;&#xB294; &#xBA54;&#xC138;&#xC9C0;&#xB97C; &#xB744;&#xC6B0;&#xBA70; &#xC0BD;&#xC785;&#xB41C; JavaScript&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -552,6 +552,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

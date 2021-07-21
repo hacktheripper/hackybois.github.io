@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      182 자
+      311 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -242,7 +242,7 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/5/26/cve-2021-31440-an-incorrect-bounds-calculation-in-the-linux-kernel-ebpf-verifier">CVE-2021-31440: AN INCORRECT BOUNDS CALCULATION IN THE LINUX KERNEL EBPF VERIFIER</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Linux kernel 5.7 ~ Linux kernel 5.11.15</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>eBPF는 런타임 중 안전하게 커널 코드를 삽입하기 위해 Verifier와 BPF instruction을 사용합니다. Verifier는 레지스터의 값의 변화와 그 값들의 허용 범위(이하 range)등을 추적해 memory load와 store의 out-of-bound 여부를 검사합니다. CVE-2021-31440을 악용하면 out-of-bound 검사를 무력화하고 로컬 권한 상승을 노릴 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>eBPF&#xB294; &#xB7F0;&#xD0C0;&#xC784; &#xC911; &#xC548;&#xC804;&#xD558;&#xAC8C; &#xCEE4;&#xB110; &#xCF54;&#xB4DC;&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xAE30; &#xC704;&#xD574; Verifier&#xC640; BPF instruction&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. Verifier&#xB294; &#xB808;&#xC9C0;&#xC2A4;&#xD130;&#xC758; &#xAC12;&#xC758; &#xBCC0;&#xD654;&#xC640; &#xADF8; &#xAC12;&#xB4E4;&#xC758; &#xD5C8;&#xC6A9; &#xBC94;&#xC704;(&#xC774;&#xD558; range)&#xB4F1;&#xC744; &#xCD94;&#xC801;&#xD574; memory load&#xC640; store&#xC758; out-of-bound &#xC5EC;&#xBD80;&#xB97C; &#xAC80;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. CVE-2021-31440&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; out-of-bound &#xAC80;&#xC0AC;&#xB97C; &#xBB34;&#xB825;&#xD654;&#xD558;&#xACE0; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xB178;&#xB9B4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">...
     <span class="hljs-keyword">if</span> (__reg64_bound_u32(reg-&gt;umin_value))     
         reg-&gt;u32_min_value = (u32)reg-&gt;umin_value; 
@@ -250,8 +250,8 @@
         reg-&gt;u32_max_value = (u32)reg-&gt;umax_value;
 ...</code></pre>
 
-<p>위는 취약한 코드 부분의 일부입니다. 기존 eBPF 취약점들과 마찬가지로 CVE-2021-31440 또한 64 bit range의 하위 32 비트로부터 32 bit range를 도출하는 과정에서 버그가 발생합니다. <code>umin_value</code>가 1, <code>umax_value</code> 가 1&lt;&lt;32이라 할 때 <code>u32_min_value</code>는 1, <code>u32_max_value</code>는 0으로 설정되고 실제 runtime range와 다른 값을 Verifier에게 전달하게 됩니다.</p>
-<p>Verifier는 잘못된 레지스터 허용범위를 갖게 되고 이를 통해 해커는 out-of-bound read/write access가 가능해 로컬 권한 상승을 할 수 있습니다.</p>
+<p>&#xC704;&#xB294; &#xCDE8;&#xC57D;&#xD55C; &#xCF54;&#xB4DC; &#xBD80;&#xBD84;&#xC758; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;. &#xAE30;&#xC874; eBPF &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xACFC; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; CVE-2021-31440 &#xB610;&#xD55C; 64 bit range&#xC758; &#xD558;&#xC704; 32 &#xBE44;&#xD2B8;&#xB85C;&#xBD80;&#xD130; 32 bit range&#xB97C; &#xB3C4;&#xCD9C;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>umin_value</code>&#xAC00; 1, <code>umax_value</code> &#xAC00; 1&lt;&lt;32&#xC774;&#xB77C; &#xD560; &#xB54C; <code>u32_min_value</code>&#xB294; 1, <code>u32_max_value</code>&#xB294; 0&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xACE0; &#xC2E4;&#xC81C; runtime range&#xC640; &#xB2E4;&#xB978; &#xAC12;&#xC744; Verifier&#xC5D0;&#xAC8C; &#xC804;&#xB2EC;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>Verifier&#xB294; &#xC798;&#xBABB;&#xB41C; &#xB808;&#xC9C0;&#xC2A4;&#xD130; &#xD5C8;&#xC6A9;&#xBC94;&#xC704;&#xB97C; &#xAC16;&#xAC8C; &#xB418;&#xACE0; &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xCEE4;&#xB294; out-of-bound read/write access&#xAC00; &#xAC00;&#xB2A5;&#xD574; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -269,9 +269,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
@@ -554,6 +554,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

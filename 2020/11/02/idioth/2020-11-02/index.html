@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      130 자
+      229 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -245,18 +245,18 @@
 <li>Windows 10 1903(64-bit)</li>
 <li>Maybe since at least Windows 7</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>윈도우 커널 암호화 드라이버인 cng.sys에서 권한 상승이 가능한 취약점이 발견되었습니다. 해당 취약점은 IOCTL 0x390400 처리 중 <code>cng!CfgAdtpFormatPropertyBlock</code> 함수에서 16-bit integer truncation에 의해 발생했습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC708;&#xB3C4;&#xC6B0; &#xCEE4;&#xB110; &#xC554;&#xD638;&#xD654; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC778; cng.sys&#xC5D0;&#xC11C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; IOCTL 0x390400 &#xCC98;&#xB9AC; &#xC911; <code>cng!CfgAdtpFormatPropertyBlock</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; 16-bit integer truncation&#xC5D0; &#xC758;&#xD574; &#xBC1C;&#xC0DD;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">CONST USHORT DestinationSize = (USHORT)(<span class="hljs-number">6</span> * SourceLength);
 PWCHAR OutputBuffer = BCryptAlloc(DestinationSize);
 
-<span class="hljs-keyword">for</span> (USHORT i = <span class="hljs-number">0</span>; i &lt; SourceLength; i++) &#123;
+<span class="hljs-keyword">for</span> (USHORT i = <span class="hljs-number">0</span>; i &lt; SourceLength; i++) {
 	*OutputBuffer++ = <span class="hljs-string">&quot;0123456789abcdef&quot;</span>[*SourceBuffer &gt;&gt; <span class="hljs-number">4</span>];
 	*OutputBuffer++ = <span class="hljs-string">&quot;0123456789abcdef&quot;</span>[*SourceBuffer &amp; <span class="hljs-number">0xF</span>];
-	*OutputBuffer++ = <span class="hljs-string">&#x27; &#x27;</span>;
+	*OutputBuffer++ = <span class="hljs-string">&apos; &apos;</span>;
 	SourceBuffer++;
-&#125;</code></pre>
+}</code></pre>
 
-<p><code>SourceLength</code>의 값이 <code>0x2AAB</code>보다 크거나 같으면 NonPagedPool에 비정상적으로 작은 버퍼가 할당되고 binary-to-hex 변환 루프에 의해 오버 플로우가 발생합니다. 윈도우 10 1903에서 테스트되었지만 윈도우 7부터 취약점이 존재하는 것으로 예상되며 현재 취약점이 악용되고 있다고 합니다.</p>
+<p><code>SourceLength</code>&#xC758; &#xAC12;&#xC774; <code>0x2AAB</code>&#xBCF4;&#xB2E4; &#xD06C;&#xAC70;&#xB098; &#xAC19;&#xC73C;&#xBA74; NonPagedPool&#xC5D0; &#xBE44;&#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC791;&#xC740; &#xBC84;&#xD37C;&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xACE0; binary-to-hex &#xBCC0;&#xD658; &#xB8E8;&#xD504;&#xC5D0; &#xC758;&#xD574; &#xC624;&#xBC84; &#xD50C;&#xB85C;&#xC6B0;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC708;&#xB3C4;&#xC6B0; 10 1903&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xB418;&#xC5C8;&#xC9C0;&#xB9CC; &#xC708;&#xB3C4;&#xC6B0; 7&#xBD80;&#xD130; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xC608;&#xC0C1;&#xB418;&#xBA70; &#xD604;&#xC7AC; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC545;&#xC6A9;&#xB418;&#xACE0; &#xC788;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -563,6 +563,45 @@ PWCHAR OutputBuffer = BCryptAlloc(DestinationSize);
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

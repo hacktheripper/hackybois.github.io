@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      164 자
+      403 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -244,18 +244,18 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>프로그램에서 LoadLibrary 함수를 통해 DLL 파일을 로드하면 커널에서 등록한 Callback 함수에 의해 이벤트 로그에 해당 DLL이 로드되었다는 내용가 기록됩니다. LoadLibrary 함수를 분석해보면, 해당 이벤트는 내부 구조체들이 링크되는 과정이나 코드가 실행될 때 발생하는 것이 아니라 메모리에 할당하고 이를 셋업하는 과정에서 NtMapViewOfSection 함수에 의해 발생하는 것을 알 수 있습니다. 실제 LoadLibrary 함수를 똑같이 구현하되 NtMapViewOfSection 함수까지의 과정만 구현하고 실행할 경우, DLL이 로드되었다는 이벤트만 발생할 뿐, 실제로 DLL이 로드되지는 않습니다.</p>
-<p>Dylan은 커널의 Callback 함수 호출을 우회하여 이벤트 로그의 발생 없이 DLL을 로드하는 방법과 이를 구현한 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/bats3c/DarkLoadLibrary">DarkLoadLibrary 소스코드</a>를 공개했습니다. 동작 과정은 아래와 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; LoadLibrary &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; DLL &#xD30C;&#xC77C;&#xC744; &#xB85C;&#xB4DC;&#xD558;&#xBA74; &#xCEE4;&#xB110;&#xC5D0;&#xC11C; &#xB4F1;&#xB85D;&#xD55C; Callback &#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xC774;&#xBCA4;&#xD2B8; &#xB85C;&#xADF8;&#xC5D0; &#xD574;&#xB2F9; DLL&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xC5C8;&#xB2E4;&#xB294; &#xB0B4;&#xC6A9;&#xAC00; &#xAE30;&#xB85D;&#xB429;&#xB2C8;&#xB2E4;. LoadLibrary &#xD568;&#xC218;&#xB97C; &#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xBA74;, &#xD574;&#xB2F9; &#xC774;&#xBCA4;&#xD2B8;&#xB294; &#xB0B4;&#xBD80; &#xAD6C;&#xC870;&#xCCB4;&#xB4E4;&#xC774; &#xB9C1;&#xD06C;&#xB418;&#xB294; &#xACFC;&#xC815;&#xC774;&#xB098; &#xCF54;&#xB4DC;&#xAC00; &#xC2E4;&#xD589;&#xB420; &#xB54C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2C8;&#xB77C; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xD560;&#xB2F9;&#xD558;&#xACE0; &#xC774;&#xB97C; &#xC14B;&#xC5C5;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; NtMapViewOfSection &#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC2E4;&#xC81C; LoadLibrary &#xD568;&#xC218;&#xB97C; &#xB611;&#xAC19;&#xC774; &#xAD6C;&#xD604;&#xD558;&#xB418; NtMapViewOfSection &#xD568;&#xC218;&#xAE4C;&#xC9C0;&#xC758; &#xACFC;&#xC815;&#xB9CC; &#xAD6C;&#xD604;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD560; &#xACBD;&#xC6B0;, DLL&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xC5C8;&#xB2E4;&#xB294; &#xC774;&#xBCA4;&#xD2B8;&#xB9CC; &#xBC1C;&#xC0DD;&#xD560; &#xBFD0;, &#xC2E4;&#xC81C;&#xB85C; DLL&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xC9C0;&#xB294; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Dylan&#xC740; &#xCEE4;&#xB110;&#xC758; Callback &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xC5EC; &#xC774;&#xBCA4;&#xD2B8; &#xB85C;&#xADF8;&#xC758; &#xBC1C;&#xC0DD; &#xC5C6;&#xC774; DLL&#xC744; &#xB85C;&#xB4DC;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xACFC; &#xC774;&#xB97C; &#xAD6C;&#xD604;&#xD55C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/bats3c/DarkLoadLibrary">DarkLoadLibrary &#xC18C;&#xC2A4;&#xCF54;&#xB4DC;</a>&#xB97C; &#xACF5;&#xAC1C;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB3D9;&#xC791; &#xACFC;&#xC815;&#xC740; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>정상적인 PE 포맷을 가지고 있는지 확인</li>
-<li>헤더와 섹션 데이터를 메모리에 복사 후 메모리 권한 설정</li>
-<li>(필요하다면) 이미지 베이스 조정</li>
-<li>import table과 delayed import table 세팅</li>
-<li>TLS callback 실행</li>
-<li>exception handler 등록</li>
-<li>DllMain(Entry Point) 호출</li>
+<li>&#xC815;&#xC0C1;&#xC801;&#xC778; PE &#xD3EC;&#xB9F7;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB294;&#xC9C0; &#xD655;&#xC778;</li>
+<li>&#xD5E4;&#xB354;&#xC640; &#xC139;&#xC158; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xBCF5;&#xC0AC; &#xD6C4; &#xBA54;&#xBAA8;&#xB9AC; &#xAD8C;&#xD55C; &#xC124;&#xC815;</li>
+<li>(&#xD544;&#xC694;&#xD558;&#xB2E4;&#xBA74;) &#xC774;&#xBBF8;&#xC9C0; &#xBCA0;&#xC774;&#xC2A4; &#xC870;&#xC815;</li>
+<li>import table&#xACFC; delayed import table &#xC138;&#xD305;</li>
+<li>TLS callback &#xC2E4;&#xD589;</li>
+<li>exception handler &#xB4F1;&#xB85D;</li>
+<li>DllMain(Entry Point) &#xD638;&#xCD9C;</li>
 </ol>
-<p>Dylan은 이 기법을 통해 악성코드가 어떤 DLL을 로드했는지에 대한 로그를 숨길 수 있고 이 기법이 Reflective DLL Injection을 대체할 것으로 예상하고 있다고 밝혔습니다.</p>
+<p>Dylan&#xC740; &#xC774; &#xAE30;&#xBC95;&#xC744; &#xD1B5;&#xD574; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xAC00; &#xC5B4;&#xB5A4; DLL&#xC744; &#xB85C;&#xB4DC;&#xD588;&#xB294;&#xC9C0;&#xC5D0; &#xB300;&#xD55C; &#xB85C;&#xADF8;&#xB97C; &#xC228;&#xAE38; &#xC218; &#xC788;&#xACE0; &#xC774; &#xAE30;&#xBC95;&#xC774; Reflective DLL Injection&#xC744; &#xB300;&#xCCB4;&#xD560; &#xAC83;&#xC73C;&#xB85C; &#xC608;&#xC0C1;&#xD558;&#xACE0; &#xC788;&#xB2E4;&#xACE0; &#xBC1D;&#xD614;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -562,6 +562,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

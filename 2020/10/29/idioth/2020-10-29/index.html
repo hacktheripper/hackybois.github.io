@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      132 자
+      282 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -244,9 +244,9 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>해당 취약점은 그룹 정책 업데이트 실행 중에 수행되는  <code>SetSecurityFile</code>을 악용하는 취약점입니다.</p>
-<p><code>gpupdate /target:user /force</code> 실행 시 <code>SetSecurityFile</code>는 impersonation 없이 수행됩니다. 그룹 정책 업데이트가 실행된 후 <code>%programdata%\Microsoft\GroupPolicy\Users\&lt;SID&gt;</code>의 소유자는 Administrators가 되고 User 그룹은 읽기 및 실행 권한만 갖게 됩니다. 하지만 하위 디렉터리인 <code>\Datastore\0\sysvol</code>의 소유자는 User가 됩니다. 따라서 권한이 낮더라도 해당 폴더의 권한을 수정할 수 있습니다.</p>
-<p><code>sysvol</code> 디렉터리 아래에 권한을 수정할 디렉터리의 Junction을 생성한 후 그룹 정책 업데이트를 실행합니다. 해당 폴더와 폴더 내의 파일들은 모두 DACL Write의 대상이 되며  DACL Write 중 에러가 발생하면 수정한 권한이 부여됩니다. 에러가 발생하게 하는 방법 중 하나는 DACL Write가 완료되기 전에 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/fileio/opportunistic-locks">oplock</a>을 사용하여 juction을 삭제하는 것입니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xADF8;&#xB8F9; &#xC815;&#xCC45; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xC2E4;&#xD589; &#xC911;&#xC5D0; &#xC218;&#xD589;&#xB418;&#xB294;  <code>SetSecurityFile</code>&#xC744; &#xC545;&#xC6A9;&#xD558;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p><code>gpupdate /target:user /force</code> &#xC2E4;&#xD589; &#xC2DC; <code>SetSecurityFile</code>&#xB294; impersonation &#xC5C6;&#xC774; &#xC218;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB8F9; &#xC815;&#xCC45; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xAC00; &#xC2E4;&#xD589;&#xB41C; &#xD6C4; <code>%programdata%\Microsoft\GroupPolicy\Users\&lt;SID&gt;</code>&#xC758; &#xC18C;&#xC720;&#xC790;&#xB294; Administrators&#xAC00; &#xB418;&#xACE0; User &#xADF8;&#xB8F9;&#xC740; &#xC77D;&#xAE30; &#xBC0F; &#xC2E4;&#xD589; &#xAD8C;&#xD55C;&#xB9CC; &#xAC16;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xD558;&#xC704; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC778; <code>\Datastore\0\sysvol</code>&#xC758; &#xC18C;&#xC720;&#xC790;&#xB294; User&#xAC00; &#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xAD8C;&#xD55C;&#xC774; &#xB0AE;&#xB354;&#xB77C;&#xB3C4; &#xD574;&#xB2F9; &#xD3F4;&#xB354;&#xC758; &#xAD8C;&#xD55C;&#xC744; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>sysvol</code> &#xB514;&#xB809;&#xD130;&#xB9AC; &#xC544;&#xB798;&#xC5D0; &#xAD8C;&#xD55C;&#xC744; &#xC218;&#xC815;&#xD560; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC758; Junction&#xC744; &#xC0DD;&#xC131;&#xD55C; &#xD6C4; &#xADF8;&#xB8F9; &#xC815;&#xCC45; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD3F4;&#xB354;&#xC640; &#xD3F4;&#xB354; &#xB0B4;&#xC758; &#xD30C;&#xC77C;&#xB4E4;&#xC740; &#xBAA8;&#xB450; DACL Write&#xC758; &#xB300;&#xC0C1;&#xC774; &#xB418;&#xBA70;  DACL Write &#xC911; &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xBA74; &#xC218;&#xC815;&#xD55C; &#xAD8C;&#xD55C;&#xC774; &#xBD80;&#xC5EC;&#xB429;&#xB2C8;&#xB2E4;. &#xC5D0;&#xB7EC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xAC8C; &#xD558;&#xB294; &#xBC29;&#xBC95; &#xC911; &#xD558;&#xB098;&#xB294; DACL Write&#xAC00; &#xC644;&#xB8CC;&#xB418;&#xAE30; &#xC804;&#xC5D0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/fileio/opportunistic-locks">oplock</a>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; juction&#xC744; &#xC0AD;&#xC81C;&#xD558;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -551,6 +551,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

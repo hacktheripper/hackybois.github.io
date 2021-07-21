@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      232 자
+      431 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -249,19 +249,19 @@
 </ul>
 </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Node.js에서 OOB(Out of Bounds) Read를 통해 Denial of Service를 트리거할 수 있는 취약점이 발견되었습니다. 해당 취약점은 많은 양의 DNS record를 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/nodejs/node/blob/642174a31f7c2d3a8352002095d35a2b34c1126c/src/cares_wrap.cc">c-ares 라이브러리</a>에서 TTL record를 parsing 할 때 배열 길이의 계산을 잘못하면서 일어나는 취약점입니다.</p>
-<p>c-ares 라이브러리의 <code>ares_parse_aaaa_reply</code> 함수는 response를 포함하는 <code>char* abuffer</code>, response의 길이인 <code>alen</code>, DNS response가 반환될 구조체 포인터 <code>host</code>, TTL 배열인 <code>addrttls / naddrttls</code>를 인자로 갖습니다. <code>addrttls</code>는 반환된 TTL의 주소로 채워지는 배열이고, <code>naddrttls</code>는 반환할 TTL의 최대 값입니다. response의 reply 개수가 <code>addrttls</code> 배열보다 클 경우  <code>naddrttls</code>에서 확인 후 256개의 TTL만 처리되고 나머지 부분은 잘리게 됩니다. 하지만 취약점은 TTL의 개수에 대한 잘못된 처리가 아니라 response의 reply 개수를 잘못 계산하는 것에서 일어납니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Node.js&#xC5D0;&#xC11C; OOB(Out of Bounds) Read&#xB97C; &#xD1B5;&#xD574; Denial of Service&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB9CE;&#xC740; &#xC591;&#xC758; DNS record&#xB97C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/nodejs/node/blob/642174a31f7c2d3a8352002095d35a2b34c1126c/src/cares_wrap.cc">c-ares &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;</a>&#xC5D0;&#xC11C; TTL record&#xB97C; parsing &#xD560; &#xB54C; &#xBC30;&#xC5F4; &#xAE38;&#xC774;&#xC758; &#xACC4;&#xC0B0;&#xC744; &#xC798;&#xBABB;&#xD558;&#xBA74;&#xC11C; &#xC77C;&#xC5B4;&#xB098;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>c-ares &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC758; <code>ares_parse_aaaa_reply</code> &#xD568;&#xC218;&#xB294; response&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xB294; <code>char* abuffer</code>, response&#xC758; &#xAE38;&#xC774;&#xC778; <code>alen</code>, DNS response&#xAC00; &#xBC18;&#xD658;&#xB420; &#xAD6C;&#xC870;&#xCCB4; &#xD3EC;&#xC778;&#xD130; <code>host</code>, TTL &#xBC30;&#xC5F4;&#xC778; <code>addrttls / naddrttls</code>&#xB97C; &#xC778;&#xC790;&#xB85C; &#xAC16;&#xC2B5;&#xB2C8;&#xB2E4;. <code>addrttls</code>&#xB294; &#xBC18;&#xD658;&#xB41C; TTL&#xC758; &#xC8FC;&#xC18C;&#xB85C; &#xCC44;&#xC6CC;&#xC9C0;&#xB294; &#xBC30;&#xC5F4;&#xC774;&#xACE0;, <code>naddrttls</code>&#xB294; &#xBC18;&#xD658;&#xD560; TTL&#xC758; &#xCD5C;&#xB300; &#xAC12;&#xC785;&#xB2C8;&#xB2E4;. response&#xC758; reply &#xAC1C;&#xC218;&#xAC00; <code>addrttls</code> &#xBC30;&#xC5F4;&#xBCF4;&#xB2E4; &#xD074; &#xACBD;&#xC6B0;  <code>naddrttls</code>&#xC5D0;&#xC11C; &#xD655;&#xC778; &#xD6C4; 256&#xAC1C;&#xC758; TTL&#xB9CC; &#xCC98;&#xB9AC;&#xB418;&#xACE0; &#xB098;&#xBA38;&#xC9C0; &#xBD80;&#xBD84;&#xC740; &#xC798;&#xB9AC;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xCDE8;&#xC57D;&#xC810;&#xC740; TTL&#xC758; &#xAC1C;&#xC218;&#xC5D0; &#xB300;&#xD55C; &#xC798;&#xBABB;&#xB41C; &#xCC98;&#xB9AC;&#xAC00; &#xC544;&#xB2C8;&#xB77C; response&#xC758; reply &#xAC1C;&#xC218;&#xB97C; &#xC798;&#xBABB; &#xACC4;&#xC0B0;&#xD558;&#xB294; &#xAC83;&#xC5D0;&#xC11C; &#xC77C;&#xC5B4;&#xB0A9;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>reply의 개수를 새서 <code>naddrs</code>에 저장</li>
-<li>TTL 배열 작성(<code>naddrttls</code>에 의해 잘린 <code>addrttls</code>)</li>
-<li><code>naddrttls</code> 재작성 - 실제 TTL 배열에 작성된 값보다 큰 지 확인하지 않고 <code>naddrs</code>를 집어넣음</li>
+<li>reply&#xC758; &#xAC1C;&#xC218;&#xB97C; &#xC0C8;&#xC11C; <code>naddrs</code>&#xC5D0; &#xC800;&#xC7A5;</li>
+<li>TTL &#xBC30;&#xC5F4; &#xC791;&#xC131;(<code>naddrttls</code>&#xC5D0; &#xC758;&#xD574; &#xC798;&#xB9B0; <code>addrttls</code>)</li>
+<li><code>naddrttls</code> &#xC7AC;&#xC791;&#xC131; - &#xC2E4;&#xC81C; TTL &#xBC30;&#xC5F4;&#xC5D0; &#xC791;&#xC131;&#xB41C; &#xAC12;&#xBCF4;&#xB2E4; &#xD070; &#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xACE0; <code>naddrs</code>&#xB97C; &#xC9D1;&#xC5B4;&#xB123;&#xC74C;</li>
 </ol>
-<p>따라서 반환된 <code>naddrttls</code>가 작성된 reply의 TTL 개수보다 커지므로 OOB read가 가능하고 이를 악용하여 Denial of Service 공격을 트리거할 수 있습니다.</p>
-<p>해당 취약점은 <code>naddrttls</code>에 <code>naddrs</code> 값을 넣을 때 <code>naddrs</code>의 값이 <code>naddrttls</code>보다 클 경우 <code>naddrttls</code> 값을 넣는 것으로 패치되었습니다.</p>
+<p>&#xB530;&#xB77C;&#xC11C; &#xBC18;&#xD658;&#xB41C; <code>naddrttls</code>&#xAC00; &#xC791;&#xC131;&#xB41C; reply&#xC758; TTL &#xAC1C;&#xC218;&#xBCF4;&#xB2E4; &#xCEE4;&#xC9C0;&#xBBC0;&#xB85C; OOB read&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xACE0; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD558;&#xC5EC; Denial of Service &#xACF5;&#xACA9;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>naddrttls</code>&#xC5D0; <code>naddrs</code> &#xAC12;&#xC744; &#xB123;&#xC744; &#xB54C; <code>naddrs</code>&#xC758; &#xAC12;&#xC774; <code>naddrttls</code>&#xBCF4;&#xB2E4; &#xD074; &#xACBD;&#xC6B0; <code>naddrttls</code> &#xAC12;&#xC744; &#xB123;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">if</span>(naddrttls)
-&#123;
+{
 	*naddrttls = (naddrs &gt; *naddrsttls) ? *naddrttls:naddrs;
-&#125;</code></pre>
+}</code></pre>
 
 
             </div>
@@ -565,6 +565,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      371 자
+      636 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      12
        분
     </span>
   
@@ -249,39 +249,39 @@
 </ul>
 </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>VMware ESXi에서 pre-authentication remote code execution 취약점이 발견되었습니다. 해당 취약점은 Service Location Protocol(SLP) 서비스에서 발생합니다.</p>
-<p>Service Location Protocol(SLP)는 VMware ESXi 기본 설치 시 TCP와 UDP의 427 포트를 리스닝하는 네트워크 서비스입니다. VMware는 OpenSLP 1.0.1을 기반으로 기능을 추가하여 서비스를 구현하였습니다. 이 서비스는 인증 없이 네트워크 input을 구문 분석하고 root 권한으로 실행하므로 ESXi SLP 서비스의 취약점을 통해 pre-auth remote code execution이 가능합니다.</p>
-<p>VMware의 SLP 코드의 일부분은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>VMware ESXi&#xC5D0;&#xC11C; pre-authentication remote code execution &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; Service Location Protocol(SLP) &#xC11C;&#xBE44;&#xC2A4;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Service Location Protocol(SLP)&#xB294; VMware ESXi &#xAE30;&#xBCF8; &#xC124;&#xCE58; &#xC2DC; TCP&#xC640; UDP&#xC758; 427 &#xD3EC;&#xD2B8;&#xB97C; &#xB9AC;&#xC2A4;&#xB2DD;&#xD558;&#xB294; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC11C;&#xBE44;&#xC2A4;&#xC785;&#xB2C8;&#xB2E4;. VMware&#xB294; OpenSLP 1.0.1&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xAE30;&#xB2A5;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xAD6C;&#xD604;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xC11C;&#xBE44;&#xC2A4;&#xB294; &#xC778;&#xC99D; &#xC5C6;&#xC774; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; input&#xC744; &#xAD6C;&#xBB38; &#xBD84;&#xC11D;&#xD558;&#xACE0; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xD558;&#xBBC0;&#xB85C; ESXi SLP &#xC11C;&#xBE44;&#xC2A4;&#xC758; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD574; pre-auth remote code execution&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>VMware&#xC758; SLP &#xCF54;&#xB4DC;&#xC758; &#xC77C;&#xBD80;&#xBD84;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-function">__int64 __fastcall <span class="hljs-title">SLPParseSrvUrl</span><span class="hljs-params">(<span class="hljs-keyword">int</span> srvurllen, <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *srvurl, _QWORD *a3)</span></span>
-<span class="hljs-function"></span>&#123;
+<span class="hljs-function"></span>{
 <span class="hljs-comment">// ...</span>
   obuf = <span class="hljs-built_in">calloc</span>(<span class="hljs-number">1u</span>LL, srvurllen + <span class="hljs-number">53L</span>L);
   <span class="hljs-keyword">if</span> ( !obuf )
     <span class="hljs-keyword">return</span> <span class="hljs-number">12L</span>L;
   v6 = <span class="hljs-built_in">strstr</span>(srvurl, <span class="hljs-string">&quot;:/&quot;</span>);        <span class="hljs-comment">// &lt;-- out-of-bounds string search</span>
   <span class="hljs-keyword">if</span> ( !v6 )
-  &#123;
+  {
     <span class="hljs-built_in">free</span>(obuf);
     <span class="hljs-keyword">return</span> <span class="hljs-number">22L</span>L;
-  &#125;
+  }
   <span class="hljs-built_in">memcpy</span>((<span class="hljs-keyword">char</span> *)obuf + <span class="hljs-number">41</span>, srvurl, v6 - srvurl);  <span class="hljs-comment">// &lt;-- heap overflow</span>
 <span class="hljs-comment">// ...</span>
-&#125;</code></pre>
+}</code></pre>
 
-<p><code>srvurl</code>은 네트워크 input을 통해 받는 값이지만 함수에서 <code>strstr()</code>을 사용하기 전에 <code>srvurl</code>의 끝에 NULL 바이트를 추가하지 않습니다. 따라서 범위 밖의 문자열을 검사하여 <code>memcpy</code> 부분에서 heap overflow가 발생합니다.</p>
-<p>SLP를 통해 Remote Code Execution을 하기 위해 SLP에서 송수신에 사용되는 <code>struct SLPBuffer</code>의 구조는 다음과 같습니다.</p>
+<p><code>srvurl</code>&#xC740; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; input&#xC744; &#xD1B5;&#xD574; &#xBC1B;&#xB294; &#xAC12;&#xC774;&#xC9C0;&#xB9CC; &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>strstr()</code>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC804;&#xC5D0; <code>srvurl</code>&#xC758; &#xB05D;&#xC5D0; NULL &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xBC94;&#xC704; &#xBC16;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xC5EC; <code>memcpy</code> &#xBD80;&#xBD84;&#xC5D0;&#xC11C; heap overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>SLP&#xB97C; &#xD1B5;&#xD574; Remote Code Execution&#xC744; &#xD558;&#xAE30; &#xC704;&#xD574; SLP&#xC5D0;&#xC11C; &#xC1A1;&#xC218;&#xC2E0;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>struct SLPBuffer</code>&#xC758; &#xAD6C;&#xC870;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs arduino"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">SLPBuffer</span></span>
-<span class="hljs-class">&#123;</span>
+<span class="hljs-class">{</span>
     SLPListItem listitem;
     <span class="hljs-keyword">size_t</span>  allocated;
     <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>*   start;
     <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>*   curpos;
     <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span>*   <span class="hljs-built_in">end</span>;
     <span class="hljs-comment">// buffer data is appended</span>
-&#125;*SLPBuffer;
+}*SLPBuffer;
 
 <span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">SLPDSocket</span></span>
-<span class="hljs-class">&#123;</span>
+<span class="hljs-class">{</span>
     SLPListItem         listitem;
     <span class="hljs-keyword">int</span>                 fd;
     <span class="hljs-keyword">time_t</span>              age;
@@ -290,15 +290,15 @@
     SLPBuffer           recvbuf; <span class="hljs-comment">/* Incoming socket stuff */</span>
     SLPBuffer           sendbuf;
 <span class="hljs-comment">// ...</span>
-&#125;SLPDSocket;</code></pre>
+}SLPDSocket;</code></pre>
 
-<p>VMware의 SLP 코드를 통해 Remote Code execution을 트리거하는 과정은 다음과 같습니다.</p>
+<p>VMware&#xC758; SLP &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; Remote Code execution&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>connection-&gt;state</code>를 <code>STREAM_WRITE_FIRST</code>로 덮어씁니다. 메모리를 leak 하기 위해 <code>sendbuf-&gt;curpos</code>를 <code>sendbuf-&gt;start</code>로 리셋시켜야 합니다.</li>
-<li><code>sendbuf-&gt;start</code>의 일부분을 2개의 널 바이트로 덮어씁니다. 연결 후 수신을 기다리면, <code>sendbuf</code>의 주소를 포함한 메모리를 leak 할 수 있습니다.</li>
-<li><code>mmap()</code>으로 할당된 <code>recvbuf</code>를 leak 하기 위해 새로운 연결을 하고 <code>sendbuf-&gt;curpos</code>를 덮어씁니다. mmap 된 주소를 통해 libc base 주소를 얻을 수 있습니다.</li>
-<li><code>free_hook</code>의 주소를 설정하기 위해 새로운 연결에서 <code>recvbuf-&gt;curpos</code>를 덮어씁니다. 연결 후 전송이 시작되면 <code>free_hook</code>을 덮어쓸 수 있습니다.</li>
-<li>접속을 종료하면 <code>free_hook</code>이 호출되어 ROP 체인이 시작됩니다.</li>
+<li><code>connection-&gt;state</code>&#xB97C; <code>STREAM_WRITE_FIRST</code>&#xB85C; &#xB36E;&#xC5B4;&#xC501;&#xB2C8;&#xB2E4;. &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; leak &#xD558;&#xAE30; &#xC704;&#xD574; <code>sendbuf-&gt;curpos</code>&#xB97C; <code>sendbuf-&gt;start</code>&#xB85C; &#xB9AC;&#xC14B;&#xC2DC;&#xCF1C;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>sendbuf-&gt;start</code>&#xC758; &#xC77C;&#xBD80;&#xBD84;&#xC744; 2&#xAC1C;&#xC758; &#xB110; &#xBC14;&#xC774;&#xD2B8;&#xB85C; &#xB36E;&#xC5B4;&#xC501;&#xB2C8;&#xB2E4;. &#xC5F0;&#xACB0; &#xD6C4; &#xC218;&#xC2E0;&#xC744; &#xAE30;&#xB2E4;&#xB9AC;&#xBA74;, <code>sendbuf</code>&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xD3EC;&#xD568;&#xD55C; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; leak &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li><code>mmap()</code>&#xC73C;&#xB85C; &#xD560;&#xB2F9;&#xB41C; <code>recvbuf</code>&#xB97C; leak &#xD558;&#xAE30; &#xC704;&#xD574; &#xC0C8;&#xB85C;&#xC6B4; &#xC5F0;&#xACB0;&#xC744; &#xD558;&#xACE0; <code>sendbuf-&gt;curpos</code>&#xB97C; &#xB36E;&#xC5B4;&#xC501;&#xB2C8;&#xB2E4;. mmap &#xB41C; &#xC8FC;&#xC18C;&#xB97C; &#xD1B5;&#xD574; libc base &#xC8FC;&#xC18C;&#xB97C; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li><code>free_hook</code>&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xC124;&#xC815;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0C8;&#xB85C;&#xC6B4; &#xC5F0;&#xACB0;&#xC5D0;&#xC11C; <code>recvbuf-&gt;curpos</code>&#xB97C; &#xB36E;&#xC5B4;&#xC501;&#xB2C8;&#xB2E4;. &#xC5F0;&#xACB0; &#xD6C4; &#xC804;&#xC1A1;&#xC774; &#xC2DC;&#xC791;&#xB418;&#xBA74; <code>free_hook</code>&#xC744; &#xB36E;&#xC5B4;&#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xC811;&#xC18D;&#xC744; &#xC885;&#xB8CC;&#xD558;&#xBA74; <code>free_hook</code>&#xC774; &#xD638;&#xCD9C;&#xB418;&#xC5B4; ROP &#xCCB4;&#xC778;&#xC774; &#xC2DC;&#xC791;&#xB429;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -602,6 +602,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

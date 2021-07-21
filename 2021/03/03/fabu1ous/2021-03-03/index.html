@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      152 자
+      306 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -242,16 +242,16 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.vonahi.io/srclient-dll-hijacking/">SrClient DLL Hijacking</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Windows Server 2012</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows Server 2012 R2를 제외한 모든 Windows Server 2012에서 악용할 수 있는 DLL hijacking을 통한 권한 상승 취약점이 발견되었습니다. Windows Module Installer Service의 <code>TiWork.exe</code>가 Windows search order에 의거하여 존재하지 않는 리소스(<code>SrClient.dll</code>)의 로드를 시도합니다. <code>TiWork.exe</code>는 NT AUTHORITY\SYSTEM 권한으로 실행되기 때문에 <code>SrClient.dll</code>을 hijacking 하는 것으로 권한 상승을 할 수 있습니다.</p>
-<p>프로세스가 로드하고자 하는 DLL의 절대 주소 혹은 정확한 주소를 지정하지 않으면 Windows는 DLL search order에 따라 해당 DLL 위치를 검색합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows Server 2012 R2&#xB97C; &#xC81C;&#xC678;&#xD55C; &#xBAA8;&#xB4E0; Windows Server 2012&#xC5D0;&#xC11C; &#xC545;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; DLL hijacking&#xC744; &#xD1B5;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Windows Module Installer Service&#xC758; <code>TiWork.exe</code>&#xAC00; Windows search order&#xC5D0; &#xC758;&#xAC70;&#xD558;&#xC5EC; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xB9AC;&#xC18C;&#xC2A4;(<code>SrClient.dll</code>)&#xC758; &#xB85C;&#xB4DC;&#xB97C; &#xC2DC;&#xB3C4;&#xD569;&#xB2C8;&#xB2E4;. <code>TiWork.exe</code>&#xB294; NT AUTHORITY\SYSTEM &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; <code>SrClient.dll</code>&#xC744; hijacking &#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xB85C;&#xB4DC;&#xD558;&#xACE0;&#xC790; &#xD558;&#xB294; DLL&#xC758; &#xC808;&#xB300; &#xC8FC;&#xC18C; &#xD639;&#xC740; &#xC815;&#xD655;&#xD55C; &#xC8FC;&#xC18C;&#xB97C; &#xC9C0;&#xC815;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; Windows&#xB294; DLL search order&#xC5D0; &#xB530;&#xB77C; &#xD574;&#xB2F9; DLL &#xC704;&#xCE58;&#xB97C; &#xAC80;&#xC0C9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>프로세스가 지정한 주소</li>
-<li>System 디렉터리 (<code>system32</code>, <code>systemWOW64</code>)</li>
-<li>Windows 디렉터리 (<code>C:\Windows\</code>)</li>
-<li>현재 디렉터리</li>
-<li><code>%PATH%</code>환경 변수에 등록된 디렉터리</li>
+<li>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC9C0;&#xC815;&#xD55C; &#xC8FC;&#xC18C;</li>
+<li>System &#xB514;&#xB809;&#xD130;&#xB9AC; (<code>system32</code>, <code>systemWOW64</code>)</li>
+<li>Windows &#xB514;&#xB809;&#xD130;&#xB9AC; (<code>C:\Windows\</code>)</li>
+<li>&#xD604;&#xC7AC; &#xB514;&#xB809;&#xD130;&#xB9AC;</li>
+<li><code>%PATH%</code>&#xD658;&#xACBD; &#xBCC0;&#xC218;&#xC5D0; &#xB4F1;&#xB85D;&#xB41C; &#xB514;&#xB809;&#xD130;&#xB9AC;</li>
 </ol>
-<p>Third-party App에 의해 부적절한 접근 권한이 설정된 디렉터리가 <code>%PATH%</code> 환경 변수 값으로 등록되어 있다면 <code>SrClient.dll</code>를 hijacking 할 수 있습니다. Windows의 업데이트 체크를 통해  <code>TiWork.exe</code>의 실행을 트리거할 수 있고 유저 권한에서 System 권한으로 상승할 수 있습니다.</p>
+<p>Third-party App&#xC5D0; &#xC758;&#xD574; &#xBD80;&#xC801;&#xC808;&#xD55C; &#xC811;&#xADFC; &#xAD8C;&#xD55C;&#xC774; &#xC124;&#xC815;&#xB41C; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xAC00; <code>%PATH%</code> &#xD658;&#xACBD; &#xBCC0;&#xC218; &#xAC12;&#xC73C;&#xB85C; &#xB4F1;&#xB85D;&#xB418;&#xC5B4; &#xC788;&#xB2E4;&#xBA74; <code>SrClient.dll</code>&#xB97C; hijacking &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Windows&#xC758; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xCCB4;&#xD06C;&#xB97C; &#xD1B5;&#xD574;  <code>TiWork.exe</code>&#xC758; &#xC2E4;&#xD589;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xACE0; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC5D0;&#xC11C; System &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC0C1;&#xC2B9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -552,6 +552,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

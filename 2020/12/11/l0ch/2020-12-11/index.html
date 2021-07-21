@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      244 자
+      562 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      11
        분
     </span>
   
@@ -240,28 +240,28 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.netspi.com/cve-2020-17049-kerberos-bronze-bit-attack/">CVE-2020-17049: Kerberos Bronze Bit Attack – Practical Exploitation</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.netspi.com/cve-2020-17049-kerberos-bronze-bit-attack/">CVE-2020-17049: Kerberos Bronze Bit Attack &#x2013; Practical Exploitation</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>standard Windows versions since 2000</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Kerberos는 Windows Active Directory 도메인 내에서 사용자, 서버 및 기타 리소스를 서로 인증하는 데 사용되는 프로토콜입니다.<br>Kerberos의 기존 공격 방법인 Golden Ticket 및 Silver Ticket 공격의 변형인 Bronze Bit 공격이 공개되었습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Kerberos&#xB294; Windows Active Directory &#xB3C4;&#xBA54;&#xC778; &#xB0B4;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xC790;, &#xC11C;&#xBC84; &#xBC0F; &#xAE30;&#xD0C0; &#xB9AC;&#xC18C;&#xC2A4;&#xB97C; &#xC11C;&#xB85C; &#xC778;&#xC99D;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC785;&#xB2C8;&#xB2E4;.<br>Kerberos&#xC758; &#xAE30;&#xC874; &#xACF5;&#xACA9; &#xBC29;&#xBC95;&#xC778; Golden Ticket &#xBC0F; Silver Ticket &#xACF5;&#xACA9;&#xC758; &#xBCC0;&#xD615;&#xC778; Bronze Bit &#xACF5;&#xACA9;&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
-<p>Golden/Silver Ticket 공격<br>내부 네트워크에 침입한 이후 동일한 네트워크의 Kerberos 인증시스템을 사용하는 다른 시스템의 자격 증명을 위조하는 공격기법</p>
+<p>Golden/Silver Ticket &#xACF5;&#xACA9;<br>&#xB0B4;&#xBD80; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC5D0; &#xCE68;&#xC785;&#xD55C; &#xC774;&#xD6C4; &#xB3D9;&#xC77C;&#xD55C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC758; Kerberos &#xC778;&#xC99D;&#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xB2E4;&#xB978; &#xC2DC;&#xC2A4;&#xD15C;&#xC758; &#xC790;&#xACA9; &#xC99D;&#xBA85;&#xC744; &#xC704;&#xC870;&#xD558;&#xB294; &#xACF5;&#xACA9;&#xAE30;&#xBC95;</p>
 </blockquote>
 <br>
 
-<p>Bronze Bit는 Microsoft가 Kerberos 프로토콜에 추가 한 <code>S4U2self</code> 및 <code>S4U2proxy</code> 프로토콜을 악용하며 Kerberos 프로세스가 변조된 서비스 티켓을 감지할 수 없어 발생합니다. 공격을 위해서는 다음 조건이 만족되어야 합니다.</p>
+<p>Bronze Bit&#xB294; Microsoft&#xAC00; Kerberos &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC5D0; &#xCD94;&#xAC00; &#xD55C; <code>S4U2self</code> &#xBC0F; <code>S4U2proxy</code> &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA70; Kerberos &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xBCC0;&#xC870;&#xB41C; &#xC11C;&#xBE44;&#xC2A4; &#xD2F0;&#xCF13;&#xC744; &#xAC10;&#xC9C0;&#xD560; &#xC218; &#xC5C6;&#xC5B4; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xACF5;&#xACA9;&#xC744; &#xC704;&#xD574;&#xC11C;&#xB294; &#xB2E4;&#xC74C; &#xC870;&#xAC74;&#xC774; &#xB9CC;&#xC871;&#xB418;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>해커는 내부 네트워크의 시스템 하나(Service1)를 장악해 Active Directory 내에 접근 권한이 있어야 합니다.</li>
-<li>침입한 시스템인 Service1에 대한 암호 해시가 필요합니다.</li>
-<li>Service1에는 다른 시스템(Service2)에 대한 제한된 신뢰 관계가 있습니다.</li>
+<li>&#xD574;&#xCEE4;&#xB294; &#xB0B4;&#xBD80; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC758; &#xC2DC;&#xC2A4;&#xD15C; &#xD558;&#xB098;(Service1)&#xB97C; &#xC7A5;&#xC545;&#xD574; Active Directory &#xB0B4;&#xC5D0; &#xC811;&#xADFC; &#xAD8C;&#xD55C;&#xC774; &#xC788;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xCE68;&#xC785;&#xD55C; &#xC2DC;&#xC2A4;&#xD15C;&#xC778; Service1&#xC5D0; &#xB300;&#xD55C; &#xC554;&#xD638; &#xD574;&#xC2DC;&#xAC00; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>Service1&#xC5D0;&#xB294; &#xB2E4;&#xB978; &#xC2DC;&#xC2A4;&#xD15C;(Service2)&#xC5D0; &#xB300;&#xD55C; &#xC81C;&#xD55C;&#xB41C; &#xC2E0;&#xB8B0; &#xAD00;&#xACC4;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>위 조건이 만족되면 해커는 다음과 같은 공격이 가능합니다.</p>
+<p>&#xC704; &#xC870;&#xAC74;&#xC774; &#xB9CC;&#xC871;&#xB418;&#xBA74; &#xD574;&#xCEE4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xACF5;&#xACA9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>사용자를 식별하고 티켓을 반환하는 <code>S4U2self</code> 에서 User2의 Service1 서비스 티켓을 가져옵니다. 이때 <code>force-forwardable</code> 옵션을 사용하면 반환하는 서비스 티켓이 전달 가능한 티켓으로 변환됩니다.</li>
-<li>Service1의 해시로 티켓을 복호화하고 플래그 값의 두 번째 비트를 0→1 로 변경한 뒤 다시 암호화합니다. </li>
-<li>조작된 티켓은 <code>S4U2proxy</code> 에서 전송되고 Service2에 대한 서비스 티켓이 User2로 반환되어 <code>User2.ccache</code>의 디스크에 기록됩니다.</li>
-<li>해커는 Service1 유저(User1) 권한으로 Service2 유저(User2)의 Kerberos 서비스 티켓을 얻을 수 있어 User2 권한으로 Service2에 액세스가 가능합니다.</li>
+<li>&#xC0AC;&#xC6A9;&#xC790;&#xB97C; &#xC2DD;&#xBCC4;&#xD558;&#xACE0; &#xD2F0;&#xCF13;&#xC744; &#xBC18;&#xD658;&#xD558;&#xB294; <code>S4U2self</code> &#xC5D0;&#xC11C; User2&#xC758; Service1 &#xC11C;&#xBE44;&#xC2A4; &#xD2F0;&#xCF13;&#xC744; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>force-forwardable</code> &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xBC18;&#xD658;&#xD558;&#xB294; &#xC11C;&#xBE44;&#xC2A4; &#xD2F0;&#xCF13;&#xC774; &#xC804;&#xB2EC; &#xAC00;&#xB2A5;&#xD55C; &#xD2F0;&#xCF13;&#xC73C;&#xB85C; &#xBCC0;&#xD658;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>Service1&#xC758; &#xD574;&#xC2DC;&#xB85C; &#xD2F0;&#xCF13;&#xC744; &#xBCF5;&#xD638;&#xD654;&#xD558;&#xACE0; &#xD50C;&#xB798;&#xADF8; &#xAC12;&#xC758; &#xB450; &#xBC88;&#xC9F8; &#xBE44;&#xD2B8;&#xB97C; 0&#x2192;1 &#xB85C; &#xBCC0;&#xACBD;&#xD55C; &#xB4A4; &#xB2E4;&#xC2DC; &#xC554;&#xD638;&#xD654;&#xD569;&#xB2C8;&#xB2E4;. </li>
+<li>&#xC870;&#xC791;&#xB41C; &#xD2F0;&#xCF13;&#xC740; <code>S4U2proxy</code> &#xC5D0;&#xC11C; &#xC804;&#xC1A1;&#xB418;&#xACE0; Service2&#xC5D0; &#xB300;&#xD55C; &#xC11C;&#xBE44;&#xC2A4; &#xD2F0;&#xCF13;&#xC774; User2&#xB85C; &#xBC18;&#xD658;&#xB418;&#xC5B4; <code>User2.ccache</code>&#xC758; &#xB514;&#xC2A4;&#xD06C;&#xC5D0; &#xAE30;&#xB85D;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD574;&#xCEE4;&#xB294; Service1 &#xC720;&#xC800;(User1) &#xAD8C;&#xD55C;&#xC73C;&#xB85C; Service2 &#xC720;&#xC800;(User2)&#xC758; Kerberos &#xC11C;&#xBE44;&#xC2A4; &#xD2F0;&#xCF13;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC5B4; User2 &#xAD8C;&#xD55C;&#xC73C;&#xB85C; Service2&#xC5D0; &#xC561;&#xC138;&#xC2A4;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>이는 Golden/Silver Ticket과 유사한 공격 방법이지만 단일 비트 플립을 이용했기 때문에 Bronze Bit로 명명되었습니다.</p>
+<p>&#xC774;&#xB294; Golden/Silver Ticket&#xACFC; &#xC720;&#xC0AC;&#xD55C; &#xACF5;&#xACA9; &#xBC29;&#xBC95;&#xC774;&#xC9C0;&#xB9CC; &#xB2E8;&#xC77C; &#xBE44;&#xD2B8; &#xD50C;&#xB9BD;&#xC744; &#xC774;&#xC6A9;&#xD588;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; Bronze Bit&#xB85C; &#xBA85;&#xBA85;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.netspi.com/cve-2020-17049-kerberos-bronze-bit-theory/">https://blog.netspi.com/cve-2020-17049-kerberos-bronze-bit-theory/</a></p>
 
             </div>
@@ -563,6 +563,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

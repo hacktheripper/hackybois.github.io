@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      205 자
+      387 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      7
        분
     </span>
   
@@ -244,9 +244,9 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>PrintNightmare라는 이름의 Printer Spooler 원격 코드 실행 취약점의 세부 정보 및 PoC가 공개되었습니다.</p>
-<p>취약점은 프린터 서버에 드라이버를 추가하거나 업데이트하는 과정에서 발생합니다. <code>RpcAddPrinterDriver</code> 함수는 프린터 드라이버를 추가할 때 Spooler Service에 대한 검사를 수행합니다.</p>
-<pre><code class="hljs c"><span class="hljs-number">1</span>:		<span class="hljs-function">__int64 __fastcall <span class="hljs-title">SplAddPrinterDriverEx</span><span class="hljs-params">(.. <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> a4 ..)</span></span>&#123;
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>PrintNightmare&#xB77C;&#xB294; &#xC774;&#xB984;&#xC758; Printer Spooler &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4; &#xBC0F; PoC&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD504;&#xB9B0;&#xD130; &#xC11C;&#xBC84;&#xC5D0; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xAC70;&#xB098; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>RpcAddPrinterDriver</code> &#xD568;&#xC218;&#xB294; &#xD504;&#xB9B0;&#xD130; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB97C; &#xCD94;&#xAC00;&#xD560; &#xB54C; Spooler Service&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xB97C; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs c"><span class="hljs-number">1</span>:		<span class="hljs-function">__int64 __fastcall <span class="hljs-title">SplAddPrinterDriverEx</span><span class="hljs-params">(.. <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> a4 ..)</span></span>{
 <span class="hljs-number">2</span>:		...
 <span class="hljs-number">3</span>:		
 <span class="hljs-number">4</span>:		<span class="hljs-keyword">if</span>( !_bittest((<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *)&amp;a4, <span class="hljs-number">0xF</span>u))
@@ -255,13 +255,13 @@
 <span class="hljs-number">7</span>:			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>i64;
 <span class="hljs-number">8</span>:		<span class="hljs-keyword">return</span> InternalAddPrinterDriverEx(lpString1, a2, a3, a4, (struct _INISPOOLER *)a5, a6, v11, <span class="hljs-number">0</span>i64);
 <span class="hljs-number">9</span>:		
-<span class="hljs-number">10</span>:		&#125;</code></pre>
+<span class="hljs-number">10</span>:		}</code></pre>
 
-<p>line 4와 5에서 <code>a4</code>는 유저 권한의 사용자가 제어할 수 있으며 해커는 이를 이용해 검사를 우회하고 악성 DLL을 타겟 서버에 설치할 수 있습니다. 또한 프린터 드라이버 정보 구조체의 <code>pConfigFile</code>이 UNC 경로가 허용된다는 점을 이용해 원격으로 타겟 서버에 로드할 수 있으며 드라이버 업그레이드의 백업 기능으로 액세스 충돌을 우회하고 로드된 악성 dll을 spooler service에 삽입할 수 있습니다.</p>
+<p>line 4&#xC640; 5&#xC5D0;&#xC11C; <code>a4</code>&#xB294; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC758; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xACE0; &#xC545;&#xC131; DLL&#xC744; &#xD0C0;&#xAC9F; &#xC11C;&#xBC84;&#xC5D0; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xD504;&#xB9B0;&#xD130; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC815;&#xBCF4; &#xAD6C;&#xC870;&#xCCB4;&#xC758; <code>pConfigFile</code>&#xC774; UNC &#xACBD;&#xB85C;&#xAC00; &#xD5C8;&#xC6A9;&#xB41C;&#xB2E4;&#xB294; &#xC810;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xD0C0;&#xAC9F; &#xC11C;&#xBC84;&#xC5D0; &#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC5C5;&#xADF8;&#xB808;&#xC774;&#xB4DC;&#xC758; &#xBC31;&#xC5C5; &#xAE30;&#xB2A5;&#xC73C;&#xB85C; &#xC561;&#xC138;&#xC2A4; &#xCDA9;&#xB3CC;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xACE0; &#xB85C;&#xB4DC;&#xB41C; &#xC545;&#xC131; dll&#xC744; spooler service&#xC5D0; &#xC0BD;&#xC785;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
-<p>UNC(Universal Naming Convention) : 네트워크 상의 공유 파일 경로 포맷 ex) \servername\sharename\path\filename</p>
+<p>UNC(Universal Naming Convention) : &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC0C1;&#xC758; &#xACF5;&#xC720; &#xD30C;&#xC77C; &#xACBD;&#xB85C; &#xD3EC;&#xB9F7; ex) \servername\sharename\path\filename</p>
 </blockquote>
-<p>해당 취약점에 대해 Microsoft는 2021년 6월 8일 Patch Tuesday 릴리즈에서 패치했지만 패치가 취약점을 해결하지 못한 것으로 알려졌습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD574; Microsoft&#xB294; 2021&#xB144; 6&#xC6D4; 8&#xC77C; Patch Tuesday &#xB9B4;&#xB9AC;&#xC988;&#xC5D0;&#xC11C; &#xD328;&#xCE58;&#xD588;&#xC9C0;&#xB9CC; &#xD328;&#xCE58;&#xAC00; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD574;&#xACB0;&#xD558;&#xC9C0; &#xBABB;&#xD55C; &#xAC83;&#xC73C;&#xB85C; &#xC54C;&#xB824;&#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://twitter.com/cyb3rops/status/1410232292308664323?fbclid=IwAR29FyubigoMk4rEoNsoIg0hKmN-ecCWHuwADnf0kRQJkxcQlOBikWvJBG0">https://twitter.com/cyb3rops/status/1410232292308664323?fbclid=IwAR29FyubigoMk4rEoNsoIg0hKmN-ecCWHuwADnf0kRQJkxcQlOBikWvJBG0</a></p>
 
             </div>
@@ -569,6 +569,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

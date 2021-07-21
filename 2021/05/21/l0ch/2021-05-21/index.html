@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      180 자
+      443 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -242,15 +242,15 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://seclists.org/oss-sec/2021/q2/157">CVE-2021-30465: runc &lt;1.0.0-rc95 vulnerable to symlink-exchange attack</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>runc ≤ 1.0.0-rc94 </li>
+<li>runc &#x2264; 1.0.0-rc94 </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Docker, Kubernetes 등 대부분의 컨테이너 기반 가상화 서비스에서 사용되는 runc에서 취약점이 발견되어 세부 보고서가 공개되었습니다.</p>
-<p>runc는 OCI(Open Container Initiative) 표준을 기반으로 컨테이너 생성과 실행을 위해 설계된 CLI 도구입니다. 지난 2019년 Container escape 취약점(CVE-2019-5736)이 공개된 데 이어 이번에 공개된 취약은 symlink exchange attack으로 호스트 파일 시스템이 컨테이너에 마운트 되도록 할 수 있는 escape 취약점입니다.</p>
-<p>컨테이너가 시작되고 runc가 컨테이너 공유 볼륨 내부에 마운트 되는 경우 runc는 마운트 되는 대상을 검사합니다. 이때 마운트 대상을 컨테이너 rootfs 외부의 호스트 파일 시스템의 심볼릭 링크로 교체하면 컨테이너를 escape 해 컨테이너에서 호스트 파일 시스템에 접근할 수 있습니다. 일반적인 경우 <code>MS_SLAVE</code> 전파 타입이 적용된 마운트 네임스페이스 내에서는 호스트에 접근할 수 없지만 Kubernetes와 같이 볼륨 관리 인프라가 존재하는 경우 다음과 같이 컨테이너에서 호스트 파일 시스템을 마운트 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Docker, Kubernetes &#xB4F1; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xCEE8;&#xD14C;&#xC774;&#xB108; &#xAE30;&#xBC18; &#xAC00;&#xC0C1;&#xD654; &#xC11C;&#xBE44;&#xC2A4;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; runc&#xC5D0;&#xC11C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xBCF4;&#xACE0;&#xC11C;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>runc&#xB294; OCI(Open Container Initiative) &#xD45C;&#xC900;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xCEE8;&#xD14C;&#xC774;&#xB108; &#xC0DD;&#xC131;&#xACFC; &#xC2E4;&#xD589;&#xC744; &#xC704;&#xD574; &#xC124;&#xACC4;&#xB41C; CLI &#xB3C4;&#xAD6C;&#xC785;&#xB2C8;&#xB2E4;. &#xC9C0;&#xB09C; 2019&#xB144; Container escape &#xCDE8;&#xC57D;&#xC810;(CVE-2019-5736)&#xC774; &#xACF5;&#xAC1C;&#xB41C; &#xB370; &#xC774;&#xC5B4; &#xC774;&#xBC88;&#xC5D0; &#xACF5;&#xAC1C;&#xB41C; &#xCDE8;&#xC57D;&#xC740; symlink exchange attack&#xC73C;&#xB85C; &#xD638;&#xC2A4;&#xD2B8; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC774; &#xCEE8;&#xD14C;&#xC774;&#xB108;&#xC5D0; &#xB9C8;&#xC6B4;&#xD2B8; &#xB418;&#xB3C4;&#xB85D; &#xD560; &#xC218; &#xC788;&#xB294; escape &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCEE8;&#xD14C;&#xC774;&#xB108;&#xAC00; &#xC2DC;&#xC791;&#xB418;&#xACE0; runc&#xAC00; &#xCEE8;&#xD14C;&#xC774;&#xB108; &#xACF5;&#xC720; &#xBCFC;&#xB968; &#xB0B4;&#xBD80;&#xC5D0; &#xB9C8;&#xC6B4;&#xD2B8; &#xB418;&#xB294; &#xACBD;&#xC6B0; runc&#xB294; &#xB9C8;&#xC6B4;&#xD2B8; &#xB418;&#xB294; &#xB300;&#xC0C1;&#xC744; &#xAC80;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xB9C8;&#xC6B4;&#xD2B8; &#xB300;&#xC0C1;&#xC744; &#xCEE8;&#xD14C;&#xC774;&#xB108; rootfs &#xC678;&#xBD80;&#xC758; &#xD638;&#xC2A4;&#xD2B8; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC758; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB85C; &#xAD50;&#xCCB4;&#xD558;&#xBA74; &#xCEE8;&#xD14C;&#xC774;&#xB108;&#xB97C; escape &#xD574; &#xCEE8;&#xD14C;&#xC774;&#xB108;&#xC5D0;&#xC11C; &#xD638;&#xC2A4;&#xD2B8; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC77C;&#xBC18;&#xC801;&#xC778; &#xACBD;&#xC6B0; <code>MS_SLAVE</code> &#xC804;&#xD30C; &#xD0C0;&#xC785;&#xC774; &#xC801;&#xC6A9;&#xB41C; &#xB9C8;&#xC6B4;&#xD2B8; &#xB124;&#xC784;&#xC2A4;&#xD398;&#xC774;&#xC2A4; &#xB0B4;&#xC5D0;&#xC11C;&#xB294; &#xD638;&#xC2A4;&#xD2B8;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC; Kubernetes&#xC640; &#xAC19;&#xC774; &#xBCFC;&#xB968; &#xAD00;&#xB9AC; &#xC778;&#xD504;&#xB77C;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xACBD;&#xC6B0; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xCEE8;&#xD14C;&#xC774;&#xB108;&#xC5D0;&#xC11C; &#xD638;&#xC2A4;&#xD2B8; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC744; &#xB9C8;&#xC6B4;&#xD2B8; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>해커는 잘 알려진 호스트의 볼륨 관리에 사용되는 경로로 접근</li>
-<li>마운트 소스 디렉토리에 호스트의 <code>/</code> 에 대한 심볼릭 링크를 생성하는 악성코드 실행</li>
-<li>컨테이너의 후속 마운트에서 toctou를 트리거해 <code>/</code> 를 마운트</li>
+<li>&#xD574;&#xCEE4;&#xB294; &#xC798; &#xC54C;&#xB824;&#xC9C4; &#xD638;&#xC2A4;&#xD2B8;&#xC758; &#xBCFC;&#xB968; &#xAD00;&#xB9AC;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xACBD;&#xB85C;&#xB85C; &#xC811;&#xADFC;</li>
+<li>&#xB9C8;&#xC6B4;&#xD2B8; &#xC18C;&#xC2A4; &#xB514;&#xB809;&#xD1A0;&#xB9AC;&#xC5D0; &#xD638;&#xC2A4;&#xD2B8;&#xC758; <code>/</code> &#xC5D0; &#xB300;&#xD55C; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xC545;&#xC131;&#xCF54;&#xB4DC; &#xC2E4;&#xD589;</li>
+<li>&#xCEE8;&#xD14C;&#xC774;&#xB108;&#xC758; &#xD6C4;&#xC18D; &#xB9C8;&#xC6B4;&#xD2B8;&#xC5D0;&#xC11C; toctou&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD574; <code>/</code> &#xB97C; &#xB9C8;&#xC6B4;&#xD2B8;</li>
 </ol>
 
             </div>
@@ -556,6 +556,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

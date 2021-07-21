@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      154 자
+      357 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,12 +242,12 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.br0vvnn.io/pages/blogpost.aspx?id=5">Exploiting CVE-2020-15994 Chrome WebAssembly Engine UAF Vulnerability</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Google Chrome WebAssembly</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Google Chrome의 V8 WebAssembly 엔진에서 발견된 UAF 취약점에 대한 상세 정보가 공개되었습니다. WebAssembly는 JS의 단점을 보완하기 위해 브라우저에서 저수준 언어로 작성된 코드를 컴파일해 네이티브로 동작할 수 있도록 하는 기술 표준입니다.</p>
-<p>WebAssembly의 <code>AsyncCompileJob</code> 객체는 <code>WebAssembly.instantiateStreaming</code> 함수에서 사용되는 기본 V8 객체이며 WebAssembly의 비동기 컴파일을 지원합니다. </p>
-<p>취약점을 트리거하는 데 사용되는 함수는 다음과 같습니다.</p>
-<p><code>AsyncCompileJob::FinishModule</code> - 컴파일된 WebAssembly 코드를 Javascript 객체로 인스턴스 화함<br><code>AsyncCompileJob::Abort</code> - WebAssembly 코드 다운로드 실패 시 호출되며 모든 컴파일 프로세스를 취소함<br>위 두 함수는 모두 <code>AsyncCompileJob</code> 객체를 해제하는 기능이 있습니다.</p>
-<p><code>WebAssembly.instantiateStreaming</code> 함수를 이용하여 WebAssembly 코드를 컴파일하는 경우 WebAssembly 코드에서 Javascript 함수 및 객체에 접근하기 위한 인터페이스로 <code>importObject</code>를 사용합니다. 이때 <code>importObject</code>에 Getter를 정의하면 <code>InstanceBuilder::SanitizeImports</code> 함수는 Getter 함수를 콜백으로 호출합니다.</p>
-<p>Getter를  <code>AsyncCompileJob::Abort</code> 로 정의해 콜백 함수로 호출하면 <code>AsyncCompileJob::FinishModule</code> 함수 이후 해제된 <code>AsyncCompileJob</code> 객체에 접근할 수 있어 UAF를 트리거할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Google Chrome&#xC758; V8 WebAssembly &#xC5D4;&#xC9C4;&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; UAF &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD55C; &#xC0C1;&#xC138; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. WebAssembly&#xB294; JS&#xC758; &#xB2E8;&#xC810;&#xC744; &#xBCF4;&#xC644;&#xD558;&#xAE30; &#xC704;&#xD574; &#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xC5D0;&#xC11C; &#xC800;&#xC218;&#xC900; &#xC5B8;&#xC5B4;&#xB85C; &#xC791;&#xC131;&#xB41C; &#xCF54;&#xB4DC;&#xB97C; &#xCEF4;&#xD30C;&#xC77C;&#xD574; &#xB124;&#xC774;&#xD2F0;&#xBE0C;&#xB85C; &#xB3D9;&#xC791;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xD558;&#xB294; &#xAE30;&#xC220; &#xD45C;&#xC900;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>WebAssembly&#xC758; <code>AsyncCompileJob</code> &#xAC1D;&#xCCB4;&#xB294; <code>WebAssembly.instantiateStreaming</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xAE30;&#xBCF8; V8 &#xAC1D;&#xCCB4;&#xC774;&#xBA70; WebAssembly&#xC758; &#xBE44;&#xB3D9;&#xAE30; &#xCEF4;&#xD30C;&#xC77C;&#xC744; &#xC9C0;&#xC6D0;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xD568;&#xC218;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>AsyncCompileJob::FinishModule</code> - &#xCEF4;&#xD30C;&#xC77C;&#xB41C; WebAssembly &#xCF54;&#xB4DC;&#xB97C; Javascript &#xAC1D;&#xCCB4;&#xB85C; &#xC778;&#xC2A4;&#xD134;&#xC2A4; &#xD654;&#xD568;<br><code>AsyncCompileJob::Abort</code> - WebAssembly &#xCF54;&#xB4DC; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xC2E4;&#xD328; &#xC2DC; &#xD638;&#xCD9C;&#xB418;&#xBA70; &#xBAA8;&#xB4E0; &#xCEF4;&#xD30C;&#xC77C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xCDE8;&#xC18C;&#xD568;<br>&#xC704; &#xB450; &#xD568;&#xC218;&#xB294; &#xBAA8;&#xB450; <code>AsyncCompileJob</code> &#xAC1D;&#xCCB4;&#xB97C; &#xD574;&#xC81C;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>WebAssembly.instantiateStreaming</code> &#xD568;&#xC218;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xC5EC; WebAssembly &#xCF54;&#xB4DC;&#xB97C; &#xCEF4;&#xD30C;&#xC77C;&#xD558;&#xB294; &#xACBD;&#xC6B0; WebAssembly &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; Javascript &#xD568;&#xC218; &#xBC0F; &#xAC1D;&#xCCB4;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB85C; <code>importObject</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>importObject</code>&#xC5D0; Getter&#xB97C; &#xC815;&#xC758;&#xD558;&#xBA74; <code>InstanceBuilder::SanitizeImports</code> &#xD568;&#xC218;&#xB294; Getter &#xD568;&#xC218;&#xB97C; &#xCF5C;&#xBC31;&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Getter&#xB97C;  <code>AsyncCompileJob::Abort</code> &#xB85C; &#xC815;&#xC758;&#xD574; &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xB85C; &#xD638;&#xCD9C;&#xD558;&#xBA74; <code>AsyncCompileJob::FinishModule</code> &#xD568;&#xC218; &#xC774;&#xD6C4; &#xD574;&#xC81C;&#xB41C; <code>AsyncCompileJob</code> &#xAC1D;&#xCCB4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC5B4; UAF&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -550,6 +550,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

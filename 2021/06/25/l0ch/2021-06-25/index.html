@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      200 자
+      429 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -244,24 +244,24 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows 21H1</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%8A%A4%ED%81%AC%ED%86%B1_%EC%B0%BD_%EA%B4%80%EB%A6%AC%EC%9E%90">Windows 데스크톱 창 관리자</a>(Desktop Window Manager, dwm.exe)의 <code>dwmcore.dll</code> 모듈에서 UAF로 인한 권한 상승 취약점이 발견되어 세부 정보가 공개되었습니다.</p>
-<p><code>dwmcore.dll</code> 모듈의 <code>CinteractionTrackerBindingManager</code> 객체는 참조 횟수(reference count)를 기준으로 해제 시점이 결정됩니다. 객체를 바인딩하는 경우<code>CInteractionTrackerBindingManager::ProcessSetTrackerBindingMode</code> 함수를 사용하고 참조 횟수가 1 증가하며, 바인딩 해제하는 경우 <code>CInteractionTrackerBindingManager::RemoveTrackerBindings</code> 함수를 사용하며 참조 횟수가 1 감소합니다. 참조 횟수가 0이 된 객체는 <code>CMILCOMBase::InternalRelease</code> 함수에 의해 해제됩니다.</p>
-<p>취약점은 같은 객체를 바인딩하는 리소스가 <code>CinteractionTrackerBindingManager</code> 객체를 참조했을 때 발생하며 해커가 DirectComposition API를 사용해 코드 수준에서 트리거가 가능합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%8A%A4%ED%81%AC%ED%86%B1_%EC%B0%BD_%EA%B4%80%EB%A6%AC%EC%9E%90">Windows &#xB370;&#xC2A4;&#xD06C;&#xD1B1; &#xCC3D; &#xAD00;&#xB9AC;&#xC790;</a>(Desktop Window Manager, dwm.exe)&#xC758; <code>dwmcore.dll</code> &#xBAA8;&#xB4C8;&#xC5D0;&#xC11C; UAF&#xB85C; &#xC778;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>dwmcore.dll</code> &#xBAA8;&#xB4C8;&#xC758; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xB294; &#xCC38;&#xC870; &#xD69F;&#xC218;(reference count)&#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xD574;&#xC81C; &#xC2DC;&#xC810;&#xC774; &#xACB0;&#xC815;&#xB429;&#xB2C8;&#xB2E4;. &#xAC1D;&#xCCB4;&#xB97C; &#xBC14;&#xC778;&#xB529;&#xD558;&#xB294; &#xACBD;&#xC6B0;<code>CInteractionTrackerBindingManager::ProcessSetTrackerBindingMode</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 1 &#xC99D;&#xAC00;&#xD558;&#xBA70;, &#xBC14;&#xC778;&#xB529; &#xD574;&#xC81C;&#xD558;&#xB294; &#xACBD;&#xC6B0; <code>CInteractionTrackerBindingManager::RemoveTrackerBindings</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA70; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 1 &#xAC10;&#xC18C;&#xD569;&#xB2C8;&#xB2E4;. &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 0&#xC774; &#xB41C; &#xAC1D;&#xCCB4;&#xB294; <code>CMILCOMBase::InternalRelease</code> &#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xD574;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xAC19;&#xC740; &#xAC1D;&#xCCB4;&#xB97C; &#xBC14;&#xC778;&#xB529;&#xD558;&#xB294; &#xB9AC;&#xC18C;&#xC2A4;&#xAC00; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xB97C; &#xCC38;&#xC870;&#xD588;&#xC744; &#xB54C; &#xBC1C;&#xC0DD;&#xD558;&#xBA70; &#xD574;&#xCEE4;&#xAC00; DirectComposition API&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCF54;&#xB4DC; &#xC218;&#xC900;&#xC5D0;&#xC11C; &#xD2B8;&#xB9AC;&#xAC70;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p>동일한 <code>CinteractionTrackerMarshaler</code>를 바인딩하는 두 개의 리소스가 <code>CinteractionTrackerBindingManager</code>을 참조합니다.</p>
+<li><p>&#xB3D9;&#xC77C;&#xD55C; <code>CinteractionTrackerMarshaler</code>&#xB97C; &#xBC14;&#xC778;&#xB529;&#xD558;&#xB294; &#xB450; &#xAC1C;&#xC758; &#xB9AC;&#xC18C;&#xC2A4;&#xAC00; <code>CinteractionTrackerBindingManager</code>&#xC744; &#xCC38;&#xC870;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p><code>CInteractionTrackerBindingManager::ProcessSetTrackerBindingMode</code> 함수는 동일한 <code>CinteractionTrackerMarshaler</code>에 대해 한 번만 호출되어 참조 횟수는 1 증가합니다.</p>
+<li><p><code>CInteractionTrackerBindingManager::ProcessSetTrackerBindingMode</code> &#xD568;&#xC218;&#xB294; &#xB3D9;&#xC77C;&#xD55C; <code>CinteractionTrackerMarshaler</code>&#xC5D0; &#xB300;&#xD574; &#xD55C; &#xBC88;&#xB9CC; &#xD638;&#xCD9C;&#xB418;&#xC5B4; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xB294; 1 &#xC99D;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>리소스의 사용이 종료되고 해제될 때 <code>CInteractionTrackerBindingManager::RemoveTrackerBindings</code> 함수는 각각의 리소스에 대해 두 번 호출됩니다.</p>
-<ul>
-<li><p>첫 호출 시 <code>CinteractionTrackerBindingManager</code> 객체의 참조 횟수가 1 감소합니다. 0이 된 경우 <code>CMILCOMBase::InternalRelease</code> 함수에 의해 해제됩니다.</p>
-</li>
-<li><p>두 번째 호출 시 해제된 <code>CinteractionTrackerBindingManager</code> 객체에 접근하게 되어 UAF가 트리거 됩니다.</p>
-</li>
-</ul>
+<li><p>&#xB9AC;&#xC18C;&#xC2A4;&#xC758; &#xC0AC;&#xC6A9;&#xC774; &#xC885;&#xB8CC;&#xB418;&#xACE0; &#xD574;&#xC81C;&#xB420; &#xB54C; <code>CInteractionTrackerBindingManager::RemoveTrackerBindings</code> &#xD568;&#xC218;&#xB294; &#xAC01;&#xAC01;&#xC758; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xB300;&#xD574; &#xB450; &#xBC88; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
-<p>공개된 PoC는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/mavillon1/CVE-2021-33739-POC">https://github.com/mavillon1/CVE-2021-33739-POC</a> 에서 확인할 수 있으며  <code>dwmcore.dll</code> 에서는 지난 4월 <a href="https://hackyboiz.github.io/2021/04/15/idioth/2021-04-15/">out of bounds write 취약점(CVE-2021-28310)</a>이 공개되기도 했습니다.</p>
+<ul>
+<li><p>&#xCCAB; &#xD638;&#xCD9C; &#xC2DC; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xC758; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 1 &#xAC10;&#xC18C;&#xD569;&#xB2C8;&#xB2E4;. 0&#xC774; &#xB41C; &#xACBD;&#xC6B0; <code>CMILCOMBase::InternalRelease</code> &#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xD574;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.</p>
+</li>
+<li><p>&#xB450; &#xBC88;&#xC9F8; &#xD638;&#xCD9C; &#xC2DC; &#xD574;&#xC81C;&#xB41C; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAC8C; &#xB418;&#xC5B4; UAF&#xAC00; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;.</p>
+</li>
+</ul>
+<p>&#xACF5;&#xAC1C;&#xB41C; PoC&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/mavillon1/CVE-2021-33739-POC">https://github.com/mavillon1/CVE-2021-33739-POC</a> &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70;  <code>dwmcore.dll</code> &#xC5D0;&#xC11C;&#xB294; &#xC9C0;&#xB09C; 4&#xC6D4; <a href="https://hackyboiz.github.io/2021/04/15/idioth/2021-04-15/">out of bounds write &#xCDE8;&#xC57D;&#xC810;(CVE-2021-28310)</a>&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xAE30;&#xB3C4; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -279,9 +279,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/uaf/">uaf</a>
                   
@@ -566,6 +566,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      111 자
+      196 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      3
        분
     </span>
   
@@ -241,10 +241,10 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/ForbiddenProgrammer/CVE-2021-21315-PoC">CVE-2021-21315-systeminformation</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>systeminformation Library for Node.JS (npm package “systeminformation”) &lt; 5.3.1</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>CVE-2021-21315는 npm 패키지인  <code>systeminformation</code>에서 발생하는 command injection 취약점입니다. <code>systeminformation</code> 패키지는 하드웨어, 시스템 및 OS 등의 세부 정보를 검색하는 기능의 오픈 소스 함수 모음입니다. 그중 <code>si.inetLatency()</code>, <code>si.inetChecksite()</code>, <code>si.services()</code>, <code>si.processLoad()</code> 에 사용될 파라미터 값은 sanitizing 해야 하며 array 형태로 들어오는 데이터를 모두 차단해야 합니다.</p>
-<p>String array 데이터는 함수 <code>sanitizeShellString()</code>의 sanitizing 작업을 무시할 수 있어<code>si.inetLatency()</code>, <code>si.inetChecksite()</code>, <code>si.services()</code>, <code>si.processLoad()</code> 함수들의 서비스 파라미터로 사용될 시 command injection이 가능합니다.</p>
-<pre><code class="hljs bash">const si = require(<span class="hljs-string">&#x27;systeminformation&#x27;</span>);
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>systeminformation Library for Node.JS (npm package &#x201C;systeminformation&#x201D;) &lt; 5.3.1</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>CVE-2021-21315&#xB294; npm &#xD328;&#xD0A4;&#xC9C0;&#xC778;  <code>systeminformation</code>&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; command injection &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. <code>systeminformation</code> &#xD328;&#xD0A4;&#xC9C0;&#xB294; &#xD558;&#xB4DC;&#xC6E8;&#xC5B4;, &#xC2DC;&#xC2A4;&#xD15C; &#xBC0F; OS &#xB4F1;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xB97C; &#xAC80;&#xC0C9;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC758; &#xC624;&#xD508; &#xC18C;&#xC2A4; &#xD568;&#xC218; &#xBAA8;&#xC74C;&#xC785;&#xB2C8;&#xB2E4;. &#xADF8;&#xC911; <code>si.inetLatency()</code>, <code>si.inetChecksite()</code>, <code>si.services()</code>, <code>si.processLoad()</code> &#xC5D0; &#xC0AC;&#xC6A9;&#xB420; &#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC12;&#xC740; sanitizing &#xD574;&#xC57C; &#xD558;&#xBA70; array &#xD615;&#xD0DC;&#xB85C; &#xB4E4;&#xC5B4;&#xC624;&#xB294; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBAA8;&#xB450; &#xCC28;&#xB2E8;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>String array &#xB370;&#xC774;&#xD130;&#xB294; &#xD568;&#xC218; <code>sanitizeShellString()</code>&#xC758; sanitizing &#xC791;&#xC5C5;&#xC744; &#xBB34;&#xC2DC;&#xD560; &#xC218; &#xC788;&#xC5B4;<code>si.inetLatency()</code>, <code>si.inetChecksite()</code>, <code>si.services()</code>, <code>si.processLoad()</code> &#xD568;&#xC218;&#xB4E4;&#xC758; &#xC11C;&#xBE44;&#xC2A4; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xC0AC;&#xC6A9;&#xB420; &#xC2DC; command injection&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs bash">const si = require(<span class="hljs-string">&apos;systeminformation&apos;</span>);
 const <span class="hljs-built_in">command</span> = <span class="hljs-string">&quot;<span class="hljs-subst">$(&lt;OS Command&gt;)</span>&quot;</span>;
 si.inetChecksite([<span class="hljs-built_in">command</span>]);</code></pre>
             </div>
@@ -544,6 +544,45 @@ si.inetChecksite([<span class="hljs-built_in">command</span>]);</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

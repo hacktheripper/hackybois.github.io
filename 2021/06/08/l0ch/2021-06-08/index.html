@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      171 자
+      401 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -244,13 +244,13 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>polkit 0.113 ~ 0.118</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>polkit은 Unix 계열 OS(Ubuntu, Fedora 등의 리눅스 배포판)에서 시스템 전반의 인증을 통제하는 프로그램으로, sudo 등 기존 인증 시스템과 달리 느슨한 수준의 인증을 수행해 권한이 없는 프로세스가 권한 있는 계정과 커뮤니케이션을 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>polkit&#xC740; Unix &#xACC4;&#xC5F4; OS(Ubuntu, Fedora &#xB4F1;&#xC758; &#xB9AC;&#xB205;&#xC2A4; &#xBC30;&#xD3EC;&#xD310;)&#xC5D0;&#xC11C; &#xC2DC;&#xC2A4;&#xD15C; &#xC804;&#xBC18;&#xC758; &#xC778;&#xC99D;&#xC744; &#xD1B5;&#xC81C;&#xD558;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC73C;&#xB85C;, sudo &#xB4F1; &#xAE30;&#xC874; &#xC778;&#xC99D; &#xC2DC;&#xC2A4;&#xD15C;&#xACFC; &#xB2EC;&#xB9AC; &#xB290;&#xC2A8;&#xD55C; &#xC218;&#xC900;&#xC758; &#xC778;&#xC99D;&#xC744; &#xC218;&#xD589;&#xD574; &#xAD8C;&#xD55C;&#xC774; &#xC5C6;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xAD8C;&#xD55C; &#xC788;&#xB294; &#xACC4;&#xC815;&#xACFC; &#xCEE4;&#xBBA4;&#xB2C8;&#xCF00;&#xC774;&#xC158;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/06/08/l0ch/2021-06-08/1.png" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>출처 : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%ED%8F%B4%ED%82%B7">위키백과</a></p>
+<p>&#xCD9C;&#xCC98; : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%ED%8F%B4%ED%82%B7">&#xC704;&#xD0A4;&#xBC31;&#xACFC;</a></p>
 </blockquote>
-<p>polkit은  <code>polkit_system_bus_name_get_creds_sync()</code> 함수를 사용해 권한이 필요한 작업을 요청하는 프로세스의 uid 및 pid를 가져옵니다. 해당 함수는 요청 프로세스의 고유한 bus name을 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/D-Bus">D-bus</a>의 <code>dbus-daemon</code>에 전송해 요청 프로세스의 권한을 확인하는데, 권한 상승 취약점은 함수 호출 직전에 요청 프로세스와 <code>dbus-daemon</code>의 연결이 끊어질 때 발생합니다. <code>dbus-daemon</code>은 연결이 끊어진 프로세스의 bus name이 유효하지 않으므로 error 응답을 보내지만 <code>polkit_system_bus_name_get_creds_sync()</code> 함수에서 이를 확인하지 않아 성공적으로 프로세스의 정보를 가져왔다는 의미의 TRUE를 반환합니다. 해당 함수의 호출자 일부는 추가적인 검증 없이 0으로 초기화된 <code>AsyncGetBusNameCredsData</code> 구조체를 참조하게 되어 요청 프로세스의 uid를 0으로 생각하고 root 프로세스가 요청한 것으로 작업을 수행합니다.</p>
-<p>취약점의 패치 정보는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://gitlab.freedesktop.org/polkit/polkit/-/commit/a04d13a">https://gitlab.freedesktop.org/polkit/polkit/-/commit/a04d13a</a>  에서 확인할 수 있습니다.</p>
+<p>polkit&#xC740;  <code>polkit_system_bus_name_get_creds_sync()</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xAD8C;&#xD55C;&#xC774; &#xD544;&#xC694;&#xD55C; &#xC791;&#xC5C5;&#xC744; &#xC694;&#xCCAD;&#xD558;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; uid &#xBC0F; pid&#xB97C; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; &#xC694;&#xCCAD; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xACE0;&#xC720;&#xD55C; bus name&#xC744; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/D-Bus">D-bus</a>&#xC758; <code>dbus-daemon</code>&#xC5D0; &#xC804;&#xC1A1;&#xD574; &#xC694;&#xCCAD; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xAD8C;&#xD55C;&#xC744; &#xD655;&#xC778;&#xD558;&#xB294;&#xB370;, &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD568;&#xC218; &#xD638;&#xCD9C; &#xC9C1;&#xC804;&#xC5D0; &#xC694;&#xCCAD; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC640; <code>dbus-daemon</code>&#xC758; &#xC5F0;&#xACB0;&#xC774; &#xB04A;&#xC5B4;&#xC9C8; &#xB54C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>dbus-daemon</code>&#xC740; &#xC5F0;&#xACB0;&#xC774; &#xB04A;&#xC5B4;&#xC9C4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; bus name&#xC774; &#xC720;&#xD6A8;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; error &#xC751;&#xB2F5;&#xC744; &#xBCF4;&#xB0B4;&#xC9C0;&#xB9CC; <code>polkit_system_bus_name_get_creds_sync()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xC774;&#xB97C; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xC815;&#xBCF4;&#xB97C; &#xAC00;&#xC838;&#xC654;&#xB2E4;&#xB294; &#xC758;&#xBBF8;&#xC758; TRUE&#xB97C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC758; &#xD638;&#xCD9C;&#xC790; &#xC77C;&#xBD80;&#xB294; &#xCD94;&#xAC00;&#xC801;&#xC778; &#xAC80;&#xC99D; &#xC5C6;&#xC774; 0&#xC73C;&#xB85C; &#xCD08;&#xAE30;&#xD654;&#xB41C; <code>AsyncGetBusNameCredsData</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xCC38;&#xC870;&#xD558;&#xAC8C; &#xB418;&#xC5B4; &#xC694;&#xCCAD; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; uid&#xB97C; 0&#xC73C;&#xB85C; &#xC0DD;&#xAC01;&#xD558;&#xACE0; root &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC694;&#xCCAD;&#xD55C; &#xAC83;&#xC73C;&#xB85C; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58; &#xC815;&#xBCF4;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://gitlab.freedesktop.org/polkit/polkit/-/commit/a04d13a">https://gitlab.freedesktop.org/polkit/polkit/-/commit/a04d13a</a>  &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -268,9 +268,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/ubuntu/">ubuntu</a>
                   
@@ -555,6 +555,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

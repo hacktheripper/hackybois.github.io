@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      377 자
+      860 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      17
        분
     </span>
   
@@ -242,26 +242,26 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.coresecurity.com/core-labs/articles/analysis-cisco-anyconnect-posture-hostscan-local-privilege-escalation-cve-2021">Analysis of Cisco AnyConnect Posture (HostScan) Local Privilege Escalation: CVE-2021-1366</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Cisco AnyConnect Posture 4.9.05042 이전 버전</li>
+<li>Cisco AnyConnect Posture 4.9.05042 &#xC774;&#xC804; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Cisco AnyConnect Posture에서 DLL 하이재킹을 통한 권한 상승 취약점이 발견되었습니다. Cisco AnyConnect Posture는 AnyConnect Secure Mobility Client에서 선택하여 설치할 수 있는 모듈입니다. 해당 모듈을 사용하면 VPN 클라이언트가 호스트에 설치된 운영 체제, 안티 바이러스, 안티 스파이웨어, 방화벽을 식별할 수 있습니다.</p>
-<p>AnyConnect Posture(ciscod.exe)의 Cisco Security Service Windows 서비스는 localhost 1023 포트에서 로컬 peer의 연결을 대기합니다. 로컬 peer가 연결되면, <code>lphlpapi.dll</code> 라이브러리의 <code>GetExtendedTcpTable</code> 함수를 통해 로컬 클라이언트의 PID에 해당하는 실행 파일을 찾습니다. 그 후 연결된 프로세스가 “Cisco System, Inc” 서명을 가졌는지 확인합니다.</p>
-<p>서명 검사를 통과하면, 특정 포맷으로 된 패킷을 통해 명령어를 처리합니다. <code>process_ipc_message</code> 함수에서 패킷의 첫 4바이트가 0x2E24인지 확인한 후, 다음 4바이트가 유효한 명령어인지 확인합니다.</p>
-<p>이 중 <code>priv_file_copy</code> 명령어는 모든 위치에서 <code>%ProgramFiles(x86)%\Cisco\Cisco HostScan</code> 디렉터리 내의 서브 디렉터리로 파일을 복사할 수 있습니다. directory traversal을 검사하므로, source file은 <code>\Cisco\Cisco HostScan</code> 디렉터리 내부에 위치하여야 합니다. 이를 통해 원하는 DLL을 복사하여, 서비스가 시작될 때 해당 DLL을 실행할 수 있습니다.</p>
-<p>해당 취약점을 악용하기 위해 일반 유저가 서비스를 중지/시작할 수 없으므로, 재부팅 없이 권한 상승을 수행하기 위해 <code>priv_get_device_id</code> 명령을 사용합니다. 서비스가 이 명령어를 받으면, <code>/lib</code> 디렉터리에서 <code>libhostscan.dll</code> 라이브러리 로드를 시도합니다. <code>libhostscan.dll</code> 라이브러리는 자신의 location path에 위치하지 않는 여러 DLL을 로드합니다.(ex. IPHLPAPI.DLL)</p>
-<p>LPE를 트리거하는 과정은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Cisco AnyConnect Posture&#xC5D0;&#xC11C; DLL &#xD558;&#xC774;&#xC7AC;&#xD0B9;&#xC744; &#xD1B5;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Cisco AnyConnect Posture&#xB294; AnyConnect Secure Mobility Client&#xC5D0;&#xC11C; &#xC120;&#xD0DD;&#xD558;&#xC5EC; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xB294; &#xBAA8;&#xB4C8;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xBAA8;&#xB4C8;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; VPN &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xAC00; &#xD638;&#xC2A4;&#xD2B8;&#xC5D0; &#xC124;&#xCE58;&#xB41C; &#xC6B4;&#xC601; &#xCCB4;&#xC81C;, &#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;, &#xC548;&#xD2F0; &#xC2A4;&#xD30C;&#xC774;&#xC6E8;&#xC5B4;, &#xBC29;&#xD654;&#xBCBD;&#xC744; &#xC2DD;&#xBCC4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>AnyConnect Posture(ciscod.exe)&#xC758; Cisco Security Service Windows &#xC11C;&#xBE44;&#xC2A4;&#xB294; localhost 1023 &#xD3EC;&#xD2B8;&#xC5D0;&#xC11C; &#xB85C;&#xCEEC; peer&#xC758; &#xC5F0;&#xACB0;&#xC744; &#xB300;&#xAE30;&#xD569;&#xB2C8;&#xB2E4;. &#xB85C;&#xCEEC; peer&#xAC00; &#xC5F0;&#xACB0;&#xB418;&#xBA74;, <code>lphlpapi.dll</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC758; <code>GetExtendedTcpTable</code> &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; &#xB85C;&#xCEEC; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC758; PID&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC744; &#xCC3E;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xC5F0;&#xACB0;&#xB41C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#x201C;Cisco System, Inc&#x201D; &#xC11C;&#xBA85;&#xC744; &#xAC00;&#xC84C;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC11C;&#xBA85; &#xAC80;&#xC0AC;&#xB97C; &#xD1B5;&#xACFC;&#xD558;&#xBA74;, &#xD2B9;&#xC815; &#xD3EC;&#xB9F7;&#xC73C;&#xB85C; &#xB41C; &#xD328;&#xD0B7;&#xC744; &#xD1B5;&#xD574; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. <code>process_ipc_message</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xD328;&#xD0B7;&#xC758; &#xCCAB; 4&#xBC14;&#xC774;&#xD2B8;&#xAC00; 0x2E24&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD55C; &#xD6C4;, &#xB2E4;&#xC74C; 4&#xBC14;&#xC774;&#xD2B8;&#xAC00; &#xC720;&#xD6A8;&#xD55C; &#xBA85;&#xB839;&#xC5B4;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xC911; <code>priv_file_copy</code> &#xBA85;&#xB839;&#xC5B4;&#xB294; &#xBAA8;&#xB4E0; &#xC704;&#xCE58;&#xC5D0;&#xC11C; <code>%ProgramFiles(x86)%\Cisco\Cisco HostScan</code> &#xB514;&#xB809;&#xD130;&#xB9AC; &#xB0B4;&#xC758; &#xC11C;&#xBE0C; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB85C; &#xD30C;&#xC77C;&#xC744; &#xBCF5;&#xC0AC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. directory traversal&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xBBC0;&#xB85C;, source file&#xC740; <code>\Cisco\Cisco HostScan</code> &#xB514;&#xB809;&#xD130;&#xB9AC; &#xB0B4;&#xBD80;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xC5EC;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC6D0;&#xD558;&#xB294; DLL&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xC5EC;, &#xC11C;&#xBE44;&#xC2A4;&#xAC00; &#xC2DC;&#xC791;&#xB420; &#xB54C; &#xD574;&#xB2F9; DLL&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC77C;&#xBC18; &#xC720;&#xC800;&#xAC00; &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xC911;&#xC9C0;/&#xC2DC;&#xC791;&#xD560; &#xC218; &#xC5C6;&#xC73C;&#xBBC0;&#xB85C;, &#xC7AC;&#xBD80;&#xD305; &#xC5C6;&#xC774; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xC218;&#xD589;&#xD558;&#xAE30; &#xC704;&#xD574; <code>priv_get_device_id</code> &#xBA85;&#xB839;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xC11C;&#xBE44;&#xC2A4;&#xAC00; &#xC774; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xBC1B;&#xC73C;&#xBA74;, <code>/lib</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0;&#xC11C; <code>libhostscan.dll</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; &#xB85C;&#xB4DC;&#xB97C; &#xC2DC;&#xB3C4;&#xD569;&#xB2C8;&#xB2E4;. <code>libhostscan.dll</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB294; &#xC790;&#xC2E0;&#xC758; location path&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xC5EC;&#xB7EC; DLL&#xC744; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.(ex. IPHLPAPI.DLL)</p>
+<p>LPE&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>libhostscan.dll</code> 라이브러리가 어디에 위치하는지 확인하고 <code>%TEMP%\Cisco\Cisco HostScan</code> 디렉터리에 복사합니다. 라이브러리는 <code>%ProgramFiles(x86)%\Cisco\Cisco HostScan\lib</code>이나 <code>%ProgramFile(x86)%\Cisco\Cisco AnyConnect Secure Mobility Client\Posture</code> 디렉터리에 있습니다.</li>
-<li>서비스의 실행 파일(ciscod.exe)을 일시 중지합니다.</li>
-<li>일시 중지된 프로세스에 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://attack.mitre.org/techniques/T1055/012/">process hollowing</a>을 수행하고 아래의 세 명령어를 127.0.0.1:1023으로 보내는 프로세스로 바꿉니다.<ul>
-<li><code>%TEMP%\Cisco\Cisco HostScan</code> 디렉터리에서 <code>%PROGRAMFILES(x86)%\Cisco\Cisco HostScan\lib</code> 디렉터리로 <code>libhostscan.dll</code>를 복사하는 <code>priv_file_copy</code> 명령어(라이브러리가 존재하면 overwrite 됩니다.)</li>
-<li><code>%TEMP%\Cisco\Cisco HostScan</code> 디렉터리에서 <code>PROGRAMFILES(x86)%\Cisco\Cisco HostScan\lib</code> 디렉터리로 공격자가 제어하는 DLL을 복사하는 <code>priv_file_copy</code> 명령어(해당 DLL의 이름은 IPHLPAPI.DLL이고, 원본 DLL의 export function을 동일하게 export 해야 합니다.)</li>
-<li><code>priv_get_device_id</code> 명령어</li>
+<li><code>libhostscan.dll</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xAC00; &#xC5B4;&#xB514;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0; <code>%TEMP%\Cisco\Cisco HostScan</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB294; <code>%ProgramFiles(x86)%\Cisco\Cisco HostScan\lib</code>&#xC774;&#xB098; <code>%ProgramFile(x86)%\Cisco\Cisco AnyConnect Secure Mobility Client\Posture</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li> &#xC11C;&#xBE44;&#xC2A4;&#xC758; &#xC2E4;&#xD589; &#xD30C;&#xC77C;(ciscod.exe)&#xC744; &#xC77C;&#xC2DC; &#xC911;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xC77C;&#xC2DC; &#xC911;&#xC9C0;&#xB41C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://attack.mitre.org/techniques/T1055/012/">process hollowing</a>&#xC744; &#xC218;&#xD589;&#xD558;&#xACE0; &#xC544;&#xB798;&#xC758; &#xC138; &#xBA85;&#xB839;&#xC5B4;&#xB97C; 127.0.0.1:1023&#xC73C;&#xB85C; &#xBCF4;&#xB0B4;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB85C; &#xBC14;&#xAFC9;&#xB2C8;&#xB2E4;.<ul>
+<li><code>%TEMP%\Cisco\Cisco HostScan</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0;&#xC11C; <code>%PROGRAMFILES(x86)%\Cisco\Cisco HostScan\lib</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB85C; <code>libhostscan.dll</code>&#xB97C; &#xBCF5;&#xC0AC;&#xD558;&#xB294; <code>priv_file_copy</code> &#xBA85;&#xB839;&#xC5B4;(&#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xBA74; overwrite &#xB429;&#xB2C8;&#xB2E4;.)</li>
+<li><code>%TEMP%\Cisco\Cisco HostScan</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0;&#xC11C; <code>PROGRAMFILES(x86)%\Cisco\Cisco HostScan\lib</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB85C; &#xACF5;&#xACA9;&#xC790;&#xAC00; &#xC81C;&#xC5B4;&#xD558;&#xB294; DLL&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xB294; <code>priv_file_copy</code> &#xBA85;&#xB839;&#xC5B4;(&#xD574;&#xB2F9; DLL&#xC758; &#xC774;&#xB984;&#xC740; IPHLPAPI.DLL&#xC774;&#xACE0;, &#xC6D0;&#xBCF8; DLL&#xC758; export function&#xC744; &#xB3D9;&#xC77C;&#xD558;&#xAC8C; export &#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.)</li>
+<li><code>priv_get_device_id</code> &#xBA85;&#xB839;&#xC5B4;</li>
 </ul>
 </li>
-<li>일시 중지 상태에서 다시 시작시킵니다.</li>
+<li>&#xC77C;&#xC2DC; &#xC911;&#xC9C0; &#xC0C1;&#xD0DC;&#xC5D0;&#xC11C; &#xB2E4;&#xC2DC; &#xC2DC;&#xC791;&#xC2DC;&#xD0B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>해당 취약점은 <code>priv_file_copy</code> 명령에 디지털 서명 확인을 추가함으로써 패치되었습니다. POC는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.coresecurity.com/core-labs/articles/analysis-cisco-anyconnect-posture-hostscan-local-privilege-escalation-cve-2021">coresecurity 블로그의 해당 게시글</a>에서 확인하실 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>priv_file_copy</code> &#xBA85;&#xB839;&#xC5D0; &#xB514;&#xC9C0;&#xD138; &#xC11C;&#xBA85; &#xD655;&#xC778;&#xC744; &#xCD94;&#xAC00;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. POC&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.coresecurity.com/core-labs/articles/analysis-cisco-anyconnect-posture-hostscan-local-privilege-escalation-cve-2021">coresecurity &#xBE14;&#xB85C;&#xADF8;&#xC758; &#xD574;&#xB2F9; &#xAC8C;&#xC2DC;&#xAE00;</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD558;&#xC2E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -279,9 +279,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/dll-hijacking/">dll hijacking</a>
                   
@@ -564,6 +564,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

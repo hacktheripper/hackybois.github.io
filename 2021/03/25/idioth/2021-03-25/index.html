@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      238 자
+      499 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        분
     </span>
   
@@ -244,17 +244,17 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Microsoft SharePoint</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft SharePoint에서 session state를 악용하여 원격 코드 실행이 가능한 취약점이 발견되었습니다. SharePoint의 InfoPath에서 문서는 serialize 된 후 session state에 저장됩니다. session state에서 읽은 데이터는 <code>BinaryFormatter.Deserialize</code>로 전송되는데, 해커가 arbitrary data를 지정할 수 있으면 원격 코드 실행이 가능합니다.</p>
-<p>SharePoint 애플리케이션에서 session state mechanism을 통해 첨부 파일 업로드 데이터는 첨부 파일 업로드 session state에 추가된 데이터에 해당하는 key(<code>editingSessionId</code>)를 통해 검색됩니다. 마찬가지로 <code> DocumentSessionState</code> Deserialization 데이터는 Deserialization session state에 추가된 데이터에 해당하는 key를 통해 검색됩니다. 하지만 <code>editingSessionId</code>가 클라이언트에 의해 조작될 수 있어 첨부 파일 데이터를 <code>DocumentSessionState</code> Deserialization에서 사용할 수 있습니다.</p>
-<p>첨부 파일을 업로드할 때 session state key는 클라이언트에서 확인할 수 없고, 서버의 <code>DocumentSessionState</code> 객체에 존재합니다. 따라서 첨부 파일 mechanism의 document의 state key를 전송하여 serialize 된 <code>DocumentSessionState</code>를 클라이언트에서 첨부 파일로 받을 수 있습니다. 전체적인 공격 흐름은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft SharePoint&#xC5D0;&#xC11C; session state&#xB97C; &#xC545;&#xC6A9;&#xD558;&#xC5EC; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. SharePoint&#xC758; InfoPath&#xC5D0;&#xC11C; &#xBB38;&#xC11C;&#xB294; serialize &#xB41C; &#xD6C4; session state&#xC5D0; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. session state&#xC5D0;&#xC11C; &#xC77D;&#xC740; &#xB370;&#xC774;&#xD130;&#xB294; <code>BinaryFormatter.Deserialize</code>&#xB85C; &#xC804;&#xC1A1;&#xB418;&#xB294;&#xB370;, &#xD574;&#xCEE4;&#xAC00; arbitrary data&#xB97C; &#xC9C0;&#xC815;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA74; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>SharePoint &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C; session state mechanism&#xC744; &#xD1B5;&#xD574; &#xCCA8;&#xBD80; &#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC; &#xB370;&#xC774;&#xD130;&#xB294; &#xCCA8;&#xBD80; &#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC; session state&#xC5D0; &#xCD94;&#xAC00;&#xB41C; &#xB370;&#xC774;&#xD130;&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; key(<code>editingSessionId</code>)&#xB97C; &#xD1B5;&#xD574; &#xAC80;&#xC0C9;&#xB429;&#xB2C8;&#xB2E4;. &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; <code> DocumentSessionState</code> Deserialization &#xB370;&#xC774;&#xD130;&#xB294; Deserialization session state&#xC5D0; &#xCD94;&#xAC00;&#xB41C; &#xB370;&#xC774;&#xD130;&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; key&#xB97C; &#xD1B5;&#xD574; &#xAC80;&#xC0C9;&#xB429;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>editingSessionId</code>&#xAC00; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC5D0; &#xC758;&#xD574; &#xC870;&#xC791;&#xB420; &#xC218; &#xC788;&#xC5B4; &#xCCA8;&#xBD80; &#xD30C;&#xC77C; &#xB370;&#xC774;&#xD130;&#xB97C; <code>DocumentSessionState</code> Deserialization&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCCA8;&#xBD80; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xB54C; session state key&#xB294; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC5C6;&#xACE0;, &#xC11C;&#xBC84;&#xC758; <code>DocumentSessionState</code> &#xAC1D;&#xCCB4;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xCCA8;&#xBD80; &#xD30C;&#xC77C; mechanism&#xC758; document&#xC758; state key&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xC5EC; serialize &#xB41C; <code>DocumentSessionState</code>&#xB97C; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC5D0;&#xC11C; &#xCCA8;&#xBD80; &#xD30C;&#xC77C;&#xB85C; &#xBC1B;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC804;&#xCCB4;&#xC801;&#xC778; &#xACF5;&#xACA9; &#xD750;&#xB984;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>InfoPath 리스트를 생성합니다.</li>
-<li>리스트에 새 항목을 추가합니다.</li>
-<li>항목에 deserialize 될 arbitrary object를 포함한 fake InfoPath <code>DocumentSessionState</code> 파일을 첨부합니다.</li>
-<li>페이지의 HTML에서 document의 state key를 가져옵니다.</li>
-<li><code>FormServerAttachments.aspx</code> 페이지에 document의 state key를 전송하여 serialize 된 <code>DocumentSessionState</code>를 얻습니다.</li>
-<li>반환된 데이터에서 3에서 추가한 첨부 파일의 state key를 추출합니다.</li>
-<li>첨부 파일의 state key를 undocumented client-side API에 전송하여 deserialization mechnism에서 첨부 파일을 실행합니다. 원격 코드 실행은 arbitrary object가 서버에서 deserialization 될 때 실행됩니다.</li>
+<li>InfoPath &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xB9AC;&#xC2A4;&#xD2B8;&#xC5D0; &#xC0C8; &#xD56D;&#xBAA9;&#xC744; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD56D;&#xBAA9;&#xC5D0; deserialize &#xB420; arbitrary object&#xB97C; &#xD3EC;&#xD568;&#xD55C; fake InfoPath <code>DocumentSessionState</code> &#xD30C;&#xC77C;&#xC744; &#xCCA8;&#xBD80;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD398;&#xC774;&#xC9C0;&#xC758; HTML&#xC5D0;&#xC11C; document&#xC758; state key&#xB97C; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;.</li>
+<li><code>FormServerAttachments.aspx</code> &#xD398;&#xC774;&#xC9C0;&#xC5D0; document&#xC758; state key&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xC5EC; serialize &#xB41C; <code>DocumentSessionState</code>&#xB97C; &#xC5BB;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xBC18;&#xD658;&#xB41C; &#xB370;&#xC774;&#xD130;&#xC5D0;&#xC11C; 3&#xC5D0;&#xC11C; &#xCD94;&#xAC00;&#xD55C; &#xCCA8;&#xBD80; &#xD30C;&#xC77C;&#xC758; state key&#xB97C; &#xCD94;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xCCA8;&#xBD80; &#xD30C;&#xC77C;&#xC758; state key&#xB97C; undocumented client-side API&#xC5D0; &#xC804;&#xC1A1;&#xD558;&#xC5EC; deserialization mechnism&#xC5D0;&#xC11C; &#xCCA8;&#xBD80; &#xD30C;&#xC77C;&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC740; arbitrary object&#xAC00; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; deserialization &#xB420; &#xB54C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -556,6 +556,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

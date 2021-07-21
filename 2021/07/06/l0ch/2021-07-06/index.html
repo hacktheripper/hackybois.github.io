@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      139 자
+      315 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -240,24 +240,24 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mcafee.com/blogs/other-blogs/mcafee-labs/analyzing-cve-2021-1665-remote-code-execution-vulnerability-in-windows-gdi/">Analyzing CVE-2021-1665 – Remote Code Execution Vulnerability in Windows GDI+</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mcafee.com/blogs/other-blogs/mcafee-labs/analyzing-cve-2021-1665-remote-code-execution-vulnerability-in-windows-gdi/">Analyzing CVE-2021-1665 &#x2013; Remote Code Execution Vulnerability in Windows GDI+</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows의 그래픽 장치 인터페이스(Graphic Device Interface, GDI)에서 발견된 원격 코드 실행 취약점의 세부 정보가 공개되었습니다.</p>
-<p>취약점은 <code>gdiplus.dll</code> 에서 EMF 파일을 파싱 할 때 발생합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows&#xC758; &#xADF8;&#xB798;&#xD53D; &#xC7A5;&#xCE58; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;(Graphic Device Interface, GDI)&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; <code>gdiplus.dll</code> &#xC5D0;&#xC11C; EMF &#xD30C;&#xC77C;&#xC744; &#xD30C;&#xC2F1; &#xD560; &#xB54C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
-<p>EMF : WMF 파일의 확장으로 응용프로그램에서 이미지 또는 그래픽을 렌더링 할 수 있도록 하는 메타 파일</p>
+<p>EMF : WMF &#xD30C;&#xC77C;&#xC758; &#xD655;&#xC7A5;&#xC73C;&#xB85C; &#xC751;&#xC6A9;&#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xC774;&#xBBF8;&#xC9C0; &#xB610;&#xB294; &#xADF8;&#xB798;&#xD53D;&#xC744; &#xB80C;&#xB354;&#xB9C1; &#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xD558;&#xB294; &#xBA54;&#xD0C0; &#xD30C;&#xC77C;</p>
 </blockquote>
-<p><code>Builtline::BuildAllLines</code> 함수에는 다음 루프 프로세스가 존재합니다.</p>
+<p><code>Builtline::BuildAllLines</code> &#xD568;&#xC218;&#xC5D0;&#xB294; &#xB2E4;&#xC74C; &#xB8E8;&#xD504; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>0x60</code> bytes 크기의 메모리를 할당</li>
-<li><code>Builtline::BuiltLine</code>를 호출해 할당된 메모리에 데이터 복사</li>
-<li><code>BuiltLine::GetUntrimmedCharacterCount</code> 함수를 호출하고 해당 함수의 반환 값(1)을 루프 카운터 더함</li>
-<li>루프 카운터가 EMF 파일의 <code>Length</code> 필드보다 크면 루프 종료</li>
+<li><code>0x60</code> bytes &#xD06C;&#xAE30;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;</li>
+<li><code>Builtline::BuiltLine</code>&#xB97C; &#xD638;&#xCD9C;&#xD574; &#xD560;&#xB2F9;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB370;&#xC774;&#xD130; &#xBCF5;&#xC0AC;</li>
+<li><code>BuiltLine::GetUntrimmedCharacterCount</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xACE0; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC758; &#xBC18;&#xD658; &#xAC12;(1)&#xC744; &#xB8E8;&#xD504; &#xCE74;&#xC6B4;&#xD130; &#xB354;&#xD568;</li>
+<li>&#xB8E8;&#xD504; &#xCE74;&#xC6B4;&#xD130;&#xAC00; EMF &#xD30C;&#xC77C;&#xC758; <code>Length</code> &#xD544;&#xB4DC;&#xBCF4;&#xB2E4; &#xD06C;&#xBA74; &#xB8E8;&#xD504; &#xC885;&#xB8CC;</li>
 </ol>
-<p>그러나 <code>BuiltLine::GetUntrimmedCharacterCount</code> 함수의 반환 값이 0이 되는 경우를 처리하는 코드가 없어 지정된 <code>Length</code> 필드 값 이상으로 루프가 실행되고 이는 데이터 손상과 원격 코드 실행으로 이어질 수 있습니다.</p>
-<p>Microsoft는 <code>BuiltLine::GetUntrimmedCharacterCount</code> 함수의 반환 값을 확인하는 검사를 추가한 패치를 배포하였습니다.</p>
+<p>&#xADF8;&#xB7EC;&#xB098; <code>BuiltLine::GetUntrimmedCharacterCount</code> &#xD568;&#xC218;&#xC758; &#xBC18;&#xD658; &#xAC12;&#xC774; 0&#xC774; &#xB418;&#xB294; &#xACBD;&#xC6B0;&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xAC00; &#xC5C6;&#xC5B4; &#xC9C0;&#xC815;&#xB41C; <code>Length</code> &#xD544;&#xB4DC; &#xAC12; &#xC774;&#xC0C1;&#xC73C;&#xB85C; &#xB8E8;&#xD504;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xACE0; &#xC774;&#xB294; &#xB370;&#xC774;&#xD130; &#xC190;&#xC0C1;&#xACFC; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Microsoft&#xB294; <code>BuiltLine::GetUntrimmedCharacterCount</code> &#xD568;&#xC218;&#xC758; &#xBC18;&#xD658; &#xAC12;&#xC744; &#xD655;&#xC778;&#xD558;&#xB294; &#xAC80;&#xC0AC;&#xB97C; &#xCD94;&#xAC00;&#xD55C; &#xD328;&#xCE58;&#xB97C; &#xBC30;&#xD3EC;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -562,6 +562,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

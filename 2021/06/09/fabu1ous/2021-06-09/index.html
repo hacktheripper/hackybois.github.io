@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      153 자
+      308 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -246,14 +246,14 @@
 <p>MIFARE Ultralight NANO, MF0UN</p>
 <p>NT2L1, NT2H10, NT2H12</p>
 <p>N2H13, NT2H15, NT2H16</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>NXP MIFARE Ultralight와 NTAG 카드는 replay 공격을 방지하기 위한 Monotonic Counter 기능을 사용하는데 해당 기능을 tear off 공격을 통해 무력화할 수 있는 취약점이 발견되었습니다. Tear off 공격이란 RFID 태그와 리더 사이 데이터 통신이 이루어지는 도중에 통신을 끊어버리는 공격 방식으로 EEPROM이 쓰기 작업을 하는 동안 RFID 태그의 데이터가 일관되지 않은 상태로 유지되어 버그가 발생하도록 유도합니다.</p>
-<p>MIFARE Ultralight EV1은 24-bit Monotonic Counter를 사용하고 이와 관련된 커멘드를 사용합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>NXP MIFARE Ultralight&#xC640; NTAG &#xCE74;&#xB4DC;&#xB294; replay &#xACF5;&#xACA9;&#xC744; &#xBC29;&#xC9C0;&#xD558;&#xAE30; &#xC704;&#xD55C; Monotonic Counter &#xAE30;&#xB2A5;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370; &#xD574;&#xB2F9; &#xAE30;&#xB2A5;&#xC744; tear off &#xACF5;&#xACA9;&#xC744; &#xD1B5;&#xD574; &#xBB34;&#xB825;&#xD654;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Tear off &#xACF5;&#xACA9;&#xC774;&#xB780; RFID &#xD0DC;&#xADF8;&#xC640; &#xB9AC;&#xB354; &#xC0AC;&#xC774; &#xB370;&#xC774;&#xD130; &#xD1B5;&#xC2E0;&#xC774; &#xC774;&#xB8E8;&#xC5B4;&#xC9C0;&#xB294; &#xB3C4;&#xC911;&#xC5D0; &#xD1B5;&#xC2E0;&#xC744; &#xB04A;&#xC5B4;&#xBC84;&#xB9AC;&#xB294; &#xACF5;&#xACA9; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; EEPROM&#xC774; &#xC4F0;&#xAE30; &#xC791;&#xC5C5;&#xC744; &#xD558;&#xB294; &#xB3D9;&#xC548; RFID &#xD0DC;&#xADF8;&#xC758; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC77C;&#xAD00;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C1;&#xD0DC;&#xB85C; &#xC720;&#xC9C0;&#xB418;&#xC5B4; &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>MIFARE Ultralight EV1&#xC740; 24-bit Monotonic Counter&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC774;&#xC640; &#xAD00;&#xB828;&#xB41C; &#xCEE4;&#xBA58;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>INCR_CNT</code> : Counter를 증가시킨다.</li>
-<li><code>READ_CNT</code> : 현태 Counter의 값을 읽는다.</li>
-<li><code>CHECK_TEARING_EVENT</code> : anti-tearing 8-bit flag를 검증한다.</li>
+<li><code>INCR_CNT</code> : Counter&#xB97C; &#xC99D;&#xAC00;&#xC2DC;&#xD0A8;&#xB2E4;.</li>
+<li><code>READ_CNT</code> : &#xD604;&#xD0DC; Counter&#xC758; &#xAC12;&#xC744; &#xC77D;&#xB294;&#xB2E4;.</li>
+<li><code>CHECK_TEARING_EVENT</code> : anti-tearing 8-bit flag&#xB97C; &#xAC80;&#xC99D;&#xD55C;&#xB2E4;.</li>
 </ol>
-<p><code>INCR_CNT</code>를 통해 유효한 Counter의 값을 증가 시킴과 동시에 tear off 공격을 수행하면 Counter에 대한 쓰기 작업에 인터럽트를 걸 수 있고, <code>READ_CNT</code>가 이전 Counter의 값을 리턴하면서 <code>CHECK_TEARING_EVENT</code>가 정상적인 검증 flag를 리턴하는 상황을 만들 수 있습니다. </p>
+<p><code>INCR_CNT</code>&#xB97C; &#xD1B5;&#xD574; &#xC720;&#xD6A8;&#xD55C; Counter&#xC758; &#xAC12;&#xC744; &#xC99D;&#xAC00; &#xC2DC;&#xD0B4;&#xACFC; &#xB3D9;&#xC2DC;&#xC5D0; tear off &#xACF5;&#xACA9;&#xC744; &#xC218;&#xD589;&#xD558;&#xBA74; Counter&#xC5D0; &#xB300;&#xD55C; &#xC4F0;&#xAE30; &#xC791;&#xC5C5;&#xC5D0; &#xC778;&#xD130;&#xB7FD;&#xD2B8;&#xB97C; &#xAC78; &#xC218; &#xC788;&#xACE0;, <code>READ_CNT</code>&#xAC00; &#xC774;&#xC804; Counter&#xC758; &#xAC12;&#xC744; &#xB9AC;&#xD134;&#xD558;&#xBA74;&#xC11C; <code>CHECK_TEARING_EVENT</code>&#xAC00; &#xC815;&#xC0C1;&#xC801;&#xC778; &#xAC80;&#xC99D; flag&#xB97C; &#xB9AC;&#xD134;&#xD558;&#xB294; &#xC0C1;&#xD669;&#xC744; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 
             </div>
             <hr>
@@ -556,6 +556,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      225 자
+      486 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        분
     </span>
   
@@ -242,17 +242,17 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://shenaniganslabs.io/2021/04/13/Airstrike.html">Airstrike Attack - FDE bypass and EoP on domain joined Windows workstations (CVE-2021-28316)</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>도메인에 가입된 Windows 10 host</li>
+<li>&#xB3C4;&#xBA54;&#xC778;&#xC5D0; &#xAC00;&#xC785;&#xB41C; Windows 10 host</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>와이파이 기능을 가지고 있는 Windows 노트북이나 워크스테이션에 물리적으로 접근 가능할 시 잠금 화면 및 BitLocker Full Disk Encryption을 우회하고 파일 시스템에 대한 접근 권한을 얻을 수 있는 취약점이 발견되었습니다.</p>
-<p>Windows 환경에서 도메인 사용자가 MSCHAPv2와 PEAP를 함께 사용하여 무선 액세스 포인트에 인증할 때 resulting challenge response hash는 도메인 사용자의 패스워드의 NTLM 해쉬로부터 파생됩니다. 도메인 사용자 인증뿐만 아니라 컴퓨터 인증을 위한 옵션도 제공합니다. 컴퓨터 인증은 클라이언트 인증서나 MSCHAPv2를 사용하지만 PEAP와 MSCHAPv2를 같이 사용할 경우 도메인 컴퓨터 계정의 NTLM 해쉬가 인증에 사용됩니다. 보통 암호는 복구할 수 없지만 NTLM 해쉬는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://crack.sh/wpa-enterprise/">crack.sh</a>를 통해 복구할 수 있습니다.</p>
-<p>취약점을 악용하는 방법은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC640;&#xC774;&#xD30C;&#xC774; &#xAE30;&#xB2A5;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xB294; Windows &#xB178;&#xD2B8;&#xBD81;&#xC774;&#xB098; &#xC6CC;&#xD06C;&#xC2A4;&#xD14C;&#xC774;&#xC158;&#xC5D0; &#xBB3C;&#xB9AC;&#xC801;&#xC73C;&#xB85C; &#xC811;&#xADFC; &#xAC00;&#xB2A5;&#xD560; &#xC2DC; &#xC7A0;&#xAE08; &#xD654;&#xBA74; &#xBC0F; BitLocker Full Disk Encryption&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xACE0; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xB300;&#xD55C; &#xC811;&#xADFC; &#xAD8C;&#xD55C;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Windows &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xB3C4;&#xBA54;&#xC778; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; MSCHAPv2&#xC640; PEAP&#xB97C; &#xD568;&#xAED8; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBB34;&#xC120; &#xC561;&#xC138;&#xC2A4; &#xD3EC;&#xC778;&#xD2B8;&#xC5D0; &#xC778;&#xC99D;&#xD560; &#xB54C; resulting challenge response hash&#xB294; &#xB3C4;&#xBA54;&#xC778; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xC758; NTLM &#xD574;&#xC26C;&#xB85C;&#xBD80;&#xD130; &#xD30C;&#xC0DD;&#xB429;&#xB2C8;&#xB2E4;. &#xB3C4;&#xBA54;&#xC778; &#xC0AC;&#xC6A9;&#xC790; &#xC778;&#xC99D;&#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xCEF4;&#xD4E8;&#xD130; &#xC778;&#xC99D;&#xC744; &#xC704;&#xD55C; &#xC635;&#xC158;&#xB3C4; &#xC81C;&#xACF5;&#xD569;&#xB2C8;&#xB2E4;. &#xCEF4;&#xD4E8;&#xD130; &#xC778;&#xC99D;&#xC740; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xC778;&#xC99D;&#xC11C;&#xB098; MSCHAPv2&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0;&#xB9CC; PEAP&#xC640; MSCHAPv2&#xB97C; &#xAC19;&#xC774; &#xC0AC;&#xC6A9;&#xD560; &#xACBD;&#xC6B0; &#xB3C4;&#xBA54;&#xC778; &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; NTLM &#xD574;&#xC26C;&#xAC00; &#xC778;&#xC99D;&#xC5D0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. &#xBCF4;&#xD1B5; &#xC554;&#xD638;&#xB294; &#xBCF5;&#xAD6C;&#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC; NTLM &#xD574;&#xC26C;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://crack.sh/wpa-enterprise/">crack.sh</a>&#xB97C; &#xD1B5;&#xD574; &#xBCF5;&#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/sensepost/hostapd-mana">hostapd-mana</a>를 사용하여 내부 인증 방법으로 설정된 MSCHAPv2를 통해 PEAP를 지원하는 액세스 포인트 생성</li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/moxie0/chapcrack">chapcrack</a>을 사용하여 MSCHAPv2 challenge response hash를 cloud crack 형식으로 변환</li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/SecureAuthCorp/impacket">Impacket</a>의 <code>ticketer.py</code>과 NTLM hash를 통해 전체 파일 시스템에 액세스</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/sensepost/hostapd-mana">hostapd-mana</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xB0B4;&#xBD80; &#xC778;&#xC99D; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB41C; MSCHAPv2&#xB97C; &#xD1B5;&#xD574; PEAP&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xC561;&#xC138;&#xC2A4; &#xD3EC;&#xC778;&#xD2B8; &#xC0DD;&#xC131;</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/moxie0/chapcrack">chapcrack</a>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; MSCHAPv2 challenge response hash&#xB97C; cloud crack &#xD615;&#xC2DD;&#xC73C;&#xB85C; &#xBCC0;&#xD658;</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/SecureAuthCorp/impacket">Impacket</a>&#xC758; <code>ticketer.py</code>&#xACFC; NTLM hash&#xB97C; &#xD1B5;&#xD574; &#xC804;&#xCCB4; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC561;&#xC138;&#xC2A4;</li>
 </ol>
-<p>BitLocker Full Disk Encryption을 우회하기 위해서 해커가 제어하는 네트워크에 연결하여 도메인 SID를 얻어야 합니다. hostapd를 사용하여 WPA2-PSK 네트워크를 생성한 후 LDAP ping을 통해 Active Directory Domain name, victim의 host name, 도메인 SID를 얻을 수 있습니다. 그 후 <code>ticketer.py</code>를 사용하면 전체 파일 시스템에 대한 접근 권한을 얻을 수 있습니다.</p>
+<p>BitLocker Full Disk Encryption&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xD574;&#xCEE4;&#xAC00; &#xC81C;&#xC5B4;&#xD558;&#xB294; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC5D0; &#xC5F0;&#xACB0;&#xD558;&#xC5EC; &#xB3C4;&#xBA54;&#xC778; SID&#xB97C; &#xC5BB;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. hostapd&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; WPA2-PSK &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xB97C; &#xC0DD;&#xC131;&#xD55C; &#xD6C4; LDAP ping&#xC744; &#xD1B5;&#xD574; Active Directory Domain name, victim&#xC758; host name, &#xB3C4;&#xBA54;&#xC778; SID&#xB97C; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; <code>ticketer.py</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC804;&#xCCB4; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xB300;&#xD55C; &#xC811;&#xADFC; &#xAD8C;&#xD55C;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -553,6 +553,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

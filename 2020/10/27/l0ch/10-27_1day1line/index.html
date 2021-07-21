@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      150 자
+      290 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -240,12 +240,12 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://research.nccgroup.com/2020/10/26/technical-advisory-pulse-connect-secure-arbitrary-file-read-via-logon-message-cve-2020-8255/">Technical Advisory: Pulse Connect Secure – Arbitrary File Read via Logon Message (CVE-2020-8255)</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://research.nccgroup.com/2020/10/26/technical-advisory-pulse-connect-secure-arbitrary-file-read-via-logon-message-cve-2020-8255/">Technical Advisory: Pulse Connect Secure &#x2013; Arbitrary File Read via Logon Message (CVE-2020-8255)</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Pulse Connect Secure</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SSL VPN 서비스인 Pulse Connect Secure에서 로그온 메시지 구성 요소를 악용해 arbitrary file read가 가능한 취약점이 발견되었습니다.</p>
-<p>관리자는 로그인 시 출력되는 메시지를 <code>/dana-admin/auth/signinNotf.cgi</code> 페이지를 통해 설정할 수 있는데, <code>en.txt</code> 및 <code>default.txt</code> 파일로 구성된 zip 형식의 파일을 업로드하면 해당 파일의 내용이 로그온 메시지로 표시됩니다.</p>
-<p>이때 zip 파일에 포함된 파일의 심볼릭 링크 여부를 확인하지 않으며 read 할 파일을 심볼릭 링크로 설정하는 arbitrary file read가 가능합니다.</p>
-<p>다음은 <code>/etc/passwd</code> 파일을 출력하는 POC입니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SSL VPN &#xC11C;&#xBE44;&#xC2A4;&#xC778; Pulse Connect Secure&#xC5D0;&#xC11C; &#xB85C;&#xADF8;&#xC628; &#xBA54;&#xC2DC;&#xC9C0; &#xAD6C;&#xC131; &#xC694;&#xC18C;&#xB97C; &#xC545;&#xC6A9;&#xD574; arbitrary file read&#xAC00; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAD00;&#xB9AC;&#xC790;&#xB294; &#xB85C;&#xADF8;&#xC778; &#xC2DC; &#xCD9C;&#xB825;&#xB418;&#xB294; &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; <code>/dana-admin/auth/signinNotf.cgi</code> &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xD1B5;&#xD574; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xB294;&#xB370;, <code>en.txt</code> &#xBC0F; <code>default.txt</code> &#xD30C;&#xC77C;&#xB85C; &#xAD6C;&#xC131;&#xB41C; zip &#xD615;&#xC2DD;&#xC758; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD558;&#xBA74; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC758; &#xB0B4;&#xC6A9;&#xC774; &#xB85C;&#xADF8;&#xC628; &#xBA54;&#xC2DC;&#xC9C0;&#xB85C; &#xD45C;&#xC2DC;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB54C; zip &#xD30C;&#xC77C;&#xC5D0; &#xD3EC;&#xD568;&#xB41C; &#xD30C;&#xC77C;&#xC758; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C; &#xC5EC;&#xBD80;&#xB97C; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA70; read &#xD560; &#xD30C;&#xC77C;&#xC744; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB85C; &#xC124;&#xC815;&#xD558;&#xB294; arbitrary file read&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xC740; <code>/etc/passwd</code> &#xD30C;&#xC77C;&#xC744; &#xCD9C;&#xB825;&#xD558;&#xB294; POC&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs gradle">ln -s <span class="hljs-regexp">/etc/</span>passwd <span class="hljs-keyword">default</span>.txt
 ln -s <span class="hljs-regexp">/etc/</span>passwd en.txt
 
@@ -253,7 +253,7 @@ zip --symlinks logon.zip <span class="hljs-keyword">default</span>.txt en.txt
 adding: <span class="hljs-keyword">default</span>.txt (stored <span class="hljs-number">0</span>%)
 adding: en.txt (stored <span class="hljs-number">0</span>%)</code></pre>
 
-<p>위와 같이 파일에 심볼릭 링크를 설정해 zip으로 압축한 뒤 <code>/dana-admin/auth/signinNotf.cgi</code> 페이지에 업로드하면 로그온 페이지에 <code>/etc/passwd</code>의 내용이 표시됩니다.</p>
+<p>&#xC704;&#xC640; &#xAC19;&#xC774; &#xD30C;&#xC77C;&#xC5D0; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB97C; &#xC124;&#xC815;&#xD574; zip&#xC73C;&#xB85C; &#xC555;&#xCD95;&#xD55C; &#xB4A4; <code>/dana-admin/auth/signinNotf.cgi</code> &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC5C5;&#xB85C;&#xB4DC;&#xD558;&#xBA74; &#xB85C;&#xADF8;&#xC628; &#xD398;&#xC774;&#xC9C0;&#xC5D0; <code>/etc/passwd</code>&#xC758; &#xB0B4;&#xC6A9;&#xC774; &#xD45C;&#xC2DC;&#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -552,6 +552,45 @@ adding: en.txt (stored <span class="hljs-number">0</span>%)</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

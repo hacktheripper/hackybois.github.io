@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      272 자
+      523 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      10
        분
     </span>
   
@@ -242,14 +242,14 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.synacktiv.com/publications/exploitation-of-a-double-free-vulnerability-in-ubuntu-shiftfs-driver-cve-2021-3492.html">EXPLOITATION OF A DOUBLE FREE VULNERABILITY IN UBUNTU SHIFTFS DRIVER (CVE-2021-3492)</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Ubuntu Groovy (20.10, kernel 5.8.0-50.56 이전 버전)</li>
-<li>Ubuntu Focal (20.04, kernel 5.4.0-72.80 이전 버전)</li>
+<li>Ubuntu Groovy (20.10, kernel 5.8.0-50.56 &#xC774;&#xC804; &#xBC84;&#xC804;)</li>
+<li>Ubuntu Focal (20.04, kernel 5.4.0-72.80 &#xC774;&#xC804; &#xBC84;&#xC804;)</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Pwn2Own Vancouver 2021에서 Ubuntu Groovy (20.10)과 Ubuntu Focal (20.04)의 Shiftfs 드라이버에서 double free 버그가 발견되었습니다.</p>
-<p>shiftfs는 파일 시스템 드라이버로 디렉터리를 bind-mount 하고 마운트한 user namespace owner의 맵을 통해 UID와 GID를 shift 할 수 있는 overlay 종류의 파일 시스템입니다. shiftfs는 특정 ioctl로 핸들링되며 허용된 ioctl을 전달받을 시 <code>shiftfs_real_ioctl</code>을 호출합니다. <code>BTRFS_IOC_SNAP_CREATE</code> ioctl이 사용되면 <code>shiftfs_btrfs_ioctl_fd_replace</code> 함수는 userspace에서 kernel space로 구조체를 복사하여 <code>btrfs_ioctl_vol_args</code> 구조체에 포함된 파일 디스크립터를 bottom 파일 시스템의 inode에 연결된 새 디스크립터로 교체하여 legacy btrfs ioctl을 래핑합니다.</p>
-<p>이 ioctl이 shiftfs 파일에서 수행되면 핸들링 코드는 <code>btrfs_ioctl_vol_args</code>를 userpsace에서 kernel space로 복사합니다. 이 구조체에서 <code>fd</code>를 교체한 후 다시 userspace로 복사됩니다. 복사가 실패할 경우, <code>copy_to_user</code> 함수는 남아있는 바이트를 반환하여 양수 값을 반환합니다. 해당 함수를 호출하는 <code>shiftfs_real_ioctl</code>은 음수 값인지 확인하여 오류가 났는지 확인하여 오류가 발생하더라도 <code>shiftfs_btrfs_ioctl_fd_restore</code>를 호출하여 다른 <code>copy_to_user</code>를 실행하고 <code>btrfs_ioctl_vol_args</code> 구조체를 userpace로 보낸 다음 free 합니다.</p>
-<p><code>shiftfs_btrfs_ioctl_fd_restore</code>를 두 번 호출하면 같은 fd를 두 번 닫고 같은 구조체가 두 번 free 됩니다. 해당 구조체는 userspace에서 복사되는 동안 <code>shiftfs_btrfs_ioctl_fd_replace</code>에 할당되며 커널 함수 <code>memdup_user</code>는 <code>copy_from_user</code>와 동시에 할당합니다.</p>
-<p><code>shiftfs_btrfs_ioctl_fd_replace</code> 함수에서 <code>memdup_user</code>가 할당에 성공하고 <code>copy_to_user</code>는 실패하면 <code>shiftfs_btrfs_ioctl_fd_restore</code>에서 <code>kfree</code>를 호출하여 첫 번째 free를 진행하고 <code>shiftfs_real_ioctl</code>에서 다시 <code>shiftfs_btrfs_ioctl_fd_restore</code>를 호출하여 Potential leak과 <code>kfree</code>를 통한 두 번째 free가 가능하여 double free bug가 발생합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Pwn2Own Vancouver 2021&#xC5D0;&#xC11C; Ubuntu Groovy (20.10)&#xACFC; Ubuntu Focal (20.04)&#xC758; Shiftfs &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xC11C; double free &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>shiftfs&#xB294; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB85C; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; bind-mount &#xD558;&#xACE0; &#xB9C8;&#xC6B4;&#xD2B8;&#xD55C; user namespace owner&#xC758; &#xB9F5;&#xC744; &#xD1B5;&#xD574; UID&#xC640; GID&#xB97C; shift &#xD560; &#xC218; &#xC788;&#xB294; overlay &#xC885;&#xB958;&#xC758; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC785;&#xB2C8;&#xB2E4;. shiftfs&#xB294; &#xD2B9;&#xC815; ioctl&#xB85C; &#xD578;&#xB4E4;&#xB9C1;&#xB418;&#xBA70; &#xD5C8;&#xC6A9;&#xB41C; ioctl&#xC744; &#xC804;&#xB2EC;&#xBC1B;&#xC744; &#xC2DC; <code>shiftfs_real_ioctl</code>&#xC744; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. <code>BTRFS_IOC_SNAP_CREATE</code> ioctl&#xC774; &#xC0AC;&#xC6A9;&#xB418;&#xBA74; <code>shiftfs_btrfs_ioctl_fd_replace</code> &#xD568;&#xC218;&#xB294; userspace&#xC5D0;&#xC11C; kernel space&#xB85C; &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xBCF5;&#xC0AC;&#xD558;&#xC5EC; <code>btrfs_ioctl_vol_args</code> &#xAD6C;&#xC870;&#xCCB4;&#xC5D0; &#xD3EC;&#xD568;&#xB41C; &#xD30C;&#xC77C; &#xB514;&#xC2A4;&#xD06C;&#xB9BD;&#xD130;&#xB97C; bottom &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC758; inode&#xC5D0; &#xC5F0;&#xACB0;&#xB41C; &#xC0C8; &#xB514;&#xC2A4;&#xD06C;&#xB9BD;&#xD130;&#xB85C; &#xAD50;&#xCCB4;&#xD558;&#xC5EC; legacy btrfs ioctl&#xC744; &#xB798;&#xD551;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; ioctl&#xC774; shiftfs &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xB418;&#xBA74; &#xD578;&#xB4E4;&#xB9C1; &#xCF54;&#xB4DC;&#xB294; <code>btrfs_ioctl_vol_args</code>&#xB97C; userpsace&#xC5D0;&#xC11C; kernel space&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xAD6C;&#xC870;&#xCCB4;&#xC5D0;&#xC11C; <code>fd</code>&#xB97C; &#xAD50;&#xCCB4;&#xD55C; &#xD6C4; &#xB2E4;&#xC2DC; userspace&#xB85C; &#xBCF5;&#xC0AC;&#xB429;&#xB2C8;&#xB2E4;. &#xBCF5;&#xC0AC;&#xAC00; &#xC2E4;&#xD328;&#xD560; &#xACBD;&#xC6B0;, <code>copy_to_user</code> &#xD568;&#xC218;&#xB294; &#xB0A8;&#xC544;&#xC788;&#xB294; &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xC5EC; &#xC591;&#xC218; &#xAC12;&#xC744; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; <code>shiftfs_real_ioctl</code>&#xC740; &#xC74C;&#xC218; &#xAC12;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC5EC; &#xC624;&#xB958;&#xAC00; &#xB0AC;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC5EC; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB354;&#xB77C;&#xB3C4; <code>shiftfs_btrfs_ioctl_fd_restore</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xB2E4;&#xB978; <code>copy_to_user</code>&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xACE0; <code>btrfs_ioctl_vol_args</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; userpace&#xB85C; &#xBCF4;&#xB0B8; &#xB2E4;&#xC74C; free &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>shiftfs_btrfs_ioctl_fd_restore</code>&#xB97C; &#xB450; &#xBC88; &#xD638;&#xCD9C;&#xD558;&#xBA74; &#xAC19;&#xC740; fd&#xB97C; &#xB450; &#xBC88; &#xB2EB;&#xACE0; &#xAC19;&#xC740; &#xAD6C;&#xC870;&#xCCB4;&#xAC00; &#xB450; &#xBC88; free &#xB429;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xAD6C;&#xC870;&#xCCB4;&#xB294; userspace&#xC5D0;&#xC11C; &#xBCF5;&#xC0AC;&#xB418;&#xB294; &#xB3D9;&#xC548; <code>shiftfs_btrfs_ioctl_fd_replace</code>&#xC5D0; &#xD560;&#xB2F9;&#xB418;&#xBA70; &#xCEE4;&#xB110; &#xD568;&#xC218; <code>memdup_user</code>&#xB294; <code>copy_from_user</code>&#xC640; &#xB3D9;&#xC2DC;&#xC5D0; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>shiftfs_btrfs_ioctl_fd_replace</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>memdup_user</code>&#xAC00; &#xD560;&#xB2F9;&#xC5D0; &#xC131;&#xACF5;&#xD558;&#xACE0; <code>copy_to_user</code>&#xB294; &#xC2E4;&#xD328;&#xD558;&#xBA74; <code>shiftfs_btrfs_ioctl_fd_restore</code>&#xC5D0;&#xC11C; <code>kfree</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xCCAB; &#xBC88;&#xC9F8; free&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xACE0; <code>shiftfs_real_ioctl</code>&#xC5D0;&#xC11C; &#xB2E4;&#xC2DC; <code>shiftfs_btrfs_ioctl_fd_restore</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; Potential leak&#xACFC; <code>kfree</code>&#xB97C; &#xD1B5;&#xD55C; &#xB450; &#xBC88;&#xC9F8; free&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xC5EC; double free bug&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -552,6 +552,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      174 자
+      355 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -244,15 +244,15 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>nginx 0.6.18 - 1.20.0</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>오픈 소스 웹 서버 프로그램 nginx의 <code>ngx_resolver_copy()</code>에서 DNS response를 처리하는 동안 발생하는 off-by-one으로 인해 heap 영역의 1-byte 메모리를 덮어쓸 수 있는 취약점이 발견되었습니다.</p>
-<p><code>ngx_resolver_copy()</code>는 DNS response에 포함된 DNS 도메인 이름의 유효성을 검사하고 압축을 해제하는 작업을 다음 두 단계로 처리합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC624;&#xD508; &#xC18C;&#xC2A4; &#xC6F9; &#xC11C;&#xBC84; &#xD504;&#xB85C;&#xADF8;&#xB7A8; nginx&#xC758; <code>ngx_resolver_copy()</code>&#xC5D0;&#xC11C; DNS response&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xB3D9;&#xC548; &#xBC1C;&#xC0DD;&#xD558;&#xB294; off-by-one&#xC73C;&#xB85C; &#xC778;&#xD574; heap &#xC601;&#xC5ED;&#xC758; 1-byte &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xB36E;&#xC5B4;&#xC4F8; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>ngx_resolver_copy()</code>&#xB294; DNS response&#xC5D0; &#xD3EC;&#xD568;&#xB41C; DNS &#xB3C4;&#xBA54;&#xC778; &#xC774;&#xB984;&#xC758; &#xC720;&#xD6A8;&#xC131;&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xACE0; &#xC555;&#xCD95;&#xC744; &#xD574;&#xC81C;&#xD558;&#xB294; &#xC791;&#xC5C5;&#xC744; &#xB2E4;&#xC74C; &#xB450; &#xB2E8;&#xACC4;&#xB85C; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>압축되지 않은 도메인 이름 크기인 <code>len</code>을 계산하고 128 포인터가 넘어가거나 버퍼의 범위를 벗어나는 부분을 버립니다.</li>
-<li>Output buffer를 할당하고 압축되지 않은 이름을 복사합니다.</li>
+<li>&#xC555;&#xCD95;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xB3C4;&#xBA54;&#xC778; &#xC774;&#xB984; &#xD06C;&#xAE30;&#xC778; <code>len</code>&#xC744; &#xACC4;&#xC0B0;&#xD558;&#xACE0; 128 &#xD3EC;&#xC778;&#xD130;&#xAC00; &#xB118;&#xC5B4;&#xAC00;&#xAC70;&#xB098; &#xBC84;&#xD37C;&#xC758; &#xBC94;&#xC704;&#xB97C; &#xBC97;&#xC5B4;&#xB098;&#xB294; &#xBD80;&#xBD84;&#xC744; &#xBC84;&#xB9BD;&#xB2C8;&#xB2E4;.</li>
+<li>Output buffer&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xACE0; &#xC555;&#xCD95;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC774;&#xB984;&#xC744; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>이 과정에서 1번의 <code>len</code>과 2번에 압축되지 않은 이름의 크기가 달라 <code>name-&gt;data</code>에서 1 바이트를 벗어나 덮어쓸 수 있습니다.</p>
-<p>nginx DNS response를 받기 위해 DNS request를 보낸 후, <code>QNAME</code>, <code>NAME</code>, <code>RDATA</code> 중 하나의 값을 통해 해당 취약점을 트리거할 수 있습니다. 또한 <code>CNAME</code>을 사용할 경우 재귀적으로 처리되어 <code>ngx_resolve_name_locked()</code>가 호출될 때 추가적인 OOB write가 가능하고 <code>ngx_resolver_dup()</code>과 <code>ngx_crc32_short()</code>를 통해 OOB read가 가능합니다.</p>
-<p>해당 취약점의 POC 코드는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/x41sec/advisories/blob/master/X41-2021-002/poc.py">github</a>에서 확인할 수 있습니다.</p>
+<p>&#xC774; &#xACFC;&#xC815;&#xC5D0;&#xC11C; 1&#xBC88;&#xC758; <code>len</code>&#xACFC; 2&#xBC88;&#xC5D0; &#xC555;&#xCD95;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC774;&#xB984;&#xC758; &#xD06C;&#xAE30;&#xAC00; &#xB2EC;&#xB77C; <code>name-&gt;data</code>&#xC5D0;&#xC11C; 1 &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xBC97;&#xC5B4;&#xB098; &#xB36E;&#xC5B4;&#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>nginx DNS response&#xB97C; &#xBC1B;&#xAE30; &#xC704;&#xD574; DNS request&#xB97C; &#xBCF4;&#xB0B8; &#xD6C4;, <code>QNAME</code>, <code>NAME</code>, <code>RDATA</code> &#xC911; &#xD558;&#xB098;&#xC758; &#xAC12;&#xC744; &#xD1B5;&#xD574; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; <code>CNAME</code>&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xACBD;&#xC6B0; &#xC7AC;&#xADC0;&#xC801;&#xC73C;&#xB85C; &#xCC98;&#xB9AC;&#xB418;&#xC5B4; <code>ngx_resolve_name_locked()</code>&#xAC00; &#xD638;&#xCD9C;&#xB420; &#xB54C; &#xCD94;&#xAC00;&#xC801;&#xC778; OOB write&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xACE0; <code>ngx_resolver_dup()</code>&#xACFC; <code>ngx_crc32_short()</code>&#xB97C; &#xD1B5;&#xD574; OOB read&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC758; POC &#xCF54;&#xB4DC;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/x41sec/advisories/blob/master/X41-2021-002/poc.py">github</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -561,6 +561,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

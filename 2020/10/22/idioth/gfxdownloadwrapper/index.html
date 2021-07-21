@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      146 자
+      301 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -242,19 +242,19 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bohops.com/2020/10/21/exploring-an-assembly-loading-technique-and-detection-mechanism-for-the-gfxdownloadwrapper-exe-lolbin/">Exploring an Assembly Loading Technique and Detection Mechanism for the GfxDownloadWrapper.exe LOLBIN</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Windows</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>GfxDownloadWrapper.exe는 인텔 비디오 카드 드라이버 소프트웨어로 인텔 그래픽 컨트롤 패널 및 게임 그래픽 설정을 지원하는 .NET 응용 프로그램입니다. 해당 파일은 “Microsoft Windows Third Party Component CA 2012”로 인증되어 있습니다. GfxDownloadWrapper.exe는 임의 다운로드를 방지하기 위한 루틴이 존재하지만 낮은 버전에서는 그러한 검증이 없습니다.</p>
-<p><code>main()</code> 진입점에서 어셈블리를 로드하는 부분을 발견할 수 있으며 인자를 조작함으로써 영향을 미칠 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>GfxDownloadWrapper.exe&#xB294; &#xC778;&#xD154; &#xBE44;&#xB514;&#xC624; &#xCE74;&#xB4DC; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xB85C; &#xC778;&#xD154; &#xADF8;&#xB798;&#xD53D; &#xCEE8;&#xD2B8;&#xB864; &#xD328;&#xB110; &#xBC0F; &#xAC8C;&#xC784; &#xADF8;&#xB798;&#xD53D; &#xC124;&#xC815;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; .NET &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC740; &#x201C;Microsoft Windows Third Party Component CA 2012&#x201D;&#xB85C; &#xC778;&#xC99D;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. GfxDownloadWrapper.exe&#xB294; &#xC784;&#xC758; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xB97C; &#xBC29;&#xC9C0;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xB8E8;&#xD2F4;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xC9C0;&#xB9CC; &#xB0AE;&#xC740; &#xBC84;&#xC804;&#xC5D0;&#xC11C;&#xB294; &#xADF8;&#xB7EC;&#xD55C; &#xAC80;&#xC99D;&#xC774; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>main()</code> &#xC9C4;&#xC785;&#xC810;&#xC5D0;&#xC11C; &#xC5B4;&#xC148;&#xBE14;&#xB9AC;&#xB97C; &#xB85C;&#xB4DC;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC744; &#xBC1C;&#xACAC;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xC778;&#xC790;&#xB97C; &#xC870;&#xC791;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xC601;&#xD5A5;&#xC744; &#xBBF8;&#xCE60; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li>args[0]: “run”의 문자열 값</li>
-<li>args[1]: 어셈블리 DLL 페이로드 경로</li>
-<li>args[2]: 필수 어셈블리 method 숫자 문자열 값<ul>
+<li>args[0]: &#x201C;run&#x201D;&#xC758; &#xBB38;&#xC790;&#xC5F4; &#xAC12;</li>
+<li>args[1]: &#xC5B4;&#xC148;&#xBE14;&#xB9AC; DLL &#xD398;&#xC774;&#xB85C;&#xB4DC; &#xACBD;&#xB85C;</li>
+<li>args[2]: &#xD544;&#xC218; &#xC5B4;&#xC148;&#xBE14;&#xB9AC; method &#xC22B;&#xC790; &#xBB38;&#xC790;&#xC5F4; &#xAC12;<ul>
 <li>0: <code>ApplyRecommendedSettings</code>, 1: <code>RestoreRecommendedSettings</code>, 2: <code>CacheCleanup</code></li>
 </ul>
 </li>
-<li>args[3]: <code>AppData</code> 상대 경로에 있는 게임 식별자 값</li>
+<li>args[3]: <code>AppData</code> &#xC0C1;&#xB300; &#xACBD;&#xB85C;&#xC5D0; &#xC788;&#xB294; &#xAC8C;&#xC784; &#xC2DD;&#xBCC4;&#xC790; &#xAC12;</li>
 </ul>
-<pre><code class="hljs powershell">GfxDownloadWrapper.exe <span class="hljs-string">&quot;run&quot;</span> <span class="hljs-string">&quot;payload.dll&quot;</span> <span class="hljs-string">&quot;MethodNumber&quot;</span> <span class="hljs-string">&quot;;AppData\\Local\\Intel\\Games\\임의 값&quot;</span></code></pre>
-<p>따라서 인자를 맞춰준 후 DLL 경로를 악성 dll로 지정하면 악성 어셈블리를 로드한 후 성공적으로 실행하게 됩니다.</p>
+<pre><code class="hljs powershell">GfxDownloadWrapper.exe <span class="hljs-string">&quot;run&quot;</span> <span class="hljs-string">&quot;payload.dll&quot;</span> <span class="hljs-string">&quot;MethodNumber&quot;</span> <span class="hljs-string">&quot;;AppData\\Local\\Intel\\Games\\&#xC784;&#xC758; &#xAC12;&quot;</span></code></pre>
+<p>&#xB530;&#xB77C;&#xC11C; &#xC778;&#xC790;&#xB97C; &#xB9DE;&#xCDB0;&#xC900; &#xD6C4; DLL &#xACBD;&#xB85C;&#xB97C; &#xC545;&#xC131; dll&#xB85C; &#xC9C0;&#xC815;&#xD558;&#xBA74; &#xC545;&#xC131; &#xC5B4;&#xC148;&#xBE14;&#xB9AC;&#xB97C; &#xB85C;&#xB4DC;&#xD55C; &#xD6C4; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -555,6 +555,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

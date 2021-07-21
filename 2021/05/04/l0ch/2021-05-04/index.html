@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      269 자
+      494 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        분
     </span>
   
@@ -240,47 +240,47 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-tg8-firewall-preauth-rce-and-password-disclosure/">SSD Advisory – TG8 Firewall PreAuth RCE and Password Disclosure</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-tg8-firewall-preauth-rce-and-password-disclosure/">SSD Advisory &#x2013; TG8 Firewall PreAuth RCE and Password Disclosure</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>TG8 Firewall</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.tg8security.com/firewall.html">TG8 Security</a> 사의 방화벽에서 인증되지 않은 root 권한의 원격 코드 실행 취약점이 발견되어 세부 정보가 공개되었습니다.</p>
-<p>취약점은 인증 요청을 처리하는 <code>index.php</code> 에 존재하며 아래와 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="http://www.tg8security.com/firewall.html">TG8 Security</a> &#xC0AC;&#xC758; &#xBC29;&#xD654;&#xBCBD;&#xC5D0;&#xC11C; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; root &#xAD8C;&#xD55C;&#xC758; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC778;&#xC99D; &#xC694;&#xCCAD;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; <code>index.php</code> &#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xBA70; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs php">...
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkLogin</span>(<span class="hljs-params"></span>) </span>&#123;
-    <span class="hljs-keyword">var</span> username = $(<span class="hljs-string">&#x27;input[name=u]&#x27;</span>).val();
-    <span class="hljs-keyword">var</span> pass = $(<span class="hljs-string">&#x27;input[name=p]&#x27;</span>).val();
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkLogin</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> username = $(<span class="hljs-string">&apos;input[name=u]&apos;</span>).val();
+    <span class="hljs-keyword">var</span> pass = $(<span class="hljs-string">&apos;input[name=p]&apos;</span>).val();
 
-    <span class="hljs-keyword">var</span> cmd = <span class="hljs-string">&#x27;sudo /home/TG8/v3/syscmd/check_gui_login.sh &#x27;</span> + username + <span class="hljs-string">&#x27; &#x27;</span> + pass;
-    $.ajax(&#123;
+    <span class="hljs-keyword">var</span> cmd = <span class="hljs-string">&apos;sudo /home/TG8/v3/syscmd/check_gui_login.sh &apos;</span> + username + <span class="hljs-string">&apos; &apos;</span> + pass;
+    $.ajax({
       url: <span class="hljs-string">&quot;runphpcmd.php&quot;</span>,
       type: <span class="hljs-string">&quot;post&quot;</span>,
       dataType: <span class="hljs-string">&quot;json&quot;</span>,
       cache: <span class="hljs-string">&quot;false&quot;</span>,
-      data: &#123;
+      data: {
         syscmd: cmd
-      &#125;,
-      success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>&#123;
-        <span class="hljs-keyword">if</span> (x == <span class="hljs-string">&#x27;OK&#x27;</span>) &#123;
+      },
+      success: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">x</span>) </span>{
+        <span class="hljs-keyword">if</span> (x == <span class="hljs-string">&apos;OK&apos;</span>) {
           ok(username);
-        &#125; <span class="hljs-keyword">else</span> &#123;
+        } <span class="hljs-keyword">else</span> {
           failed();
-        &#125;
-      &#125;,
-      <span class="hljs-built_in">error</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;
+        }
+      },
+      <span class="hljs-built_in">error</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       ok(username);
         <span class="hljs-comment">// alert(&quot;failure to excute the command&quot;);</span>
-      &#125;
-    &#125;)
-  &#125;
+      }
+    })
+  }
 ...</code></pre>
 
-<p>인증 요청을 받으면 로그인을 처리하는 <code>check_gui_login.sh</code> 에 <code>username</code>과 <code>pass</code>를 매개변수로 명령을 구성합니다. 이는 <code>runphpcmd.php</code> 의 <code>syscmd</code>로 전달되고 root 권한으로 <code>check_gui_login.sh</code>가 실행됩니다. 그러나  <code>syscmd</code>에 대한 어떠한 검사도 존재하지 않아 해커가 임의의 코드를 포함한 <code>syscmd</code>를 매개변수로 <code>runphpcmd.php</code>에 직접 요청하면 원격 코드 실행이 트리거 됩니다. </p>
-<p>root 권한으로 <code>ls</code> 명령어를 실행하는 PoC는 다음과 같습니다.</p>
+<p>&#xC778;&#xC99D; &#xC694;&#xCCAD;&#xC744; &#xBC1B;&#xC73C;&#xBA74; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; <code>check_gui_login.sh</code> &#xC5D0; <code>username</code>&#xACFC; <code>pass</code>&#xB97C; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xBA85;&#xB839;&#xC744; &#xAD6C;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB294; <code>runphpcmd.php</code> &#xC758; <code>syscmd</code>&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xACE0; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; <code>check_gui_login.sh</code>&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098;  <code>syscmd</code>&#xC5D0; &#xB300;&#xD55C; &#xC5B4;&#xB5A0;&#xD55C; &#xAC80;&#xC0AC;&#xB3C4; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xD574;&#xCEE4;&#xAC00; &#xC784;&#xC758;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xD3EC;&#xD568;&#xD55C; <code>syscmd</code>&#xB97C; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; <code>runphpcmd.php</code>&#xC5D0; &#xC9C1;&#xC811; &#xC694;&#xCCAD;&#xD558;&#xBA74; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;. </p>
+<p>root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; <code>ls</code> &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; PoC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">http:<span class="hljs-comment">//&lt;server&gt;/admin/runphpcmd.php?syscmd=sudo+%2Fhome%2FTG8%2Fv3%2Fsyscmd%2Fcheck_gui_login.sh+%3Bls%3B++local</span></code></pre>
 
-<p>제보자는 해당 취약점 외에도 액세스 권한 설정 미흡으로 인해 인증되지 않은 사용자가 <code>/data/</code> 디렉터리의 자격 증명 파일에 접근할 수 있는 정보유출 취약점 또한 발견했습니다.</p>
-<p>이를 해당 방화벽 장비의 공급 업체인 TG8에게 SNS 및 이메일을 통해 여러 차례 제보하였으나 공급 업체로부터 어떠한 응답도 받지 못했다고 밝혔으며, 해당 장비를 사용하고 있다면 즉시 외부 인터넷으로 통하는 포트를 차단할 것을 강력하게 권고했습니다.</p>
+<p>&#xC81C;&#xBCF4;&#xC790;&#xB294; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810; &#xC678;&#xC5D0;&#xB3C4; &#xC561;&#xC138;&#xC2A4; &#xAD8C;&#xD55C; &#xC124;&#xC815; &#xBBF8;&#xD761;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; <code>/data/</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC758; &#xC790;&#xACA9; &#xC99D;&#xBA85; &#xD30C;&#xC77C;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB294; &#xC815;&#xBCF4;&#xC720;&#xCD9C; &#xCDE8;&#xC57D;&#xC810; &#xB610;&#xD55C; &#xBC1C;&#xACAC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xD574;&#xB2F9; &#xBC29;&#xD654;&#xBCBD; &#xC7A5;&#xBE44;&#xC758; &#xACF5;&#xAE09; &#xC5C5;&#xCCB4;&#xC778; TG8&#xC5D0;&#xAC8C; SNS &#xBC0F; &#xC774;&#xBA54;&#xC77C;&#xC744; &#xD1B5;&#xD574; &#xC5EC;&#xB7EC; &#xCC28;&#xB840; &#xC81C;&#xBCF4;&#xD558;&#xC600;&#xC73C;&#xB098; &#xACF5;&#xAE09; &#xC5C5;&#xCCB4;&#xB85C;&#xBD80;&#xD130; &#xC5B4;&#xB5A0;&#xD55C; &#xC751;&#xB2F5;&#xB3C4; &#xBC1B;&#xC9C0; &#xBABB;&#xD588;&#xB2E4;&#xACE0; &#xBC1D;&#xD614;&#xC73C;&#xBA70;, &#xD574;&#xB2F9; &#xC7A5;&#xBE44;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xB2E4;&#xBA74; &#xC989;&#xC2DC; &#xC678;&#xBD80; &#xC778;&#xD130;&#xB137;&#xC73C;&#xB85C; &#xD1B5;&#xD558;&#xB294; &#xD3EC;&#xD2B8;&#xB97C; &#xCC28;&#xB2E8;&#xD560; &#xAC83;&#xC744; &#xAC15;&#xB825;&#xD558;&#xAC8C; &#xAD8C;&#xACE0;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -581,6 +581,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

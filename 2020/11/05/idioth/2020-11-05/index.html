@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      196 자
+      307 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -250,23 +250,23 @@
 </ul>
 </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>해당 취약점은 Apache Tomcat의 WebSocket 프레임에서 <code>payloadLength</code>에 의해 무한 루프가 트리거 되어 DoS 공격으로 연결될 수 있는 취약점입니다.</p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tools.ietf.org/html/rfc6455#section-5.2">RFC6455</a>의 WebSocket 프레임에서 payload length 필드가 127(2진수 1111111)이면 64비트 확장 payload length를 사용합니다. 이 payload length는 64비트 unsigned integer이지만 RFC에서는 최상위 비트가 항상 0이 되도록 요구합니다.</p>
-<p>따라서 payload length 필드를 127로 설정해준 후 다음 8바이트의 MSB를 1로 설정해주기만 하면 DoS 공격을 수행할 수 있습니다.</p>
-<p>취약점과 관련된 패치는 <code>payloadLength</code>가 음수가 될 경우 exception을 발생시키도록 패치되었습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; Apache Tomcat&#xC758; WebSocket &#xD504;&#xB808;&#xC784;&#xC5D0;&#xC11C; <code>payloadLength</code>&#xC5D0; &#xC758;&#xD574; &#xBB34;&#xD55C; &#xB8E8;&#xD504;&#xAC00; &#xD2B8;&#xB9AC;&#xAC70; &#xB418;&#xC5B4; DoS &#xACF5;&#xACA9;&#xC73C;&#xB85C; &#xC5F0;&#xACB0;&#xB420; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://tools.ietf.org/html/rfc6455#section-5.2">RFC6455</a>&#xC758; WebSocket &#xD504;&#xB808;&#xC784;&#xC5D0;&#xC11C; payload length &#xD544;&#xB4DC;&#xAC00; 127(2&#xC9C4;&#xC218; 1111111)&#xC774;&#xBA74; 64&#xBE44;&#xD2B8; &#xD655;&#xC7A5; payload length&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; payload length&#xB294; 64&#xBE44;&#xD2B8; unsigned integer&#xC774;&#xC9C0;&#xB9CC; RFC&#xC5D0;&#xC11C;&#xB294; &#xCD5C;&#xC0C1;&#xC704; &#xBE44;&#xD2B8;&#xAC00; &#xD56D;&#xC0C1; 0&#xC774; &#xB418;&#xB3C4;&#xB85D; &#xC694;&#xAD6C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB530;&#xB77C;&#xC11C; payload length &#xD544;&#xB4DC;&#xB97C; 127&#xB85C; &#xC124;&#xC815;&#xD574;&#xC900; &#xD6C4; &#xB2E4;&#xC74C; 8&#xBC14;&#xC774;&#xD2B8;&#xC758; MSB&#xB97C; 1&#xB85C; &#xC124;&#xC815;&#xD574;&#xC8FC;&#xAE30;&#xB9CC; &#xD558;&#xBA74; DoS &#xACF5;&#xACA9;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xACFC; &#xAD00;&#xB828;&#xB41C; &#xD328;&#xCE58;&#xB294; <code>payloadLength</code>&#xAC00; &#xC74C;&#xC218;&#xAC00; &#xB420; &#xACBD;&#xC6B0; exception&#xC744; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0A4;&#xB3C4;&#xB85D; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs java"><span class="hljs-comment">// The most significant bit of those 8 bytes is required to be zero</span>
 <span class="hljs-comment">// (see RFC 6455, section 5.2). If the most significant bit is set,</span>
 <span class="hljs-comment">// the resulting payload length will be negative so test for that.</span>
-<span class="hljs-keyword">if</span> (payloadLength &lt; <span class="hljs-number">0</span>) &#123;
+<span class="hljs-keyword">if</span> (payloadLength &lt; <span class="hljs-number">0</span>) {
     <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> WsIOException(
         <span class="hljs-keyword">new</span> CloseReason(
             CloseCodes.PROTOCOL_ERROR,
             sm.getString(<span class="hljs-string">&quot;wsFrame.payloadMsbInvalid&quot;</span>)
         )
     );
-&#125;</code></pre>
+}</code></pre>
 
-<p>해당 취약점에 관한 PoC Code는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/RedTeamPentesting/CVE-2020-13935">여기</a>서 확인할 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xAD00;&#xD55C; PoC Code&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/RedTeamPentesting/CVE-2020-13935">&#xC5EC;&#xAE30;</a>&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -571,6 +571,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

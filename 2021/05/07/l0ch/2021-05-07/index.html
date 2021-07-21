@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      161 자
+      365 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -244,10 +244,10 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Dell Windows device</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>2009년부터 Dell이 출시한 수억 대의 Windows 디바이스에 영향을 주는 권한 상승 취약점의 세부 정보가 공개되었습니다.</p>
-<p>취약점이 존재하는 드라이버 <code>dbutil_2_3.sys</code>는 Dell BIOS 유틸리티를 통한 펌웨어 업데이트에 사용되는 드라이버로 2009년부터 Dell의 대부분의 Windows 디바이스에 포함되어 정기적인 업데이트에 사용됩니다.</p>
-<p>해당 드라이버에는 다섯 개의 권한 상승 취약점이 발견되었으며 단일 CVE가 할당되었습니다.  첫 번째 취약점은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EC%A0%91%EA%B7%BC_%EC%A0%9C%EC%96%B4_%EB%AA%A9%EB%A1%9D">ACL(Access Control List)</a> 구성 미흡으로 드라이버가 권한 없는 사용자의 IOCTL 요청을 수행할 수 있어 발생합니다. 따라서 권한 없는 사용자가 IOCTL <code>0x9B0C1EC8</code> 로 <code>memmove</code> 함수에 전달되는 인수를 제어할 수 있어 arbitrary memory read/write가 가능합니다. 해커는 이를 악용해 <code>EPROCESS</code>의 토큰 권한 멤버인 <code>Present</code> 및 <code>Enabled</code>을 덮어쓰는 것으로 로컬 권한 상승을 트리거할 수 있습니다.</p>
-<p>취약점을 제보한 SentinelLabs는 첫 번째를 제외한 나머지 권한 상승 취약점의 세부 정보 및 PoC는 2021년 6월 1일까지 공개를 보류하겠다고 밝혔습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>2009&#xB144;&#xBD80;&#xD130; Dell&#xC774; &#xCD9C;&#xC2DC;&#xD55C; &#xC218;&#xC5B5; &#xB300;&#xC758; Windows &#xB514;&#xBC14;&#xC774;&#xC2A4;&#xC5D0; &#xC601;&#xD5A5;&#xC744; &#xC8FC;&#xB294; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84; <code>dbutil_2_3.sys</code>&#xB294; Dell BIOS &#xC720;&#xD2F8;&#xB9AC;&#xD2F0;&#xB97C; &#xD1B5;&#xD55C; &#xD38C;&#xC6E8;&#xC5B4; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB85C; 2009&#xB144;&#xBD80;&#xD130; Dell&#xC758; &#xB300;&#xBD80;&#xBD84;&#xC758; Windows &#xB514;&#xBC14;&#xC774;&#xC2A4;&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC815;&#xAE30;&#xC801;&#xC778; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xC5D0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xB294; &#xB2E4;&#xC12F; &#xAC1C;&#xC758; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC73C;&#xBA70; &#xB2E8;&#xC77C; CVE&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.  &#xCCAB; &#xBC88;&#xC9F8; &#xCDE8;&#xC57D;&#xC810;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EC%A0%91%EA%B7%BC_%EC%A0%9C%EC%96%B4_%EB%AA%A9%EB%A1%9D">ACL(Access Control List)</a> &#xAD6C;&#xC131; &#xBBF8;&#xD761;&#xC73C;&#xB85C; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xAC00; &#xAD8C;&#xD55C; &#xC5C6;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xC758; IOCTL &#xC694;&#xCCAD;&#xC744; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xC5B4; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xAD8C;&#xD55C; &#xC5C6;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; IOCTL <code>0x9B0C1EC8</code> &#xB85C; <code>memmove</code> &#xD568;&#xC218;&#xC5D0; &#xC804;&#xB2EC;&#xB418;&#xB294; &#xC778;&#xC218;&#xB97C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC5B4; arbitrary memory read/write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; <code>EPROCESS</code>&#xC758; &#xD1A0;&#xD070; &#xAD8C;&#xD55C; &#xBA64;&#xBC84;&#xC778; <code>Present</code> &#xBC0F; <code>Enabled</code>&#xC744; &#xB36E;&#xC5B4;&#xC4F0;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC81C;&#xBCF4;&#xD55C; SentinelLabs&#xB294; &#xCCAB; &#xBC88;&#xC9F8;&#xB97C; &#xC81C;&#xC678;&#xD55C; &#xB098;&#xBA38;&#xC9C0; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4; &#xBC0F; PoC&#xB294; 2021&#xB144; 6&#xC6D4; 1&#xC77C;&#xAE4C;&#xC9C0; &#xACF5;&#xAC1C;&#xB97C; &#xBCF4;&#xB958;&#xD558;&#xACA0;&#xB2E4;&#xACE0; &#xBC1D;&#xD614;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -265,9 +265,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
@@ -556,6 +556,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

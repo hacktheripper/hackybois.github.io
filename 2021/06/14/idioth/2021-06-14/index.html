@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      117 자
+      238 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -244,8 +244,8 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>One Time Password</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Rate limit가 존재하는 OTP (One Time Password) 메커니즘을 우회하여 Brute Force이 가능한 방법이 공개되었습니다. 원글의 작성자는 버그 바운티의 타깃이 되는 웹 사이트를 공개하지 않았습니다.</p>
-<p>타깃 웹사이트에서 비밀번호를 재설정하는 부분에 제공된 이메일 주소로 OTP가 전송됩니다. Reset Password 버튼을 반복하여 클릭하고 Burp Suite로 확인하면 rate limit가 적용되어 있습니다. 따라서 연속적인 request가 발생할 시 <code>Server error</code>가 발생합니다. 하지만 <code>X-Forwarded-For: 127.0.0.1</code> 헤더를 사용하여 OTP의 time limiting을 우회할 수 있습니다. 이를 통해 <code>X-Forwarded-For</code>의 호스트 ID를 <code>127.0.0.1</code>부터 <code>127.0.0.255</code>까지 바꿔가면서 OTP를 Brute Force 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Rate limit&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294; OTP (One Time Password) &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xC5EC; Brute Force&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xBC29;&#xBC95;&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC6D0;&#xAE00;&#xC758; &#xC791;&#xC131;&#xC790;&#xB294; &#xBC84;&#xADF8; &#xBC14;&#xC6B4;&#xD2F0;&#xC758; &#xD0C0;&#xAE43;&#xC774; &#xB418;&#xB294; &#xC6F9; &#xC0AC;&#xC774;&#xD2B8;&#xB97C; &#xACF5;&#xAC1C;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD0C0;&#xAE43; &#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xC5D0;&#xC11C; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC7AC;&#xC124;&#xC815;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC5D0; &#xC81C;&#xACF5;&#xB41C; &#xC774;&#xBA54;&#xC77C; &#xC8FC;&#xC18C;&#xB85C; OTP&#xAC00; &#xC804;&#xC1A1;&#xB429;&#xB2C8;&#xB2E4;. Reset Password &#xBC84;&#xD2BC;&#xC744; &#xBC18;&#xBCF5;&#xD558;&#xC5EC; &#xD074;&#xB9AD;&#xD558;&#xACE0; Burp Suite&#xB85C; &#xD655;&#xC778;&#xD558;&#xBA74; rate limit&#xAC00; &#xC801;&#xC6A9;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC5F0;&#xC18D;&#xC801;&#xC778; request&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC2DC; <code>Server error</code>&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>X-Forwarded-For: 127.0.0.1</code> &#xD5E4;&#xB354;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; OTP&#xC758; time limiting&#xC744; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; <code>X-Forwarded-For</code>&#xC758; &#xD638;&#xC2A4;&#xD2B8; ID&#xB97C; <code>127.0.0.1</code>&#xBD80;&#xD130; <code>127.0.0.255</code>&#xAE4C;&#xC9C0; &#xBC14;&#xAFD4;&#xAC00;&#xBA74;&#xC11C; OTP&#xB97C; Brute Force &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="https://miro.medium.com/max/1200/1*yuL2sY-lT9Z1TESnqGR1_w.png" srcset="/img/loading.gif" alt="img"></p>
 
             </div>
@@ -547,6 +547,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      177 자
+      365 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,12 +242,12 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.pentest.com.tr/exploits/Webmin-1962-PU-Escape-Bypass-Remote-Command-Execution.html">Webmin-1962-PU-Escape-Bypass-Remote-Command-Exectuion</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Wemin 1.962 이하 버전</li>
+<li>Wemin 1.962 &#xC774;&#xD558; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Webmin에서 Remote Command Execution 취약점이 발견되었습니다. 해당 취약점을 통해 패키지 업데이트 모듈을 사용할 수 있는 모든 유저가 root 권한으로 arbitrary command를 실행할 수 있습니다. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12840">CVE-2019-12840</a>에 대한 필터링은 package name 변수가 system command 안에 직접적으로 들어가므로 URL encoding을 통해 우회할 수 있습니다.(ex. command line을 한 줄 아래에서 실행)</p>
-<p><code>u</code> 파라미터는 <code>update.cgi</code>에서 <code>@pkgs</code> 변수에 들어가서 여러 연산을 수행합니다. <code>update.cgi</code>의 함수들은 <code>package-updates-lib.pl</code>에서 호출되는데, 그중 <code>package_install(package-name, [system], [new-install])</code>은 update system이나 Wemin을 통해 패키지를 설치할 수 있고 업데이트된 패키지 목록을 반환합니다.</p>
-<p>패지키를 설치할 때 CVE-2019-12840에 대한 조치로 <code>s/\\(-)|\\(.)/string/g;</code> 필터링이 걸려있습니다. 패키지 이름은 http request 변수이므로 <code>%0a</code>나 <code>%0c</code> 등을 통해 escape가 가능합니다. 패키지 이름 뒤에 <code>%7c</code> 등으로 pipe나 <code>.</code>을 추가하면 그 부분에 <code>\</code> 백 슬래시가 추가되어 명령 실행이 불가능하지만 <code>%0a%7c</code> 등으로 새로운 command line에서 실행하면 <code>\</code>가 무시되고 정상적으로 arbitrary command execution이 가능합니다.</p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://pentest.com.tr/blog/webmin_pu_escape_bypass_rce.rb">해당 취약점에 대한 Metasploit code</a></p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Webmin&#xC5D0;&#xC11C; Remote Command Execution &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD574; &#xD328;&#xD0A4;&#xC9C0; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xBAA8;&#xB4C8;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xBAA8;&#xB4E0; &#xC720;&#xC800;&#xAC00; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; arbitrary command&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-12840">CVE-2019-12840</a>&#xC5D0; &#xB300;&#xD55C; &#xD544;&#xD130;&#xB9C1;&#xC740; package name &#xBCC0;&#xC218;&#xAC00; system command &#xC548;&#xC5D0; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xB4E4;&#xC5B4;&#xAC00;&#xBBC0;&#xB85C; URL encoding&#xC744; &#xD1B5;&#xD574; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.(ex. command line&#xC744; &#xD55C; &#xC904; &#xC544;&#xB798;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;)</p>
+<p><code>u</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; <code>update.cgi</code>&#xC5D0;&#xC11C; <code>@pkgs</code> &#xBCC0;&#xC218;&#xC5D0; &#xB4E4;&#xC5B4;&#xAC00;&#xC11C; &#xC5EC;&#xB7EC; &#xC5F0;&#xC0B0;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. <code>update.cgi</code>&#xC758; &#xD568;&#xC218;&#xB4E4;&#xC740; <code>package-updates-lib.pl</code>&#xC5D0;&#xC11C; &#xD638;&#xCD9C;&#xB418;&#xB294;&#xB370;, &#xADF8;&#xC911; <code>package_install(package-name, [system], [new-install])</code>&#xC740; update system&#xC774;&#xB098; Wemin&#xC744; &#xD1B5;&#xD574; &#xD328;&#xD0A4;&#xC9C0;&#xB97C; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xACE0; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB41C; &#xD328;&#xD0A4;&#xC9C0; &#xBAA9;&#xB85D;&#xC744; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD328;&#xC9C0;&#xD0A4;&#xB97C; &#xC124;&#xCE58;&#xD560; &#xB54C; CVE-2019-12840&#xC5D0; &#xB300;&#xD55C; &#xC870;&#xCE58;&#xB85C; <code>s/\\(-)|\\(.)/string/g;</code> &#xD544;&#xD130;&#xB9C1;&#xC774; &#xAC78;&#xB824;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD328;&#xD0A4;&#xC9C0; &#xC774;&#xB984;&#xC740; http request &#xBCC0;&#xC218;&#xC774;&#xBBC0;&#xB85C; <code>%0a</code>&#xB098; <code>%0c</code> &#xB4F1;&#xC744; &#xD1B5;&#xD574; escape&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD328;&#xD0A4;&#xC9C0; &#xC774;&#xB984; &#xB4A4;&#xC5D0; <code>%7c</code> &#xB4F1;&#xC73C;&#xB85C; pipe&#xB098; <code>.</code>&#xC744; &#xCD94;&#xAC00;&#xD558;&#xBA74; &#xADF8; &#xBD80;&#xBD84;&#xC5D0; <code>\</code> &#xBC31; &#xC2AC;&#xB798;&#xC2DC;&#xAC00; &#xCD94;&#xAC00;&#xB418;&#xC5B4; &#xBA85;&#xB839; &#xC2E4;&#xD589;&#xC774; &#xBD88;&#xAC00;&#xB2A5;&#xD558;&#xC9C0;&#xB9CC; <code>%0a%7c</code> &#xB4F1;&#xC73C;&#xB85C; &#xC0C8;&#xB85C;&#xC6B4; command line&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD558;&#xBA74; <code>\</code>&#xAC00; &#xBB34;&#xC2DC;&#xB418;&#xACE0; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; arbitrary command execution&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://pentest.com.tr/blog/webmin_pu_escape_bypass_rce.rb">&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD55C; Metasploit code</a></p>
 
             </div>
             <hr>
@@ -550,6 +550,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

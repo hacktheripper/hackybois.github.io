@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      248 자
+      502 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      10
        분
     </span>
   
@@ -242,28 +242,28 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/research/securing-the-fight-against-covid19-through-oss">Securing the fight against COVID-19</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Corona-Warn-App(contect tracking infrastructure of Germany)</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Corona-Warn-App(이하 CWA)은 독일의 접촉자 기록/추적 인프라입니다. 이 앱이 설치된 스마트폰은 블루투스로 식별 payload를 브로드케스트하고, 블루투스의 신호 범위 내에 들어온 다른 디바이스들이 이 payload와 payload를 받은 시각을 2주간 저장합니다. 양성 판정을 받은 사용자는 검사 결과와 이에 대한 키값(Diagnosis key)을 CWA server에 전송할 수 있습니다.</p>
-<p>CWA 서버는 Spring boot 프레임워크로 동작하며 Diagnosis key를 받아 처리하는 과정에서 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/research/bean-validation-RCE">Java Bean Validation</a> 취약점이 존재합니다. </p>
-<p>Spring boot app이 입력받은 객체를 validate 한다는 것은 그 객체가 constraint 조건에 만족하는지 확인하는 동작을 뜻합니다. constraint 조건은 ‘@’를 통해 사용합니다.</p>
-<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Input</span> </span>&#123;
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Corona-Warn-App(&#xC774;&#xD558; CWA)&#xC740; &#xB3C5;&#xC77C;&#xC758; &#xC811;&#xCD09;&#xC790; &#xAE30;&#xB85D;/&#xCD94;&#xC801; &#xC778;&#xD504;&#xB77C;&#xC785;&#xB2C8;&#xB2E4;. &#xC774; &#xC571;&#xC774; &#xC124;&#xCE58;&#xB41C; &#xC2A4;&#xB9C8;&#xD2B8;&#xD3F0;&#xC740; &#xBE14;&#xB8E8;&#xD22C;&#xC2A4;&#xB85C; &#xC2DD;&#xBCC4; payload&#xB97C; &#xBE0C;&#xB85C;&#xB4DC;&#xCF00;&#xC2A4;&#xD2B8;&#xD558;&#xACE0;, &#xBE14;&#xB8E8;&#xD22C;&#xC2A4;&#xC758; &#xC2E0;&#xD638; &#xBC94;&#xC704; &#xB0B4;&#xC5D0; &#xB4E4;&#xC5B4;&#xC628; &#xB2E4;&#xB978; &#xB514;&#xBC14;&#xC774;&#xC2A4;&#xB4E4;&#xC774; &#xC774; payload&#xC640; payload&#xB97C; &#xBC1B;&#xC740; &#xC2DC;&#xAC01;&#xC744; 2&#xC8FC;&#xAC04; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC591;&#xC131; &#xD310;&#xC815;&#xC744; &#xBC1B;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xB294; &#xAC80;&#xC0AC; &#xACB0;&#xACFC;&#xC640; &#xC774;&#xC5D0; &#xB300;&#xD55C; &#xD0A4;&#xAC12;(Diagnosis key)&#xC744; CWA server&#xC5D0; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>CWA &#xC11C;&#xBC84;&#xB294; Spring boot &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xB85C; &#xB3D9;&#xC791;&#xD558;&#xBA70; Diagnosis key&#xB97C; &#xBC1B;&#xC544; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/research/bean-validation-RCE">Java Bean Validation</a> &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>Spring boot app&#xC774; &#xC785;&#xB825;&#xBC1B;&#xC740; &#xAC1D;&#xCCB4;&#xB97C; validate &#xD55C;&#xB2E4;&#xB294; &#xAC83;&#xC740; &#xADF8; &#xAC1D;&#xCCB4;&#xAC00; constraint &#xC870;&#xAC74;&#xC5D0; &#xB9CC;&#xC871;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294; &#xB3D9;&#xC791;&#xC744; &#xB73B;&#xD569;&#xB2C8;&#xB2E4;. constraint &#xC870;&#xAC74;&#xC740; &#x2018;@&#x2019;&#xB97C; &#xD1B5;&#xD574; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs java"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Input</span> </span>{
 
   <span class="hljs-meta">@Min(1)</span>
   <span class="hljs-meta">@Max(10)</span>
   <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> num;
   
   <span class="hljs-comment">//...</span>
-&#125;</code></pre>
+}</code></pre>
 
-<p>int형 num의 최솟값이 1, 최댓값이 10인 constraint 조건이 걸려있는 코드입니다. <code>@Min()</code>이나 <code>@Max()</code>처럼 built-in 조건만 있는 것이 아니라 custom constraint 또한 존재하고, 이를 이용한 validation을 custom constraint validation이라 부릅니다.</p>
-<pre><code class="hljs powershell">input : ab<span class="hljs-variable">$</span>&#123;<span class="hljs-number">12</span>*<span class="hljs-number">12</span>&#125;<span class="hljs-built_in">cd</span>
+<p>int&#xD615; num&#xC758; &#xCD5C;&#xC19F;&#xAC12;&#xC774; 1, &#xCD5C;&#xB313;&#xAC12;&#xC774; 10&#xC778; constraint &#xC870;&#xAC74;&#xC774; &#xAC78;&#xB824;&#xC788;&#xB294; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. <code>@Min()</code>&#xC774;&#xB098; <code>@Max()</code>&#xCC98;&#xB7FC; built-in &#xC870;&#xAC74;&#xB9CC; &#xC788;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2C8;&#xB77C; custom constraint &#xB610;&#xD55C; &#xC874;&#xC7AC;&#xD558;&#xACE0;, &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD55C; validation&#xC744; custom constraint validation&#xC774;&#xB77C; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs powershell">input : ab<span class="hljs-variable">$</span>{<span class="hljs-number">12</span>*<span class="hljs-number">12</span>}<span class="hljs-built_in">cd</span>
 output : ab144<span class="hljs-built_in">cd</span></code></pre>
 
-<p>custom constraint validation 동작 중 함수<code>buildConstraintViolationWithTemplate()</code>는 메세지 템플릿을 에러 메세지로 변환시켜줍니다. 메세지 템플릿에 <code>$&#123;&#125;</code>를 통해 Expression Language를 삽입할 수 있으며 그 실행결과가 에러 메세지에 반영됩니다. 만약 이 메세지 템플릿의 내용을 해커가 접근할 수 있다면 RCE 취약점입니다.</p>
-<pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void add<span class="hljs-constructor">Violation(ConstraintValidatorContext <span class="hljs-params">validatorContext</span>, String <span class="hljs-params">message</span>)</span>&#123;
+<p>custom constraint validation &#xB3D9;&#xC791; &#xC911; &#xD568;&#xC218;<code>buildConstraintViolationWithTemplate()</code>&#xB294; &#xBA54;&#xC138;&#xC9C0; &#xD15C;&#xD50C;&#xB9BF;&#xC744; &#xC5D0;&#xB7EC; &#xBA54;&#xC138;&#xC9C0;&#xB85C; &#xBCC0;&#xD658;&#xC2DC;&#xCF1C;&#xC90D;&#xB2C8;&#xB2E4;. &#xBA54;&#xC138;&#xC9C0; &#xD15C;&#xD50C;&#xB9BF;&#xC5D0; <code>${}</code>&#xB97C; &#xD1B5;&#xD574; Expression Language&#xB97C; &#xC0BD;&#xC785;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xADF8; &#xC2E4;&#xD589;&#xACB0;&#xACFC;&#xAC00; &#xC5D0;&#xB7EC; &#xBA54;&#xC138;&#xC9C0;&#xC5D0; &#xBC18;&#xC601;&#xB429;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; &#xC774; &#xBA54;&#xC138;&#xC9C0; &#xD15C;&#xD50C;&#xB9BF;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xD574;&#xCEE4;&#xAC00; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB2E4;&#xBA74; RCE &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void add<span class="hljs-constructor">Violation(ConstraintValidatorContext <span class="hljs-params">validatorContext</span>, String <span class="hljs-params">message</span>)</span>{
     validatorContext.build<span class="hljs-constructor">ConstraintViolationWithTemplate(<span class="hljs-params">message</span>)</span>.add<span class="hljs-constructor">ConstraintViolation()</span>;
-&#125;</code></pre>
+}</code></pre>
 
-<p>CWA 서버는 <code>buildConstraintViolationWithTemplate()</code>을 호출하며 그 인자인 message는 사용자 입력값(Diagnosis key 속 데이터)이기 때문에 RCE 공격에 취약합니다. 사용자 입력을 sanitizing 하도록 패치되었지만, bypass가 가능하다는 평이 있습니다.</p>
+<p>CWA &#xC11C;&#xBC84;&#xB294; <code>buildConstraintViolationWithTemplate()</code>&#xC744; &#xD638;&#xCD9C;&#xD558;&#xBA70; &#xADF8; &#xC778;&#xC790;&#xC778; message&#xB294; &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825;&#xAC12;(Diagnosis key &#xC18D; &#xB370;&#xC774;&#xD130;)&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; RCE &#xACF5;&#xACA9;&#xC5D0; &#xCDE8;&#xC57D;&#xD569;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825;&#xC744; sanitizing &#xD558;&#xB3C4;&#xB85D; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC9C0;&#xB9CC;, bypass&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;&#xB294; &#xD3C9;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -568,6 +568,45 @@ output : ab144<span class="hljs-built_in">cd</span></code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

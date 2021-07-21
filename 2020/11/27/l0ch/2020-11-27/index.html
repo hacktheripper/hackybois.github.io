@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      255 자
+      449 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      8
        분
     </span>
   
@@ -242,8 +242,8 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://swarm.ptsecurity.com/path-traversal-on-citrix-xenmobile-server/">Path Traversal on Citrix XenMobile Server</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>XenMobile Server 10.12 before RP2<br>XenMobile Server 10.11 before RP4<br>XenMobile Server 10.10 before RP6<br>XenMobile Server before 10.9 RP5</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>조직 구성원들의 모바일 디바이스 및 애플리케이션을 관리하는 Endpoint Management 솔루션인 XenMobile에서 path traversal로 권한이 없는 사용자가 패스워드를 포함한 임의 파일을 읽을 수 있고, 암호화된 패스워드를 복호화 할 수 있는 취약점이 발견되었습니다.</p>
-<p><code>help-sb-download.jsp</code> 에 존재하는 취약한 코드는 아래와 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC870;&#xC9C1; &#xAD6C;&#xC131;&#xC6D0;&#xB4E4;&#xC758; &#xBAA8;&#xBC14;&#xC77C; &#xB514;&#xBC14;&#xC774;&#xC2A4; &#xBC0F; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xB294; Endpoint Management &#xC194;&#xB8E8;&#xC158;&#xC778; XenMobile&#xC5D0;&#xC11C; path traversal&#xB85C; &#xAD8C;&#xD55C;&#xC774; &#xC5C6;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xD3EC;&#xD568;&#xD55C; &#xC784;&#xC758; &#xD30C;&#xC77C;&#xC744; &#xC77D;&#xC744; &#xC218; &#xC788;&#xACE0;, &#xC554;&#xD638;&#xD654;&#xB41C; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xBCF5;&#xD638;&#xD654; &#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>help-sb-download.jsp</code> &#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xCDE8;&#xC57D;&#xD55C; &#xCF54;&#xB4DC;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx">&lt;%
     <span class="hljs-built_in">String</span> sbFilePath=<span class="hljs-string">&quot;/opt/sas/support/&quot;</span>;
     int length = <span class="hljs-number">0</span>;
@@ -253,22 +253,22 @@
     ServletOutputStream outStream = response.getOutputStream();
     response.setHeader(<span class="hljs-string">&quot;Set-Cookie&quot;</span>,<span class="hljs-string">&quot;fileDownload=true; path=/&quot;</span>);
     response.setContentType(<span class="hljs-string">&quot;application/octet-stream&quot;</span>);
-    response.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, <span class="hljs-string">&quot;attachment; filename=\&quot;&quot;</span> + sbFileName + <span class="hljs-string">&#x27;&quot;&#x27;</span>);
+    response.setHeader(<span class="hljs-string">&quot;Content-Disposition&quot;</span>, <span class="hljs-string">&quot;attachment; filename=\&quot;&quot;</span> + sbFileName + <span class="hljs-string">&apos;&quot;&apos;</span>);
 
     File file = <span class="hljs-keyword">new</span> File(sbFilePath+sbFileName);
     byte[] byteBuffer = <span class="hljs-keyword">new</span> byte[<span class="hljs-number">4096</span>];
     DataInputStream <span class="hljs-keyword">in</span> = <span class="hljs-keyword">new</span> DataInputStream(<span class="hljs-keyword">new</span> FileInputStream(file));
 
-    <span class="hljs-keyword">while</span>((<span class="hljs-keyword">in</span> != <span class="hljs-literal">null</span>) &amp;&amp; ((length =<span class="hljs-keyword">in</span>.read(byteBuffer)) != <span class="hljs-number">-1</span>))&#123;
+    <span class="hljs-keyword">while</span>((<span class="hljs-keyword">in</span> != <span class="hljs-literal">null</span>) &amp;&amp; ((length =<span class="hljs-keyword">in</span>.read(byteBuffer)) != <span class="hljs-number">-1</span>)){
 			outStream.write(byteBuffer,<span class="hljs-number">0</span>,length);
-    &#125;
+    }
     <span class="hljs-keyword">in</span>.close();
     outStream.flush();
 %&gt;</code></pre>
 
-<p>매개변수로 받는 <code>sbFileName</code>은 <code>sbFilePath</code>의 <code>/op/sas/support/</code> 뒤에 연결되고 File 클래스 생성자의 인수가 됩니다. <code>sbFileName</code>에 <code>../../../etc/passwd</code>를 전달하면 <code>/etc/passwd</code>의 내용을 출력할 수 있습니다.</p>
-<p>이를 이용해 암호화된 패스워드의 복호화도 가능합니다. 패스워드 암호화는 <code>/opt/sas/sw/lib/libsecure.so</code> 와 <code>DataSecurity.jar</code> 라이브러리에서 이루어지며  <code>/opt/sas/rt/keys/security.properties</code>에는 암호화 키가 존재합니다. 해커가 path traversal 취약점을 악용해 라이브러리와 key를 다운로드하고 로컬 환경에서 암호화 라이브러리를 import 해 패스워드를 복호화할 수 있습니다.</p>
-<p>이 취약점은 <code>help-sb-download.jsp</code> 파일을 제거하는 것으로 패치가 이루어졌습니다.</p>
+<p>&#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xBC1B;&#xB294; <code>sbFileName</code>&#xC740; <code>sbFilePath</code>&#xC758; <code>/op/sas/support/</code> &#xB4A4;&#xC5D0; &#xC5F0;&#xACB0;&#xB418;&#xACE0; File &#xD074;&#xB798;&#xC2A4; &#xC0DD;&#xC131;&#xC790;&#xC758; &#xC778;&#xC218;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;. <code>sbFileName</code>&#xC5D0; <code>../../../etc/passwd</code>&#xB97C; &#xC804;&#xB2EC;&#xD558;&#xBA74; <code>/etc/passwd</code>&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xCD9C;&#xB825;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574; &#xC554;&#xD638;&#xD654;&#xB41C; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xC758; &#xBCF5;&#xD638;&#xD654;&#xB3C4; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xC554;&#xD638;&#xD654;&#xB294; <code>/opt/sas/sw/lib/libsecure.so</code> &#xC640; <code>DataSecurity.jar</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0;&#xC11C; &#xC774;&#xB8E8;&#xC5B4;&#xC9C0;&#xBA70;  <code>/opt/sas/rt/keys/security.properties</code>&#xC5D0;&#xB294; &#xC554;&#xD638;&#xD654; &#xD0A4;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xAC00; path traversal &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC640; key&#xB97C; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD558;&#xACE0; &#xB85C;&#xCEEC; &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xC554;&#xD638;&#xD654; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; import &#xD574; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xBCF5;&#xD638;&#xD654;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>help-sb-download.jsp</code> &#xD30C;&#xC77C;&#xC744; &#xC81C;&#xAC70;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xD328;&#xCE58;&#xAC00; &#xC774;&#xB8E8;&#xC5B4;&#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -569,6 +569,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

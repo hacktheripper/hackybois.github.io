@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      192 자
+      388 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,10 +242,10 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://halove23.blogspot.com/2020/12/oh-so-you-have-antivirus-nameevery-bug.html">Disclosing about 8 0-day vulnerability</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Windows installer</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a href="https://hackyboiz.github.io/2020/10/21/fabu1ous/2020-10-21/">CVE-2020-16902</a>에 대한 패치 우회가 공개되었습니다. CVE-2019-1415로 처음 제보된 Windows Installer EoP 취약점의 6번째 패치 우회입니다. </p>
-<p>CVE-2020-16902의 내용은 다음과 같습니다. Windows Installer는 설치 작업 실패를 대비해 설치 작업 중 삭제되는 파일과 롤백 스크립트를<code> C:\Config.Msi</code> 디렉터리에 백업합니다. 백업 전에 <code>C:\Config.Msi</code> 디렉터리를 삭제하고 재생성하는 로직이 있는데 <code>Setsecurity()</code>의 race condition 취약점 패턴이 남아있어 악용이 가능합니다.</p>
-<p>따라서 <code>C:\Config.Msi</code>를 삭제하고 <code>C:\Config.Msi</code>이 여전히 존재한다면(race-con 트리거 조건) <code>C:\Config.Msi</code> 대신 <code>C:\windows\install\config.msi</code>에 롤백 파일을 백업하도록 패치되었습니다. </p>
-<p>하지만 다음과 같은 이유로 우회가 가능합니다. 만약 <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders\C:\Config.Msi</code> 레지스트리 키가 존재하면 그대로 <code>C:\Config.Msi</code>를 백업에 사용합니다.  <code>C:\Config.Msi</code>를 삭제한 후 <code>C:\Config.Msi</code>의 삭제 여부를 한번 더 체크한 다음 <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders\C:\Config.Msi</code> 레지스트리 키를 삭제합니다.  <code>C:\Config.Msi</code>가 삭제된 직후 <code>C:\Config.Msi</code>를 생성하면 레지스트리 키가 삭제되지 않습니다. Windows Installer는 <code>C:\Config.Msi</code>를 백업에 사용하게 되고 이전 취약점들을 그대로 악용할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a href="https://hackyboiz.github.io/2020/10/21/fabu1ous/2020-10-21/">CVE-2020-16902</a>&#xC5D0; &#xB300;&#xD55C; &#xD328;&#xCE58; &#xC6B0;&#xD68C;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. CVE-2019-1415&#xB85C; &#xCC98;&#xC74C; &#xC81C;&#xBCF4;&#xB41C; Windows Installer EoP &#xCDE8;&#xC57D;&#xC810;&#xC758; 6&#xBC88;&#xC9F8; &#xD328;&#xCE58; &#xC6B0;&#xD68C;&#xC785;&#xB2C8;&#xB2E4;. </p>
+<p>CVE-2020-16902&#xC758; &#xB0B4;&#xC6A9;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;. Windows Installer&#xB294; &#xC124;&#xCE58; &#xC791;&#xC5C5; &#xC2E4;&#xD328;&#xB97C; &#xB300;&#xBE44;&#xD574; &#xC124;&#xCE58; &#xC791;&#xC5C5; &#xC911; &#xC0AD;&#xC81C;&#xB418;&#xB294; &#xD30C;&#xC77C;&#xACFC; &#xB864;&#xBC31; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C;<code> C:\Config.Msi</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xBC31;&#xC5C5;&#xD569;&#xB2C8;&#xB2E4;. &#xBC31;&#xC5C5; &#xC804;&#xC5D0; <code>C:\Config.Msi</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xACE0; &#xC7AC;&#xC0DD;&#xC131;&#xD558;&#xB294; &#xB85C;&#xC9C1;&#xC774; &#xC788;&#xB294;&#xB370; <code>Setsecurity()</code>&#xC758; race condition &#xCDE8;&#xC57D;&#xC810; &#xD328;&#xD134;&#xC774; &#xB0A8;&#xC544;&#xC788;&#xC5B4; &#xC545;&#xC6A9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB530;&#xB77C;&#xC11C; <code>C:\Config.Msi</code>&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xACE0; <code>C:\Config.Msi</code>&#xC774; &#xC5EC;&#xC804;&#xD788; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;&#xBA74;(race-con &#xD2B8;&#xB9AC;&#xAC70; &#xC870;&#xAC74;) <code>C:\Config.Msi</code> &#xB300;&#xC2E0; <code>C:\windows\install\config.msi</code>&#xC5D0; &#xB864;&#xBC31; &#xD30C;&#xC77C;&#xC744; &#xBC31;&#xC5C5;&#xD558;&#xB3C4;&#xB85D; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC774;&#xC720;&#xB85C; &#xC6B0;&#xD68C;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders\C:\Config.Msi</code> &#xB808;&#xC9C0;&#xC2A4;&#xD2B8;&#xB9AC; &#xD0A4;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xBA74; &#xADF8;&#xB300;&#xB85C; <code>C:\Config.Msi</code>&#xB97C; &#xBC31;&#xC5C5;&#xC5D0; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.  <code>C:\Config.Msi</code>&#xB97C; &#xC0AD;&#xC81C;&#xD55C; &#xD6C4; <code>C:\Config.Msi</code>&#xC758; &#xC0AD;&#xC81C; &#xC5EC;&#xBD80;&#xB97C; &#xD55C;&#xBC88; &#xB354; &#xCCB4;&#xD06C;&#xD55C; &#xB2E4;&#xC74C; <code>HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\Folders\C:\Config.Msi</code> &#xB808;&#xC9C0;&#xC2A4;&#xD2B8;&#xB9AC; &#xD0A4;&#xB97C; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.  <code>C:\Config.Msi</code>&#xAC00; &#xC0AD;&#xC81C;&#xB41C; &#xC9C1;&#xD6C4; <code>C:\Config.Msi</code>&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xBA74; &#xB808;&#xC9C0;&#xC2A4;&#xD2B8;&#xB9AC; &#xD0A4;&#xAC00; &#xC0AD;&#xC81C;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. Windows Installer&#xB294; <code>C:\Config.Msi</code>&#xB97C; &#xBC31;&#xC5C5;&#xC5D0; &#xC0AC;&#xC6A9;&#xD558;&#xAC8C; &#xB418;&#xACE0; &#xC774;&#xC804; &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xC744; &#xADF8;&#xB300;&#xB85C; &#xC545;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -548,6 +548,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

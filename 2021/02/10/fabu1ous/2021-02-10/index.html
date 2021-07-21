@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      208 자
+      345 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        분
     </span>
   
@@ -241,44 +241,44 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-netmotion-mobility-server-multiple-deserialization-of-untrusted-data-lead-to-rce/">NetMotion Mobility Server Multiple Deserializaion of Untrusted Data Lead to RCE</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>NetMotion Mobility Server 11.73 이전 버전</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>NetMotion Mobility Server 11.73 &#xC774;&#xC804; &#xBC84;&#xC804;</p>
 <p>NetMotion Mobility Server 12.01.09045</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>NetMotion Mobility는 사내 네트워크를 안전하게 외부 모바일 기기로 연장시키기 위해 사용하는 VPN입니다. NetMotion Mobility Server 12.01.09045는 untrusted data에 대한 Java deserialization취약점 패턴이 여러 개 존재해 SYSTEM 권한으로 원격코드 실행이 가능합니다(CVE-2021-26912).</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>NetMotion Mobility&#xB294; &#xC0AC;&#xB0B4; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xB97C; &#xC548;&#xC804;&#xD558;&#xAC8C; &#xC678;&#xBD80; &#xBAA8;&#xBC14;&#xC77C; &#xAE30;&#xAE30;&#xB85C; &#xC5F0;&#xC7A5;&#xC2DC;&#xD0A4;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xD558;&#xB294; VPN&#xC785;&#xB2C8;&#xB2E4;. NetMotion Mobility Server 12.01.09045&#xB294; untrusted data&#xC5D0; &#xB300;&#xD55C; Java deserialization&#xCDE8;&#xC57D;&#xC810; &#xD328;&#xD134;&#xC774; &#xC5EC;&#xB7EC; &#xAC1C; &#xC874;&#xC7AC;&#xD574; SYSTEM &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC6D0;&#xACA9;&#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;(CVE-2021-26912).</p>
 <ol>
 <li><p>SupportRpcServlet</p>
 <pre><code class="hljs java">...
 RpcData rpcData = (RpcData)objectInputStream.readObject();
-      <span class="hljs-keyword">if</span> (rpcData.validate(<span class="hljs-keyword">true</span>)) &#123;
+      <span class="hljs-keyword">if</span> (rpcData.validate(<span class="hljs-keyword">true</span>)) {
         command(paramHttpServletResponse, rpcData);
-      &#125;
+      }
 ...</code></pre>
 
-<p><code>com.nmwco.server.support.SupportRpcServlet</code> 클래스의 코드입니다. Inputstream으로부터 특별한 검사 및 보호 없이 <code>readObject()</code>를 통해 <code>rpcData</code>의 값을 설정합니다. Inputstream은 해커가 제어(attacker-controlled)할 수 있으므로 RCE가 가능합니다.</p>
+<p><code>com.nmwco.server.support.SupportRpcServlet</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. Inputstream&#xC73C;&#xB85C;&#xBD80;&#xD130; &#xD2B9;&#xBCC4;&#xD55C; &#xAC80;&#xC0AC; &#xBC0F; &#xBCF4;&#xD638; &#xC5C6;&#xC774; <code>readObject()</code>&#xB97C; &#xD1B5;&#xD574; <code>rpcData</code>&#xC758; &#xAC12;&#xC744; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. Inputstream&#xC740; &#xD574;&#xCEE4;&#xAC00; &#xC81C;&#xC5B4;(attacker-controlled)&#xD560; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; RCE&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>RpcServlet</p>
 <pre><code class="hljs aspectj">... 
- <span class="hljs-keyword">public</span> <span class="hljs-function">RpcData <span class="hljs-title">readObject</span><span class="hljs-params">(ObjectInputStream param1ObjectInputStream)</span> <span class="hljs-keyword">throws</span> Exception </span>&#123;
+ <span class="hljs-keyword">public</span> <span class="hljs-function">RpcData <span class="hljs-title">readObject</span><span class="hljs-params">(ObjectInputStream param1ObjectInputStream)</span> <span class="hljs-keyword">throws</span> Exception </span>{
             <span class="hljs-keyword">return</span> (RpcData)param1ObjectInputStream.readObject();
-          &#125;
+          }
 ...</code></pre>
 
-<p><code>com.nmwco.server.events.EventRpcServlet</code> 클래스의 코드입니다. readObject dispatcher는 RpcData 타입의 입력을 받을 때 attacker-controlled 데이터에 대한 검사를 하지 않습니다.</p>
+<p><code>com.nmwco.server.events.EventRpcServlet</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. readObject dispatcher&#xB294; RpcData &#xD0C0;&#xC785;&#xC758; &#xC785;&#xB825;&#xC744; &#xBC1B;&#xC744; &#xB54C; attacker-controlled &#xB370;&#xC774;&#xD130;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xB97C; &#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>MvcUtil valueStringToObject</p>
 <pre><code class="hljs java">...
 mvcController.invoke(servletContext, paramHttpServletRequest, paramHttpServletResponse);
 ...</code></pre>
 
-<p><code>com.nmwco.server.mvc.MvcServlet</code> 클래스의 코드입니다. attacker-contolled 데이터인 <code>paramHttpServletRequest</code>를 2번째 인자로 <code>invoke</code> 메서드가 사용됩니다.</p>
+<p><code>com.nmwco.server.mvc.MvcServlet</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. attacker-contolled &#xB370;&#xC774;&#xD130;&#xC778; <code>paramHttpServletRequest</code>&#xB97C; 2&#xBC88;&#xC9F8; &#xC778;&#xC790;&#xB85C; <code>invoke</code> &#xBA54;&#xC11C;&#xB4DC;&#xAC00; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>webrepdb StatusServlet</p>
 <pre><code class="hljs lasso"><span class="hljs-params">...</span>
-param1ObjectInputStream) throws Exception &#123;   <span class="hljs-comment">// 1</span>
+param1ObjectInputStream) throws Exception {   <span class="hljs-comment">// 1</span>
             <span class="hljs-keyword">return</span> (RpcData)param1ObjectInputStream.readObject();
-          &#125;
+          }
 <span class="hljs-params">...</span></code></pre>
 
-<p><code>com.nmwco.server.web.repdb.StatusServlet</code> 클래스의 코드입니다. attacker-controlled 데이터에 대한 <code>readObject()</code>호출을 사용해 GET 또는 POST request에 대한 디스패처를 설정합니다.</p>
+<p><code>com.nmwco.server.web.repdb.StatusServlet</code> &#xD074;&#xB798;&#xC2A4;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. attacker-controlled &#xB370;&#xC774;&#xD130;&#xC5D0; &#xB300;&#xD55C; <code>readObject()</code>&#xD638;&#xCD9C;&#xC744; &#xC0AC;&#xC6A9;&#xD574; GET &#xB610;&#xB294; POST request&#xC5D0; &#xB300;&#xD55C; &#xB514;&#xC2A4;&#xD328;&#xCC98;&#xB97C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
 
@@ -581,6 +581,45 @@ param1ObjectInputStream) throws Exception &#123;   <span class="hljs-comment">//
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

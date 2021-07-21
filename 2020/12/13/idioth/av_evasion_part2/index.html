@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      3.3k 자
+      5.4k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      66
+      107
        분
     </span>
   
@@ -240,46 +240,46 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p>저번에 올렸던 Engineering Antivirus evasion를 이어서 Part 2의 번역본도 들고 왔습니다.</p>
-<p>저번의 발 번역에 이어서 이번에도 의역과 오역이 난무하는 글이므로 글이 이해가 안 되시거나 얘가 왜 이렇게 썼는지 이해가 안 되시는 부분이 있으시면 바로 지적해주시기 바랍니다!</p>
+              <p>&#xC800;&#xBC88;&#xC5D0; &#xC62C;&#xB838;&#xB358; Engineering Antivirus evasion&#xB97C; &#xC774;&#xC5B4;&#xC11C; Part 2&#xC758; &#xBC88;&#xC5ED;&#xBCF8;&#xB3C4; &#xB4E4;&#xACE0; &#xC654;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC800;&#xBC88;&#xC758; &#xBC1C; &#xBC88;&#xC5ED;&#xC5D0; &#xC774;&#xC5B4;&#xC11C; &#xC774;&#xBC88;&#xC5D0;&#xB3C4; &#xC758;&#xC5ED;&#xACFC; &#xC624;&#xC5ED;&#xC774; &#xB09C;&#xBB34;&#xD558;&#xB294; &#xAE00;&#xC774;&#xBBC0;&#xB85C; &#xAE00;&#xC774; &#xC774;&#xD574;&#xAC00; &#xC548; &#xB418;&#xC2DC;&#xAC70;&#xB098; &#xC598;&#xAC00; &#xC65C; &#xC774;&#xB807;&#xAC8C; &#xC37C;&#xB294;&#xC9C0; &#xC774;&#xD574;&#xAC00; &#xC548; &#xB418;&#xC2DC;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xC788;&#xC73C;&#xC2DC;&#xBA74; &#xBC14;&#xB85C; &#xC9C0;&#xC801;&#xD574;&#xC8FC;&#xC2DC;&#xAE30; &#xBC14;&#xB78D;&#xB2C8;&#xB2E4;!</p>
 <blockquote>
-<p>원문글 : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.scrt.ch/2020/07/15/engineering-antivirus-evasion-part-ii/">Engineering antivirus evasion (Part II)</a></p>
+<p>&#xC6D0;&#xBB38;&#xAE00; : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.scrt.ch/2020/07/15/engineering-antivirus-evasion-part-ii/">Engineering antivirus evasion (Part II)</a></p>
 </blockquote>
-<p><strong>tl;dr</strong> 소프트웨어는 Windows 운영 체제와 상호 작용하기 위해 동적 링크 라이브러리(DLL)를 통해 함수를 가져온다. 이 함수들은 Import Address Table 테이블에 평문으로 작성되고 안티바이러스 소프트웨어는 이를 활용하여 악의적인 활동을 탐지한다. 우리는 Meterpreter를 중심으로 C/C++ 소프트웨어를 refactoring 하여 이러한 footprint를 제거할 수 있는 난독화 아이디어와 구현을 보여준다. 소스 코드는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/scrt/avcleaner">https://github.com/scrt/avcleaner</a>에서 확인할 수 있다.</p>
-<h2 id="소개"><a href="#소개" class="headerlink" title="소개"></a>소개</h2><p>이전 글에서 정규식을 사용하지 않고 소스 코드에서 문자열 리터럴을 바꾸는 방법을 보여줬다. 바이너리의 footprint를 줄이고 정적 시그니처에 의존하는 보안 소프트웨어를 우회하는 것이 목적이다.</p>
-<p>그러나 소스 코드의 문자열 리터럴 말고도 정적으로 수집하고 분석할 수 있는 정보들이 많다. 이 글은 바이너리에서 API import를 숨기는 방법과 C/C++로 작성된 모든 소프트웨어에서 그 작업을 자동화하는 방법에 대해서 다룰 것이다.</p>
-<h2 id="API-imports의-문제점"><a href="#API-imports의-문제점" class="headerlink" title="API imports의 문제점"></a>API imports의 문제점</h2><p>간단한 C 프로그램을 아래와 같이 작성하고 빌드하자</p>
+<p><strong>tl;dr</strong> &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xB294; Windows &#xC6B4;&#xC601; &#xCCB4;&#xC81C;&#xC640; &#xC0C1;&#xD638; &#xC791;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574; &#xB3D9;&#xC801; &#xB9C1;&#xD06C; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;(DLL)&#xB97C; &#xD1B5;&#xD574; &#xD568;&#xC218;&#xB97C; &#xAC00;&#xC838;&#xC628;&#xB2E4;. &#xC774; &#xD568;&#xC218;&#xB4E4;&#xC740; Import Address Table &#xD14C;&#xC774;&#xBE14;&#xC5D0; &#xD3C9;&#xBB38;&#xC73C;&#xB85C; &#xC791;&#xC131;&#xB418;&#xACE0; &#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xB294; &#xC774;&#xB97C; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; &#xC545;&#xC758;&#xC801;&#xC778; &#xD65C;&#xB3D9;&#xC744; &#xD0D0;&#xC9C0;&#xD55C;&#xB2E4;. &#xC6B0;&#xB9AC;&#xB294; Meterpreter&#xB97C; &#xC911;&#xC2EC;&#xC73C;&#xB85C; C/C++ &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xB97C; refactoring &#xD558;&#xC5EC; &#xC774;&#xB7EC;&#xD55C; footprint&#xB97C; &#xC81C;&#xAC70;&#xD560; &#xC218; &#xC788;&#xB294; &#xB09C;&#xB3C5;&#xD654; &#xC544;&#xC774;&#xB514;&#xC5B4;&#xC640; &#xAD6C;&#xD604;&#xC744; &#xBCF4;&#xC5EC;&#xC900;&#xB2E4;. &#xC18C;&#xC2A4; &#xCF54;&#xB4DC;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/scrt/avcleaner">https://github.com/scrt/avcleaner</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<h2 id="&#xC18C;&#xAC1C;"><a href="#&#xC18C;&#xAC1C;" class="headerlink" title="&#xC18C;&#xAC1C;"></a>&#xC18C;&#xAC1C;</h2><p>&#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xC815;&#xADDC;&#xC2DD;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; &#xBB38;&#xC790;&#xC5F4; &#xB9AC;&#xD130;&#xB7F4;&#xC744; &#xBC14;&#xAFB8;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xBCF4;&#xC5EC;&#xC92C;&#xB2E4;. &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC758; footprint&#xB97C; &#xC904;&#xC774;&#xACE0; &#xC815;&#xC801; &#xC2DC;&#xADF8;&#xB2C8;&#xCC98;&#xC5D0; &#xC758;&#xC874;&#xD558;&#xB294; &#xBCF4;&#xC548; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xB294; &#xAC83;&#xC774; &#xBAA9;&#xC801;&#xC774;&#xB2E4;.</p>
+<p>&#xADF8;&#xB7EC;&#xB098; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC;&#xC758; &#xBB38;&#xC790;&#xC5F4; &#xB9AC;&#xD130;&#xB7F4; &#xB9D0;&#xACE0;&#xB3C4; &#xC815;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xC9D1;&#xD558;&#xACE0; &#xBD84;&#xC11D;&#xD560; &#xC218; &#xC788;&#xB294; &#xC815;&#xBCF4;&#xB4E4;&#xC774; &#xB9CE;&#xB2E4;. &#xC774; &#xAE00;&#xC740; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC5D0;&#xC11C; API import&#xB97C; &#xC228;&#xAE30;&#xB294; &#xBC29;&#xBC95;&#xACFC; C/C++&#xB85C; &#xC791;&#xC131;&#xB41C; &#xBAA8;&#xB4E0; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xC5D0;&#xC11C; &#xADF8; &#xC791;&#xC5C5;&#xC744; &#xC790;&#xB3D9;&#xD654;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xB2E4;&#xB8F0; &#xAC83;&#xC774;&#xB2E4;.</p>
+<h2 id="API-imports&#xC758;-&#xBB38;&#xC81C;&#xC810;"><a href="#API-imports&#xC758;-&#xBB38;&#xC81C;&#xC810;" class="headerlink" title="API imports&#xC758; &#xBB38;&#xC81C;&#xC810;"></a>API imports&#xC758; &#xBB38;&#xC81C;&#xC810;</h2><p>&#xAC04;&#xB2E8;&#xD55C; C &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xC791;&#xC131;&#xD558;&#xACE0; &#xBE4C;&#xB4DC;&#xD558;&#xC790;</p>
 <pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>&#123; 
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{ 
     MessageBox(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Test&quot;</span>, <span class="hljs-string">&quot;Something&quot;</span>, MB_OK);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
-<p>그리고 가장 좋아하는 컴파일러로 빌드해라. MinGW는 <em>macOS</em>에서 <em>Windows</em>로 크로스 빌드를 하는 데 사용된다.</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; &#xAC00;&#xC7A5; &#xC88B;&#xC544;&#xD558;&#xB294; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xB85C; &#xBE4C;&#xB4DC;&#xD574;&#xB77C;. MinGW&#xB294; <em>macOS</em>&#xC5D0;&#xC11C; <em>Windows</em>&#xB85C; &#xD06C;&#xB85C;&#xC2A4; &#xBE4C;&#xB4DC;&#xB97C; &#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB41C;&#xB2E4;.</p>
 <pre><code class="hljs bash">x86_64-w64-mingw32-gcc test.c -o /tmp/toto.exe</code></pre>
 
-<p>그 후에 rabin2(radare2에 포함되어 있음) 또는 GNU strings 유틸리티를 사용하여 문자열을 리스트 할 수 있다.</p>
+<p>&#xADF8; &#xD6C4;&#xC5D0; rabin2(radare2&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xC74C;) &#xB610;&#xB294; GNU strings &#xC720;&#xD2F8;&#xB9AC;&#xD2F0;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xB9AC;&#xC2A4;&#xD2B8; &#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs bash">rabin2 -zz /tmp/toto.exe | bat</code></pre>
 
-<pre><code class="hljs bash"> 205   │ 201  0x00003c92 0x00408692 7   8    .idata        ascii   strncmp
- 206   │ 202  0x00003c9c 0x0040869c 8   9    .idata        ascii   vfprintf
- 207   │ 203  0x00003ca8 0x004086a8 11  12   .idata        ascii   MessageBoxA
- 208   │ 204  0x00003d10 0x00408710 12  13   .idata        ascii   KERNEL32.dll
- 209   │ 205  0x00003d84 0x00408784 10  11   .idata        ascii   msvcrt.dll
- 210   │ 206  0x00003d94 0x00408794 10  11   .idata        ascii   USER32.dll
+<pre><code class="hljs bash"> 205   &#x2502; 201  0x00003c92 0x00408692 7   8    .idata        ascii   strncmp
+ 206   &#x2502; 202  0x00003c9c 0x0040869c 8   9    .idata        ascii   vfprintf
+ 207   &#x2502; 203  0x00003ca8 0x004086a8 11  12   .idata        ascii   MessageBoxA
+ 208   &#x2502; 204  0x00003d10 0x00408710 12  13   .idata        ascii   KERNEL32.dll
+ 209   &#x2502; 205  0x00003d84 0x00408784 10  11   .idata        ascii   msvcrt.dll
+ 210   &#x2502; 206  0x00003d94 0x00408794 10  11   .idata        ascii   USER32.dll
 ...
 
-9557   │ 9553 0x0004f481 0x00458e81 30  31                 ascii   .refptr.__native_startup_state
-9558   │ 9554 0x0004f4a0 0x00458ea0 11  12                 ascii   __ImageBase
-9559   │ 9555 0x0004f4ac 0x00458eac 11  12                 ascii   MessageBoxA
-9560   │ 9556 0x0004f4b8 0x00458eb8 12  13                 ascii   GetLastError
-9561   │ 9557 0x0004f4c5 0x00458ec5 17  18                 ascii   __imp_MessageBoxA
-9562   │ 9558 0x0004f4d7 0x00458ed7 23  24                 ascii   GetSystemTimeAsFileTime
-9563   │ 9559 0x0004f4ef 0x00458eef 22  23                 ascii   mingw_initltssuo_force
-9564   │ 9560 0x0004f506 0x00458f06 19  20                 ascii   __rt_psrelocs_start</code></pre>
+9557   &#x2502; 9553 0x0004f481 0x00458e81 30  31                 ascii   .refptr.__native_startup_state
+9558   &#x2502; 9554 0x0004f4a0 0x00458ea0 11  12                 ascii   __ImageBase
+9559   &#x2502; 9555 0x0004f4ac 0x00458eac 11  12                 ascii   MessageBoxA
+9560   &#x2502; 9556 0x0004f4b8 0x00458eb8 12  13                 ascii   GetLastError
+9561   &#x2502; 9557 0x0004f4c5 0x00458ec5 17  18                 ascii   __imp_MessageBoxA
+9562   &#x2502; 9558 0x0004f4d7 0x00458ed7 23  24                 ascii   GetSystemTimeAsFileTime
+9563   &#x2502; 9559 0x0004f4ef 0x00458eef 22  23                 ascii   mingw_initltssuo_force
+9564   &#x2502; 9560 0x0004f506 0x00458f06 19  20                 ascii   __rt_psrelocs_start</code></pre>
 
-<p>이 함수를 <code>User32.dll</code> 라이브러리에서 가져와야 하므로 MessageBoxA 문자열은 3번 나타난다.(뒤에서 자세히 설명)</p>
-<p>MessageBoxA 문자열은 안티바이러스에서 감지되지 않지만 다음 API들은 감지될 것이다.</p>
+<p>&#xC774; &#xD568;&#xC218;&#xB97C; <code>User32.dll</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC640;&#xC57C; &#xD558;&#xBBC0;&#xB85C; MessageBoxA &#xBB38;&#xC790;&#xC5F4;&#xC740; 3&#xBC88; &#xB098;&#xD0C0;&#xB09C;&#xB2E4;.(&#xB4A4;&#xC5D0;&#xC11C; &#xC790;&#xC138;&#xD788; &#xC124;&#xBA85;)</p>
+<p>MessageBoxA &#xBB38;&#xC790;&#xC5F4;&#xC740; &#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xC5D0;&#xC11C; &#xAC10;&#xC9C0;&#xB418;&#xC9C0; &#xC54A;&#xC9C0;&#xB9CC; &#xB2E4;&#xC74C; API&#xB4E4;&#xC740; &#xAC10;&#xC9C0;&#xB420; &#xAC83;&#xC774;&#xB2E4;.</p>
 <ul>
 <li>InternetReadFile</li>
 <li>ShellExecute</li>
@@ -287,23 +287,23 @@
 <li>OpenProcess</li>
 <li>ReadProcessMemory</li>
 <li>WriteProcessMemory</li>
-<li>…</li>
+<li>&#x2026;</li>
 </ul>
-<h2 id="API-imports-숨기기"><a href="#API-imports-숨기기" class="headerlink" title="API imports 숨기기"></a>API imports 숨기기</h2><p>윈도우 시스템에서 개발자들이 외부 라이브러리 함수를 호출하는 데 사용할 수 있는 방법들은 다음과 같다.</p>
+<h2 id="API-imports-&#xC228;&#xAE30;&#xAE30;"><a href="#API-imports-&#xC228;&#xAE30;&#xAE30;" class="headerlink" title="API imports &#xC228;&#xAE30;&#xAE30;"></a>API imports &#xC228;&#xAE30;&#xAE30;</h2><p>&#xC708;&#xB3C4;&#xC6B0; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; &#xAC1C;&#xBC1C;&#xC790;&#xB4E4;&#xC774; &#xC678;&#xBD80; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xB4E4;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
 <ul>
 <li>Load-time dynamic linking</li>
 <li>Run-time dynamic linking</li>
 </ul>
-<h3 id="Load-time-dynamic-linking"><a href="#Load-time-dynamic-linking" class="headerlink" title="Load-time dynamic linking"></a>Load-time dynamic linking</h3><p>외부 라이브러리 함수를 호출하는 기본적인 방법이며 링커에 의해 자동적으로 처리된다. 빌드 사이클 동안 애플리케이션은 각 동적 링크 라이브러리(DLL)의 import library(.lib)에 연결된다. 가져온 각 함수에 대해 링커는 DLL에 대한 내용을 IAT에 엔트리를 작성한다.</p>
-<p>애플리케이션이 시작될 때, 운영체제는 IAT를 탐색하여 프로세스의 주소 공간에 있는 모든 라이브러리 리스트를 매핑하고 가져온 각 함수의 주소는 DLL의 Export Address Table에 해당 엔트리를 가리키도록 업데이트된다.</p>
+<h3 id="Load-time-dynamic-linking"><a href="#Load-time-dynamic-linking" class="headerlink" title="Load-time dynamic linking"></a>Load-time dynamic linking</h3><p>&#xC678;&#xBD80; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC778; &#xBC29;&#xBC95;&#xC774;&#xBA70; &#xB9C1;&#xCEE4;&#xC5D0; &#xC758;&#xD574; &#xC790;&#xB3D9;&#xC801;&#xC73C;&#xB85C; &#xCC98;&#xB9AC;&#xB41C;&#xB2E4;. &#xBE4C;&#xB4DC; &#xC0AC;&#xC774;&#xD074; &#xB3D9;&#xC548; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC740; &#xAC01; &#xB3D9;&#xC801; &#xB9C1;&#xD06C; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;(DLL)&#xC758; import library(.lib)&#xC5D0; &#xC5F0;&#xACB0;&#xB41C;&#xB2E4;. &#xAC00;&#xC838;&#xC628; &#xAC01; &#xD568;&#xC218;&#xC5D0; &#xB300;&#xD574; &#xB9C1;&#xCEE4;&#xB294; DLL&#xC5D0; &#xB300;&#xD55C; &#xB0B4;&#xC6A9;&#xC744; IAT&#xC5D0; &#xC5D4;&#xD2B8;&#xB9AC;&#xB97C; &#xC791;&#xC131;&#xD55C;&#xB2E4;.</p>
+<p>&#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC774; &#xC2DC;&#xC791;&#xB420; &#xB54C;, &#xC6B4;&#xC601;&#xCCB4;&#xC81C;&#xB294; IAT&#xB97C; &#xD0D0;&#xC0C9;&#xD558;&#xC5EC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xC8FC;&#xC18C; &#xACF5;&#xAC04;&#xC5D0; &#xC788;&#xB294; &#xBAA8;&#xB4E0; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xB9E4;&#xD551;&#xD558;&#xACE0; &#xAC00;&#xC838;&#xC628; &#xAC01; &#xD568;&#xC218;&#xC758; &#xC8FC;&#xC18C;&#xB294; DLL&#xC758; Export Address Table&#xC5D0; &#xD574;&#xB2F9; &#xC5D4;&#xD2B8;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB3C4;&#xB85D; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB41C;&#xB2E4;.</p>
 <p><img src="/2020/12/13/idioth/av_evasion_part2/0.png" srcset="/img/loading.gif"></p>
 <p>Import Address Table (IAT)</p>
-<h3 id="Run-time-dynamic-linking"><a href="#Run-time-dynamic-linking" class="headerlink" title="Run-time dynamic linking"></a>Run-time dynamic linking</h3><p>다른 방법은 LoadLibrary로 해당 라이브러리를 로드한 후 GetProcAddress로 함수의 주소를 얻어 수동적으로 수행하는 것이다. 예를 들어 위의 예시를 run-time dynamic linking을 적용할 수 있다.</p>
-<p>먼저 MessageBoxA API의 함수 포인터를 정의해야 한다. 시작하기 전에 C의 함수 포인터 구문에 대해 간단하게 설명한다.</p>
+<h3 id="Run-time-dynamic-linking"><a href="#Run-time-dynamic-linking" class="headerlink" title="Run-time dynamic linking"></a>Run-time dynamic linking</h3><p>&#xB2E4;&#xB978; &#xBC29;&#xBC95;&#xC740; LoadLibrary&#xB85C; &#xD574;&#xB2F9; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xB85C;&#xB4DC;&#xD55C; &#xD6C4; GetProcAddress&#xB85C; &#xD568;&#xC218;&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xC5BB;&#xC5B4; &#xC218;&#xB3D9;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4; &#xC704;&#xC758; &#xC608;&#xC2DC;&#xB97C; run-time dynamic linking&#xC744; &#xC801;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<p>&#xBA3C;&#xC800; MessageBoxA API&#xC758; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xC815;&#xC758;&#xD574;&#xC57C; &#xD55C;&#xB2E4;. &#xC2DC;&#xC791;&#xD558;&#xAE30; &#xC804;&#xC5D0; C&#xC758; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130; &#xAD6C;&#xBB38;&#xC5D0; &#xB300;&#xD574; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC124;&#xBA85;&#xD55C;&#xB2E4;.</p>
 <pre><code class="hljs cpp">&lt;<span class="hljs-keyword">return</span> type&gt; (*&lt;your pointer name&gt;)(arg1, arg2, ...);</code></pre>
 
-<p>볼 수 있듯이 star operator(함수 포인터이므로)와  괄호를 제외하면 함수를 정의하는 구문과 같다.</p>
-<p>이제 MessageBox의 프로토타입이 필요한데 Windows SDK의 <code>winuser.h</code> 혹은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messagebox">MSDN</a>에서 찾을 수 있다.</p>
+<p>&#xBCFC; &#xC218; &#xC788;&#xB4EF;&#xC774; star operator(&#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xC774;&#xBBC0;&#xB85C;)&#xC640;  &#xAD04;&#xD638;&#xB97C; &#xC81C;&#xC678;&#xD558;&#xBA74; &#xD568;&#xC218;&#xB97C; &#xC815;&#xC758;&#xD558;&#xB294; &#xAD6C;&#xBB38;&#xACFC; &#xAC19;&#xB2E4;.</p>
+<p>&#xC774;&#xC81C; MessageBox&#xC758; &#xD504;&#xB85C;&#xD1A0;&#xD0C0;&#xC785;&#xC774; &#xD544;&#xC694;&#xD55C;&#xB370; Windows SDK&#xC758; <code>winuser.h</code> &#xD639;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messagebox">MSDN</a>&#xC5D0;&#xC11C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">MessageBox</span><span class="hljs-params">(</span></span>
 <span class="hljs-function"><span class="hljs-params">  HWND    hWnd,</span></span>
 <span class="hljs-function"><span class="hljs-params">  LPCTSTR lpText,</span></span>
@@ -311,7 +311,7 @@
 <span class="hljs-function"><span class="hljs-params">  UINT    uType</span></span>
 <span class="hljs-function"><span class="hljs-params">)</span></span>;</code></pre>
 
-<p>앞서 말한 함수 포인터 구문은 정확한 정보로 업데이트할 수 있다.</p>
+<p>&#xC55E;&#xC11C; &#xB9D0;&#xD55C; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130; &#xAD6C;&#xBB38;&#xC740; &#xC815;&#xD655;&#xD55C; &#xC815;&#xBCF4;&#xB85C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-keyword">int</span> (*_MessageBoxA)(
     HWND hWnd,
     LPCTSTR lpText,
@@ -319,15 +319,15 @@
     UINT uType
 );</code></pre>
 
-<p>MSDN은 이 함수가 <code>User32.dll</code>에서 내보내진 다고 설명한다.</p>
+<p>MSDN&#xC740; &#xC774; &#xD568;&#xC218;&#xAC00; <code>User32.dll</code>&#xC5D0;&#xC11C; &#xB0B4;&#xBCF4;&#xB0B4;&#xC9C4; &#xB2E4;&#xACE0; &#xC124;&#xBA85;&#xD55C;&#xB2E4;.</p>
 <p><img src="/2020/12/13/idioth/av_evasion_part2/1.png" srcset="/img/loading.gif"></p>
-<p>MessageBoxA API는 <code>User32.dll</code>에서 내보내 진다. 따라서 애플리케이션은 이 라이브러리를 먼저 로드해야 한다.</p>
+<p>MessageBoxA API&#xB294; <code>User32.dll</code>&#xC5D0;&#xC11C; &#xB0B4;&#xBCF4;&#xB0B4; &#xC9C4;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC740; &#xC774; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xBA3C;&#xC800; &#xB85C;&#xB4DC;&#xD574;&#xC57C; &#xD55C;&#xB2E4;.</p>
 <pre><code class="hljs cpp">HANDLE hUser32 = LoadLibrary(<span class="hljs-string">&quot;User32.dll&quot;</span>);</code></pre>
 
-<p>그 후 <code>GetProcAddress</code>를 사용하여 위에서 정의한 함수 포인터에 정확한 주소를 할당할 수 있다.</p>
+<p>&#xADF8; &#xD6C4; <code>GetProcAddress</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC704;&#xC5D0;&#xC11C; &#xC815;&#xC758;&#xD55C; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xC5D0; &#xC815;&#xD655;&#xD55C; &#xC8FC;&#xC18C;&#xB97C; &#xD560;&#xB2F9;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs cpp">_MessageBoxA fMessageBoxA = (_MessageBoxA) GetProcAddress(hUser32, <span class="hljs-string">&quot;MessageBoxA&quot;</span>);</code></pre>
 
-<p>여기서 원래 예를 <code>MessageBoxA</code> 대신 <code>fMessageBoxA</code>를 호출하도록 수정해야 하며 다음과 같다.</p>
+<p>&#xC5EC;&#xAE30;&#xC11C; &#xC6D0;&#xB798; &#xC608;&#xB97C; <code>MessageBoxA</code> &#xB300;&#xC2E0; <code>fMessageBoxA</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB3C4;&#xB85D; &#xC218;&#xC815;&#xD574;&#xC57C; &#xD558;&#xBA70; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(*_MessageBoxA)</span><span class="hljs-params">(</span></span>
@@ -337,18 +337,18 @@
 <span class="hljs-function"><span class="hljs-params">  UINT    uType</span></span>
 <span class="hljs-function"><span class="hljs-params">)</span></span>;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
 
     HANDLE hUser32 = LoadLibraryA(<span class="hljs-string">&quot;User32.dll&quot;</span>);
     _MessageBoxA fMessageBoxA = (_MessageBoxA) GetProcAddress(hUser32, <span class="hljs-string">&quot;MessageBoxA&quot;</span>);
     fMessageBoxA(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Test&quot;</span>, <span class="hljs-string">&quot;Something&quot;</span>, MB_OK);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
-<p><code>HWND, LCTSTR, UINT</code> 데이터 타입을 위해 <code>Windows.h</code> include가 필요하다. 이 간단한 예제를 빌드하고 실행하면 예상대로 alert box가 실행된다.</p>
+<p><code>HWND, LCTSTR, UINT</code> &#xB370;&#xC774;&#xD130; &#xD0C0;&#xC785;&#xC744; &#xC704;&#xD574; <code>Windows.h</code> include&#xAC00; &#xD544;&#xC694;&#xD558;&#xB2E4;. &#xC774; &#xAC04;&#xB2E8;&#xD55C; &#xC608;&#xC81C;&#xB97C; &#xBE4C;&#xB4DC;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xC608;&#xC0C1;&#xB300;&#xB85C; alert box&#xAC00; &#xC2E4;&#xD589;&#xB41C;&#xB2E4;.</p>
 <p><img src="/2020/12/13/idioth/av_evasion_part2/2.png" srcset="/img/loading.gif"></p>
-<p>run-time dynamic linking을 하기 위해 <code>LoadLibrary</code>와 <code>GetProcAddress</code>을 사용하는 간단한 예시</p>
-<h3 id="최종-적용"><a href="#최종-적용" class="headerlink" title="최종 적용"></a>최종 적용</h3><p><code>strings toto.exe</code>를 실행하면 아직 <code>User32.dll</code>과 <code>MessageBoxA</code> 문자열이 나타난다. 이 문자열들은 암호화되어야 하지만 이전 글에서 보여준 간단한 난독화 트릭으로 안티바이러스 탐지를 우회할 수 있다. 최종 결과는 다음과 같다.</p>
+<p>run-time dynamic linking&#xC744; &#xD558;&#xAE30; &#xC704;&#xD574; <code>LoadLibrary</code>&#xC640; <code>GetProcAddress</code>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC04;&#xB2E8;&#xD55C; &#xC608;&#xC2DC;</p>
+<h3 id="&#xCD5C;&#xC885;-&#xC801;&#xC6A9;"><a href="#&#xCD5C;&#xC885;-&#xC801;&#xC6A9;" class="headerlink" title="&#xCD5C;&#xC885; &#xC801;&#xC6A9;"></a>&#xCD5C;&#xC885; &#xC801;&#xC6A9;</h3><p><code>strings toto.exe</code>&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xC544;&#xC9C1; <code>User32.dll</code>&#xACFC; <code>MessageBoxA</code> &#xBB38;&#xC790;&#xC5F4;&#xC774; &#xB098;&#xD0C0;&#xB09C;&#xB2E4;. &#xC774; &#xBB38;&#xC790;&#xC5F4;&#xB4E4;&#xC740; &#xC554;&#xD638;&#xD654;&#xB418;&#xC5B4;&#xC57C; &#xD558;&#xC9C0;&#xB9CC; &#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xBCF4;&#xC5EC;&#xC900; &#xAC04;&#xB2E8;&#xD55C; &#xB09C;&#xB3C5;&#xD654; &#xD2B8;&#xB9AD;&#xC73C;&#xB85C; &#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4; &#xD0D0;&#xC9C0;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xCD5C;&#xC885; &#xACB0;&#xACFC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 
 <span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(*_MessageBoxA)</span><span class="hljs-params">(</span></span>
@@ -358,34 +358,34 @@
 <span class="hljs-function"><span class="hljs-params">  UINT    uType</span></span>
 <span class="hljs-function"><span class="hljs-params">)</span></span>;
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
 
-    <span class="hljs-keyword">char</span> user32[] = &#123;<span class="hljs-string">&#x27;U&#x27;</span>,<span class="hljs-string">&#x27;s&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;r&#x27;</span>,<span class="hljs-string">&#x27;3&#x27;</span>,<span class="hljs-string">&#x27;2&#x27;</span>,<span class="hljs-string">&#x27;.&#x27;</span>,<span class="hljs-string">&#x27;d&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-string">&#x27;l&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    <span class="hljs-keyword">char</span> user32[] = {<span class="hljs-string">&apos;U&apos;</span>,<span class="hljs-string">&apos;s&apos;</span>,<span class="hljs-string">&apos;e&apos;</span>,<span class="hljs-string">&apos;r&apos;</span>,<span class="hljs-string">&apos;3&apos;</span>,<span class="hljs-string">&apos;2&apos;</span>,<span class="hljs-string">&apos;.&apos;</span>,<span class="hljs-string">&apos;d&apos;</span>,<span class="hljs-string">&apos;l&apos;</span>,<span class="hljs-string">&apos;l&apos;</span>,<span class="hljs-number">0</span>};
     HANDLE hUser32 = LoadLibraryA(user32);
 
-    <span class="hljs-keyword">char</span> messabox[] = &#123;<span class="hljs-string">&#x27;M&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;s&#x27;</span>,<span class="hljs-string">&#x27;s&#x27;</span>,<span class="hljs-string">&#x27;a&#x27;</span>,<span class="hljs-string">&#x27;g&#x27;</span>,<span class="hljs-string">&#x27;e&#x27;</span>,<span class="hljs-string">&#x27;B&#x27;</span>,<span class="hljs-string">&#x27;o&#x27;</span>,<span class="hljs-string">&#x27;x&#x27;</span>,<span class="hljs-string">&#x27;A&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    <span class="hljs-keyword">char</span> messabox[] = {<span class="hljs-string">&apos;M&apos;</span>,<span class="hljs-string">&apos;e&apos;</span>,<span class="hljs-string">&apos;s&apos;</span>,<span class="hljs-string">&apos;s&apos;</span>,<span class="hljs-string">&apos;a&apos;</span>,<span class="hljs-string">&apos;g&apos;</span>,<span class="hljs-string">&apos;e&apos;</span>,<span class="hljs-string">&apos;B&apos;</span>,<span class="hljs-string">&apos;o&apos;</span>,<span class="hljs-string">&apos;x&apos;</span>,<span class="hljs-string">&apos;A&apos;</span>,<span class="hljs-number">0</span>};
     _MessageBoxA fMessageBoxA = (_MessageBoxA) GetProcAddress(hUser32, messabox);
     fMessageBoxA(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Test&quot;</span>, <span class="hljs-string">&quot;Something&quot;</span>, MB_OK);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
-<p>이번에는 <code>strings</code>와 <code>rabin2</code> 둘 다 문자열을 찾을 수 없다.</p>
-<pre><code class="hljs cpp">➜  x86_64-w64-mingw32-gcc test.c -o /tmp/toto.exe
-➜  strings /tmp/toto.exe | grep MessageBox
-➜  rabin2 -zz /tmp/toto.exe | grep MessageBox
-➜</code></pre>
+<p>&#xC774;&#xBC88;&#xC5D0;&#xB294; <code>strings</code>&#xC640; <code>rabin2</code> &#xB458; &#xB2E4; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xCC3E;&#xC744; &#xC218; &#xC5C6;&#xB2E4;.</p>
+<pre><code class="hljs cpp">&#x279C;  x86_64-w64-mingw32-gcc test.c -o /tmp/toto.exe
+&#x279C;  strings /tmp/toto.exe | grep MessageBox
+&#x279C;  rabin2 -zz /tmp/toto.exe | grep MessageBox
+&#x279C;</code></pre>
 
-<h2 id="자동화된-소스-코드-리팩터링"><a href="#자동화된-소스-코드-리팩터링" class="headerlink" title="자동화된 소스 코드 리팩터링"></a>자동화된 소스 코드 리팩터링</h2><p>이전 글에 설명된 것과 같은 방법으로 기존 코드 베이스를 refactoring 하여 의심스러운 API를 런타임에 로드하고 Import Address Table에서 제거할 수 있다. <code>libTooling</code>으로 구현된 기존의 작업을 기반으로 할 것이다.</p>
-<p>이 작업을 다음과 같이 나열해보자.</p>
+<h2 id="&#xC790;&#xB3D9;&#xD654;&#xB41C;-&#xC18C;&#xC2A4;-&#xCF54;&#xB4DC;-&#xB9AC;&#xD329;&#xD130;&#xB9C1;"><a href="#&#xC790;&#xB3D9;&#xD654;&#xB41C;-&#xC18C;&#xC2A4;-&#xCF54;&#xB4DC;-&#xB9AC;&#xD329;&#xD130;&#xB9C1;" class="headerlink" title="&#xC790;&#xB3D9;&#xD654;&#xB41C; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC; &#xB9AC;&#xD329;&#xD130;&#xB9C1;"></a>&#xC790;&#xB3D9;&#xD654;&#xB41C; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC; &#xB9AC;&#xD329;&#xD130;&#xB9C1;</h2><p>&#xC774;&#xC804; &#xAE00;&#xC5D0; &#xC124;&#xBA85;&#xB41C; &#xAC83;&#xACFC; &#xAC19;&#xC740; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xAE30;&#xC874; &#xCF54;&#xB4DC; &#xBCA0;&#xC774;&#xC2A4;&#xB97C; refactoring &#xD558;&#xC5EC; &#xC758;&#xC2EC;&#xC2A4;&#xB7EC;&#xC6B4; API&#xB97C; &#xB7F0;&#xD0C0;&#xC784;&#xC5D0; &#xB85C;&#xB4DC;&#xD558;&#xACE0; Import Address Table&#xC5D0;&#xC11C; &#xC81C;&#xAC70;&#xD560; &#xC218; &#xC788;&#xB2E4;. <code>libTooling</code>&#xC73C;&#xB85C; &#xAD6C;&#xD604;&#xB41C; &#xAE30;&#xC874;&#xC758; &#xC791;&#xC5C5;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xD560; &#xAC83;&#xC774;&#xB2E4;.</p>
+<p>&#xC774; &#xC791;&#xC5C5;&#xC744; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xB098;&#xC5F4;&#xD574;&#xBCF4;&#xC790;.</p>
 <ul>
-<li>이전 예제의 추상 구문 트리를 생성해라. 함수 호출을 수정하기 위해 노드를 조작하는 방법을 이해하는데 필요하다.</li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/docs/LibASTMatchersReference.html">ASTMatcher</a>를 사용하여 지정된 API에 대한 API 코드 베이스의 모든 함수 호출을 찾아라.</li>
-<li>다른 함수 식별자로 모든 호출을 대체해라.</li>
-<li>각 함수 호출 전에 <code>LoadLibrary/GetProcAddress</code> 호출을 삽입하라.</li>
-<li>작동하는지 확인해라.</li>
-<li>모든 의심스러운 API를 종합하고 난독화해라.</li>
+<li>&#xC774;&#xC804; &#xC608;&#xC81C;&#xC758; &#xCD94;&#xC0C1; &#xAD6C;&#xBB38; &#xD2B8;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD574;&#xB77C;. &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC744; &#xC218;&#xC815;&#xD558;&#xAE30; &#xC704;&#xD574; &#xB178;&#xB4DC;&#xB97C; &#xC870;&#xC791;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xC774;&#xD574;&#xD558;&#xB294;&#xB370; &#xD544;&#xC694;&#xD558;&#xB2E4;.</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/docs/LibASTMatchersReference.html">ASTMatcher</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC9C0;&#xC815;&#xB41C; API&#xC5D0; &#xB300;&#xD55C; API &#xCF54;&#xB4DC; &#xBCA0;&#xC774;&#xC2A4;&#xC758; &#xBAA8;&#xB4E0; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC744; &#xCC3E;&#xC544;&#xB77C;.</li>
+<li>&#xB2E4;&#xB978; &#xD568;&#xC218; &#xC2DD;&#xBCC4;&#xC790;&#xB85C; &#xBAA8;&#xB4E0; &#xD638;&#xCD9C;&#xC744; &#xB300;&#xCCB4;&#xD574;&#xB77C;.</li>
+<li>&#xAC01; &#xD568;&#xC218; &#xD638;&#xCD9C; &#xC804;&#xC5D0; <code>LoadLibrary/GetProcAddress</code> &#xD638;&#xCD9C;&#xC744; &#xC0BD;&#xC785;&#xD558;&#xB77C;.</li>
+<li>&#xC791;&#xB3D9;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD574;&#xB77C;.</li>
+<li>&#xBAA8;&#xB4E0; &#xC758;&#xC2EC;&#xC2A4;&#xB7EC;&#xC6B4; API&#xB97C; &#xC885;&#xD569;&#xD558;&#xACE0; &#xB09C;&#xB3C5;&#xD654;&#xD574;&#xB77C;.</li>
 </ul>
-<h3 id="MessageBox-애플리케이션의-추상-구문-트리"><a href="#MessageBox-애플리케이션의-추상-구문-트리" class="headerlink" title="MessageBox 애플리케이션의 추상 구문 트리"></a>MessageBox 애플리케이션의 추상 구문 트리</h3><p>원본 MessageBox 애플리케이션의 Clang 추상 구문 트리를 보기 위해 당신의 Windows SDK 경로를 적용하여 스크립트를 사용하자</p>
+<h3 id="MessageBox-&#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758;-&#xCD94;&#xC0C1;-&#xAD6C;&#xBB38;-&#xD2B8;&#xB9AC;"><a href="#MessageBox-&#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758;-&#xCD94;&#xC0C1;-&#xAD6C;&#xBB38;-&#xD2B8;&#xB9AC;" class="headerlink" title="MessageBox &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758; &#xCD94;&#xC0C1; &#xAD6C;&#xBB38; &#xD2B8;&#xB9AC;"></a>MessageBox &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758; &#xCD94;&#xC0C1; &#xAD6C;&#xBB38; &#xD2B8;&#xB9AC;</h3><p>&#xC6D0;&#xBCF8; MessageBox &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758; Clang &#xCD94;&#xC0C1; &#xAD6C;&#xBB38; &#xD2B8;&#xB9AC;&#xB97C; &#xBCF4;&#xAE30; &#xC704;&#xD574; &#xB2F9;&#xC2E0;&#xC758; Windows SDK &#xACBD;&#xB85C;&#xB97C; &#xC801;&#xC6A9;&#xD558;&#xC5EC; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC790;</p>
 <pre><code class="hljs cpp">WIN_INCLUDE=<span class="hljs-string">&quot;/Users/vladimir/dev/avcleaner&quot;</span>
 CLANG_PATH=<span class="hljs-string">&quot;/usr/local/Cellar/llvm/9.0.1&quot;</span>
 
@@ -406,9 +406,9 @@ clang -cc1 -ast-dump <span class="hljs-string">&quot;$1&quot;</span> -D <span cl
 <pre><code class="hljs bash">bash clang-astdump.sh <span class="hljs-built_in">test</span>/messagebox_simple.c &gt; <span class="hljs-built_in">test</span>/messagebox_simple.c.ast</code></pre>
 
 <p><img src="/2020/12/13/idioth/av_evasion_part2/3.png" srcset="/img/loading.gif"></p>
-<p>MessageBoxA API를 호출하는 간단한 애플리케이션의 Clang 추상 구문 트리</p>
-<p>CallExpr 유형의 AST 노드를 찾으면 소스 코드에서의 함수 호출을 찾을 수 있다. 위 사진에 나와있는 것처럼 실제 호출되는 함수 이름은 하위 노드 중 하나에 지정되어 있으므로 나중에 접근할 수 있어야 한다.</p>
-<h3 id="특정-API의-함수-호출-찾기"><a href="#특정-API의-함수-호출-찾기" class="headerlink" title="특정 API의 함수 호출 찾기"></a>특정 API의 함수 호출 찾기</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/docs/LibASTMatchersReference.html">ASTMatcher</a>는 특정 함수에 대한 모든 함수 호출을 열거하는데 필요하다. 우선 이전 글에서 사용된 것보다 더 복잡하므로 이 matcher에 맞는 구문을 얻는 것이 중요하다. 적합한 것을 찾기 위해서 소스 코드에서 custom query를 실행할 수 있는 interactive tool인 <code>clang-query</code>를 사용했다. 흥미롭게도 이것은 libTooling 기반이고 이 글에서 보여준 어떤 것보다 훨씬 강력하다.</p>
+<p>MessageBoxA API&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAC04;&#xB2E8;&#xD55C; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC758; Clang &#xCD94;&#xC0C1; &#xAD6C;&#xBB38; &#xD2B8;&#xB9AC;</p>
+<p>CallExpr &#xC720;&#xD615;&#xC758; AST &#xB178;&#xB4DC;&#xB97C; &#xCC3E;&#xC73C;&#xBA74; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C;&#xC758; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC744; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xB2E4;. &#xC704; &#xC0AC;&#xC9C4;&#xC5D0; &#xB098;&#xC640;&#xC788;&#xB294; &#xAC83;&#xCC98;&#xB7FC; &#xC2E4;&#xC81C; &#xD638;&#xCD9C;&#xB418;&#xB294; &#xD568;&#xC218; &#xC774;&#xB984;&#xC740; &#xD558;&#xC704; &#xB178;&#xB4DC; &#xC911; &#xD558;&#xB098;&#xC5D0; &#xC9C0;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xB098;&#xC911;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC5B4;&#xC57C; &#xD55C;&#xB2E4;.</p>
+<h3 id="&#xD2B9;&#xC815;-API&#xC758;-&#xD568;&#xC218;-&#xD638;&#xCD9C;-&#xCC3E;&#xAE30;"><a href="#&#xD2B9;&#xC815;-API&#xC758;-&#xD568;&#xC218;-&#xD638;&#xCD9C;-&#xCC3E;&#xAE30;" class="headerlink" title="&#xD2B9;&#xC815; API&#xC758; &#xD568;&#xC218; &#xD638;&#xCD9C; &#xCC3E;&#xAE30;"></a>&#xD2B9;&#xC815; API&#xC758; &#xD568;&#xC218; &#xD638;&#xCD9C; &#xCC3E;&#xAE30;</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/docs/LibASTMatchersReference.html">ASTMatcher</a>&#xB294; &#xD2B9;&#xC815; &#xD568;&#xC218;&#xC5D0; &#xB300;&#xD55C; &#xBAA8;&#xB4E0; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC744; &#xC5F4;&#xAC70;&#xD558;&#xB294;&#xB370; &#xD544;&#xC694;&#xD558;&#xB2E4;. &#xC6B0;&#xC120; &#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB41C; &#xAC83;&#xBCF4;&#xB2E4; &#xB354; &#xBCF5;&#xC7A1;&#xD558;&#xBBC0;&#xB85C; &#xC774; matcher&#xC5D0; &#xB9DE;&#xB294; &#xAD6C;&#xBB38;&#xC744; &#xC5BB;&#xB294; &#xAC83;&#xC774; &#xC911;&#xC694;&#xD558;&#xB2E4;. &#xC801;&#xD569;&#xD55C; &#xAC83;&#xC744; &#xCC3E;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; custom query&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; interactive tool&#xC778; <code>clang-query</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD588;&#xB2E4;. &#xD765;&#xBBF8;&#xB86D;&#xAC8C;&#xB3C4; &#xC774;&#xAC83;&#xC740; libTooling &#xAE30;&#xBC18;&#xC774;&#xACE0; &#xC774; &#xAE00;&#xC5D0;&#xC11C; &#xBCF4;&#xC5EC;&#xC900; &#xC5B4;&#xB5A4; &#xAC83;&#xBCF4;&#xB2E4; &#xD6E8;&#xC52C; &#xAC15;&#xB825;&#xD558;&#xB2E4;.</p>
 <pre><code class="hljs bash">clang-query&gt; match callExpr(callee(functionDecl(hasName(<span class="hljs-string">&quot;MessageBoxA&quot;</span>))))
 
 Match <span class="hljs-comment">#1:</span>
@@ -419,14 +419,14 @@ Match <span class="hljs-comment">#1:</span>
 1 match.
 clang-query&gt;</code></pre>
 
-<p>시행착오와 명령 줄 완성(tab completion)으로 빠르게 작업 솔루션에 접근할 수 있었다. matcher가 잘 동작하는 것을 확인했으니 이전 글에서 수행한 것과 같은 새로운 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1ASTConsumer.html">ASTConsumer</a>를 생성할 수 있다. <code>clang-query</code>를 사용하여 수행한 것을 C++ 재현하는 것이다.</p>
-<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApiCallConsumer</span> :</span> <span class="hljs-keyword">public</span> clang::ASTConsumer &#123;
+<p>&#xC2DC;&#xD589;&#xCC29;&#xC624;&#xC640; &#xBA85;&#xB839; &#xC904; &#xC644;&#xC131;(tab completion)&#xC73C;&#xB85C; &#xBE60;&#xB974;&#xAC8C; &#xC791;&#xC5C5; &#xC194;&#xB8E8;&#xC158;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC5C8;&#xB2E4;. matcher&#xAC00; &#xC798; &#xB3D9;&#xC791;&#xD558;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD588;&#xC73C;&#xB2C8; &#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xD55C; &#xAC83;&#xACFC; &#xAC19;&#xC740; &#xC0C8;&#xB85C;&#xC6B4; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1ASTConsumer.html">ASTConsumer</a>&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xB2E4;. <code>clang-query</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC218;&#xD589;&#xD55C; &#xAC83;&#xC744; C++ &#xC7AC;&#xD604;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+<pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ApiCallConsumer</span> :</span> <span class="hljs-keyword">public</span> clang::ASTConsumer {
 <span class="hljs-keyword">public</span>:
 
     ApiCallConsumer(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> ApiName, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> TypeDef, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> Library)
-            : _ApiName(<span class="hljs-built_in">std</span>::move(ApiName)), _TypeDef(<span class="hljs-built_in">std</span>::move(TypeDef)), _Library(<span class="hljs-built_in">std</span>::move(Library)) &#123;&#125;
+            : _ApiName(<span class="hljs-built_in">std</span>::move(ApiName)), _TypeDef(<span class="hljs-built_in">std</span>::move(TypeDef)), _Library(<span class="hljs-built_in">std</span>::move(Library)) {}
 
-    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HandleTranslationUnit</span><span class="hljs-params">(clang::ASTContext &amp;Context)</span> <span class="hljs-keyword">override</span> </span>&#123;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">HandleTranslationUnit</span><span class="hljs-params">(clang::ASTContext &amp;Context)</span> <span class="hljs-keyword">override</span> </span>{
         
         <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> clang::ast_matchers;
         <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> AVObfuscator;
@@ -439,29 +439,29 @@ clang-query&gt;</code></pre>
 
         Finder.addMatcher(Matcher, &amp;Handler);
         Finder.matchAST(Context);
-    &#125;
+    }
 
 <span class="hljs-keyword">private</span>:
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> _ApiName;
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> _TypeDef;
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> _Library;
-&#125;;</code></pre>
+};</code></pre>
 
-<p>중요한 구현 세부 사항은 많은 다른 함수들에 적용할 수 있는 가능성을 제공하는 것이고 최종적인 목표는 각 수정된 API 함수에 <code>LoadLibrary/GetProcAddress</code>를 삽입하는 것이므로 함수 프로토타입과 DLL 이름을 제공해야 한다.</p>
-<p>그렇게 하면 수정할 API만큼 많은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1ASTConsumer.html">ASTConsumers</a>를 등록할 수 있다. 이 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1ASTConsumer.html">ASTConsumer</a>의 인스턴스화는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1FrontendAction.html">ASTFrontendAction</a>에서 수행되야만 한다:</p>
+<p>&#xC911;&#xC694;&#xD55C; &#xAD6C;&#xD604; &#xC138;&#xBD80; &#xC0AC;&#xD56D;&#xC740; &#xB9CE;&#xC740; &#xB2E4;&#xB978; &#xD568;&#xC218;&#xB4E4;&#xC5D0; &#xC801;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xAC00;&#xB2A5;&#xC131;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xAC83;&#xC774;&#xACE0; &#xCD5C;&#xC885;&#xC801;&#xC778; &#xBAA9;&#xD45C;&#xB294; &#xAC01; &#xC218;&#xC815;&#xB41C; API &#xD568;&#xC218;&#xC5D0; <code>LoadLibrary/GetProcAddress</code>&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xB294; &#xAC83;&#xC774;&#xBBC0;&#xB85C; &#xD568;&#xC218; &#xD504;&#xB85C;&#xD1A0;&#xD0C0;&#xC785;&#xACFC; DLL &#xC774;&#xB984;&#xC744; &#xC81C;&#xACF5;&#xD574;&#xC57C; &#xD55C;&#xB2E4;.</p>
+<p>&#xADF8;&#xB807;&#xAC8C; &#xD558;&#xBA74; &#xC218;&#xC815;&#xD560; API&#xB9CC;&#xD07C; &#xB9CE;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1ASTConsumer.html">ASTConsumers</a>&#xB97C; &#xB4F1;&#xB85D;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC774; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1ASTConsumer.html">ASTConsumer</a>&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xD654;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/classclang_1_1FrontendAction.html">ASTFrontendAction</a>&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xB418;&#xC57C;&#xB9CC; &#xD55C;&#xB2E4;:</p>
 <p><img src="/2020/12/13/idioth/av_evasion_part2/4.png" srcset="/img/loading.gif"></p>
-<p><code>main.cpp</code>의 주요 변경점.</p>
-<p>이것은 이전 글에서 작업한 기존 코드에 대한 유일한 변경점이다. 우리가 추가할 코드들은 <code>ApiMatchHandelr.cpp</code>를 만드는 것부터 시작한다.</p>
-<p>matcher는 콜백 함수와 함께 제공되므로 다음 하나를 제공하자.</p>
-<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ApiMatchHandler::run</span><span class="hljs-params">(<span class="hljs-keyword">const</span> MatchResult &amp;Result)</span> </span>&#123;
+<p><code>main.cpp</code>&#xC758; &#xC8FC;&#xC694; &#xBCC0;&#xACBD;&#xC810;.</p>
+<p>&#xC774;&#xAC83;&#xC740; &#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xC791;&#xC5C5;&#xD55C; &#xAE30;&#xC874; &#xCF54;&#xB4DC;&#xC5D0; &#xB300;&#xD55C; &#xC720;&#xC77C;&#xD55C; &#xBCC0;&#xACBD;&#xC810;&#xC774;&#xB2E4;. &#xC6B0;&#xB9AC;&#xAC00; &#xCD94;&#xAC00;&#xD560; &#xCF54;&#xB4DC;&#xB4E4;&#xC740; <code>ApiMatchHandelr.cpp</code>&#xB97C; &#xB9CC;&#xB4DC;&#xB294; &#xAC83;&#xBD80;&#xD130; &#xC2DC;&#xC791;&#xD55C;&#xB2E4;.</p>
+<p>matcher&#xB294; &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC640; &#xD568;&#xAED8; &#xC81C;&#xACF5;&#xB418;&#xBBC0;&#xB85C; &#xB2E4;&#xC74C; &#xD558;&#xB098;&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xC790;.</p>
+<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ApiMatchHandler::run</span><span class="hljs-params">(<span class="hljs-keyword">const</span> MatchResult &amp;Result)</span> </span>{
 
     llvm::outs() &lt;&lt; <span class="hljs-string">&quot;Found &quot;</span> &lt;&lt; _ApiName &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 
     <span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> *CallExpression = Result.Nodes.getNodeAs&lt;clang::CallExpr&gt;(<span class="hljs-string">&quot;callExpr&quot;</span>);
     handleCallExpr(CallExpression, Result.Context);
-&#125;</code></pre>
+}</code></pre>
 
-<p>섹션의 시작 부분에서 리스트로 분리된 작업들은 아래 메소드를 통해 코드로 바꿀 수 있다.</p>
+<p>&#xC139;&#xC158;&#xC758; &#xC2DC;&#xC791; &#xBD80;&#xBD84;&#xC5D0;&#xC11C; &#xB9AC;&#xC2A4;&#xD2B8;&#xB85C; &#xBD84;&#xB9AC;&#xB41C; &#xC791;&#xC5C5;&#xB4E4;&#xC740; &#xC544;&#xB798; &#xBA54;&#xC18C;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; &#xCF54;&#xB4DC;&#xB85C; &#xBC14;&#xAFC0; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">handleCallExpr</span><span class="hljs-params">(<span class="hljs-keyword">const</span> clang::CallExpr *CallExpression, clang::ASTContext *<span class="hljs-keyword">const</span> pContext)</span></span>;
 
 <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">replaceIdentifier</span><span class="hljs-params">(<span class="hljs-keyword">const</span> clang::CallExpr *CallExpression, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;ApiName,</span></span>
@@ -473,8 +473,8 @@ addGetProcAddress(<span class="hljs-keyword">const</span> clang::CallExpr *pCall
 <span class="hljs-function">clang::SourceRange <span class="hljs-title">findInjectionSpot</span><span class="hljs-params">(clang::ASTContext *<span class="hljs-keyword">const</span> Context, clang::ast_type_traits::DynTypedNode Parent,</span></span>
 <span class="hljs-function"><span class="hljs-params">                                        <span class="hljs-keyword">const</span> clang::CallExpr &amp;Literal, <span class="hljs-keyword">uint64_t</span> Iterations)</span></span>;</code></pre>
 
-<h3 id="함수-호출-대체"><a href="#함수-호출-대체" class="headerlink" title="함수 호출 대체"></a>함수 호출 대체</h3><p>이것은 가장 사소한 부분이다. 목표는 AST의 <code>MessageBoxA</code>를 무작위 식별자로 대체하는 것이다. 이러한 무작위 변수 초기화는 다음 섹션에서 수행된다.</p>
-<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ApiMatchHandler::handleCallExpr</span><span class="hljs-params">(<span class="hljs-keyword">const</span> CallExpr *CallExpression, clang::ASTContext *<span class="hljs-keyword">const</span> pContext)</span> </span>&#123;
+<h3 id="&#xD568;&#xC218;-&#xD638;&#xCD9C;-&#xB300;&#xCCB4;"><a href="#&#xD568;&#xC218;-&#xD638;&#xCD9C;-&#xB300;&#xCCB4;" class="headerlink" title="&#xD568;&#xC218; &#xD638;&#xCD9C; &#xB300;&#xCCB4;"></a>&#xD568;&#xC218; &#xD638;&#xCD9C; &#xB300;&#xCCB4;</h3><p>&#xC774;&#xAC83;&#xC740; &#xAC00;&#xC7A5; &#xC0AC;&#xC18C;&#xD55C; &#xBD80;&#xBD84;&#xC774;&#xB2E4;. &#xBAA9;&#xD45C;&#xB294; AST&#xC758; <code>MessageBoxA</code>&#xB97C; &#xBB34;&#xC791;&#xC704; &#xC2DD;&#xBCC4;&#xC790;&#xB85C; &#xB300;&#xCCB4;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; &#xBB34;&#xC791;&#xC704; &#xBCC0;&#xC218; &#xCD08;&#xAE30;&#xD654;&#xB294; &#xB2E4;&#xC74C; &#xC139;&#xC158;&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xB41C;&#xB2E4;.</p>
+<pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ApiMatchHandler::handleCallExpr</span><span class="hljs-params">(<span class="hljs-keyword">const</span> CallExpr *CallExpression, clang::ASTContext *<span class="hljs-keyword">const</span> pContext)</span> </span>{
 
     <span class="hljs-comment">// generate a random variable name</span>
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> Replacement = Utils::translateStringToIdentifier(_ApiName);
@@ -485,27 +485,27 @@ addGetProcAddress(<span class="hljs-keyword">const</span> clang::CallExpr *pCall
 
     <span class="hljs-comment">// MessageBoxA -&gt; random identifier generated above</span>
     <span class="hljs-keyword">return</span> replaceIdentifier(CallExpression, _ApiName, Replacement);
-&#125;</code></pre>
+}</code></pre>
 
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/Rewriter_8h_source.html#l00164">ReplaceText</a> Clagn API는 함수 식별자의 이름을 변경하는 데 사용된다.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://clang.llvm.org/doxygen/Rewriter_8h_source.html#l00164">ReplaceText</a> Clagn API&#xB294; &#xD568;&#xC218; &#xC2DD;&#xBCC4;&#xC790;&#xC758; &#xC774;&#xB984;&#xC744; &#xBCC0;&#xACBD;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB41C;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ApiMatchHandler::replaceIdentifier</span><span class="hljs-params">(<span class="hljs-keyword">const</span> CallExpr *CallExpression, <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;ApiName,</span></span>
-<span class="hljs-function"><span class="hljs-params">                                        <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;NewIdentifier)</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-params">                                        <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;NewIdentifier)</span> </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>-&gt;ASTRewriter-&gt;ReplaceText(CallExpression-&gt;getBeginLoc(), ApiName.length(), NewIdentifier);
-&#125;</code></pre>
+}</code></pre>
 
-<h3 id="LoadLibrary-GetProcAddress-삽입"><a href="#LoadLibrary-GetProcAddress-삽입" class="headerlink" title="LoadLibrary/GetProcAddress 삽입"></a>LoadLibrary/GetProcAddress 삽입</h3><p>우리가 추가하고자 하는 API에 Run-time dynamic linking을 추가하는 과정은 다음과 같다:</p>
+<h3 id="LoadLibrary-GetProcAddress-&#xC0BD;&#xC785;"><a href="#LoadLibrary-GetProcAddress-&#xC0BD;&#xC785;" class="headerlink" title="LoadLibrary/GetProcAddress &#xC0BD;&#xC785;"></a>LoadLibrary/GetProcAddress &#xC0BD;&#xC785;</h3><p>&#xC6B0;&#xB9AC;&#xAC00; &#xCD94;&#xAC00;&#xD558;&#xACE0;&#xC790; &#xD558;&#xB294; API&#xC5D0; Run-time dynamic linking&#xC744; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;:</p>
 <ul>
-<li><p>translation unit의 상단 혹은 enclosing 함수 안에 API 프로토타입을 추가해라. 쉽게 하기 위해 우리는 후자를 선택하지만 동일한 함수에서 API를 여러 번 호출할 경우 이미 추가되었는지 확인할 필요가 있다.</p>
+<li><p>translation unit&#xC758; &#xC0C1;&#xB2E8; &#xD639;&#xC740; enclosing &#xD568;&#xC218; &#xC548;&#xC5D0; API &#xD504;&#xB85C;&#xD1A0;&#xD0C0;&#xC785;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xB77C;. &#xC27D;&#xAC8C; &#xD558;&#xAE30; &#xC704;&#xD574; &#xC6B0;&#xB9AC;&#xB294; &#xD6C4;&#xC790;&#xB97C; &#xC120;&#xD0DD;&#xD558;&#xC9C0;&#xB9CC; &#xB3D9;&#xC77C;&#xD55C; &#xD568;&#xC218;&#xC5D0;&#xC11C; API&#xB97C; &#xC5EC;&#xB7EC; &#xBC88; &#xD638;&#xCD9C;&#xD560; &#xACBD;&#xC6B0; &#xC774;&#xBBF8; &#xCD94;&#xAC00;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD560; &#xD544;&#xC694;&#xAC00; &#xC788;&#xB2E4;.</p>
 </li>
-<li><p>아래 라인을 추가해라</p>
+<li><p>&#xC544;&#xB798; &#xB77C;&#xC778;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xB77C;</p>
 <p>  <code>HANDLE &lt;random identifier&gt; LoadLibrary(&lt;library name&gt;);</code></p>
 </li>
-<li><p><code>GetProcAddress</code> 호출을 추가해라</p>
+<li><p><code>GetProcAddress</code> &#xD638;&#xCD9C;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xB77C;</p>
 </li>
 </ul>
-<p>물론 이 작업을 하면서 문자열 리터럴을 삽입하지 않기 위해 각 문자열을 스택 문자열로 작성해야 한다. 이것은 코드를 읽기 지루하게 만들지만 복잡하진 않다.</p>
+<p>&#xBB3C;&#xB860; &#xC774; &#xC791;&#xC5C5;&#xC744; &#xD558;&#xBA74;&#xC11C; &#xBB38;&#xC790;&#xC5F4; &#xB9AC;&#xD130;&#xB7F4;&#xC744; &#xC0BD;&#xC785;&#xD558;&#xC9C0; &#xC54A;&#xAE30; &#xC704;&#xD574; &#xAC01; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xC2A4;&#xD0DD; &#xBB38;&#xC790;&#xC5F4;&#xB85C; &#xC791;&#xC131;&#xD574;&#xC57C; &#xD55C;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xCF54;&#xB4DC;&#xB97C; &#xC77D;&#xAE30; &#xC9C0;&#xB8E8;&#xD558;&#xAC8C; &#xB9CC;&#xB4E4;&#xC9C0;&#xB9CC; &#xBCF5;&#xC7A1;&#xD558;&#xC9C4; &#xC54A;&#xB2E4;.</p>
 <pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ApiMatchHandler::addGetProcAddress</span><span class="hljs-params">(<span class="hljs-keyword">const</span> clang::CallExpr *pCallExpression, clang::ASTContext *<span class="hljs-keyword">const</span> pContext,</span></span>
-<span class="hljs-function"><span class="hljs-params">                                        <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;NewIdentifier, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;ApiName)</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-params">                                        <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;NewIdentifier, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> &amp;ApiName)</span> </span>{
 
     SourceRange EnclosingFunctionRange = findInjectionSpot(pContext, clang::ast_type_traits::DynTypedNode(),
                                                            *pCallExpression, <span class="hljs-number">0</span>);
@@ -513,10 +513,10 @@ addGetProcAddress(<span class="hljs-keyword">const</span> clang::CallExpr *pCall
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">stringstream</span> Result;
 
     <span class="hljs-comment">// add function prototype if not already added</span>
-    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">std</span>::find(TypedefAdded.begin(), TypedefAdded.end(), pCallExpression-&gt;getDirectCallee()) == TypedefAdded.end()) &#123;
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">std</span>::find(TypedefAdded.begin(), TypedefAdded.end(), pCallExpression-&gt;getDirectCallee()) == TypedefAdded.end()) {
 
         Result &lt;&lt; <span class="hljs-string">&quot;\t&quot;</span> &lt;&lt; _TypeDef &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
-    &#125;
+    }
 
     <span class="hljs-comment">// add LoadLibrary with obfuscated strings</span>
     <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> LoadLibraryVariable = Utils::translateStringToIdentifier(_Library);
@@ -536,7 +536,7 @@ addGetProcAddress(<span class="hljs-keyword">const</span> clang::CallExpr *pCall
 
     <span class="hljs-comment">// add everything at the beginning of the function.</span>
     <span class="hljs-keyword">return</span> !(ASTRewriter-&gt;InsertText(EnclosingFunctionRange.getBegin(), Result.str()));
-&#125;</code></pre>
+}</code></pre>
 
 <h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><pre><code class="hljs cpp">git clone https:<span class="hljs-comment">//github.com/scrt/avcleaner</span>
 mkdir avcleaner/CMakeBuild &amp;&amp; cd avcleaner/CMakeBuild
@@ -544,17 +544,17 @@ cmake ..
 make
 cd ..</code></pre>
 
-<p>전부 잘 동작하는지 테스트하기 위해 아래 테스트 파일을 사용하자.</p>
+<p>&#xC804;&#xBD80; &#xC798; &#xB3D9;&#xC791;&#xD558;&#xB294;&#xC9C0; &#xD14C;&#xC2A4;&#xD2B8;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC544;&#xB798; &#xD14C;&#xC2A4;&#xD2B8; &#xD30C;&#xC77C;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC790;.</p>
 <pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
 
     MessageBoxA(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Test&quot;</span>, <span class="hljs-string">&quot;Something&quot;</span>, MB_OK);
     MessageBoxA(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Another test&quot;</span>, <span class="hljs-string">&quot;Another something&quot;</span>, MB_OK);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
-<p>obfuscator 실행!</p>
+<p>obfuscator &#xC2E4;&#xD589;!</p>
 <pre><code class="hljs cpp">./CMakeBuild/avcleaner.bin test/messagebox_simple.c --strings=<span class="hljs-literal">true</span> --api=<span class="hljs-literal">true</span> -- -D _WIN64 -D _UNICODE -D UNICODE -D _WINSOCK_DEPRECATED_NO_WARNINGS\
  -I /usr/local/Cellar/llvm/<span class="hljs-number">9.0</span><span class="hljs-number">.1</span>\
  -I /Users/vladimir/dev/scrt/avcleaner/Include/msvc<span class="hljs-number">-14.15</span><span class="hljs-number">.26726</span>-include\
@@ -563,43 +563,43 @@ cd ..</code></pre>
  -I /Users/vladimir/dev/scrt/avcleaner/Include/<span class="hljs-number">10.0</span><span class="hljs-number">.17134</span><span class="hljs-number">.0</span>/um\
  -I /Users/vladimir/dev/scrt/avcleaner/Include/<span class="hljs-number">10.0</span><span class="hljs-number">.17134</span><span class="hljs-number">.0</span>/winrt -w -fdebug-compilation-dir -fno-use-cxa-atexit -fms-extensions -fms-compatibility -fms-compatibility-version=<span class="hljs-number">19.15</span><span class="hljs-number">.26726</span> -<span class="hljs-built_in">std</span>=c++<span class="hljs-number">14</span> -fdelayed-<span class="hljs-keyword">template</span>-parsing -fobjc-runtime=gcc -fcxx-exceptions -fexceptions -fdiagnostics-show-option -fcolor-diagnostics -x c++ -ferror-limit=<span class="hljs-number">1900</span> -target x86_64-pc-windows-msvc19<span class="hljs-number">.15</span><span class="hljs-number">.26726</span> -fsyntax-only -disable-<span class="hljs-built_in">free</span> -disable-llvm-verifier -discard-value-names -dwarf-column-info -debugger-tuning=gdb -momit-leaf-frame-pointer -v</code></pre>
 
-<p>결과 확인!</p>
+<p>&#xACB0;&#xACFC; &#xD655;&#xC778;!</p>
 <pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 
-<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">int</span> argc, <span class="hljs-keyword">char</span>** argv)</span> </span>{
     
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>  hid_Someth_lNGj92poubUG[] = &#123;<span class="hljs-string">&#x27;\x53&#x27;</span>,<span class="hljs-string">&#x27;\x6f&#x27;</span>,<span class="hljs-string">&#x27;\x6d&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x74&#x27;</span>,<span class="hljs-string">&#x27;\x68&#x27;</span>,<span class="hljs-string">&#x27;\x69&#x27;</span>,<span class="hljs-string">&#x27;\x6e&#x27;</span>,<span class="hljs-string">&#x27;\x67&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>  hid_Someth_lNGj92poubUG[] = {<span class="hljs-string">&apos;\x53&apos;</span>,<span class="hljs-string">&apos;\x6f&apos;</span>,<span class="hljs-string">&apos;\x6d&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x74&apos;</span>,<span class="hljs-string">&apos;\x68&apos;</span>,<span class="hljs-string">&apos;\x69&apos;</span>,<span class="hljs-string">&apos;\x6e&apos;</span>,<span class="hljs-string">&apos;\x67&apos;</span>,<span class="hljs-number">0</span>};
 
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>  hid_Anothe_UP7KUo4Sa8LC[] = &#123;<span class="hljs-string">&#x27;\x41&#x27;</span>,<span class="hljs-string">&#x27;\x6e&#x27;</span>,<span class="hljs-string">&#x27;\x6f&#x27;</span>,<span class="hljs-string">&#x27;\x74&#x27;</span>,<span class="hljs-string">&#x27;\x68&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x72&#x27;</span>,<span class="hljs-string">&#x27;\x20&#x27;</span>,<span class="hljs-string">&#x27;\x74&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x74&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>  hid_Anothe_UP7KUo4Sa8LC[] = {<span class="hljs-string">&apos;\x41&apos;</span>,<span class="hljs-string">&apos;\x6e&apos;</span>,<span class="hljs-string">&apos;\x6f&apos;</span>,<span class="hljs-string">&apos;\x74&apos;</span>,<span class="hljs-string">&apos;\x68&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x72&apos;</span>,<span class="hljs-string">&apos;\x20&apos;</span>,<span class="hljs-string">&apos;\x74&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x74&apos;</span>,<span class="hljs-number">0</span>};
 
-    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>  hid_Anothe_ACsNhmIcS1tA[] = &#123;<span class="hljs-string">&#x27;\x41&#x27;</span>,<span class="hljs-string">&#x27;\x6e&#x27;</span>,<span class="hljs-string">&#x27;\x6f&#x27;</span>,<span class="hljs-string">&#x27;\x74&#x27;</span>,<span class="hljs-string">&#x27;\x68&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x72&#x27;</span>,<span class="hljs-string">&#x27;\x20&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x6f&#x27;</span>,<span class="hljs-string">&#x27;\x6d&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x74&#x27;</span>,<span class="hljs-string">&#x27;\x68&#x27;</span>,<span class="hljs-string">&#x27;\x69&#x27;</span>,<span class="hljs-string">&#x27;\x6e&#x27;</span>,<span class="hljs-string">&#x27;\x67&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span>  hid_Anothe_ACsNhmIcS1tA[] = {<span class="hljs-string">&apos;\x41&apos;</span>,<span class="hljs-string">&apos;\x6e&apos;</span>,<span class="hljs-string">&apos;\x6f&apos;</span>,<span class="hljs-string">&apos;\x74&apos;</span>,<span class="hljs-string">&apos;\x68&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x72&apos;</span>,<span class="hljs-string">&apos;\x20&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x6f&apos;</span>,<span class="hljs-string">&apos;\x6d&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x74&apos;</span>,<span class="hljs-string">&apos;\x68&apos;</span>,<span class="hljs-string">&apos;\x69&apos;</span>,<span class="hljs-string">&apos;\x6e&apos;</span>,<span class="hljs-string">&apos;\x67&apos;</span>,<span class="hljs-number">0</span>};
     <span class="hljs-function"><span class="hljs-keyword">typedef</span> <span class="hljs-title">int</span> <span class="hljs-params">(*_MessageBoxA)</span><span class="hljs-params">(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)</span></span>;
-    TCHAR hid_User___Bhk5rL2239Kc[] = &#123;<span class="hljs-string">&#x27;\x55&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x72&#x27;</span>,<span class="hljs-string">&#x27;\x33&#x27;</span>,<span class="hljs-string">&#x27;\x32&#x27;</span>,<span class="hljs-string">&#x27;\x2e&#x27;</span>,<span class="hljs-string">&#x27;\x64&#x27;</span>,<span class="hljs-string">&#x27;\x6c&#x27;</span>,<span class="hljs-string">&#x27;\x6c&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    TCHAR hid_User___Bhk5rL2239Kc[] = {<span class="hljs-string">&apos;\x55&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x72&apos;</span>,<span class="hljs-string">&apos;\x33&apos;</span>,<span class="hljs-string">&apos;\x32&apos;</span>,<span class="hljs-string">&apos;\x2e&apos;</span>,<span class="hljs-string">&apos;\x64&apos;</span>,<span class="hljs-string">&apos;\x6c&apos;</span>,<span class="hljs-string">&apos;\x6c&apos;</span>,<span class="hljs-number">0</span>};
 
     HANDLE hid_hHandl_PFP2JD4HjR8w = LoadLibrary(hid_User___Bhk5rL2239Kc);
-    TCHAR hid_Messag_drqxgJLSrxfT[] = &#123;<span class="hljs-string">&#x27;\x4d&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x61&#x27;</span>,<span class="hljs-string">&#x27;\x67&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x42&#x27;</span>,<span class="hljs-string">&#x27;\x6f&#x27;</span>,<span class="hljs-string">&#x27;\x78&#x27;</span>,<span class="hljs-string">&#x27;\x41&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    TCHAR hid_Messag_drqxgJLSrxfT[] = {<span class="hljs-string">&apos;\x4d&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x61&apos;</span>,<span class="hljs-string">&apos;\x67&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x42&apos;</span>,<span class="hljs-string">&apos;\x6f&apos;</span>,<span class="hljs-string">&apos;\x78&apos;</span>,<span class="hljs-string">&apos;\x41&apos;</span>,<span class="hljs-number">0</span>};
 
     _MessageBoxA hid_Messag_1W70P1kc8OJv = (_MessageBoxA) GetProcAddress(hid_hHandl_PFP2JD4HjR8w, hid_Messag_drqxgJLSrxfT);
-    TCHAR hid_User___EMmJBb201EuJ[] = &#123;<span class="hljs-string">&#x27;\x55&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x72&#x27;</span>,<span class="hljs-string">&#x27;\x33&#x27;</span>,<span class="hljs-string">&#x27;\x32&#x27;</span>,<span class="hljs-string">&#x27;\x2e&#x27;</span>,<span class="hljs-string">&#x27;\x64&#x27;</span>,<span class="hljs-string">&#x27;\x6c&#x27;</span>,<span class="hljs-string">&#x27;\x6c&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    TCHAR hid_User___EMmJBb201EuJ[] = {<span class="hljs-string">&apos;\x55&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x72&apos;</span>,<span class="hljs-string">&apos;\x33&apos;</span>,<span class="hljs-string">&apos;\x32&apos;</span>,<span class="hljs-string">&apos;\x2e&apos;</span>,<span class="hljs-string">&apos;\x64&apos;</span>,<span class="hljs-string">&apos;\x6c&apos;</span>,<span class="hljs-string">&apos;\x6c&apos;</span>,<span class="hljs-number">0</span>};
 
     HANDLE hid_hHandl_vU1riOrVWM8g = LoadLibrary(hid_User___EMmJBb201EuJ);
-    TCHAR hid_Messag_GoaJMFscXsdw[] = &#123;<span class="hljs-string">&#x27;\x4d&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x73&#x27;</span>,<span class="hljs-string">&#x27;\x61&#x27;</span>,<span class="hljs-string">&#x27;\x67&#x27;</span>,<span class="hljs-string">&#x27;\x65&#x27;</span>,<span class="hljs-string">&#x27;\x42&#x27;</span>,<span class="hljs-string">&#x27;\x6f&#x27;</span>,<span class="hljs-string">&#x27;\x78&#x27;</span>,<span class="hljs-string">&#x27;\x41&#x27;</span>,<span class="hljs-number">0</span>&#125;;
+    TCHAR hid_Messag_GoaJMFscXsdw[] = {<span class="hljs-string">&apos;\x4d&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x73&apos;</span>,<span class="hljs-string">&apos;\x61&apos;</span>,<span class="hljs-string">&apos;\x67&apos;</span>,<span class="hljs-string">&apos;\x65&apos;</span>,<span class="hljs-string">&apos;\x42&apos;</span>,<span class="hljs-string">&apos;\x6f&apos;</span>,<span class="hljs-string">&apos;\x78&apos;</span>,<span class="hljs-string">&apos;\x41&apos;</span>,<span class="hljs-number">0</span>};
 
     _MessageBoxA hid_Messag_6nzSLR0dttUn = (_MessageBoxA) GetProcAddress(hid_hHandl_vU1riOrVWM8g, hid_Messag_GoaJMFscXsdw);
 hid_Messag_1W70P1kc8OJv(<span class="hljs-literal">NULL</span>, <span class="hljs-string">&quot;Test&quot;</span>, hid_Someth_lNGj92poubUG, MB_OK);
     hid_Messag_6nzSLR0dttUn(<span class="hljs-literal">NULL</span>, hid_Anothe_UP7KUo4Sa8LC, hid_Anothe_ACsNhmIcS1tA, MB_OK);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre>
+}</code></pre>
 
-<p>볼 수 있듯이 문자열 난독화와 API 난독화 패스의 조합은 상당히 강력하다. <code>Test</code> 문자열은 작은 문자열은 무시하는 것으로 결정했기 때문에 남아있다. 그 후 난독화 소스 코드는 빌드할 수 있다.</p>
+<p>&#xBCFC; &#xC218; &#xC788;&#xB4EF;&#xC774; &#xBB38;&#xC790;&#xC5F4; &#xB09C;&#xB3C5;&#xD654;&#xC640; API &#xB09C;&#xB3C5;&#xD654; &#xD328;&#xC2A4;&#xC758; &#xC870;&#xD569;&#xC740; &#xC0C1;&#xB2F9;&#xD788; &#xAC15;&#xB825;&#xD558;&#xB2E4;. <code>Test</code> &#xBB38;&#xC790;&#xC5F4;&#xC740; &#xC791;&#xC740; &#xBB38;&#xC790;&#xC5F4;&#xC740; &#xBB34;&#xC2DC;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xACB0;&#xC815;&#xD588;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB0A8;&#xC544;&#xC788;&#xB2E4;. &#xADF8; &#xD6C4; &#xB09C;&#xB3C5;&#xD654; &#xC18C;&#xC2A4; &#xCF54;&#xB4DC;&#xB294; &#xBE4C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs cpp">$ cp test/messagebox_simple.c.patch /tmp/test.c
 $ x86_64-w64-mingw32-gcc /tmp/test.c -o /tmp/toto.exe</code></pre>
 
-<p>윈도우10 가상 머신에서 테스트 결과 원래 기능이 계속 작동하는 것으로 보인다. 더 중요한 것은 난독화된 바이너리에 <code>MessageBox</code> 문자열이 없다.</p>
+<p>&#xC708;&#xB3C4;&#xC6B0;10 &#xAC00;&#xC0C1; &#xBA38;&#xC2E0;&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8; &#xACB0;&#xACFC; &#xC6D0;&#xB798; &#xAE30;&#xB2A5;&#xC774; &#xACC4;&#xC18D; &#xC791;&#xB3D9;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xBCF4;&#xC778;&#xB2E4;. &#xB354; &#xC911;&#xC694;&#xD55C; &#xAC83;&#xC740; &#xB09C;&#xB3C5;&#xD654;&#xB41C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC5D0; <code>MessageBox</code> &#xBB38;&#xC790;&#xC5F4;&#xC774; &#xC5C6;&#xB2E4;.</p>
 <pre><code class="hljs cpp">$ rabin2 -zz /tmp/toto.exe | grep MessageBox | wc -l
   <span class="hljs-number">0</span></code></pre>
 
-<h3 id="Generalisation"><a href="#Generalisation" class="headerlink" title="Generalisation"></a>Generalisation</h3><p>안티바이러스 ESET Nod32 관련해서 우리는 <code>samlib.dll</code>과 관련된 API imports 중 특히 아래에 있는 API들을 숨기는 것이 중요하다는 것을 발견했다.</p>
+<h3 id="Generalisation"><a href="#Generalisation" class="headerlink" title="Generalisation"></a>Generalisation</h3><p>&#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4; ESET Nod32 &#xAD00;&#xB828;&#xD574;&#xC11C; &#xC6B0;&#xB9AC;&#xB294; <code>samlib.dll</code>&#xACFC; &#xAD00;&#xB828;&#xB41C; API imports &#xC911; &#xD2B9;&#xD788; &#xC544;&#xB798;&#xC5D0; &#xC788;&#xB294; API&#xB4E4;&#xC744; &#xC228;&#xAE30;&#xB294; &#xAC83;&#xC774; &#xC911;&#xC694;&#xD558;&#xB2E4;&#xB294; &#xAC83;&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xB2E4;.</p>
 <ul>
 <li>SamConnect</li>
 <li>SamConnectWithCreds</li>
@@ -625,46 +625,46 @@ $ x86_64-w64-mingw32-gcc /tmp/test.c -o /tmp/toto.exe</code></pre>
 <li>SamCloseHandle</li>
 <li>SamFreeMemory</li>
 </ul>
-<p>이러한 함수들은 AV 엔진 어디에서도 블랙리스트에 있지 않지만 내부 탐지 신뢰 점수를 높인다. 이러한 함수에 <code>ApiCallConsumer</code>를 등록해야 하므로 이름과 함수 프로토타입이 필요하다.</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">static</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt; ApiToHide_samlib = &#123;
-    &#123;<span class="hljs-string">&quot;SamConnect&quot;</span>,                     <span class="hljs-string">&quot;typedef NTSTATUS (__stdcall* _SamEnumerateDomainsInSamServer)(SAMPR_HANDLE ServerHandle, DWORD * EnumerationContext, PSAMPR_RID_ENUMERATION* Buffer, DWORD PreferedMaximumLength,DWORD * CountReturned);&quot;</span>&#125;,
-    &#123;<span class="hljs-string">&quot;SamConnectWithCreds&quot;</span>,            <span class="hljs-string">&quot;typedef NTSTATUS(__stdcall* _SamConnect)(PUNICODE_STRING ServerName, SAMPR_HANDLE * ServerHandle, ACCESS_MASK DesiredAccess, BOOLEAN Trusted);&quot;</span>&#125;,
-    &#123;<span class="hljs-string">&quot;SamEnumerateDomainsInSamServer&quot;</span>, <span class="hljs-string">&quot;typedef NTSTATUS(__stdcall* _SamConnectWithCreds)(PUNICODE_STRING ServerName, SAMPR_HANDLE * ServerHandle, ACCESS_MASK DesiredAccess, LSA_OBJECT_ATTRIBUTES * ObjectAttributes, RPC_AUTH_IDENTITY_HANDLE AuthIdentity, PWSTR ServerPrincName, ULONG * unk0);&quot;</span>&#125;,
+<p>&#xC774;&#xB7EC;&#xD55C; &#xD568;&#xC218;&#xB4E4;&#xC740; AV &#xC5D4;&#xC9C4; &#xC5B4;&#xB514;&#xC5D0;&#xC11C;&#xB3C4; &#xBE14;&#xB799;&#xB9AC;&#xC2A4;&#xD2B8;&#xC5D0; &#xC788;&#xC9C0; &#xC54A;&#xC9C0;&#xB9CC; &#xB0B4;&#xBD80; &#xD0D0;&#xC9C0; &#xC2E0;&#xB8B0; &#xC810;&#xC218;&#xB97C; &#xB192;&#xC778;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; &#xD568;&#xC218;&#xC5D0; <code>ApiCallConsumer</code>&#xB97C; &#xB4F1;&#xB85D;&#xD574;&#xC57C; &#xD558;&#xBBC0;&#xB85C; &#xC774;&#xB984;&#xACFC; &#xD568;&#xC218; &#xD504;&#xB85C;&#xD1A0;&#xD0C0;&#xC785;&#xC774; &#xD544;&#xC694;&#xD558;&#xB2E4;.</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">static</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&gt; ApiToHide_samlib = {
+    {<span class="hljs-string">&quot;SamConnect&quot;</span>,                     <span class="hljs-string">&quot;typedef NTSTATUS (__stdcall* _SamEnumerateDomainsInSamServer)(SAMPR_HANDLE ServerHandle, DWORD * EnumerationContext, PSAMPR_RID_ENUMERATION* Buffer, DWORD PreferedMaximumLength,DWORD * CountReturned);&quot;</span>},
+    {<span class="hljs-string">&quot;SamConnectWithCreds&quot;</span>,            <span class="hljs-string">&quot;typedef NTSTATUS(__stdcall* _SamConnect)(PUNICODE_STRING ServerName, SAMPR_HANDLE * ServerHandle, ACCESS_MASK DesiredAccess, BOOLEAN Trusted);&quot;</span>},
+    {<span class="hljs-string">&quot;SamEnumerateDomainsInSamServer&quot;</span>, <span class="hljs-string">&quot;typedef NTSTATUS(__stdcall* _SamConnectWithCreds)(PUNICODE_STRING ServerName, SAMPR_HANDLE * ServerHandle, ACCESS_MASK DesiredAccess, LSA_OBJECT_ATTRIBUTES * ObjectAttributes, RPC_AUTH_IDENTITY_HANDLE AuthIdentity, PWSTR ServerPrincName, ULONG * unk0);&quot;</span>},
     ...
-&#125;</code></pre>
+}</code></pre>
 
-<p>그 후 이러한 컬렉션을 반복하고 각 컬렉션을 처리하기 위해 <code>main.cpp</code>를 업데이트한다.</p>
-<pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> <span class="hljs-keyword">const</span>&amp; el: ApiToHide_samlib)&#123;
+<p>&#xADF8; &#xD6C4; &#xC774;&#xB7EC;&#xD55C; &#xCEEC;&#xB809;&#xC158;&#xC744; &#xBC18;&#xBCF5;&#xD558;&#xACE0; &#xAC01; &#xCEEC;&#xB809;&#xC158;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xAE30; &#xC704;&#xD574; <code>main.cpp</code>&#xB97C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD55C;&#xB2E4;.</p>
+<pre><code class="hljs cpp"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> <span class="hljs-keyword">const</span>&amp; el: ApiToHide_samlib){
 
     <span class="hljs-keyword">auto</span> Cons = <span class="hljs-built_in">std</span>::make_unique&lt;ApiCallConsumer*&gt;(<span class="hljs-keyword">new</span> ApiCallConsumer(el.first, el.second,
                                                                         <span class="hljs-string">&quot;samlib.dll&quot;</span>));
     consumers.push_back(*Cons);
-&#125;</code></pre>
+}</code></pre>
 
-<p>여기서 <code>std::make_unique</code>는 이 반복문에서 힙에 있는 객체를 인스턴스화할 수 있기에 중요하고 나중에 이러한 객체를 수동으로 쉽게 해제할 수 있다. 이것은 더 이상 사용하지 않을 때 자동으로 해제될 것이다.</p>
-<p>마지막으로 mimikatz, 특히 <code>kuhl_m_lsadump.c</code>로 난독화를 테스트할 수 있다.</p>
+<p>&#xC5EC;&#xAE30;&#xC11C; <code>std::make_unique</code>&#xB294; &#xC774; &#xBC18;&#xBCF5;&#xBB38;&#xC5D0;&#xC11C; &#xD799;&#xC5D0; &#xC788;&#xB294; &#xAC1D;&#xCCB4;&#xB97C; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xD654;&#xD560; &#xC218; &#xC788;&#xAE30;&#xC5D0; &#xC911;&#xC694;&#xD558;&#xACE0; &#xB098;&#xC911;&#xC5D0; &#xC774;&#xB7EC;&#xD55C; &#xAC1D;&#xCCB4;&#xB97C; &#xC218;&#xB3D9;&#xC73C;&#xB85C; &#xC27D;&#xAC8C; &#xD574;&#xC81C;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xB354; &#xC774;&#xC0C1; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xC744; &#xB54C; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xD574;&#xC81C;&#xB420; &#xAC83;&#xC774;&#xB2E4;.</p>
+<p>&#xB9C8;&#xC9C0;&#xB9C9;&#xC73C;&#xB85C; mimikatz, &#xD2B9;&#xD788; <code>kuhl_m_lsadump.c</code>&#xB85C; &#xB09C;&#xB3C5;&#xD654;&#xB97C; &#xD14C;&#xC2A4;&#xD2B8;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs bash">bash run_example_mimikatz.sh <span class="hljs-built_in">test</span>/kuhl_m_lsadump.c</code></pre>
 
-<p>이것은 흥미로운 결과를 만든다.</p>
+<p>&#xC774;&#xAC83;&#xC740; &#xD765;&#xBBF8;&#xB85C;&#xC6B4; &#xACB0;&#xACFC;&#xB97C; &#xB9CC;&#xB4E0;&#xB2E4;.</p>
 <p><img src="/2020/12/13/idioth/av_evasion_part2/5.png" srcset="/img/loading.gif"></p>
-<p><code>samlib.dll</code>에서 가져온 API를 위한 Run-time dynamic linking</p>
-<p>실제 함수 호출은 완벽하게 수정되었다.</p>
+<p><code>samlib.dll</code>&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC628; API&#xB97C; &#xC704;&#xD55C; Run-time dynamic linking</p>
+<p>&#xC2E4;&#xC81C; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC740; &#xC644;&#xBCBD;&#xD558;&#xAC8C; &#xC218;&#xC815;&#xB418;&#xC5C8;&#xB2E4;.</p>
 <p><img src="/2020/12/13/idioth/av_evasion_part2/6.png" srcset="/img/loading.gif"></p>
-<p><code>samlib.dll</code>에서 가져온 함수 호출들은 완벽하게 수정되었다.</p>
-<p><code>PRINT_ERROR</code> 매크로 내부의 문자열은 <code>do&#123;&#125;while(0)</code>을 통해 매크로를 사용하여 난독화 되지 않았다. obfuscator의 버그를 찾는데 <code>mimikatz</code>보다 좋은 프로젝트를 찾기 못했다.</p>
-<h2 id="개선사항"><a href="#개선사항" class="headerlink" title="개선사항"></a>개선사항</h2><p>이 부분은 여러분을 위해 남겨진 작업들이다 🙂</p>
-<h3 id="More-stealth"><a href="#More-stealth" class="headerlink" title="More stealth"></a>More stealth</h3><p>run-time dynamic linking을 수행하기 위해 실제로 API <code>LoadLibrary/GetProcAddress</code>가 필요하지 않다.</p>
-<p>후킹을 피하기 위해 이 함수들은 재구현하는 것이 좋고 이미 그것을 할 수 있는 오픈소스 프로젝트가 있다.(<a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/rapid7/ReflectiveDLLInjection/">ReflectiveDllInjection</a>)</p>
-<p>여기까지 읽었다면, translation unit의 상단에 이러한 함수들을 위한 구현을 추가하고(<code>findInjectionSpot</code> 사용) WinAPI 대신에 구현을 사용하기 위해 메소드 <code>addGetProcAddress</code>를 업데이트하면 된다는 것을 알 것이다.</p>
+<p><code>samlib.dll</code>&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC628; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xB4E4;&#xC740; &#xC644;&#xBCBD;&#xD558;&#xAC8C; &#xC218;&#xC815;&#xB418;&#xC5C8;&#xB2E4;.</p>
+<p><code>PRINT_ERROR</code> &#xB9E4;&#xD06C;&#xB85C; &#xB0B4;&#xBD80;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xC740; <code>do{}while(0)</code>&#xC744; &#xD1B5;&#xD574; &#xB9E4;&#xD06C;&#xB85C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xB09C;&#xB3C5;&#xD654; &#xB418;&#xC9C0; &#xC54A;&#xC558;&#xB2E4;. obfuscator&#xC758; &#xBC84;&#xADF8;&#xB97C; &#xCC3E;&#xB294;&#xB370; <code>mimikatz</code>&#xBCF4;&#xB2E4; &#xC88B;&#xC740; &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xB97C; &#xCC3E;&#xAE30; &#xBABB;&#xD588;&#xB2E4;.</p>
+<h2 id="&#xAC1C;&#xC120;&#xC0AC;&#xD56D;"><a href="#&#xAC1C;&#xC120;&#xC0AC;&#xD56D;" class="headerlink" title="&#xAC1C;&#xC120;&#xC0AC;&#xD56D;"></a>&#xAC1C;&#xC120;&#xC0AC;&#xD56D;</h2><p>&#xC774; &#xBD80;&#xBD84;&#xC740; &#xC5EC;&#xB7EC;&#xBD84;&#xC744; &#xC704;&#xD574; &#xB0A8;&#xACA8;&#xC9C4; &#xC791;&#xC5C5;&#xB4E4;&#xC774;&#xB2E4; &#x1F642;</p>
+<h3 id="More-stealth"><a href="#More-stealth" class="headerlink" title="More stealth"></a>More stealth</h3><p>run-time dynamic linking&#xC744; &#xC218;&#xD589;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC2E4;&#xC81C;&#xB85C; API <code>LoadLibrary/GetProcAddress</code>&#xAC00; &#xD544;&#xC694;&#xD558;&#xC9C0; &#xC54A;&#xB2E4;.</p>
+<p>&#xD6C4;&#xD0B9;&#xC744; &#xD53C;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC774; &#xD568;&#xC218;&#xB4E4;&#xC740; &#xC7AC;&#xAD6C;&#xD604;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC88B;&#xACE0; &#xC774;&#xBBF8; &#xADF8;&#xAC83;&#xC744; &#xD560; &#xC218; &#xC788;&#xB294; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xAC00; &#xC788;&#xB2E4;.(<a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/rapid7/ReflectiveDLLInjection/">ReflectiveDllInjection</a>)</p>
+<p>&#xC5EC;&#xAE30;&#xAE4C;&#xC9C0; &#xC77D;&#xC5C8;&#xB2E4;&#xBA74;, translation unit&#xC758; &#xC0C1;&#xB2E8;&#xC5D0; &#xC774;&#xB7EC;&#xD55C; &#xD568;&#xC218;&#xB4E4;&#xC744; &#xC704;&#xD55C; &#xAD6C;&#xD604;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xACE0;(<code>findInjectionSpot</code> &#xC0AC;&#xC6A9;) WinAPI &#xB300;&#xC2E0;&#xC5D0; &#xAD6C;&#xD604;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574; &#xBA54;&#xC18C;&#xB4DC; <code>addGetProcAddress</code>&#xB97C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD558;&#xBA74; &#xB41C;&#xB2E4;&#xB294; &#xAC83;&#xC744; &#xC54C; &#xAC83;&#xC774;&#xB2E4;.</p>
 <h3 id="Error-handling"><a href="#Error-handling" class="headerlink" title="Error handling"></a>Error handling</h3><ul>
-<li><code>LoadLibrary</code>는 성공적으로 수행되지 않을 경우 <code>NULL</code>을 반환하므로 이에 대한 검사를 추가하여 오류를 정상적으로 복구할 수 있다. 현재 상황에서 크래시가 매우 잘 날 수도 있다.</li>
-<li><code>GetProcAddress</code>도 오류가 발생하면 <code>NULL</code>을 반환하므로 이것도 확인하는 것이 중요하다.</li>
+<li><code>LoadLibrary</code>&#xB294; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xD589;&#xB418;&#xC9C0; &#xC54A;&#xC744; &#xACBD;&#xC6B0; <code>NULL</code>&#xC744; &#xBC18;&#xD658;&#xD558;&#xBBC0;&#xB85C; &#xC774;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xC624;&#xB958;&#xB97C; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xBCF5;&#xAD6C;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xD604;&#xC7AC; &#xC0C1;&#xD669;&#xC5D0;&#xC11C; &#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xB9E4;&#xC6B0; &#xC798; &#xB0A0; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</li>
+<li><code>GetProcAddress</code>&#xB3C4; &#xC624;&#xB958;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xBA74; <code>NULL</code>&#xC744; &#xBC18;&#xD658;&#xD558;&#xBBC0;&#xB85C; &#xC774;&#xAC83;&#xB3C4; &#xD655;&#xC778;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC911;&#xC694;&#xD558;&#xB2E4;.</li>
 </ul>
-<h2 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h2><p>이 글에서 우리는 정규식을 사용하지 않고 C/C++ 코드 베이스에서 함수 호출을 정확하게 교체할 수 있는 방법을 보여줬다. 모든 것은 안티바이러스 소프트웨어가 우리가 pentest를 하는 동안 사용하는 Meterpreter나 다른 소프트웨어에 관해 행동 정보를 정적으로 수집하는 것을 막기 위해 진행되었다.</p>
-<p>ESET Nod32에 적용된 이 작업은 모든 Meterpreter 모듈이 탐지되지 않도록 하는 주요 단계였고 더 발전된 제품에 도움이 되었다.</p>
-<p>API imports를 숨기는 것도 하나지만 악성코드가 실행되면 보안 소프트웨어가 API 호출 모니터링에 의해 행동 정보를 수집하는 방법도 있다.</p>
-<p>그런 관점에서 다음 글은 의심스러운 Win32 API가 직접적인 syscalls을 하도록 자동적으로 refactoring 하는 것이다. 이것은 Cylance, Traps과 Kaspersky 같은 AV의 userland hook을 통한 런타임 탐지 우회의 핵심 단계이다.</p>
-<h2 id="출처"><a href="#출처" class="headerlink" title="출처"></a>출처</h2><p>[1] The Rootkit Arsenal, Chapter 11, p.480.</p>
+<h2 id="&#xACB0;&#xB860;"><a href="#&#xACB0;&#xB860;" class="headerlink" title="&#xACB0;&#xB860;"></a>&#xACB0;&#xB860;</h2><p>&#xC774; &#xAE00;&#xC5D0;&#xC11C; &#xC6B0;&#xB9AC;&#xB294; &#xC815;&#xADDC;&#xC2DD;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; C/C++ &#xCF54;&#xB4DC; &#xBCA0;&#xC774;&#xC2A4;&#xC5D0;&#xC11C; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC744; &#xC815;&#xD655;&#xD558;&#xAC8C; &#xAD50;&#xCCB4;&#xD560; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xBCF4;&#xC5EC;&#xC92C;&#xB2E4;. &#xBAA8;&#xB4E0; &#xAC83;&#xC740; &#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xAC00; &#xC6B0;&#xB9AC;&#xAC00; pentest&#xB97C; &#xD558;&#xB294; &#xB3D9;&#xC548; &#xC0AC;&#xC6A9;&#xD558;&#xB294; Meterpreter&#xB098; &#xB2E4;&#xB978; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xC5D0; &#xAD00;&#xD574; &#xD589;&#xB3D9; &#xC815;&#xBCF4;&#xB97C; &#xC815;&#xC801;&#xC73C;&#xB85C; &#xC218;&#xC9D1;&#xD558;&#xB294; &#xAC83;&#xC744; &#xB9C9;&#xAE30; &#xC704;&#xD574; &#xC9C4;&#xD589;&#xB418;&#xC5C8;&#xB2E4;.</p>
+<p>ESET Nod32&#xC5D0; &#xC801;&#xC6A9;&#xB41C; &#xC774; &#xC791;&#xC5C5;&#xC740; &#xBAA8;&#xB4E0; Meterpreter &#xBAA8;&#xB4C8;&#xC774; &#xD0D0;&#xC9C0;&#xB418;&#xC9C0; &#xC54A;&#xB3C4;&#xB85D; &#xD558;&#xB294; &#xC8FC;&#xC694; &#xB2E8;&#xACC4;&#xC600;&#xACE0; &#xB354; &#xBC1C;&#xC804;&#xB41C; &#xC81C;&#xD488;&#xC5D0; &#xB3C4;&#xC6C0;&#xC774; &#xB418;&#xC5C8;&#xB2E4;.</p>
+<p>API imports&#xB97C; &#xC228;&#xAE30;&#xB294; &#xAC83;&#xB3C4; &#xD558;&#xB098;&#xC9C0;&#xB9CC; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xBA74; &#xBCF4;&#xC548; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xAC00; API &#xD638;&#xCD9C; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1;&#xC5D0; &#xC758;&#xD574; &#xD589;&#xB3D9; &#xC815;&#xBCF4;&#xB97C; &#xC218;&#xC9D1;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xB3C4; &#xC788;&#xB2E4;.</p>
+<p>&#xADF8;&#xB7F0; &#xAD00;&#xC810;&#xC5D0;&#xC11C; &#xB2E4;&#xC74C; &#xAE00;&#xC740; &#xC758;&#xC2EC;&#xC2A4;&#xB7EC;&#xC6B4; Win32 API&#xAC00; &#xC9C1;&#xC811;&#xC801;&#xC778; syscalls&#xC744; &#xD558;&#xB3C4;&#xB85D; &#xC790;&#xB3D9;&#xC801;&#xC73C;&#xB85C; refactoring &#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xC774;&#xAC83;&#xC740; Cylance, Traps&#xACFC; Kaspersky &#xAC19;&#xC740; AV&#xC758; userland hook&#xC744; &#xD1B5;&#xD55C; &#xB7F0;&#xD0C0;&#xC784; &#xD0D0;&#xC9C0; &#xC6B0;&#xD68C;&#xC758; &#xD575;&#xC2EC; &#xB2E8;&#xACC4;&#xC774;&#xB2E4;.</p>
+<h2 id="&#xCD9C;&#xCC98;"><a href="#&#xCD9C;&#xCC98;" class="headerlink" title="&#xCD9C;&#xCC98;"></a>&#xCD9C;&#xCC98;</h2><p>[1] The Rootkit Arsenal, Chapter 11, p.480.</p>
 <p>[2]<a target="_blank" rel="external nofollow noopener noreferrer" href="https://devblogs.microsoft.com/cppblog/exploring-clang-tooling-part-2-examining-the-clang-ast-with-clang-query/">https://devblogs.microsoft.com/cppblog/exploring-clang-tooling-part-2-examining-the-clang-ast-with-clang-query/</a></p>
 
             </div>
@@ -966,6 +966,45 @@ $ x86_64-w64-mingw32-gcc /tmp/test.c -o /tmp/toto.exe</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

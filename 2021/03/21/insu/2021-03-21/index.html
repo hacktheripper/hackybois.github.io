@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      244 자
+      470 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        분
     </span>
   
@@ -240,12 +240,12 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-vestacp-lpe-vulnerabilities/">SSD Advisory – VestaCP LPE Vulnerabilities</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-vestacp-lpe-vulnerabilities/">SSD Advisory &#x2013; VestaCP LPE Vulnerabilities</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>VestCP 0.9.8-24 이하 버전</li>
+<li>VestCP 0.9.8-24 &#xC774;&#xD558; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>오픈소스 웹 호스팅 제어판인 VESTA Control Panel(VestaCP)에서 user가 admin으로 권한 상승할 수 있는 취약점이 발견되었습니다.</p>
-<p>해당 취약점은 <code>/add/web/index.php</code>에서 호출되는 v-add-web-domain 쉘 스크립트에서 발생합니다. 해당 스크립트는 디렉터리나 파일의 내용이 존재하는지에 검사 없이 다음 명령어를 사용합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC624;&#xD508;&#xC18C;&#xC2A4; &#xC6F9; &#xD638;&#xC2A4;&#xD305; &#xC81C;&#xC5B4;&#xD310;&#xC778; VESTA Control Panel(VestaCP)&#xC5D0;&#xC11C; user&#xAC00; admin&#xC73C;&#xB85C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>/add/web/index.php</code>&#xC5D0;&#xC11C; &#xD638;&#xCD9C;&#xB418;&#xB294; v-add-web-domain &#xC258; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB098; &#xD30C;&#xC77C;&#xC758; &#xB0B4;&#xC6A9;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xC9C0;&#xC5D0; &#xAC80;&#xC0AC; &#xC5C6;&#xC774; &#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs basic"><span class="hljs-symbol">88 </span>: # Changing file owner &amp; permission
 <span class="hljs-symbol">89 </span>: chown -R $user:$user $HOMEDIR/$user/web/$domain
 <span class="hljs-symbol">90 </span>: chown root:$user /var/<span class="hljs-keyword">log</span>/$WEB_SYSTEM/domains/$domain.* $conf
@@ -254,12 +254,12 @@
 <span class="hljs-symbol">93 </span>: chmod <span class="hljs-number">551</span> $HOMEDIR/$user/web/$domain/stats $HOMEDIR/$user/web/$domain/logs
 <span class="hljs-symbol">94 </span>: chmod <span class="hljs-number">644</span> $HOMEDIR/$user/web/$domain/public_*html/*.*</code></pre>
 
-<p>위의 명령어들은 <code>$domain</code> 폴더에서 사용되므로 94 줄의 명령을 통해 읽고 싶은 파일의 권한을 변경할 수 있고, 92 줄의 명령을 통해 폴더의 접근 권한을 변경할 수 있습니다. </p>
-<p>또한 VestaCP는 사용자를 추가하거나 리스트 하는 등의 web-app의 모든 기능을 bash 스크립트에 의존합니다. 이러한 bash 스크립트들은 root 소유이며 변경할 수 없지만, <code>sudo -l</code>을 통해 패스워드 입력 없이 admin이 root 권한으로 이러한 스크립트를 실행할 수 있습니다. 이를 통해 root로 권한 상승하는 방법은 다음과 같습니다.</p>
+<p>&#xC704;&#xC758; &#xBA85;&#xB839;&#xC5B4;&#xB4E4;&#xC740; <code>$domain</code> &#xD3F4;&#xB354;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB418;&#xBBC0;&#xB85C; 94 &#xC904;&#xC758; &#xBA85;&#xB839;&#xC744; &#xD1B5;&#xD574; &#xC77D;&#xACE0; &#xC2F6;&#xC740; &#xD30C;&#xC77C;&#xC758; &#xAD8C;&#xD55C;&#xC744; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xACE0;, 92 &#xC904;&#xC758; &#xBA85;&#xB839;&#xC744; &#xD1B5;&#xD574; &#xD3F4;&#xB354;&#xC758; &#xC811;&#xADFC; &#xAD8C;&#xD55C;&#xC744; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<p>&#xB610;&#xD55C; VestaCP&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xAC70;&#xB098; &#xB9AC;&#xC2A4;&#xD2B8; &#xD558;&#xB294; &#xB4F1;&#xC758; web-app&#xC758; &#xBAA8;&#xB4E0; &#xAE30;&#xB2A5;&#xC744; bash &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0; &#xC758;&#xC874;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; bash &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB4E4;&#xC740; root &#xC18C;&#xC720;&#xC774;&#xBA70; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC;, <code>sudo -l</code>&#xC744; &#xD1B5;&#xD574; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xC785;&#xB825; &#xC5C6;&#xC774; admin&#xC774; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC774;&#xB7EC;&#xD55C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; root&#xB85C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>v-list-user 스크립트에 <code>source $VESTA/func/main.sh</code>가 존재하므로 <code>/tmp/func</code> 폴더에 <code>/bin/bash</code> 쉘 스크립트를 생성합니다.</li>
-<li>패스워드 입력 없이 스크립트를 실행할 수 있으므로 환경 변수 <code>$VESTA</code>를 <code>/tmp</code>로 overwrite 합니다.</li>
-<li>v-list-user를 실행하면, root 권한을 획득할 수 있습니다.</li>
+<li>v-list-user &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0; <code>source $VESTA/func/main.sh</code>&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xBBC0;&#xB85C; <code>/tmp/func</code> &#xD3F4;&#xB354;&#xC5D0; <code>/bin/bash</code> &#xC258; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xC785;&#xB825; &#xC5C6;&#xC774; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xD658;&#xACBD; &#xBCC0;&#xC218; <code>$VESTA</code>&#xB97C; <code>/tmp</code>&#xB85C; overwrite &#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>v-list-user&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74;, root &#xAD8C;&#xD55C;&#xC744; &#xD68D;&#xB4DD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -559,6 +559,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      238 자
+      428 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -244,18 +244,18 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Internet Explorer</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft의 브라우저인 Internet Explorer에서 파싱과 렌더링을 처리하는 <code>mshtml</code> 라이브러리에서 발견된 UAF 취약점의 세부 정보가 공개되었습니다.</p>
-<p>크래시가 발생하는 PoC는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft&#xC758; &#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xC778; Internet Explorer&#xC5D0;&#xC11C; &#xD30C;&#xC2F1;&#xACFC; &#xB80C;&#xB354;&#xB9C1;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; <code>mshtml</code> &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; UAF &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB294; PoC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs javascript">&lt;script&gt;
-<span class="hljs-keyword">var</span> elem = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&#x27;xxx&#x27;</span>); 
-<span class="hljs-keyword">var</span> attr1 = <span class="hljs-built_in">document</span>.createAttribute(<span class="hljs-string">&#x27;yyy&#x27;</span>); 
-<span class="hljs-keyword">var</span> attr2 = <span class="hljs-built_in">document</span>.createAttribute(<span class="hljs-string">&#x27;zzz&#x27;</span>); 
+<span class="hljs-keyword">var</span> elem = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">&apos;xxx&apos;</span>); 
+<span class="hljs-keyword">var</span> attr1 = <span class="hljs-built_in">document</span>.createAttribute(<span class="hljs-string">&apos;yyy&apos;</span>); 
+<span class="hljs-keyword">var</span> attr2 = <span class="hljs-built_in">document</span>.createAttribute(<span class="hljs-string">&apos;zzz&apos;</span>); 
 
-<span class="hljs-keyword">var</span> obj = &#123;&#125;;
-obj.valueOf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+<span class="hljs-keyword">var</span> obj = {};
+obj.valueOf = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
 	elem.clearAttributes();
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0x1337</span>;
-&#125;;
+};
 
 attr1.nodeValue = obj;
 attr2.nodeValue = <span class="hljs-number">123</span>;
@@ -265,15 +265,15 @@ elem.removeAttributeNode(attr1);
 &lt;/script&gt;</code></pre>
 
 <ol>
-<li>HTML element 객체 <code>elem</code> 와 HTML attribute 객체 <code>attr1</code>, <code>attr2</code> 를 생성합니다.</li>
-<li><code>attr1</code>과 <code>attr2</code> 의 <code>nodeValue</code>에 값을 할당합니다. 이때 <code>attr1</code>의 <code>nodeValue</code>에는 <code>valueOf</code> 함수가 오버 로드된 객체를 할당합니다.</li>
-<li><code>attr1</code> 및 <code>attr2</code>를 요소 개체 <code>elem</code>으로 설정합니다.</li>
-<li><code>elem.removeAttributeNode(attr1)</code>을 호출해 <code>elem</code>에서 <code>attr1</code>을 제거합니다.</li>
-<li><code>removeAttributeNode</code> 메서드는 <code>elem</code> 객체의 모든 속성 객체인 <code>attr1</code> 과 <code>attr2</code>를 지우기 위해 <code>clearAttributes</code>가 호출되는 동안 <code>valueOf</code> 함수에 대한 콜백을 트리거합니다.</li>
-<li><code>valueOf</code> 콜백이 종료되면 IE 탭 프로세스가 NULL 포인터를 참조하게 되어 크래시가 발생합니다.</li>
+<li>HTML element &#xAC1D;&#xCCB4; <code>elem</code> &#xC640; HTML attribute &#xAC1D;&#xCCB4; <code>attr1</code>, <code>attr2</code> &#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>attr1</code>&#xACFC; <code>attr2</code> &#xC758; <code>nodeValue</code>&#xC5D0; &#xAC12;&#xC744; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>attr1</code>&#xC758; <code>nodeValue</code>&#xC5D0;&#xB294; <code>valueOf</code> &#xD568;&#xC218;&#xAC00; &#xC624;&#xBC84; &#xB85C;&#xB4DC;&#xB41C; &#xAC1D;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>attr1</code> &#xBC0F; <code>attr2</code>&#xB97C; &#xC694;&#xC18C; &#xAC1C;&#xCCB4; <code>elem</code>&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>elem.removeAttributeNode(attr1)</code>&#xC744; &#xD638;&#xCD9C;&#xD574; <code>elem</code>&#xC5D0;&#xC11C; <code>attr1</code>&#xC744; &#xC81C;&#xAC70;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>removeAttributeNode</code> &#xBA54;&#xC11C;&#xB4DC;&#xB294; <code>elem</code> &#xAC1D;&#xCCB4;&#xC758; &#xBAA8;&#xB4E0; &#xC18D;&#xC131; &#xAC1D;&#xCCB4;&#xC778; <code>attr1</code> &#xACFC; <code>attr2</code>&#xB97C; &#xC9C0;&#xC6B0;&#xAE30; &#xC704;&#xD574; <code>clearAttributes</code>&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xB294; &#xB3D9;&#xC548; <code>valueOf</code> &#xD568;&#xC218;&#xC5D0; &#xB300;&#xD55C; &#xCF5C;&#xBC31;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>valueOf</code> &#xCF5C;&#xBC31;&#xC774; &#xC885;&#xB8CC;&#xB418;&#xBA74; IE &#xD0ED; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; NULL &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xCC38;&#xC870;&#xD558;&#xAC8C; &#xB418;&#xC5B4; &#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p><code>removeAttributeNode(attr1)</code>는 내부적으로 <code>CBase::GetIntoBSTRAt</code> 함수에서 <code>attr1</code>의 <code>nodeValue</code>가 존재하면 BSTR로 변환해 BSTR 값을 <code>CAttribute.nodeValue(+0x30)</code>에 저장하는데, 이 과정에서 <code>valueOf</code> 콜백이 트리거 됩니다. <code>valueOf</code> 콜백 함수의 <code>elem.clearAttributes()</code>로 인해 <code>attr1</code>이 해제된 이후 정상적인 <code>attr1</code>의 Delete 프로세스에 의해 Double Free Bug가 발생합니다.</p>
-<p>해당 취약점을 악용하면 arbitrary read/write를 통해 원격 코드 실행으로 이어질 수 있습니다.</p>
+<p><code>removeAttributeNode(attr1)</code>&#xB294; &#xB0B4;&#xBD80;&#xC801;&#xC73C;&#xB85C; <code>CBase::GetIntoBSTRAt</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>attr1</code>&#xC758; <code>nodeValue</code>&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xBA74; BSTR&#xB85C; &#xBCC0;&#xD658;&#xD574; BSTR &#xAC12;&#xC744; <code>CAttribute.nodeValue(+0x30)</code>&#xC5D0; &#xC800;&#xC7A5;&#xD558;&#xB294;&#xB370;, &#xC774; &#xACFC;&#xC815;&#xC5D0;&#xC11C; <code>valueOf</code> &#xCF5C;&#xBC31;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;. <code>valueOf</code> &#xCF5C;&#xBC31; &#xD568;&#xC218;&#xC758; <code>elem.clearAttributes()</code>&#xB85C; &#xC778;&#xD574; <code>attr1</code>&#xC774; &#xD574;&#xC81C;&#xB41C; &#xC774;&#xD6C4; &#xC815;&#xC0C1;&#xC801;&#xC778; <code>attr1</code>&#xC758; Delete &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; &#xC758;&#xD574; Double Free Bug&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; arbitrary read/write&#xB97C; &#xD1B5;&#xD574; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -572,6 +572,45 @@ elem.removeAttributeNode(attr1);
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

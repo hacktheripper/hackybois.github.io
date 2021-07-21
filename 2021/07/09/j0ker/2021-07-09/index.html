@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      346 자
+      659 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      13
        분
     </span>
   
@@ -246,8 +246,8 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows Defender</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows Defender는 여느 안티바이러스와 같이 수 많은 포맷을 분석 및 검사할 수 있는 메커니즘을 가지고 있습니다. 2018년, 마이크로소프트는 Defender를 샌드박싱한다고 밝혔지만 디폴트로 설정되어 있지는 않습니다. 따라서 Defender에서 파일을 분석할 때, 파일 파서, 언패커, 인터프리터 그리고 에뮬레이터는 여전히 SYSTEM 권한으로 실행됩니다.</p>
-<p>이 취약점은 Denfender에서 <code>ASProtect</code>로 패킹된 바이너리를 언패킹할 때 발생합니다. Defender에서는 패킹된 바이너리를 분석할 때, 패커의 파일 포맷를 바탕으로 바이너리에서 정보를 파싱하는게 아니라 에뮬레이터를 통해 바이너리를 실행하여 바이너리가 알아서 언패킹하도록 유도합니다. <code>ASProtect</code>는 언패킹 과정에서 내재된 DLL을 파일시스템에 떨구고, 해당 DLL을 에뮬레이터로 활용하여 메인 바이너리 안에 있는 바이트 코드를 실행하면서 언패킹을 진행합니다. 에뮬레이터로 활용되는 DLL 역시 패킹이 되어 있지만 특별한 검사는 하지 않습니다. 취약점은 바로 이 DLL의 <code>IMAGE_SECTION_HEADER</code> 구조체를 파싱할 때 발생합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows Defender&#xB294; &#xC5EC;&#xB290; &#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xC640; &#xAC19;&#xC774; &#xC218; &#xB9CE;&#xC740; &#xD3EC;&#xB9F7;&#xC744; &#xBD84;&#xC11D; &#xBC0F; &#xAC80;&#xC0AC;&#xD560; &#xC218; &#xC788;&#xB294; &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. 2018&#xB144;, &#xB9C8;&#xC774;&#xD06C;&#xB85C;&#xC18C;&#xD504;&#xD2B8;&#xB294; Defender&#xB97C; &#xC0CC;&#xB4DC;&#xBC15;&#xC2F1;&#xD55C;&#xB2E4;&#xACE0; &#xBC1D;&#xD614;&#xC9C0;&#xB9CC; &#xB514;&#xD3F4;&#xD2B8;&#xB85C; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC9C0;&#xB294; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; Defender&#xC5D0;&#xC11C; &#xD30C;&#xC77C;&#xC744; &#xBD84;&#xC11D;&#xD560; &#xB54C;, &#xD30C;&#xC77C; &#xD30C;&#xC11C;, &#xC5B8;&#xD328;&#xCEE4;, &#xC778;&#xD130;&#xD504;&#xB9AC;&#xD130; &#xADF8;&#xB9AC;&#xACE0; &#xC5D0;&#xBBAC;&#xB808;&#xC774;&#xD130;&#xB294; &#xC5EC;&#xC804;&#xD788; SYSTEM &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC740; Denfender&#xC5D0;&#xC11C; <code>ASProtect</code>&#xB85C; &#xD328;&#xD0B9;&#xB41C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC5B8;&#xD328;&#xD0B9;&#xD560; &#xB54C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. Defender&#xC5D0;&#xC11C;&#xB294; &#xD328;&#xD0B9;&#xB41C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xBD84;&#xC11D;&#xD560; &#xB54C;, &#xD328;&#xCEE4;&#xC758; &#xD30C;&#xC77C; &#xD3EC;&#xB9F7;&#xB97C; &#xBC14;&#xD0D5;&#xC73C;&#xB85C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC5D0;&#xC11C; &#xC815;&#xBCF4;&#xB97C; &#xD30C;&#xC2F1;&#xD558;&#xB294;&#xAC8C; &#xC544;&#xB2C8;&#xB77C; &#xC5D0;&#xBBAC;&#xB808;&#xC774;&#xD130;&#xB97C; &#xD1B5;&#xD574; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xC5EC; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xAC00; &#xC54C;&#xC544;&#xC11C; &#xC5B8;&#xD328;&#xD0B9;&#xD558;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD569;&#xB2C8;&#xB2E4;. <code>ASProtect</code>&#xB294; &#xC5B8;&#xD328;&#xD0B9; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xB0B4;&#xC7AC;&#xB41C; DLL&#xC744; &#xD30C;&#xC77C;&#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xB5A8;&#xAD6C;&#xACE0;, &#xD574;&#xB2F9; DLL&#xC744; &#xC5D0;&#xBBAC;&#xB808;&#xC774;&#xD130;&#xB85C; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; &#xBA54;&#xC778; &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xC548;&#xC5D0; &#xC788;&#xB294; &#xBC14;&#xC774;&#xD2B8; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74;&#xC11C; &#xC5B8;&#xD328;&#xD0B9;&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xC5D0;&#xBBAC;&#xB808;&#xC774;&#xD130;&#xB85C; &#xD65C;&#xC6A9;&#xB418;&#xB294; DLL &#xC5ED;&#xC2DC; &#xD328;&#xD0B9;&#xC774; &#xB418;&#xC5B4; &#xC788;&#xC9C0;&#xB9CC; &#xD2B9;&#xBCC4;&#xD55C; &#xAC80;&#xC0AC;&#xB294; &#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xBC14;&#xB85C; &#xC774; DLL&#xC758; <code>IMAGE_SECTION_HEADER</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xD30C;&#xC2F1;&#xD560; &#xB54C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c++">NtHdr = (IMAGE_NT_HEADERS *)((<span class="hljs-keyword">char</span> *)ImagePtr + ImagePtr-&gt;e_lfanew);
 NtHdr-&gt;OptionalHeader.SizeOfImage = <span class="hljs-keyword">this</span>-&gt;ImageSize;
 NtHdr-&gt;OptionalHeader.ImageBase = <span class="hljs-keyword">this</span>-&gt;ImageBase;
@@ -256,7 +256,7 @@ NtHdr-&gt;OptionalHeader.SizeOfHeaders = <span class="hljs-number">4096</span>;
 TotalSects = <span class="hljs-keyword">this</span>-&gt;LastSection - <span class="hljs-keyword">this</span>-&gt;FirstSection) / <span class="hljs-keyword">sizeof</span>(EMBEDDED_SECTION);
 <span class="hljs-comment">// ...</span>
 <span class="hljs-keyword">do</span>
-&#123;
+{
   SectHdrs-&gt;VirtualAddress = *(<span class="hljs-keyword">int</span> *)((<span class="hljs-keyword">char</span> *)&amp;<span class="hljs-keyword">this</span>-&gt;FirstSection-&gt;VirtualAddress + Offset);
   SectHdrs-&gt;PointerToRawData = *(<span class="hljs-keyword">int</span> *)((<span class="hljs-keyword">char</span> *)&amp;<span class="hljs-keyword">this</span>-&gt;FirstSection-&gt;VirtualAddress + Offset);
   <span class="hljs-comment">//  IMAGE_SCN_MEM_WRITE | IMAGE_SCN_MEM_READ | IMAGE_SCN_MEM_EXECUTE | IMAGE_SCN_CNT_CODE</span>
@@ -276,7 +276,7 @@ TotalSects = <span class="hljs-keyword">this</span>-&gt;LastSection - <span clas
     *(<span class="hljs-keyword">void</span> **)(&amp;<span class="hljs-keyword">this</span>-&gt;FirstSection-&gt;PointerToData + Offset),
     *(<span class="hljs-keyword">int</span> *)(&amp;<span class="hljs-keyword">this</span>-&gt;FirstSection-&gt;SectSize + Offset));</code></pre>
 
-<p>위 코드에서는 DLL에 저장된 <code>RVA(Relative Virtual Address)</code>를 아무런 검증 없이 가져옵니다. 그런 다음, 이를 마지막 <code>memcpy</code>에서 버퍼의 오프셋으로 사용하는데, 이 때 임의로 넣은 <code>RVA</code> 값을 통해 원하는 오프셋을 읽거나 쓸 수 있습니다. 익스플로잇이 될 경우, 이 작업은 에뮬레이터에서 진행되기 때문에 에뮬레이터 밖의 메모리를 읽거나 쓸 수 있습니다.</p>
+<p>&#xC704; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C;&#xB294; DLL&#xC5D0; &#xC800;&#xC7A5;&#xB41C; <code>RVA(Relative Virtual Address)</code>&#xB97C; &#xC544;&#xBB34;&#xB7F0; &#xAC80;&#xC99D; &#xC5C6;&#xC774; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7F0; &#xB2E4;&#xC74C;, &#xC774;&#xB97C; &#xB9C8;&#xC9C0;&#xB9C9; <code>memcpy</code>&#xC5D0;&#xC11C; &#xBC84;&#xD37C;&#xC758; &#xC624;&#xD504;&#xC14B;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370;, &#xC774; &#xB54C; &#xC784;&#xC758;&#xB85C; &#xB123;&#xC740; <code>RVA</code> &#xAC12;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xD558;&#xB294; &#xC624;&#xD504;&#xC14B;&#xC744; &#xC77D;&#xAC70;&#xB098; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC775;&#xC2A4;&#xD50C;&#xB85C;&#xC787;&#xC774; &#xB420; &#xACBD;&#xC6B0;, &#xC774; &#xC791;&#xC5C5;&#xC740; &#xC5D0;&#xBBAC;&#xB808;&#xC774;&#xD130;&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xB418;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC5D0;&#xBBAC;&#xB808;&#xC774;&#xD130; &#xBC16;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC77D;&#xAC70;&#xB098; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -581,6 +581,45 @@ TotalSects = <span class="hljs-keyword">this</span>-&gt;LastSection - <span clas
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

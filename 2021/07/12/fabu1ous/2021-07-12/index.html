@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      132 자
+      256 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -242,9 +242,9 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/7/7/cve-2021-28474-sharepoint-remote-code-execution-via-server-side-control-interpretation-conflict">CVE-2021-28474: SHAREPOINT REMOTE CODE EXECUTION VIA SERVER-SIDE CONTROL INTERPRETATION CONFLICT</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Microsoft SharePoint Server</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Microsoft SharPoint Server에서 발생하는 원격 코드 실행 취약점이 패치되어 write-up이 공개되었습니다. 보안 확인에 사용되는 코드와 실제로 사용자 입력을 처리하는 코드 간의 불일치로 발생하는 취약점입니다. 인증된 SharePoint 사용자는 해당 취약점을 악용해 임의의 .NET 코드를 실행 할 수 있습니다.</p>
-<p><code>EditingPageParser.VerifyControlOnSafeList()</code> 함수는 server-side control(<code>runat=&quot;server&quot;</code> attribute가 있는 tag)에 해당하는 input을 파싱해 해쉬 테이블을 만들고 그 값들을 <code>web.config</code> 파일과 비교하여 안전한 control 인지 확인합니다.</p>
-<p>문제는 control을 처리할 땐 파서가 attribute를 HTML-decode 하지만, verification 작업에선 HTML-decode를 하지 않습니다. 따라서 <code>runat=&quot;&amp;#115;erver&quot;</code>와 같은 ASPX tag attribute를 사용하면 verification 시 server-side control로 인식되지 않아 bypass 할 수 있습니다. </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Microsoft SharPoint Server&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD328;&#xCE58;&#xB418;&#xC5B4; write-up&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBCF4;&#xC548; &#xD655;&#xC778;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xCF54;&#xB4DC;&#xC640; &#xC2E4;&#xC81C;&#xB85C; &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xCF54;&#xB4DC; &#xAC04;&#xC758; &#xBD88;&#xC77C;&#xCE58;&#xB85C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. &#xC778;&#xC99D;&#xB41C; SharePoint &#xC0AC;&#xC6A9;&#xC790;&#xB294; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; &#xC784;&#xC758;&#xC758; .NET &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>EditingPageParser.VerifyControlOnSafeList()</code> &#xD568;&#xC218;&#xB294; server-side control(<code>runat=&quot;server&quot;</code> attribute&#xAC00; &#xC788;&#xB294; tag)&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; input&#xC744; &#xD30C;&#xC2F1;&#xD574; &#xD574;&#xC26C; &#xD14C;&#xC774;&#xBE14;&#xC744; &#xB9CC;&#xB4E4;&#xACE0; &#xADF8; &#xAC12;&#xB4E4;&#xC744; <code>web.config</code> &#xD30C;&#xC77C;&#xACFC; &#xBE44;&#xAD50;&#xD558;&#xC5EC; &#xC548;&#xC804;&#xD55C; control &#xC778;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBB38;&#xC81C;&#xB294; control&#xC744; &#xCC98;&#xB9AC;&#xD560; &#xB550; &#xD30C;&#xC11C;&#xAC00; attribute&#xB97C; HTML-decode &#xD558;&#xC9C0;&#xB9CC;, verification &#xC791;&#xC5C5;&#xC5D0;&#xC120; HTML-decode&#xB97C; &#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <code>runat=&quot;&amp;#115;erver&quot;</code>&#xC640; &#xAC19;&#xC740; ASPX tag attribute&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; verification &#xC2DC; server-side control&#xB85C; &#xC778;&#xC2DD;&#xB418;&#xC9C0; &#xC54A;&#xC544; bypass &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 
             </div>
             <hr>
@@ -545,6 +545,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

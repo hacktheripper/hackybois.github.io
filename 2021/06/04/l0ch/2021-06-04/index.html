@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      361 자
+      552 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      11
        분
     </span>
   
@@ -242,53 +242,53 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://alexplaskett.github.io/CVE-2021-30660/">CVE-2021-30660 - XNU Kernel Memory Disclosure</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://support.apple.com/en-us/HT212325">macOS 11.3 이전 release</a></li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://support.apple.com/en-us/HT212317">iOS 14.5 이전 release</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://support.apple.com/en-us/HT212325">macOS 11.3 &#xC774;&#xC804; release</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://support.apple.com/en-us/HT212317">iOS 14.5 &#xC774;&#xC804; release</a></li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apple사의 macOS 및 iOS의 XNU 시스템에서 커널 메모리를 유출할 수 있는 취약점이 발견되어 세부 정보가 공개되었습니다.</p>
-<p>XNU의 syscall <code>SYS_msgsnd_nocancel</code> 의 핸들러인 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://opensource.apple.com/source/xnu/xnu-1504.7.4/bsd/kern/sysv_msg.c.auto.html">sysv_msg.c/msgrcv_nocancel()</a> 는 유저 공간의 메시지 크기를 <code>msgsz</code>로 받습니다. 만약 유저 공간에서 요청된 크기가 초기에 커널에 전송된 크기 <code>msghdr→msg_ts</code>보다 크면 아래와 같이 <code>msghdr→msg_ts</code>로 자릅니다.</p>
-<pre><code class="hljs c"><span class="hljs-keyword">if</span> (msgsz &gt; msghdr-&gt;msg_ts) &#123;
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apple&#xC0AC;&#xC758; macOS &#xBC0F; iOS&#xC758; XNU &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>XNU&#xC758; syscall <code>SYS_msgsnd_nocancel</code> &#xC758; &#xD578;&#xB4E4;&#xB7EC;&#xC778; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://opensource.apple.com/source/xnu/xnu-1504.7.4/bsd/kern/sysv_msg.c.auto.html">sysv_msg.c/msgrcv_nocancel()</a> &#xB294; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC758; &#xBA54;&#xC2DC;&#xC9C0; &#xD06C;&#xAE30;&#xB97C; <code>msgsz</code>&#xB85C; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC5D0;&#xC11C; &#xC694;&#xCCAD;&#xB41C; &#xD06C;&#xAE30;&#xAC00; &#xCD08;&#xAE30;&#xC5D0; &#xCEE4;&#xB110;&#xC5D0; &#xC804;&#xC1A1;&#xB41C; &#xD06C;&#xAE30; <code>msghdr&#x2192;msg_ts</code>&#xBCF4;&#xB2E4; &#xD06C;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; <code>msghdr&#x2192;msg_ts</code>&#xB85C; &#xC790;&#xB985;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs c"><span class="hljs-keyword">if</span> (msgsz &gt; msghdr-&gt;msg_ts) {
 		msgsz = msghdr-&gt;msg_ts;
-	&#125;</code></pre>
+	}</code></pre>
 
-<p>이후 아래의 반복문을 돌며 커널 <code>msgpool</code>의 데이터를 유저 공간으로 복사합니다.</p>
+<p>&#xC774;&#xD6C4; &#xC544;&#xB798;&#xC758; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB3CC;&#xBA70; &#xCEE4;&#xB110; <code>msgpool</code>&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">1</span>		<span class="hljs-comment">// msg.h</span>
 <span class="hljs-number">2</span>		<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MSGSSZ	8		<span class="hljs-comment">/* Each segment must be 2^N long */</span></span>
 <span class="hljs-number">3</span>	
-<span class="hljs-number">4</span>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">msginit</span><span class="hljs-params">(__unused <span class="hljs-keyword">void</span> *dummy)</span></span>&#123;
-<span class="hljs-number">5</span>			<span class="hljs-keyword">if</span> (i != msginfo.msgssz) &#123;
+<span class="hljs-number">4</span>		<span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">msginit</span><span class="hljs-params">(__unused <span class="hljs-keyword">void</span> *dummy)</span></span>{
+<span class="hljs-number">5</span>			<span class="hljs-keyword">if</span> (i != msginfo.msgssz) {
 <span class="hljs-number">6</span>				<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;msginfo.msgssz=%d (0x%x) not a small power of 2; resetting to %d\\n&quot;</span>, msginfo.msgssz, msginfo.msgssz, MSGSSZ); 
 <span class="hljs-number">7</span>				msginfo.msgssz = MSGSSZ;
-<span class="hljs-number">8</span>			&#125;
+<span class="hljs-number">8</span>			}
 <span class="hljs-number">9</span>		...
 <span class="hljs-number">10</span>	
-<span class="hljs-number">11</span>	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">msgsnd_nocancel</span><span class="hljs-params">(struct proc *p, struct msgsnd_nocancel_args *uap, <span class="hljs-keyword">int32_t</span> *retval)</span></span>&#123;
+<span class="hljs-number">11</span>	<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">msgsnd_nocancel</span><span class="hljs-params">(struct proc *p, struct msgsnd_nocancel_args *uap, <span class="hljs-keyword">int32_t</span> *retval)</span></span>{
 <span class="hljs-number">12</span>	...
-<span class="hljs-number">13</span>		<span class="hljs-keyword">for</span> (len = <span class="hljs-number">0</span>; len &lt; msgsz; len += msginfo.msgssz) &#123;
+<span class="hljs-number">13</span>		<span class="hljs-keyword">for</span> (len = <span class="hljs-number">0</span>; len &lt; msgsz; len += msginfo.msgssz) {
 <span class="hljs-number">14</span>			<span class="hljs-keyword">size_t</span> tlen;
 <span class="hljs-number">15</span>			<span class="hljs-comment">/* compare input (size_t) value against restrict (int) value */</span>
-<span class="hljs-number">16</span>			<span class="hljs-keyword">if</span> (msgsz &gt; (<span class="hljs-keyword">size_t</span>)msginfo.msgssz) &#123;
+<span class="hljs-number">16</span>			<span class="hljs-keyword">if</span> (msgsz &gt; (<span class="hljs-keyword">size_t</span>)msginfo.msgssz) {
 <span class="hljs-number">17</span>				tlen = msginfo.msgssz;
-<span class="hljs-number">18</span>			&#125; <span class="hljs-keyword">else</span> &#123;
+<span class="hljs-number">18</span>			} <span class="hljs-keyword">else</span> {
 <span class="hljs-number">19</span>				tlen = msgsz;
-<span class="hljs-number">20</span>			&#125;
-<span class="hljs-number">21</span>			<span class="hljs-keyword">if</span> (next &lt;= <span class="hljs-number">-1</span>) &#123;
+<span class="hljs-number">20</span>			}
+<span class="hljs-number">21</span>			<span class="hljs-keyword">if</span> (next &lt;= <span class="hljs-number">-1</span>) {
 <span class="hljs-number">22</span>				panic(<span class="hljs-string">&quot;next too low #3&quot;</span>);
-<span class="hljs-number">23</span>			&#125;
-<span class="hljs-number">24</span>			<span class="hljs-keyword">if</span> (next &gt;= msginfo.msgseg) &#123;
+<span class="hljs-number">23</span>			}
+<span class="hljs-number">24</span>			<span class="hljs-keyword">if</span> (next &gt;= msginfo.msgseg) {
 <span class="hljs-number">25</span>				panic(<span class="hljs-string">&quot;next out of range #3&quot;</span>);
-<span class="hljs-number">26</span>			&#125;
+<span class="hljs-number">26</span>			}
 <span class="hljs-number">27</span>			SYSV_MSG_SUBSYS_UNLOCK();
 <span class="hljs-number">28</span>			eval = copyout(&amp;msgpool[next * msginfo.msgssz], user_msgp, tlen);
 <span class="hljs-number">29</span>		...</code></pre>
 
-<p>반복문의 증가 값인 <code>msginfo.msgssz</code>는 <code>msginit()</code>에서 <code>#define MSGSSZ 8</code> 로 선언된 <code>MSGSSZ</code>로 초기화되어 특정 조건을 만족하면 <code>8 bytes</code> 단위로 커널 메모리를 유저 공간에 복사하는데, 이때 요청된 크기가 8의 배수가 아닐 경우 초기화되지 않은 <code>1~7 bytes</code> 크기의 커널 메모리가 유출될 수 있습니다.</p>
-<p><code>9 bytes</code> 크기의 <code>SYS_msgsnd_nocancel</code> syscall을 보낼 경우 취약점은 다음과 같이 트리거 됩니다.</p>
+<p>&#xBC18;&#xBCF5;&#xBB38;&#xC758; &#xC99D;&#xAC00; &#xAC12;&#xC778; <code>msginfo.msgssz</code>&#xB294; <code>msginit()</code>&#xC5D0;&#xC11C; <code>#define MSGSSZ 8</code> &#xB85C; &#xC120;&#xC5B8;&#xB41C; <code>MSGSSZ</code>&#xB85C; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC5B4; &#xD2B9;&#xC815; &#xC870;&#xAC74;&#xC744; &#xB9CC;&#xC871;&#xD558;&#xBA74; <code>8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC5D0; &#xBCF5;&#xC0AC;&#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; &#xC694;&#xCCAD;&#xB41C; &#xD06C;&#xAE30;&#xAC00; 8&#xC758; &#xBC30;&#xC218;&#xAC00; &#xC544;&#xB2D0; &#xACBD;&#xC6B0; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; <code>1~7 bytes</code> &#xD06C;&#xAE30;&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xCD9C;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>9 bytes</code> &#xD06C;&#xAE30;&#xC758; <code>SYS_msgsnd_nocancel</code> syscall&#xC744; &#xBCF4;&#xB0BC; &#xACBD;&#xC6B0; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>msghdr→msg_ts</code>와 <code>msgsz</code>가 9로 설정됩니다.</li>
-<li>line 16의 조건문에 의해  <code>tlen</code>이 8이 됩니다.</li>
-<li><code> 8 bytes</code> 단위로 복사하는 반복문을 두 번 수행합니다.</li>
-<li><code>16 bytes</code>의 커널 메모리가 유저 공간으로 복사되어 초기화되지 않은 <code>7 bytes</code> 크기의 커널 메모리가 유출됩니다.</li>
+<li><code>msghdr&#x2192;msg_ts</code>&#xC640; <code>msgsz</code>&#xAC00; 9&#xB85C; &#xC124;&#xC815;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>line 16&#xC758; &#xC870;&#xAC74;&#xBB38;&#xC5D0; &#xC758;&#xD574;  <code>tlen</code>&#xC774; 8&#xC774; &#xB429;&#xB2C8;&#xB2E4;.</li>
+<li><code> 8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB450; &#xBC88; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>16 bytes</code>&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xB418;&#xC5B4; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; <code>7 bytes</code> &#xD06C;&#xAE30;&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -598,6 +598,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

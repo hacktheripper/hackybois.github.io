@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      152 자
+      288 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -242,13 +242,13 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://seclists.org/oss-sec/2021/q2/23">CVE-2021-27850: Apache Tapestry: Bypass of the fix for CVE-2019-0195</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>Apache Tapestry 5.4.5, 5.5.0, 5.6.2 및 5.7.0 이전 버전</li>
+<li>Apache Tapestry 5.4.5, 5.5.0, 5.6.2 &#xBC0F; 5.7.0 &#xC774;&#xC804; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>오픈소스 웹 프레임워크인 Apache Tapestry에서 발견된 원격 코드 실행 취약점 CVE-2019-0195 패치 우회의 세부 정보가 공개되었습니다.</p>
-<p>CVE-2019-0195는 임의의 클래스 파일을 다운로드할 수 있어 해커가 이를 이용하면 serialized Java 객체 서명에 사용되는 <code>HMAC</code> 비밀 키를 알아낼 수 있습니다. 해커는 획득한 <code>HMAC</code> 비밀 키로 <code>CommonsBeanUtils1</code>과 같은 Java RCE gadget 체인에 서명할 수 있고 이는 원격 코드 실행으로 이어집니다.</p>
-<p>위 취약점은 URL request에 <code>.class</code> , <code>.properties</code> , <code>.xml</code> 이 있는지 확인하고 이를 필터링하는 것으로 패치되었으나 payload URL의 끝에 <code>/</code> 를 추가하면 필터링을 간단하게 우회해 기존 취약점을 활용할 수 있는 것으로 확인되었습니다.</p>
-<pre><code class="hljs cpp">http:<span class="hljs-comment">//[host ip]/assets/.../services/AppModule.class   -&gt; &quot;.class&quot; 필터링 적용됨 </span>
-http:<span class="hljs-comment">//[host ip]/assets/.../services/AppModule.class/  -&gt; &quot;.class&quot; 필터링 우회</span></code></pre>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC624;&#xD508;&#xC18C;&#xC2A4; &#xC6F9; &#xD504;&#xB808;&#xC784;&#xC6CC;&#xD06C;&#xC778; Apache Tapestry&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810; CVE-2019-0195 &#xD328;&#xCE58; &#xC6B0;&#xD68C;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>CVE-2019-0195&#xB294; &#xC784;&#xC758;&#xC758; &#xD074;&#xB798;&#xC2A4; &#xD30C;&#xC77C;&#xC744; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC5B4; &#xD574;&#xCEE4;&#xAC00; &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xBA74; serialized Java &#xAC1D;&#xCCB4; &#xC11C;&#xBA85;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>HMAC</code> &#xBE44;&#xBC00; &#xD0A4;&#xB97C; &#xC54C;&#xC544;&#xB0BC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xD68D;&#xB4DD;&#xD55C; <code>HMAC</code> &#xBE44;&#xBC00; &#xD0A4;&#xB85C; <code>CommonsBeanUtils1</code>&#xACFC; &#xAC19;&#xC740; Java RCE gadget &#xCCB4;&#xC778;&#xC5D0; &#xC11C;&#xBA85;&#xD560; &#xC218; &#xC788;&#xACE0; &#xC774;&#xB294; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC704; &#xCDE8;&#xC57D;&#xC810;&#xC740; URL request&#xC5D0; <code>.class</code> , <code>.properties</code> , <code>.xml</code> &#xC774; &#xC788;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0; &#xC774;&#xB97C; &#xD544;&#xD130;&#xB9C1;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC73C;&#xB098; payload URL&#xC758; &#xB05D;&#xC5D0; <code>/</code> &#xB97C; &#xCD94;&#xAC00;&#xD558;&#xBA74; &#xD544;&#xD130;&#xB9C1;&#xC744; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC6B0;&#xD68C;&#xD574; &#xAE30;&#xC874; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD65C;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xD655;&#xC778;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs cpp">http:<span class="hljs-comment">//[host ip]/assets/.../services/AppModule.class   -&gt; &quot;.class&quot; &#xD544;&#xD130;&#xB9C1; &#xC801;&#xC6A9;&#xB428; </span>
+http:<span class="hljs-comment">//[host ip]/assets/.../services/AppModule.class/  -&gt; &quot;.class&quot; &#xD544;&#xD130;&#xB9C1; &#xC6B0;&#xD68C;</span></code></pre>
             </div>
             <hr>
             <div>
@@ -552,6 +552,45 @@ http:<span class="hljs-comment">//[host ip]/assets/.../services/AppModule.class/
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

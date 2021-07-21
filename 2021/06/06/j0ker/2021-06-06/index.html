@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      244 자
+      402 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -240,11 +240,11 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/detail?id=2137&q=&can=1&sort=-reported">Issue 2137: Windows: Out-of-bounds write in WindowsCodecsRaw!COlympusE300LoadRaw</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/project-zero/issues/detail?id=2137&amp;q=&amp;can=1&amp;sort=-reported">Issue 2137: Windows: Out-of-bounds write in WindowsCodecsRaw!COlympusE300LoadRaw</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Windows 10 20H1</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows에서는 Olympus E300의 raw 이미지 파일을 처리할 때, <code>Windows Imaging Component (WIC)</code>를 통해 처리합니다. 이 때 <code>WindowsCodecsRaw.dll</code>의 <code>COlympusE300LoadRaw::olympus_e300_load_raw()</code> 함수가 실행됩니다. 취약점이 발생한 함수의 코드는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows&#xC5D0;&#xC11C;&#xB294; Olympus E300&#xC758; raw &#xC774;&#xBBF8;&#xC9C0; &#xD30C;&#xC77C;&#xC744; &#xCC98;&#xB9AC;&#xD560; &#xB54C;, <code>Windows Imaging Component (WIC)</code>&#xB97C; &#xD1B5;&#xD574; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C; <code>WindowsCodecsRaw.dll</code>&#xC758; <code>COlympusE300LoadRaw::olympus_e300_load_raw()</code> &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD55C; &#xD568;&#xC218;&#xC758; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> CLASS <span class="hljs-title">olympus_e300_load_raw</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
+<span class="hljs-function"></span>{
   uchar  *data,  *dp;
   ushort *pixel, *pix;
   <span class="hljs-keyword">int</span> dwide, row, col;
@@ -253,20 +253,20 @@
   data = <span class="hljs-built_in">malloc</span> (dwide + raw_width*<span class="hljs-number">2</span>);
   merror (data, <span class="hljs-string">&quot;olympus_e300_load_raw()&quot;</span>);
   pixel = (ushort *) (data + dwide);
-  <span class="hljs-keyword">for</span> (row=<span class="hljs-number">0</span>; row &lt; height; row++) &#123;
+  <span class="hljs-keyword">for</span> (row=<span class="hljs-number">0</span>; row &lt; height; row++) {
     fread (data, <span class="hljs-number">1</span>, dwide, ifp);
-    <span class="hljs-keyword">for</span> (dp=data, pix=pixel; pix &lt; pixel+raw_width; dp+=<span class="hljs-number">3</span>, pix+=<span class="hljs-number">2</span>) &#123;  <span class="hljs-comment">//  (2)</span>
+    <span class="hljs-keyword">for</span> (dp=data, pix=pixel; pix &lt; pixel+raw_width; dp+=<span class="hljs-number">3</span>, pix+=<span class="hljs-number">2</span>) {  <span class="hljs-comment">//  (2)</span>
       <span class="hljs-keyword">if</span> (((dp-data) &amp; <span class="hljs-number">15</span>) == <span class="hljs-number">15</span>) dp++;
       pix[<span class="hljs-number">0</span>] = dp[<span class="hljs-number">1</span>] &lt;&lt; <span class="hljs-number">8</span> | dp[<span class="hljs-number">0</span>];                                    <span class="hljs-comment">// (3)</span>
       pix[<span class="hljs-number">1</span>] = dp[<span class="hljs-number">2</span>] &lt;&lt; <span class="hljs-number">4</span> | dp[<span class="hljs-number">1</span>] &gt;&gt; <span class="hljs-number">4</span>;                               <span class="hljs-comment">// (4)</span>
-    &#125;
+    }
     <span class="hljs-keyword">for</span> (col=<span class="hljs-number">0</span>; col &lt; width; col++)
       BAYER(row,col) = (pixel[col] &amp; <span class="hljs-number">0xfff</span>);
-  &#125;
+  }
   <span class="hljs-built_in">free</span> (data);
-&#125;</code></pre>
+}</code></pre>
 
-<p>먼저 (1)에서 디코딩된 데이터를 저장할 메모리를 할당합니다. 디코딩은 열 단위로 디코딩을 진행하는데, 한 열에는 <code>height</code>만큼의 픽셀이 존재하며 픽셀은 각각 2 bytes의 데이터로 디코딩 됩니다. 그리고 (2)에서부터 실질적인 디코딩 작업이 진행됩니다. 조건문을 <code>pix &lt; pixel+raw_width</code>로 설정함으로써 디코딩 과정에서 OOB가 발생하지 않도록 신경썼지만 <code>raw_width</code>가 <code>0xd79</code>같이 홀수일 경우, 한 픽셀 당 2 bytes 씩 디코드하기 때문에 해당 loop의 마지막에서 (3)에서는 버퍼의 마지막에 데이터를 쓰지만 (4)에서 버퍼 밖의 메모리 영역에 데이터를 쓰게 되어 1 byte 의 OOB Write가 발생하게 됩니다.</p>
+<p>&#xBA3C;&#xC800; (1)&#xC5D0;&#xC11C; &#xB514;&#xCF54;&#xB529;&#xB41C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD560; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. &#xB514;&#xCF54;&#xB529;&#xC740; &#xC5F4; &#xB2E8;&#xC704;&#xB85C; &#xB514;&#xCF54;&#xB529;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xB294;&#xB370;, &#xD55C; &#xC5F4;&#xC5D0;&#xB294; <code>height</code>&#xB9CC;&#xD07C;&#xC758; &#xD53D;&#xC140;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xBA70; &#xD53D;&#xC140;&#xC740; &#xAC01;&#xAC01; 2 bytes&#xC758; &#xB370;&#xC774;&#xD130;&#xB85C; &#xB514;&#xCF54;&#xB529; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; (2)&#xC5D0;&#xC11C;&#xBD80;&#xD130; &#xC2E4;&#xC9C8;&#xC801;&#xC778; &#xB514;&#xCF54;&#xB529; &#xC791;&#xC5C5;&#xC774; &#xC9C4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xC870;&#xAC74;&#xBB38;&#xC744; <code>pix &lt; pixel+raw_width</code>&#xB85C; &#xC124;&#xC815;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xB514;&#xCF54;&#xB529; &#xACFC;&#xC815;&#xC5D0;&#xC11C; OOB&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xB3C4;&#xB85D; &#xC2E0;&#xACBD;&#xC37C;&#xC9C0;&#xB9CC; <code>raw_width</code>&#xAC00; <code>0xd79</code>&#xAC19;&#xC774; &#xD640;&#xC218;&#xC77C; &#xACBD;&#xC6B0;, &#xD55C; &#xD53D;&#xC140; &#xB2F9; 2 bytes &#xC529; &#xB514;&#xCF54;&#xB4DC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD574;&#xB2F9; loop&#xC758; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0;&#xC11C; (3)&#xC5D0;&#xC11C;&#xB294; &#xBC84;&#xD37C;&#xC758; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F0;&#xC9C0;&#xB9CC; (4)&#xC5D0;&#xC11C; &#xBC84;&#xD37C; &#xBC16;&#xC758; &#xBA54;&#xBAA8;&#xB9AC; &#xC601;&#xC5ED;&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F0;&#xAC8C; &#xB418;&#xC5B4; 1 byte &#xC758; OOB Write&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -569,6 +569,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

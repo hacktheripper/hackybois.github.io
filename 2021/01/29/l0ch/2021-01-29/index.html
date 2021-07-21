@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      159 자
+      355 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        분
     </span>
   
@@ -242,10 +242,10 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/1/27/zdi-can-12671-windows-kernel-dosprivilege-escalation-via-a-null-pointer-deref">ZDI-CAN-12671: WINDOWS KERNEL DOS/PRIVILEGE ESCALATION VIA A NULL POINTER DEREF</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>win32kfull.sys (Windows 32bit)</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows kernel 모듈인 <code>win32kfull.sys</code>에서 NULL pointer dereference로 인한 권한 상승 취약점이 발견되었습니다.</p>
-<p>win32k에서 모든 그리기 작업은 <code>SURFOBJ</code> 구조체를 통해 이루어집니다. <code>SURFOBJ</code> 의 <code>hdev</code> 필드는 특정 장치 드라이버에 대한 핸들이며 <code>flags</code> 필드 중 일부는 <code>HOOK_ *</code> 플래그로, <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/api/winddi/nf-winddi-engassociatesurface">여기에서</a> 확인할 수 있습니다.</p>
-<p>취약점은 <code>PlgBlt</code> 그리기 작업을 수행하는  <code>win32kfull.sys!BLTRECORD::bRotate</code>에서 발생합니다. <code>HOOK_PLGBLT</code>가 <code>SURFOBJ</code>의 <code>flags</code> 필드에 설정되어 있으면 기본 장치 드라이버의 <code>DrvPlgBlt</code>가 사용되는데, 이때 <code>hdev</code>에서 지정한 드라이버가 네이티브 <code>DrvPlgBlt</code>를 지원하는지 확인하지 않아 이를 지원하지 않는 경우 해당 테이블의 항목이 NULL이 되고 <code>win32kfull.sys!BLTRECORD::bRotate</code>에서 NULL 주소를 호출하게 됩니다.</p>
-<p>취약점을 악용할 때 기본적으로 Windows 시스템에서는 유저 모드 프로세스에서 NULL 페이지를 매핑할 수 없지만 16비트 유저 모드 프로세스에서는 NULL 페이지 매핑이 가능해 16비트 가상 도스 머신인 NTVDM이 설치되어 있고, SMEP 적용이 되지 않은 Windows 32 bit에서만 제한적인 권한 상승이 가능합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows kernel &#xBAA8;&#xB4C8;&#xC778; <code>win32kfull.sys</code>&#xC5D0;&#xC11C; NULL pointer dereference&#xB85C; &#xC778;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>win32k&#xC5D0;&#xC11C; &#xBAA8;&#xB4E0; &#xADF8;&#xB9AC;&#xAE30; &#xC791;&#xC5C5;&#xC740; <code>SURFOBJ</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xD1B5;&#xD574; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;. <code>SURFOBJ</code> &#xC758; <code>hdev</code> &#xD544;&#xB4DC;&#xB294; &#xD2B9;&#xC815; &#xC7A5;&#xCE58; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; &#xB300;&#xD55C; &#xD578;&#xB4E4;&#xC774;&#xBA70; <code>flags</code> &#xD544;&#xB4DC; &#xC911; &#xC77C;&#xBD80;&#xB294; <code>HOOK_ *</code> &#xD50C;&#xB798;&#xADF8;&#xB85C;, <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/api/winddi/nf-winddi-engassociatesurface">&#xC5EC;&#xAE30;&#xC5D0;&#xC11C;</a> &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; <code>PlgBlt</code> &#xADF8;&#xB9AC;&#xAE30; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD558;&#xB294;  <code>win32kfull.sys!BLTRECORD::bRotate</code>&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>HOOK_PLGBLT</code>&#xAC00; <code>SURFOBJ</code>&#xC758; <code>flags</code> &#xD544;&#xB4DC;&#xC5D0; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA74; &#xAE30;&#xBCF8; &#xC7A5;&#xCE58; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC758; <code>DrvPlgBlt</code>&#xAC00; &#xC0AC;&#xC6A9;&#xB418;&#xB294;&#xB370;, &#xC774;&#xB54C; <code>hdev</code>&#xC5D0;&#xC11C; &#xC9C0;&#xC815;&#xD55C; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xAC00; &#xB124;&#xC774;&#xD2F0;&#xBE0C; <code>DrvPlgBlt</code>&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xC774;&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xACBD;&#xC6B0; &#xD574;&#xB2F9; &#xD14C;&#xC774;&#xBE14;&#xC758; &#xD56D;&#xBAA9;&#xC774; NULL&#xC774; &#xB418;&#xACE0; <code>win32kfull.sys!BLTRECORD::bRotate</code>&#xC5D0;&#xC11C; NULL &#xC8FC;&#xC18C;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD560; &#xB54C; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; Windows &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C;&#xB294; &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; NULL &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xB9E4;&#xD551;&#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC; 16&#xBE44;&#xD2B8; &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C;&#xB294; NULL &#xD398;&#xC774;&#xC9C0; &#xB9E4;&#xD551;&#xC774; &#xAC00;&#xB2A5;&#xD574; 16&#xBE44;&#xD2B8; &#xAC00;&#xC0C1; &#xB3C4;&#xC2A4; &#xBA38;&#xC2E0;&#xC778; NTVDM&#xC774; &#xC124;&#xCE58;&#xB418;&#xC5B4; &#xC788;&#xACE0;, SMEP &#xC801;&#xC6A9;&#xC774; &#xB418;&#xC9C0; &#xC54A;&#xC740; Windows 32 bit&#xC5D0;&#xC11C;&#xB9CC; &#xC81C;&#xD55C;&#xC801;&#xC778; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -546,6 +546,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

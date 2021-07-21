@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      178 자
+      255 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -242,8 +242,8 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://labs.nettitude.com/blog/cve-2020-24550-open-redirect-in-episerver-find/">cve-2020-24550</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Episerver Find &lt; 13.2.6</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Episerver Find는 컨텐츠 관리, e-commerce, 자동 마케팅 등의 기능이 포함된 검색엔진 플랫폼입니다. Episerver Find 13.2.6 이전 버전에서 발생하는 Open redirect 취약점(CVE-2020-24550)의 세부 정보가 공개되었습니다.</p>
-<p>Episerver Find는 <code>_t_redirect</code> 파라미터로 untrusted input을 redirect 함수에 전달합니다. 따라서 해커는 해당 파라미터를 통해 사용자를 임의의 URL로 redirect 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Episerver Find&#xB294; &#xCEE8;&#xD150;&#xCE20; &#xAD00;&#xB9AC;, e-commerce, &#xC790;&#xB3D9; &#xB9C8;&#xCF00;&#xD305; &#xB4F1;&#xC758; &#xAE30;&#xB2A5;&#xC774; &#xD3EC;&#xD568;&#xB41C; &#xAC80;&#xC0C9;&#xC5D4;&#xC9C4; &#xD50C;&#xB7AB;&#xD3FC;&#xC785;&#xB2C8;&#xB2E4;. Episerver Find 13.2.6 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; Open redirect &#xCDE8;&#xC57D;&#xC810;(CVE-2020-24550)&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Episerver Find&#xB294; <code>_t_redirect</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; untrusted input&#xC744; redirect &#xD568;&#xC218;&#xC5D0; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xD574;&#xCEE4;&#xB294; &#xD574;&#xB2F9; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xD1B5;&#xD574; &#xC0AC;&#xC6A9;&#xC790;&#xB97C; &#xC784;&#xC758;&#xC758; URL&#xB85C; redirect &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs csharp">[<span class="hljs-meta">HttpGet</span>]
 <span class="hljs-function"><span class="hljs-keyword">public</span> HttpResponseMessage <span class="hljs-title">Index</span>(<span class="hljs-params"></span></span>
 <span class="hljs-function"><span class="hljs-params">[FromUri(Name = <span class="hljs-string">&quot;_t_id&quot;</span></span>)] <span class="hljs-keyword">string</span> id,</span>
@@ -253,15 +253,15 @@
 <span class="hljs-function">[<span class="hljs-title">FromUri</span>(<span class="hljs-params">Name = <span class="hljs-string">&quot;_t_hit.pos&quot;</span></span>)] <span class="hljs-keyword">int</span>? hitPos</span> = <span class="hljs-literal">null</span>,
 [<span class="hljs-meta">FromUri(Name = <span class="hljs-meta-string">&quot;_t_tags&quot;</span>)</span>] <span class="hljs-keyword">string</span> tags = <span class="hljs-string">&quot;&quot;</span>
 )
-&#123;
+{
   <span class="hljs-keyword">this</span>.PostTrackData(id, query, hitId, hitPos, tags);
   HttpResponseMessage response = HttpRequestMessageExtentions.CreateResponse(<span class="hljs-keyword">this</span>.get_Request(), HttpStatusCode.MovedPermanently);
   response.Headers.Location = <span class="hljs-keyword">new</span> Uri(redirect);
   <span class="hljs-keyword">return</span> response;
-&#125;</code></pre>
+}</code></pre>
 
-<p><code>EPiServer.Find.UI.Controllers.ClickController.Index()</code> 메소드의 코드입니다. <code>_t_redirect</code>파라미터의 값이 Location header인 301 redirect reponse를 리턴합니다.</p>
-<h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a><strong>PoC</strong></h2><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>&#123;vulnerable&#125;<span class="hljs-regexp">/find_v2/</span>_click?_t_id=&amp;_t_q=&amp;_t_hit.id=&amp;_t_redirect=https:/hackyboiz.github.io</code></pre>
+<p><code>EPiServer.Find.UI.Controllers.ClickController.Index()</code> &#xBA54;&#xC18C;&#xB4DC;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. <code>_t_redirect</code>&#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC758; &#xAC12;&#xC774; Location header&#xC778; 301 redirect reponse&#xB97C; &#xB9AC;&#xD134;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a><strong>PoC</strong></h2><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>{vulnerable}<span class="hljs-regexp">/find_v2/</span>_click?_t_id=&amp;_t_q=&amp;_t_hit.id=&amp;_t_redirect=https:/hackyboiz.github.io</code></pre>
             </div>
             <hr>
             <div>
@@ -557,6 +557,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

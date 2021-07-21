@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      180 자
+      410 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -244,19 +244,19 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Slack</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>클라우드 기반 팀 협업 도구 Slack의 <em>files.slack.com</em> 도메인에서 호스트 헤더 대신 <code>X-Forwarded-Host</code> 헤더를 사용하여 infra metadata를 유출할 수 있는 취약점이 발견되었습니다.</p>
-<p>호스트가 <em>files.slack.com</em>이 아닐 때, 해당 URL은 500 Internal server error를 반환하는 유효성 검사가 존재합니다. 하지만 호스트 이름의 끝 부분에 ‘@’를 추가하여 해당 검사를 우회할 수 있습니다. 또한 해당 request는 프론트 엔드가 아닌 백 엔드로 전달되어 Blind SSRF 취약점이 존재하면 인트라넷에 arbitrary request를 전송하여 응답 시간을 통해 다양한 정보를 확인할 수 있습니다.</p>
-<p>이를 통해 인트라넷에 열려있는 포트를 확인하는 과정은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD074;&#xB77C;&#xC6B0;&#xB4DC; &#xAE30;&#xBC18; &#xD300; &#xD611;&#xC5C5; &#xB3C4;&#xAD6C; Slack&#xC758; <em>files.slack.com</em> &#xB3C4;&#xBA54;&#xC778;&#xC5D0;&#xC11C; &#xD638;&#xC2A4;&#xD2B8; &#xD5E4;&#xB354; &#xB300;&#xC2E0; <code>X-Forwarded-Host</code> &#xD5E4;&#xB354;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; infra metadata&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD638;&#xC2A4;&#xD2B8;&#xAC00; <em>files.slack.com</em>&#xC774; &#xC544;&#xB2D0; &#xB54C;, &#xD574;&#xB2F9; URL&#xC740; 500 Internal server error&#xB97C; &#xBC18;&#xD658;&#xD558;&#xB294; &#xC720;&#xD6A8;&#xC131; &#xAC80;&#xC0AC;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xD638;&#xC2A4;&#xD2B8; &#xC774;&#xB984;&#xC758; &#xB05D; &#xBD80;&#xBD84;&#xC5D0; &#x2018;@&#x2019;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xD574;&#xB2F9; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xD574;&#xB2F9; request&#xB294; &#xD504;&#xB860;&#xD2B8; &#xC5D4;&#xB4DC;&#xAC00; &#xC544;&#xB2CC; &#xBC31; &#xC5D4;&#xB4DC;&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xC5B4; Blind SSRF &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xBA74; &#xC778;&#xD2B8;&#xB77C;&#xB137;&#xC5D0; arbitrary request&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xC5EC; &#xC751;&#xB2F5; &#xC2DC;&#xAC04;&#xC744; &#xD1B5;&#xD574; &#xB2E4;&#xC591;&#xD55C; &#xC815;&#xBCF4;&#xB97C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC778;&#xD2B8;&#xB77C;&#xB137;&#xC5D0; &#xC5F4;&#xB824;&#xC788;&#xB294; &#xD3EC;&#xD2B8;&#xB97C; &#xD655;&#xC778;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p>슬랙에 파일을 업로드하고 “Open original”을 통해 원본 이미지 경로를 찾아 burp suite로 가져옵니다.</p>
+<li><p>&#xC2AC;&#xB799;&#xC5D0; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD558;&#xACE0; &#x201C;Open original&#x201D;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xBCF8; &#xC774;&#xBBF8;&#xC9C0; &#xACBD;&#xB85C;&#xB97C; &#xCC3E;&#xC544; burp suite&#xB85C; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>repeater로 전송하고 클릭하여 정상적으로 접근되는지 확인합니다.</p>
+<li><p>repeater&#xB85C; &#xC804;&#xC1A1;&#xD558;&#xACE0; &#xD074;&#xB9AD;&#xD558;&#xC5EC; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC811;&#xADFC;&#xB418;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p><code>X-Forwarded-Host: xxx.com</code>을 헤더에 추가하여 500 error가 발생하는지 확인합니다.</p>
+<li><p><code>X-Forwarded-Host: xxx.com</code>&#xC744; &#xD5E4;&#xB354;&#xC5D0; &#xCD94;&#xAC00;&#xD558;&#xC5EC; 500 error&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p><code>X-Forwarded-Host: file.slack.com@YOUR_DOMAIN</code>으로 헤더를 수정하고 302 response가 오는지 확인합니다. 경로는 <code>YOUR_DOMAIN/files-pri/...</code>로 지정합니다.</p>
+<li><p><code>X-Forwarded-Host: file.slack.com@YOUR_DOMAIN</code>&#xC73C;&#xB85C; &#xD5E4;&#xB354;&#xB97C; &#xC218;&#xC815;&#xD558;&#xACE0; 302 response&#xAC00; &#xC624;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xACBD;&#xB85C;&#xB294; <code>YOUR_DOMAIN/files-pri/...</code>&#xB85C; &#xC9C0;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>도메인에 request가 전송되었는지 확인하고 도메인을 인트라넷 IP로 변경합니다. 포트를 바꿔가며 응답 시간을 확인합니다.</p>
+<li><p>&#xB3C4;&#xBA54;&#xC778;&#xC5D0; request&#xAC00; &#xC804;&#xC1A1;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0; &#xB3C4;&#xBA54;&#xC778;&#xC744; &#xC778;&#xD2B8;&#xB77C;&#xB137; IP&#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;. &#xD3EC;&#xD2B8;&#xB97C; &#xBC14;&#xAFD4;&#xAC00;&#xBA70; &#xC751;&#xB2F5; &#xC2DC;&#xAC04;&#xC744; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
 
@@ -559,6 +559,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

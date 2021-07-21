@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      114 자
+      207 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -241,15 +241,15 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.exploit-db.com/exploits/48963">Blueman &lt; 2.1.4 - Local Privilege Escalation</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Blueman 2.1.4 이전 버전</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>D-bus(Desktop-bus)는 IPC 혹은 RPC 메커니즘입니다. D-bus의 DHCPClient 메소드와 Blueman 사이에 arguments sanitizing 과정이 없어 argument injection이 발생하고, 시스템 구성에 따라 impact가 2가지로 나뉩니다. </p>
-<pre><code class="hljs routeros">1. isc-dhcp-client 사용 시
-<span class="hljs-built_in">	ip </span>명령어에 argument injection, 인터페이스를 종료하는 Dos
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Blueman 2.1.4 &#xC774;&#xC804; &#xBC84;&#xC804;</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>D-bus(Desktop-bus)&#xB294; IPC &#xD639;&#xC740; RPC &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC785;&#xB2C8;&#xB2E4;. D-bus&#xC758; DHCPClient &#xBA54;&#xC18C;&#xB4DC;&#xC640; Blueman &#xC0AC;&#xC774;&#xC5D0; arguments sanitizing &#xACFC;&#xC815;&#xC774; &#xC5C6;&#xC5B4; argument injection&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xACE0;, &#xC2DC;&#xC2A4;&#xD15C; &#xAD6C;&#xC131;&#xC5D0; &#xB530;&#xB77C; impact&#xAC00; 2&#xAC00;&#xC9C0;&#xB85C; &#xB098;&#xB269;&#xB2C8;&#xB2E4;. </p>
+<pre><code class="hljs routeros">1. isc-dhcp-client &#xC0AC;&#xC6A9; &#xC2DC;
+<span class="hljs-built_in">	ip </span>&#xBA85;&#xB839;&#xC5B4;&#xC5D0; argument injection, &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB97C; &#xC885;&#xB8CC;&#xD558;&#xB294; Dos
 
-2. dhcpd package 사용 시
-	<span class="hljs-string">&quot;-c/arbitrary_script_path&quot;</span>옵션을 사용해 임의의 스크립트를 실행</code></pre>
+2. dhcpd package &#xC0AC;&#xC6A9; &#xC2DC;
+	<span class="hljs-string">&quot;-c/arbitrary_script_path&quot;</span>&#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xC784;&#xC758;&#xC758; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;</code></pre>
 
-<p>대부분의  D-bus 인터페이스는 PolicyKit으로 Authentication을 거치지만 Blueman 2.0.6 이전 버전은 Polkit-1이 기본적으로 비활성화되어있어, 모든 로컬 유저가 취약점을 트리거할 수 있습니다. </p>
+<p>&#xB300;&#xBD80;&#xBD84;&#xC758;  D-bus &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB294; PolicyKit&#xC73C;&#xB85C; Authentication&#xC744; &#xAC70;&#xCE58;&#xC9C0;&#xB9CC; Blueman 2.0.6 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC740; Polkit-1&#xC774; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC5B4;, &#xBAA8;&#xB4E0; &#xB85C;&#xCEEC; &#xC720;&#xC800;&#xAC00; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html">https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html</a></p>
 
             </div>
@@ -553,6 +553,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

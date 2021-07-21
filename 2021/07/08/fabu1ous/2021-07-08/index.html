@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      147 자
+      318 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -241,16 +241,16 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/irsl/gcp-dhcp-takeover-code-exec">gcp-dhcp-takeover-code-exec</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Google’s Comput Engine Platform</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p><strong>아직 패치되지 않은 취약점입니다.</strong></p>
-<p>ISC DHCP가 사용하는 랜덤 로직에서 취약점이 발견되었습니다. 해커는 이를 악용해 자신을 Metadata server로 가장하고 Google Cloud Platform(GCP)의 가상 머신(VM: Virtual Machine)을 장악할 수 있습니다.</p>
-<p>ISC DHCP 클라이언트는 random() 함수를 통해 유사 난수를 생성합니다. 난수의 seed는 다음과 같은 3가지 값을 조합해 사용하는데, 유효한 범위 내에서 XID 예측이 가능해 dhcilent에 DHCP packet을 보낼 수 있습니다.</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Google&#x2019;s Comput Engine Platform</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p><strong>&#xC544;&#xC9C1; &#xD328;&#xCE58;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</strong></p>
+<p>ISC DHCP&#xAC00; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xB79C;&#xB364; &#xB85C;&#xC9C1;&#xC5D0;&#xC11C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xC790;&#xC2E0;&#xC744; Metadata server&#xB85C; &#xAC00;&#xC7A5;&#xD558;&#xACE0; Google Cloud Platform(GCP)&#xC758; &#xAC00;&#xC0C1; &#xBA38;&#xC2E0;(VM: Virtual Machine)&#xC744; &#xC7A5;&#xC545;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>ISC DHCP &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xB294; random() &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; &#xC720;&#xC0AC; &#xB09C;&#xC218;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xB09C;&#xC218;&#xC758; seed&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; 3&#xAC00;&#xC9C0; &#xAC12;&#xC744; &#xC870;&#xD569;&#xD574; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370;, &#xC720;&#xD6A8;&#xD55C; &#xBC94;&#xC704; &#xB0B4;&#xC5D0;&#xC11C; XID &#xC608;&#xCE21;&#xC774; &#xAC00;&#xB2A5;&#xD574; dhcilent&#xC5D0; DHCP packet&#xC744; &#xBCF4;&#xB0BC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li>프로세스가 시작된 시점의 unixtime</li>
-<li>dhclient 프로세스의 pid</li>
-<li>네트워크 인터페이스 카드 이더넷 주소(MAC)의 마지막 4 byte</li>
+<li>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC2DC;&#xC791;&#xB41C; &#xC2DC;&#xC810;&#xC758; unixtime</li>
+<li>dhclient &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; pid</li>
+<li>&#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4; &#xCE74;&#xB4DC; &#xC774;&#xB354;&#xB137; &#xC8FC;&#xC18C;(MAC)&#xC758; &#xB9C8;&#xC9C0;&#xB9C9; 4 byte</li>
 </ul>
-<p>GCP VM은 ssh 공개키 분배와 같은 초기 설정 작업을 Metadata server에 크게 의존합니다. XID을 유추한 해커는 VM이 네트워크를 재설정하도록 유도할 수 있고 그 과정에서 자신을 Metadata server로 속여 원하는 ssh 공개키를 VM에 전달할 수 있습니다. 이후 해커는 ssh를 통해 원격 쉘에 자유자재로 접근할 수 있습니다.</p>
+<p>GCP VM&#xC740; ssh &#xACF5;&#xAC1C;&#xD0A4; &#xBD84;&#xBC30;&#xC640; &#xAC19;&#xC740; &#xCD08;&#xAE30; &#xC124;&#xC815; &#xC791;&#xC5C5;&#xC744; Metadata server&#xC5D0; &#xD06C;&#xAC8C; &#xC758;&#xC874;&#xD569;&#xB2C8;&#xB2E4;. XID&#xC744; &#xC720;&#xCD94;&#xD55C; &#xD574;&#xCEE4;&#xB294; VM&#xC774; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xB97C; &#xC7AC;&#xC124;&#xC815;&#xD558;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD560; &#xC218; &#xC788;&#xACE0; &#xADF8; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xC790;&#xC2E0;&#xC744; Metadata server&#xB85C; &#xC18D;&#xC5EC; &#xC6D0;&#xD558;&#xB294; ssh &#xACF5;&#xAC1C;&#xD0A4;&#xB97C; VM&#xC5D0; &#xC804;&#xB2EC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; &#xD574;&#xCEE4;&#xB294; ssh&#xB97C; &#xD1B5;&#xD574; &#xC6D0;&#xACA9; &#xC258;&#xC5D0; &#xC790;&#xC720;&#xC790;&#xC7AC;&#xB85C; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -553,6 +553,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

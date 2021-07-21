@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      261 자
+      507 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      10
        분
     </span>
   
@@ -245,15 +245,15 @@
 <li>Unsupported Codehaus version of Groovy from 2.0 to 2.4.4.</li>
 <li>Apache Groovy versions 2.4.4 to 2.4.20 2.5.0 to 2.5.13, 3.0.0 to 3.0.6, and 4.0.0-alpha-1.</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apache Groovy에서 <code>createTempDir</code> method로 인한 Local Privilege Escalation과 Information Disclosure가 가능한 취약점이 발견되었습니다. 이 취약점은 유닉스 기반 운영 체제와 Mac OSX, Windows의 옛날 버전이 영향을 받습니다. 취약점에 노출되는 조건은 아래와 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apache Groovy&#xC5D0;&#xC11C; <code>createTempDir</code> method&#xB85C; &#xC778;&#xD55C; Local Privilege Escalation&#xACFC; Information Disclosure&#xAC00; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC720;&#xB2C9;&#xC2A4; &#xAE30;&#xBC18; &#xC6B4;&#xC601; &#xCCB4;&#xC81C;&#xC640; Mac OSX, Windows&#xC758; &#xC61B;&#xB0A0; &#xBC84;&#xC804;&#xC774; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB178;&#xCD9C;&#xB418;&#xB294; &#xC870;&#xAC74;&#xC740; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li>영향을 받는 운영 체제에서 Groovy code가 동작</li>
-<li>다른 유저가 Groovy code에 접근할 수 있음</li>
-<li><code>createTempDir</code> extension method를 통해 임시 디렉터리가 생성</li>
+<li>&#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xB294; &#xC6B4;&#xC601; &#xCCB4;&#xC81C;&#xC5D0;&#xC11C; Groovy code&#xAC00; &#xB3D9;&#xC791;</li>
+<li>&#xB2E4;&#xB978; &#xC720;&#xC800;&#xAC00; Groovy code&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC74C;</li>
+<li><code>createTempDir</code> extension method&#xB97C; &#xD1B5;&#xD574; &#xC784;&#xC2DC; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xAC00; &#xC0DD;&#xC131;</li>
 </ul>
-<p>Groovy는 모든 유저가 공유할 수 있는 OS 임시 디렉터리 내에 임시 디렉터리를 만들 수 있습니다. Groovy에서 <code>createTempDir</code> method를 사용하면 java stub을 생성할 때 사용되거나 user code를 대신하기 위한 임시 디렉터리가 생성됩니다. Groovy user code가 <code>createTempDir</code> method를 사용하여 임시 디렉터리에 실행할 수 있는 코드를 저장하면 Local Privilege Escalation이 가능하고 민감한 정보를 저장하기 위해 임시 디렉터리가 사용된다면 정보가 노출되거나 수정될 수 있습니다.</p>
-<p>취약점이 수정된 Groovy 2.5 이상 버전과 JDK 7 이상에서 실행되는 Groovy 2.4에서는 Groovy Code를 실행하는 사용자만 읽을 수 있는 디렉터리를 생성하는 새로운 JDK method를 사용합니다. 하지만 이 방법은 Local Privilege Escalation은 막을 수 있지만 Information Disclosure는 막을 수 없습니다.</p>
-<p>시스템 환경 변수 <code>java.io.tmpdir</code>를 실행 중인 사용자의 고유 디렉터리로 설정하면 모든 운영 체제와 Groovy 버전에서 취약점이 해결됩니다. 혹은 Groovy extension method 대신 JDK의 <code>Files#createTempDirectory</code> method를 사용하여 취약점을 방지할 수 있습니다.</p>
+<p>Groovy&#xB294; &#xBAA8;&#xB4E0; &#xC720;&#xC800;&#xAC00; &#xACF5;&#xC720;&#xD560; &#xC218; &#xC788;&#xB294; OS &#xC784;&#xC2DC; &#xB514;&#xB809;&#xD130;&#xB9AC; &#xB0B4;&#xC5D0; &#xC784;&#xC2DC; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xB9CC;&#xB4E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Groovy&#xC5D0;&#xC11C; <code>createTempDir</code> method&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; java stub&#xC744; &#xC0DD;&#xC131;&#xD560; &#xB54C; &#xC0AC;&#xC6A9;&#xB418;&#xAC70;&#xB098; user code&#xB97C; &#xB300;&#xC2E0;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xC784;&#xC2DC; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xAC00; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;. Groovy user code&#xAC00; <code>createTempDir</code> method&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC784;&#xC2DC; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xBA74; Local Privilege Escalation&#xC774; &#xAC00;&#xB2A5;&#xD558;&#xACE0; &#xBBFC;&#xAC10;&#xD55C; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC784;&#xC2DC; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xAC00; &#xC0AC;&#xC6A9;&#xB41C;&#xB2E4;&#xBA74; &#xC815;&#xBCF4;&#xAC00; &#xB178;&#xCD9C;&#xB418;&#xAC70;&#xB098; &#xC218;&#xC815;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC218;&#xC815;&#xB41C; Groovy 2.5 &#xC774;&#xC0C1; &#xBC84;&#xC804;&#xACFC; JDK 7 &#xC774;&#xC0C1;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; Groovy 2.4&#xC5D0;&#xC11C;&#xB294; Groovy Code&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xB9CC; &#xC77D;&#xC744; &#xC218; &#xC788;&#xB294; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; JDK method&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xC774; &#xBC29;&#xBC95;&#xC740; Local Privilege Escalation&#xC740; &#xB9C9;&#xC744; &#xC218; &#xC788;&#xC9C0;&#xB9CC; Information Disclosure&#xB294; &#xB9C9;&#xC744; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC2DC;&#xC2A4;&#xD15C; &#xD658;&#xACBD; &#xBCC0;&#xC218; <code>java.io.tmpdir</code>&#xB97C; &#xC2E4;&#xD589; &#xC911;&#xC778; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xACE0;&#xC720; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB85C; &#xC124;&#xC815;&#xD558;&#xBA74; &#xBAA8;&#xB4E0; &#xC6B4;&#xC601; &#xCCB4;&#xC81C;&#xC640; Groovy &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD574;&#xACB0;&#xB429;&#xB2C8;&#xB2E4;. &#xD639;&#xC740; Groovy extension method &#xB300;&#xC2E0; JDK&#xC758; <code>Files#createTempDirectory</code> method&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xBC29;&#xC9C0;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -271,9 +271,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/information-disclosure/">information disclosure</a>
                   
@@ -558,6 +558,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

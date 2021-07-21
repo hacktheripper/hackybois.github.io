@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      177 자
+      280 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -242,24 +242,24 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.qualys.com/vulnerabilities-research/2021/01/26/cve-2021-3156-heap-based-buffer-overflow-in-sudo-baron-samedit">CVE-2021-3156 : heap-based buffer overflow in sudo</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>sudo &lt; 1.9.5p2</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Qualys Research Team에서 CVE-2021-3156에 대한 세부 정보를 공개했습니다. sudo는 잠시 다른 유저의 권한을 갖고 프로그램을 실행할 수 있게 해주는 명령어로 거의 모든 Unix 계열 운영체제에서 사용합니다. sudo에 Heap-based Buffer Overlow 취약점이 존재하여 이를 통해 root 권한으로 상승할 수 있습니다.</p>
-<p>sudo에 <code>-s</code> 옵션을 붙여 <code>MODE_SHELL</code> flag값을 설정하거나 <code>-i</code> 옵션을 붙여 <code>MODE_LOGIN_SHELL</code> flag값을 설정하면 sudo의 <code>main()</code>에서 argv를 재설정합니다. 모든 command line argument의 meta-character앞에 <code>\</code>(백슬래쉬)를 추가해 escape 한 뒤 하나의 문자열로 묶습니다(concatenate). 만약 하나로 묶인 command line argument가 <code>\</code>로 끝나면 </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Qualys Research Team&#xC5D0;&#xC11C; CVE-2021-3156&#xC5D0; &#xB300;&#xD55C; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xB97C; &#xACF5;&#xAC1C;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. sudo&#xB294; &#xC7A0;&#xC2DC; &#xB2E4;&#xB978; &#xC720;&#xC800;&#xC758; &#xAD8C;&#xD55C;&#xC744; &#xAC16;&#xACE0; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD574;&#xC8FC;&#xB294; &#xBA85;&#xB839;&#xC5B4;&#xB85C; &#xAC70;&#xC758; &#xBAA8;&#xB4E0; Unix &#xACC4;&#xC5F4; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. sudo&#xC5D0; Heap-based Buffer Overlow &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xC5EC; &#xC774;&#xB97C; &#xD1B5;&#xD574; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC0C1;&#xC2B9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>sudo&#xC5D0; <code>-s</code> &#xC635;&#xC158;&#xC744; &#xBD99;&#xC5EC; <code>MODE_SHELL</code> flag&#xAC12;&#xC744; &#xC124;&#xC815;&#xD558;&#xAC70;&#xB098; <code>-i</code> &#xC635;&#xC158;&#xC744; &#xBD99;&#xC5EC; <code>MODE_LOGIN_SHELL</code> flag&#xAC12;&#xC744; &#xC124;&#xC815;&#xD558;&#xBA74; sudo&#xC758; <code>main()</code>&#xC5D0;&#xC11C; argv&#xB97C; &#xC7AC;&#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. &#xBAA8;&#xB4E0; command line argument&#xC758; meta-character&#xC55E;&#xC5D0; <code>\</code>(&#xBC31;&#xC2AC;&#xB798;&#xC26C;)&#xB97C; &#xCD94;&#xAC00;&#xD574; escape &#xD55C; &#xB4A4; &#xD558;&#xB098;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xB85C; &#xBB36;&#xC2B5;&#xB2C8;&#xB2E4;(concatenate). &#xB9CC;&#xC57D; &#xD558;&#xB098;&#xB85C; &#xBB36;&#xC778; command line argument&#xAC00; <code>\</code>&#xB85C; &#xB05D;&#xB098;&#xBA74; </p>
 <pre><code class="hljs routeros"><span class="hljs-built_in">..</span>.
 
-<span class="hljs-keyword">if</span> (ISSET(sudo_mode, MODE_SHELL|MODE_LOGIN_SHELL)) &#123; 
+<span class="hljs-keyword">if</span> (ISSET(sudo_mode, MODE_SHELL|MODE_LOGIN_SHELL)) { 
 <span class="hljs-built_in">..</span>. 
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">to</span> = user_args, av = NewArgv + 1; (<span class="hljs-keyword">from</span> = <span class="hljs-number">*a</span>v); av++) &#123; 
-		<span class="hljs-keyword">while</span> (<span class="hljs-number">*f</span>rom) &#123; 
-			<span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>[0] == <span class="hljs-string">&#x27;\\&#x27;</span> &amp;&amp; !isspace((unsigned char)<span class="hljs-keyword">from</span>[1])) 
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">to</span> = user_args, av = NewArgv + 1; (<span class="hljs-keyword">from</span> = <span class="hljs-number">*a</span>v); av++) { 
+		<span class="hljs-keyword">while</span> (<span class="hljs-number">*f</span>rom) { 
+			<span class="hljs-keyword">if</span> (<span class="hljs-keyword">from</span>[0] == <span class="hljs-string">&apos;\\&apos;</span> &amp;&amp; !isspace((unsigned char)<span class="hljs-keyword">from</span>[1])) 
 				<span class="hljs-keyword">from</span>++; 
 			*<span class="hljs-keyword">to</span>++ = <span class="hljs-number">*f</span>rom++; 
-		&#125; 
-		*<span class="hljs-keyword">to</span>++ = <span class="hljs-string">&#x27; &#x27;</span>; 
-	&#125; 
+		} 
+		*<span class="hljs-keyword">to</span>++ = <span class="hljs-string">&apos; &apos;</span>; 
+	} 
 <span class="hljs-built_in">..</span>. 
-&#125;</code></pre>
+}</code></pre>
 
-<p>이를 heap-based buffer(<code>user_args</code>)에 옮기는 작업 중 NULL-terminator를 무시하고 out-of-bound copy를 하게 됩니다.</p>
+<p>&#xC774;&#xB97C; heap-based buffer(<code>user_args</code>)&#xC5D0; &#xC62E;&#xAE30;&#xB294; &#xC791;&#xC5C5; &#xC911; NULL-terminator&#xB97C; &#xBB34;&#xC2DC;&#xD558;&#xACE0; out-of-bound copy&#xB97C; &#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.gastonsanchez.com/r4strings/metacharacters.html">https://www.gastonsanchez.com/r4strings/metacharacters.html</a></p>
 
             </div>
@@ -563,6 +563,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

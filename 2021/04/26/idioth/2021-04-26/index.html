@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      153 자
+      302 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -240,13 +240,13 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zerodayengineering.com/blog/dont-share-your-home.html">Don’t Share Your $HOME with Untrusted Guests</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://zerodayengineering.com/blog/dont-share-your-home.html">Don&#x2019;t Share Your $HOME with Untrusted Guests</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>4월 23일 기준 Parallels Desktop 최신 버전(Parallels Desktop 16.5.0 both Intel and M1)</li>
+<li>4&#xC6D4; 23&#xC77C; &#xAE30;&#xC900; Parallels Desktop &#xCD5C;&#xC2E0; &#xBC84;&#xC804;(Parallels Desktop 16.5.0 both Intel and M1)</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>매킨토시 컴퓨터에 하드웨어 가상화를 제공하는 Parallels Desktop에서 Guest OS와 <code>$HOME</code> 디렉터리를 공유하여 발생하는 VM Escape가 발견되었습니다.</p>
-<p>Parallels는 기본 값으로 호스트 운영체제(MacOS)의 사용자 홈 디렉터리를 Parallels 공유 폴더로 게스트 OS에 공유합니다. MacOS에서 interactive shell binary는 다른 유닉스 기반 OS와 동일하게 터미널이 열릴 때마다 실행되며 bash profile을 참조합니다. 이를 이용하여 공유 홈 디렉터리에 악성 바이너리를 삽입한 후 <code>.zprofile</code>이나 다른 shell profile file에서 호출하면 바이너리는 터미널이 시작될 때마다 호스트 OS에서 실행됩니다. 이를 통해 지속적으로 호스트 OS에 RCE가 가능합니다.</p>
-<p>POC는 다음과 같으며 악성 바이너리 샘플은 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/badd1e/Proof-of-Concept/tree/main/prl_not0day">github</a>에서 확인하실 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xB9E4;&#xD0A8;&#xD1A0;&#xC2DC; &#xCEF4;&#xD4E8;&#xD130;&#xC5D0; &#xD558;&#xB4DC;&#xC6E8;&#xC5B4; &#xAC00;&#xC0C1;&#xD654;&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xB294; Parallels Desktop&#xC5D0;&#xC11C; Guest OS&#xC640; <code>$HOME</code> &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xACF5;&#xC720;&#xD558;&#xC5EC; &#xBC1C;&#xC0DD;&#xD558;&#xB294; VM Escape&#xAC00; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Parallels&#xB294; &#xAE30;&#xBCF8; &#xAC12;&#xC73C;&#xB85C; &#xD638;&#xC2A4;&#xD2B8; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;(MacOS)&#xC758; &#xC0AC;&#xC6A9;&#xC790; &#xD648; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; Parallels &#xACF5;&#xC720; &#xD3F4;&#xB354;&#xB85C; &#xAC8C;&#xC2A4;&#xD2B8; OS&#xC5D0; &#xACF5;&#xC720;&#xD569;&#xB2C8;&#xB2E4;. MacOS&#xC5D0;&#xC11C; interactive shell binary&#xB294; &#xB2E4;&#xB978; &#xC720;&#xB2C9;&#xC2A4; &#xAE30;&#xBC18; OS&#xC640; &#xB3D9;&#xC77C;&#xD558;&#xAC8C; &#xD130;&#xBBF8;&#xB110;&#xC774; &#xC5F4;&#xB9B4; &#xB54C;&#xB9C8;&#xB2E4; &#xC2E4;&#xD589;&#xB418;&#xBA70; bash profile&#xC744; &#xCC38;&#xC870;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xC5EC; &#xACF5;&#xC720; &#xD648; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xC5D0; &#xC545;&#xC131; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0BD;&#xC785;&#xD55C; &#xD6C4; <code>.zprofile</code>&#xC774;&#xB098; &#xB2E4;&#xB978; shell profile file&#xC5D0;&#xC11C; &#xD638;&#xCD9C;&#xD558;&#xBA74; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB294; &#xD130;&#xBBF8;&#xB110;&#xC774; &#xC2DC;&#xC791;&#xB420; &#xB54C;&#xB9C8;&#xB2E4; &#xD638;&#xC2A4;&#xD2B8; OS&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC9C0;&#xC18D;&#xC801;&#xC73C;&#xB85C; &#xD638;&#xC2A4;&#xD2B8; OS&#xC5D0; RCE&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>POC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC73C;&#xBA70; &#xC545;&#xC131; &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xC0D8;&#xD50C;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/badd1e/Proof-of-Concept/tree/main/prl_not0day">github</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD558;&#xC2E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs awk">cp mybinary <span class="hljs-regexp">/media/</span>psf<span class="hljs-regexp">/Home/</span>.hello
 chmod +x <span class="hljs-regexp">/media/</span>psf<span class="hljs-regexp">/Home/</span>.hello
 echo <span class="hljs-string">&quot;~/.hello&quot;</span> &gt;&gt; <span class="hljs-regexp">/media/</span>psf<span class="hljs-regexp">/Home/</span>.zprofile</code></pre>
@@ -549,6 +549,45 @@ echo <span class="hljs-string">&quot;~/.hello&quot;</span> &gt;&gt; <span class=
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

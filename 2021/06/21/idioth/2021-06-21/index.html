@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      152 자
+      342 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -244,9 +244,9 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>grafana.internal.virustotal.com</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>구글이 인수한 VirusTotal의 서브 도메인 grafana.internal.virustotal.com에서 Admin Panel을 우회할 수 있는 취약점이 발견되었습니다. Grafana는 다중 플랫폼 오픈 소스 분석 및 모니터링 솔루션으로, 해당 도메인은 권한이 없으면 grafana 엔드포인트에 접속하거나 새로운 계정 생성이 불가능합니다. (Google, Github 등 다른 계정 이용 포함)</p>
-<p>Grafana에는 사용자를 수정, 추가하고 비밀번호를 수정할 수 있는 엔드포인트가 존재하지만 일부 기능은 관리자만이 사용할 수 있습니다. Grafana에서 대부분의 민감한 request의 기본 인증 헤더는 <code>Authorization: Basic YWRtaW46YWRtaW4=</code>인데 base64로 decode하면 <code>admin:admin</code>이 나옵니다. 이를 사용해 관리자로 로그인한 후 관리자 권한을 가진 새 계정을 생성하여 애플리케이션 전체에 액세스할 수 있습니다.</p>
-<p>또한 Admin Panel에서 VirusTotal 내부 텔레그램 그룹에 알림을 보내는 텔레그램 API 키가 존재합니다. 이를 통해 봇을 사용하여 텔레그램 그룹의 모든 사람에게 메시지를 전송할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xAD6C;&#xAE00;&#xC774; &#xC778;&#xC218;&#xD55C; VirusTotal&#xC758; &#xC11C;&#xBE0C; &#xB3C4;&#xBA54;&#xC778; grafana.internal.virustotal.com&#xC5D0;&#xC11C; Admin Panel&#xC744; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Grafana&#xB294; &#xB2E4;&#xC911; &#xD50C;&#xB7AB;&#xD3FC; &#xC624;&#xD508; &#xC18C;&#xC2A4; &#xBD84;&#xC11D; &#xBC0F; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1; &#xC194;&#xB8E8;&#xC158;&#xC73C;&#xB85C;, &#xD574;&#xB2F9; &#xB3C4;&#xBA54;&#xC778;&#xC740; &#xAD8C;&#xD55C;&#xC774; &#xC5C6;&#xC73C;&#xBA74; grafana &#xC5D4;&#xB4DC;&#xD3EC;&#xC778;&#xD2B8;&#xC5D0; &#xC811;&#xC18D;&#xD558;&#xAC70;&#xB098; &#xC0C8;&#xB85C;&#xC6B4; &#xACC4;&#xC815; &#xC0DD;&#xC131;&#xC774; &#xBD88;&#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. (Google, Github &#xB4F1; &#xB2E4;&#xB978; &#xACC4;&#xC815; &#xC774;&#xC6A9; &#xD3EC;&#xD568;)</p>
+<p>Grafana&#xC5D0;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xB97C; &#xC218;&#xC815;, &#xCD94;&#xAC00;&#xD558;&#xACE0; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xB294; &#xC5D4;&#xB4DC;&#xD3EC;&#xC778;&#xD2B8;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xC9C0;&#xB9CC; &#xC77C;&#xBD80; &#xAE30;&#xB2A5;&#xC740; &#xAD00;&#xB9AC;&#xC790;&#xB9CC;&#xC774; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Grafana&#xC5D0;&#xC11C; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xBBFC;&#xAC10;&#xD55C; request&#xC758; &#xAE30;&#xBCF8; &#xC778;&#xC99D; &#xD5E4;&#xB354;&#xB294; <code>Authorization: Basic YWRtaW46YWRtaW4=</code>&#xC778;&#xB370; base64&#xB85C; decode&#xD558;&#xBA74; <code>admin:admin</code>&#xC774; &#xB098;&#xC635;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xAD00;&#xB9AC;&#xC790;&#xB85C; &#xB85C;&#xADF8;&#xC778;&#xD55C; &#xD6C4; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC744; &#xAC00;&#xC9C4; &#xC0C8; &#xACC4;&#xC815;&#xC744; &#xC0DD;&#xC131;&#xD558;&#xC5EC; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158; &#xC804;&#xCCB4;&#xC5D0; &#xC561;&#xC138;&#xC2A4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB610;&#xD55C; Admin Panel&#xC5D0;&#xC11C; VirusTotal &#xB0B4;&#xBD80; &#xD154;&#xB808;&#xADF8;&#xB7A8; &#xADF8;&#xB8F9;&#xC5D0; &#xC54C;&#xB9BC;&#xC744; &#xBCF4;&#xB0B4;&#xB294; &#xD154;&#xB808;&#xADF8;&#xB7A8; API &#xD0A4;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xBD07;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD154;&#xB808;&#xADF8;&#xB7A8; &#xADF8;&#xB8F9;&#xC758; &#xBAA8;&#xB4E0; &#xC0AC;&#xB78C;&#xC5D0;&#xAC8C; &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>api.telegram.org<span class="hljs-regexp">/bot_API_KEY/</span>sendMessage?chat_id=userid&amp;text= SOME_URL_ENCODED_TEXT</code></pre>
 
 
@@ -549,6 +549,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

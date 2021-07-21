@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      149 자
+      271 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -241,28 +241,28 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securitylab.github.com/advisories/GHSL-2021-045-g_bytes_new/">GHSL-2021-045: Integer Overflow in GLib - CVE-2021-27219</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>테스트된 버전</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>&#xD14C;&#xC2A4;&#xD2B8;&#xB41C; &#xBC84;&#xC804;</p>
 <ul>
-<li>Ubuntu 20.04 (x86_64) : 버전 2.64.6-1</li>
-<li>CentOS Stream (x86_64) : 버전 2.56.4-9</li>
+<li>Ubuntu 20.04 (x86_64) : &#xBC84;&#xC804; 2.64.6-1</li>
+<li>CentOS Stream (x86_64) : &#xBC84;&#xC804; 2.56.4-9</li>
 <li>archlinux (x86_64) : 2.66.4-2</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>64비트 플랫폼의 glib에서 암시적 형 변환으로 인한 integer overflow 취약점이 발견되어 세부 정보가 공개되었습니다.</p>
-<p>취약점은 데이터로부터 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.gnome.org/glib/stable/glib-Byte-Arrays.html#GBytes">GBytes</a> 객체를 생성하는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.gnome.org/glib/stable/glib-Byte-Arrays.html#g-bytes-new">g_bytes_new()</a> 함수에 존재합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>64&#xBE44;&#xD2B8; &#xD50C;&#xB7AB;&#xD3FC;&#xC758; glib&#xC5D0;&#xC11C; &#xC554;&#xC2DC;&#xC801; &#xD615; &#xBCC0;&#xD658;&#xC73C;&#xB85C; &#xC778;&#xD55C; integer overflow &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB370;&#xC774;&#xD130;&#xB85C;&#xBD80;&#xD130; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.gnome.org/glib/stable/glib-Byte-Arrays.html#GBytes">GBytes</a> &#xAC1D;&#xCCB4;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://developer.gnome.org/glib/stable/glib-Byte-Arrays.html#g-bytes-new">g_bytes_new()</a> &#xD568;&#xC218;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx">GBytes * g_bytes_new (gconstpointer data, gsize size)
-&#123;
+{
   g_return_val_if_fail (data != NULL || size == <span class="hljs-number">0</span>, NULL);
 
 	<span class="hljs-comment">//integer overflow</span>
   <span class="hljs-keyword">return</span> g_bytes_new_take(g_memdup (data, size), size);  
-&#125;</code></pre>
+}</code></pre>
 
-<p>64bit 자료형인 <code>gsize</code> 형 <code>size</code>를 <code>g_memdup</code> 함수의 두 번째 인자로 사용합니다.</p>
-<pre><code class="hljs c"><span class="hljs-comment">//g_memdup 함수 원형</span>
+<p>64bit &#xC790;&#xB8CC;&#xD615;&#xC778; <code>gsize</code> &#xD615; <code>size</code>&#xB97C; <code>g_memdup</code> &#xD568;&#xC218;&#xC758; &#xB450; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xB85C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs c"><span class="hljs-comment">//g_memdup &#xD568;&#xC218; &#xC6D0;&#xD615;</span>
 g_memdup(gconstpointer mem, guint byte_size);</code></pre>
 
-<p>그러나 <code>g_memdup</code>은 해당 인자를 32bit 자료형 <code>guint</code>으로 받아 암시적 형 변환이 이루어집니다. 이로 인해 훨씬 작은 데이터 버퍼를 포함하는 GBytes 객체를 반환하고 이는 memory corruption 취약점으로 이어질 수 있습니다.</p>
-<p>해당 취약점의 패치 히스토리는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1926/commits">https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1926/commits</a> 에서 확인 가능합니다.</p>
+<p>&#xADF8;&#xB7EC;&#xB098; <code>g_memdup</code>&#xC740; &#xD574;&#xB2F9; &#xC778;&#xC790;&#xB97C; 32bit &#xC790;&#xB8CC;&#xD615; <code>guint</code>&#xC73C;&#xB85C; &#xBC1B;&#xC544; &#xC554;&#xC2DC;&#xC801; &#xD615; &#xBCC0;&#xD658;&#xC774; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;. &#xC774;&#xB85C; &#xC778;&#xD574; &#xD6E8;&#xC52C; &#xC791;&#xC740; &#xB370;&#xC774;&#xD130; &#xBC84;&#xD37C;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xB294; GBytes &#xAC1D;&#xCCB4;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xACE0; &#xC774;&#xB294; memory corruption &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58; &#xD788;&#xC2A4;&#xD1A0;&#xB9AC;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1926/commits">https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1926/commits</a> &#xC5D0;&#xC11C; &#xD655;&#xC778; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -559,6 +559,45 @@ g_memdup(gconstpointer mem, guint byte_size);</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

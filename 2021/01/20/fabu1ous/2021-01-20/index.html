@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      210 자
+      433 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -241,7 +241,7 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://research.checkpoint.com/2021/freakout-leveraging-newest-vulnerabilities-for-creating-a-botnet/">Leveraging Newest Vulnerabilities for creating a Botnet</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>아래 세 프로그램 중 하나라도 사용하고 있는 시스템</p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>&#xC544;&#xB798; &#xC138; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC911; &#xD558;&#xB098;&#xB77C;&#xB3C4; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xB294; &#xC2DC;&#xC2A4;&#xD15C;</p>
 <ul>
 <li><p>TerraMaster TOS &lt; 4.2.06</p>
 </li>
@@ -250,22 +250,22 @@
 <li><p>Liferay Portal &lt; 7.2.1 CE GA2</p>
 </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Check Point는 FreakOut이라는 공격과 공격에 사용되는 악성 프로그램 <code>out.py</code>에 대한 정보를 공개했습니다. FreakOut은 아래 세 가지 CVE를 사용해 타겟 시스템에 <code> out.py</code>라는 악성 파이썬 스크립트를 설치하고 실행합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Check Point&#xB294; FreakOut&#xC774;&#xB77C;&#xB294; &#xACF5;&#xACA9;&#xACFC; &#xACF5;&#xACA9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xC545;&#xC131; &#xD504;&#xB85C;&#xADF8;&#xB7A8; <code>out.py</code>&#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4;&#xB97C; &#xACF5;&#xAC1C;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. FreakOut&#xC740; &#xC544;&#xB798; &#xC138; &#xAC00;&#xC9C0; CVE&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xD0C0;&#xAC9F; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; <code> out.py</code>&#xB77C;&#xB294; &#xC545;&#xC131; &#xD30C;&#xC774;&#xC36C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC124;&#xCE58;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><p>CVE-2020-28188</p>
-<p>TerraMaster TOS(TerraMaster NAS 서버 관리용 운영체제)에서 발견된 RCE 취약점입니다. <code>/include/makecvs.php</code>의 <code>event</code>파라미터의 검증 미흡으로 OS commend injection이 가능합니다.</p>
+<p>TerraMaster TOS(TerraMaster NAS &#xC11C;&#xBC84; &#xAD00;&#xB9AC;&#xC6A9; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;)&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; RCE &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. <code>/include/makecvs.php</code>&#xC758; <code>event</code>&#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC758; &#xAC80;&#xC99D; &#xBBF8;&#xD761;&#xC73C;&#xB85C; OS commend injection&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-3007</p>
-<p>Zend Framework(PHP로 만들어진 웹앱 혹은 서비스를 위한 package)에서 발견된 RCE 취약점입니다. <code>__destruct</code> 메소드와 관련된 객체를 컨트롤할 수 있다면 deserializtion 취약점을 통한 원격 코드 실행까지 이어질 수 있습니다. FreakOut은 <code>callback</code>파라미터 값을 통해 해당 취약점을 악용합니다.</p>
+<p>Zend Framework(PHP&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; &#xC6F9;&#xC571; &#xD639;&#xC740; &#xC11C;&#xBE44;&#xC2A4;&#xB97C; &#xC704;&#xD55C; package)&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; RCE &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. <code>__destruct</code> &#xBA54;&#xC18C;&#xB4DC;&#xC640; &#xAD00;&#xB828;&#xB41C; &#xAC1D;&#xCCB4;&#xB97C; &#xCEE8;&#xD2B8;&#xB864;&#xD560; &#xC218; &#xC788;&#xB2E4;&#xBA74; deserializtion &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD55C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xAE4C;&#xC9C0; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. FreakOut&#xC740; <code>callback</code>&#xD30C;&#xB77C;&#xBBF8;&#xD130; &#xAC12;&#xC744; &#xD1B5;&#xD574; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2020-7961</p>
-<p>Liferay Portal(Java로 작성된 웹앱 플랫폼)에서 발견된 RCE 취약점입니다. JSONWS(Json web service)에 존재하는 untrusted data에 대한 Java unmarshalling 취약점을 악용해 원격 코드 실행을 할 수 있습니다.</p>
+<p>Liferay Portal(Java&#xB85C; &#xC791;&#xC131;&#xB41C; &#xC6F9;&#xC571; &#xD50C;&#xB7AB;&#xD3FC;)&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; RCE &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. JSONWS(Json web service)&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; untrusted data&#xC5D0; &#xB300;&#xD55C; Java unmarshalling &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
-<p>타겟 시스템에 설치된 <code>out.py</code>는 설치될 때마다 다른 방식으로 난독화됩니다. <code>out.py</code>에 감염된 시스템은 IRC를 통해 원격으로 조작할 수 있는 봇넷에 추가되고 아래 2가지 행위에 사용됩니다.</p>
+<p>&#xD0C0;&#xAC9F; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC124;&#xCE58;&#xB41C; <code>out.py</code>&#xB294; &#xC124;&#xCE58;&#xB420; &#xB54C;&#xB9C8;&#xB2E4; &#xB2E4;&#xB978; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xB09C;&#xB3C5;&#xD654;&#xB429;&#xB2C8;&#xB2E4;. <code>out.py</code>&#xC5D0; &#xAC10;&#xC5FC;&#xB41C; &#xC2DC;&#xC2A4;&#xD15C;&#xC740; IRC&#xB97C; &#xD1B5;&#xD574; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xB294; &#xBD07;&#xB137;&#xC5D0; &#xCD94;&#xAC00;&#xB418;&#xACE0; &#xC544;&#xB798; 2&#xAC00;&#xC9C0; &#xD589;&#xC704;&#xC5D0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>추가 감염을 위한 공격서버</li>
-<li>코인 마이닝 서버</li>
+<li>&#xCD94;&#xAC00; &#xAC10;&#xC5FC;&#xC744; &#xC704;&#xD55C; &#xACF5;&#xACA9;&#xC11C;&#xBC84;</li>
+<li>&#xCF54;&#xC778; &#xB9C8;&#xC774;&#xB2DD; &#xC11C;&#xBC84;</li>
 </ol>
 
             </div>
@@ -569,6 +569,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

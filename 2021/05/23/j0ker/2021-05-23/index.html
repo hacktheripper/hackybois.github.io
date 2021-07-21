@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      334 자
+      814 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      16
        분
     </span>
   
@@ -242,18 +242,18 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.tiraniddo.dev/2021/05/dumping-stored-credentials-with.html">Dumping Stored Credentials with SeTrustedCredmanAccessPrivilege</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Windows</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows에서는 <code>Credential Manager</code>를 통해 credential를 조작할 수 있습니다. Credential들은 DPAPI를 통해 보호되며, 시스템에 인증된 사용자만 접근할 수 있습니다.</p>
-<p>예를 들어, Remote Desktop Client에서는 <code>CredWrite</code>라는 API를 통해 domain credential을 저장합니다. 이 때 <code>CREDENTIAL</code> 구조체에 유저명과 비밀번호를 저장하게 되며 type은 <code>CRED_TYPE_DOMAIN_PASSWORD</code>으로 세팅됩니다. 이렇게 저장된 credential들은 <code>CredRead</code>, <code>CredEnumerate</code> 같은 API를 통해 읽어올 수 있지만, <code>CRED_TYPE_DOMAIN_PASSWORD</code>로 type이 세팅되면 credential을 읽어와도 구조적으로 비밀번호를 읽을 수 없게 구현되어 있습니다. NTLM, Kerberos, TSSSP 같이 LSASS 프로세스에서 실행되는 보안 패키지들은 내부 API를 통해 이런 제약 없이 credential 비밀번호에 접근이 가능합니다.</p>
-<p>Credential은 사용자의 <code>DPAPI</code> 키로 암호화되어 파일 형식으로 저장됩니다. 이를 직접적으로 복호화하여 비밀번호를 읽어올<code>수 없는 이유는 사용자의</code>DPAPI<code>키를 사용하더라도 LSASS에서 실행되는 코드에서만 DPAPI를 호출하여 복호화할 수 있도록 구현되어 있기 때문입니다. 따라서</code>Mimikatz<code>같은 툴에서는</code>LSASS`에 코드를 삽입하거나 메모리를 바로 읽어들이는 등 방식을 통해 credential을 읽어들입니다.</p>
-<p>이 글에서 James Forshaw는 <code>LSASS</code>에 코드를 삽입하지 않고 <code>SeTrustedCredmanAccessPrivilege</code> 권한을 이용해 credential을 복호화하는 새로운 방법을 제안합니다.</p>
-<p><code>SeTrustedCredmanAccessPrivilege</code>권한은 사용자가 인증된 사용자로서 <code>Credential Manager</code>에 접근할 수 있도록 하는 권한입니다. LSASRV.dll에 구현되어 있는 코드를 보면 <code>CredpIsRpcClientTrusted</code> 함수에서 해당 권한을 체크하는데, 이 함수는 <code>CredrReadByTokenHandle</code>와 <code>CredrBackupCredentials</code> 이 두 함수에서만 호출됩니다. 이 중 <code>CredBackupCredentials</code> 함수는 사용자의 credential을 백업하는 기능을 제공하며 <code>SeTrustedCredmanAccessPrivilege</code> 권한만 가지고 있으면 호출이 가능합니다. <code>CREDWIZ.exe</code> 프로그램에서 해당 함수를 사용합니다. <code>CREDWIZ.exe</code>를 실행하면 백업할 경로를 지정하고 <code>Winlogon</code> 프로세스에 RPC를 호출하여 credential을 백업하는데, 이 때 백업하는 데이터에는 모든 정보가 포함되어 있습니다. 이를 다시 복구하며 모든 정보가 담겨 있는 credential을 얻을 수 있습니다.</p>
-<p>따라서 관리자 권한으로 아래 과정을 통해 모든 사용자의 credential을 획득할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Windows&#xC5D0;&#xC11C;&#xB294; <code>Credential Manager</code>&#xB97C; &#xD1B5;&#xD574; credential&#xB97C; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Credential&#xB4E4;&#xC740; DPAPI&#xB97C; &#xD1B5;&#xD574; &#xBCF4;&#xD638;&#xB418;&#xBA70;, &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC778;&#xC99D;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xB9CC; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC608;&#xB97C; &#xB4E4;&#xC5B4;, Remote Desktop Client&#xC5D0;&#xC11C;&#xB294; <code>CredWrite</code>&#xB77C;&#xB294; API&#xB97C; &#xD1B5;&#xD574; domain credential&#xC744; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C; <code>CREDENTIAL</code> &#xAD6C;&#xC870;&#xCCB4;&#xC5D0; &#xC720;&#xC800;&#xBA85;&#xACFC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xAC8C; &#xB418;&#xBA70; type&#xC740; <code>CRED_TYPE_DOMAIN_PASSWORD</code>&#xC73C;&#xB85C; &#xC138;&#xD305;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB807;&#xAC8C; &#xC800;&#xC7A5;&#xB41C; credential&#xB4E4;&#xC740; <code>CredRead</code>, <code>CredEnumerate</code> &#xAC19;&#xC740; API&#xB97C; &#xD1B5;&#xD574; &#xC77D;&#xC5B4;&#xC62C; &#xC218; &#xC788;&#xC9C0;&#xB9CC;, <code>CRED_TYPE_DOMAIN_PASSWORD</code>&#xB85C; type&#xC774; &#xC138;&#xD305;&#xB418;&#xBA74; credential&#xC744; &#xC77D;&#xC5B4;&#xC640;&#xB3C4; &#xAD6C;&#xC870;&#xC801;&#xC73C;&#xB85C; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC77D;&#xC744; &#xC218; &#xC5C6;&#xAC8C; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. NTLM, Kerberos, TSSSP &#xAC19;&#xC774; LSASS &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xBCF4;&#xC548; &#xD328;&#xD0A4;&#xC9C0;&#xB4E4;&#xC740; &#xB0B4;&#xBD80; API&#xB97C; &#xD1B5;&#xD574; &#xC774;&#xB7F0; &#xC81C;&#xC57D; &#xC5C6;&#xC774; credential &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xC5D0; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Credential&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xC758; <code>DPAPI</code> &#xD0A4;&#xB85C; &#xC554;&#xD638;&#xD654;&#xB418;&#xC5B4; &#xD30C;&#xC77C; &#xD615;&#xC2DD;&#xC73C;&#xB85C; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xBCF5;&#xD638;&#xD654;&#xD558;&#xC5EC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xC77D;&#xC5B4;&#xC62C;<code>&#xC218; &#xC5C6;&#xB294; &#xC774;&#xC720;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xC758;</code>DPAPI<code>&#xD0A4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB354;&#xB77C;&#xB3C4; LSASS&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C;&#xB9CC; DPAPI&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xBCF5;&#xD638;&#xD654;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC785;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C;</code>Mimikatz<code>&#xAC19;&#xC740; &#xD234;&#xC5D0;&#xC11C;&#xB294;</code>LSASS`&#xC5D0; &#xCF54;&#xB4DC;&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xAC70;&#xB098; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xBC14;&#xB85C; &#xC77D;&#xC5B4;&#xB4E4;&#xC774;&#xB294; &#xB4F1; &#xBC29;&#xC2DD;&#xC744; &#xD1B5;&#xD574; credential&#xC744; &#xC77D;&#xC5B4;&#xB4E4;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774; &#xAE00;&#xC5D0;&#xC11C; James Forshaw&#xB294; <code>LSASS</code>&#xC5D0; &#xCF54;&#xB4DC;&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xC9C0; &#xC54A;&#xACE0; <code>SeTrustedCredmanAccessPrivilege</code> &#xAD8C;&#xD55C;&#xC744; &#xC774;&#xC6A9;&#xD574; credential&#xC744; &#xBCF5;&#xD638;&#xD654;&#xD558;&#xB294; &#xC0C8;&#xB85C;&#xC6B4; &#xBC29;&#xBC95;&#xC744; &#xC81C;&#xC548;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>SeTrustedCredmanAccessPrivilege</code>&#xAD8C;&#xD55C;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC778;&#xC99D;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xB85C;&#xC11C; <code>Credential Manager</code>&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xD558;&#xB294; &#xAD8C;&#xD55C;&#xC785;&#xB2C8;&#xB2E4;. LSASRV.dll&#xC5D0; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xBCF4;&#xBA74; <code>CredpIsRpcClientTrusted</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xAD8C;&#xD55C;&#xC744; &#xCCB4;&#xD06C;&#xD558;&#xB294;&#xB370;, &#xC774; &#xD568;&#xC218;&#xB294; <code>CredrReadByTokenHandle</code>&#xC640; <code>CredrBackupCredentials</code> &#xC774; &#xB450; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB9CC; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;. &#xC774; &#xC911; <code>CredBackupCredentials</code> &#xD568;&#xC218;&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xC758; credential&#xC744; &#xBC31;&#xC5C5;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xBA70; <code>SeTrustedCredmanAccessPrivilege</code> &#xAD8C;&#xD55C;&#xB9CC; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC73C;&#xBA74; &#xD638;&#xCD9C;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. <code>CREDWIZ.exe</code> &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. <code>CREDWIZ.exe</code>&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xBC31;&#xC5C5;&#xD560; &#xACBD;&#xB85C;&#xB97C; &#xC9C0;&#xC815;&#xD558;&#xACE0; <code>Winlogon</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; RPC&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; credential&#xC744; &#xBC31;&#xC5C5;&#xD558;&#xB294;&#xB370;, &#xC774; &#xB54C; &#xBC31;&#xC5C5;&#xD558;&#xB294; &#xB370;&#xC774;&#xD130;&#xC5D0;&#xB294; &#xBAA8;&#xB4E0; &#xC815;&#xBCF4;&#xAC00; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xB2E4;&#xC2DC; &#xBCF5;&#xAD6C;&#xD558;&#xBA70; &#xBAA8;&#xB4E0; &#xC815;&#xBCF4;&#xAC00; &#xB2F4;&#xACA8; &#xC788;&#xB294; credential&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB530;&#xB77C;&#xC11C; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC544;&#xB798; &#xACFC;&#xC815;&#xC744; &#xD1B5;&#xD574; &#xBAA8;&#xB4E0; &#xC0AC;&#xC6A9;&#xC790;&#xC758; credential&#xC744; &#xD68D;&#xB4DD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>WinLogon</code> 프로세스에 접근해 토큰의 핸들을 획득합니다.</li>
-<li>획득한 토큰을 Impersonation 토큰으로 복사하고 <code>SeTrustedCredmanAccessPrivilege</code> 권한을 활성화합니다.</li>
-<li>인증된 사용자의 토큰을 Open 합니다.</li>
-<li>Impersonation된 <code>WinLogon</code> 토큰을 활용하여 <code>CredBackupCredentials</code> 함수를 호출하고 원하는 경로에 crendential을 저장합니다. 이 때 백업 시 비밀번호는 NULL로 설정할 수 있어 추가적인 복호화할 수고를 덜 수 있습니다.</li>
-<li>Impersonation 상태에서 <code>CryptUnprotectData</code> 함수를 통해 credential을 복호화합니다.</li>
+<li><code>WinLogon</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD574; &#xD1A0;&#xD070;&#xC758; &#xD578;&#xB4E4;&#xC744; &#xD68D;&#xB4DD;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD68D;&#xB4DD;&#xD55C; &#xD1A0;&#xD070;&#xC744; Impersonation &#xD1A0;&#xD070;&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xACE0; <code>SeTrustedCredmanAccessPrivilege</code> &#xAD8C;&#xD55C;&#xC744; &#xD65C;&#xC131;&#xD654;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xC778;&#xC99D;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xD1A0;&#xD070;&#xC744; Open &#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>Impersonation&#xB41C; <code>WinLogon</code> &#xD1A0;&#xD070;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; <code>CredBackupCredentials</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xACE0; &#xC6D0;&#xD558;&#xB294; &#xACBD;&#xB85C;&#xC5D0; crendential&#xC744; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C; &#xBC31;&#xC5C5; &#xC2DC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB294; NULL&#xB85C; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC5B4; &#xCD94;&#xAC00;&#xC801;&#xC778; &#xBCF5;&#xD638;&#xD654;&#xD560; &#xC218;&#xACE0;&#xB97C; &#xB35C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>Impersonation &#xC0C1;&#xD0DC;&#xC5D0;&#xC11C; <code>CryptUnprotectData</code> &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; credential&#xC744; &#xBCF5;&#xD638;&#xD654;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -559,6 +559,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

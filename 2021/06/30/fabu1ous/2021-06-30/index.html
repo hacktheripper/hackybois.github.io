@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      120 자
+      259 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -242,7 +242,7 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2021/CVE-2021-1905.html">CVE-2021-1905: Qualcomm Adreno GPU memory mapping use-after-free</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Qualcomm Adreno GPU</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Qualcomm Adreno GPU는 여러 프로세스의 메모리 매핑을 동싱에 처리하는 과정에서 Use-after-free 취약점이 발생합니다. GPU는 여러 VMA(Linux Virtual Memory Access)와 메모리 매핑을 공유하고 하나의 매핑이 닫히면 <code>kpsl_gpumem_vm_close</code> 함수를 호출해 <code>entry-&gt;memdesc.useraddr</code> 필드를 초기화합니다. 문제는 해당 필드가 여러 VMA에 공유되며 entry가 이미 매핑되었는지 확인하는 데 사용되므로 나머지 VMA에 의도하지 않은 버그가 발생합니다. Linux kernel mmap implementation에 따라 서로 다른 프로세스에서 동시에 호출이 불가능한 함수 <code>kpsl_get_unmapped_area</code>를 두 프로세스에서 같은 GPU 매핑에 대해 경쟁하도록 race condition을 발생시킬 수 있습니다. 따라서 구조체 <code>kpsl_mem_entry</code>가 서로 다른 두 프로세스에서 동시에 사용되어 use-after-free로 이어질 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Qualcomm Adreno GPU&#xB294; &#xC5EC;&#xB7EC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xBA54;&#xBAA8;&#xB9AC; &#xB9E4;&#xD551;&#xC744; &#xB3D9;&#xC2F1;&#xC5D0; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; Use-after-free &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. GPU&#xB294; &#xC5EC;&#xB7EC; VMA(Linux Virtual Memory Access)&#xC640; &#xBA54;&#xBAA8;&#xB9AC; &#xB9E4;&#xD551;&#xC744; &#xACF5;&#xC720;&#xD558;&#xACE0; &#xD558;&#xB098;&#xC758; &#xB9E4;&#xD551;&#xC774; &#xB2EB;&#xD788;&#xBA74; <code>kpsl_gpumem_vm_close</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD574; <code>entry-&gt;memdesc.useraddr</code> &#xD544;&#xB4DC;&#xB97C; &#xCD08;&#xAE30;&#xD654;&#xD569;&#xB2C8;&#xB2E4;. &#xBB38;&#xC81C;&#xB294; &#xD574;&#xB2F9; &#xD544;&#xB4DC;&#xAC00; &#xC5EC;&#xB7EC; VMA&#xC5D0; &#xACF5;&#xC720;&#xB418;&#xBA70; entry&#xAC00; &#xC774;&#xBBF8; &#xB9E4;&#xD551;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xB418;&#xBBC0;&#xB85C; &#xB098;&#xBA38;&#xC9C0; VMA&#xC5D0; &#xC758;&#xB3C4;&#xD558;&#xC9C0; &#xC54A;&#xC740; &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. Linux kernel mmap implementation&#xC5D0; &#xB530;&#xB77C; &#xC11C;&#xB85C; &#xB2E4;&#xB978; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xB3D9;&#xC2DC;&#xC5D0; &#xD638;&#xCD9C;&#xC774; &#xBD88;&#xAC00;&#xB2A5;&#xD55C; &#xD568;&#xC218; <code>kpsl_get_unmapped_area</code>&#xB97C; &#xB450; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xAC19;&#xC740; GPU &#xB9E4;&#xD551;&#xC5D0; &#xB300;&#xD574; &#xACBD;&#xC7C1;&#xD558;&#xB3C4;&#xB85D; race condition&#xC744; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xAD6C;&#xC870;&#xCCB4; <code>kpsl_mem_entry</code>&#xAC00; &#xC11C;&#xB85C; &#xB2E4;&#xB978; &#xB450; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xB3D9;&#xC2DC;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xC5B4; use-after-free&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -543,6 +543,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

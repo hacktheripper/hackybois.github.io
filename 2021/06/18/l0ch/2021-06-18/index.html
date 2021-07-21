@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      156 자
+      276 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -242,31 +242,31 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zerodayinitiative.com/blog/2021/6/15/zdi-21-502-an-information-disclosure-bug-in-isc-bind-server">ZDI-21-502: AN INFORMATION DISCLOSURE BUG IN ISC BIND SERVER</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>BIND 9.11.31, 9.16.15 이전 </li>
+<li>BIND 9.11.31, 9.16.15 &#xC774;&#xC804; </li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ISC사의 DNS 서버 소프트웨어인 BIND에서 발견된 정보 유출 취약점의 세부 정보가 공개되었습니다.</p>
-<p><code>der_match_tag_and_length()</code> 함수는 태그를 매칭하고 네트워크 패킷에서 길이와 같은 필드를 파싱하는 함수로, 취약점이 발생하는 코드는 아래와 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ISC&#xC0AC;&#xC758; DNS &#xC11C;&#xBC84; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xC778; BIND&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xC815;&#xBCF4; &#xC720;&#xCD9C; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>der_match_tag_and_length()</code> &#xD568;&#xC218;&#xB294; &#xD0DC;&#xADF8;&#xB97C; &#xB9E4;&#xCE6D;&#xD558;&#xACE0; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xD328;&#xD0B7;&#xC5D0;&#xC11C; &#xAE38;&#xC774;&#xC640; &#xAC19;&#xC740; &#xD544;&#xB4DC;&#xB97C; &#xD30C;&#xC2F1;&#xD558;&#xB294; &#xD568;&#xC218;&#xB85C;, &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx"><span class="hljs-keyword">static</span> int der_match_tag_and_length(<span class="hljs-keyword">const</span> unsigned char *p, size_t len, Der_class xclass, 
 					                Der_type type, int tag, size_t *length_ret,  size_t *size) 
-&#123; 
+{ 
     size_t l, ret = <span class="hljs-number">0</span>; 
     int e; 
  
     e = der_match_tag(p, len, xclass, type, tag, &amp;l); 
-    <span class="hljs-keyword">if</span> (e) &#123; 
+    <span class="hljs-keyword">if</span> (e) { 
         <span class="hljs-keyword">return</span> (e); 
-    &#125; 
+    } 
     p += l; 
     len -= l; 
     ret += l; 
     e = der_get_length(p, len, length_ret, &amp;l);  <span class="hljs-comment">// (1) </span>
-    <span class="hljs-keyword">if</span> (e) &#123; 
+    <span class="hljs-keyword">if</span> (e) { 
         <span class="hljs-keyword">return</span> (e); 
-    &#125; 
+    } 
 ...
-&#125;</code></pre>
+}</code></pre>
 
-<p>해당 함수에서 호출하는 <code>der_get_length()</code> 함수의 인자 중 <code>length_ret</code>은 호출자에서 값에 대한 검증이 이뤄져야 하지만 해당 함수에서는 검증을 하지 않고 반환합니다. <code>der_match_tag_and_length()</code> 함수에서 반환된 검증되지 않은 길이 값은 이후 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://datatracker.ietf.org/doc/html/rfc4178#section-4.2.1">negTokenInit</a>을 디코딩하는 <code>decode_NegTokenInit()</code> 함수 내의 여러 검사에 사용되어 OOB Access로 이어질 수 있습니다.</p>
+<p>&#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xD638;&#xCD9C;&#xD558;&#xB294; <code>der_get_length()</code> &#xD568;&#xC218;&#xC758; &#xC778;&#xC790; &#xC911; <code>length_ret</code>&#xC740; &#xD638;&#xCD9C;&#xC790;&#xC5D0;&#xC11C; &#xAC12;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC99D;&#xC774; &#xC774;&#xB904;&#xC838;&#xC57C; &#xD558;&#xC9C0;&#xB9CC; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; &#xAC80;&#xC99D;&#xC744; &#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. <code>der_match_tag_and_length()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xBC18;&#xD658;&#xB41C; &#xAC80;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xAE38;&#xC774; &#xAC12;&#xC740; &#xC774;&#xD6C4; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://datatracker.ietf.org/doc/html/rfc4178#section-4.2.1">negTokenInit</a>&#xC744; &#xB514;&#xCF54;&#xB529;&#xD558;&#xB294; <code>decode_NegTokenInit()</code> &#xD568;&#xC218; &#xB0B4;&#xC758; &#xC5EC;&#xB7EC; &#xAC80;&#xC0AC;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xC5B4; OOB Access&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -565,6 +565,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

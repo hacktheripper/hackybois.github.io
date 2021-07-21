@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      249 자
+      467 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      9
        분
     </span>
   
@@ -242,17 +242,17 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.crowdstrike.com/blog/pwn2own-tale-of-a-bug-found-and-lost-again/">Pwn2Own: A Tale of a Bug Found and Lost Again</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>My Cloud Pro Series PR4100 2.31.204 (2019-12-16), 2.40.155 (2020-07-28), 2.40.157 (2020-10-20)</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>하드디스크 생산 업체 Western Digital(WD)의 대용량 네트워크 스토리지 My Cloud Pro 제품에서 스택 버퍼 오버플로우를 통한 root 권한 원격 코드 실행 취약점의 세부 정보가 공개되었습니다.</p>
-<p>CGI 바이너리 <code>login_mgr.cgi</code>는 로그인 프로세스와 관련된 여러 루틴을 수행합니다.</p>
-<p><code>login_mar.cgi</code>의 <code>wd_login()</code> 함수는 ID와 패스워드를 각각 <code>username</code>과 <code>pwd</code> 매개 변수로 받아 인증 시도를 하는데, 이때 <code>pwd</code>는 Base64 인코딩 된 값이어야 합니다. 이후 <code>cgiFormString()</code> 함수에서 <code>username</code>과 <code>pwd</code>를 스택 버퍼 인 <code>username</code>과 <code>pwd_b64</code>에 복사합니다.  <code>base64decode()</code> 함수는 <code>pwd_b64</code>를 Base64 디코딩해 <code>pwd_decoded</code>에 저장하며 디코딩은 내부적으로 glibc의 <code>b64_pton()</code>에서 이루어집니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD558;&#xB4DC;&#xB514;&#xC2A4;&#xD06C; &#xC0DD;&#xC0B0; &#xC5C5;&#xCCB4; Western Digital(WD)&#xC758; &#xB300;&#xC6A9;&#xB7C9; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC2A4;&#xD1A0;&#xB9AC;&#xC9C0; My Cloud Pro &#xC81C;&#xD488;&#xC5D0;&#xC11C; &#xC2A4;&#xD0DD; &#xBC84;&#xD37C; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0;&#xB97C; &#xD1B5;&#xD55C; root &#xAD8C;&#xD55C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>CGI &#xBC14;&#xC774;&#xB108;&#xB9AC; <code>login_mgr.cgi</code>&#xB294; &#xB85C;&#xADF8;&#xC778; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC640; &#xAD00;&#xB828;&#xB41C; &#xC5EC;&#xB7EC; &#xB8E8;&#xD2F4;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p><code>login_mar.cgi</code>&#xC758; <code>wd_login()</code> &#xD568;&#xC218;&#xB294; ID&#xC640; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xAC01;&#xAC01; <code>username</code>&#xACFC; <code>pwd</code> &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xB85C; &#xBC1B;&#xC544; &#xC778;&#xC99D; &#xC2DC;&#xB3C4;&#xB97C; &#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; <code>pwd</code>&#xB294; Base64 &#xC778;&#xCF54;&#xB529; &#xB41C; &#xAC12;&#xC774;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; <code>cgiFormString()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>username</code>&#xACFC; <code>pwd</code>&#xB97C; &#xC2A4;&#xD0DD; &#xBC84;&#xD37C; &#xC778; <code>username</code>&#xACFC; <code>pwd_b64</code>&#xC5D0; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.  <code>base64decode()</code> &#xD568;&#xC218;&#xB294; <code>pwd_b64</code>&#xB97C; Base64 &#xB514;&#xCF54;&#xB529;&#xD574; <code>pwd_decoded</code>&#xC5D0; &#xC800;&#xC7A5;&#xD558;&#xBA70; &#xB514;&#xCF54;&#xB529;&#xC740; &#xB0B4;&#xBD80;&#xC801;&#xC73C;&#xB85C; glibc&#xC758; <code>b64_pton()</code>&#xC5D0;&#xC11C; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">char</span> pwd_decoded[<span class="hljs-number">64</span>]; <span class="hljs-comment">// [rsp+90h] [rbp-1178h] BYREF</span>
 <span class="hljs-keyword">char</span> pwd_b64[<span class="hljs-number">256</span>];    <span class="hljs-comment">// [rsp+D0h] [rbp-1138h] BYREF</span></code></pre>
 
-<p>디코딩 과정에서 디코딩 전 패스워드인 <code>pwd_b64</code>의 크기는 256 bytes이지만 디코딩된 패스워드가 복사되는 <code>pwd_decoded</code>의 크기는 64 bytes입니다. 256 bytes 길이의 base64 인코딩 값의 최대 디코딩 문자열 길이는 192 bytes로 64 bytes 크기인 <code>pwd_decoded</code>에 128 bytes 만큼 데이터를 더 쓸 수 있습니다.</p>
+<p>&#xB514;&#xCF54;&#xB529; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xB514;&#xCF54;&#xB529; &#xC804; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xC778; <code>pwd_b64</code>&#xC758; &#xD06C;&#xAE30;&#xB294; 256 bytes&#xC774;&#xC9C0;&#xB9CC; &#xB514;&#xCF54;&#xB529;&#xB41C; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xAC00; &#xBCF5;&#xC0AC;&#xB418;&#xB294; <code>pwd_decoded</code>&#xC758; &#xD06C;&#xAE30;&#xB294; 64 bytes&#xC785;&#xB2C8;&#xB2E4;. 256 bytes &#xAE38;&#xC774;&#xC758; base64 &#xC778;&#xCF54;&#xB529; &#xAC12;&#xC758; &#xCD5C;&#xB300; &#xB514;&#xCF54;&#xB529; &#xBB38;&#xC790;&#xC5F4; &#xAE38;&#xC774;&#xB294; 192 bytes&#xB85C; 64 bytes &#xD06C;&#xAE30;&#xC778; <code>pwd_decoded</code>&#xC5D0; 128 bytes &#xB9CC;&#xD07C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB354; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">char</span> password_copy_shadow[<span class="hljs-number">80</span>]; <span class="hljs-comment">// [rsp+ 0h] [rbp-C8h] BYREF</span>
 <span class="hljs-keyword">char</span> password_copy_input[<span class="hljs-number">88</span>];  <span class="hljs-comment">// [rsp+50h] [rbp-78h] BYREF</span></code></pre>
 
-<p>이후 <code>check_login()</code> 함수에서 <code>/etc/shadow</code>의 패스워드 해시와 비교하기 위해 <code>strcpy()</code>로 <code>pwd_decoded</code> 에서 <code>password_copy_input</code>으로 복사합니다. 이때 이전 오버플로 취약점으로 인해 192 bytes 크기의 데이터가 있는 <code>pwd_decoded</code>에서 복사하고 이는 <code>check_login()</code>의 반환 주소를 덮어 원격 코드 실행으로 이어질 수 있습니다.</p>
+<p>&#xC774;&#xD6C4; <code>check_login()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>/etc/shadow</code>&#xC758; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xD574;&#xC2DC;&#xC640; &#xBE44;&#xAD50;&#xD558;&#xAE30; &#xC704;&#xD574; <code>strcpy()</code>&#xB85C; <code>pwd_decoded</code> &#xC5D0;&#xC11C; <code>password_copy_input</code>&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xC774;&#xC804; &#xC624;&#xBC84;&#xD50C;&#xB85C; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xC778;&#xD574; 192 bytes &#xD06C;&#xAE30;&#xC758; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC788;&#xB294; <code>pwd_decoded</code>&#xC5D0;&#xC11C; &#xBCF5;&#xC0AC;&#xD558;&#xACE0; &#xC774;&#xB294; <code>check_login()</code>&#xC758; &#xBC18;&#xD658; &#xC8FC;&#xC18C;&#xB97C; &#xB36E;&#xC5B4; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -555,6 +555,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      199 자
+      470 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      9
        분
     </span>
   
@@ -244,10 +244,10 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>안티 바이러스는 기본적으로 signature detection, heuristics detection, in memory detection을 통해 악성코드를 탐지합니다.</p>
-<p>signature의 경우 이미 알려진 악성코드의 파일 전체의 해쉬 값이나 악성 행위를 하는 부분의 일부 해쉬 값과 비교하여 악성코드를 탐지합니다. heuristics는 signature 탐지 다음 단계에서 진행되는 것으로 악성코드를 에뮬레이팅하여 어셈블리나 코드를 살펴보고 어떠한 행위를 하는지 확인하여 악성코드를 탐지합니다. 하지만, 디스크에 파일이 없는 fileless 악성코드(powershell, vba macro, reflection for c# assembly)의 경우 Microsoft Defender는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows/win32/amsi/antimalware-scan-interface-portal">AMSI</a> 스캔을 통해 악성코드를 탐지합니다.</p>
-<p>signature detection을 우회하기 위해서는 어떠한 부분을 안티 바이러스가 악성코드로 판단했는지 알아내야 합니다. AntiScan.me, VirusTotal에서 <code>DefenderCheck</code>, <code>Find-AVSignature</code> 등을 활용하여 판단하는 부분을 찾아낸 후 해당 문자열을 리팩터링하거나 어셈블리를 수정할 수 있지만 각 안티 바이러스마다 수행하거나 파일이 손상될 가능성이 존재합니다. 따라서 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/mkaring/ConfuserEx">ConfuserEx</a> 같은 도구를 통해 코드를 난독화하여 signature detection을 우회할 수 있습니다.</p>
-<p>C#으로 작성된 악성코드의 경우 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Flangvik/NetLoader">NetLoader</a>를 사용하여 heuristics detection과 in memory detection을 우회할 수 있습니다. NetLoader는 C# 어셈블리를 경로, URL이나 SM 공유에서 reflection을 통해 로드합니다. 디스크에 악성 파일이 존재하지 않아 heuristics detection을 우회할 수 있고 Microsoft에서 NetLoader에 signature를 추가하지 않아 in memory detection 또한 우회할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; signature detection, heuristics detection, in memory detection&#xC744; &#xD1B5;&#xD574; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xD0D0;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>signature&#xC758; &#xACBD;&#xC6B0; &#xC774;&#xBBF8; &#xC54C;&#xB824;&#xC9C4; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xC758; &#xD30C;&#xC77C; &#xC804;&#xCCB4;&#xC758; &#xD574;&#xC26C; &#xAC12;&#xC774;&#xB098; &#xC545;&#xC131; &#xD589;&#xC704;&#xB97C; &#xD558;&#xB294; &#xBD80;&#xBD84;&#xC758; &#xC77C;&#xBD80; &#xD574;&#xC26C; &#xAC12;&#xACFC; &#xBE44;&#xAD50;&#xD558;&#xC5EC; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xD0D0;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;. heuristics&#xB294; signature &#xD0D0;&#xC9C0; &#xB2E4;&#xC74C; &#xB2E8;&#xACC4;&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xB418;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xC5D0;&#xBBAC;&#xB808;&#xC774;&#xD305;&#xD558;&#xC5EC; &#xC5B4;&#xC148;&#xBE14;&#xB9AC;&#xB098; &#xCF54;&#xB4DC;&#xB97C; &#xC0B4;&#xD3B4;&#xBCF4;&#xACE0; &#xC5B4;&#xB5A0;&#xD55C; &#xD589;&#xC704;&#xB97C; &#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC5EC; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xD0D0;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC;, &#xB514;&#xC2A4;&#xD06C;&#xC5D0; &#xD30C;&#xC77C;&#xC774; &#xC5C6;&#xB294; fileless &#xC545;&#xC131;&#xCF54;&#xB4DC;(powershell, vba macro, reflection for c# assembly)&#xC758; &#xACBD;&#xC6B0; Microsoft Defender&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/windows/win32/amsi/antimalware-scan-interface-portal">AMSI</a> &#xC2A4;&#xCE94;&#xC744; &#xD1B5;&#xD574; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xD0D0;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>signature detection&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xC5B4;&#xB5A0;&#xD55C; &#xBD80;&#xBD84;&#xC744; &#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xAC00; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB85C; &#xD310;&#xB2E8;&#xD588;&#xB294;&#xC9C0; &#xC54C;&#xC544;&#xB0B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. AntiScan.me, VirusTotal&#xC5D0;&#xC11C; <code>DefenderCheck</code>, <code>Find-AVSignature</code> &#xB4F1;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xC5EC; &#xD310;&#xB2E8;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC744; &#xCC3E;&#xC544;&#xB0B8; &#xD6C4; &#xD574;&#xB2F9; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xB9AC;&#xD329;&#xD130;&#xB9C1;&#xD558;&#xAC70;&#xB098; &#xC5B4;&#xC148;&#xBE14;&#xB9AC;&#xB97C; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xC9C0;&#xB9CC; &#xAC01; &#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xB9C8;&#xB2E4; &#xC218;&#xD589;&#xD558;&#xAC70;&#xB098; &#xD30C;&#xC77C;&#xC774; &#xC190;&#xC0C1;&#xB420; &#xAC00;&#xB2A5;&#xC131;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/mkaring/ConfuserEx">ConfuserEx</a> &#xAC19;&#xC740; &#xB3C4;&#xAD6C;&#xB97C; &#xD1B5;&#xD574; &#xCF54;&#xB4DC;&#xB97C; &#xB09C;&#xB3C5;&#xD654;&#xD558;&#xC5EC; signature detection&#xC744; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>C#&#xC73C;&#xB85C; &#xC791;&#xC131;&#xB41C; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xC758; &#xACBD;&#xC6B0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Flangvik/NetLoader">NetLoader</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; heuristics detection&#xACFC; in memory detection&#xC744; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. NetLoader&#xB294; C# &#xC5B4;&#xC148;&#xBE14;&#xB9AC;&#xB97C; &#xACBD;&#xB85C;, URL&#xC774;&#xB098; SM &#xACF5;&#xC720;&#xC5D0;&#xC11C; reflection&#xC744; &#xD1B5;&#xD574; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;. &#xB514;&#xC2A4;&#xD06C;&#xC5D0; &#xC545;&#xC131; &#xD30C;&#xC77C;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xC544; heuristics detection&#xC744; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xACE0; Microsoft&#xC5D0;&#xC11C; NetLoader&#xC5D0; signature&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC9C0; &#xC54A;&#xC544; in memory detection &#xB610;&#xD55C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -554,6 +554,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

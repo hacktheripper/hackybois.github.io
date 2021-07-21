@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 자
+      3.2k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      29
+      64
        분
     </span>
   
@@ -241,9 +241,9 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <blockquote>
-<p>원문 글 : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://winternl.com/memfuck/">MemFuck: Bypassing User-Mode Hooks</a></p>
+<p>&#xC6D0;&#xBB38; &#xAE00; : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://winternl.com/memfuck/">MemFuck: Bypassing User-Mode Hooks</a></p>
 </blockquote>
-<h2 id="서문"><a href="#서문" class="headerlink" title="서문"></a>서문</h2><p>동적 악성코드 분석은 많은 AV/EDR/MDS에서 악성 프로그램을 탐지하는데 자주 사용하는 방식이다. 동적 분석은 정적 분석과 달리 실행 과정에서 만들어진 윈도우 API 호출을 캡처하고 분석하며 정적 분석보다 탐지율이 높다. system call을 캡처하는  많은 기술이 있지만 가장 많이 사용하는 것은 user-level hook이다. 이러한 hook은 악성 기능을 분석하기 위해 함수 호출을 가로챈다. 임의 실행 파일에서 API 호출의 시퀀스는 다음과 같다.</p>
+<h2 id="&#xC11C;&#xBB38;"><a href="#&#xC11C;&#xBB38;" class="headerlink" title="&#xC11C;&#xBB38;"></a>&#xC11C;&#xBB38;</h2><p>&#xB3D9;&#xC801; &#xC545;&#xC131;&#xCF54;&#xB4DC; &#xBD84;&#xC11D;&#xC740; &#xB9CE;&#xC740; AV/EDR/MDS&#xC5D0;&#xC11C; &#xC545;&#xC131; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xD0D0;&#xC9C0;&#xD558;&#xB294;&#xB370; &#xC790;&#xC8FC; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xBC29;&#xC2DD;&#xC774;&#xB2E4;. &#xB3D9;&#xC801; &#xBD84;&#xC11D;&#xC740; &#xC815;&#xC801; &#xBD84;&#xC11D;&#xACFC; &#xB2EC;&#xB9AC; &#xC2E4;&#xD589; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; &#xC708;&#xB3C4;&#xC6B0; API &#xD638;&#xCD9C;&#xC744; &#xCEA1;&#xCC98;&#xD558;&#xACE0; &#xBD84;&#xC11D;&#xD558;&#xBA70; &#xC815;&#xC801; &#xBD84;&#xC11D;&#xBCF4;&#xB2E4; &#xD0D0;&#xC9C0;&#xC728;&#xC774; &#xB192;&#xB2E4;. system call&#xC744; &#xCEA1;&#xCC98;&#xD558;&#xB294;  &#xB9CE;&#xC740; &#xAE30;&#xC220;&#xC774; &#xC788;&#xC9C0;&#xB9CC; &#xAC00;&#xC7A5; &#xB9CE;&#xC774; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC740; user-level hook&#xC774;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; hook&#xC740; &#xC545;&#xC131; &#xAE30;&#xB2A5;&#xC744; &#xBD84;&#xC11D;&#xD558;&#xAE30; &#xC704;&#xD574; &#xD568;&#xC218; &#xD638;&#xCD9C;&#xC744; &#xAC00;&#xB85C;&#xCC48;&#xB2E4;. &#xC784;&#xC758; &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; API &#xD638;&#xCD9C;&#xC758; &#xC2DC;&#xD000;&#xC2A4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
 <pre><code class="hljs ebnf"><span class="hljs-attribute">OpenProcess</span>
 <span class="hljs-attribute">VirtualAllocEx</span>
 <span class="hljs-attribute">WriteProcessMemory</span>
@@ -251,62 +251,62 @@
 <span class="hljs-attribute">QueueUserAPC</span>
 <span class="hljs-attribute">NtAlertResumeThread</span></code></pre>
 
-<p>안티 바이러스들은 호출이나 그 조합을 기반으로 악성 행위를 정의한다. 안티 바이러스의 입장에서 특정한 호출 조합은 코드 인젝션이며 대부분 악의적이거나 원하지 않는 행동으로 판단된다.</p>
-<p>user-mode hook은 안티 바이러스와 NGAV, EDR, sandbox, anti-cheat, DRM 등을 포함한 많은 보안 제품과 툴에서 사용된다. user-mode hook은 구현하기 쉽고, 안정적이고, 간단하며 성능 오버헤드가 적다.</p>
-<p>대부분 user-land hook은 inline hook이며 control flow를 custom handler로 리다이렉트 시키기 위한 대상 함수 rewrite를 포함한다. 핸들러의 내부에서 파라미터들은 보존되고 요청된 함수를 실행하거나 분석할지 결정할 수 있다. 이것들은 잘 문서화되어 있으므로 이러한 개념에 익숙할 것이라고 가정할 것이다.</p>
+<p>&#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xB4E4;&#xC740; &#xD638;&#xCD9C;&#xC774;&#xB098; &#xADF8; &#xC870;&#xD569;&#xC744; &#xAE30;&#xBC18;&#xC73C;&#xB85C; &#xC545;&#xC131; &#xD589;&#xC704;&#xB97C; &#xC815;&#xC758;&#xD55C;&#xB2E4;. &#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xC758; &#xC785;&#xC7A5;&#xC5D0;&#xC11C; &#xD2B9;&#xC815;&#xD55C; &#xD638;&#xCD9C; &#xC870;&#xD569;&#xC740; &#xCF54;&#xB4DC; &#xC778;&#xC81D;&#xC158;&#xC774;&#xBA70; &#xB300;&#xBD80;&#xBD84; &#xC545;&#xC758;&#xC801;&#xC774;&#xAC70;&#xB098; &#xC6D0;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xD589;&#xB3D9;&#xC73C;&#xB85C; &#xD310;&#xB2E8;&#xB41C;&#xB2E4;.</p>
+<p>user-mode hook&#xC740; &#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xC640; NGAV, EDR, sandbox, anti-cheat, DRM &#xB4F1;&#xC744; &#xD3EC;&#xD568;&#xD55C; &#xB9CE;&#xC740; &#xBCF4;&#xC548; &#xC81C;&#xD488;&#xACFC; &#xD234;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xB41C;&#xB2E4;. user-mode hook&#xC740; &#xAD6C;&#xD604;&#xD558;&#xAE30; &#xC27D;&#xACE0;, &#xC548;&#xC815;&#xC801;&#xC774;&#xACE0;, &#xAC04;&#xB2E8;&#xD558;&#xBA70; &#xC131;&#xB2A5; &#xC624;&#xBC84;&#xD5E4;&#xB4DC;&#xAC00; &#xC801;&#xB2E4;.</p>
+<p>&#xB300;&#xBD80;&#xBD84; user-land hook&#xC740; inline hook&#xC774;&#xBA70; control flow&#xB97C; custom handler&#xB85C; &#xB9AC;&#xB2E4;&#xC774;&#xB809;&#xD2B8; &#xC2DC;&#xD0A4;&#xAE30; &#xC704;&#xD55C; &#xB300;&#xC0C1; &#xD568;&#xC218; rewrite&#xB97C; &#xD3EC;&#xD568;&#xD55C;&#xB2E4;. &#xD578;&#xB4E4;&#xB7EC;&#xC758; &#xB0B4;&#xBD80;&#xC5D0;&#xC11C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB4E4;&#xC740; &#xBCF4;&#xC874;&#xB418;&#xACE0; &#xC694;&#xCCAD;&#xB41C; &#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xAC70;&#xB098; &#xBD84;&#xC11D;&#xD560;&#xC9C0; &#xACB0;&#xC815;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC774;&#xAC83;&#xB4E4;&#xC740; &#xC798; &#xBB38;&#xC11C;&#xD654;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xC774;&#xB7EC;&#xD55C; &#xAC1C;&#xB150;&#xC5D0; &#xC775;&#xC219;&#xD560; &#xAC83;&#xC774;&#xB77C;&#xACE0; &#xAC00;&#xC815;&#xD560; &#xAC83;&#xC774;&#xB2E4;.</p>
 <h2 id="32-bit-Hooks"><a href="#32-bit-Hooks" class="headerlink" title="32-bit Hooks"></a>32-bit Hooks</h2><p><img src="/2021/01/10/idioth/memfuck/image0.png" srcset="/img/loading.gif"></p>
-<p>32비트 user-land hook이 포함된다. 32비트 유저 모드 보안 제품은 대부분 가능한 깊은 위치에서 hook 하며 ntdll에 대부분의 의심스러운 함수들(NtQueueApcThread 등)이 존재한다. 해결 방법은 system call을 사용하여 원하는 기능을 직접적으로 호출하는 것이다. Ring3 후킹으로 모든 보안 제품을 우회할 수 있다.</p>
-<p>필자는 5년 동안 32비트 윈도우를 접한 경우가 하나도 없으므로 일반적인 경우인 WoW64에서 동작하는 32비트 응용 프로그램에 대해 살펴볼 것이다.</p>
-<h2 id="WoW64에서의-32비트-후킹"><a href="#WoW64에서의-32비트-후킹" class="headerlink" title="WoW64에서의 32비트 후킹"></a>WoW64에서의 32비트 후킹</h2><p><img src="/2021/01/10/idioth/memfuck/image1.png" srcset="/img/loading.gif"></p>
-<p>가장 흔한 악성코드의 인스턴스는 Wow64에서 동작하는 32비트 프로그램이다(64비트 머신에서 동작). NGAV와 EDR은 이러한 시나리오에서의 hook 구현이 미흡하다. 대부분 보안 제품은 x86 유저 모드 영역에서만 hook을 한다. user-mode hook을 활용하는 안티바이러스는 WoW64 layer에 hook을 위치하는 것이 좋지만 모든 업체가 그것을 구현하지는 않는다. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mdsec.co.uk/2020/08/firewalker-a-new-approach-to-generically-bypass-user-space-edr-hooking/">Sophos 우회에 관한 MDSec의 게시글</a>을 보아라.</p>
-<p>많은 보안 제품들이 32비트 프로세스에서 WoW64 실행을 모니터링하지 않는다는 사실은 오랫동안 알려져 있었고 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.malwarebytes.com/threat-analysis/2018/01/a-coin-miner-with-a-heavens-gate/">악성코드 제작자</a>와 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://outflank.nl/blog/2019/06/19/red-team-tactics-combining-direct-system-calls-and-srdi-to-bypass-av-edr/">red-team</a>에 의해 공격당했다. 필자가 분석한 악성코드 중에 얼마나 많은 것들이 이를 악용한 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/rwfpl/rewolf-wow64ext">rewolf’s wow64ext</a>를 포함하는지 말할 수 없다.</p>
-<h2 id="요약-기존-기술"><a href="#요약-기존-기술" class="headerlink" title="요약 : 기존 기술"></a>요약 : 기존 기술</h2><ul>
-<li>단순히 함수의 Ntdll 버전을 호출하는 것</li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://web.archive.org/web/20190407064851/https://blog.ensilo.com/globeimposter-ransomware-technical">함수의 Wow64 버전을 호출하는 것</a></li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://cdn2.hubspot.net/hubfs/487909/ENSILO%20WHITEPAPER%20ENTER%20THE%20DARK%20GATE.pdf">직접 Syscall 호출</a></li>
-<li>원본 thunk 추적 (<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mdsec.co.uk/2020/08/firewalker-a-new-approach-to-generically-bypass-user-space-edr-hooking/">FireWalker</a>)</li>
-<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.malwarebytes.com/threat-analysis/2018/03/hancitor-fileless-attack-with-a-copy-trick/">보조 DLL 매핑</a></li>
+<p>32&#xBE44;&#xD2B8; user-land hook&#xC774; &#xD3EC;&#xD568;&#xB41C;&#xB2E4;. 32&#xBE44;&#xD2B8; &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xBCF4;&#xC548; &#xC81C;&#xD488;&#xC740; &#xB300;&#xBD80;&#xBD84; &#xAC00;&#xB2A5;&#xD55C; &#xAE4A;&#xC740; &#xC704;&#xCE58;&#xC5D0;&#xC11C; hook &#xD558;&#xBA70; ntdll&#xC5D0; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xC758;&#xC2EC;&#xC2A4;&#xB7EC;&#xC6B4; &#xD568;&#xC218;&#xB4E4;(NtQueueApcThread &#xB4F1;)&#xC774; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;. &#xD574;&#xACB0; &#xBC29;&#xBC95;&#xC740; system call&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC6D0;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC744; &#xC9C1;&#xC811;&#xC801;&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. Ring3 &#xD6C4;&#xD0B9;&#xC73C;&#xB85C; &#xBAA8;&#xB4E0; &#xBCF4;&#xC548; &#xC81C;&#xD488;&#xC744; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<p>&#xD544;&#xC790;&#xB294; 5&#xB144; &#xB3D9;&#xC548; 32&#xBE44;&#xD2B8; &#xC708;&#xB3C4;&#xC6B0;&#xB97C; &#xC811;&#xD55C; &#xACBD;&#xC6B0;&#xAC00; &#xD558;&#xB098;&#xB3C4; &#xC5C6;&#xC73C;&#xBBC0;&#xB85C; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xACBD;&#xC6B0;&#xC778; WoW64&#xC5D0;&#xC11C; &#xB3D9;&#xC791;&#xD558;&#xB294; 32&#xBE44;&#xD2B8; &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0; &#xB300;&#xD574; &#xC0B4;&#xD3B4;&#xBCFC; &#xAC83;&#xC774;&#xB2E4;.</p>
+<h2 id="WoW64&#xC5D0;&#xC11C;&#xC758;-32&#xBE44;&#xD2B8;-&#xD6C4;&#xD0B9;"><a href="#WoW64&#xC5D0;&#xC11C;&#xC758;-32&#xBE44;&#xD2B8;-&#xD6C4;&#xD0B9;" class="headerlink" title="WoW64&#xC5D0;&#xC11C;&#xC758; 32&#xBE44;&#xD2B8; &#xD6C4;&#xD0B9;"></a>WoW64&#xC5D0;&#xC11C;&#xC758; 32&#xBE44;&#xD2B8; &#xD6C4;&#xD0B9;</h2><p><img src="/2021/01/10/idioth/memfuck/image1.png" srcset="/img/loading.gif"></p>
+<p>&#xAC00;&#xC7A5; &#xD754;&#xD55C; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB294; Wow64&#xC5D0;&#xC11C; &#xB3D9;&#xC791;&#xD558;&#xB294; 32&#xBE44;&#xD2B8; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774;&#xB2E4;(64&#xBE44;&#xD2B8; &#xBA38;&#xC2E0;&#xC5D0;&#xC11C; &#xB3D9;&#xC791;). NGAV&#xC640; EDR&#xC740; &#xC774;&#xB7EC;&#xD55C; &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xC5D0;&#xC11C;&#xC758; hook &#xAD6C;&#xD604;&#xC774; &#xBBF8;&#xD761;&#xD558;&#xB2E4;. &#xB300;&#xBD80;&#xBD84; &#xBCF4;&#xC548; &#xC81C;&#xD488;&#xC740; x86 &#xC720;&#xC800; &#xBAA8;&#xB4DC; &#xC601;&#xC5ED;&#xC5D0;&#xC11C;&#xB9CC; hook&#xC744; &#xD55C;&#xB2E4;. user-mode hook&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xB294; &#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xB294; WoW64 layer&#xC5D0; hook&#xC744; &#xC704;&#xCE58;&#xD558;&#xB294; &#xAC83;&#xC774; &#xC88B;&#xC9C0;&#xB9CC; &#xBAA8;&#xB4E0; &#xC5C5;&#xCCB4;&#xAC00; &#xADF8;&#xAC83;&#xC744; &#xAD6C;&#xD604;&#xD558;&#xC9C0;&#xB294; &#xC54A;&#xB294;&#xB2E4;. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mdsec.co.uk/2020/08/firewalker-a-new-approach-to-generically-bypass-user-space-edr-hooking/">Sophos &#xC6B0;&#xD68C;&#xC5D0; &#xAD00;&#xD55C; MDSec&#xC758; &#xAC8C;&#xC2DC;&#xAE00;</a>&#xC744; &#xBCF4;&#xC544;&#xB77C;.</p>
+<p>&#xB9CE;&#xC740; &#xBCF4;&#xC548; &#xC81C;&#xD488;&#xB4E4;&#xC774; 32&#xBE44;&#xD2B8; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; WoW64 &#xC2E4;&#xD589;&#xC744; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;&#xB294; &#xC0AC;&#xC2E4;&#xC740; &#xC624;&#xB7AB;&#xB3D9;&#xC548; &#xC54C;&#xB824;&#xC838; &#xC788;&#xC5C8;&#xACE0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.malwarebytes.com/threat-analysis/2018/01/a-coin-miner-with-a-heavens-gate/">&#xC545;&#xC131;&#xCF54;&#xB4DC; &#xC81C;&#xC791;&#xC790;</a>&#xC640; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://outflank.nl/blog/2019/06/19/red-team-tactics-combining-direct-system-calls-and-srdi-to-bypass-av-edr/">red-team</a>&#xC5D0; &#xC758;&#xD574; &#xACF5;&#xACA9;&#xB2F9;&#xD588;&#xB2E4;. &#xD544;&#xC790;&#xAC00; &#xBD84;&#xC11D;&#xD55C; &#xC545;&#xC131;&#xCF54;&#xB4DC; &#xC911;&#xC5D0; &#xC5BC;&#xB9C8;&#xB098; &#xB9CE;&#xC740; &#xAC83;&#xB4E4;&#xC774; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD55C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/rwfpl/rewolf-wow64ext">rewolf&#x2019;s wow64ext</a>&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xB294;&#xC9C0; &#xB9D0;&#xD560; &#xC218; &#xC5C6;&#xB2E4;.</p>
+<h2 id="&#xC694;&#xC57D;-&#xAE30;&#xC874;-&#xAE30;&#xC220;"><a href="#&#xC694;&#xC57D;-&#xAE30;&#xC874;-&#xAE30;&#xC220;" class="headerlink" title="&#xC694;&#xC57D; : &#xAE30;&#xC874; &#xAE30;&#xC220;"></a>&#xC694;&#xC57D; : &#xAE30;&#xC874; &#xAE30;&#xC220;</h2><ul>
+<li>&#xB2E8;&#xC21C;&#xD788; &#xD568;&#xC218;&#xC758; Ntdll &#xBC84;&#xC804;&#xC744; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAC83;</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://web.archive.org/web/20190407064851/https://blog.ensilo.com/globeimposter-ransomware-technical">&#xD568;&#xC218;&#xC758; Wow64 &#xBC84;&#xC804;&#xC744; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xAC83;</a></li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://cdn2.hubspot.net/hubfs/487909/ENSILO%20WHITEPAPER%20ENTER%20THE%20DARK%20GATE.pdf">&#xC9C1;&#xC811; Syscall &#xD638;&#xCD9C;</a></li>
+<li>&#xC6D0;&#xBCF8; thunk &#xCD94;&#xC801; (<a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.mdsec.co.uk/2020/08/firewalker-a-new-approach-to-generically-bypass-user-space-edr-hooking/">FireWalker</a>)</li>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.malwarebytes.com/threat-analysis/2018/03/hancitor-fileless-attack-with-a-copy-trick/">&#xBCF4;&#xC870; DLL &#xB9E4;&#xD551;</a></li>
 <li>Code splicing (byte stealing)</li>
 </ul>
-<p>모두 잘 작동하고 좋지만 64비트 버전의 ntdll에 위치한 hook에서 동작하지 않을 수 있다. 필자의 관찰에서 이러한 레벨의 hook은 어떤 public 코드로도 본 적이 없고 어떤 안티바이러스도 구현하지 않았다. 몇 가지 존재할 것이라고 확신하지만 보지 못했다.</p>
-<h2 id="MemFuck에-들어가며"><a href="#MemFuck에-들어가며" class="headerlink" title="MemFuck에 들어가며"></a>MemFuck에 들어가며</h2><p>Memfuck은 오직 PoC이며 production code와 유사하지 않다. 즉 필자는 유저 영역에서 가능한 강력한 anti-analysis 기술이라고 생각한다.</p>
-<p>MemFuck은 다른 anti-analysis 방법으로 실험을 시작했다. 본질적으로 가능한 한 비어있는 프로세스를 생성하길 원했으므로 DLL이나 쉘 코드의 수정 없이 보안 제품을 attach 할 수 없었다. 필자는 2008년에 이 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://gynvael.coldwind.pl/?id=93">게시글</a>을 발견했는데 매우 흥미로웠다. 물론 32비트 윈도우 XP에서 많은 변화가 있었으므로 많은 코드가 호환되지 않지만 대부분의 개념이 존재한다.</p>
+<p>&#xBAA8;&#xB450; &#xC798; &#xC791;&#xB3D9;&#xD558;&#xACE0; &#xC88B;&#xC9C0;&#xB9CC; 64&#xBE44;&#xD2B8; &#xBC84;&#xC804;&#xC758; ntdll&#xC5D0; &#xC704;&#xCE58;&#xD55C; hook&#xC5D0;&#xC11C; &#xB3D9;&#xC791;&#xD558;&#xC9C0; &#xC54A;&#xC744; &#xC218; &#xC788;&#xB2E4;. &#xD544;&#xC790;&#xC758; &#xAD00;&#xCC30;&#xC5D0;&#xC11C; &#xC774;&#xB7EC;&#xD55C; &#xB808;&#xBCA8;&#xC758; hook&#xC740; &#xC5B4;&#xB5A4; public &#xCF54;&#xB4DC;&#xB85C;&#xB3C4; &#xBCF8; &#xC801;&#xC774; &#xC5C6;&#xACE0; &#xC5B4;&#xB5A4; &#xC548;&#xD2F0;&#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xB3C4; &#xAD6C;&#xD604;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xB2E4;. &#xBA87; &#xAC00;&#xC9C0; &#xC874;&#xC7AC;&#xD560; &#xAC83;&#xC774;&#xB77C;&#xACE0; &#xD655;&#xC2E0;&#xD558;&#xC9C0;&#xB9CC; &#xBCF4;&#xC9C0; &#xBABB;&#xD588;&#xB2E4;.</p>
+<h2 id="MemFuck&#xC5D0;-&#xB4E4;&#xC5B4;&#xAC00;&#xBA70;"><a href="#MemFuck&#xC5D0;-&#xB4E4;&#xC5B4;&#xAC00;&#xBA70;" class="headerlink" title="MemFuck&#xC5D0; &#xB4E4;&#xC5B4;&#xAC00;&#xBA70;"></a>MemFuck&#xC5D0; &#xB4E4;&#xC5B4;&#xAC00;&#xBA70;</h2><p>Memfuck&#xC740; &#xC624;&#xC9C1; PoC&#xC774;&#xBA70; production code&#xC640; &#xC720;&#xC0AC;&#xD558;&#xC9C0; &#xC54A;&#xB2E4;. &#xC989; &#xD544;&#xC790;&#xB294; &#xC720;&#xC800; &#xC601;&#xC5ED;&#xC5D0;&#xC11C; &#xAC00;&#xB2A5;&#xD55C; &#xAC15;&#xB825;&#xD55C; anti-analysis &#xAE30;&#xC220;&#xC774;&#xB77C;&#xACE0; &#xC0DD;&#xAC01;&#xD55C;&#xB2E4;.</p>
+<p>MemFuck&#xC740; &#xB2E4;&#xB978; anti-analysis &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xC2E4;&#xD5D8;&#xC744; &#xC2DC;&#xC791;&#xD588;&#xB2E4;. &#xBCF8;&#xC9C8;&#xC801;&#xC73C;&#xB85C; &#xAC00;&#xB2A5;&#xD55C; &#xD55C; &#xBE44;&#xC5B4;&#xC788;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xAE38; &#xC6D0;&#xD588;&#xC73C;&#xBBC0;&#xB85C; DLL&#xC774;&#xB098; &#xC258; &#xCF54;&#xB4DC;&#xC758; &#xC218;&#xC815; &#xC5C6;&#xC774; &#xBCF4;&#xC548; &#xC81C;&#xD488;&#xC744; attach &#xD560; &#xC218; &#xC5C6;&#xC5C8;&#xB2E4;. &#xD544;&#xC790;&#xB294; 2008&#xB144;&#xC5D0; &#xC774; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://gynvael.coldwind.pl/?id=93">&#xAC8C;&#xC2DC;&#xAE00;</a>&#xC744; &#xBC1C;&#xACAC;&#xD588;&#xB294;&#xB370; &#xB9E4;&#xC6B0; &#xD765;&#xBBF8;&#xB85C;&#xC6E0;&#xB2E4;. &#xBB3C;&#xB860; 32&#xBE44;&#xD2B8; &#xC708;&#xB3C4;&#xC6B0; XP&#xC5D0;&#xC11C; &#xB9CE;&#xC740; &#xBCC0;&#xD654;&#xAC00; &#xC788;&#xC5C8;&#xC73C;&#xBBC0;&#xB85C; &#xB9CE;&#xC740; &#xCF54;&#xB4DC;&#xAC00; &#xD638;&#xD658;&#xB418;&#xC9C0; &#xC54A;&#xC9C0;&#xB9CC; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xAC1C;&#xB150;&#xC774; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;.</p>
 <p><img src="/2021/01/10/idioth/memfuck/image2.png" srcset="/img/loading.gif"></p>
-<p>무엇이 ntdll을 필요로 하는가? 모든 결과는 특정한 DLL에 의존하므로 이를 망쳐버리면 어떠한 일이 일어날까</p>
-<h2 id="Unmap-Everything"><a href="#Unmap-Everything" class="headerlink" title="Unmap Everything"></a>Unmap Everything</h2><p>MemFuck은 32비트 주소 영역에서 가능한 모든 것을 unmap 하는 것에 의해 시작된다. 물론 PEB/PEB64, TEB/TEB64와 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-kuser_shared_data">KUSER_SHARED_DATA</a> (작년에 마침내 문서화되었다) 같이 해제가 불가능한 것들도 있다. 이에 대해 몇 가지 방법이 있지만 가능한 귀찮지 않은 방법을 선택하고 싶었다. 우리는 모든 것에 NtUnmapViewOfSection을 호출하는 x86 쉘 코드를 할당할 수 있지만 그렇게 ntdll을 unmap 하면 무슨 일이 일어날까? Ntdll은 자기 자신을 unmap 할 수 없으므로 이 방법은 동작하지 않는다. 다음 단계에서 필자는 code segment switching(Heaven’s Gate)을 통해 직접 syscall 호출을 시험해보았다. 32비트 주소 영역에서 64비트 syscall 실행은 충분히 가능하지만 이 방법은 몇 가지 이유로 이상적이지 않았다.</p>
+<p>&#xBB34;&#xC5C7;&#xC774; ntdll&#xC744; &#xD544;&#xC694;&#xB85C; &#xD558;&#xB294;&#xAC00;? &#xBAA8;&#xB4E0; &#xACB0;&#xACFC;&#xB294; &#xD2B9;&#xC815;&#xD55C; DLL&#xC5D0; &#xC758;&#xC874;&#xD558;&#xBBC0;&#xB85C; &#xC774;&#xB97C; &#xB9DD;&#xCCD0;&#xBC84;&#xB9AC;&#xBA74; &#xC5B4;&#xB5A0;&#xD55C; &#xC77C;&#xC774; &#xC77C;&#xC5B4;&#xB0A0;&#xAE4C;</p>
+<h2 id="Unmap-Everything"><a href="#Unmap-Everything" class="headerlink" title="Unmap Everything"></a>Unmap Everything</h2><p>MemFuck&#xC740; 32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xC601;&#xC5ED;&#xC5D0;&#xC11C; &#xAC00;&#xB2A5;&#xD55C; &#xBAA8;&#xB4E0; &#xAC83;&#xC744; unmap &#xD558;&#xB294; &#xAC83;&#xC5D0; &#xC758;&#xD574; &#xC2DC;&#xC791;&#xB41C;&#xB2E4;. &#xBB3C;&#xB860; PEB/PEB64, TEB/TEB64&#xC640; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntddk/ns-ntddk-kuser_shared_data">KUSER_SHARED_DATA</a> (&#xC791;&#xB144;&#xC5D0; &#xB9C8;&#xCE68;&#xB0B4; &#xBB38;&#xC11C;&#xD654;&#xB418;&#xC5C8;&#xB2E4;) &#xAC19;&#xC774; &#xD574;&#xC81C;&#xAC00; &#xBD88;&#xAC00;&#xB2A5;&#xD55C; &#xAC83;&#xB4E4;&#xB3C4; &#xC788;&#xB2E4;. &#xC774;&#xC5D0; &#xB300;&#xD574; &#xBA87; &#xAC00;&#xC9C0; &#xBC29;&#xBC95;&#xC774; &#xC788;&#xC9C0;&#xB9CC; &#xAC00;&#xB2A5;&#xD55C; &#xADC0;&#xCC2E;&#xC9C0; &#xC54A;&#xC740; &#xBC29;&#xBC95;&#xC744; &#xC120;&#xD0DD;&#xD558;&#xACE0; &#xC2F6;&#xC5C8;&#xB2E4;. &#xC6B0;&#xB9AC;&#xB294; &#xBAA8;&#xB4E0; &#xAC83;&#xC5D0; NtUnmapViewOfSection&#xC744; &#xD638;&#xCD9C;&#xD558;&#xB294; x86 &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xD560;&#xB2F9;&#xD560; &#xC218; &#xC788;&#xC9C0;&#xB9CC; &#xADF8;&#xB807;&#xAC8C; ntdll&#xC744; unmap &#xD558;&#xBA74; &#xBB34;&#xC2A8; &#xC77C;&#xC774; &#xC77C;&#xC5B4;&#xB0A0;&#xAE4C;? Ntdll&#xC740; &#xC790;&#xAE30; &#xC790;&#xC2E0;&#xC744; unmap &#xD560; &#xC218; &#xC5C6;&#xC73C;&#xBBC0;&#xB85C; &#xC774; &#xBC29;&#xBC95;&#xC740; &#xB3D9;&#xC791;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;. &#xB2E4;&#xC74C; &#xB2E8;&#xACC4;&#xC5D0;&#xC11C; &#xD544;&#xC790;&#xB294; code segment switching(Heaven&#x2019;s Gate)&#xC744; &#xD1B5;&#xD574; &#xC9C1;&#xC811; syscall &#xD638;&#xCD9C;&#xC744; &#xC2DC;&#xD5D8;&#xD574;&#xBCF4;&#xC558;&#xB2E4;. 32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xC601;&#xC5ED;&#xC5D0;&#xC11C; 64&#xBE44;&#xD2B8; syscall &#xC2E4;&#xD589;&#xC740; &#xCDA9;&#xBD84;&#xD788; &#xAC00;&#xB2A5;&#xD558;&#xC9C0;&#xB9CC; &#xC774; &#xBC29;&#xBC95;&#xC740; &#xBA87; &#xAC00;&#xC9C0; &#xC774;&#xC720;&#xB85C; &#xC774;&#xC0C1;&#xC801;&#xC774;&#xC9C0; &#xC54A;&#xC558;&#xB2E4;.</p>
 <ul>
-<li>32비트 주소 영역에서 코드가 매핑되고 실행되므로 분석하기 쉬울 것이다.</li>
-<li>64비트 주소 영역은 여전히 손상되어 있지 않다.</li>
-<li>이 기술은 user-mode hook을 우회하기 효과적이지만 이미 문서화되어 있다.</li>
+<li>32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xC601;&#xC5ED;&#xC5D0;&#xC11C; &#xCF54;&#xB4DC;&#xAC00; &#xB9E4;&#xD551;&#xB418;&#xACE0; &#xC2E4;&#xD589;&#xB418;&#xBBC0;&#xB85C; &#xBD84;&#xC11D;&#xD558;&#xAE30; &#xC26C;&#xC6B8; &#xAC83;&#xC774;&#xB2E4;.</li>
+<li>64&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xC601;&#xC5ED;&#xC740; &#xC5EC;&#xC804;&#xD788; &#xC190;&#xC0C1;&#xB418;&#xC5B4; &#xC788;&#xC9C0; &#xC54A;&#xB2E4;.</li>
+<li>&#xC774; &#xAE30;&#xC220;&#xC740; user-mode hook&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xAE30; &#xD6A8;&#xACFC;&#xC801;&#xC774;&#xC9C0;&#xB9CC; &#xC774;&#xBBF8; &#xBB38;&#xC11C;&#xD654;&#xB418;&#xC5B4; &#xC788;&#xB2E4;.</li>
 </ul>
-<p>전부는 아니지만 대부분 Ring3 hook을 활용하는 AV/EDR 업체들은 하나의 일반적인 가정을 한다고 생각한다. WoW64 위에서 실행하는 32비트 프로세스는 4GB로 제한된 주소 아래에서 사용자 정의된 코드를 가진다. 따라서 매핑되지 않은 코드를 더 많이 배치하고 기능을 계속할 수 있는 이 제한 이상의 메모리를 할당해보자. Alex Ionescu에 따르면 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://twitter.com/aionescu/status/677599528409677824?lang=en">이것은 가능하지 않다</a>. 그러나 Petr Benes와 얘기한 후 그는 최근 버전의 윈도우10에서 이러한 제한이 해제되었다고 생각한다. 윈도우10 Build 19041.508에서 테스트했다.</p>
-<p>64비트 버전의 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ntallocatevirtualmemory">NtAllocateVirtualMemory</a> 호출하기 위해 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/rwfpl/rewolf-wow64ext">rewolf’s wow64ext</a>를 사용했다. 필자가 처음 호출을 시도했을 때 혼란스러운 결과를 봤다. BaseAddress 요청이 Null이면 운영체제가 메모리 할당할 위치를 결정한다. 물론 윈도우는 우리가 있어서는 안 되는 곳에 메모리를 할당하는 것을 원하지 않으며 64비트 호출은 32비트 주소 영역에 잘 할당된 메모리를 반환한다. ZeroBit 플래그를 망치는 것은 어떨까? 필자는 ZeroBit 플래그를 조작해서 가능한 높은 주소에 request 하는 방법을 설명하는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://stackoverflow.com/questions/50429365/what-is-the-most-reliable-portable-way-to-allocate-memory-at-low-addresses-on">stackoverflow 게시글</a>을 찾았다. 다시 필자는 ZeroBit 플래그를 조작하여 64비트 NtAllocateVirtual request에 MEM_TOP_DOWN 플래그를 추가해보았다. 메모리가 살짝 높긴 하지만 32비트 주소를 만났다. 이 지점에서 매개변수를 조작하는 아이디어를 얻었다. 우리가 원하는 주소를 요청하자! 필자는 BaseAddress를 64비트 주소(많은 메모리와 3개의 DLL)로 설정했고 놀랍게도 그 주소에 할당됐다.</p>
+<p>&#xC804;&#xBD80;&#xB294; &#xC544;&#xB2C8;&#xC9C0;&#xB9CC; &#xB300;&#xBD80;&#xBD84; Ring3 hook&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xB294; AV/EDR &#xC5C5;&#xCCB4;&#xB4E4;&#xC740; &#xD558;&#xB098;&#xC758; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xAC00;&#xC815;&#xC744; &#xD55C;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD55C;&#xB2E4;. WoW64 &#xC704;&#xC5D0;&#xC11C; &#xC2E4;&#xD589;&#xD558;&#xB294; 32&#xBE44;&#xD2B8; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; 4GB&#xB85C; &#xC81C;&#xD55C;&#xB41C; &#xC8FC;&#xC18C; &#xC544;&#xB798;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758;&#xB41C; &#xCF54;&#xB4DC;&#xB97C; &#xAC00;&#xC9C4;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xB9E4;&#xD551;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xCF54;&#xB4DC;&#xB97C; &#xB354; &#xB9CE;&#xC774; &#xBC30;&#xCE58;&#xD558;&#xACE0; &#xAE30;&#xB2A5;&#xC744; &#xACC4;&#xC18D;&#xD560; &#xC218; &#xC788;&#xB294; &#xC774; &#xC81C;&#xD55C; &#xC774;&#xC0C1;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;&#xD574;&#xBCF4;&#xC790;. Alex Ionescu&#xC5D0; &#xB530;&#xB974;&#xBA74; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://twitter.com/aionescu/status/677599528409677824?lang=en">&#xC774;&#xAC83;&#xC740; &#xAC00;&#xB2A5;&#xD558;&#xC9C0; &#xC54A;&#xB2E4;</a>. &#xADF8;&#xB7EC;&#xB098; Petr Benes&#xC640; &#xC598;&#xAE30;&#xD55C; &#xD6C4; &#xADF8;&#xB294; &#xCD5C;&#xADFC; &#xBC84;&#xC804;&#xC758; &#xC708;&#xB3C4;&#xC6B0;10&#xC5D0;&#xC11C; &#xC774;&#xB7EC;&#xD55C; &#xC81C;&#xD55C;&#xC774; &#xD574;&#xC81C;&#xB418;&#xC5C8;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD55C;&#xB2E4;. &#xC708;&#xB3C4;&#xC6B0;10 Build 19041.508&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xD588;&#xB2E4;.</p>
+<p>64&#xBE44;&#xD2B8; &#xBC84;&#xC804;&#xC758; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/ntifs/nf-ntifs-ntallocatevirtualmemory">NtAllocateVirtualMemory</a> &#xD638;&#xCD9C;&#xD558;&#xAE30; &#xC704;&#xD574; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/rwfpl/rewolf-wow64ext">rewolf&#x2019;s wow64ext</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD588;&#xB2E4;. &#xD544;&#xC790;&#xAC00; &#xCC98;&#xC74C; &#xD638;&#xCD9C;&#xC744; &#xC2DC;&#xB3C4;&#xD588;&#xC744; &#xB54C; &#xD63C;&#xB780;&#xC2A4;&#xB7EC;&#xC6B4; &#xACB0;&#xACFC;&#xB97C; &#xBD24;&#xB2E4;. BaseAddress &#xC694;&#xCCAD;&#xC774; Null&#xC774;&#xBA74; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;&#xAC00; &#xBA54;&#xBAA8;&#xB9AC; &#xD560;&#xB2F9;&#xD560; &#xC704;&#xCE58;&#xB97C; &#xACB0;&#xC815;&#xD55C;&#xB2E4;. &#xBB3C;&#xB860; &#xC708;&#xB3C4;&#xC6B0;&#xB294; &#xC6B0;&#xB9AC;&#xAC00; &#xC788;&#xC5B4;&#xC11C;&#xB294; &#xC548; &#xB418;&#xB294; &#xACF3;&#xC5D0; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xB294; &#xAC83;&#xC744; &#xC6D0;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA70; 64&#xBE44;&#xD2B8; &#xD638;&#xCD9C;&#xC740; 32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xC601;&#xC5ED;&#xC5D0; &#xC798; &#xD560;&#xB2F9;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xBC18;&#xD658;&#xD55C;&#xB2E4;. ZeroBit &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xB9DD;&#xCE58;&#xB294; &#xAC83;&#xC740; &#xC5B4;&#xB5A8;&#xAE4C;? &#xD544;&#xC790;&#xB294; ZeroBit &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xC870;&#xC791;&#xD574;&#xC11C; &#xAC00;&#xB2A5;&#xD55C; &#xB192;&#xC740; &#xC8FC;&#xC18C;&#xC5D0; request &#xD558;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xC124;&#xBA85;&#xD558;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://stackoverflow.com/questions/50429365/what-is-the-most-reliable-portable-way-to-allocate-memory-at-low-addresses-on">stackoverflow &#xAC8C;&#xC2DC;&#xAE00;</a>&#xC744; &#xCC3E;&#xC558;&#xB2E4;. &#xB2E4;&#xC2DC; &#xD544;&#xC790;&#xB294; ZeroBit &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xC870;&#xC791;&#xD558;&#xC5EC; 64&#xBE44;&#xD2B8; NtAllocateVirtual request&#xC5D0; MEM_TOP_DOWN &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xCD94;&#xAC00;&#xD574;&#xBCF4;&#xC558;&#xB2E4;. &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC0B4;&#xC9DD; &#xB192;&#xAE34; &#xD558;&#xC9C0;&#xB9CC; 32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C;&#xB97C; &#xB9CC;&#xB0AC;&#xB2E4;. &#xC774; &#xC9C0;&#xC810;&#xC5D0;&#xC11C; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC870;&#xC791;&#xD558;&#xB294; &#xC544;&#xC774;&#xB514;&#xC5B4;&#xB97C; &#xC5BB;&#xC5C8;&#xB2E4;. &#xC6B0;&#xB9AC;&#xAC00; &#xC6D0;&#xD558;&#xB294; &#xC8FC;&#xC18C;&#xB97C; &#xC694;&#xCCAD;&#xD558;&#xC790;! &#xD544;&#xC790;&#xB294; BaseAddress&#xB97C; 64&#xBE44;&#xD2B8; &#xC8FC;&#xC18C;(&#xB9CE;&#xC740; &#xBA54;&#xBAA8;&#xB9AC;&#xC640; 3&#xAC1C;&#xC758; DLL)&#xB85C; &#xC124;&#xC815;&#xD588;&#xACE0; &#xB180;&#xB78D;&#xAC8C;&#xB3C4; &#xADF8; &#xC8FC;&#xC18C;&#xC5D0; &#xD560;&#xB2F9;&#xB410;&#xB2E4;.</p>
 <p><img src="/2021/01/10/idioth/memfuck/image3.png" srcset="/img/loading.gif"></p>
-<p>물론 여기서 우리가 첫 번째로 해야 할 것은 여기에 쉘 코드를 써서 어떠한 행동이 일어나는지 보는 것이다. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jackullrich/ShellcodeStdio">ShellcodeStdio</a>를 사용해서 빠르고 쉽게 64비트 쉘 코드를 작성했다. 이 쉘 코드는 64비트 공간에 할당되고 쓰이며 기본적으로 32비트 유저 모드의 모든 것에 unmap을 시도한다.</p>
-<p>첫 번째 시도에 대한 수도 코드는 아래와 같다.</p>
+<p>&#xBB3C;&#xB860; &#xC5EC;&#xAE30;&#xC11C; &#xC6B0;&#xB9AC;&#xAC00; &#xCCAB; &#xBC88;&#xC9F8;&#xB85C; &#xD574;&#xC57C; &#xD560; &#xAC83;&#xC740; &#xC5EC;&#xAE30;&#xC5D0; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xC368;&#xC11C; &#xC5B4;&#xB5A0;&#xD55C; &#xD589;&#xB3D9;&#xC774; &#xC77C;&#xC5B4;&#xB098;&#xB294;&#xC9C0; &#xBCF4;&#xB294; &#xAC83;&#xC774;&#xB2E4;. <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jackullrich/ShellcodeStdio">ShellcodeStdio</a>&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xBE60;&#xB974;&#xACE0; &#xC27D;&#xAC8C; 64&#xBE44;&#xD2B8; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD588;&#xB2E4;. &#xC774; &#xC258; &#xCF54;&#xB4DC;&#xB294; 64&#xBE44;&#xD2B8; &#xACF5;&#xAC04;&#xC5D0; &#xD560;&#xB2F9;&#xB418;&#xACE0; &#xC4F0;&#xC774;&#xBA70; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; 32&#xBE44;&#xD2B8; &#xC720;&#xC800; &#xBAA8;&#xB4DC;&#xC758; &#xBAA8;&#xB4E0; &#xAC83;&#xC5D0; unmap&#xC744; &#xC2DC;&#xB3C4;&#xD55C;&#xB2E4;.</p>
+<p>&#xCCAB; &#xBC88;&#xC9F8; &#xC2DC;&#xB3C4;&#xC5D0; &#xB300;&#xD55C; &#xC218;&#xB3C4; &#xCF54;&#xB4DC;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xB2E4;.</p>
 <pre><code class="hljs cpp">DEFINE_FUNC_PTR(<span class="hljs-string">&quot;ntdll.dll&quot;</span>, NtUnmapViewOfSection);
 DEFINE_FUNC_PTR(<span class="hljs-string">&quot;ntdll.dll&quot;</span>, NtProtectVirtualMemory);
 <span class="hljs-keyword">for</span> (DWORD m = <span class="hljs-number">0</span>; m &lt; <span class="hljs-number">0x80000000</span>; m += <span class="hljs-number">0x1000</span>)
-    &#123;
+    {
       PVOID ptrToProtect = (PVOID)m;
       ULONG dwBytesToProtect = <span class="hljs-number">1</span>;
       ULONG dwOldProt = <span class="hljs-number">0</span>;
       NtProtectVirtualMemory((HANDLE)<span class="hljs-number">-1</span>, &amp;ptrToProtect, &amp;dwBytesToProtect, PAGE_READWRITE, &amp;dwOldProt);
       NtUnmapViewOfSection((HANDLE)<span class="hljs-number">-1</span>, (PVOID)m);
-    &#125;</code></pre>
+    }</code></pre>
 
 <p><img src="/2021/01/10/idioth/memfuck/image4.png" srcset="/img/loading.gif"></p>
-<p>프로세스가 엉망이다. 그러나 여전히 코드는 실행되고 있으며 잘 동작하고 있다. anti-analysis을 하기에 상당히 좋은 환경이다. 32비트 주소 영역의 완전한 제어를 갖고 우리가 원하는 것을 확실히 로드하고 언로드 할 수 있다. OllyDbg와 x64dbg 같은 많은 디버거들은 여기서 크래시가 나서 분석을 계속하기 위해 Windbg를 사용했다.</p>
-<h2 id="An-Interstring-Intermission"><a href="#An-Interstring-Intermission" class="headerlink" title="An Interstring Intermission"></a>An Interstring Intermission</h2><p>프로세스의 32비트 주소 영역을 완전히 지워버리면서 코드는 의도대로 실행하고 동작하도록 하는 목표에 거의 성공했었다. 여기에는 공격적인 결과와 방어적인 결과가 같이 있다. 아마 이 기간 동안 가장 흥미로운 사실 중 하나는 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/winprog64/exception-handling-under-wow64">MSDN 페이지</a>를 발견했을 때이다.</p>
+<p>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC5C9;&#xB9DD;&#xC774;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xC5EC;&#xC804;&#xD788; &#xCF54;&#xB4DC;&#xB294; &#xC2E4;&#xD589;&#xB418;&#xACE0; &#xC788;&#xC73C;&#xBA70; &#xC798; &#xB3D9;&#xC791;&#xD558;&#xACE0; &#xC788;&#xB2E4;. anti-analysis&#xC744; &#xD558;&#xAE30;&#xC5D0; &#xC0C1;&#xB2F9;&#xD788; &#xC88B;&#xC740; &#xD658;&#xACBD;&#xC774;&#xB2E4;. 32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xC601;&#xC5ED;&#xC758; &#xC644;&#xC804;&#xD55C; &#xC81C;&#xC5B4;&#xB97C; &#xAC16;&#xACE0; &#xC6B0;&#xB9AC;&#xAC00; &#xC6D0;&#xD558;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC2E4;&#xD788; &#xB85C;&#xB4DC;&#xD558;&#xACE0; &#xC5B8;&#xB85C;&#xB4DC; &#xD560; &#xC218; &#xC788;&#xB2E4;. OllyDbg&#xC640; x64dbg &#xAC19;&#xC740; &#xB9CE;&#xC740; &#xB514;&#xBC84;&#xAC70;&#xB4E4;&#xC740; &#xC5EC;&#xAE30;&#xC11C; &#xD06C;&#xB798;&#xC2DC;&#xAC00; &#xB098;&#xC11C; &#xBD84;&#xC11D;&#xC744; &#xACC4;&#xC18D;&#xD558;&#xAE30; &#xC704;&#xD574; Windbg&#xB97C; &#xC0AC;&#xC6A9;&#xD588;&#xB2E4;.</p>
+<h2 id="An-Interstring-Intermission"><a href="#An-Interstring-Intermission" class="headerlink" title="An Interstring Intermission"></a>An Interstring Intermission</h2><p>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; 32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xC601;&#xC5ED;&#xC744; &#xC644;&#xC804;&#xD788; &#xC9C0;&#xC6CC;&#xBC84;&#xB9AC;&#xBA74;&#xC11C; &#xCF54;&#xB4DC;&#xB294; &#xC758;&#xB3C4;&#xB300;&#xB85C; &#xC2E4;&#xD589;&#xD558;&#xACE0; &#xB3D9;&#xC791;&#xD558;&#xB3C4;&#xB85D; &#xD558;&#xB294; &#xBAA9;&#xD45C;&#xC5D0; &#xAC70;&#xC758; &#xC131;&#xACF5;&#xD588;&#xC5C8;&#xB2E4;. &#xC5EC;&#xAE30;&#xC5D0;&#xB294; &#xACF5;&#xACA9;&#xC801;&#xC778; &#xACB0;&#xACFC;&#xC640; &#xBC29;&#xC5B4;&#xC801;&#xC778; &#xACB0;&#xACFC;&#xAC00; &#xAC19;&#xC774; &#xC788;&#xB2E4;. &#xC544;&#xB9C8; &#xC774; &#xAE30;&#xAC04; &#xB3D9;&#xC548; &#xAC00;&#xC7A5; &#xD765;&#xBBF8;&#xB85C;&#xC6B4; &#xC0AC;&#xC2E4; &#xC911; &#xD558;&#xB098;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/winprog64/exception-handling-under-wow64">MSDN &#xD398;&#xC774;&#xC9C0;</a>&#xB97C; &#xBC1C;&#xACAC;&#xD588;&#xC744; &#xB54C;&#xC774;&#xB2E4;.</p>
 <blockquote>
-<p>WOW64는 x86 예외에 대한 전송으로 native x64, ia64 또는 ARM64 예외를 사용한다. 따라서 WOW64에서 동작하는 32비트 응용 프로그램에서 포착되지 않은 예외는 native 64비트 예외처럼 동작한다.</p>
+<p>WOW64&#xB294; x86 &#xC608;&#xC678;&#xC5D0; &#xB300;&#xD55C; &#xC804;&#xC1A1;&#xC73C;&#xB85C; native x64, ia64 &#xB610;&#xB294; ARM64 &#xC608;&#xC678;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; WOW64&#xC5D0;&#xC11C; &#xB3D9;&#xC791;&#xD558;&#xB294; 32&#xBE44;&#xD2B8; &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xD3EC;&#xCC29;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC608;&#xC678;&#xB294; native 64&#xBE44;&#xD2B8; &#xC608;&#xC678;&#xCC98;&#xB7FC; &#xB3D9;&#xC791;&#xD55C;&#xB2E4;.</p>
 </blockquote>
-<p>4GB 경계 위의 주소에 64비트 쉘 코드를 쓸 수 있는데, 64비트 공간에 64비트 벡터 예외 처리기(Vectored Exception Handler)를 설치하며 32비트 예외에 의해 트리거 되고 Control Flow가 64bit VEH에 의해 리다이렉션 된다.</p>
+<p>4GB &#xACBD;&#xACC4; &#xC704;&#xC758; &#xC8FC;&#xC18C;&#xC5D0; 64&#xBE44;&#xD2B8; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xC4F8; &#xC218; &#xC788;&#xB294;&#xB370;, 64&#xBE44;&#xD2B8; &#xACF5;&#xAC04;&#xC5D0; 64&#xBE44;&#xD2B8; &#xBCA1;&#xD130; &#xC608;&#xC678; &#xCC98;&#xB9AC;&#xAE30;(Vectored Exception Handler)&#xB97C; &#xC124;&#xCE58;&#xD558;&#xBA70; 32&#xBE44;&#xD2B8; &#xC608;&#xC678;&#xC5D0; &#xC758;&#xD574; &#xD2B8;&#xB9AC;&#xAC70; &#xB418;&#xACE0; Control Flow&#xAC00; 64bit VEH&#xC5D0; &#xC758;&#xD574; &#xB9AC;&#xB2E4;&#xC774;&#xB809;&#xC158; &#xB41C;&#xB2E4;.</p>
 <p><img src="/2021/01/10/idioth/memfuck/image5.png" srcset="/img/loading.gif"></p>
-<p>32비트 ntdll이 로드되어 제대로 됐음을 확신했다. 모든 것이 unmap 된 예외를 트리거하는 것은 쉽지만 처리할 WoW64 레이어로 전환할 코드가 없다. 하지만 이 아이디어에는 많은 흥미로운 잠재력이 있다.</p>
-<h2 id="Ntdll-No-More"><a href="#Ntdll-No-More" class="headerlink" title="Ntdll No More"></a>Ntdll No More</h2><p>더 이상 어떤 목적을 위해서든 ntdll에 의존하지 않는다는 원래 개념으로 돌아가서 WoW64 계층에 남은 3개의 dll을 unmapping 하는 일이 남았다. WoW64는 대부분 시스템에서 거의 동일하다.(WoW64.dll, wow64win.dll, ntdll.dll)</p>
+<p>32&#xBE44;&#xD2B8; ntdll&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xC5B4; &#xC81C;&#xB300;&#xB85C; &#xB410;&#xC74C;&#xC744; &#xD655;&#xC2E0;&#xD588;&#xB2E4;. &#xBAA8;&#xB4E0; &#xAC83;&#xC774; unmap &#xB41C; &#xC608;&#xC678;&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xB294; &#xAC83;&#xC740; &#xC27D;&#xC9C0;&#xB9CC; &#xCC98;&#xB9AC;&#xD560; WoW64 &#xB808;&#xC774;&#xC5B4;&#xB85C; &#xC804;&#xD658;&#xD560; &#xCF54;&#xB4DC;&#xAC00; &#xC5C6;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xC774; &#xC544;&#xC774;&#xB514;&#xC5B4;&#xC5D0;&#xB294; &#xB9CE;&#xC740; &#xD765;&#xBBF8;&#xB85C;&#xC6B4; &#xC7A0;&#xC7AC;&#xB825;&#xC774; &#xC788;&#xB2E4;.</p>
+<h2 id="Ntdll-No-More"><a href="#Ntdll-No-More" class="headerlink" title="Ntdll No More"></a>Ntdll No More</h2><p>&#xB354; &#xC774;&#xC0C1; &#xC5B4;&#xB5A4; &#xBAA9;&#xC801;&#xC744; &#xC704;&#xD574;&#xC11C;&#xB4E0; ntdll&#xC5D0; &#xC758;&#xC874;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;&#xB294; &#xC6D0;&#xB798; &#xAC1C;&#xB150;&#xC73C;&#xB85C; &#xB3CC;&#xC544;&#xAC00;&#xC11C; WoW64 &#xACC4;&#xCE35;&#xC5D0; &#xB0A8;&#xC740; 3&#xAC1C;&#xC758; dll&#xC744; unmapping &#xD558;&#xB294; &#xC77C;&#xC774; &#xB0A8;&#xC558;&#xB2E4;. WoW64&#xB294; &#xB300;&#xBD80;&#xBD84; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; &#xAC70;&#xC758; &#xB3D9;&#xC77C;&#xD558;&#xB2E4;.(WoW64.dll, wow64win.dll, ntdll.dll)</p>
 <p><img src="/2021/01/10/idioth/memfuck/image6.png" srcset="/img/loading.gif"></p>
-<p>32비트 코드로 돌아가지 않을 것이라고 생각하니 더 이상 필요하지 않은 이 dll들을 unmap 하자.</p>
+<p>32&#xBE44;&#xD2B8; &#xCF54;&#xB4DC;&#xB85C; &#xB3CC;&#xC544;&#xAC00;&#xC9C0; &#xC54A;&#xC744; &#xAC83;&#xC774;&#xB77C;&#xACE0; &#xC0DD;&#xAC01;&#xD558;&#xB2C8; &#xB354; &#xC774;&#xC0C1; &#xD544;&#xC694;&#xD558;&#xC9C0; &#xC54A;&#xC740; &#xC774; dll&#xB4E4;&#xC744; unmap &#xD558;&#xC790;.</p>
 <pre><code class="hljs cpp">DWORD64 addrWoW64 = <span class="hljs-number">0</span>;
   DWORD64 addrWoW64Win = <span class="hljs-number">0</span>;
   DWORD64 addrNtdll = <span class="hljs-number">0</span>;
@@ -314,32 +314,32 @@ DEFINE_FUNC_PTR(<span class="hljs-string">&quot;ntdll.dll&quot;</span>, NtProtec
   LIST_ENTRY* first = peb64-&gt;Ldr-&gt;InMemoryOrderModuleList.Flink;
   LIST_ENTRY* ptr = first;
   <span class="hljs-keyword">int</span> cntr = <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">do</span> &#123;
+  <span class="hljs-keyword">do</span> {
     LDR_DATA_TABLE_ENTRY* dte = getDataTableEntry(ptr);
     ptr = ptr-&gt;Flink;
-    <span class="hljs-keyword">if</span> (cntr == <span class="hljs-number">1</span>) &#123;
+    <span class="hljs-keyword">if</span> (cntr == <span class="hljs-number">1</span>) {
       addrNtdll = (DWORD64)dte-&gt;DllBase;
-    &#125;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cntr == <span class="hljs-number">2</span>) &#123;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cntr == <span class="hljs-number">2</span>) {
       addrWoW64 = (DWORD64)dte-&gt;DllBase;
-    &#125;
-    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cntr == <span class="hljs-number">3</span>) &#123;
+    }
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (cntr == <span class="hljs-number">3</span>) {
       addrWoW64Win = (DWORD64)dte-&gt;DllBase;
-    &#125;
+    }
     cntr++;
-  &#125; <span class="hljs-keyword">while</span> (ptr != first);
+  } <span class="hljs-keyword">while</span> (ptr != first);
   NtUnmapViewOfSection(<span class="hljs-number">-1</span>, addrWoW64);
   NtUnmapViewOfSection(<span class="hljs-number">-1</span>, addrWoW64Win);</code></pre>
 
 <p><img src="/2021/01/10/idioth/memfuck/image7.png" srcset="/img/loading.gif"></p>
-<p>32비트 주소 공간에 더 이상 hook은 존재하지 않으며 WoW64 dll(Wow64SystemServiceEx 등)에 있는 것도 다 사라졌다. 남은 일은 ntdll을 unmap 하는 것이다. 다시 한번 부모 모듈에서 NtUnmapViewOfSection을 호출하는 문제가 생겼다. 직접 system call을 하자.</p>
-<p>64비트 MSVC 컴파일러가 inline assembly를 제공하지 않으므로 function ordering, 내부 코드 배치 제한으로 인해 system call stub에 새로운 메모리 영역을 할당하기로 결정했다. 윈도우 10 64비트의 Syscall stub은 아래와 같다.</p>
+<p>32&#xBE44;&#xD2B8; &#xC8FC;&#xC18C; &#xACF5;&#xAC04;&#xC5D0; &#xB354; &#xC774;&#xC0C1; hook&#xC740; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBA70; WoW64 dll(Wow64SystemServiceEx &#xB4F1;)&#xC5D0; &#xC788;&#xB294; &#xAC83;&#xB3C4; &#xB2E4; &#xC0AC;&#xB77C;&#xC84C;&#xB2E4;. &#xB0A8;&#xC740; &#xC77C;&#xC740; ntdll&#xC744; unmap &#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xB2E4;&#xC2DC; &#xD55C;&#xBC88; &#xBD80;&#xBAA8; &#xBAA8;&#xB4C8;&#xC5D0;&#xC11C; NtUnmapViewOfSection&#xC744; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xBB38;&#xC81C;&#xAC00; &#xC0DD;&#xACBC;&#xB2E4;. &#xC9C1;&#xC811; system call&#xC744; &#xD558;&#xC790;.</p>
+<p>64&#xBE44;&#xD2B8; MSVC &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xAC00; inline assembly&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; function ordering, &#xB0B4;&#xBD80; &#xCF54;&#xB4DC; &#xBC30;&#xCE58; &#xC81C;&#xD55C;&#xC73C;&#xB85C; &#xC778;&#xD574; system call stub&#xC5D0; &#xC0C8;&#xB85C;&#xC6B4; &#xBA54;&#xBAA8;&#xB9AC; &#xC601;&#xC5ED;&#xC744; &#xD560;&#xB2F9;&#xD558;&#xAE30;&#xB85C; &#xACB0;&#xC815;&#xD588;&#xB2E4;. &#xC708;&#xB3C4;&#xC6B0; 10 64&#xBE44;&#xD2B8;&#xC758; Syscall stub&#xC740; &#xC544;&#xB798;&#xC640; &#xAC19;&#xB2E4;.</p>
 <pre><code class="hljs x86asm"><span class="hljs-keyword">mov</span> <span class="hljs-built_in">r10</span>, <span class="hljs-built_in">rcx</span>
 <span class="hljs-keyword">mov</span> <span class="hljs-built_in">eax</span>, xxh
 <span class="hljs-keyword">syscall</span>
 <span class="hljs-keyword">retn</span></code></pre>
 
-<p>NtdllVirtualMemory를 호출하고 DWORD by DWORD로 코드를 작성해라. 그리고 typedef prototype을 할당하면 Nt* 함수를 쉽게 호출할 수 있다.</p>
+<p>NtdllVirtualMemory&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xACE0; DWORD by DWORD&#xB85C; &#xCF54;&#xB4DC;&#xB97C; &#xC791;&#xC131;&#xD574;&#xB77C;. &#xADF8;&#xB9AC;&#xACE0; typedef prototype&#xC744; &#xD560;&#xB2F9;&#xD558;&#xBA74; Nt* &#xD568;&#xC218;&#xB97C; &#xC27D;&#xAC8C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs cpp">DWORD dwCode1 = <span class="hljs-number">0xb8d18b4c</span>;
   DWORD dwCode2 = <span class="hljs-number">0x0000002a</span>; <span class="hljs-comment">// syscall code for NtUnmapViewOfSection</span>
   DWORD dwCode3 = <span class="hljs-number">0x90c3050f</span>;
@@ -352,10 +352,10 @@ DEFINE_FUNC_PTR(<span class="hljs-string">&quot;ntdll.dll&quot;</span>, NtProtec
   *((DWORD*)syscallbase + <span class="hljs-number">2</span>) = dwCode3;
   p_SysUnmapViewOfSection sysUnmap = (p_SysUnmapViewOfSection)syscallbase;</code></pre>
 
-<p>마지막으로 64비트 ntdll에 대해 NtUnmapViewOfSection의 직접적인 system call 후에 프로세스에는 아무것도 없다. 안티 바이러스가 시도하고 hook 하는 user-mode에 남은 것이 없다. 주입된 DLL이 unmap 된지는 오래됐다.</p>
+<p>&#xB9C8;&#xC9C0;&#xB9C9;&#xC73C;&#xB85C; 64&#xBE44;&#xD2B8; ntdll&#xC5D0; &#xB300;&#xD574; NtUnmapViewOfSection&#xC758; &#xC9C1;&#xC811;&#xC801;&#xC778; system call &#xD6C4;&#xC5D0; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xB294; &#xC544;&#xBB34;&#xAC83;&#xB3C4; &#xC5C6;&#xB2E4;. &#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4;&#xAC00; &#xC2DC;&#xB3C4;&#xD558;&#xACE0; hook &#xD558;&#xB294; user-mode&#xC5D0; &#xB0A8;&#xC740; &#xAC83;&#xC774; &#xC5C6;&#xB2E4;. &#xC8FC;&#xC785;&#xB41C; DLL&#xC774; unmap &#xB41C;&#xC9C0;&#xB294; &#xC624;&#xB798;&#xB410;&#xB2E4;.</p>
 <p><img src="/2021/01/10/idioth/memfuck/image8.png" srcset="/img/loading.gif"></p>
-<p>여기부터 Rtl* 함수 사용 없이 syscall을 통해 직접 code injection이나 detected code를 실행하는 것이다. 이것을 하면서 WoW64에 관해 많은 것을 배웠고, 한계점과 특이점, 32비트와 64비트 VEH 같은 새로운 탐구 영역을 얻었다.</p>
-<h2 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jackullrich/memfuck">Github 주소</a></p>
+<p>&#xC5EC;&#xAE30;&#xBD80;&#xD130; Rtl* &#xD568;&#xC218; &#xC0AC;&#xC6A9; &#xC5C6;&#xC774; syscall&#xC744; &#xD1B5;&#xD574; &#xC9C1;&#xC811; code injection&#xC774;&#xB098; detected code&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xC774;&#xAC83;&#xC744; &#xD558;&#xBA74;&#xC11C; WoW64&#xC5D0; &#xAD00;&#xD574; &#xB9CE;&#xC740; &#xAC83;&#xC744; &#xBC30;&#xC6E0;&#xACE0;, &#xD55C;&#xACC4;&#xC810;&#xACFC; &#xD2B9;&#xC774;&#xC810;, 32&#xBE44;&#xD2B8;&#xC640; 64&#xBE44;&#xD2B8; VEH &#xAC19;&#xC740; &#xC0C8;&#xB85C;&#xC6B4; &#xD0D0;&#xAD6C; &#xC601;&#xC5ED;&#xC744; &#xC5BB;&#xC5C8;&#xB2E4;.</p>
+<h2 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/jackullrich/memfuck">Github &#xC8FC;&#xC18C;</a></p>
 
             </div>
             <hr>
@@ -652,6 +652,45 @@ DEFINE_FUNC_PTR(<span class="hljs-string">&quot;ntdll.dll&quot;</span>, NtProtec
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

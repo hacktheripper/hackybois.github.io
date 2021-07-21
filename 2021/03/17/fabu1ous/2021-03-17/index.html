@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      136 자
+      205 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -242,22 +242,22 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/EnableSecurity/advisories/tree/master/ES2021-03-voipmonitor-livesniffer-buffer-overflow">VoIPmonitor is vulnerable to a buffer overflow when using the live sniffer</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>VoIPmonitor 27.6</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>오픈소스 network packet sniffer인 VoIPmonitor에서 RCE취약점이 발견되었습니다. </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>&#xC624;&#xD508;&#xC18C;&#xC2A4; network packet sniffer&#xC778; VoIPmonitor&#xC5D0;&#xC11C; RCE&#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs c"><span class="hljs-keyword">char</span> callidstr[<span class="hljs-number">1024</span>] = <span class="hljs-string">&quot;&quot;</span>;
-<span class="hljs-keyword">if</span>(packetS-&gt;sipDataLen) &#123;
+<span class="hljs-keyword">if</span>(packetS-&gt;sipDataLen) {
     <span class="hljs-keyword">void</span> *memptr = memmem(packetS-&gt;data_()+ packetS-&gt;sipDataOffset, 
         packetS-&gt;sipDataLen, <span class="hljs-string">&quot;\r\n&quot;</span>, <span class="hljs-number">2</span>);
-    <span class="hljs-keyword">if</span>(memptr) &#123;
+    <span class="hljs-keyword">if</span>(memptr) {
         <span class="hljs-built_in">memcpy</span>(description, packetS-&gt;data_()+ packetS-&gt;sipDataOffset, 
             (<span class="hljs-keyword">char</span> *)memptr - (<span class="hljs-keyword">char</span>*)(packetS-&gt;data_()+ packetS-&gt;sipDataOffset));
         description[(<span class="hljs-keyword">char</span>*)memptr - (<span class="hljs-keyword">char</span>*)(packetS-&gt;data_()+ 
-            packetS-&gt;sipDataOffset)] = <span class="hljs-string">&#x27;\0&#x27;</span>;
+            packetS-&gt;sipDataOffset)] = <span class="hljs-string">&apos;\0&apos;</span>;
         <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%s\n&quot;</span>, description);
-    &#125;
+    }
     <span class="hljs-comment">// ...</span>
-&#125;</code></pre>
+}</code></pre>
 
-<p>위는 함수 <code>save_packet_sqp</code>의 코드입니다. 변수 <code>description</code>은 1024 bytes 크기로 고정되어 있는 SIP request 값을 저장하는 배열입니다. <code>description</code>의 크기보다 큰 request를 보내 버퍼오버플로우가 가능합니다. Stack canary, RELRO 등 표준 memory corruption 보호 기법이 없으므로 버퍼오버플로우를 통한 원격코드 실행이 가능합니다.</p>
+<p>&#xC704;&#xB294; &#xD568;&#xC218; <code>save_packet_sqp</code>&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. &#xBCC0;&#xC218; <code>description</code>&#xC740; 1024 bytes &#xD06C;&#xAE30;&#xB85C; &#xACE0;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; SIP request &#xAC12;&#xC744; &#xC800;&#xC7A5;&#xD558;&#xB294; &#xBC30;&#xC5F4;&#xC785;&#xB2C8;&#xB2E4;. <code>description</code>&#xC758; &#xD06C;&#xAE30;&#xBCF4;&#xB2E4; &#xD070; request&#xB97C; &#xBCF4;&#xB0B4; &#xBC84;&#xD37C;&#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. Stack canary, RELRO &#xB4F1; &#xD45C;&#xC900; memory corruption &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC774; &#xC5C6;&#xC73C;&#xBBC0;&#xB85C; &#xBC84;&#xD37C;&#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0;&#xB97C; &#xD1B5;&#xD55C; &#xC6D0;&#xACA9;&#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -556,6 +556,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      157 자
+      305 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -243,16 +243,16 @@
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://securelist.com/puzzlemaker-chrome-zero-day-exploit-chain/102771/">PuzzleMaker attacks with Chrome zero-day exploit chain</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Google Chrome &lt;= 90.0.4430.85</p>
 <p>Windows</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>최근 여러 기업에 대한 고도로 표적화된 공격이 감지되었습니다. Kaspersky technologies의 분석에 따르면 해당 공격들은 구글 Chrome(CVE-2021-21224)과 Windows(CVE-2021-31955, CVE-2021-31956) 제로데이 Exploit chain을 사용합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>&#xCD5C;&#xADFC; &#xC5EC;&#xB7EC; &#xAE30;&#xC5C5;&#xC5D0; &#xB300;&#xD55C; &#xACE0;&#xB3C4;&#xB85C; &#xD45C;&#xC801;&#xD654;&#xB41C; &#xACF5;&#xACA9;&#xC774; &#xAC10;&#xC9C0;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Kaspersky technologies&#xC758; &#xBD84;&#xC11D;&#xC5D0; &#xB530;&#xB974;&#xBA74; &#xD574;&#xB2F9; &#xACF5;&#xACA9;&#xB4E4;&#xC740; &#xAD6C;&#xAE00; Chrome(CVE-2021-21224)&#xACFC; Windows(CVE-2021-31955, CVE-2021-31956) &#xC81C;&#xB85C;&#xB370;&#xC774; Exploit chain&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><p>CVE-2021-21224</p>
-<p>90.0.4430.85이전 Chrome의 V8에는 Type confusion 취약점이 존재해 해커로 하여금 악성 HTML 페이지를 통해 원격으로 임의 코드 실행을 할 수 있게 합니다.</p>
+<p>90.0.4430.85&#xC774;&#xC804; Chrome&#xC758; V8&#xC5D0;&#xB294; Type confusion &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD574; &#xD574;&#xCEE4;&#xB85C; &#xD558;&#xC5EC;&#xAE08; &#xC545;&#xC131; HTML &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xD1B5;&#xD574; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD560; &#xC218; &#xC788;&#xAC8C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-31955</p>
-<p>ntoskrnl.exe에 존재하는 정보 노출 취약점입니다. Windows OS의 SuperFetch 기능을 악용한 것으로 <code>NtQuerySystemInformation</code>함수에 의해 반환된 SuperFetch 정보 클래스에 EPROCESS 커널 주소를 포함하기 때문에 발생합니다.</p>
+<p>ntoskrnl.exe&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xC815;&#xBCF4; &#xB178;&#xCD9C; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. Windows OS&#xC758; SuperFetch &#xAE30;&#xB2A5;&#xC744; &#xC545;&#xC6A9;&#xD55C; &#xAC83;&#xC73C;&#xB85C; <code>NtQuerySystemInformation</code>&#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xBC18;&#xD658;&#xB41C; SuperFetch &#xC815;&#xBCF4; &#xD074;&#xB798;&#xC2A4;&#xC5D0; EPROCESS &#xCEE4;&#xB110; &#xC8FC;&#xC18C;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>CVE-2021-3195</p>
-<p>ntfs.sys에 존재하는 heap-based buffer overflow취약점입니다.<code> NTFSQUeryEaUserEaList</code>는 파일에 대한 확장 attribute 목록을 처리하고 버퍼에 저장합니다. 해당 기능은 output 버퍼의 크기를 제어할 수 있고 32비트 alignment로 정렬합니다. Output 버퍼의 패딩 기능에 integer underflow 검사가 없어서 Heap overflow가 발생합니다.</p>
+<p>ntfs.sys&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; heap-based buffer overflow&#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.<code> NTFSQUeryEaUserEaList</code>&#xB294; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD55C; &#xD655;&#xC7A5; attribute &#xBAA9;&#xB85D;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xACE0; &#xBC84;&#xD37C;&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xAE30;&#xB2A5;&#xC740; output &#xBC84;&#xD37C;&#xC758; &#xD06C;&#xAE30;&#xB97C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xACE0; 32&#xBE44;&#xD2B8; alignment&#xB85C; &#xC815;&#xB82C;&#xD569;&#xB2C8;&#xB2E4;. Output &#xBC84;&#xD37C;&#xC758; &#xD328;&#xB529; &#xAE30;&#xB2A5;&#xC5D0; integer underflow &#xAC80;&#xC0AC;&#xAC00; &#xC5C6;&#xC5B4;&#xC11C; Heap overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
 
@@ -559,6 +559,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

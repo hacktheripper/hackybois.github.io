@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      101 자
+      193 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      3
        분
     </span>
   
@@ -244,7 +244,7 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Google Chrome</p>
 <p>Freetype</p>
 <p>libpng</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>2020-10-21일 Chrome 긴급 패치가 릴리즈 됐습니다. CVE-2020-15999는 Chrome에서 폰트를 렌더링 할 때 사용하는 오픈소스 라이브러리 Freetype와 공식 PNG 라이브러리 libpng 사이에서 발생하는 이슈입니다. 각 라이브러리는 이미지로부터 32-bit integer크기의 width와 height값을 참조해 동작하는데, Freetype은 16-bit로 truncate(축소)한 뒤 bitmap 할당에 사용되는 size를 계산합니다. 이미지의 width와 height가 16-bit 보다 크다면 Freetype에서 할당된 bitmap이 실제 이미지보다 작겠죠? 이  bitmap을 libpng가 사용하면서 heap buffer overflow가 발생하게 됩니다. </p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>2020-10-21&#xC77C; Chrome &#xAE34;&#xAE09; &#xD328;&#xCE58;&#xAC00; &#xB9B4;&#xB9AC;&#xC988; &#xB410;&#xC2B5;&#xB2C8;&#xB2E4;. CVE-2020-15999&#xB294; Chrome&#xC5D0;&#xC11C; &#xD3F0;&#xD2B8;&#xB97C; &#xB80C;&#xB354;&#xB9C1; &#xD560; &#xB54C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; Freetype&#xC640; &#xACF5;&#xC2DD; PNG &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC; libpng &#xC0AC;&#xC774;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xC774;&#xC288;&#xC785;&#xB2C8;&#xB2E4;. &#xAC01; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB294; &#xC774;&#xBBF8;&#xC9C0;&#xB85C;&#xBD80;&#xD130; 32-bit integer&#xD06C;&#xAE30;&#xC758; width&#xC640; height&#xAC12;&#xC744; &#xCC38;&#xC870;&#xD574; &#xB3D9;&#xC791;&#xD558;&#xB294;&#xB370;, Freetype&#xC740; 16-bit&#xB85C; truncate(&#xCD95;&#xC18C;)&#xD55C; &#xB4A4; bitmap &#xD560;&#xB2F9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; size&#xB97C; &#xACC4;&#xC0B0;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xBBF8;&#xC9C0;&#xC758; width&#xC640; height&#xAC00; 16-bit &#xBCF4;&#xB2E4; &#xD06C;&#xB2E4;&#xBA74; Freetype&#xC5D0;&#xC11C; &#xD560;&#xB2F9;&#xB41C; bitmap&#xC774; &#xC2E4;&#xC81C; &#xC774;&#xBBF8;&#xC9C0;&#xBCF4;&#xB2E4; &#xC791;&#xACA0;&#xC8E0;? &#xC774;  bitmap&#xC744; libpng&#xAC00; &#xC0AC;&#xC6A9;&#xD558;&#xBA74;&#xC11C; heap buffer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. </p>
 
             </div>
             <hr>
@@ -549,6 +549,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

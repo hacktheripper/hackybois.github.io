@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      191 자
+      429 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      8
        분
     </span>
   
@@ -244,20 +244,20 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Japanese orgainsations</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>일본을 타깃으로 라자루스가 사용한 멀웨어 VSingle과 ValeforBeta에 대한 분석 보고서가 공개되었습니다.</p>
-<p>VSingle은 원격 네트워크에서 임의 코드 실행, 플러그인 다운로드 및 실행을 하는 HTTP 봇입니다. 해당 멀웨어는 설치되면 Explorer를 실행하고 DLL injection을 통해 메인 코드를 실행합니다. VSingle은 HTTP GET request를 통해 C2 서버와 통신합니다. request는 base64로 인코딩 되어있으며, IP 주소, Windows 버전 등을 포함합니다. response를 통해 서버에서 명령어가 포함된 AES 암호화 데이터를 다운로드 받습니다. VSingle이 수행할 수 있는 명령어는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC77C;&#xBCF8;&#xC744; &#xD0C0;&#xAE43;&#xC73C;&#xB85C; &#xB77C;&#xC790;&#xB8E8;&#xC2A4;&#xAC00; &#xC0AC;&#xC6A9;&#xD55C; &#xBA40;&#xC6E8;&#xC5B4; VSingle&#xACFC; ValeforBeta&#xC5D0; &#xB300;&#xD55C; &#xBD84;&#xC11D; &#xBCF4;&#xACE0;&#xC11C;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>VSingle&#xC740; &#xC6D0;&#xACA9; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC5D0;&#xC11C; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;, &#xD50C;&#xB7EC;&#xADF8;&#xC778; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xBC0F; &#xC2E4;&#xD589;&#xC744; &#xD558;&#xB294; HTTP &#xBD07;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xBA40;&#xC6E8;&#xC5B4;&#xB294; &#xC124;&#xCE58;&#xB418;&#xBA74; Explorer&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xACE0; DLL injection&#xC744; &#xD1B5;&#xD574; &#xBA54;&#xC778; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. VSingle&#xC740; HTTP GET request&#xB97C; &#xD1B5;&#xD574; C2 &#xC11C;&#xBC84;&#xC640; &#xD1B5;&#xC2E0;&#xD569;&#xB2C8;&#xB2E4;. request&#xB294; base64&#xB85C; &#xC778;&#xCF54;&#xB529; &#xB418;&#xC5B4;&#xC788;&#xC73C;&#xBA70;, IP &#xC8FC;&#xC18C;, Windows &#xBC84;&#xC804; &#xB4F1;&#xC744; &#xD3EC;&#xD568;&#xD569;&#xB2C8;&#xB2E4;. response&#xB97C; &#xD1B5;&#xD574; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xBA85;&#xB839;&#xC5B4;&#xAC00; &#xD3EC;&#xD568;&#xB41C; AES &#xC554;&#xD638;&#xD654; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;. VSingle&#xC774; &#xC218;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xBA85;&#xB839;&#xC5B4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>파일 업로드</li>
-<li>communication interval 설정</li>
-<li>임의 명령 실행</li>
-<li>플러그인 다운로드/실행</li>
-<li>업데이트</li>
-<li>멀웨어 정보 전송</li>
+<li>&#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC;</li>
+<li>communication interval &#xC124;&#xC815;</li>
+<li>&#xC784;&#xC758; &#xBA85;&#xB839; &#xC2E4;&#xD589;</li>
+<li>&#xD50C;&#xB7EC;&#xADF8;&#xC778; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;/&#xC2E4;&#xD589;</li>
+<li>&#xC5C5;&#xB370;&#xC774;&#xD2B8;</li>
+<li>&#xBA40;&#xC6E8;&#xC5B4; &#xC815;&#xBCF4; &#xC804;&#xC1A1;</li>
 <li>uninstall</li>
-<li>다운로드 파일</li>
+<li>&#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xD30C;&#xC77C;</li>
 </ol>
-<p>VSingle은 4 가지 유형의 플러그인(Windows PE 파일, VBS 파일, BAT 파일, 쉘 코드)을 실행합니다. 플러그인은 <code>%TEMP%</code> 폴더에 저장된 후 쉘 코드를 제외한 3개의 플러그인을 실행합니다.</p>
-<p>ValeforBeta는 Delphi로 작성된 HTTP 봇으로 원격 네트워크에서 임의 코드 실행, 파일 업로드, 다운로드 기능을 가지고 있습니다. <code>INTERNET_OPEN_TYPE_DIRECT</code>, <code>INTERNET_OPEN_TYPE_PRECONFIG</code>, <code>INTERNET_OPEN_TYPE_PROXY</code>의 access type을 가지고 있으며 POST request를 통해 C2 서버와 통신합니다. POST request에는 데이터가 포함되어 있지 않고 쿠키 헤더의 <code>JSESSIONID=</code> 뒤에 감염된 호스트의 정보가 base64 인코딩 되어 전송됩니다.</p>
+<p>VSingle&#xC740; 4 &#xAC00;&#xC9C0; &#xC720;&#xD615;&#xC758; &#xD50C;&#xB7EC;&#xADF8;&#xC778;(Windows PE &#xD30C;&#xC77C;, VBS &#xD30C;&#xC77C;, BAT &#xD30C;&#xC77C;, &#xC258; &#xCF54;&#xB4DC;)&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC740; <code>%TEMP%</code> &#xD3F4;&#xB354;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xD6C4; &#xC258; &#xCF54;&#xB4DC;&#xB97C; &#xC81C;&#xC678;&#xD55C; 3&#xAC1C;&#xC758; &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>ValeforBeta&#xB294; Delphi&#xB85C; &#xC791;&#xC131;&#xB41C; HTTP &#xBD07;&#xC73C;&#xB85C; &#xC6D0;&#xACA9; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xC5D0;&#xC11C; &#xC784;&#xC758; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;, &#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC;, &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xAE30;&#xB2A5;&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>INTERNET_OPEN_TYPE_DIRECT</code>, <code>INTERNET_OPEN_TYPE_PRECONFIG</code>, <code>INTERNET_OPEN_TYPE_PROXY</code>&#xC758; access type&#xC744; &#xAC00;&#xC9C0;&#xACE0; &#xC788;&#xC73C;&#xBA70; POST request&#xB97C; &#xD1B5;&#xD574; C2 &#xC11C;&#xBC84;&#xC640; &#xD1B5;&#xC2E0;&#xD569;&#xB2C8;&#xB2E4;. POST request&#xC5D0;&#xB294; &#xB370;&#xC774;&#xD130;&#xAC00; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xC9C0; &#xC54A;&#xACE0; &#xCFE0;&#xD0A4; &#xD5E4;&#xB354;&#xC758; <code>JSESSIONID=</code> &#xB4A4;&#xC5D0; &#xAC10;&#xC5FC;&#xB41C; &#xD638;&#xC2A4;&#xD2B8;&#xC758; &#xC815;&#xBCF4;&#xAC00; base64 &#xC778;&#xCF54;&#xB529; &#xB418;&#xC5B4; &#xC804;&#xC1A1;&#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -558,6 +558,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

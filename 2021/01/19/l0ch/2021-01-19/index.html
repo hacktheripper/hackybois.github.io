@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      152 자
+      317 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -242,17 +242,17 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.br0vvnn.io/pages/blogpost.aspx?id=4">A Series of Windows Kernel Bugs in a Single Function</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Windows kernel</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows 커널 함수 중 ETW 구성 요소의 함수인 <code>EtwpNotifyGuid</code> 에 5개 이상의 취약점이 발견되었습니다.</p>
-<p>현재까지 발견된 취약점 중 상세 정보가 공개된 취약점 목록은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows &#xCEE4;&#xB110; &#xD568;&#xC218; &#xC911; ETW &#xAD6C;&#xC131; &#xC694;&#xC18C;&#xC758; &#xD568;&#xC218;&#xC778; <code>EtwpNotifyGuid</code> &#xC5D0; 5&#xAC1C; &#xC774;&#xC0C1;&#xC758; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD604;&#xC7AC;&#xAE4C;&#xC9C0; &#xBC1C;&#xACAC;&#xB41C; &#xCDE8;&#xC57D;&#xC810; &#xC911; &#xC0C1;&#xC138; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB41C; &#xCDE8;&#xC57D;&#xC810; &#xBAA9;&#xB85D;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>CVE-2020-1033</li>
 <li><a href="https://hackyboiz.github.io/2020/10/26/idioth/cve-2020-1034/">CVE-2020-1034</a></li>
 <li>CVE-2021-1662</li>
 <li>CVE-2021-1682</li>
 </ul>
-<p>이중 최근에 공개된 취약점은 CVE-2021-1662와 CVE-2021-1668입니다.</p>
-<p>CVE-2021-1662는 잘못된 범위 검증으로 인한 권한 상승 취약점으로,  <code>EtwpNotifyGuid</code> 함수에서 <code>input_buffer_length</code> 가 0x90이고 <code>v10</code>이 0x40이면 범위 검사를 통과해 <code>EtwpValidateTraceControlFilterDescriptors</code> 함수에서 OOB 액세스가 가능합니다.</p>
-<p>CVE-2021-1682 또한 잘못된 범위 검증으로 인한 힙 버퍼 오버플로우 취약점입니다. <code>EtwpNotifyGuid</code> 함수는 <code>EtwpAllocDataBlock</code> 함수를 사용해 입력 버퍼를 복사하고 오프셋 0x50에 액세스 합니다. 버퍼 크기를 검사할 때 0x48보다 큰지는 확인하지만 0x50보다 작은 지를 확인하지 않아 0x50보다 작은 버퍼를 할당하면 오프셋 0x50에 액세스 할 때 다음 풀의 헤더를 덮어쓸 수 있어 이를 악용해 권한 상승이 가능합니다.</p>
+<p>&#xC774;&#xC911; &#xCD5C;&#xADFC;&#xC5D0; &#xACF5;&#xAC1C;&#xB41C; &#xCDE8;&#xC57D;&#xC810;&#xC740; CVE-2021-1662&#xC640; CVE-2021-1668&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>CVE-2021-1662&#xB294; &#xC798;&#xBABB;&#xB41C; &#xBC94;&#xC704; &#xAC80;&#xC99D;&#xC73C;&#xB85C; &#xC778;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C;,  <code>EtwpNotifyGuid</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>input_buffer_length</code> &#xAC00; 0x90&#xC774;&#xACE0; <code>v10</code>&#xC774; 0x40&#xC774;&#xBA74; &#xBC94;&#xC704; &#xAC80;&#xC0AC;&#xB97C; &#xD1B5;&#xACFC;&#xD574; <code>EtwpValidateTraceControlFilterDescriptors</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; OOB &#xC561;&#xC138;&#xC2A4;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>CVE-2021-1682 &#xB610;&#xD55C; &#xC798;&#xBABB;&#xB41C; &#xBC94;&#xC704; &#xAC80;&#xC99D;&#xC73C;&#xB85C; &#xC778;&#xD55C; &#xD799; &#xBC84;&#xD37C; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. <code>EtwpNotifyGuid</code> &#xD568;&#xC218;&#xB294; <code>EtwpAllocDataBlock</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xC785;&#xB825; &#xBC84;&#xD37C;&#xB97C; &#xBCF5;&#xC0AC;&#xD558;&#xACE0; &#xC624;&#xD504;&#xC14B; 0x50&#xC5D0; &#xC561;&#xC138;&#xC2A4; &#xD569;&#xB2C8;&#xB2E4;. &#xBC84;&#xD37C; &#xD06C;&#xAE30;&#xB97C; &#xAC80;&#xC0AC;&#xD560; &#xB54C; 0x48&#xBCF4;&#xB2E4; &#xD070;&#xC9C0;&#xB294; &#xD655;&#xC778;&#xD558;&#xC9C0;&#xB9CC; 0x50&#xBCF4;&#xB2E4; &#xC791;&#xC740; &#xC9C0;&#xB97C; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC544; 0x50&#xBCF4;&#xB2E4; &#xC791;&#xC740; &#xBC84;&#xD37C;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xBA74; &#xC624;&#xD504;&#xC14B; 0x50&#xC5D0; &#xC561;&#xC138;&#xC2A4; &#xD560; &#xB54C; &#xB2E4;&#xC74C; &#xD480;&#xC758; &#xD5E4;&#xB354;&#xB97C; &#xB36E;&#xC5B4;&#xC4F8; &#xC218; &#xC788;&#xC5B4; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -555,6 +555,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

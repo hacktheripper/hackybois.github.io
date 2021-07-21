@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      164 자
+      312 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -244,15 +244,15 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Linux Kernel</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Linux Kernel의 <code>Linux/drivers/firewire/nosy.c</code>에서 UAF 버그가 발견되었습니다.</p>
-<p>Nosy는 IEEE 1394 드라이버, 애플리케이션 또는 펌웨어 개발과 프로토콜 분석에 사용되는 IEEE 1394 패킷 스니퍼이며 nosy driver는 각각의 device에서 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.huihoo.com/doxygen/linux/kernel/3.7/structpcilynx.html">pcilynx structure</a>를 할당합니다.</p>
-<p>해당 취약점은 nosy driver가 device에 pciynx structure를 할당하고 해제하는 과정에서 발생하며 취약점이 발생하는 시나리오는 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Linux Kernel&#xC758; <code>Linux/drivers/firewire/nosy.c</code>&#xC5D0;&#xC11C; UAF &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Nosy&#xB294; IEEE 1394 &#xB4DC;&#xB77C;&#xC774;&#xBC84;, &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158; &#xB610;&#xB294; &#xD38C;&#xC6E8;&#xC5B4; &#xAC1C;&#xBC1C;&#xACFC; &#xD504;&#xB85C;&#xD1A0;&#xCF5C; &#xBD84;&#xC11D;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; IEEE 1394 &#xD328;&#xD0B7; &#xC2A4;&#xB2C8;&#xD37C;&#xC774;&#xBA70; nosy driver&#xB294; &#xAC01;&#xAC01;&#xC758; device&#xC5D0;&#xC11C; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.huihoo.com/doxygen/linux/kernel/3.7/structpcilynx.html">pcilynx structure</a>&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; nosy driver&#xAC00; device&#xC5D0; pciynx structure&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xACE0; &#xD574;&#xC81C;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xBA70; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>처음 nosy device를 열고 <code>NOSY_IOC_START</code> ioctl 커맨드를 호출합니다. 그럼 client A가 할당되고, doubly linked list에 추가됩니다.</li>
-<li>두번째로, nosy device를 열고 <code>NOSY_IOC_START</code> ioctl 커맨드를 호출합니다. 그럼 client B가 할당되고 똑같이 doubly linked list에 추가 됩니다.</li>
-<li>client A에서 <code>NOSY_IOC_START ioctl</code> 커맨드를 호출합니다. 그럼 client A는 doubly linked list에서 읽어지고, doubly linked list는 엉망이 됩니다.</li>
-<li>처음 nosy device를 닫으면 <code>nosy_release</code>가 호출되며 <code>nosy_release</code> 에서 client A가 unlink 되고 free 됩니다.</li>
-<li>두번째 nosy device를 닫으면, client A가 참조되어 UAF가 발생합니다.</li>
+<li>&#xCC98;&#xC74C; nosy device&#xB97C; &#xC5F4;&#xACE0; <code>NOSY_IOC_START</code> ioctl &#xCEE4;&#xB9E8;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; client A&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xACE0;, doubly linked list&#xC5D0; &#xCD94;&#xAC00;&#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>&#xB450;&#xBC88;&#xC9F8;&#xB85C;, nosy device&#xB97C; &#xC5F4;&#xACE0; <code>NOSY_IOC_START</code> ioctl &#xCEE4;&#xB9E8;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; client B&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xACE0; &#xB611;&#xAC19;&#xC774; doubly linked list&#xC5D0; &#xCD94;&#xAC00; &#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>client A&#xC5D0;&#xC11C; <code>NOSY_IOC_START ioctl</code> &#xCEE4;&#xB9E8;&#xB4DC;&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; client A&#xB294; doubly linked list&#xC5D0;&#xC11C; &#xC77D;&#xC5B4;&#xC9C0;&#xACE0;, doubly linked list&#xB294; &#xC5C9;&#xB9DD;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>&#xCC98;&#xC74C; nosy device&#xB97C; &#xB2EB;&#xC73C;&#xBA74; <code>nosy_release</code>&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xBA70; <code>nosy_release</code> &#xC5D0;&#xC11C; client A&#xAC00; unlink &#xB418;&#xACE0; free &#xB429;&#xB2C8;&#xB2E4;.</li>
+<li>&#xB450;&#xBC88;&#xC9F8; nosy device&#xB97C; &#xB2EB;&#xC73C;&#xBA74;, client A&#xAC00; &#xCC38;&#xC870;&#xB418;&#xC5B4; UAF&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -558,6 +558,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

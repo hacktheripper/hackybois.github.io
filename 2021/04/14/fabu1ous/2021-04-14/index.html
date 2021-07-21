@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      296 자
+      491 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      9
        분
     </span>
   
@@ -244,31 +244,31 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Linux kernel 4.19 (with Bluetooth 5)</p>
 <p>Linux kernel &lt;= 3.6</p>
 <p>Linux kernel &gt;= 4.8</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>BleedingTooth라 불리는 취약점 3개의 Write-up이 공개되었습니다. BleedingTooth는 Linux Bluetooth subsystem의 제로 클릭 취약점들로, 해커는 이를 악용해 취약한 시스템에서 커널 권한으로 원격 코드 실행을 할 수 있습니다. 주로 블루투스 취약점들의 영향은 펌웨어 선에 머물거나 데이터 도청 및 조작에 머무는 반면 BleedingTooth는 기기 전체를 완전히 제어할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>BleedingTooth&#xB77C; &#xBD88;&#xB9AC;&#xB294; &#xCDE8;&#xC57D;&#xC810; 3&#xAC1C;&#xC758; Write-up&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. BleedingTooth&#xB294; Linux Bluetooth subsystem&#xC758; &#xC81C;&#xB85C; &#xD074;&#xB9AD; &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xB85C;, &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD574; &#xCDE8;&#xC57D;&#xD55C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC8FC;&#xB85C; &#xBE14;&#xB8E8;&#xD22C;&#xC2A4; &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xC758; &#xC601;&#xD5A5;&#xC740; &#xD38C;&#xC6E8;&#xC5B4; &#xC120;&#xC5D0; &#xBA38;&#xBB3C;&#xAC70;&#xB098; &#xB370;&#xC774;&#xD130; &#xB3C4;&#xCCAD; &#xBC0F; &#xC870;&#xC791;&#xC5D0; &#xBA38;&#xBB34;&#xB294; &#xBC18;&#xBA74; BleedingTooth&#xB294; &#xAE30;&#xAE30; &#xC804;&#xCCB4;&#xB97C; &#xC644;&#xC804;&#xD788; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><p>BadVibes(CVE-2020-24490) Heap-based Buffer Overflow</p>
-<p>기존 31 bytes 였던  <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.silabs.com/community/wireless/bluetooth/knowledge-base.entry.html/2017/02/10/bluetooth_advertisin-hGsf">Advertising data</a>의 크기가 블루투스5에선 255 bytes까지 확장되었습니다. 그에 맞춰 255 bytes까지 확장된 Advertisement report를 파싱 하는 함수 <code>hci_le_ext_adv_report()</code>가 추가되었습니다. 다만 기존<code>hci_le_adv_report()</code>에 존재하던 size check가 해당 함수에는 없기 때문에 overflow가 가능합니다.</p>
+<p>&#xAE30;&#xC874; 31 bytes &#xC600;&#xB358;  <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.silabs.com/community/wireless/bluetooth/knowledge-base.entry.html/2017/02/10/bluetooth_advertisin-hGsf">Advertising data</a>&#xC758; &#xD06C;&#xAE30;&#xAC00; &#xBE14;&#xB8E8;&#xD22C;&#xC2A4;5&#xC5D0;&#xC120; 255 bytes&#xAE4C;&#xC9C0; &#xD655;&#xC7A5;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xC5D0; &#xB9DE;&#xCDB0; 255 bytes&#xAE4C;&#xC9C0; &#xD655;&#xC7A5;&#xB41C; Advertisement report&#xB97C; &#xD30C;&#xC2F1; &#xD558;&#xB294; &#xD568;&#xC218; <code>hci_le_ext_adv_report()</code>&#xAC00; &#xCD94;&#xAC00;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2E4;&#xB9CC; &#xAE30;&#xC874;<code>hci_le_adv_report()</code>&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB358; size check&#xAC00; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xB294; &#xC5C6;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; overflow&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
 <ul>
 <li><p>BadChoice(CVE-2020-12352) Stack-Based Information Leak</p>
-<p>A2MP 프로토콜의 <code>A2MP_GETINFO_REQ</code> 커멘드로 호출되는 <code>a2mp_getinfo_req()</code>는 HCI device id를 사용 중인 AMP컨트롤러의 정보를 요청합니다. 하지만, 만약 <code>HCI_AMP</code>가 유효하지 않다면 request를 받은 타겟 시스템은  <code>A2MP_STATUS_INVALID_CTRL_ID</code>를 응답합니다.  이 때 초기화 완전히 이루어지지 않은 탓에 <code>A2MP_STATUS_INVALID_CTRL_ID</code>가 16 bytes의 커널 스택 데이터를 포함한 채로 해커에게 전달됩니다.</p>
+<p>A2MP &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC758; <code>A2MP_GETINFO_REQ</code> &#xCEE4;&#xBA58;&#xB4DC;&#xB85C; &#xD638;&#xCD9C;&#xB418;&#xB294; <code>a2mp_getinfo_req()</code>&#xB294; HCI device id&#xB97C; &#xC0AC;&#xC6A9; &#xC911;&#xC778; AMP&#xCEE8;&#xD2B8;&#xB864;&#xB7EC;&#xC758; &#xC815;&#xBCF4;&#xB97C; &#xC694;&#xCCAD;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC;, &#xB9CC;&#xC57D; <code>HCI_AMP</code>&#xAC00; &#xC720;&#xD6A8;&#xD558;&#xC9C0; &#xC54A;&#xB2E4;&#xBA74; request&#xB97C; &#xBC1B;&#xC740; &#xD0C0;&#xAC9F; &#xC2DC;&#xC2A4;&#xD15C;&#xC740;  <code>A2MP_STATUS_INVALID_CTRL_ID</code>&#xB97C; &#xC751;&#xB2F5;&#xD569;&#xB2C8;&#xB2E4;.  &#xC774; &#xB54C; &#xCD08;&#xAE30;&#xD654; &#xC644;&#xC804;&#xD788; &#xC774;&#xB8E8;&#xC5B4;&#xC9C0;&#xC9C0; &#xC54A;&#xC740; &#xD0D3;&#xC5D0; <code>A2MP_STATUS_INVALID_CTRL_ID</code>&#xAC00; 16 bytes&#xC758; &#xCEE4;&#xB110; &#xC2A4;&#xD0DD; &#xB370;&#xC774;&#xD130;&#xB97C; &#xD3EC;&#xD568;&#xD55C; &#xCC44;&#xB85C; &#xD574;&#xCEE4;&#xC5D0;&#xAC8C; &#xC804;&#xB2EC;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
 <ul>
 <li><p>BadKarma: Heap-Based Type Confusion (CVE-2020-12351)</p>
 <pre><code class="hljs c">
 <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">l2cap_data_rcv</span><span class="hljs-params">(struct l2cap_chan *chan, struct sk_buff *skb)</span></span>
-<span class="hljs-function"></span>&#123;
+<span class="hljs-function"></span>{
 	...
 	<span class="hljs-keyword">if</span> ((chan-&gt;mode == L2CAP_MODE_ERTM ||
 	     chan-&gt;mode == L2CAP_MODE_STREAMING) &amp;&amp; sk_filter(chan-&gt;data, skb))
 		<span class="hljs-keyword">goto</span> drop;
 	...
-&#125;
+}
 
 <span class="hljs-function"><span class="hljs-keyword">static</span> struct amp_mgr *<span class="hljs-title">amp_mgr_create</span><span class="hljs-params">(struct l2cap_conn *conn, <span class="hljs-keyword">bool</span> locked)</span></span>
-<span class="hljs-function"></span>&#123;
+<span class="hljs-function"></span>{
 	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">amp_mgr</span> *<span class="hljs-title">mgr</span>;</span>
 	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">l2cap_chan</span> *<span class="hljs-title">chan</span>;</span>
 
@@ -277,18 +277,18 @@
 		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
 	...
 	chan = a2mp_chan_open(conn, locked);
-	<span class="hljs-keyword">if</span> (!chan) &#123;
+	<span class="hljs-keyword">if</span> (!chan) {
 		kfree(mgr);
 		<span class="hljs-keyword">return</span> <span class="hljs-literal">NULL</span>;
-	&#125;
+	}
 
 	mgr-&gt;a2mp_chan = chan;
 	chan-&gt;data = mgr;
 	...
 	<span class="hljs-keyword">return</span> mgr;
-&#125;</code></pre>
+}</code></pre>
 
-<p>함수 <code>sk_filter()</code>는 <code>struct sock</code>를 처리하는 반면, argument로 전달되는 <code>chan-&gt;data</code>의 타입은 <code>struct amp_mgr</code>입니다. 따라서 remote type confusion 취약점입니다. </p>
+<p>&#xD568;&#xC218; <code>sk_filter()</code>&#xB294; <code>struct sock</code>&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xBC18;&#xBA74;, argument&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xB294; <code>chan-&gt;data</code>&#xC758; &#xD0C0;&#xC785;&#xC740; <code>struct amp_mgr</code>&#xC785;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; remote type confusion &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. </p>
 </li>
 </ul>
 
@@ -589,6 +589,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

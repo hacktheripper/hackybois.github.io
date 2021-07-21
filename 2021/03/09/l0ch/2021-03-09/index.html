@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      267 자
+      581 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      11
        분
     </span>
   
@@ -244,17 +244,17 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Qualcomm IPQ40xx Series</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Linksys, Netgear 및 Cisco 등 여러 제조업체에서 사용하는 Qualcomm의 SoC인 IPQ40xx 시리즈 칩에서 발견된 여러 취약점들의 세부 정보가 공개되었습니다.</p>
-<p>퀄컴은 프로세서와 주변 하드웨어 장치의 안정성을 위해 다음과 같이 실행 환경을 분리합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Linksys, Netgear &#xBC0F; Cisco &#xB4F1; &#xC5EC;&#xB7EC; &#xC81C;&#xC870;&#xC5C5;&#xCCB4;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; Qualcomm&#xC758; SoC&#xC778; IPQ40xx &#xC2DC;&#xB9AC;&#xC988; &#xCE69;&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xC5EC;&#xB7EC; &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD004;&#xCEF4;&#xC740; &#xD504;&#xB85C;&#xC138;&#xC11C;&#xC640; &#xC8FC;&#xBCC0; &#xD558;&#xB4DC;&#xC6E8;&#xC5B4; &#xC7A5;&#xCE58;&#xC758; &#xC548;&#xC815;&#xC131;&#xC744; &#xC704;&#xD574; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC2E4;&#xD589; &#xD658;&#xACBD;&#xC744; &#xBD84;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li>QSEE(Qualcomm Secure Execution Environment) : 퀄컴의 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EC%8B%A0%EB%A2%B0_%EC%8B%A4%ED%96%89_%ED%99%98%EA%B2%BD">Trusted Execution Environment(신뢰 실행 환경)</a>으로, 일반 실행 환경과 격리된 보안 영역이 제공하는 실행 환경이며 QSEE와 관련된 코드 및 데이터는 REE에서 액세스가 불가능합니다.</li>
-<li>REE(Rich Execution Environment) : 일반 실행 환경</li>
+<li>QSEE(Qualcomm Secure Execution Environment) : &#xD004;&#xCEF4;&#xC758; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EC%8B%A0%EB%A2%B0_%EC%8B%A4%ED%96%89_%ED%99%98%EA%B2%BD">Trusted Execution Environment(&#xC2E0;&#xB8B0; &#xC2E4;&#xD589; &#xD658;&#xACBD;)</a>&#xC73C;&#xB85C;, &#xC77C;&#xBC18; &#xC2E4;&#xD589; &#xD658;&#xACBD;&#xACFC; &#xACA9;&#xB9AC;&#xB41C; &#xBCF4;&#xC548; &#xC601;&#xC5ED;&#xC774; &#xC81C;&#xACF5;&#xD558;&#xB294; &#xC2E4;&#xD589; &#xD658;&#xACBD;&#xC774;&#xBA70; QSEE&#xC640; &#xAD00;&#xB828;&#xB41C; &#xCF54;&#xB4DC; &#xBC0F; &#xB370;&#xC774;&#xD130;&#xB294; REE&#xC5D0;&#xC11C; &#xC561;&#xC138;&#xC2A4;&#xAC00; &#xBD88;&#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>REE(Rich Execution Environment) : &#xC77C;&#xBC18; &#xC2E4;&#xD589; &#xD658;&#xACBD;</li>
 </ul>
-<h3 id="CVE-2020-11256"><a href="#CVE-2020-11256" class="headerlink" title="CVE-2020-11256"></a>CVE-2020-11256</h3><p>SMC 핸들러 <code>tzbsp_blow_fuses_and_reset()</code> 은 두 개의 인자 <code>arg1</code>, <code>arg2</code>를 받습니다. 해당 함수는 <code>arg2</code>를 역참조해 1 또는 2를 기록하는데, <code>arg2</code>가 REE 영역의 메모리를 가리키는지 확인하지 않습니다.</p>
-<h3 id="CVE-2020-11257"><a href="#CVE-2020-11257" class="headerlink" title="CVE-2020-11257"></a>CVE-2020-11257</h3><p>SMC 핸들러 <code>usb_calib()</code> 의 인자 <code>arg1</code>는 삭제되지 않은 출력 포인터로, <code>arg1</code>는 메모리 <code>0x580e0</code>의 값인 <code>0x787</code>을 쓰기 위해 역참조 되며  <code>arg1</code>이 REE 영역의 메모리를 가리키는지 확인하지 않습니다.</p>
-<h3 id="CVE-2020-11258"><a href="#CVE-2020-11258" class="headerlink" title="CVE-2020-11258"></a>CVE-2020-11258</h3><p>SMC 핸들러 <code>tzbsp_version_set()</code> 함수는 네 개의 인자를 받으며 인자 값에 따라  <code>arg3</code>를 역참조해 <code>0x0</code>, <code>0x5</code>, <code>0xfffffffc</code> 중 하나를 씁니다. 이때 <code>arg3</code>가 REE 영역의 메모리를 가리키는지 확인하지 않습니다.</p>
-<h3 id="CVE-2020-11259"><a href="#CVE-2020-11259" class="headerlink" title="CVE-2020-11259"></a>CVE-2020-11259</h3><p>SMC 핸들러 <code>tzbsp_version_set()</code> 함수는 세 개의 인자를 받습니다. 이 중 <code>arg2</code>에는 <code>sub_87e90370</code> 의 반환 값 또는 <code>sub_87e90370 | 0xF0000</code> 값을,<code>arg3</code>에는 <code>0x0</code>을 쓰기 위해 각각 역참조 합니다. 이때 <code>arg2</code>와 <code>arg3</code>가 REE 영역의 메모리를 가리키는지 확인하지 않습니다.</p>
-<p>위 네 가지 취약점은 모두 <code>SMC(Secure Monitor Call)</code> 핸들러에서 발생한다는 점과 인자로 전달된 포인터가 REE 영역의 메모리인지 확인하지 않는다는 공통점이 존재합니다. 취약점을 악용하면 QSEE가 액세스 가능한 임의의 주소에 제한된 쓰기가 가능하며 QSEE에 구현된 보안 기법을 우회해 커널 및 하드웨어에 직접 액세스 할 수 있습니다.</p>
+<h3 id="CVE-2020-11256"><a href="#CVE-2020-11256" class="headerlink" title="CVE-2020-11256"></a>CVE-2020-11256</h3><p>SMC &#xD578;&#xB4E4;&#xB7EC; <code>tzbsp_blow_fuses_and_reset()</code> &#xC740; &#xB450; &#xAC1C;&#xC758; &#xC778;&#xC790; <code>arg1</code>, <code>arg2</code>&#xB97C; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; <code>arg2</code>&#xB97C; &#xC5ED;&#xCC38;&#xC870;&#xD574; 1 &#xB610;&#xB294; 2&#xB97C; &#xAE30;&#xB85D;&#xD558;&#xB294;&#xB370;, <code>arg2</code>&#xAC00; REE &#xC601;&#xC5ED;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h3 id="CVE-2020-11257"><a href="#CVE-2020-11257" class="headerlink" title="CVE-2020-11257"></a>CVE-2020-11257</h3><p>SMC &#xD578;&#xB4E4;&#xB7EC; <code>usb_calib()</code> &#xC758; &#xC778;&#xC790; <code>arg1</code>&#xB294; &#xC0AD;&#xC81C;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xCD9C;&#xB825; &#xD3EC;&#xC778;&#xD130;&#xB85C;, <code>arg1</code>&#xB294; &#xBA54;&#xBAA8;&#xB9AC; <code>0x580e0</code>&#xC758; &#xAC12;&#xC778; <code>0x787</code>&#xC744; &#xC4F0;&#xAE30; &#xC704;&#xD574; &#xC5ED;&#xCC38;&#xC870; &#xB418;&#xBA70;  <code>arg1</code>&#xC774; REE &#xC601;&#xC5ED;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h3 id="CVE-2020-11258"><a href="#CVE-2020-11258" class="headerlink" title="CVE-2020-11258"></a>CVE-2020-11258</h3><p>SMC &#xD578;&#xB4E4;&#xB7EC; <code>tzbsp_version_set()</code> &#xD568;&#xC218;&#xB294; &#xB124; &#xAC1C;&#xC758; &#xC778;&#xC790;&#xB97C; &#xBC1B;&#xC73C;&#xBA70; &#xC778;&#xC790; &#xAC12;&#xC5D0; &#xB530;&#xB77C;  <code>arg3</code>&#xB97C; &#xC5ED;&#xCC38;&#xC870;&#xD574; <code>0x0</code>, <code>0x5</code>, <code>0xfffffffc</code> &#xC911; &#xD558;&#xB098;&#xB97C; &#xC501;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>arg3</code>&#xAC00; REE &#xC601;&#xC5ED;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h3 id="CVE-2020-11259"><a href="#CVE-2020-11259" class="headerlink" title="CVE-2020-11259"></a>CVE-2020-11259</h3><p>SMC &#xD578;&#xB4E4;&#xB7EC; <code>tzbsp_version_set()</code> &#xD568;&#xC218;&#xB294; &#xC138; &#xAC1C;&#xC758; &#xC778;&#xC790;&#xB97C; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xC911; <code>arg2</code>&#xC5D0;&#xB294; <code>sub_87e90370</code> &#xC758; &#xBC18;&#xD658; &#xAC12; &#xB610;&#xB294; <code>sub_87e90370 | 0xF0000</code> &#xAC12;&#xC744;,<code>arg3</code>&#xC5D0;&#xB294; <code>0x0</code>&#xC744; &#xC4F0;&#xAE30; &#xC704;&#xD574; &#xAC01;&#xAC01; &#xC5ED;&#xCC38;&#xC870; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>arg2</code>&#xC640; <code>arg3</code>&#xAC00; REE &#xC601;&#xC5ED;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC704; &#xB124; &#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xBAA8;&#xB450; <code>SMC(Secure Monitor Call)</code> &#xD578;&#xB4E4;&#xB7EC;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;&#xB294; &#xC810;&#xACFC; &#xC778;&#xC790;&#xB85C; &#xC804;&#xB2EC;&#xB41C; &#xD3EC;&#xC778;&#xD130;&#xAC00; REE &#xC601;&#xC5ED;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;&#xB294; &#xACF5;&#xD1B5;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xBA74; QSEE&#xAC00; &#xC561;&#xC138;&#xC2A4; &#xAC00;&#xB2A5;&#xD55C; &#xC784;&#xC758;&#xC758; &#xC8FC;&#xC18C;&#xC5D0; &#xC81C;&#xD55C;&#xB41C; &#xC4F0;&#xAE30;&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xBA70; QSEE&#xC5D0; &#xAD6C;&#xD604;&#xB41C; &#xBCF4;&#xC548; &#xAE30;&#xBC95;&#xC744; &#xC6B0;&#xD68C;&#xD574; &#xCEE4;&#xB110; &#xBC0F; &#xD558;&#xB4DC;&#xC6E8;&#xC5B4;&#xC5D0; &#xC9C1;&#xC811; &#xC561;&#xC138;&#xC2A4; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -557,6 +557,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      154 자
+      337 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      6
        분
     </span>
   
@@ -242,11 +242,11 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://the-deniss.github.io/posts/2021/05/17/discovering-and-exploiting-mcafee-com-objects.html">Discovering and exploiting McAfee COM-objects (CVE-2021-23874)</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>McAfee Total Protection 16.0.30 이전 버전</li>
+<li>McAfee Total Protection 16.0.30 &#xC774;&#xC804; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>McAfee의 플래그십 안티 바이러스 제품 McAfee Total Protection의 COM 객체에서 local privilege escalation이 가능한 취약점이 발견되었습니다.</p>
-<p>McAWFwk 서비스에서 <code>CoInitializeSecurity</code> 함수가 호출될 때 <code>pSecDesc</code> 파라미터는 널 포인터이며 <code>dwCapabilities</code>의 값은 0입니다. <code>dwCapabilities</code> 파라미터에 <code>EOAC_AAPID</code>나 <code>EOAC_ACCESS_CONTROL</code> 플래그가 설정되어 있지 않으면, <code>CoInitializeSecurity</code>는 <code>pSecDesc</code>를 액세스 검사에 사용하는 포인터로 인식합니다. 따라서 <code>pSecDesc</code>가 널 포인터이므로 ACL 검사를 수행하지 않습니다.</p>
-<p>이를 통해 시작 시 <code>IMcClassFactory</code>를 통해 <code>CoManageOem Class</code> 객체를 구현하고 <code>IMcClassFactory::InternalCreateObject</code>를 통해 객체를 반환 받아 <code>ImanageOem::RunProgram</code>을 통해 <code>NT Authority\System</code> 권한으로 임의 프로세스 실행이 가능합니다. 하지만 COM 객체를 구현할 때 ProxyStub DLL에 self-defense 기능이 존재합니다. 이는 PEB 구조를 수정하여 <code>ValidateModule</code> 함수의 유효성 검사 시 프록시가 호출되는 모듈의 경로를 스푸핑하여 우회가 가능합니다. 첫 번째 검사가 수행되기 전에 McAfee의 서명이 된 아무 바이너리의 경로를 <code>MasqueradeImagePath</code> 함수를 호출하여 우회가 가능합니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>McAfee&#xC758; &#xD50C;&#xB798;&#xADF8;&#xC2ED; &#xC548;&#xD2F0; &#xBC14;&#xC774;&#xB7EC;&#xC2A4; &#xC81C;&#xD488; McAfee Total Protection&#xC758; COM &#xAC1D;&#xCCB4;&#xC5D0;&#xC11C; local privilege escalation&#xC774; &#xAC00;&#xB2A5;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>McAWFwk &#xC11C;&#xBE44;&#xC2A4;&#xC5D0;&#xC11C; <code>CoInitializeSecurity</code> &#xD568;&#xC218;&#xAC00; &#xD638;&#xCD9C;&#xB420; &#xB54C; <code>pSecDesc</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; &#xB110; &#xD3EC;&#xC778;&#xD130;&#xC774;&#xBA70; <code>dwCapabilities</code>&#xC758; &#xAC12;&#xC740; 0&#xC785;&#xB2C8;&#xB2E4;. <code>dwCapabilities</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC5D0; <code>EOAC_AAPID</code>&#xB098; <code>EOAC_ACCESS_CONTROL</code> &#xD50C;&#xB798;&#xADF8;&#xAC00; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC9C0; &#xC54A;&#xC73C;&#xBA74;, <code>CoInitializeSecurity</code>&#xB294; <code>pSecDesc</code>&#xB97C; &#xC561;&#xC138;&#xC2A4; &#xAC80;&#xC0AC;&#xC5D0; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xD3EC;&#xC778;&#xD130;&#xB85C; &#xC778;&#xC2DD;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <code>pSecDesc</code>&#xAC00; &#xB110; &#xD3EC;&#xC778;&#xD130;&#xC774;&#xBBC0;&#xB85C; ACL &#xAC80;&#xC0AC;&#xB97C; &#xC218;&#xD589;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC2DC;&#xC791; &#xC2DC; <code>IMcClassFactory</code>&#xB97C; &#xD1B5;&#xD574; <code>CoManageOem Class</code> &#xAC1D;&#xCCB4;&#xB97C; &#xAD6C;&#xD604;&#xD558;&#xACE0; <code>IMcClassFactory::InternalCreateObject</code>&#xB97C; &#xD1B5;&#xD574; &#xAC1D;&#xCCB4;&#xB97C; &#xBC18;&#xD658; &#xBC1B;&#xC544; <code>ImanageOem::RunProgram</code>&#xC744; &#xD1B5;&#xD574; <code>NT Authority\System</code> &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC784;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; COM &#xAC1D;&#xCCB4;&#xB97C; &#xAD6C;&#xD604;&#xD560; &#xB54C; ProxyStub DLL&#xC5D0; self-defense &#xAE30;&#xB2A5;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB294; PEB &#xAD6C;&#xC870;&#xB97C; &#xC218;&#xC815;&#xD558;&#xC5EC; <code>ValidateModule</code> &#xD568;&#xC218;&#xC758; &#xC720;&#xD6A8;&#xC131; &#xAC80;&#xC0AC; &#xC2DC; &#xD504;&#xB85D;&#xC2DC;&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xB294; &#xBAA8;&#xB4C8;&#xC758; &#xACBD;&#xB85C;&#xB97C; &#xC2A4;&#xD478;&#xD551;&#xD558;&#xC5EC; &#xC6B0;&#xD68C;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xCCAB; &#xBC88;&#xC9F8; &#xAC80;&#xC0AC;&#xAC00; &#xC218;&#xD589;&#xB418;&#xAE30; &#xC804;&#xC5D0; McAfee&#xC758; &#xC11C;&#xBA85;&#xC774; &#xB41C; &#xC544;&#xBB34; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC758; &#xACBD;&#xB85C;&#xB97C; <code>MasqueradeImagePath</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xC6B0;&#xD68C;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -264,9 +264,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/mcafee/">mcafee</a>
                   
@@ -551,6 +551,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

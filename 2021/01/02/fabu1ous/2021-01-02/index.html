@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      142 자
+      263 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -242,12 +242,12 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://nvd.nist.gov/vuln/detail/CVE-2020-10148">CVE-2020-10148</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
-<li>2019.4 HF 6 이전 버전</li>
-<li>2020.2.1 HF 2 이전 버전</li>
+<li>2019.4 HF 6 &#xC774;&#xC804; &#xBC84;&#xC804;</li>
+<li>2020.2.1 HF 2 &#xC774;&#xC804; &#xBC84;&#xC804;</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SolarWinds Orion platform에서 API 인증 우회를 통한 원격 코드 실행 취약점이 패치되었습니다. FireEye가 작년 12월 공개한 Sunburst backdoor로 인해 SolarWinds Orion platform은 큰 이슈가 되었습니다. 그 후 SolarWinds Orion platform에 대한 깊은 분석이 진행되면서 발견된 취약점 중 하나가 CVE-2020-10148입니다.</p>
-<p>SolarWinds Orion platform은 시스템 모니터링 및 관리 목적으로 만들어진 infrastructure입니다. 사용자는 Orion Website를 통해 서버에 설치된 Orion에 접근해 서버를 관리할 수 있으며 SolarWinds Orion API를 요청해 SolarWinds Orion platform을 사용할 수 있습니다.</p>
-<p>URI를 통해 Orion 서버에 요청을 보낼 때 <code>Request.PathInfo</code> 파라미터에 <code>WebResource.adx</code>, <code>ScriptResource.adx</code>, <code>i18n.ashx</code>, <code>Skipi18n</code>등의 값을 지정하면 SolarWinds가 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.httpcontext.skipauthorization?view=netframework-4.8">SkipAuthorization</a> flag를 설정합니다. 이로 인해 해커가 인증 절차를 건너뛰고 API 커멘드를 실행할 수 있게 됩니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SolarWinds Orion platform&#xC5D0;&#xC11C; API &#xC778;&#xC99D; &#xC6B0;&#xD68C;&#xB97C; &#xD1B5;&#xD55C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. FireEye&#xAC00; &#xC791;&#xB144; 12&#xC6D4; &#xACF5;&#xAC1C;&#xD55C; Sunburst backdoor&#xB85C; &#xC778;&#xD574; SolarWinds Orion platform&#xC740; &#xD070; &#xC774;&#xC288;&#xAC00; &#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; SolarWinds Orion platform&#xC5D0; &#xB300;&#xD55C; &#xAE4A;&#xC740; &#xBD84;&#xC11D;&#xC774; &#xC9C4;&#xD589;&#xB418;&#xBA74;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; &#xCDE8;&#xC57D;&#xC810; &#xC911; &#xD558;&#xB098;&#xAC00; CVE-2020-10148&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>SolarWinds Orion platform&#xC740; &#xC2DC;&#xC2A4;&#xD15C; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1; &#xBC0F; &#xAD00;&#xB9AC; &#xBAA9;&#xC801;&#xC73C;&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; infrastructure&#xC785;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790;&#xB294; Orion Website&#xB97C; &#xD1B5;&#xD574; &#xC11C;&#xBC84;&#xC5D0; &#xC124;&#xCE58;&#xB41C; Orion&#xC5D0; &#xC811;&#xADFC;&#xD574; &#xC11C;&#xBC84;&#xB97C; &#xAD00;&#xB9AC;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; SolarWinds Orion API&#xB97C; &#xC694;&#xCCAD;&#xD574; SolarWinds Orion platform&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>URI&#xB97C; &#xD1B5;&#xD574; Orion &#xC11C;&#xBC84;&#xC5D0; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0BC; &#xB54C; <code>Request.PathInfo</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC5D0; <code>WebResource.adx</code>, <code>ScriptResource.adx</code>, <code>i18n.ashx</code>, <code>Skipi18n</code>&#xB4F1;&#xC758; &#xAC12;&#xC744; &#xC9C0;&#xC815;&#xD558;&#xBA74; SolarWinds&#xAC00; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/dotnet/api/system.web.httpcontext.skipauthorization?view=netframework-4.8">SkipAuthorization</a> flag&#xB97C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB85C; &#xC778;&#xD574; &#xD574;&#xCEE4;&#xAC00; &#xC778;&#xC99D; &#xC808;&#xCC28;&#xB97C; &#xAC74;&#xB108;&#xB6F0;&#xACE0; API &#xCEE4;&#xBA58;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -548,6 +548,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

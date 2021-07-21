@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      117 자
+      242 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      4
        분
     </span>
   
@@ -242,8 +242,8 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.ret2.io/2021/06/02/pwn2own-2021-jsc-exploit/">Exploitation of a JavaScriptCore WebAssembly Vulnerability</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Safari &lt;14.1.1</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Safari의 WebAssembly는 세 단계를 거쳐 실행되는데 그 첫 번째 단계인 LLInt(Low Level Interpreter)에 interger overflow 취약점(CVE-2021-30734)이 발생하여 Safari 14.1.1 버전에서 패치되었습니다. LLInt의 Parser는 함수의 유효성을 검사하는 과정에서 <code>m_max_StackSize</code> 필드를 사용해 함수가 사용할 스택의 최대 크기를 추적합니다. 파싱이 끝나면 <code>m_max_StackSize</code> 값을 16 byte alignment로 맞추기 위해 <code>LLIntGenerator::Finalize</code> 함수를 호출해 반올림하고 <code>m_numCalleeLocals</code> 필드에 저장합니다. </p>
-<p>만약 <code>m_max_StackSize</code> 값이 <code>0xffffffff</code>이라면 16 byte alignment를 맞추기 위해 올림 계산을 하게 되어 integer overflow가 발생하고 <code>m_numCalleeLocals</code>의 값이 <code>0x0</code>으로 저장됩니다. 함수가 실제로 사용하는 스택의 크기와 LLInt가 추적하는 크기가 서로 달라지게 되고 메모리 오염으로 이어집니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Safari&#xC758; WebAssembly&#xB294; &#xC138; &#xB2E8;&#xACC4;&#xB97C; &#xAC70;&#xCCD0; &#xC2E4;&#xD589;&#xB418;&#xB294;&#xB370; &#xADF8; &#xCCAB; &#xBC88;&#xC9F8; &#xB2E8;&#xACC4;&#xC778; LLInt(Low Level Interpreter)&#xC5D0; interger overflow &#xCDE8;&#xC57D;&#xC810;(CVE-2021-30734)&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xC5EC; Safari 14.1.1 &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. LLInt&#xC758; Parser&#xB294; &#xD568;&#xC218;&#xC758; &#xC720;&#xD6A8;&#xC131;&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; <code>m_max_StackSize</code> &#xD544;&#xB4DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xD568;&#xC218;&#xAC00; &#xC0AC;&#xC6A9;&#xD560; &#xC2A4;&#xD0DD;&#xC758; &#xCD5C;&#xB300; &#xD06C;&#xAE30;&#xB97C; &#xCD94;&#xC801;&#xD569;&#xB2C8;&#xB2E4;. &#xD30C;&#xC2F1;&#xC774; &#xB05D;&#xB098;&#xBA74; <code>m_max_StackSize</code> &#xAC12;&#xC744; 16 byte alignment&#xB85C; &#xB9DE;&#xCD94;&#xAE30; &#xC704;&#xD574; <code>LLIntGenerator::Finalize</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD574; &#xBC18;&#xC62C;&#xB9BC;&#xD558;&#xACE0; <code>m_numCalleeLocals</code> &#xD544;&#xB4DC;&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>&#xB9CC;&#xC57D; <code>m_max_StackSize</code> &#xAC12;&#xC774; <code>0xffffffff</code>&#xC774;&#xB77C;&#xBA74; 16 byte alignment&#xB97C; &#xB9DE;&#xCD94;&#xAE30; &#xC704;&#xD574; &#xC62C;&#xB9BC; &#xACC4;&#xC0B0;&#xC744; &#xD558;&#xAC8C; &#xB418;&#xC5B4; integer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xACE0; <code>m_numCalleeLocals</code>&#xC758; &#xAC12;&#xC774; <code>0x0</code>&#xC73C;&#xB85C; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xC81C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC2A4;&#xD0DD;&#xC758; &#xD06C;&#xAE30;&#xC640; LLInt&#xAC00; &#xCD94;&#xC801;&#xD558;&#xB294; &#xD06C;&#xAE30;&#xAC00; &#xC11C;&#xB85C; &#xB2EC;&#xB77C;&#xC9C0;&#xAC8C; &#xB418;&#xACE0; &#xBA54;&#xBAA8;&#xB9AC; &#xC624;&#xC5FC;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -546,6 +546,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

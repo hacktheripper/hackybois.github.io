@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      217 자
+      426 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -242,8 +242,8 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/elttam/advisories/tree/master/CVE-2020-25578%20CVE-2020-25579">CVE-2020-25578/CVE-2020-25579 freeBSD fsdisclosure</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>freeBSD</p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>BSD계열의 오픈소스 운영체제인 freeBSD의 여러 파일 시스템에서 커널 스택 주소를 유출할 수 있는 취약점이 공개되었습니다.</p>
-<p>다음은 영향을 받는 파일 시스템입니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>BSD&#xACC4;&#xC5F4;&#xC758; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;&#xC778; freeBSD&#xC758; &#xC5EC;&#xB7EC; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; &#xCEE4;&#xB110; &#xC2A4;&#xD0DD; &#xC8FC;&#xC18C;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xC740; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xB294; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>tmpfs</li>
 <li>smbfs</li>
@@ -251,8 +251,8 @@
 <li>mqueuefs</li>
 <li>msdosfs</li>
 </ul>
-<p>커널 스택 주소가 유출되는 <code>dirent</code> 구조체는 다음과 같은 필드로 구성되어 있습니다.</p>
-<pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dirent</span> &#123;</span>                                                                 
+<p>&#xCEE4;&#xB110; &#xC2A4;&#xD0DD; &#xC8FC;&#xC18C;&#xAC00; &#xC720;&#xCD9C;&#xB418;&#xB294; <code>dirent</code> &#xAD6C;&#xC870;&#xCCB4;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xD544;&#xB4DC;&#xB85C; &#xAD6C;&#xC131;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">dirent</span> {</span>                                                                 
     <span class="hljs-keyword">ino_t</span>      d_fileno;        <span class="hljs-comment">/* file number of entry */</span>                      
     <span class="hljs-keyword">off_t</span>      d_off;       <span class="hljs-comment">/* directory offset of entry */</span>                     
     <span class="hljs-keyword">__uint16_t</span> d_reclen;        <span class="hljs-comment">/* length of this record */</span>                     
@@ -266,10 +266,10 @@
 <span class="hljs-meta">#<span class="hljs-meta-keyword">else</span>                                                                           </span>
     <span class="hljs-keyword">char</span>    d_name[<span class="hljs-number">255</span> + <span class="hljs-number">1</span>];    <span class="hljs-comment">/* name must be no longer than this */</span>          
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span>                                                                          </span>
-&#125;;</code></pre>
+};</code></pre>
 
-<p>이중 msdosfs의 취약점은 <code>msdosfs_readdir</code> 함수에서 발생합니다. 해당 함수에서는 MSDOS 파일 시스템의 루트에서 <code>readdir</code> 이 호출된 경우 <code>dirent_terminate</code>에서 <code>d_pad0</code>, <code>d_pad1</code>,<code>d_name</code> 필드를 초기화한 이후 <code>uiomove</code> 함수에서 <code>struct dirent dirbuf</code> 객체의 데이터를 유저 랜드로 복사합니다. 그러나 루트 이외의 MSDOS 파일 시스템에서 <code>readdir</code>을 호출한 경우 <code>d_pad0</code>, <code>d_pad1</code> 필드가 초기화되지 않은 상태로 <code>uiomove</code> 함수를 통해 데이터가 유저 랜드로 복사되어 커널의 스택 주소를 유출할 수 있습니다.</p>
-<p>msdosfs를 제외한 파일 시스템은 다음 함수 목록에서 커널 스택에 <code>struct dirent</code> 객체를 할당합니다.</p>
+<p>&#xC774;&#xC911; msdosfs&#xC758; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>msdosfs_readdir</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; MSDOS &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC758; &#xB8E8;&#xD2B8;&#xC5D0;&#xC11C; <code>readdir</code> &#xC774; &#xD638;&#xCD9C;&#xB41C; &#xACBD;&#xC6B0; <code>dirent_terminate</code>&#xC5D0;&#xC11C; <code>d_pad0</code>, <code>d_pad1</code>,<code>d_name</code> &#xD544;&#xB4DC;&#xB97C; &#xCD08;&#xAE30;&#xD654;&#xD55C; &#xC774;&#xD6C4; <code>uiomove</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>struct dirent dirbuf</code> &#xAC1D;&#xCCB4;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xC800; &#xB79C;&#xB4DC;&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xB8E8;&#xD2B8; &#xC774;&#xC678;&#xC758; MSDOS &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; <code>readdir</code>&#xC744; &#xD638;&#xCD9C;&#xD55C; &#xACBD;&#xC6B0; <code>d_pad0</code>, <code>d_pad1</code> &#xD544;&#xB4DC;&#xAC00; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C1;&#xD0DC;&#xB85C; <code>uiomove</code> &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC720;&#xC800; &#xB79C;&#xB4DC;&#xB85C; &#xBCF5;&#xC0AC;&#xB418;&#xC5B4; &#xCEE4;&#xB110;&#xC758; &#xC2A4;&#xD0DD; &#xC8FC;&#xC18C;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>msdosfs&#xB97C; &#xC81C;&#xC678;&#xD55C; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC740; &#xB2E4;&#xC74C; &#xD568;&#xC218; &#xBAA9;&#xB85D;&#xC5D0;&#xC11C; &#xCEE4;&#xB110; &#xC2A4;&#xD0DD;&#xC5D0; <code>struct dirent</code> &#xAC1D;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><code>tmpfs_dir_getdotdent</code></li>
 <li><code>tmpfs_dir_getdotdotdent</code></li>
@@ -277,7 +277,7 @@
 <li><code>autofs_readdir_one</code></li>
 <li><code>mqfs_readdir</code></li>
 </ul>
-<p>그러나 객체의 데이터를 유저 랜드로 복사하기 전에<code>d_off</code> 필드를 초기화하지 않아 커널의 스택 주소가 남아있으며 이를 유출할 수 있습니다.</p>
+<p>&#xADF8;&#xB7EC;&#xB098; &#xAC1D;&#xCCB4;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xC800; &#xB79C;&#xB4DC;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xAE30; &#xC804;&#xC5D0;<code>d_off</code> &#xD544;&#xB4DC;&#xB97C; &#xCD08;&#xAE30;&#xD654;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xCEE4;&#xB110;&#xC758; &#xC2A4;&#xD0DD; &#xC8FC;&#xC18C;&#xAC00; &#xB0A8;&#xC544;&#xC788;&#xC73C;&#xBA70; &#xC774;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -578,6 +578,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

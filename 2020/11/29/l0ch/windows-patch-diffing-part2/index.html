@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.2k 자
+      2.2k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      23
+      43
        분
     </span>
   
@@ -240,64 +240,56 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p>안녕하세요 여러분! L0ch입니다. 지난 Windows Patch Diffing글의 분량 조절 실패로 파트 1에 이어 파트 2로 돌아왔습니다! </p>
-<p><a href="https://hackyboiz.github.io/2020/11/15/l0ch/windows-patch-diffing-part1/">[Research]WIndows Patch Diffing 맛보기 Part 1</a></p>
-<p>업데이트 패키지 추출도 했으니 이제 진짜 패치 diffing을 시작…하기 전에! 해야 할게 한 가지 더 남아있습니다.</p>
+              <p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694; &#xC5EC;&#xB7EC;&#xBD84;! L0ch&#xC785;&#xB2C8;&#xB2E4;. &#xC9C0;&#xB09C; Windows Patch Diffing&#xAE00;&#xC758; &#xBD84;&#xB7C9; &#xC870;&#xC808; &#xC2E4;&#xD328;&#xB85C; &#xD30C;&#xD2B8; 1&#xC5D0; &#xC774;&#xC5B4; &#xD30C;&#xD2B8; 2&#xB85C; &#xB3CC;&#xC544;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
+<p><a href="https://hackyboiz.github.io/2020/11/15/l0ch/windows-patch-diffing-part1/">[Research]WIndows Patch Diffing &#xB9DB;&#xBCF4;&#xAE30; Part 1</a></p>
+<p>&#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xD328;&#xD0A4;&#xC9C0; &#xCD94;&#xCD9C;&#xB3C4; &#xD588;&#xC73C;&#xB2C8; &#xC774;&#xC81C; &#xC9C4;&#xC9DC; &#xD328;&#xCE58; diffing&#xC744; &#xC2DC;&#xC791;&#x2026;&#xD558;&#xAE30; &#xC804;&#xC5D0;! &#xD574;&#xC57C; &#xD560;&#xAC8C; &#xD55C; &#xAC00;&#xC9C0; &#xB354; &#xB0A8;&#xC544;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/1.png" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>아니 그럼 diffing은 대체 언제 함?</p>
+<p>&#xC544;&#xB2C8; &#xADF8;&#xB7FC; diffing&#xC740; &#xB300;&#xCCB4; &#xC5B8;&#xC81C; &#xD568;?</p>
 </blockquote>
-<p>윈도우에서 패치를 할 때 어떤 방식으로 하는지를 먼저 알아봐야 합니다. 그래야 diffing 할 버전 별 바이너리를 생성할 수 있어요 ㅎㅎ</p>
-<h1 id="패치-파일-유형"><a href="#패치-파일-유형" class="headerlink" title="패치 파일 유형"></a>패치 파일 유형</h1><p>이전 글에서 추출한 null, forward, reverse differential에 대해 간단하게 살펴봤었죠. 이 diff 유형의 파일들은 diffing 할 버전별 바이너리를 생성하는 데 아래와 같은 역할을 합니다.</p>
+<p>&#xC708;&#xB3C4;&#xC6B0;&#xC5D0;&#xC11C; &#xD328;&#xCE58;&#xB97C; &#xD560; &#xB54C; &#xC5B4;&#xB5A4; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xD558;&#xB294;&#xC9C0;&#xB97C; &#xBA3C;&#xC800; &#xC54C;&#xC544;&#xBD10;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB798;&#xC57C; diffing &#xD560; &#xBC84;&#xC804; &#xBCC4; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC5B4;&#xC694; &#x314E;&#x314E;</p>
+<h1 id="&#xD328;&#xCE58;-&#xD30C;&#xC77C;-&#xC720;&#xD615;"><a href="#&#xD328;&#xCE58;-&#xD30C;&#xC77C;-&#xC720;&#xD615;" class="headerlink" title="&#xD328;&#xCE58; &#xD30C;&#xC77C; &#xC720;&#xD615;"></a>&#xD328;&#xCE58; &#xD30C;&#xC77C; &#xC720;&#xD615;</h1><p>&#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xCD94;&#xCD9C;&#xD55C; null, forward, reverse differential&#xC5D0; &#xB300;&#xD574; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC0B4;&#xD3B4;&#xBD24;&#xC5C8;&#xC8E0;. &#xC774; diff &#xC720;&#xD615;&#xC758; &#xD30C;&#xC77C;&#xB4E4;&#xC740; diffing &#xD560; &#xBC84;&#xC804;&#xBCC4; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xB370; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC740; &#xC5ED;&#xD560;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><p>Forward diff</p>
-<ul>
-<li>기본 바이너리 (.1)를 특정 패치 수준까지 가져옵니다.</li>
+<li>Forward diff<ul>
+<li>&#xAE30;&#xBCF8; &#xBC14;&#xC774;&#xB108;&#xB9AC; (.1)&#xB97C; &#xD2B9;&#xC815; &#xD328;&#xCE58; &#xC218;&#xC900;&#xAE4C;&#xC9C0; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
-<li><p>Reverse diff</p>
-<ul>
-<li>패치가 적용된 바이너리를 기본 바이너리 (.1)로 롤백합니다.</li>
+<li>Reverse diff<ul>
+<li>&#xD328;&#xCE58;&#xAC00; &#xC801;&#xC6A9;&#xB41C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xAE30;&#xBCF8; &#xBC14;&#xC774;&#xB108;&#xB9AC; (.1)&#xB85C; &#xB864;&#xBC31;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
-<li><p>NULL diff</p>
-<ul>
-<li><p>패치에서 새 파일이 추가될 경우 사용됩니다.</p>
-<br>
-
-</li>
+<li>NULL diff<ul>
+<li>&#xD328;&#xCE58;&#xC5D0;&#xC11C; &#xC0C8; &#xD30C;&#xC77C;&#xC774; &#xCD94;&#xAC00;&#xB420; &#xACBD;&#xC6B0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.<br></li>
 </ul>
 </li>
 </ul>
-<p>diff 파일을 이용한 Windows의 패치 과정입니다. </p>
+<p>diff &#xD30C;&#xC77C;&#xC744; &#xC774;&#xC6A9;&#xD55C; Windows&#xC758; &#xD328;&#xCE58; &#xACFC;&#xC815;&#xC785;&#xB2C8;&#xB2E4;. </p>
 <ol>
-<li>기존 바이너리 버전에 맞는 reverse diff 파일로 델타 패치해 기본 버전으로 롤백</li>
-<li>패치 패키지에서 추출한 forward diff 파일로 델타 패치</li>
+<li>&#xAE30;&#xC874; &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xBC84;&#xC804;&#xC5D0; &#xB9DE;&#xB294; reverse diff &#xD30C;&#xC77C;&#xB85C; &#xB378;&#xD0C0; &#xD328;&#xCE58;&#xD574; &#xAE30;&#xBCF8; &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xB864;&#xBC31;</li>
+<li>&#xD328;&#xCE58; &#xD328;&#xD0A4;&#xC9C0;&#xC5D0;&#xC11C; &#xCD94;&#xCD9C;&#xD55C; forward diff &#xD30C;&#xC77C;&#xB85C; &#xB378;&#xD0C0; &#xD328;&#xCE58;</li>
 </ol>
 <ul>
-<li><p>NULL diff일 경우 패치할 경로에 복사</p>
-<br>
-
-</li>
+<li><p>NULL diff&#xC77C; &#xACBD;&#xC6B0; &#xD328;&#xCE58;&#xD560; &#xACBD;&#xB85C;&#xC5D0; &#xBCF5;&#xC0AC;</p>
+<br></li>
 </ul>
-<p>우리가 diffing 할 바이너리를 구하는 과정은 다음과 같습니다.</p>
+<p>&#xC6B0;&#xB9AC;&#xAC00; diffing &#xD560; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xAD6C;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><code>C:\system32\WinSxS</code> 에서 diffing 할 바이너리를 찾습니다. WinSxS에는 diff 파일뿐만 아니라 해당 버전의 바이너리도 함께 들어있습니다.</li>
-<li>해당 버전의 reverse diff로 델타 패치해 기본 버전 바이너리로 롤백합니다.</li>
-<li>추출한 패치 파일에서 패치할 버전의 forward diff로 델타 패치를 합니다.</li>
-<li>패치된 바이너리의 hash를 구하고 manifest hash와 비교해 정상적으로 패치되었는지 확인합니다.</li>
+<li><code>C:\system32\WinSxS</code> &#xC5D0;&#xC11C; diffing &#xD560; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xCC3E;&#xC2B5;&#xB2C8;&#xB2E4;. WinSxS&#xC5D0;&#xB294; diff &#xD30C;&#xC77C;&#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xD574;&#xB2F9; &#xBC84;&#xC804;&#xC758; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB3C4; &#xD568;&#xAED8; &#xB4E4;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD574;&#xB2F9; &#xBC84;&#xC804;&#xC758; reverse diff&#xB85C; &#xB378;&#xD0C0; &#xD328;&#xCE58;&#xD574; &#xAE30;&#xBCF8; &#xBC84;&#xC804; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB85C; &#xB864;&#xBC31;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xCD94;&#xCD9C;&#xD55C; &#xD328;&#xCE58; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xD328;&#xCE58;&#xD560; &#xBC84;&#xC804;&#xC758; forward diff&#xB85C; &#xB378;&#xD0C0; &#xD328;&#xCE58;&#xB97C; &#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD328;&#xCE58;&#xB41C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC758; hash&#xB97C; &#xAD6C;&#xD558;&#xACE0; manifest hash&#xC640; &#xBE44;&#xAD50;&#xD574; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<h1 id="패치-적용"><a href="#패치-적용" class="headerlink" title="패치 적용"></a>패치 적용</h1><p><code>ntoskrnl.exe</code> 의 버전 별 바이너리를 생성해서 diffing 해보도록 하겠습니다!</p>
-<p>diffing 대상 선정은 취약점 정보와 해당 취약점의 패치 릴리즈 버전을 보고 판단하면 되겠습니다.</p>
-<p>powershell에서 다음 명령어를 입력하면 WinSxS에 업데이트된 버전별 differential 파일들을 확인할 수 있습니다.</p>
-<p><code>Get-ChildItem -Recurse C:\windows\WinSxS\ | ? &#123;$_.Name -eq &quot;ntoskrnl.exe&quot;&#125;</code><br><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/2.png" srcset="/img/loading.gif"></p>
-<p>환경마다 누적된 업데이트가 달라서 결과는 다를 수 있습니다.  현재 제 윈도우 시스템의 <code>ntoskrnl.exe</code> 버전인 10.0.18362.1082를 기준으로 진행해 볼게요.</p>
-<p>현재 ntoskrnl.exe 버전 - 10.0.18362.1082</p>
-<p>추출한 ntoskrnl.exe 버전 - 10.0.18362.1016</p>
-<p>1082 버전은 제 시스템에 이미 있으니 1016 버전을 델타 패치로 생성해보겠습니다!</p>
-<h2 id="Patch-Script"><a href="#Patch-Script" class="headerlink" title="Patch Script"></a>Patch Script</h2><p>diff 패치에는 ms에서 지원하는 patch API인 <code>msdelta.dll</code> 를 사용합니다.</p>
-<p>Vista 이상 Windows에서는 <code>msdelta.dll</code> 이 기본적으로 내장되어 있기 때문에 가져다가 쓰기만 하면 되죠 ㅎㅎ</p>
-<p>아래는 파이썬을 사용해 작성한 msdelta 패치 스크립트입니다.</p>
+<h1 id="&#xD328;&#xCE58;-&#xC801;&#xC6A9;"><a href="#&#xD328;&#xCE58;-&#xC801;&#xC6A9;" class="headerlink" title="&#xD328;&#xCE58; &#xC801;&#xC6A9;"></a>&#xD328;&#xCE58; &#xC801;&#xC6A9;</h1><p><code>ntoskrnl.exe</code> &#xC758; &#xBC84;&#xC804; &#xBCC4; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD574;&#xC11C; diffing &#xD574;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<p>diffing &#xB300;&#xC0C1; &#xC120;&#xC815;&#xC740; &#xCDE8;&#xC57D;&#xC810; &#xC815;&#xBCF4;&#xC640; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58; &#xB9B4;&#xB9AC;&#xC988; &#xBC84;&#xC804;&#xC744; &#xBCF4;&#xACE0; &#xD310;&#xB2E8;&#xD558;&#xBA74; &#xB418;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>powershell&#xC5D0;&#xC11C; &#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC785;&#xB825;&#xD558;&#xBA74; WinSxS&#xC5D0; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB41C; &#xBC84;&#xC804;&#xBCC4; differential &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><code>Get-ChildItem -Recurse C:\windows\WinSxS\ | ? {$_.Name -eq &quot;ntoskrnl.exe&quot;}</code><br><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/2.png" srcset="/img/loading.gif"></p>
+<p>&#xD658;&#xACBD;&#xB9C8;&#xB2E4; &#xB204;&#xC801;&#xB41C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xAC00; &#xB2EC;&#xB77C;&#xC11C; &#xACB0;&#xACFC;&#xB294; &#xB2E4;&#xB97C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  &#xD604;&#xC7AC; &#xC81C; &#xC708;&#xB3C4;&#xC6B0; &#xC2DC;&#xC2A4;&#xD15C;&#xC758; <code>ntoskrnl.exe</code> &#xBC84;&#xC804;&#xC778; 10.0.18362.1082&#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC9C4;&#xD589;&#xD574; &#xBCFC;&#xAC8C;&#xC694;.</p>
+<p>&#xD604;&#xC7AC; ntoskrnl.exe &#xBC84;&#xC804; - 10.0.18362.1082</p>
+<p>&#xCD94;&#xCD9C;&#xD55C; ntoskrnl.exe &#xBC84;&#xC804; - 10.0.18362.1016</p>
+<p>1082 &#xBC84;&#xC804;&#xC740; &#xC81C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC774;&#xBBF8; &#xC788;&#xC73C;&#xB2C8; 1016 &#xBC84;&#xC804;&#xC744; &#xB378;&#xD0C0; &#xD328;&#xCE58;&#xB85C; &#xC0DD;&#xC131;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
+<h2 id="Patch-Script"><a href="#Patch-Script" class="headerlink" title="Patch Script"></a>Patch Script</h2><p>diff &#xD328;&#xCE58;&#xC5D0;&#xB294; ms&#xC5D0;&#xC11C; &#xC9C0;&#xC6D0;&#xD558;&#xB294; patch API&#xC778; <code>msdelta.dll</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>Vista &#xC774;&#xC0C1; Windows&#xC5D0;&#xC11C;&#xB294; <code>msdelta.dll</code> &#xC774; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xB0B4;&#xC7A5;&#xB418;&#xC5B4; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xAC00;&#xC838;&#xB2E4;&#xAC00; &#xC4F0;&#xAE30;&#xB9CC; &#xD558;&#xBA74; &#xB418;&#xC8E0; &#x314E;&#x314E;</p>
+<p>&#xC544;&#xB798;&#xB294; &#xD30C;&#xC774;&#xC36C;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xC791;&#xC131;&#xD55C; msdelta &#xD328;&#xCE58; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> ctypes <span class="hljs-keyword">import</span> (windll, wintypes, c_uint64, cast, POINTER, Union, c_ubyte, 
 						LittleEndianStructure, byref, c_size_t)
 <span class="hljs-keyword">import</span> zlib
@@ -315,16 +307,16 @@ DELTA_APPLY_FLAG_ALLOW_PA19 = <span class="hljs-number">0x00000001</span>
 <span class="hljs-comment"># struct</span>
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DELTA_INPUT</span>(<span class="hljs-params">LittleEndianStructure</span>):</span>
 	<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">U1</span>(<span class="hljs-params">Union</span>):</span>
-		_fields_ = [(<span class="hljs-string">&#x27;lpcStart&#x27;</span>, wintypes.LPVOID),
-					(<span class="hljs-string">&#x27;lpStart&#x27;</span>, wintypes.LPVOID)]
-	_anonymous_ = (<span class="hljs-string">&#x27;u1&#x27;</span>,)
-	_fields_ = [(<span class="hljs-string">&#x27;u1&#x27;</span>, U1),
-				(<span class="hljs-string">&#x27;uSize&#x27;</span>, c_size_t),
-				(<span class="hljs-string">&#x27;Editable&#x27;</span>, wintypes.BOOL)]
+		_fields_ = [(<span class="hljs-string">&apos;lpcStart&apos;</span>, wintypes.LPVOID),
+					(<span class="hljs-string">&apos;lpStart&apos;</span>, wintypes.LPVOID)]
+	_anonymous_ = (<span class="hljs-string">&apos;u1&apos;</span>,)
+	_fields_ = [(<span class="hljs-string">&apos;u1&apos;</span>, U1),
+				(<span class="hljs-string">&apos;uSize&apos;</span>, c_size_t),
+				(<span class="hljs-string">&apos;Editable&apos;</span>, wintypes.BOOL)]
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DELTA_OUTPUT</span>(<span class="hljs-params">LittleEndianStructure</span>):</span>
-	_fields_ = [(<span class="hljs-string">&#x27;lpStart&#x27;</span>, wintypes.LPVOID),
-				(<span class="hljs-string">&#x27;uSize&#x27;</span>, c_size_t)]
+	_fields_ = [(<span class="hljs-string">&apos;lpStart&apos;</span>, wintypes.LPVOID),
+				(<span class="hljs-string">&apos;uSize&apos;</span>, c_size_t)]
 
 ApplyDeltaB = windll.msdelta.ApplyDeltaB
 ApplyDeltaB.argtypes = [DELTA_FLAG_TYPE, DELTA_INPUT, DELTA_INPUT,
@@ -336,7 +328,7 @@ DeltaFree.rettype = wintypes.BOOL
 gle = windll.kernel32.GetLastError
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">apply_patches</span>(<span class="hljs-params">buf, buf_len, patch_path</span>):</span>
-	<span class="hljs-keyword">with</span> open(patch_path, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> p:
+	<span class="hljs-keyword">with</span> open(patch_path, <span class="hljs-string">&apos;rb&apos;</span>) <span class="hljs-keyword">as</span> p:
 		patch = p.read()
 	<span class="hljs-keyword">if</span> patch[:<span class="hljs-number">2</span>] != <span class="hljs-string">b&quot;PA&quot;</span>:
 		patch_offset = patch.find(<span class="hljs-string">b&quot;PA&quot;</span>)
@@ -371,7 +363,7 @@ gle = windll.kernel32.GetLastError
 
 	<span class="hljs-keyword">return</span> (d_out.lpStart, d_out.uSize)
 
-<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
 	ap = argparse.ArgumentParser()
 	mode = ap.add_mutually_exclusive_group(required=<span class="hljs-literal">True</span>)
 
@@ -379,11 +371,11 @@ gle = windll.kernel32.GetLastError
 	mode.add_argument(<span class="hljs-string">&quot;-n&quot;</span>, <span class="hljs-string">&quot;--null&quot;</span>, action=<span class="hljs-string">&quot;store_true&quot;</span>, default=<span class="hljs-literal">False</span>, help=<span class="hljs-string">&quot;Create file from null diff&quot;</span>)
 
 	ap.add_argument(<span class="hljs-string">&quot;-o&quot;</span>, <span class="hljs-string">&quot;--output&quot;</span>, required=<span class="hljs-literal">True</span> , help=<span class="hljs-string">&quot;write patched file&quot;</span>)
-	ap.add_argument(<span class="hljs-string">&quot;-p&quot;</span>, <span class="hljs-string">&quot;--patches&quot;</span>, required=<span class="hljs-literal">True</span>, nargs=<span class="hljs-string">&#x27;+&#x27;</span>, help=<span class="hljs-string">&quot;Patches path to apply&quot;</span>)
+	ap.add_argument(<span class="hljs-string">&quot;-p&quot;</span>, <span class="hljs-string">&quot;--patches&quot;</span>, required=<span class="hljs-literal">True</span>, nargs=<span class="hljs-string">&apos;+&apos;</span>, help=<span class="hljs-string">&quot;Patches path to apply&quot;</span>)
 
 	args = ap.parse_args()
 
-	<span class="hljs-keyword">with</span> open(args.input, <span class="hljs-string">&#x27;rb&#x27;</span>) <span class="hljs-keyword">as</span> r:
+	<span class="hljs-keyword">with</span> open(args.input, <span class="hljs-string">&apos;rb&apos;</span>) <span class="hljs-keyword">as</span> r:
 		inbuf = r.read()
 
 	buf_len = len(inbuf)
@@ -396,7 +388,7 @@ gle = windll.kernel32.GetLastError
 
 	output_buf = bytes((c_ubyte*buf_len).from_address(buf))
 
-	<span class="hljs-keyword">with</span> open(args.output, <span class="hljs-string">&#x27;wb&#x27;</span>) <span class="hljs-keyword">as</span> w:
+	<span class="hljs-keyword">with</span> open(args.output, <span class="hljs-string">&apos;wb&apos;</span>) <span class="hljs-keyword">as</span> w:
 		w.write(output_buf)
 
 	<span class="hljs-keyword">for</span> alloc <span class="hljs-keyword">in</span> alloc_list:
@@ -407,80 +399,80 @@ gle = windll.kernel32.GetLastError
 	print(str(len(args.patches)) + <span class="hljs-string">&quot; pathces successfully applied.&quot;</span>)
 	print(<span class="hljs-string">&quot;hash : &quot;</span> + base64.b64encode(hash.digest()).decode())</code></pre>
 
-<p>옵션 별 기능은 다음과 같습니다.</p>
-<p>-i :  reverse 또는 forward differential 패치 할 바이너리 지정</p>
+<p>&#xC635;&#xC158; &#xBCC4; &#xAE30;&#xB2A5;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>-i :  reverse &#xB610;&#xB294; forward differential &#xD328;&#xCE58; &#xD560; &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xC9C0;&#xC815;</p>
 <p>-n : null differential</p>
-<p>-o : 패치 된 결과 파일 생성</p>
-<p>-p : 패치 diff파일 지정</p>
+<p>-o : &#xD328;&#xCE58; &#xB41C; &#xACB0;&#xACFC; &#xD30C;&#xC77C; &#xC0DD;&#xC131;</p>
+<p>-p : &#xD328;&#xCE58; diff&#xD30C;&#xC77C; &#xC9C0;&#xC815;</p>
 <br>
 
 <pre><code class="hljs powershell">python delta_patch.py <span class="hljs-literal">-i</span> C:\\Windows\\WinSxS\\amd64...<span class="hljs-number">10.0</span>.<span class="hljs-number">18362.1082</span>\\ntoskrnl.exe ^
 <span class="hljs-literal">-o</span> result_ntoskrnl.exe <span class="hljs-literal">-p</span> C:\\Windows\\WinSxS\\amd64...<span class="hljs-number">10.0</span>.<span class="hljs-number">18362.1082</span>\\r\\ntoskrnl.exe</code></pre>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/3.png" srcset="/img/loading.gif"></p>
-<p>1082 버전의 <code>ntoskrnl.exe</code>를 같은 버전의 reverse diff 파일로 패치해 기본 버전으로 롤백한 결과입니다.</p>
-<p>사진과 같이 successfully applied 메시지와 hash 값이 뜨면 패치가 정상적으로 이루어진 것을 확인할 있어요.</p>
+<p>1082 &#xBC84;&#xC804;&#xC758; <code>ntoskrnl.exe</code>&#xB97C; &#xAC19;&#xC740; &#xBC84;&#xC804;&#xC758; reverse diff &#xD30C;&#xC77C;&#xB85C; &#xD328;&#xCE58;&#xD574; &#xAE30;&#xBCF8; &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xB864;&#xBC31;&#xD55C; &#xACB0;&#xACFC;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC0AC;&#xC9C4;&#xACFC; &#xAC19;&#xC774; successfully applied &#xBA54;&#xC2DC;&#xC9C0;&#xC640; hash &#xAC12;&#xC774; &#xB728;&#xBA74; &#xD328;&#xCE58;&#xAC00; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC9C4; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC788;&#xC5B4;&#xC694;.</p>
 <br>
 
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/4.png" srcset="/img/loading.gif"></p>
-<p>속성에서 확인해 보면 10.0.18362.1 기본 버전으로 롤백이 잘 됐네요!</p>
-<p>이제 우리가 업데이트 패키지에서 추출한 <code>ntoskrnl</code>의 1016버전 forward diff로 패치를 해보겠습니다</p>
+<p>&#xC18D;&#xC131;&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD574; &#xBCF4;&#xBA74; 10.0.18362.1 &#xAE30;&#xBCF8; &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xB864;&#xBC31;&#xC774; &#xC798; &#xB410;&#xB124;&#xC694;!</p>
+<p>&#xC774;&#xC81C; &#xC6B0;&#xB9AC;&#xAC00; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xD328;&#xD0A4;&#xC9C0;&#xC5D0;&#xC11C; &#xCD94;&#xCD9C;&#xD55C; <code>ntoskrnl</code>&#xC758; 1016&#xBC84;&#xC804; forward diff&#xB85C; &#xD328;&#xCE58;&#xB97C; &#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;</p>
 <br>
 
 <pre><code class="hljs powershell">python delta_patch.py <span class="hljs-literal">-i</span> result_ntoskrnl.exe <span class="hljs-literal">-o</span> ntoskrnl_1016.exe ^
 <span class="hljs-literal">-p</span> [<span class="hljs-type">EXTRACTED</span> <span class="hljs-type">PATH</span>]\\amd64_microsoft...<span class="hljs-number">10.0</span>.<span class="hljs-number">18362.1016</span>...\\f\\ntoskrnl.exe</code></pre>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/5.png" srcset="/img/loading.gif"></p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/6.png" srcset="/img/loading.gif"></p>
-<p>버전은 1016으로 잘 올라간 것 같군요. hash도 비교해보죠.</p>
+<p>&#xBC84;&#xC804;&#xC740; 1016&#xC73C;&#xB85C; &#xC798; &#xC62C;&#xB77C;&#xAC04; &#xAC83; &#xAC19;&#xAD70;&#xC694;. hash&#xB3C4; &#xBE44;&#xAD50;&#xD574;&#xBCF4;&#xC8E0;.</p>
 <br>
 
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/7.png" srcset="/img/loading.gif"></p>
-<p>JUNK의 ntoskrnl manifest에서 참고한 hash도 일치하네요! 이로써 패치 스크립트로 정상적으로 패치 된 것을 확인할 수 있습니다.</p>
+<p>JUNK&#xC758; ntoskrnl manifest&#xC5D0;&#xC11C; &#xCC38;&#xACE0;&#xD55C; hash&#xB3C4; &#xC77C;&#xCE58;&#xD558;&#xB124;&#xC694;! &#xC774;&#xB85C;&#xC368; &#xD328;&#xCE58; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB85C; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xD328;&#xCE58; &#xB41C; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Binary-Diffing"><a href="#Binary-Diffing" class="headerlink" title="Binary Diffing"></a>Binary Diffing</h1><p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/8.png" srcset="/img/loading.gif"></p>
-<p>(글을 쓰고 있는 지금 내 상태)</p>
-<p>바이너리 패치가 이렇게 힘들 일인가..? 격하게 아무것도 안하고 싶어졌지만 기왕 쓰기 시작한 거 끝은 봐야 하지 않겠습니까 으아악 빨리 끝내고 술 먹으러 가야지</p>
-<p>마지막! diffing tool과 분석 방법입니다.</p>
-<p>Diffing은 IDA에서 진행하며 BinDiff라는 플러그인을 사용합니다.  BinDiff는 무료로 배포되는 코드 분석 IDA 플러그인입니다. 유명한 만큼 성능 하나는 확실한 친구죠?</p>
+<p>(&#xAE00;&#xC744; &#xC4F0;&#xACE0; &#xC788;&#xB294; &#xC9C0;&#xAE08; &#xB0B4; &#xC0C1;&#xD0DC;)</p>
+<p>&#xBC14;&#xC774;&#xB108;&#xB9AC; &#xD328;&#xCE58;&#xAC00; &#xC774;&#xB807;&#xAC8C; &#xD798;&#xB4E4; &#xC77C;&#xC778;&#xAC00;..? &#xACA9;&#xD558;&#xAC8C; &#xC544;&#xBB34;&#xAC83;&#xB3C4; &#xC548;&#xD558;&#xACE0; &#xC2F6;&#xC5B4;&#xC84C;&#xC9C0;&#xB9CC; &#xAE30;&#xC655; &#xC4F0;&#xAE30; &#xC2DC;&#xC791;&#xD55C; &#xAC70; &#xB05D;&#xC740; &#xBD10;&#xC57C; &#xD558;&#xC9C0; &#xC54A;&#xACA0;&#xC2B5;&#xB2C8;&#xAE4C; &#xC73C;&#xC544;&#xC545; &#xBE68;&#xB9AC; &#xB05D;&#xB0B4;&#xACE0; &#xC220; &#xBA39;&#xC73C;&#xB7EC; &#xAC00;&#xC57C;&#xC9C0;</p>
+<p>&#xB9C8;&#xC9C0;&#xB9C9;! diffing tool&#xACFC; &#xBD84;&#xC11D; &#xBC29;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>Diffing&#xC740; IDA&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD558;&#xBA70; BinDiff&#xB77C;&#xB294; &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.  BinDiff&#xB294; &#xBB34;&#xB8CC;&#xB85C; &#xBC30;&#xD3EC;&#xB418;&#xB294; &#xCF54;&#xB4DC; &#xBD84;&#xC11D; IDA &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC785;&#xB2C8;&#xB2E4;. &#xC720;&#xBA85;&#xD55C; &#xB9CC;&#xD07C; &#xC131;&#xB2A5; &#xD558;&#xB098;&#xB294; &#xD655;&#xC2E4;&#xD55C; &#xCE5C;&#xAD6C;&#xC8E0;?</p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/9.png" srcset="/img/loading.gif"></p>
-<p>BinDiff는 아래 링크에서 설치할 수 있습니다.</p>
+<p>BinDiff&#xB294; &#xC544;&#xB798; &#xB9C1;&#xD06C;&#xC5D0;&#xC11C; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zynamics.com/software.html">zynamics.com - Software</a></p>
 <blockquote>
-<p>IDA 7.2, BinDiff 5(BinExport 10)에서 진행했습니다.</p>
+<p>IDA 7.2, BinDiff 5(BinExport 10)&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </blockquote>
-<p>IDA가 설치된 경로를 입력하고 설치하면 되며 정상적으로 설치가 되었다면 IDA의 Edit → Plugins에서 BinDiff를 보실 수 있습니다.</p>
-<p>우선 1016, 1082를 각각 을 열고 Edit→Plugins→BinExport10을 실행합니다.</p>
+<p>IDA&#xAC00; &#xC124;&#xCE58;&#xB41C; &#xACBD;&#xB85C;&#xB97C; &#xC785;&#xB825;&#xD558;&#xACE0; &#xC124;&#xCE58;&#xD558;&#xBA74; &#xB418;&#xBA70; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC124;&#xCE58;&#xAC00; &#xB418;&#xC5C8;&#xB2E4;&#xBA74; IDA&#xC758; Edit &#x2192; Plugins&#xC5D0;&#xC11C; BinDiff&#xB97C; &#xBCF4;&#xC2E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC6B0;&#xC120; 1016, 1082&#xB97C; &#xAC01;&#xAC01; &#xC744; &#xC5F4;&#xACE0; Edit&#x2192;Plugins&#x2192;BinExport10&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/10.png" srcset="/img/loading.gif"></p>
-<p>그리고 BinExport v2 Binary Export로 각각 Export 해주면 준비는 끝!</p>
+<p>&#xADF8;&#xB9AC;&#xACE0; BinExport v2 Binary Export&#xB85C; &#xAC01;&#xAC01; Export &#xD574;&#xC8FC;&#xBA74; &#xC900;&#xBE44;&#xB294; &#xB05D;!</p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/11.png" srcset="/img/loading.gif"></p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/12.png" srcset="/img/loading.gif"></p>
-<p>이제 BinDiff를 실행해서 Workspace를 만들고 Diff→New Diff에서 Export 한 두 바이너리를 선택합니다.</p>
+<p>&#xC774;&#xC81C; BinDiff&#xB97C; &#xC2E4;&#xD589;&#xD574;&#xC11C; Workspace&#xB97C; &#xB9CC;&#xB4E4;&#xACE0; Diff&#x2192;New Diff&#xC5D0;&#xC11C; Export &#xD55C; &#xB450; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC120;&#xD0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <br>
 
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/13.png" srcset="/img/loading.gif"></p>
-<p>Export한 파일을 선택하고 Diff하면..!</p>
+<p>Export&#xD55C; &#xD30C;&#xC77C;&#xC744; &#xC120;&#xD0DD;&#xD558;&#xACE0; Diff&#xD558;&#xBA74;..!</p>
 <br>
 
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/14.png" srcset="/img/loading.gif"></p>
-<p>이렇게 Overview를 볼 수 있습니다. Similarity는 유사도를 나타내는데, 1에 가까울수록 차이가 없다는 뜻입니다.</p>
+<p>&#xC774;&#xB807;&#xAC8C; Overview&#xB97C; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Similarity&#xB294; &#xC720;&#xC0AC;&#xB3C4;&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xB294;&#xB370;, 1&#xC5D0; &#xAC00;&#xAE4C;&#xC6B8;&#xC218;&#xB85D; &#xCC28;&#xC774;&#xAC00; &#xC5C6;&#xB2E4;&#xB294; &#xB73B;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <br>
 
-<p>아래로 내려보면 Similarity가 낮은 항목을 볼 수 있는데, 이 중 한 항목을 우클릭→Open Flow Graph를 실행하면</p>
+<p>&#xC544;&#xB798;&#xB85C; &#xB0B4;&#xB824;&#xBCF4;&#xBA74; Similarity&#xAC00; &#xB0AE;&#xC740; &#xD56D;&#xBAA9;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB294;&#xB370;, &#xC774; &#xC911; &#xD55C; &#xD56D;&#xBAA9;&#xC744; &#xC6B0;&#xD074;&#xB9AD;&#x2192;Open Flow Graph&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74;</p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/15.png" srcset="/img/loading.gif"></p>
-<p>이렇게 그래프로 보여줍니다.  각 노드 색별 의미는 다음과 같습니다.</p>
-<p>초록색 - 변경점 없음</p>
-<p>노란색 - 변경점 있음</p>
-<p>빨간색  - 패치에 의해 제거됨</p>
-<p>회색 - 패치에 의해 추가됨</p>
-<p>좀 더 자세히 볼까요? 보려는 노드를 선택해보겠습니다.</p>
+<p>&#xC774;&#xB807;&#xAC8C; &#xADF8;&#xB798;&#xD504;&#xB85C; &#xBCF4;&#xC5EC;&#xC90D;&#xB2C8;&#xB2E4;.  &#xAC01; &#xB178;&#xB4DC; &#xC0C9;&#xBCC4; &#xC758;&#xBBF8;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCD08;&#xB85D;&#xC0C9; - &#xBCC0;&#xACBD;&#xC810; &#xC5C6;&#xC74C;</p>
+<p>&#xB178;&#xB780;&#xC0C9; - &#xBCC0;&#xACBD;&#xC810; &#xC788;&#xC74C;</p>
+<p>&#xBE68;&#xAC04;&#xC0C9;  - &#xD328;&#xCE58;&#xC5D0; &#xC758;&#xD574; &#xC81C;&#xAC70;&#xB428;</p>
+<p>&#xD68C;&#xC0C9; - &#xD328;&#xCE58;&#xC5D0; &#xC758;&#xD574; &#xCD94;&#xAC00;&#xB428;</p>
+<p>&#xC880; &#xB354; &#xC790;&#xC138;&#xD788; &#xBCFC;&#xAE4C;&#xC694;? &#xBCF4;&#xB824;&#xB294; &#xB178;&#xB4DC;&#xB97C; &#xC120;&#xD0DD;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <br>
 
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/16.png" srcset="/img/loading.gif"></p>
-<p>이렇게 어셈블리 코드까지 볼 수 있습니다. 이런 방식으로 변경점을 트레이싱하면 어떤 부분이 패치되었는지 자세히 볼 수 있겠죠!</p>
-<h1 id="마치며"><a href="#마치며" class="headerlink" title="마치며.."></a>마치며..</h1><p>패치 스크립트를 만들어 뒀으니 원데이 분석할 때 유용하게 쓸 수 있을 것 같네요 ㅎㅎ 이제 취약점.. 취약점만 찾으면 되는데….</p>
+<p>&#xC774;&#xB807;&#xAC8C; &#xC5B4;&#xC148;&#xBE14;&#xB9AC; &#xCF54;&#xB4DC;&#xAE4C;&#xC9C0; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB7F0; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xC810;&#xC744; &#xD2B8;&#xB808;&#xC774;&#xC2F1;&#xD558;&#xBA74; &#xC5B4;&#xB5A4; &#xBD80;&#xBD84;&#xC774; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xC790;&#xC138;&#xD788; &#xBCFC; &#xC218; &#xC788;&#xACA0;&#xC8E0;!</p>
+<h1 id="&#xB9C8;&#xCE58;&#xBA70;"><a href="#&#xB9C8;&#xCE58;&#xBA70;" class="headerlink" title="&#xB9C8;&#xCE58;&#xBA70;.."></a>&#xB9C8;&#xCE58;&#xBA70;..</h1><p>&#xD328;&#xCE58; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4; &#xB480;&#xC73C;&#xB2C8; &#xC6D0;&#xB370;&#xC774; &#xBD84;&#xC11D;&#xD560; &#xB54C; &#xC720;&#xC6A9;&#xD558;&#xAC8C; &#xC4F8; &#xC218; &#xC788;&#xC744; &#xAC83; &#xAC19;&#xB124;&#xC694; &#x314E;&#x314E; &#xC774;&#xC81C; &#xCDE8;&#xC57D;&#xC810;.. &#xCDE8;&#xC57D;&#xC810;&#xB9CC; &#xCC3E;&#xC73C;&#xBA74; &#xB418;&#xB294;&#xB370;&#x2026;.</p>
 <p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/17.png" srcset="/img/loading.gif"></p>
 <blockquote>
-<p>아마 안될거야..</p>
+<p>&#xC544;&#xB9C8; &#xC548;&#xB420;&#xAC70;&#xC57C;..</p>
 </blockquote>
-<p>다음엔 다른 주제로 찾아오겠습니다. 조금만 놀구요 ㅎ (<em>망할 코로나 얼른 꺼져줬으면 ^^!)</em></p>
+<p>&#xB2E4;&#xC74C;&#xC5D4; &#xB2E4;&#xB978; &#xC8FC;&#xC81C;&#xB85C; &#xCC3E;&#xC544;&#xC624;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC870;&#xAE08;&#xB9CC; &#xB180;&#xAD6C;&#xC694; &#x314E; (<em>&#xB9DD;&#xD560; &#xCF54;&#xB85C;&#xB098; &#xC5BC;&#xB978; &#xAEBC;&#xC838;&#xC92C;&#xC73C;&#xBA74; ^^!)</em></p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://wumb0.in/extracting-and-diffing-ms-patches-in-2020.html">Extracting and Diffing Windows Patches in 2020</a></p>
 
             </div>
@@ -784,6 +776,45 @@ gle = windll.kernel32.GetLastError
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

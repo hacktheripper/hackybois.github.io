@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      234 자
+      304 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      6
        분
     </span>
   
@@ -242,36 +242,36 @@
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a><strong>URL</strong></h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://bugs.chromium.org/p/chromium/issues/detail?id=1148749">Issue 1148749: Double free/UAF in RegionDataLoaderImpl::DeleteThis</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Google Chrome &lt; 87.0.4280.141 </p>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Google Chrome 87.0.4280.141 이전 버전에서 발생하는 Use after free 취약점(CVE-2021-21106)입니다. 해커는 악성 HTML 페이지를 사용해 Chrome의 renderer process에 접근 및 취약점을 트리거할 수 있고 원격 코드 실행을 통한 sandbox escape를 할 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Google Chrome 87.0.4280.141 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD558;&#xB294; Use after free &#xCDE8;&#xC57D;&#xC810;(CVE-2021-21106)&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xC545;&#xC131; HTML &#xD398;&#xC774;&#xC9C0;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; Chrome&#xC758; renderer process&#xC5D0; &#xC811;&#xADFC; &#xBC0F; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xACE0; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC744; &#xD1B5;&#xD55C; sandbox escape&#xB97C; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">46</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RegionDataLoaderImpl::OnRegionDataLoaded</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> success,</span></span>
 <span class="hljs-function"><span class="hljs-params"> <span class="hljs-number">47</span>                                               <span class="hljs-keyword">const</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>&amp; country_code,</span></span>
-<span class="hljs-function"><span class="hljs-params"> <span class="hljs-number">48</span>                                               <span class="hljs-keyword">int</span> unused_rule_count)</span> </span>&#123;
+<span class="hljs-function"><span class="hljs-params"> <span class="hljs-number">48</span>                                               <span class="hljs-keyword">int</span> unused_rule_count)</span> </span>{
  <span class="hljs-number">49</span>   timer_.Stop();
- <span class="hljs-number">50</span>   <span class="hljs-keyword">if</span> (!callback_.is_null()) &#123;
- <span class="hljs-number">51</span>     <span class="hljs-keyword">if</span> (success) &#123;
+ <span class="hljs-number">50</span>   <span class="hljs-keyword">if</span> (!callback_.is_null()) {
+ <span class="hljs-number">51</span>     <span class="hljs-keyword">if</span> (success) {
  <span class="hljs-number">52</span>       <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> best_region_tree_language_tag;
  <span class="hljs-number">53</span>       ::i18n::<span class="hljs-function">addressinput::RegionDataBuilder <span class="hljs-title">builder</span><span class="hljs-params">(&amp;region_data_supplier_)</span></span>;
  <span class="hljs-number">54</span>       callback_.Run(
  <span class="hljs-number">55</span>           builder
  <span class="hljs-number">56</span>               .Build(country_code, app_locale_, &amp;best_region_tree_language_tag)
  <span class="hljs-number">57</span>               .sub_regions());
- <span class="hljs-number">58</span>     &#125; <span class="hljs-keyword">else</span> &#123;
+ <span class="hljs-number">58</span>     } <span class="hljs-keyword">else</span> {
  <span class="hljs-number">59</span>       callback_.Run(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">const</span> ::i18n::addressinput::RegionData*&gt;());
- <span class="hljs-number">60</span>     &#125;
- <span class="hljs-number">61</span>   &#125;
+ <span class="hljs-number">60</span>     }
+ <span class="hljs-number">61</span>   }
  <span class="hljs-number">62</span>   <span class="hljs-comment">// The deletion must be asynchronous since the caller is not quite done with</span>
  <span class="hljs-number">63</span>   <span class="hljs-comment">// the preload supplier.</span>
  <span class="hljs-number">64</span>   base::ThreadTaskRunnerHandle::Get()-&gt;PostTask(
  <span class="hljs-number">65</span>       FROM_HERE, base::BindOnce(&amp;RegionDataLoaderImpl::DeleteThis,
  <span class="hljs-number">66</span>                                 base::Unretained(<span class="hljs-keyword">this</span>)));
- <span class="hljs-number">67</span> &#125;
+ <span class="hljs-number">67</span> }
  <span class="hljs-number">68</span> 
- <span class="hljs-number">69</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RegionDataLoaderImpl::DeleteThis</span><span class="hljs-params">()</span> </span>&#123;
+ <span class="hljs-number">69</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RegionDataLoaderImpl::DeleteThis</span><span class="hljs-params">()</span> </span>{
  <span class="hljs-number">70</span>   <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>;
- <span class="hljs-number">71</span> &#125;</code></pre>
+ <span class="hljs-number">71</span> }</code></pre>
 
-<p>파일 <code>components/autofill/core/browser/geo/region_data_loader_impl.cc</code>속 코드 일부입니다. <code>RegionDataLoaderImpl</code>을 구성할 때 함수 <code>OnRegionDataLoaded</code>가 호출되며 PostTask가 함수 <code>DeleteThis</code>를 호출해(line #64) 포인터 <code>this</code>를 해제합니다.</p>
-<p>만약 한 번에 많은 <code>RegionDataLoaderImpl</code>을 구성할 때 동일한 PostTask를 두 번 호출하게 되면 위 작업을 두 번 수행하게되고 포인터<code>this</code>가 두 번 해제됩니다.</p>
+<p>&#xD30C;&#xC77C; <code>components/autofill/core/browser/geo/region_data_loader_impl.cc</code>&#xC18D; &#xCF54;&#xB4DC; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;. <code>RegionDataLoaderImpl</code>&#xC744; &#xAD6C;&#xC131;&#xD560; &#xB54C; &#xD568;&#xC218; <code>OnRegionDataLoaded</code>&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xBA70; PostTask&#xAC00; &#xD568;&#xC218; <code>DeleteThis</code>&#xB97C; &#xD638;&#xCD9C;&#xD574;(line #64) &#xD3EC;&#xC778;&#xD130; <code>this</code>&#xB97C; &#xD574;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB9CC;&#xC57D; &#xD55C; &#xBC88;&#xC5D0; &#xB9CE;&#xC740; <code>RegionDataLoaderImpl</code>&#xC744; &#xAD6C;&#xC131;&#xD560; &#xB54C; &#xB3D9;&#xC77C;&#xD55C; PostTask&#xB97C; &#xB450; &#xBC88; &#xD638;&#xCD9C;&#xD558;&#xAC8C; &#xB418;&#xBA74; &#xC704; &#xC791;&#xC5C5;&#xC744; &#xB450; &#xBC88; &#xC218;&#xD589;&#xD558;&#xAC8C;&#xB418;&#xACE0; &#xD3EC;&#xC778;&#xD130;<code>this</code>&#xAC00; &#xB450; &#xBC88; &#xD574;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -566,6 +566,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

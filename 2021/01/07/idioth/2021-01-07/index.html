@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      217 자
+      446 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4
+      8
        분
     </span>
   
@@ -240,18 +240,18 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.talosintelligence.com/2021/01/vuln-spotlight-softmaker-office-textmaker-jan-2021.html?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed:+feedburner/Talos+(Talos%E2%84%A2+Blog)">Vulnerability Spotlight: Multiple vulnerabilities in SoftMaker Office TextMaker</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://blog.talosintelligence.com/2021/01/vuln-spotlight-softmaker-office-textmaker-jan-2021.html?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed:+feedburner/Talos+(Talos%E2%84%A2+Blog)">Vulnerability Spotlight: Multiple vulnerabilities in SoftMaker Office TextMaker</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>SoftMaker Software GmbH SoftMaker Office TextMaker 2021, revision 1014</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SoftMaker Software GmbH는 오피스 소프트웨어를 개발하는 독일 소프트웨어 회사입니다. 플래그십 제품인 SoftMaker Office는 워드, 스프레드 시트, 프레젠테이션, 스크립트 등등의 기능을 지원합니다. 이 Office 제품군인 TextMaker의 document parsing 기능에서 세 가지 취약점이 발견되었습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>SoftMaker Software GmbH&#xB294; &#xC624;&#xD53C;&#xC2A4; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xB97C; &#xAC1C;&#xBC1C;&#xD558;&#xB294; &#xB3C5;&#xC77C; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; &#xD68C;&#xC0AC;&#xC785;&#xB2C8;&#xB2E4;. &#xD50C;&#xB798;&#xADF8;&#xC2ED; &#xC81C;&#xD488;&#xC778; SoftMaker Office&#xB294; &#xC6CC;&#xB4DC;, &#xC2A4;&#xD504;&#xB808;&#xB4DC; &#xC2DC;&#xD2B8;, &#xD504;&#xB808;&#xC820;&#xD14C;&#xC774;&#xC158;, &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xB4F1;&#xB4F1;&#xC758; &#xAE30;&#xB2A5;&#xC744; &#xC9C0;&#xC6D0;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; Office &#xC81C;&#xD488;&#xAD70;&#xC778; TextMaker&#xC758; document parsing &#xAE30;&#xB2A5;&#xC5D0;&#xC11C; &#xC138; &#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><strong>CVE-2020-13544: Sign-extension</strong></p>
-<p>document parser가 record를 parsing 할 때 index table record를 16bit unsigned 값으로 사용하지만 루프 문에서 index를 비교할 때 16bit signed 값으로 사용하여 index table record에 지정된 크기보다 많은 횟수를 반복할 수 있습니다. 따라서 index를 통해 heap 할당 범위 밖에 접근할 수 있습니다.</p>
+<p>document parser&#xAC00; record&#xB97C; parsing &#xD560; &#xB54C; index table record&#xB97C; 16bit unsigned &#xAC12;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0;&#xB9CC; &#xB8E8;&#xD504; &#xBB38;&#xC5D0;&#xC11C; index&#xB97C; &#xBE44;&#xAD50;&#xD560; &#xB54C; 16bit signed &#xAC12;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; index table record&#xC5D0; &#xC9C0;&#xC815;&#xB41C; &#xD06C;&#xAE30;&#xBCF4;&#xB2E4; &#xB9CE;&#xC740; &#xD69F;&#xC218;&#xB97C; &#xBC18;&#xBCF5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; index&#xB97C; &#xD1B5;&#xD574; heap &#xD560;&#xB2F9; &#xBC94;&#xC704; &#xBC16;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><strong>CVE-2020-13545: Integer conversion</strong></p>
-<p>document parser가 record를 스캔하고 읽어 올 때 파일 스트림의 현재 위치에서 record에서 사용하는 바이트 크기를 나타내는 32bit integer를 읽어옵니다. 버퍼를 할당할 때 signed multiplication을 사용하지만 버퍼의 끝을 계산할 때 unsigned multiplication을 사용하여 heap 할당 범위 밖의 주소에 접근할 수 있습니다.</p>
+<p>document parser&#xAC00; record&#xB97C; &#xC2A4;&#xCE94;&#xD558;&#xACE0; &#xC77D;&#xC5B4; &#xC62C; &#xB54C; &#xD30C;&#xC77C; &#xC2A4;&#xD2B8;&#xB9BC;&#xC758; &#xD604;&#xC7AC; &#xC704;&#xCE58;&#xC5D0;&#xC11C; record&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xBC14;&#xC774;&#xD2B8; &#xD06C;&#xAE30;&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xB294; 32bit integer&#xB97C; &#xC77D;&#xC5B4;&#xC635;&#xB2C8;&#xB2E4;. &#xBC84;&#xD37C;&#xB97C; &#xD560;&#xB2F9;&#xD560; &#xB54C; signed multiplication&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0;&#xB9CC; &#xBC84;&#xD37C;&#xC758; &#xB05D;&#xC744; &#xACC4;&#xC0B0;&#xD560; &#xB54C; unsigned multiplication&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; heap &#xD560;&#xB2F9; &#xBC94;&#xC704; &#xBC16;&#xC758; &#xC8FC;&#xC18C;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><strong>CVE-2020-13546: Integer overflow</strong></p>
-<p>document parser가 record를 parsing 할 때 파일에서 32비트 값을 읽어 <code>0x23c</code>를 곱합니다. 피연산자는 최대 10비트이므로 overflow 되어 32비트로 잘려서 heap에 할당됩니다. 하지만 곱셈 하기 전의 값을 스택에 저장하고 사용하여 할당된 범위 밖에 값이 써지게 됩니다.</p>
-<p>세 가지 취약점 모두 취약점을 트리거하기 위해 해커는 타깃이 문서를 열도록 유도해야 합니다.</p>
+<p>document parser&#xAC00; record&#xB97C; parsing &#xD560; &#xB54C; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; 32&#xBE44;&#xD2B8; &#xAC12;&#xC744; &#xC77D;&#xC5B4; <code>0x23c</code>&#xB97C; &#xACF1;&#xD569;&#xB2C8;&#xB2E4;. &#xD53C;&#xC5F0;&#xC0B0;&#xC790;&#xB294; &#xCD5C;&#xB300; 10&#xBE44;&#xD2B8;&#xC774;&#xBBC0;&#xB85C; overflow &#xB418;&#xC5B4; 32&#xBE44;&#xD2B8;&#xB85C; &#xC798;&#xB824;&#xC11C; heap&#xC5D0; &#xD560;&#xB2F9;&#xB429;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xACF1;&#xC148; &#xD558;&#xAE30; &#xC804;&#xC758; &#xAC12;&#xC744; &#xC2A4;&#xD0DD;&#xC5D0; &#xC800;&#xC7A5;&#xD558;&#xACE0; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD560;&#xB2F9;&#xB41C; &#xBC94;&#xC704; &#xBC16;&#xC5D0; &#xAC12;&#xC774; &#xC368;&#xC9C0;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC138; &#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810; &#xBAA8;&#xB450; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574; &#xD574;&#xCEE4;&#xB294; &#xD0C0;&#xAE43;&#xC774; &#xBB38;&#xC11C;&#xB97C; &#xC5F4;&#xB3C4;&#xB85D; &#xC720;&#xB3C4;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -554,6 +554,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      127 자
+      278 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      5
        분
     </span>
   
@@ -244,16 +244,16 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Facebook Messenger for Desktop</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>페이스북 메신저의 데스크톱 버전 앱에서 arbitrary file read 취약점이 발견되었습니다.</p>
-<p>페이스북 메신저는 Electron을 사용하며 <code>webviewTag</code> 가 활성화되어있습니다. <code>webview</code> 태그는 로컬 파일을 로드하는 기능이 존재해 해커가 <code>&lt;webview src=&quot;file:[file location]&quot;&gt;&lt;/webview&gt;</code> 내용이 포함된 링크를 전송하면 타깃의 임의의 로컬 파일을 읽을 수 있습니다.</p>
-<p>취약점을 통해 <code>/etc/passwd</code> 파일을 읽는 과정은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xD398;&#xC774;&#xC2A4;&#xBD81; &#xBA54;&#xC2E0;&#xC800;&#xC758; &#xB370;&#xC2A4;&#xD06C;&#xD1B1; &#xBC84;&#xC804; &#xC571;&#xC5D0;&#xC11C; arbitrary file read &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD398;&#xC774;&#xC2A4;&#xBD81; &#xBA54;&#xC2E0;&#xC800;&#xB294; Electron&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA70; <code>webviewTag</code> &#xAC00; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>webview</code> &#xD0DC;&#xADF8;&#xB294; &#xB85C;&#xCEEC; &#xD30C;&#xC77C;&#xC744; &#xB85C;&#xB4DC;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC774; &#xC874;&#xC7AC;&#xD574; &#xD574;&#xCEE4;&#xAC00; <code>&lt;webview src=&quot;file:[file location]&quot;&gt;&lt;/webview&gt;</code> &#xB0B4;&#xC6A9;&#xC774; &#xD3EC;&#xD568;&#xB41C; &#xB9C1;&#xD06C;&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xBA74; &#xD0C0;&#xAE43;&#xC758; &#xC784;&#xC758;&#xC758; &#xB85C;&#xCEEC; &#xD30C;&#xC77C;&#xC744; &#xC77D;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD574; <code>/etc/passwd</code> &#xD30C;&#xC77C;&#xC744; &#xC77D;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li>해커가 임의의 타깃에게 <code>webview</code> 가 포함된 악성 링크를 보냅니다.</li>
-<li>타깃은 스팸 섹션을 열고 링크를 클릭합니다.</li>
-<li>Facebook Messenger는 악성 링크에 포함된 <code>&lt;webview&gt; src=&quot;file:///etc/passwd&quot;&gt;&lt;/webview&gt;</code> 를 사용하여 <code>/etc/passwd</code> 파일을 로드합니다.</li>
-<li><code>webview.executeJavaScript()</code>로 로드한 파일의 데이터를 읽어옵니다.</li>
+<li>&#xD574;&#xCEE4;&#xAC00; &#xC784;&#xC758;&#xC758; &#xD0C0;&#xAE43;&#xC5D0;&#xAC8C; <code>webview</code> &#xAC00; &#xD3EC;&#xD568;&#xB41C; &#xC545;&#xC131; &#xB9C1;&#xD06C;&#xB97C; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;.</li>
+<li>&#xD0C0;&#xAE43;&#xC740; &#xC2A4;&#xD338; &#xC139;&#xC158;&#xC744; &#xC5F4;&#xACE0; &#xB9C1;&#xD06C;&#xB97C; &#xD074;&#xB9AD;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>Facebook Messenger&#xB294; &#xC545;&#xC131; &#xB9C1;&#xD06C;&#xC5D0; &#xD3EC;&#xD568;&#xB41C; <code>&lt;webview&gt; src=&quot;file:///etc/passwd&quot;&gt;&lt;/webview&gt;</code> &#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; <code>/etc/passwd</code> &#xD30C;&#xC77C;&#xC744; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>webview.executeJavaScript()</code>&#xB85C; &#xB85C;&#xB4DC;&#xD55C; &#xD30C;&#xC77C;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC77D;&#xC5B4;&#xC635;&#xB2C8;&#xB2E4;.</li>
 </ol>
-<p>Facebook은 해당 취약점 보고서에 2000$의 보상을 지급했습니다.</p>
+<p>Facebook&#xC740; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810; &#xBCF4;&#xACE0;&#xC11C;&#xC5D0; 2000$&#xC758; &#xBCF4;&#xC0C1;&#xC744; &#xC9C0;&#xAE09;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -554,6 +554,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

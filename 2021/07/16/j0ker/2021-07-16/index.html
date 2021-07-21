@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      130 자
+      313 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2
+      6
        분
     </span>
   
@@ -246,8 +246,8 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows Vista 이후로 <code>Windows Service Hardening</code>이라는 미티게이션이 추가되었었습니다. 이 미티게이션의 기능 중 하나가 <code>Write Restrict token</code>인데, 이는 해당 토큰을 가진 프로세서에서는 다른 리소스에 쓰기가 제한되는 미티게이션입니다. 현재 Windows 10에서는 대략 10개의 서비스에 해당 미티게이션이 적용되어 있다고 합니다.</p>
-<p>James Forshaw가 이번에 찾은 취약점(비록 마이크로소프트가 취약점이라고 인정하진 않았지만…)은 이 미티게이션을 우회할 수 있습니다. <code>Write Restriction</code>이 걸린 서비스 프로세스에서 <code>CreateProcessWithLogon</code> 함수에 <code>LOGON_NERCREDENTIALS_ONLY</code> 플래그를 세팅하고 호출할 시 Write Restriction이 적용되지 않은 새로운 프로세스를 실행할 수 있습니다. 새로운 프로세스는 Write Restriction이 걸려있지 않을 뿐 아니라 <code>INTERACTIVE</code> 그룹 SID가 추가됩니다. 또한 이 취약점은 <code>LOCAL SERVICE</code>, <code>NETWORK SERVICE</code> 또는 <code>Virtual Service Account</code> 계정에서도 트리거가 가능하며 <code>SeImpersonatePrivilege</code>나 <code>SeAssignPrimaryTokenPrivilege</code> 같은 권한이 필요하지도 않습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows Vista &#xC774;&#xD6C4;&#xB85C; <code>Windows Service Hardening</code>&#xC774;&#xB77C;&#xB294; &#xBBF8;&#xD2F0;&#xAC8C;&#xC774;&#xC158;&#xC774; &#xCD94;&#xAC00;&#xB418;&#xC5C8;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xBBF8;&#xD2F0;&#xAC8C;&#xC774;&#xC158;&#xC758; &#xAE30;&#xB2A5; &#xC911; &#xD558;&#xB098;&#xAC00; <code>Write Restrict token</code>&#xC778;&#xB370;, &#xC774;&#xB294; &#xD574;&#xB2F9; &#xD1A0;&#xD070;&#xC744; &#xAC00;&#xC9C4; &#xD504;&#xB85C;&#xC138;&#xC11C;&#xC5D0;&#xC11C;&#xB294; &#xB2E4;&#xB978; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xC4F0;&#xAE30;&#xAC00; &#xC81C;&#xD55C;&#xB418;&#xB294; &#xBBF8;&#xD2F0;&#xAC8C;&#xC774;&#xC158;&#xC785;&#xB2C8;&#xB2E4;. &#xD604;&#xC7AC; Windows 10&#xC5D0;&#xC11C;&#xB294; &#xB300;&#xB7B5; 10&#xAC1C;&#xC758; &#xC11C;&#xBE44;&#xC2A4;&#xC5D0; &#xD574;&#xB2F9; &#xBBF8;&#xD2F0;&#xAC8C;&#xC774;&#xC158;&#xC774; &#xC801;&#xC6A9;&#xB418;&#xC5B4; &#xC788;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>James Forshaw&#xAC00; &#xC774;&#xBC88;&#xC5D0; &#xCC3E;&#xC740; &#xCDE8;&#xC57D;&#xC810;(&#xBE44;&#xB85D; &#xB9C8;&#xC774;&#xD06C;&#xB85C;&#xC18C;&#xD504;&#xD2B8;&#xAC00; &#xCDE8;&#xC57D;&#xC810;&#xC774;&#xB77C;&#xACE0; &#xC778;&#xC815;&#xD558;&#xC9C4; &#xC54A;&#xC558;&#xC9C0;&#xB9CC;&#x2026;)&#xC740; &#xC774; &#xBBF8;&#xD2F0;&#xAC8C;&#xC774;&#xC158;&#xC744; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>Write Restriction</code>&#xC774; &#xAC78;&#xB9B0; &#xC11C;&#xBE44;&#xC2A4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; <code>CreateProcessWithLogon</code> &#xD568;&#xC218;&#xC5D0; <code>LOGON_NERCREDENTIALS_ONLY</code> &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xC138;&#xD305;&#xD558;&#xACE0; &#xD638;&#xCD9C;&#xD560; &#xC2DC; Write Restriction&#xC774; &#xC801;&#xC6A9;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C8;&#xB85C;&#xC6B4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC0C8;&#xB85C;&#xC6B4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; Write Restriction&#xC774; &#xAC78;&#xB824;&#xC788;&#xC9C0; &#xC54A;&#xC744; &#xBFD0; &#xC544;&#xB2C8;&#xB77C; <code>INTERACTIVE</code> &#xADF8;&#xB8F9; SID&#xAC00; &#xCD94;&#xAC00;&#xB429;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>LOCAL SERVICE</code>, <code>NETWORK SERVICE</code> &#xB610;&#xB294; <code>Virtual Service Account</code> &#xACC4;&#xC815;&#xC5D0;&#xC11C;&#xB3C4; &#xD2B8;&#xB9AC;&#xAC70;&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xBA70; <code>SeImpersonatePrivilege</code>&#xB098; <code>SeAssignPrimaryTokenPrivilege</code> &#xAC19;&#xC740; &#xAD8C;&#xD55C;&#xC774; &#xD544;&#xC694;&#xD558;&#xC9C0;&#xB3C4; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -311,6 +311,12 @@
               <div class="post-prevnext row">
                 <article class="post-prev col-6">
                   
+                  
+                  <a href="/2021/07/18/idioth/setting_malware_vm_part2/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">[Research] 악성코드 분석용 VM 세팅을 자동화해보자! Part 2</span>
+                    <span class="visible-mobile">Previous</span>
+                  </a>
                   
                 </article>
                 <article class="post-next col-6">
@@ -544,6 +550,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

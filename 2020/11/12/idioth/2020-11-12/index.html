@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      154 자
+      264 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      5
        분
     </span>
   
@@ -246,9 +246,9 @@
 <li>Apache OpenOffice 4.0.0 ~ 4.1.7</li>
 <li>Maybe OpenOffice.org versions</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apache OpenOffice 4에서 원격 코드 실행 취약점이 발견되었습니다. 해당 취약점은 LibreOffice에서 발견된 CVE-2019-9847과 유사합니다.</p>
-<p>해당 프로그램에서 <code>script:event-listener</code> 핸들러를 매크로 실행으로 처리하지 않아서 발생한 취약점입니다.</p>
-<p>다음과 같은 스크립트로 구성하여 OpenOffice에서 사용하는 <code>.uno 혹은 .service</code>를 통해 확인창이나 클릭 유도 없이 하이퍼 링크를 통해 URL을 열 수 있습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Apache OpenOffice 4&#xC5D0;&#xC11C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; LibreOffice&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB41C; CVE-2019-9847&#xACFC; &#xC720;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; <code>script:event-listener</code> &#xD578;&#xB4E4;&#xB7EC;&#xB97C; &#xB9E4;&#xD06C;&#xB85C; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xCC98;&#xB9AC;&#xD558;&#xC9C0; &#xC54A;&#xC544;&#xC11C; &#xBC1C;&#xC0DD;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB85C; &#xAD6C;&#xC131;&#xD558;&#xC5EC; OpenOffice&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; <code>.uno &#xD639;&#xC740; .service</code>&#xB97C; &#xD1B5;&#xD574; &#xD655;&#xC778;&#xCC3D;&#xC774;&#xB098; &#xD074;&#xB9AD; &#xC720;&#xB3C4; &#xC5C6;&#xC774; &#xD558;&#xC774;&#xD37C; &#xB9C1;&#xD06C;&#xB97C; &#xD1B5;&#xD574; URL&#xC744; &#xC5F4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs vim">&lt;office:scripts&gt;
    &lt;office:event-listeners&gt;
 
@@ -258,7 +258,7 @@ xlink:href=<span class="hljs-string">&quot;.uno:OpenHyperlinkOnCursor&quot;</spa
    &lt;/office:event-listeners&gt;
 &lt;/office:scripts&gt;</code></pre>
 
-<p><code>.uno .service</code>를 사용하여 트리거하는 것은 리눅스에서도 동작하지만 code execution으로 이어질만한 것을 찾지 못했다고 합니다.</p>
+<p><code>.uno .service</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xB294; &#xAC83;&#xC740; &#xB9AC;&#xB205;&#xC2A4;&#xC5D0;&#xC11C;&#xB3C4; &#xB3D9;&#xC791;&#xD558;&#xC9C0;&#xB9CC; code execution&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8;&#xB9CC;&#xD55C; &#xAC83;&#xC744; &#xCC3E;&#xC9C0; &#xBABB;&#xD588;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.libreoffice.org/about-us/security/advisories/cve-2019-9847/">https://www.libreoffice.org/about-us/security/advisories/cve-2019-9847/</a></p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://nvd.nist.gov/vuln/detail/CVE-2019-9847">https://nvd.nist.gov/vuln/detail/CVE-2019-9847</a></p>
 
@@ -565,6 +565,45 @@ xlink:href=<span class="hljs-string">&quot;.uno:OpenHyperlinkOnCursor&quot;</spa
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

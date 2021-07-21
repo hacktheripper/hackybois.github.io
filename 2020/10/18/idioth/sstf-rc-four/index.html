@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      395 자
+      554 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      11
        분
     </span>
   
@@ -241,10 +241,10 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p><img src="/2020/10/18/idioth/sstf-rc-four/image.png" srcset="/img/loading.gif"></p>
-<p>압축을 풀면 challenge.py와 output.txt 파일을 볼 수 있습니다.</p>
+<p>&#xC555;&#xCD95;&#xC744; &#xD480;&#xBA74; challenge.py&#xC640; output.txt &#xD30C;&#xC77C;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2020/10/18/idioth/sstf-rc-four/image1.png" srcset="/img/loading.gif"></p>
-<p>output.txt 파일에는 암호화된 것으로 추측되는 문자열이 2줄 존재합니다.</p>
-<h1 id="challenge-py-분석"><a href="#challenge-py-분석" class="headerlink" title="challenge.py 분석"></a>challenge.py 분석</h1><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> ARC4
+<p>output.txt &#xD30C;&#xC77C;&#xC5D0;&#xB294; &#xC554;&#xD638;&#xD654;&#xB41C; &#xAC83;&#xC73C;&#xB85C; &#xCD94;&#xCE21;&#xB418;&#xB294; &#xBB38;&#xC790;&#xC5F4;&#xC774; 2&#xC904; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<h1 id="challenge-py-&#xBD84;&#xC11D;"><a href="#challenge-py-&#xBD84;&#xC11D;" class="headerlink" title="challenge.py &#xBD84;&#xC11D;"></a>challenge.py &#xBD84;&#xC11D;</h1><pre><code class="hljs python"><span class="hljs-keyword">from</span> Crypto.Cipher <span class="hljs-keyword">import</span> ARC4
 <span class="hljs-keyword">from</span> secret <span class="hljs-keyword">import</span> key, flag
 <span class="hljs-keyword">from</span> binascii <span class="hljs-keyword">import</span> hexlify
 
@@ -256,7 +256,7 @@
 	<span class="hljs-comment">#make RC4 instance</span>
 	cipher = ARC4.new(key)
 
-	<span class="hljs-comment">#We don&#x27;t use the first 1024 bytes from the key stream.</span>
+	<span class="hljs-comment">#We don&apos;t use the first 1024 bytes from the key stream.</span>
 	<span class="hljs-comment">#Actually this is not important for this challenge. Just ignore.</span>
 	cipher.encrypt(<span class="hljs-string">&quot;0&quot;</span>*<span class="hljs-number">1024</span>)
 
@@ -268,11 +268,11 @@ msg = <span class="hljs-string">&quot;RC4 is a Stream Cipher, which is very simp
 <span class="hljs-keyword">print</span> (hexlify(encrypt(msg)).decode())
 <span class="hljs-keyword">print</span> (hexlify(encrypt(flag)).decode())</code></pre>
 
-<p>challenge 파일을 해보면 arc4를 사용하여 암호화를 진행한 것을 알 수 있습니다.</p>
-<p>output.txt의 첫 번째 줄은 msg를 암호화한 부분이고 두 번째 줄은 flag임을 알 수 있습니다.</p>
-<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/RC4">rc4 알고리즘</a>은 스트림 암호로 key 값을 사용하여 셔플링을 통해 키 스트림 바이트를 생성한 후 해당 키 스트림과 xor 연산을 통해 암호화를 진행합니다.</p>
-<p>key 값을 사용하여 생성된 key stream과 문자열을 xor 연산하여 최종 암호문이 나오는 것을 활용하면 key 값을 알지 못해도 flag 암호문을 복호화할 수 있습니다.</p>
-<p>key stream ^ 문자열 = 암호문이므로 암호문 ^ 문자열을 수행하면 key stream을 알 수 있고 해당 key stream과 flag 암호문을 xor 연산을 수행하면 flag 값을 얻을 수 있습니다.</p>
+<p>challenge &#xD30C;&#xC77C;&#xC744; &#xD574;&#xBCF4;&#xBA74; arc4&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC554;&#xD638;&#xD654;&#xB97C; &#xC9C4;&#xD589;&#xD55C; &#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>output.txt&#xC758; &#xCCAB; &#xBC88;&#xC9F8; &#xC904;&#xC740; msg&#xB97C; &#xC554;&#xD638;&#xD654;&#xD55C; &#xBD80;&#xBD84;&#xC774;&#xACE0; &#xB450; &#xBC88;&#xC9F8; &#xC904;&#xC740; flag&#xC784;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://en.wikipedia.org/wiki/RC4">rc4 &#xC54C;&#xACE0;&#xB9AC;&#xC998;</a>&#xC740; &#xC2A4;&#xD2B8;&#xB9BC; &#xC554;&#xD638;&#xB85C; key &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC154;&#xD50C;&#xB9C1;&#xC744; &#xD1B5;&#xD574; &#xD0A4; &#xC2A4;&#xD2B8;&#xB9BC; &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xC0DD;&#xC131;&#xD55C; &#xD6C4; &#xD574;&#xB2F9; &#xD0A4; &#xC2A4;&#xD2B8;&#xB9BC;&#xACFC; xor &#xC5F0;&#xC0B0;&#xC744; &#xD1B5;&#xD574; &#xC554;&#xD638;&#xD654;&#xB97C; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>key &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC0DD;&#xC131;&#xB41C; key stream&#xACFC; &#xBB38;&#xC790;&#xC5F4;&#xC744; xor &#xC5F0;&#xC0B0;&#xD558;&#xC5EC; &#xCD5C;&#xC885; &#xC554;&#xD638;&#xBB38;&#xC774; &#xB098;&#xC624;&#xB294; &#xAC83;&#xC744; &#xD65C;&#xC6A9;&#xD558;&#xBA74; key &#xAC12;&#xC744; &#xC54C;&#xC9C0; &#xBABB;&#xD574;&#xB3C4; flag &#xC554;&#xD638;&#xBB38;&#xC744; &#xBCF5;&#xD638;&#xD654;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>key stream ^ &#xBB38;&#xC790;&#xC5F4; = &#xC554;&#xD638;&#xBB38;&#xC774;&#xBBC0;&#xB85C; &#xC554;&#xD638;&#xBB38; ^ &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xC218;&#xD589;&#xD558;&#xBA74; key stream&#xC744; &#xC54C; &#xC218; &#xC788;&#xACE0; &#xD574;&#xB2F9; key stream&#xACFC; flag &#xC554;&#xD638;&#xBB38;&#xC744; xor &#xC5F0;&#xC0B0;&#xC744; &#xC218;&#xD589;&#xD558;&#xBA74; flag &#xAC12;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Decrypt-Code"><a href="#Decrypt-Code" class="headerlink" title="Decrypt Code"></a>Decrypt Code</h1><pre><code class="hljs python">text = <span class="hljs-string">&quot;RC4 is a Stream Cipher, which is very simple and fast.&quot;</span>
 result = [<span class="hljs-number">0x63</span>, <span class="hljs-number">0x4c</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x23</span>, <span class="hljs-number">0xbd</span>, <span class="hljs-number">0x82</span>, <span class="hljs-number">0x58</span>, <span class="hljs-number">0x1d</span>, <span class="hljs-number">0x9e</span>, <span class="hljs-number">0x5b</span>, <span class="hljs-number">0xbf</span>, <span class="hljs-number">0xaa</span>, <span class="hljs-number">0xeb</span>, <span class="hljs-number">0x17</span>, <span class="hljs-number">0x21</span>, <span class="hljs-number">0x2e</span>, <span class="hljs-number">0xeb</span>, <span class="hljs-number">0xfc</span>, <span class="hljs-number">0x97</span>, <span class="hljs-number">0x5b</span>, <span class="hljs-number">0x29</span>, <span class="hljs-number">0xe3</span>, <span class="hljs-number">0xf4</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0x2e</span>, <span class="hljs-number">0xef</span>, <span class="hljs-number">0xc0</span>, <span class="hljs-number">0x8c</span>, <span class="hljs-number">0x09</span>, <span class="hljs-number">0x06</span>, <span class="hljs-number">0x33</span>, <span class="hljs-number">0x08</span>, <span class="hljs-number">0xa3</span>, <span class="hljs-number">0x52</span>, <span class="hljs-number">0x57</span>, <span class="hljs-number">0xf1</span>, <span class="hljs-number">0x83</span>, <span class="hljs-number">0x1d</span>, <span class="hljs-number">0x9e</span>, <span class="hljs-number">0xb8</span>, <span class="hljs-number">0x0a</span>, <span class="hljs-number">0x58</span>, <span class="hljs-number">0x3b</span>, <span class="hljs-number">0x8e</span>, <span class="hljs-number">0x28</span>, <span class="hljs-number">0xc6</span>, <span class="hljs-number">0xe4</span>, <span class="hljs-number">0xd2</span>, <span class="hljs-number">0x02</span>, <span class="hljs-number">0x8d</span>, <span class="hljs-number">0xf5</span>, <span class="hljs-number">0xd5</span>, <span class="hljs-number">0x3d</span>, <span class="hljs-number">0xf8</span>]
 stream = [<span class="hljs-number">0</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(len(text))]
@@ -356,21 +356,15 @@ print(flag)</code></pre>
                 <article class="post-prev col-6">
                   
                   
-                  <a href="/2020/10/18/fabu1ous/sstf-t-express/">
+                  <a href="/2020/10/18/idioth/sstf-crackme101/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[Write-Up] SSTF T-express</span>
+                    <span class="hidden-mobile">[Write-Up] SSTF CrackMe101</span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   
                 </article>
                 <article class="post-next col-6">
                   
-                  
-                  <a href="/2020/10/18/idioth/sstf-crackme101/">
-                    <span class="hidden-mobile">[Write-Up] SSTF CrackMe101</span>
-                    <span class="visible-mobile">Next</span>
-                    <i class="iconfont icon-arrowright"></i>
-                  </a>
                   
                 </article>
               </div>
@@ -594,6 +588,45 @@ print(flag)</code></pre>
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 

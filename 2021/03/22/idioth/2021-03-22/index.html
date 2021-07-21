@@ -61,7 +61,7 @@
   <script src="/js/utils.js"></script>
   <script src="/js/color-schema.js"></script>
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
 </head>
 
 <body>
@@ -189,7 +189,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      381 자
+      701 자
     </span>
   
 
@@ -199,7 +199,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      7
+      14
        분
     </span>
   
@@ -244,32 +244,32 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>TikTok for Android Application</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>안드로이드 틱톡 애플리케이션에서 5가지 취약점이 발견되었습니다. 발견된 5가지 취약점 중 XSS, Zip Slip, RCE 취약점에 대한 상세 내용은 다음과 같습니다.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC548;&#xB4DC;&#xB85C;&#xC774;&#xB4DC; &#xD2F1;&#xD1A1; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC5D0;&#xC11C; 5&#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBC1C;&#xACAC;&#xB41C; 5&#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810; &#xC911; XSS, Zip Slip, RCE &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD55C; &#xC0C1;&#xC138; &#xB0B4;&#xC6A9;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><strong>Universal XSS on TikTok WebView</strong></p>
-<p>틱톡은 받은 메시지에서 deep-link로 호출될 수 있는 특정 WebView를 사용합니다. WebView는 성능을 향상하기 위해 사용할 때마다 서버에서 가져오는 대신 내부 파일에서 가져오는 falcon link라는 것을 사용합니다. 성능을 측정하기 위해 페이지가 로딩되면 다음과 같은 함수를 실행합니다.</p>
-<pre><code class="hljs kotlin"><span class="hljs-keyword">this</span>.a.evaluateJavascript(<span class="hljs-string">&quot;JSON.stringify(window.performance.getEntriesByName(\&#x27;&quot;</span> + <span class="hljs-keyword">this</span>.webviewURL + <span class="hljs-string">&quot;\&#x27;))&quot;</span>, v2);</code></pre>
+<p>&#xD2F1;&#xD1A1;&#xC740; &#xBC1B;&#xC740; &#xBA54;&#xC2DC;&#xC9C0;&#xC5D0;&#xC11C; deep-link&#xB85C; &#xD638;&#xCD9C;&#xB420; &#xC218; &#xC788;&#xB294; &#xD2B9;&#xC815; WebView&#xB97C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. WebView&#xB294; &#xC131;&#xB2A5;&#xC744; &#xD5A5;&#xC0C1;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xD560; &#xB54C;&#xB9C8;&#xB2E4; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC624;&#xB294; &#xB300;&#xC2E0; &#xB0B4;&#xBD80; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC624;&#xB294; falcon link&#xB77C;&#xB294; &#xAC83;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xC131;&#xB2A5;&#xC744; &#xCE21;&#xC815;&#xD558;&#xAE30; &#xC704;&#xD574; &#xD398;&#xC774;&#xC9C0;&#xAC00; &#xB85C;&#xB529;&#xB418;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs kotlin"><span class="hljs-keyword">this</span>.a.evaluateJavascript(<span class="hljs-string">&quot;JSON.stringify(window.performance.getEntriesByName(\&apos;&quot;</span> + <span class="hljs-keyword">this</span>.webviewURL + <span class="hljs-string">&quot;\&apos;))&quot;</span>, v2);</code></pre>
 
-<p>페이로드는 query string segment로 인코딩 되기 때문에 <code>getEntriesByName</code>의 URL 뒤에 <code>#</code>을 추가한 후 페이로드를 삽입하면 정상적으로 스크립트가 동작하게 됩니다.</p>
-<pre><code class="hljs reasonml"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>stringify(window.performance.get<span class="hljs-constructor">EntriesByName(&#x27;<span class="hljs-params">https</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">m</span>.<span class="hljs-params">tiktok</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span><span class="hljs-params">falcon</span><span class="hljs-operator">/</span>#&#x27;)</span>,alert(<span class="hljs-number">1</span>));<span class="hljs-comment">//&#x27;))</span></code></pre>
+<p>&#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; query string segment&#xB85C; &#xC778;&#xCF54;&#xB529; &#xB418;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; <code>getEntriesByName</code>&#xC758; URL &#xB4A4;&#xC5D0; <code>#</code>&#xC744; &#xCD94;&#xAC00;&#xD55C; &#xD6C4; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xBA74; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xAC00; &#xB3D9;&#xC791;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs reasonml"><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>stringify(window.performance.get<span class="hljs-constructor">EntriesByName(&apos;<span class="hljs-params">https</span>:<span class="hljs-operator">/</span><span class="hljs-operator">/</span><span class="hljs-params">m</span>.<span class="hljs-params">tiktok</span>.<span class="hljs-params">com</span><span class="hljs-operator">/</span><span class="hljs-params">falcon</span><span class="hljs-operator">/</span>#&apos;)</span>,alert(<span class="hljs-number">1</span>));<span class="hljs-comment">//&apos;))</span></code></pre>
 
 <p><strong>Another XSS on AddWikiActivity</strong></p>
-<p><code>AddWikiActivity</code>는 악성 URL이 열리지 않도록 URL 검사를 합니다. 그러나 <code>http</code>나 <code>https</code> scheme만 확인을 하므로 다른 scheme에 대해서는 검사를 진행하지 않습니다. 예를 들어 <code>javascript</code> scheme를 사용하여 페이로드를 구성하면 XSS가 가능합니다.</p>
-<pre><code class="hljs perl">window.ToutiaoJSBridge.invokeMethod(JSON.stringify(&#123;
+<p><code>AddWikiActivity</code>&#xB294; &#xC545;&#xC131; URL&#xC774; &#xC5F4;&#xB9AC;&#xC9C0; &#xC54A;&#xB3C4;&#xB85D; URL &#xAC80;&#xC0AC;&#xB97C; &#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; <code>http</code>&#xB098; <code>https</code> scheme&#xB9CC; &#xD655;&#xC778;&#xC744; &#xD558;&#xBBC0;&#xB85C; &#xB2E4;&#xB978; scheme&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB294; &#xAC80;&#xC0AC;&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4; <code>javascript</code> scheme&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xAD6C;&#xC131;&#xD558;&#xBA74; XSS&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs perl">window.ToutiaoJSBridge.invokeMethod(JSON.stringify({
     <span class="hljs-string">&quot;__callback_id&quot;</span>: <span class="hljs-string">&quot;0&quot;</span>,
     <span class="hljs-string">&quot;func&quot;</span>: <span class="hljs-string">&quot;openSchema&quot;</span>,
     <span class="hljs-string">&quot;__msg_type&quot;</span>: <span class="hljs-string">&quot;callback&quot;</span>,
-    <span class="hljs-string">&quot;params&quot;</span>: &#123;
+    <span class="hljs-string">&quot;params&quot;</span>: {
         <span class="hljs-string">&quot;schema&quot;</span>: <span class="hljs-string">&quot;aweme://wiki?url=javascript://m.tiktok.com/%250adocument.write(%22%3Ch1%3EPoC%3C%2Fh1%3E%22)&amp;disable_app_link=false&quot;</span>
-    &#125;,
+    },
     <span class="hljs-string">&quot;JSSDK&quot;</span>: <span class="hljs-string">&quot;1&quot;</span>,
     <span class="hljs-string">&quot;namespace&quot;</span>: <span class="hljs-string">&quot;host&quot;</span>,
     <span class="hljs-string">&quot;__iframe_url&quot;</span>: <span class="hljs-string">&quot;http://iframe.attacker.com/&quot;</span>
-&#125;));</code></pre>
+}));</code></pre>
 
 <p><strong>Remote Code Execution</strong></p>
-<p>RCE를 하기 위해서 zip file을 생성하고, path traversal을 통해 <code>/data/data/com.zhiliaoapp.musically/app_lib/df_rn_kit/df_rn_kit_a3e37c20900a22bc8836a51678e458f7/arm64-v8a/libjsc.so</code>을 overwrite 해야 합니다. 이를 위해서 Zip Slip 취약점이 사용됩니다.</p>
-<p><code>TmaTestActivity</code>는 인터넷에서 zip 파일을 통해 SDK를 업데이트합니다. 이때 <code>DownloadBaseBundleHandler</code>에서 <code>sdkUpdateVersion</code> 파라미터를 확인하여 버전을 확인하는데, 값을 <code>99.99.99</code>로 설정하면 검사를 통과하여 다운로드를 시작합니다. 다운로드 후 파일 이름에 있는 <code>&#123;md5sum_of_file&#125;</code>과 파일의 md5sum 값을 비교하므로 파일 이름은 <code>anything_&#123;md5sum_of_file&#125;.zip</code>이 되어야 합니다. 그 후 다운로드 한 파일은 정상적으로 압축이 해제되어 native-library를 악성 라이브러리로 overwrite 할 수 있습니다. 라이브러리를 overwirte 한 후 애플리케이션을 재실행하거나 <code>com.tt.miniapphost.placeholder.MiniappTabActivity0</code>를 통해 Remote Code Execution이 가능합니다.</p>
-<p>해당 취약점들은 XSS 코드 수정, <code>TmaTestActivity</code> 삭제, <code>intent</code> scheme 제한 구현으로 수정되었습니다.</p>
+<p>RCE&#xB97C; &#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; zip file&#xC744; &#xC0DD;&#xC131;&#xD558;&#xACE0;, path traversal&#xC744; &#xD1B5;&#xD574; <code>/data/data/com.zhiliaoapp.musically/app_lib/df_rn_kit/df_rn_kit_a3e37c20900a22bc8836a51678e458f7/arm64-v8a/libjsc.so</code>&#xC744; overwrite &#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC704;&#xD574;&#xC11C; Zip Slip &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p><code>TmaTestActivity</code>&#xB294; &#xC778;&#xD130;&#xB137;&#xC5D0;&#xC11C; zip &#xD30C;&#xC77C;&#xC744; &#xD1B5;&#xD574; SDK&#xB97C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>DownloadBaseBundleHandler</code>&#xC5D0;&#xC11C; <code>sdkUpdateVersion</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xD655;&#xC778;&#xD558;&#xC5EC; &#xBC84;&#xC804;&#xC744; &#xD655;&#xC778;&#xD558;&#xB294;&#xB370;, &#xAC12;&#xC744; <code>99.99.99</code>&#xB85C; &#xC124;&#xC815;&#xD558;&#xBA74; &#xAC80;&#xC0AC;&#xB97C; &#xD1B5;&#xACFC;&#xD558;&#xC5EC; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC;&#xB97C; &#xC2DC;&#xC791;&#xD569;&#xB2C8;&#xB2E4;. &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xD6C4; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xC5D0; &#xC788;&#xB294; <code>{md5sum_of_file}</code>&#xACFC; &#xD30C;&#xC77C;&#xC758; md5sum &#xAC12;&#xC744; &#xBE44;&#xAD50;&#xD558;&#xBBC0;&#xB85C; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xC740; <code>anything_{md5sum_of_file}.zip</code>&#xC774; &#xB418;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xB2E4;&#xC6B4;&#xB85C;&#xB4DC; &#xD55C; &#xD30C;&#xC77C;&#xC740; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC555;&#xCD95;&#xC774; &#xD574;&#xC81C;&#xB418;&#xC5B4; native-library&#xB97C; &#xC545;&#xC131; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB85C; overwrite &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; overwirte &#xD55C; &#xD6C4; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744; &#xC7AC;&#xC2E4;&#xD589;&#xD558;&#xAC70;&#xB098; <code>com.tt.miniapphost.placeholder.MiniappTabActivity0</code>&#xB97C; &#xD1B5;&#xD574; Remote Code Execution&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xC740; XSS &#xCF54;&#xB4DC; &#xC218;&#xC815;, <code>TmaTestActivity</code> &#xC0AD;&#xC81C;, <code>intent</code> scheme &#xC81C;&#xD55C; &#xAD6C;&#xD604;&#xC73C;&#xB85C; &#xC218;&#xC815;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
             <hr>
@@ -572,6 +572,45 @@
 
 
 
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
 
 
 
