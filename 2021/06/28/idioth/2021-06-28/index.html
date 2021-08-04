@@ -255,6 +255,7 @@
 <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[-] No permission to write the shellcode.&quot;</span>);
 }</code></pre>
+
 <p><img src="https://xret2pwn.github.io/assets/img/posts/Process_Injection/cpp_write_the_shellcode_executed.png" srcset="/img/loading.gif" alt="screenshot_4"></p>
 <p>&#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; shellcode&#xAC00; &#xC791;&#xC131;&#xB428;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xD574;&#xB2F9; &#xC601;&#xC5ED; (non-executable allocation)&#xC5D0; <code>PAGE_READONLY</code> &#xAD8C;&#xD55C;&#xC744; &#xBD80;&#xC5EC;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; DEP (Data Execution Prevention) &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xC9C1;&#xC811; shellcode&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; DEP&#xAC00; &#xAC78;&#xB824;&#xC788;&#xC9C0; &#xC54A;&#xC740; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xCC3E;&#xC544; &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; shellcode&#xB97C; injection &#xD558;&#xBA74; &#xC77D;&#xAE30;/&#xC4F0;&#xAE30; &#xAD8C;&#xD55C; &#xC5C6;&#xC774; shellcode&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>POC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -298,6 +299,7 @@
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
+
 
             </div>
             <hr>

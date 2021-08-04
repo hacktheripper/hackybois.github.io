@@ -256,9 +256,11 @@
 	<span class="hljs-comment">//integer overflow</span>
   <span class="hljs-keyword">return</span> g_bytes_new_take(g_memdup (data, size), size);  
 }</code></pre>
+
 <p>64bit &#xC790;&#xB8CC;&#xD615;&#xC778; <code>gsize</code> &#xD615; <code>size</code>&#xB97C; <code>g_memdup</code> &#xD568;&#xC218;&#xC758; &#xB450; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xB85C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-comment">//g_memdup &#xD568;&#xC218; &#xC6D0;&#xD615;</span>
 g_memdup(gconstpointer mem, guint byte_size);</code></pre>
+
 <p>&#xADF8;&#xB7EC;&#xB098; <code>g_memdup</code>&#xC740; &#xD574;&#xB2F9; &#xC778;&#xC790;&#xB97C; 32bit &#xC790;&#xB8CC;&#xD615; <code>guint</code>&#xC73C;&#xB85C; &#xBC1B;&#xC544; &#xC554;&#xC2DC;&#xC801; &#xD615; &#xBCC0;&#xD658;&#xC774; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;. &#xC774;&#xB85C; &#xC778;&#xD574; &#xD6E8;&#xC52C; &#xC791;&#xC740; &#xB370;&#xC774;&#xD130; &#xBC84;&#xD37C;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xB294; GBytes &#xAC1D;&#xCCB4;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xACE0; &#xC774;&#xB294; memory corruption &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58; &#xD788;&#xC2A4;&#xD1A0;&#xB9AC;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1926/commits">https://gitlab.gnome.org/GNOME/glib/-/merge_requests/1926/commits</a> &#xC5D0;&#xC11C; &#xD655;&#xC778; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 

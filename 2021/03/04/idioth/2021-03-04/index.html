@@ -267,6 +267,7 @@
   <span class="hljs-built_in">memcpy</span>((<span class="hljs-keyword">char</span> *)obuf + <span class="hljs-number">41</span>, srvurl, v6 - srvurl);  <span class="hljs-comment">// &lt;-- heap overflow</span>
 <span class="hljs-comment">// ...</span>
 }</code></pre>
+
 <p><code>srvurl</code>&#xC740; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; input&#xC744; &#xD1B5;&#xD574; &#xBC1B;&#xB294; &#xAC12;&#xC774;&#xC9C0;&#xB9CC; &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>strstr()</code>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC804;&#xC5D0; <code>srvurl</code>&#xC758; &#xB05D;&#xC5D0; NULL &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xBC94;&#xC704; &#xBC16;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xC5EC; <code>memcpy</code> &#xBD80;&#xBD84;&#xC5D0;&#xC11C; heap overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>SLP&#xB97C; &#xD1B5;&#xD574; Remote Code Execution&#xC744; &#xD558;&#xAE30; &#xC704;&#xD574; SLP&#xC5D0;&#xC11C; &#xC1A1;&#xC218;&#xC2E0;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>struct SLPBuffer</code>&#xC758; &#xAD6C;&#xC870;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs arduino"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">SLPBuffer</span></span>
@@ -290,6 +291,7 @@
     SLPBuffer           sendbuf;
 <span class="hljs-comment">// ...</span>
 }SLPDSocket;</code></pre>
+
 <p>VMware&#xC758; SLP &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; Remote Code execution&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li><code>connection-&gt;state</code>&#xB97C; <code>STREAM_WRITE_FIRST</code>&#xB85C; &#xB36E;&#xC5B4;&#xC501;&#xB2C8;&#xB2E4;. &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; leak &#xD558;&#xAE30; &#xC704;&#xD574; <code>sendbuf-&gt;curpos</code>&#xB97C; <code>sendbuf-&gt;start</code>&#xB85C; &#xB9AC;&#xC14B;&#xC2DC;&#xCF1C;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</li>

