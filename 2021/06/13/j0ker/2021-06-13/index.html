@@ -249,7 +249,6 @@
   <span class="hljs-comment">// to the URI string.</span>
    $theURI = <span class="hljs-string">&apos;http&apos;</span> . $https . $_SERVER[<span class="hljs-string">&apos;HTTP_HOST&apos;</span>] . $_SERVER[<span class="hljs-string">&apos;REQUEST_URI&apos;</span>];
 }</code></pre>
-
 <p>&#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xCD08;&#xAE30;&#xD654; &#xB9C1;&#xD06C;&#xB97C; &#xAD6C;&#xC131;&#xD560; &#xB54C;, Joomla&#xC758; URI.php&#xC5D0;&#xC11C; &#xC11C;&#xBC84;&#xC758; IP&#xB97C; HOST &#xD5E4;&#xB354;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC624;&#xB294;&#xB370;, &#xC774;&#xB97C; HOST header poisoning&#xC744; &#xD1B5;&#xD574; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB807;&#xAC8C; &#xB418;&#xBA74; &#xD574;&#xCEE4;&#xB294; &#xBCF4;&#xB0B4;&#xB294; &#xB9C1;&#xD06C;&#xB97C; &#xD574;&#xCEE4;&#xC758; &#xC11C;&#xBC84;&#xB85C; &#xC870;&#xC791;&#xD55C; &#xB2E4;&#xC74C; &#xD53C;&#xD574;&#xC790;&#xC5D0;&#xAC8C; &#xBCF4;&#xB0B4;&#xACE0;, &#xD53C;&#xD574;&#xC790;&#xB294; &#xD574;&#xB2F9; &#xB9C1;&#xD06C;&#xB97C; &#xD074;&#xB9AD;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8; &#xC21C;&#xAC04; &#xD574;&#xCEE4;&#xC758; &#xC11C;&#xBC84;&#xB85C; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xCD08;&#xAE30;&#xD654;&#xB97C; &#xC704;&#xD55C; &#xD1A0;&#xD070;&#xC774; &#xC804;&#xC1A1;&#xB418;&#xC5B4; &#xD574;&#xCEE4;&#xB294; &#xD574;&#xB2F9; &#xD1A0;&#xD070;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xCD08;&#xAE30;&#xD654;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <p>&#xB450; &#xBC88;&#xC9F8; &#xCDE8;&#xC57D;&#xC810;&#xC740; stored XSS&#xC744; &#xD1B5;&#xD55C; admin to super admin &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC77C;&#xBC18;&#xC801;&#xC778; &#xC0C1;&#xD669;&#xC5D0;&#xC11C; Joomla&#xC5D0;&#xC11C;&#xB294; &#xBE14;&#xB799;&#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xD1B5;&#xD574; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xB294; &#xD30C;&#xC77C; &#xD655;&#xC7A5;&#xC790;&#xB4E4;&#xC744; &#xAD00;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. php, php5 &#xB4F1; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0BD;&#xC785;&#xD560; &#xC218; &#xC788;&#xB294; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xD655;&#xC7A5;&#xC790;&#xB4E4;&#xC744; &#xB9C9;&#xC544;&#xB193;&#xC558;&#xB294;&#xB370;, &#xC5EC;&#xAE30;&#xC5D0; .html&#xC774; &#xBE60;&#xC838;&#xC788;&#xC5B4; html &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; html &#xD30C;&#xC77C;&#xC5D0; XSS &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; &#xB123;&#xACE0; &#xB313;&#xAE00;&#xC774;&#xB098; &#xAE00;&#xC5D0; &#xB123;&#xACE0; &#xC5C5;&#xB85C;&#xB4DC;&#xB97C; &#xD558;&#xACE0;, super admin&#xC774; &#xADF8;&#xAC83;&#xC744; &#xBCF4;&#xAC8C; &#xB418;&#xBA74; super admin &#xAD8C;&#xD55C;&#xC73C;&#xB85C; XSS &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xC5B4; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -270,8 +269,6 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/xss/">xss</a>
-                  
                   <a class="hover-with-bg" href="/tags/j0ker/">j0ker</a>
                   
                   <a class="hover-with-bg" href="/tags/joomla/">joomla</a>
@@ -279,6 +276,8 @@
                   <a class="hover-with-bg" href="/tags/password/">password</a>
                   
                   <a class="hover-with-bg" href="/tags/reset/">reset</a>
+                  
+                  <a class="hover-with-bg" href="/tags/xss/">xss</a>
                   
                   <a class="hover-with-bg" href="/tags/server/">server</a>
                   
@@ -321,9 +320,9 @@
                 <article class="post-prev col-6">
                   
                   
-                  <a href="/2021/06/13/fabu1ous/winafl-2/">
+                  <a href="/2021/06/14/idioth/2021-06-14/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[Research] WinAFL로 마구 퍼징하기 Part2</span>
+                    <span class="hidden-mobile">[하루한줄] Rate Limit 우회를 통한 OTP Brute-Force</span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   
@@ -331,8 +330,8 @@
                 <article class="post-next col-6">
                   
                   
-                  <a href="/2021/06/12/fabu1ous/2021-06-12/">
-                    <span class="hidden-mobile">[하루한줄] CVE-2021-21779: Webkit Webcore use-after-free</span>
+                  <a href="/2021/06/13/fabu1ous/winafl-2/">
+                    <span class="hidden-mobile">[Research] WinAFL로 마구 퍼징하기 Part2</span>
                     <span class="visible-mobile">Next</span>
                     <i class="iconfont icon-arrowright"></i>
                   </a>

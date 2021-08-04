@@ -270,7 +270,6 @@
         main();
     &lt;/script&gt;
 &lt;/html&gt;</code></pre>
-
 <pre><code class="hljs jsx"><span class="hljs-keyword">void</span> ProfilerGroup::StopProfiler(ScriptState* script_state,
                                  Profiler* profiler,
                                  ScriptPromiseResolver* resolver) {
@@ -286,7 +285,6 @@
   profilers_.erase(profiler);
 
 ...</code></pre>
-
 <p><code>ProfilerGroup::StopProfiler</code> &#xD568;&#xC218;&#xC758; resolve&#xB294; &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p>&#xBE44;&#xB3D9;&#xAE30; &#xD568;&#xC218;&#xB85C; &#xC120;&#xC5B8;&#xD55C; <code>main</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>await</code> &#xD0A4;&#xC6CC;&#xB4DC;&#xB85C; <code>performance.profile</code> &#xAC1D;&#xCCB4;&#xB97C; &#xC120;&#xC5B8;&#xD558;&#xACE0; <code>Object.prototype.__defineGetter__</code> &#xC758; &#xC0AC;&#xC6A9;&#xC790; &#xC815;&#xC758; &#xD568;&#xC218;&#xC640; main&#xC5D0;&#xC11C; <code>stop</code> &#xC744; &#xB450; &#xBC88; &#xD638;&#xCD9C;&#xD558;&#xAC8C; &#xB418;&#xBA74;  <code>CpuProfile</code> &#xAC1D;&#xCCB4;&#xAC00; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;. &#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB85C; <code>CpuProfile</code> &#xC5D0;&#xC11C; UAF &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC774;&#xB294; &#xAC04;&#xB2E8;&#xD558;&#xC9C0;&#xB9CC; &#xB192;&#xC740; &#xC2EC;&#xAC01;&#xC131;&#xC758; UAF &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C;, Google&#xC740; <code>Profiler::stop</code> &#xC5D0;&#xC11C; &#xB3D9;&#xAE30; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8; &#xC2E4;&#xD589;&#xC744; &#xBC29;&#xC9C0;&#xD558;&#xB3C4;&#xB85D; &#xD328;&#xCE58;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -308,11 +306,11 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
+                  <a class="hover-with-bg" href="/tags/uaf/">uaf</a>
                   
                   <a class="hover-with-bg" href="/tags/chrome/">chrome</a>
                   
-                  <a class="hover-with-bg" href="/tags/uaf/">uaf</a>
+                  <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

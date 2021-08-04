@@ -243,9 +243,7 @@
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/pear/Archive_Tar/issues/33">Archive_Tar Issue - multiple vulnerabilities through filename manipulation</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>PEAR Archive_Tar</p>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>PEAR Archive_Tar&#xB294; PHP&#xC5D0;&#xC11C; TAR &#xD30C;&#xC77C;&#xC744; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xB370; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0;&#xC11C; phar unseirialization&#xACFC; arbitrary file overwrite &#xB450; &#xAC00;&#xC9C0; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<br>
-&#xCCAB; &#xBC88;&#xC9F8; &#xCDE8;&#xC57D;&#xC810;(CVE-2020-28948)&#xC740; scheme &#xD544;&#xD130;&#xB9C1; &#xC6B0;&#xD68C;&#xB97C; &#xD1B5;&#xD55C; unserialization &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.
-
+<p><br><br>&#xCCAB; &#xBC88;&#xC9F8; &#xCDE8;&#xC57D;&#xC810;(CVE-2020-28948)&#xC740; scheme &#xD544;&#xD130;&#xB9C1; &#xC6B0;&#xD68C;&#xB97C; &#xD1B5;&#xD55C; unserialization &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p>Archive_Tar&#xC5D0;&#xB294; unserialization &#xACF5;&#xACA9;&#xC744; &#xBC29;&#xC9C0;&#xD558;&#xAE30; &#xC704;&#xD574; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xCF54;&#xB4DC;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs php"><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maliciousFilename</span>(<span class="hljs-params">$file</span>)</span>
 <span class="hljs-function"></span>{
@@ -257,7 +255,6 @@
     }
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }</code></pre>
-
 <p>&#xADF8;&#xB7EC;&#xB098; <code>PHAR://malicious_file.phar</code> &#xACFC; &#xAC19;&#xC774; &#xB300;&#xBB38;&#xC790;&#xB85C; &#xC791;&#xC131;&#xD558;&#xBA74; &#xD574;&#xB2F9; &#xCF54;&#xB4DC;&#xB97C; &#xC6B0;&#xD68C;&#xD574; unserialization&#xC744; &#xD1B5;&#xD55C; obejct injection&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.<br><br></p>
 <p>&#xB450; &#xBC88;&#xC9F8; &#xCDE8;&#xC57D;&#xC810;(CVE-2020-28949)&#xC740; Archive_Tar&#xC5D0;&#xC11C; stream wrapper&#xB97C; &#xCCB4;&#xD06C;&#xD558;&#xC9C0; &#xC54A;&#xC544; &#xBC1C;&#xC0DD;&#xD558;&#xB294; arbitrary file overwrite &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. &#xC774; &#xCDE8;&#xC57D;&#xC810; &#xB610;&#xD55C; CVE-2020-28948&#xACFC; &#xAC19;&#xC740; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD55C; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C;, <code>file://</code> scheme&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xB97C; &#xD558;&#xC9C0; &#xC54A;&#xC544; &#xD574;&#xCEE4;&#xAC00; &#xC784;&#xC758; &#xD30C;&#xC77C;&#xC744; &#xB36E;&#xC5B4;&#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. php&#xAC00; &#xB8E8;&#xD2B8; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xC5C8;&#xB2E4;&#xBA74; <code>/etc/passwd</code> &#xD30C;&#xC77C;&#xC744; &#xD3EC;&#xD568;&#xD55C; &#xC2DC;&#xC2A4;&#xD15C; &#xD30C;&#xC77C; &#xB610;&#xD55C; &#xB36E;&#xC5B4;&#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs php"><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_maliciousFilename</span>(<span class="hljs-params">$file</span>)</span>
@@ -270,7 +267,6 @@
     }
     <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }</code></pre>
-
 <p>&#xC774; &#xB450; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xBB38;&#xC790;&#xC5F4;&#xC5D0; <code>phar://</code> &#xAC00; &#xC544;&#xB2CC; <code>://</code> &#xAC00; &#xD3EC;&#xD568;&#xB420; &#xACBD;&#xC6B0; &#xC774;&#xB97C; &#xD544;&#xD130;&#xB9C1;&#xD558;&#xB294; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>

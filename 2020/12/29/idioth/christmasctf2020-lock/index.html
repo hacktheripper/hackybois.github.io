@@ -242,7 +242,7 @@
               </script>
               <h1 id="&#xCD9C;&#xC81C;-&#xC758;&#xB3C4;"><a href="#&#xCD9C;&#xC81C;-&#xC758;&#xB3C4;" class="headerlink" title="&#xCD9C;&#xC81C; &#xC758;&#xB3C4;"></a>&#xCD9C;&#xC81C; &#xC758;&#xB3C4;</h1><p>baby_crackme&#xB97C; &#xD558;&#xB098; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xB0B4;&#xACE0; &#xC2F6;&#xC5C8;&#xB294;&#xB370; arm&#xC73C;&#xB85C; &#xB0B4;&#xBA74; &#xC5B4;&#xB5A8;&#xAE4C;? &#xC2F6;&#xC5B4;&#xC11C; &#xB0B8; &#xBB38;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h1><p>dump&#xB85C; &#xD30C;&#xC77C;&#xC774; &#xD558;&#xB098; &#xC8FC;&#xC5B4;&#xC9C0;&#xBA70; vscode&#xB098; &#xBA54;&#xBAA8;&#xC7A5; &#xB4F1;&#xC73C;&#xB85C; &#xC5F4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC740; dump &#xCF54;&#xB4DC;&#xAC00; &#xB098;&#xC635;&#xB2C8;&#xB2E4;.</p>
-<p><img src="/2020/12/29/idioth/christmasctf2020-lock/image0.png" srcset="/img/loading.gif"></p>
+<p><img src="/2020/12/29/idioth/christmasctf2020-lock/image0.png" srcset="/img/loading.gif" alt></p>
 <p>aarch64&#xC5D0;&#xC11C; &#xB3D9;&#xC791;&#xD558;&#xB294; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC774;&#xBA70; Input &#xAC12;&#xC744; &#xD1B5;&#xD574; &#xC5B4;&#xB5A0;&#xD55C; &#xC5F0;&#xC0B0;&#xC744; &#xC218;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs llvm"><span class="hljs-number">0000000000000</span><span class="hljs-keyword">c</span><span class="hljs-number">50</span> &lt;main&gt;:
  <span class="hljs-keyword">c</span><span class="hljs-number">50</span>:   a<span class="hljs-number">9</span>be<span class="hljs-number">7</span>bfd    stp <span class="hljs-keyword">x</span><span class="hljs-number">29</span>, <span class="hljs-keyword">x</span><span class="hljs-number">30</span>, [sp, #<span class="hljs-number">-32</span>]!
@@ -267,7 +267,6 @@
  <span class="hljs-keyword">c</span><span class="hljs-number">9</span><span class="hljs-keyword">c</span>:   <span class="hljs-number">52800000</span>    mov w<span class="hljs-number">0</span>, <span class="hljs-symbol">#0</span><span class="hljs-keyword">x</span><span class="hljs-number">0</span> &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;  // <span class="hljs-symbol">#0</span>
  ca<span class="hljs-number">0</span>:   a<span class="hljs-number">8</span><span class="hljs-keyword">c</span><span class="hljs-number">27</span>bfd    ldp <span class="hljs-keyword">x</span><span class="hljs-number">29</span>, <span class="hljs-keyword">x</span><span class="hljs-number">30</span>, [sp], <span class="hljs-symbol">#32</span>
  ca<span class="hljs-number">4</span>:   d<span class="hljs-number">65</span>f<span class="hljs-number">03</span><span class="hljs-keyword">c</span><span class="hljs-number">0</span>    <span class="hljs-keyword">ret</span></code></pre>
-
 <p>main &#xD568;&#xC218;&#xB97C; &#xBCF4;&#xBA74; <code>sp + #16</code>&#xC5D0; calloc(0x13,1)&#xC744; &#xD574;&#xC8FC;&#xACE0; <code>sub_ab8</code>&#xD568;&#xC218;&#xAC00; &#xD638;&#xCD9C;&#xB41C; &#xD6C4; &#xB098;&#xC628; &#xAC12;&#xC744; &#xC778;&#xC790;&#xB85C; <code>sub_9b0</code> &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB41C; &#xD6C4; <code>sp + #24</code>&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; <code>sub_96c</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xACE0; &#xAC12;&#xC744; &#xBC1B;&#xC544;&#xC11C;<code>sp+#16</code>&#xC5D0; &#xB123;&#xC5B4;&#xC8FC;&#xACE0;  <code>sub_9b0(sub_ab8())</code> &#xD55C; &#xAC12;&#xACFC; input &#xAC12;&#xC744; &#xC778;&#xC790;&#xB85C; <code>sub_b30</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xACE0; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xC885;&#xB8CC;&#xB429;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; c &#xCF54;&#xB4DC;&#xB85C; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xB098;&#xD0C0;&#xB0B4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-comment">// main</span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
@@ -283,7 +282,6 @@
 
  &#xA0; &#xA0;<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
-
 <p><code>sub_ab8</code>&#xACFC; <code>sub_9b0</code> &#xD568;&#xC218;&#xB97C; &#xC0B4;&#xD3B4;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">value0</span>  DCB <span class="hljs-number">0</span>x<span class="hljs-number">96</span>, <span class="hljs-number">0</span>x<span class="hljs-number">19</span>, <span class="hljs-number">0</span>x<span class="hljs-number">7</span>, <span class="hljs-number">0</span>x<span class="hljs-number">11</span>, <span class="hljs-number">0</span>x<span class="hljs-number">99</span>, <span class="hljs-number">0</span>x<span class="hljs-number">19</span>, <span class="hljs-number">0</span>x<span class="hljs-number">2</span>, <span class="hljs-number">0</span>x<span class="hljs-number">11</span>
 <span class="hljs-attribute">value1</span>  DCB <span class="hljs-number">0</span>xF<span class="hljs-number">7</span>, <span class="hljs-number">0</span>x<span class="hljs-number">7</span>B, <span class="hljs-number">0</span>x<span class="hljs-number">64</span>, <span class="hljs-number">0</span>x<span class="hljs-number">75</span>, <span class="hljs-number">0</span>xFC, <span class="hljs-number">0</span>x<span class="hljs-number">7</span>F, <span class="hljs-number">0</span>x<span class="hljs-number">65</span>, <span class="hljs-number">0</span>x<span class="hljs-number">79</span>, <span class="hljs-number">0</span>xFF,
@@ -307,7 +305,6 @@
  <span class="hljs-attribute">ae0</span>:   f<span class="hljs-number">9400</span>fe<span class="hljs-number">0</span>    ldr x<span class="hljs-number">0</span>,<span class="hljs-meta"> [sp, #24]</span>
  <span class="hljs-attribute">ae4</span>:   a<span class="hljs-number">8</span>c<span class="hljs-number">27</span>bfd    ldp x<span class="hljs-number">29</span>, x<span class="hljs-number">30</span>,<span class="hljs-meta"> [sp], #32</span>
 <span class="hljs-meta"> ae8:   d65f03c0    ret</span></code></pre>
-
 <p>aarch64&#xC758; calling convention&#xC740; <code>x0</code>, <code>x1</code>, <code>x2</code>, <code>x3</code> &#xC774;&#xBBC0;&#xB85C; &#xC778;&#xC790;&#xC5D0; value1, 0x3e, value0, 0x8&#xC744; &#xB123;&#xC5B4; <code>sub_9fc</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. &#xD638;&#xCD9C;&#xD558;&#xACE0; &#xB09C; &#xD6C4; &#xC5F0;&#xC0B0;&#xB41C; &#xBB38;&#xC790;&#xC5F4;&#xC744; return &#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">00000000000009b0</span> &lt;sub_<span class="hljs-number">9</span>b<span class="hljs-number">0</span>&gt;:
  <span class="hljs-attribute">9b0</span>:   a<span class="hljs-number">9</span>bd<span class="hljs-number">7</span>bfd    stp x<span class="hljs-number">29</span>, x<span class="hljs-number">30</span>,<span class="hljs-meta"> [sp, #-48]!</span>
@@ -329,7 +326,6 @@
  <span class="hljs-attribute">9f0</span>:   f<span class="hljs-number">94017</span>e<span class="hljs-number">0</span>    ldr x<span class="hljs-number">0</span>,<span class="hljs-meta"> [sp, #40]</span>
  <span class="hljs-attribute">9f4</span>:   a<span class="hljs-number">8</span>c<span class="hljs-number">37</span>bfd    ldp x<span class="hljs-number">29</span>, x<span class="hljs-number">30</span>,<span class="hljs-meta"> [sp], #48</span>
 <span class="hljs-meta"> 9f8:   d65f03c0    ret</span></code></pre>
-
 <p><code>sub_ab8</code>&#xC5D0;&#xC11C; &#xBC18;&#xD658;&#xD55C; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xBC1B;&#xC544;&#xC11C; &#xAE38;&#xC774;&#xB97C; &#xACC4;&#xC0B0;&#xD55C; &#xD6C4; <code>malloc</code> &#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xD560;&#xB2F9;&#xD55C; &#xC8FC;&#xC18C;&#xAC00; 0&#xC774;&#xB77C;&#xBA74; 0&#xC744; &#xBC18;&#xD658;&#xD574;&#xC8FC;&#xACE0;, &#xC544;&#xB2C8;&#xBA74; <code>strcpy</code>&#xB97C; &#xD1B5;&#xD574; <code>sub_ab8</code>&#xC5D0;&#xC11C; &#xC628; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xBCF5;&#xC0AC;&#xD558;&#xC5EC; return &#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC774;&#xC81C; <code>sub_9fc</code> &#xD568;&#xC218;&#xB97C; &#xBD84;&#xC11D;&#xC744; &#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">00000000000009fc</span> &lt;sub_<span class="hljs-number">9</span>fc&gt;:
@@ -380,7 +376,6 @@
  <span class="hljs-attribute">aac</span>:   f<span class="hljs-number">9401</span>fe<span class="hljs-number">0</span>    ldr x<span class="hljs-number">0</span>,<span class="hljs-meta"> [sp, #56]</span>
  <span class="hljs-attribute">ab0</span>:   a<span class="hljs-number">8</span>c<span class="hljs-number">47</span>bfd    ldp x<span class="hljs-number">29</span>, x<span class="hljs-number">30</span>,<span class="hljs-meta"> [sp], #64</span>
 <span class="hljs-meta"> ab4:   d65f03c0    ret</span></code></pre>
-
 <p>&#xC778;&#xC790;&#xB85C; &#xBC1B;&#xC740; &#xAC12;&#xC744; &#xCC28;&#xB840;&#xB300;&#xB85C; &#xC2A4;&#xD0DD;&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. <code>w1</code>&#xACFC; <code>w3</code>&#xC740; &#xB370;&#xC774;&#xD130;&#xC758; &#xAE38;&#xC774;&#xB85C; &#xCD94;&#xC815;&#xB418;&#xBBC0;&#xB85C; <code>x0</code>, <code>x2</code>&#xC5D0; &#xB4E4;&#xC5B4;&#xC628; &#xAC12;&#xC744; &#xBCF4;&#xBA74; <code>[sp + #40] = \xFC\x7F\x65\x79\xFF\x73\x6C\x7D\xF4\x77\x6D\x61\xE7\x6B\x74\x65\xEC\x6F\x75\x69\xEF\x63\x46\x53\xDA\x5D\x47\x57\xD1\x51\x4E\x5B\xD2\x55\x4F\x5F\xD9\x49\x56\x43\xCA\x4D\x57\x47\xC1\x41\x5E\x4B\xA9\x28\x30\x22\xA2\x2C\x31\x26\xA1\x20</code>, <code>[sp + #24] = \x96\x19\x7\x11\x99\x19\x2\x11</code> &#xC774; &#xB429;&#xB2C8;&#xB2E4;. &#xC2A4;&#xD0DD;&#xC5D0; &#xAC12;&#xC744; &#xC800;&#xC7A5;&#xD55C; &#xD6C4; &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; &#xAE38;&#xC774;+1 &#xB9CC;&#xD07C; <code>malloc</code>&#xC744; &#xD574;&#xC900; &#xD6C4; <code>sp+#56</code>&#xC5D0; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; &#xAE38;&#xC774;&#xB97C; &#xAC00;&#xC838;&#xC640;&#xC11C; <code>malloc</code>&#xD55C; &#xC8FC;&#xC18C;&#xC758; &#xB9C8;&#xC9C0;&#xB9C9; index&#xC5D0; 0x0&#xC744; &#xB123;&#xC5B4;&#xC8FC;&#xACE0; <code>sp+#52</code>&#xC5D0; 0&#xC744; &#xC800;&#xC7A5;&#xD574;&#xC900; &#xD6C4; <code>a9c</code>&#xB85C; &#xC774;&#xB3D9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><code>a9c</code>&#xC5D0;&#xC11C;&#xB294; 0&#xC744; <code>w1</code>&#xC5D0; &#xB123;&#xACE0; &#xCCAB; &#xBC88;&#xC9F8; &#xBB38;&#xC790;&#xC5F4;&#xC758; &#xAE38;&#xC774;&#xB97C; <code>w0</code>&#xC5D0; &#xBD88;&#xB7EC;&#xC628; &#xD6C4; &#xB450; &#xAC1C;&#xB97C; &#xBE44;&#xAD50;&#xD558;&#xC5EC; <code>a40</code>&#xC73C;&#xB85C; &#xC774;&#xB3D9;&#xD569;&#xB2C8;&#xB2E4;. <code>w1=w0</code>&#xC774; &#xB418;&#xBA74; <code>flag</code>&#xAC00; <code>0</code>&#xC73C;&#xB85C; &#xC138;&#xD305;&#xB418;&#xACE0; <code>b.lt</code> &#xC5F0;&#xC0B0;&#xC774; &#xC218;&#xD589;&#xB418;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; &#xCCAB; &#xBC88;&#xC9F8; &#xBB38;&#xC790;&#xC5F4;&#xC758; &#xAE38;&#xC774;&#xB9CC;&#xD07C; &#xBC18;&#xBCF5;&#xD558;&#xB294; &#xAD6C;&#xAC04;&#xC784;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>a40</code>&#xC5D0;&#xC11C; <code>[sp+#40 + sp+#52]</code>&#xC758; &#xAC12;&#xC744; <code>w2</code>&#xC5D0; &#xB123;&#xACE0; <code>w3</code>&#xC5D0;&#xB294; <code>sp+#52 - sp+#32 * (sp+#52 / sp+#32)</code> &#xC5F0;&#xC0B0;&#xC744; &#xD1B5;&#xD574; <code>sp+#52 % sp+#32</code> &#xB97C; &#xC218;&#xD589;&#xD55C; &#xD6C4; &#xD574;&#xB2F9; &#xC8FC;&#xC18C;&#xC758; &#xAC12;&#xC744; &#xAC00;&#xC838;&#xC640;&#xC11C; &#xB450; &#xBB38;&#xC790;&#xC5F4;&#xC744; <code>xor</code> &#xC5F0;&#xC0B0;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><code>sub_9fc</code> &#xB97C; c&#xB85C; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xB098;&#xD0C0;&#xB0B4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -396,7 +391,6 @@
  &#xA0;  }
  &#xA0; &#xA0;<span class="hljs-keyword">return</span> var1;
 }</code></pre>
-
 <p>&#xD574;&#xB2F9; &#xBB38;&#xC790;&#xC5F4;&#xB4E4;&#xC774; <code>sub_9fc</code>&#xB97C; &#xAC70;&#xCCD0; &#xC5B4;&#xB5A0;&#xD55C; &#xAC12;&#xC774; &#xB098;&#xC624;&#xB294;&#xC9C0; &#xAD6C;&#xD558;&#xB294; python &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">string1 = [
  &#xA0; &#xA0;<span class="hljs-number">0xF7</span>, <span class="hljs-number">0x7B</span>, <span class="hljs-number">0x64</span>, <span class="hljs-number">0x75</span>, <span class="hljs-number">0xFC</span>, <span class="hljs-number">0x7F</span>, <span class="hljs-number">0x65</span>, <span class="hljs-number">0x79</span>, <span class="hljs-number">0xFF</span>,
@@ -419,7 +413,6 @@ print(result)
 <span class="hljs-string">C:\Users\idioth\Desktop&gt;lock.py</span>
 <span class="hljs-string">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</span>
 <span class="hljs-string">&apos;&apos;&apos;</span></code></pre>
-
 <p><code>sub_9fc</code>&#xAE4C;&#xC9C0; &#xB9C8;&#xCCE4;&#xC73C;&#xB2C8; &#xB2E4;&#xC2DC; main&#xC73C;&#xB85C; &#xB3CC;&#xC544;&#xAC00;&#xC8E0;!</p>
 <pre><code class="hljs c"><span class="hljs-comment">// main</span>
 <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
@@ -435,7 +428,6 @@ print(result)
 
  &#xA0; &#xA0;<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
-
 <p>&#xC774;&#xC81C; &#xC785;&#xB825; &#xAC12;&#xC744; &#xBC1B;&#xC544;&#xC11C; <code>sub_b30</code>&#xD558;&#xB294; &#xAC83;&#xB9CC; &#xB0A8;&#xC558;&#xB124;&#xC694;. <code>sub_b30</code> &#xD568;&#xC218;&#xB97C; &#xD655;&#xC778;&#xD574;&#xBD05;&#xC2DC;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">0000000000000b30</span> &lt;sub_b<span class="hljs-number">30</span>&gt;:
  <span class="hljs-attribute">b30</span>:   a<span class="hljs-number">9</span>be<span class="hljs-number">7</span>bfd    stp x<span class="hljs-number">29</span>, x<span class="hljs-number">30</span>,<span class="hljs-meta"> [sp, #-32]!</span>
@@ -510,7 +502,6 @@ print(result)
  <span class="hljs-attribute">c44</span>:   d<span class="hljs-number">503201</span>f    nop
  <span class="hljs-attribute">c48</span>:   a<span class="hljs-number">8</span>c<span class="hljs-number">27</span>bfd    ldp x<span class="hljs-number">29</span>, x<span class="hljs-number">30</span>,<span class="hljs-meta"> [sp], #32</span>
 <span class="hljs-meta"> c4c:   d65f03c0    ret</span></code></pre>
-
 <p>&#xC704;&#xC5D0;&#xC11C; &#xBCF5;&#xD638;&#xD654;&#xD55C; <code>[a-zA-Z0-9]</code> &#xAC12;&#xACFC; &#xC785;&#xB825; &#xAC12;&#xC744; &#xD1B5;&#xD574; &#xD558;&#xB098;&#xC529; &#xBE44;&#xAD50;&#xD55C; &#xD6C4; &#xC870;&#xAC74;&#xC774; &#xBAA8;&#xB450; &#xB9DE;&#xC73C;&#xBA74; <code>x0</code>&#xC5D0;  input &#xAC12;&#xC744; &#xB123;&#xACE0; <code>sub_aec</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. &#xAC12;&#xC744; &#xBE44;&#xAD50;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC744; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC815;&#xB9AC;&#xD558;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>var1[0x6] == var2[0xe]</li>
@@ -534,7 +525,6 @@ print(user_input)
 <span class="hljs-string">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789</span>
 <span class="hljs-string">1ockd0or</span>
 <span class="hljs-string">&apos;&apos;&apos;</span></code></pre>
-
 <p>&#xC870;&#xAC74;&#xC774; &#xB9DE;&#xB294; &#xC785;&#xB825; &#xAC12;&#xC744; &#xC778;&#xC790;&#xB85C; <code>sub_aec</code> &#xAC12;&#xC744; &#xD638;&#xCD9C;&#xD558;&#xB2C8; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">value2</span>  DCB <span class="hljs-number">0</span>x<span class="hljs-number">69</span>, <span class="hljs-number">0</span>x<span class="hljs-number">22</span>, <span class="hljs-number">0</span>x<span class="hljs-number">22</span>, <span class="hljs-number">0</span>x<span class="hljs-number">38</span>, <span class="hljs-number">0</span>x<span class="hljs-number">1</span>F, <span class="hljs-number">0</span>x<span class="hljs-number">43</span>, <span class="hljs-number">0</span>x<span class="hljs-number">5</span>B, <span class="hljs-number">0</span>x<span class="hljs-number">1</span>C, <span class="hljs-number">0</span>x<span class="hljs-number">45</span>, <span class="hljs-number">0</span>xE, <span class="hljs-number">0</span>x<span class="hljs-number">3</span>C,
 <span class="hljs-attribute">0x8</span>, <span class="hljs-number">0</span>x<span class="hljs-number">5</span>, <span class="hljs-number">0</span>x<span class="hljs-number">5</span>E, <span class="hljs-number">0</span>x<span class="hljs-number">30</span>, <span class="hljs-number">0</span>x<span class="hljs-number">17</span>, <span class="hljs-number">0</span>x<span class="hljs-number">5</span>F, <span class="hljs-number">0</span>x<span class="hljs-number">1</span>B, <span class="hljs-number">0</span>x<span class="hljs-number">6</span>, <span class="hljs-number">0</span>x<span class="hljs-number">19</span>, <span class="hljs-number">0</span>x<span class="hljs-number">3</span>B, <span class="hljs-number">0</span>x<span class="hljs-number">44</span>, <span class="hljs-number">0</span>x<span class="hljs-number">7</span>, <span class="hljs-number">0</span>x<span class="hljs-number">17</span>,
@@ -558,7 +548,6 @@ print(user_input)
  <span class="hljs-attribute">b24</span>:   d<span class="hljs-number">503201</span>f    nop
  <span class="hljs-attribute">b28</span>:   a<span class="hljs-number">8</span>c<span class="hljs-number">37</span>bfd    ldp x<span class="hljs-number">29</span>, x<span class="hljs-number">30</span>,<span class="hljs-meta"> [sp], #48</span>
 <span class="hljs-meta"> b2c:   d65f03c0    ret</span></code></pre>
-
 <p>&#xC785;&#xB825; &#xAC12;&#xACFC; value2&#xB97C; &#xC778;&#xC790;&#xB85C; <code>sub_9fc</code>&#xB97C; &#xC218;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>sub_9fc</code>&#xC758; &#xACBD;&#xC6B0; &#xC544;&#xAE4C; python script&#xB97C; &#xC9DC; &#xB193;&#xC558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xADF8;&#xB0E5; &#xAC12;&#xC744; &#xC785;&#xB825;&#xD558;&#xC5EC; &#xC5F0;&#xC0B0;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">string3 = [
  &#xA0; &#xA0;<span class="hljs-number">0x69</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0x22</span>, <span class="hljs-number">0x38</span>, <span class="hljs-number">0x1F</span>, <span class="hljs-number">0x43</span>, <span class="hljs-number">0x5B</span>, <span class="hljs-number">0x1C</span>, <span class="hljs-number">0x45</span>, <span class="hljs-number">0xE</span>, <span class="hljs-number">0x3C</span>,
@@ -577,7 +566,6 @@ print(flag)
 <span class="hljs-string">1ockd0or</span>
 <span class="hljs-string">XMAS{s4nta_can_enter_the_h0use}</span>
 <span class="hljs-string">&apos;&apos;&apos;</span></code></pre>
-
 <p>FLAG : XMAS{s4nta_can_enter_the_h0use}</p>
 
             </div>
@@ -645,9 +633,9 @@ print(flag)
                 <article class="post-prev col-6">
                   
                   
-                  <a href="/2020/12/29/idioth/christmasctf2020-angrforge/">
+                  <a href="/2020/12/29/idioth/christmasctf2020-gift/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - angrforge</span>
+                    <span class="hidden-mobile">[Write-Up] Christmas CTF 2020 - gift</span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   

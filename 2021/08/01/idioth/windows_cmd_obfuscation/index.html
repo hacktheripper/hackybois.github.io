@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<html lang="ko-KR" data-default-color-scheme="&#34;auto&#34;">
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="hack &amp; life">
+  <meta name="author" content="j0dev, y2sman">
+  <meta name="keywords" content>
+  <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
+
+  <meta property="og:type" content="website"> 
+  <meta property="og:title" content="[Translation] Windows Command-Line Obfuscation - hackyboiz">
+  <meta property="og:description" content="hack &amp; life">
+  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:url" content="https://hackyboiz.github.io/">
+
+  <link rel="canonical" href="https://hackyboiz.github.io/2021/08/01/idioth/windows_cmd_obfuscation/">
+
+  <title>[Translation] Windows Command-Line Obfuscation - hackyboiz</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css">
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="/.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="/.css">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
+
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+</head>
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">&nbsp;<strong>Hackyboiz</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-addrcard"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/author/">
+                <i class="iconfont icon-user-fill"></i>
+                Author
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax="true" style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-08-01 18:00" pubdate>
+      2021년 8월 1일 오후
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.6k 자
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      72
+       분
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2">
+      <script data-ad-client="ca-pub-3672652207808168" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">[Translation] Windows Command-Line Obfuscation</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- hackyboiz_horizen_index -->
+              <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3672652207808168" data-ad-slot="8887862313" data-ad-format="auto" data-full-width-responsive="true"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+              <p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694;. idioth &#xC785;&#xB2C8;&#xB2E4;. &#xC6D0;&#xB798; &#xC624;&#xB298;&#xBD80;&#xD130; Hooking&#xC5D0; &#xB300;&#xD55C; &#xC2DC;&#xB9AC;&#xC988;&#xB97C; &#xC9C4;&#xD589;&#xD558;&#xB824;&#xACE0; &#xD558;&#xC600;&#xC73C;&#xB098; &#xBAA8;&#xC544;&#xB454; &#xC790;&#xB8CC;&#xB97C; &#xCDE8;&#xD569;&#xD558;&#xACE0; &#xAD6C;&#xC0C1;&#xD558;&#xB358; &#xC911;&#xC5D0; &#xAF2C;&#xC5EC; &#xBC84;&#xB824;&#xC11C; &#xC77D;&#xC73C;&#xB824;&#xACE0; &#xAC00;&#xC838;&#xB2E4; &#xB193;&#xC558;&#xB358; &#xAC83; &#xC911; &#xD558;&#xB098;&#xB97C; &#xBC88;&#xC5ED;&#xD574;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC7A0;&#xAE50; &#xD734;&#xC2DD;&#xD558;&#xBA74;&#xC11C; &#xC2DC;&#xB9AC;&#xC988; &#xAD6C;&#xC0C1;&#xC744; &#xC81C;&#xB300;&#xB85C; &#xD558;&#xACE0; &#xC2DC;&#xC791;&#xD558;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<blockquote>
+<p>&#xC6D0;&#xBB38; &#xAE00; : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.wietzebeukema.nl/blog/windows-command-line-obfuscation">Windows Command-Line Obfuscation</a></p>
+</blockquote>
+<p><strong>TL;DR</strong> - &#xB9CE;&#xC740; Windows &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC740; &#xD3B8;&#xC758;&#xC131;&#xC774;&#xB098; &#xD638;&#xD658;&#xC131;&#xC744; &#xC704;&#xD574; &#xAC19;&#xC740; command line&#xC744; &#xD45C;&#xD604;&#xD558;&#xB294; &#xC5EC;&#xB7EC; &#xAC00;&#xC9C0; &#xBC29;&#xBC95;&#xC774; &#xC788;&#xB2E4;. command-line &#xC778;&#xC790;&#xAC00; &#xC5EC;&#xB7EC; &#xAC00;&#xC9C0;&#xB85C; &#xD45C;&#xD604;&#xB418;&#xB2E4; &#xBCF4;&#xB2C8; &#xD2B9;&#xC815; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD0D0;&#xC9C0;&#xD558;&#xAE30;&#xAC00; &#xB9E4;&#xC6B0; &#xC5B4;&#xB835;&#xB2E4;. &#xC774; &#xAC8C;&#xC2DC;&#xAE00;&#xC740; &#xC790;&#xC8FC; &#xC0AC;&#xC6A9;&#xB418;&#xB294; 40&#xAC1C; &#xC774;&#xC0C1;&#xC758; &#xAE30;&#xBCF8; Windows &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC774; command-line &#xB09C;&#xB3C5;&#xD654;&#xC5D0; &#xC5BC;&#xB9C8;&#xB098; &#xCDE8;&#xC57D;&#xD55C;&#xC9C0; &#xBCF4;&#xC5EC;&#xC8FC;&#xACE0; &#xB2E4;&#xB978; &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC744; &#xBD84;&#xC11D;&#xD558;&#xAE30; &#xC704;&#xD55C; &#xD234;&#xC744; &#xC18C;&#xAC1C;&#xD55C;&#xB2E4;.</p>
+<h1 id="Command-line-arguments"><a href="#Command-line-arguments" class="headerlink" title="Command-line arguments"></a>Command-line arguments</h1><blockquote>
+<p>He who wishes to be obeyed must know how to commad</p>
+<ul>
+<li>Machiavelli (Discourses on Livy III, Chapter XXII)</li>
+</ul>
+</blockquote>
+<p>&#xCEF4;&#xD4E8;&#xD130;&#xC5D0;&#xAC8C;&#xB294; 16&#xC138;&#xAE30;&#xC758; &#xC774; &#xC778;&#xC6A9;&#xBB38;&#xC774; &#xB9CE;&#xC774; &#xC801;&#xC6A9;&#xB41C;&#xB2E4;. &#xB300;&#xBD80;&#xBD84;&#xC758; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;&#xC640; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB294; &#xBD80;&#xBAA8; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xC790;&#xC2DD; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xAC8C; &#xC815;&#xBCF4;&#xB97C; &#xC804;&#xB2EC;&#xD560; &#xC218; &#xC788;&#xB294; &#x2018;command line&#x2019; &#xAD6C;&#xC131;&#xC694;&#xC18C;&#xB97C; &#xAC00;&#xC9C4;&#xB2E4;. command line&#xC740; &#xC0C8;&#xB85C; &#xC0DD;&#xC131;&#xB41C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xD750;&#xB984;&#xC744; &#xBC14;&#xAFC0; &#xC218; &#xC788;&#xB2E4;. &#xBA85;&#xB839;&#xC5B4; &#xC9D1;&#xD569;, &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC2E4;&#xD589;, &#xC785;&#xB825; &#xAE30;&#xB2A5;&#xC740; &#xCEF4;&#xD4E8;&#xD130;&#xB97C; &#xB9CC;&#xB4DC;&#xB294; &#xD575;&#xC2EC; &#xAC1C;&#xB150;&#xC774;&#xB2E4;.</p>
+<p>&#xCEF4;&#xD4E8;&#xD305;&#xC5D0; &#xB300;&#xD55C; &#xADFC;&#xBCF8;&#xC801;&#xC778; &#xC5ED;&#xD560;&#xC5D0;&#xB3C4; &#xBD88;&#xAD6C;&#xD558;&#xACE0; command line&#xC5D0;&#xC11C; &#xBCFC; &#xC218; &#xC788;&#xB294; &#xB2E4;&#xC591;&#xD55C; &#xBD80;&#xBD84;&#xC744; &#xC5B4;&#xB5BB;&#xAC8C; &#xBD88;&#xB7EC;&#xC57C;&#xD558;&#xB294; &#xC9C0;&#xC5D0; &#xB300;&#xD55C; &#xD569;&#xC758;&#xC810;&#xC774; &#xC5C6;&#xB2E4;. &#xC5B4;&#xB290; &#xBD80;&#xBD84;&#xC5D0;&#xC11C;&#xB294; command line arguments, parameters, options, flags, switches&#xAC00; &#xC11C;&#xB85C; &#xB2E4;&#xB978; &#xC758;&#xBBF8;&#xB97C; &#xAC16;&#xB294;&#xB2E4;&#xACE0; &#xD558;&#xC9C0;&#xB9CC; &#xC774; &#xAC8C;&#xC2DC;&#xAE00;&#xC5D0;&#xC11C;&#xB294; &#xB2E4;&#xC74C; &#xC6A9;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+<p><img src="/2021/08/01/idioth/windows_cmd_obfuscation/Untitled.png" srcset="/img/loading.gif" alt></p>
+<p>&#xB77C;&#xC778; &#xC804;&#xCCB4;&#xAC00; command line&#xC774;&#xBA70; &#xACF5;&#xBC31;&#xC73C;&#xB85C; &#xC778;&#xC790;&#xAC00; &#xAD6C;&#xBD84;&#xB41C;&#xB2E4;. &#xBAA8;&#xB4E0; &#xC778;&#xC790;&#xB294; &#xC5ED;&#xD560;&#xC774; &#xB2E4;&#xB974;&#xB2E4;. &#xC608;&#xC2DC;&#xB85C; &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xB294; &#xBCF4;&#xD1B5; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC774;&#xBA70; &#xBA85;&#xB839; &#xD504;&#xB86C;&#xD504;&#xD2B8;&#xC758; &#xACBD;&#xC6B0; &#xBA85;&#xB839;&#xC5B4;&#xAC00; &#xB41C;&#xB2E4;. &#xD2B9;&#xD788; &#xCC98;&#xC74C; &#xC138; &#xAC00;&#xC9C0;&#xB294; &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C; &#xD2B9;&#xC218; &#xBB38;&#xC790;&#xB85C; &#xC2DC;&#xC791;&#xD558;&#xB294; command line &#xC635;&#xC158;&#xC774;&#xB2E4;. &#xCC98;&#xC74C; &#xB450; &#xAC00;&#xC9C0; (<code>/f /unicode</code>)&#xB294; &#xD2B9;&#xBCC4;&#xD55C; &#xC785;&#xB825; &#xAC12;&#xC744; &#xC694;&#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; switch&#xC774;&#xACE0; &#xC138; &#xBC88;&#xC9F8; &#xC778;&#xC790; (<code>/decode</code>)&#xB294; &#xB4A4;&#xC758; &#xC778;&#xC790; (<code>folder\encoded.b64</code>)&#xAC00; &#xC774; &#xC778;&#xC790;&#xC5D0; &#xB300;&#xD55C; &#xC785;&#xB825; &#xAC12;&#xC778; flag&#xC774;&#xB2E4;.</p>
+<p><code>option char</code>&#xB294; command-line options&#xC5D0;&#xC11C; prefix&#xB85C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; &#xBB38;&#xC790;&#xC774;&#xB2E4;. Windows&#xC5D0;&#xC11C; &#xBCF4;&#xD1B5; &#xC2AC;&#xB798;&#xC2DC; (<code>/</code>)&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA70; &#xC720;&#xB2C9;&#xC2A4; &#xACC4;&#xC5F4; &#xC6B4;&#xC601;&#xCCB4;&#xC81C;&#xC5D0;&#xC11C;&#xB294; &#xD558;&#xC774;&#xD47C; (<code>-</code>)&#xC744; &#xC4F4;&#xB2E4;. command line&#xC740; &#xC2E4;&#xD589; &#xC911;&#xC778; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0; &#xC758;&#xD574;&#xC11C; &#xAD6C;&#xBB38; &#xBD84;&#xC11D;&#xB418;&#xBBC0;&#xB85C; &#xAC1C;&#xBC1C;&#xC790;&#xB4E4;&#xC740; &#xC5B4;&#xB5A4; &#xD615;&#xC2DD;&#xC758; &#xC778;&#xC790;&#xB97C; &#xC804;&#xB2EC;&#xD574;&#xC57C; &#xD558;&#xB294;&#xC9C0;&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xACE0;&#xBBFC;&#xD558;&#xC9C0; &#xC54A;&#xC544;&#xB3C4; &#xB41C;&#xB2E4;.</p>
+<p>&#xCEF4;&#xD4E8;&#xD130; &#xC5ED;&#xC0AC;&#xC5D0;&#xC11C; &#xD45C;&#xC900;&#xD654;&#xAC00; &#xC774;&#xB8E8;&#xC5B4;&#xC9C0;&#xC9C0; &#xC54A;&#xC73C;&#xBA74; &#xB9E4;&#xC6B0; &#xD63C;&#xB780;&#xC2A4;&#xB7EC;&#xC6B4; &#xACBD;&#xC6B0;&#xAC00; &#xC788;&#xB294;&#xB370; command line&#xC5D0;&#xB3C4; &#xC801;&#xC6A9;&#xB41C;&#xB2E4;.</p>
+<h1 id="&#xD638;&#xD658;&#xC131;-Compatibility"><a href="#&#xD638;&#xD658;&#xC131;-Compatibility" class="headerlink" title="&#xD638;&#xD658;&#xC131; (Compatibility)"></a>&#xD638;&#xD658;&#xC131; (Compatibility)</h1><p>command-line &#xAD6C;&#xBB38; &#xBD84;&#xC11D; &#xADDC;&#xCE59;&#xC5D0; &#xB300;&#xD55C; &#xD45C;&#xC900;&#xD654;&#xAC00; &#xBBF8;&#xD761;&#xD558;&#xC5EC; &#xB9CE;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xC5D0;&#xAC8C; &#xD63C;&#xB780;&#xC744; &#xC720;&#xBC1C;&#xD55C;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790;&#xB97C; &#xB3D5;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xBA87;&#xBA87; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xB2E4;&#xC591;&#xD55C; &#xADDC;&#xCE59;&#xC774; &#xD5C8;&#xC6A9;&#xB418;&#xB3C4;&#xB85D; &#xC124;&#xACC4;&#xB418;&#xC5C8;&#xB2E4;. &#xC608;&#xC2DC;&#xB85C; &#xC2AC;&#xB798;&#xC2DC;&#xC640; &#xD558;&#xC774;&#xD47C;&#xC744; &#xC635;&#xC158; &#xBB38;&#xC790;&#xB85C; &#xBAA8;&#xB450; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC774;&#xC5D0; &#xB300;&#xD574;&#xC11C;&#xB294; &#xB2E4;&#xC74C; &#xBD80;&#xBD84;&#xC5D0;&#xC11C; &#xC790;&#xC138;&#xD788; &#xC124;&#xBA85;&#xD55C;&#xB2E4;.</p>
+<p>&#xD63C;&#xB780;&#xC758; &#xB2E4;&#xB978; &#xC694;&#xC778;&#xC740; &#xB2E4;&#xC591;&#xD55C; &#xBB38;&#xC790;&#xC5F4; &#xC778;&#xCF54;&#xB529;&#xC774;&#xB2E4;. &#xC774;&#xB85C; &#xC778;&#xD574; &#xC624;&#xB798;&#xB41C; &#xD504;&#xB85C;&#xADF8;&#xB7A8; (&#xBCF4;&#xD1B5; ASCII&#xB9CC; &#xD5C8;&#xC6A9;)&#xACFC; &#xCD5C;&#xC2E0; &#xD504;&#xB85C;&#xADF8;&#xB7A8; (UTF-8&#xACFC; &#xC720;&#xB2C8;&#xCF54;&#xB4DC; &#xD5C8;&#xC6A9;) &#xAC04;&#xC758; &#xD638;&#xD658;&#xC131; &#xBB38;&#xC81C;&#xAC00; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;. &#xC77C;&#xBD80; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C;&#xB294; &#xC774;&#xB7EC;&#xD55C; &#xBB38;&#xC81C;&#xB97C; &#xD2B9;&#xC815; &#xBB38;&#xC790; &#xD544;&#xD130;&#xB9C1;&#xC774;&#xB098; &#xD2B9;&#xC815; &#xBB38;&#xC790;&#xB97C; ASCII &#xBB38;&#xC790;&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xC5EC; &#xD574;&#xACB0;&#xD558;&#xACE0;&#xC790; &#xD55C;&#xB2E4;.</p>
+<p>&#xC774;&#xB97C; &#xD1B5;&#xD574;&#xC11C; &#xC77C;&#xBD80; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xC5EC;&#xB7EC; &#xAC1C;&#xC758; command line &#xC778;&#xC790;&#xB97C; &#xD558;&#xB098;&#xB85C; &#xB2E4;&#xB8E8;&#xB294; &#xBB38;&#xC81C;&#xAC00; &#xC0DD;&#xAE34;&#xB2E4;. &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; &#xC804;&#xB2EC;&#xB41C; &#xB370;&#xC774;&#xD130;&#xAC00; &#xB2E4;&#xB984;&#xC5D0;&#xB3C4; &#xC2E4;&#xD589; &#xBC0F; &#xACB0;&#xACFC;&#xB294; &#xB3D9;&#xC77C;&#xD55C;&#xB370;, &#xC774;&#xB7F0; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xB97C; synonymous command line&#xC774;&#xB77C;&#xACE0; &#xBD80;&#xB978;&#xB2E4;.</p>
+<h1 id="&#xD0D0;&#xC9C0;-&#xBB38;&#xC81C;-Problems-for-detection"><a href="#&#xD0D0;&#xC9C0;-&#xBB38;&#xC81C;-Problems-for-detection" class="headerlink" title="&#xD0D0;&#xC9C0; &#xBB38;&#xC81C; (Problems for detection)"></a>&#xD0D0;&#xC9C0; &#xBB38;&#xC81C; (Problems for detection)</h1><p>&#xAC19;&#xC740; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xB2E4;&#xB978; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xD45C;&#xD604;&#xD558;&#xB294; &#xAC83;&#xC740; &#xC77C;&#xBD80; &#xC0AC;&#xC6A9;&#xC790;&#xC5D0;&#xAC8C;&#xB294; &#xB3C4;&#xC6C0;&#xC774; &#xB418;&#xC9C0;&#xB9CC; &#xD0D0;&#xC9C0;&#xB098; &#xAC10;&#xC9C0;&#xB97C; &#xC5B4;&#xB835;&#xAC8C; &#xD55C;&#xB2E4;. &#xB300;&#xBD80;&#xBD84; &#xC704;&#xD611; &#xD0D0;&#xC9C0; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; (AV, EDR &#xB4F1;)&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC2E4;&#xD589; &#xBC0F; command-line &#xC778;&#xC790;&#xC758; &#xC545;&#xC758;&#xC801; &#xC0AC;&#xC6A9;&#xC744; &#xAC10;&#xC2DC;&#xD55C;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xD0D0;&#xC9C0;&#xB97C; &#xD53C;&#xD558;&#xACE0; &#xC2F6;&#xC744; &#xAC83;&#xC774;&#xACE0; command line&#xC758; &#xC720;&#xC5F0;&#xC131;&#xC744; &#xD1B5;&#xD574; &#xD0D0;&#xC9C0;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC774;&#xB294; &#xD0A4;&#xC6CC;&#xB4DC; &#xAE30;&#xBC18; &#xD0D0;&#xC9C0; &#xC6B0;&#xD68C;&#xBD80;&#xD130; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xB2E4; &#xB09C;&#xB3C5;&#xD654;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xAE4C;&#xC9C0; &#xB2E4;&#xC591;&#xD558;&#xB2E4;.</p>
+<p>command-line &#xB09C;&#xB3C5;&#xD654;&#xC758; &#xC88B;&#xC740; &#xC608;&#xC2DC; &#xC911; &#xD558;&#xB098;&#xB294; Windows &#xBA85;&#xB839; &#xD504;&#xB86C;&#xD504;&#xD2B8; CMD&#xC5D0; &#xCD08;&#xC810;&#xC744; &#xB9DE;&#xCD98; Daniel Bohannon&#xC758; DOSfuscation [<a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/danielbohannon/Invoke-DOSfuscation">1</a>, <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.fireeye.com/content/dam/fireeye-www/blog/pdfs/dosfuscation-report.pdf">2</a>]&#xC774;&#xB2E4;. &#xB09C;&#xB3C5;&#xD654;&#xB41C; &#xBA85;&#xB839;&#xC5B4;&#xB97C; CMD&#xAC00; &#xC774;&#xD574;&#xD558;&#xACE0; &#xC2E4;&#xD589;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xC0AC;&#xB78C;&#xC774; &#xC774;&#xD574;&#xD560; &#xC218; &#xC5C6;&#xC744; &#xC218; &#xC788;&#xACE0;, &#xBAA8;&#xB2C8;&#xD130;&#xB9C1; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; &#xB610;&#xD55C; &#xD0D0;&#xC9C0;&#xD558;&#xC9C0; &#xBABB;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<p>synonymous command line&#xC740; CMD &#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xB354; &#xB9CE;&#xC740; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0; &#xC801;&#xC6A9;&#xB41C;&#xB2E4;. &#xC911;&#xC694;&#xD55C; &#xCC28;&#xC774;&#xC810;&#xC740; &#xBA85;&#xB839; &#xD504;&#xB86C;&#xD504;&#xD2B8;&#xAC00; &#xC544;&#xB2CC; &#xC2E4;&#xD589; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC790;&#xCCB4;&#xB97C; &#xC18D;&#xC774;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xB4A4;&#xC5D0;&#xC11C; &#xC54C; &#xC218; &#xC788;&#xB4EF;&#xC774; DOSfuscation&#xC740; &#xD0D0;&#xC9C0; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4;&#xC5D0; &#xC758;&#xD574; &#xB09C;&#xB3C5;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xD615;&#xD0DC;&#xB85C; &#xB0A8;&#xC744; &#xC218; &#xC788;&#xC9C0;&#xB9CC; synonymous command line&#xC740; &#xADF8;&#xB807;&#xC9C0; &#xC54A;&#xB2E4;.</p>
+<h1 id="Synonymous-command-lines-methods"><a href="#Synonymous-command-lines-methods" class="headerlink" title="Synonymous command lines: methods"></a>Synonymous command lines: methods</h1><p>&#xC2E4;&#xC81C;&#xB3C4; &#xC791;&#xB3D9;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xAE30; &#xC704;&#xD574; synonymous command line&#xC744; &#xC720;&#xBC1C;&#xD560; &#xC218; &#xC788;&#xB294; 5 &#xAC00;&#xC9C0; &#xBA54;&#xC11C;&#xB4DC;&#xB97C; &#xC0B4;&#xD3B4;&#xBCF4;&#xC790;.</p>
+<h2 id="Option-Char-substitution"><a href="#Option-Char-substitution" class="headerlink" title="Option Char substitution"></a>Option Char substitution</h2><p>Windows &#xC2E4;&#xD589; &#xD30C;&#xC77C; <code>ping</code>&#xC744; &#xC0DD;&#xAC01;&#xD574;&#xBCF4;&#xC790;. &#xC6D0;&#xBCF8;&#xC774; &#xC720;&#xB2C9;&#xC2A4; &#xBC84;&#xC804;&#xC774;&#xBBC0;&#xB85C; command-line option&#xC5D0; &#xD558;&#xC774;&#xD47C;&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD55C;&#xB2E4;. ( e.g. <code>ping -n 127.0.0.1</code>) &#xC774;&#xAC83;&#xC740; &#xC2AC;&#xB798;&#xC2DC; (<code>/</code>)&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xB2E4;&#xB978; Windows command-line &#xD234;&#xACFC;&#xB294; &#xB2E4;&#xB974;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790;&#xC758; &#xD63C;&#xB780;&#xC744; &#xC904;&#xC774;&#xAE30; &#xC704;&#xD574; option character&#xB85C; &#xC2AC;&#xB798;&#xC2DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83; (<code>ping /n 127.0.0.1</code>) &#xB610;&#xD55C; &#xD5C8;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+<p>&#xD558;&#xC774;&#xD47C;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xB300;&#xBD80;&#xBD84;&#xC758; &#xAE30;&#xBCF8; &#xB0B4;&#xC7A5; Windows &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xB4E4;&#xC740; &#xC2AC;&#xB798;&#xC2DC;&#xB3C4; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC9C0;&#xB9CC;, &#xADF8; &#xBC18;&#xB300;&#xB294; &#xC544;&#xB2CC; &#xACBD;&#xC6B0;&#xAC00; &#xB9CE;&#xB2E4;. &#x2018;keyword&#x2019; &#xB2E8;&#xC5B4;&#xAC00; &#xD3EC;&#xD568;&#xB41C; &#xBAA8;&#xB4E0; &#xD30C;&#xC77C;&#xC744; &#xBCF4;&#xC5EC;&#xC8FC;&#xB294; <code>find /i keyword</code> &#xBA85;&#xB839;&#xC5B4;&#xB294; <code>find -i keyword</code>&#xB85C; &#xB3D9;&#xC791;&#xD558;&#xC9C0; &#xC54A;&#xB294;&#xB2E4;.</p>
+<p>&#xC2AC;&#xB798;&#xC2DC;&#xC640; &#xD558;&#xC774;&#xD47C;&#xC774; &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C; &#xC0AC;&#xC6A9; &#xAC00;&#xB2A5;&#xD55C; &#xC635;&#xC158;&#xC774;&#xC9C0;&#xB9CC; &#xC77C;&#xBD80; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xB354; &#xB9CE;&#xC740; option character&#xB97C; &#xC9C0;&#xC6D0;&#xD55C;&#xB2E4;. <code>certutil</code>&#xC740; &#xD558;&#xC774;&#xD47C;, &#xC2AC;&#xB798;&#xC2DC; &#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; division slash (0x2215), fraction slash (0x2044) &#xAC19;&#xC740; &#xC720;&#xB2C8;&#xCF54;&#xB4DC; &#xC2AC;&#xB798;&#xC2DC;&#xB3C4; &#xD5C8;&#xC6A9;&#xD55C;&#xB2E4;.</p>
+<p>&#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB4EF;&#xC774; &#xB300;&#xCCB4;&#xB85C; &#xC0AC;&#xC6A9;&#xB418;&#xB294; command-line option&#xC5D0; &#xB300;&#xD574;&#xC11C; &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xB4E4;&#xC740; &#xBB38;&#xC11C;&#xD654;&#xB97C; &#xC798; &#xD558;&#xC9C0; &#xC54A;&#xC73C;&#xBBC0;&#xB85C; &#xBB34;&#xCC28;&#xBCC4; &#xB300;&#xC785; (brute force)&#xB098; &#xB9AC;&#xBC84;&#xC2F1;&#xC744; &#xD1B5;&#xD574; &#xC54C;&#xC544;&#xB0B4;&#xC57C; &#xD55C;&#xB2E4;.</p>
+<h2 id="Character-substitution"><a href="#Character-substitution" class="headerlink" title="Character substitution"></a>Character substitution</h2><p>&#xB610; &#xB2E4;&#xB978; &#xC811;&#xADFC;&#xBC95;&#xC740; command line&#xC5D0; &#xC788;&#xB294; &#xB2E4;&#xB978; &#xBB38;&#xC790; (option char&#xAC00; &#xC544;&#xB2CC; &#xBB38;&#xC790;)&#xB97C; &#xBE44;&#xC2B7;&#xD55C; &#xBB38;&#xC790;&#xB85C; &#xBC14;&#xAFB8;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xD2B9;&#xD788; &#xC720;&#xB2C8;&#xCF54;&#xB4DC;&#xC758; &#xBC94;&#xC704;&#xB97C; &#xACE0;&#xB824;&#xD560; &#xB54C; ASCII &#xBC94;&#xC704;&#xC5D0;&#xB3C4; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xAC00; &#xD5C8;&#xC6A9;&#xD558;&#xB294; &#xC5EC;&#xB7EC; &#xBB38;&#xC790;&#xAC00; &#xC788;&#xB2E4;.</p>
+<p>&#xC720;&#xB2C8;&#xCF54;&#xB4DC;&#xC5D0;&#xB294; &#xACF5;&#xBC31; &#xBB38;&#xC790; (0x02B0 ~ 0x02FF)&#xAC00; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xACE0;, &#x2EA;, &#x2E3;, &#x2E2; &#xAC19;&#xC740; &#xBB38;&#xC790;&#xB3C4; &#xD3EC;&#xD568;&#xD55C;&#xB2E4;. &#xC77C;&#xBD80; command-line parser&#xB294; &#xC774;&#xB7EC;&#xD55C; &#xBB38;&#xC81C;&#xB97C; l, x, s&#xB85C; &#xBCC0;&#xD658;&#xD55C;&#xB2E4;. &#xC608;&#xC2DC;&#xB85C; <code>reg export HKCU out.reg</code>&#xC640; <code>reg e&#x2E3;port HKCU out.reg</code>&#xB294; &#xAC19;&#xB2E4;.</p>
+<p><img src="/2021/08/01/idioth/windows_cmd_obfuscation/Untitled%201.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p><code>e&#x2E3;port HKCU out.reg</code>&#xAC00; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xC608;&#xC2DC;</p>
+</blockquote>
+<p>&#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC77C;&#xBD80; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xC720;&#xB2C8;&#xCF54;&#xB4DC; &#xBC94;&#xC704;&#xAC00; &#xB354; &#xB9CE;&#xC544;&#xC84C;&#xB2E4;.</p>
+<h2 id="Character-insertion"><a href="#Character-insertion" class="headerlink" title="Character insertion"></a>Character insertion</h2><p>&#xBE44;&#xC2B7;&#xD55C; &#xB9E5;&#xB77D;&#xC5D0;&#xC11C; &#xC2E4;&#xD589; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; &#xBB34;&#xC2DC;&#xD558;&#xB294; &#xBB38;&#xC790;&#xB97C; command-line&#xC5D0; &#xC0BD;&#xC785;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC77C;&#xBD80; &#xC2E4;&#xD589; &#xD30C;&#xC77C;&#xC740; &#xCD9C;&#xB825;&#xD560; &#xC218; &#xC5C6;&#xB294; &#xBB38;&#xC790;&#xB97C; &#xC81C;&#xAC70;&#xD558;&#xBA70; &#xD2B9;&#xC815; &#xBB38;&#xC790;&#xB97C; &#xD544;&#xD130;&#xB9C1;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
+<p>Windows &#xC774;&#xBCA4;&#xD2B8; &#xB85C;&#xADF8; &#xD234; <code>wevtutil</code>&#xC740; &#xD2B9;&#xC815; &#xBC94;&#xC704;&#xC758; &#xC720;&#xB2C8;&#xCF54;&#xB4DC; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xD5C8;&#xC6A9;&#xD55C;&#xB2E4;. <code>wevtutil gli hardwareevents</code>&#xC640; <code>wevtutil g&#x8AF;li hardwareevents</code>&#xB294; &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; &#xC911;&#xAC04;&#xC5D0; &#xC544;&#xB78D;&#xC5B4;&#xAC00; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xC9C0;&#xB9CC; &#xAC19;&#xC740; &#xACB0;&#xACFC;&#xB97C; &#xCD9C;&#xB825;&#xD55C;&#xB2E4;. </p>
+<p><img src="/2021/08/01/idioth/windows_cmd_obfuscation/Untitled%202.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p><code>wevtutil g&#x8AF;li hardwareevents</code>&#xAC00; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xC608;&#xC2DC;</p>
+</blockquote>
+<p>&#xC774; &#xAE30;&#xBC95;&#xC5D0; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xBB38;&#xC790;&#xAC00; &#xBA85;&#xB839; &#xD504;&#xB86C;&#xD504;&#xD2B8;&#xC758; stdin&#xC5D0;&#xC11C; &#xC9C0;&#xC6D0;&#xD558;&#xC9C0; &#xC54A;&#xC744; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xBC14;&#xC774;&#xD2B8; &#xD45C;&#xAE30;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xBB38;&#xC790;&#xB97C; &#xC0BD;&#xC785;&#xD560; &#xC218;&#xB3C4; &#xC788;&#xB2E4;.</p>
+<h2 id="Quotes-insertion"><a href="#Quotes-insertion" class="headerlink" title="Quotes insertion"></a>Quotes insertion</h2><p>quote &#xC30D;&#xC744; &#xC0BD;&#xC785;&#xD558;&#xC5EC; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; &#xD750;&#xB984;&#xC744; &#xC720;&#xC9C0;&#xD558;&#xBA74;&#xC11C; command-line&#xC744; &#xC870;&#xC791;&#xD560; &#xC218; &#xC788;&#xB2E4;. &#xC778;&#xC790;&#xC5D0; quote&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC740; &#xC775;&#xC219;&#xD560; &#xAC83;&#xC774;&#xB2E4;. &#xC608;&#xB97C; &#xB4E4;&#xC5B4; <code>dir &quot;C:\Windows\&quot;</code>&#xB294; <code>dir c:\Windows\</code>&#xC640; &#xAC19;&#xB2E4;. &#xB300;&#xBD80;&#xBD84; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xC774;&#xB97C; &#xD5C8;&#xC6A9;&#xD558;&#xBA70; &#xC784;&#xC758;&#xC758; &#xC704;&#xCE58;&#xC5D0;&#xC11C; quote&#xB97C; &#xBC1B;&#xC544;&#xB4E4;&#xC778;&#xB2E4;. <code>dir c:&quot;win&quot;d&quot;&quot;ow&quot;s&quot;</code>&#xB3C4; &#xC791;&#xB3D9;&#xD55C;&#xB2E4;.</p>
+<p><img src="/2021/08/01/idioth/windows_cmd_obfuscation/Untitled%203.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p><code>netsh ad&quot;vfi&quot;rewall show currentprofile state</code>&#xAC00; &#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xC608;&#xC2DC;</p>
+</blockquote>
+<p>&#xBA85;&#xB839; &#xD504;&#xB86C;&#xD504;&#xD2B8;&#xC5D0;&#xC11C; quote&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC73C;&#xB85C; &#xC804;&#xB2EC;&#xD558;&#xAE30; &#xC804;&#xC5D0; &#xC790;&#xCCB4;&#xC801;&#xC73C;&#xB85C; &#xCC98;&#xB9AC;&#xD558;&#xC5EC; &#xAE4C;&#xB2E4;&#xB85C;&#xC6B8; &#xC218; &#xC788;&#xB2E4;. cmd&#xC5D0;&#xC11C; &#xC774; &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC740; &#xBAA8;&#xB4E0; quote&#xB97C; &#xB450; &#xBC30;&#xB85C; &#xB298;&#xB824; &#xC704;&#xC640; &#xAC19;&#xC774; &#xC2E4;&#xD589;&#xD558;&#xB824;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
+<pre><code class="hljs jsx">netsh ad<span class="hljs-string">&quot;&quot;</span>vfi<span class="hljs-string">&quot;&quot;</span>rewall show currentprofile state</code></pre>
+<h2 id="Shorthands"><a href="#Shorthands" class="headerlink" title="Shorthands"></a>Shorthands</h2><p>&#xBB38;&#xC790;&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xACE0; &#xAD50;&#xCCB4;&#xD558;&#xACE0; &#xB098;&#xBA74; &#xBB38;&#xC790;&#xB97C; &#xC81C;&#xAC70;&#xD574;&#xC57C; &#xD55C;&#xB2E4;. &#xC77C;&#xBD80; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC740; &#x2018;shorthands&#x2019;&#xB97C; &#xD5C8;&#xC6A9;&#xD558;&#xBBC0;&#xB85C; &#xC27D;&#xAC8C; &#xC785;&#xB825;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<p>&#xC774;&#xB294; Unix &#xACC4;&#xC5F4; &#xD234;&#xC5D0;&#xC11C;&#xB294; &#xC798; &#xC54C;&#xB824;&#xC838; &#xC788;&#xC9C0;&#xB9CC; Windows&#xC5D0;&#xB294; &#xADF8;&#xB807;&#xC9C0; &#xC54A;&#xB2E4;. (<code>grep -i keyword</code> vs <code>grep --ignore-case keyword</code>) &#xD558;&#xC9C0;&#xB9CC; Windows&#xC758; &#xC77C;&#xBD80; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xB2E8;&#xCD95;&#xC5B4;&#xAC00; &#xC788;&#xB2E4;. Unix&#xC640; &#xC720;&#xC0AC;&#xD55C; &#xBC29;&#xC2DD;&#xC744; &#xD1B5;&#xD574; &#xD55C; &#xAE00;&#xC790;&#xB85C; &#xC904;&#xC774;&#xBA70; (<code>cmdkey /l</code> , <code>cmdkey /list</code>), &#xC57D;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;. (<code>wevtutil gli</code>, <code>wevtutil get-loginfo</code>) &#xB610; &#xB2E4;&#xB978; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C;&#xB294; wildcard &#xC811;&#xADFC;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;. Powershell&#xC744; &#xC608;&#xB85C; &#xB4E4;&#xBA74; powershell&#xC758; &#xD0A4;&#xC6CC;&#xB4DC; &#xB05D;&#xC5D0; &#xD558;&#xB098; &#xC774;&#xC0C1;&#xC758; &#xBB38;&#xC790;&#xB97C; &#xB0A8;&#xAE38; &#xC218; &#xC788;&#xB2E4;.</p>
+<p><img src="/2021/08/01/idioth/windows_cmd_obfuscation/Untitled%204.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p>13 &#xAC00;&#xC9C0;&#xC758; &#xB2E4;&#xB978; shorthand&#xAC00; &#xC788;&#xB2E4;.</p>
+</blockquote>
+<p>&#xC18C;&#xC218;&#xC758; &#xC0AC;&#xB78C;&#xB4E4;&#xB9CC;&#xC774; &#xC774;&#xB97C; &#xC774;&#xD574;&#xD558;&#xACE0; &#xC0AC;&#xC6A9;&#xD558;&#xACE0;, &#xB098;&#xBA38;&#xC9C0;&#xB294; &#xB354; &#xBCF5;&#xC7A1;&#xD574;&#xC9C4;&#xB2E4;. Powershell&#xC740; &#xB2E4;&#xB978; &#xBA85;&#xB839; &#xC0AC;&#xC774;&#xC5D0;&#xC11C; &#xBAA8;&#xD638;&#xC131;&#xC774; &#xC5C6;&#xB294; &#xACBD;&#xC6B0;&#xC5D0;&#xB9CC; &#xB2E8;&#xCD95;&#xC5B4;&#xB97C; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;. <code>/noprofile</code>&#xC758; &#xAC00;&#xC7A5; &#xC9E7;&#xC740; &#xB2E8;&#xCD95;&#xC740; <code>/no</code>&#xB294; <code>/noexit</code>&#xC640; &#xCDA9;&#xB3CC; &#xB54C;&#xBB38;&#xC5D0; <code>/nop</code>&#xC774;&#xB2E4;. Powershell&#xC758; &#xACBD;&#xC6B0; &#xC55E;&#xC758; &#xB450; &#xBB38;&#xC790;&#xB85C; &#xCD95;&#xC57D;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBBC0;&#xB85C; <code>/ec</code>&#xB3C4; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
+<h1 id="&#xB09C;&#xB3C5;&#xD654;&#xB41C;-command-line&#xC774;-&#xC788;&#xB294;-&#xD504;&#xB85C;&#xADF8;&#xB7A8;-&#xCC3E;&#xAE30;"><a href="#&#xB09C;&#xB3C5;&#xD654;&#xB41C;-command-line&#xC774;-&#xC788;&#xB294;-&#xD504;&#xB85C;&#xADF8;&#xB7A8;-&#xCC3E;&#xAE30;" class="headerlink" title="&#xB09C;&#xB3C5;&#xD654;&#xB41C; command line&#xC774; &#xC788;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xCC3E;&#xAE30;"></a>&#xB09C;&#xB3C5;&#xD654;&#xB41C; command line&#xC774; &#xC788;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xCC3E;&#xAE30;</h1><p>&#xC704;&#xC5D0;&#xC11C; &#xC124;&#xBA85;&#xD55C;&#xB300;&#xB85C; command line &#xC778;&#xC790;&#xB97C; &#xD578;&#xB4E4;&#xB9C1;&#xD558;&#xB294;&#xB370; &#xD45C;&#xC900;&#xC774; &#xC5C6;&#xB2E4;. &#xC77C;&#xBD80; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xC5C4;&#xACA9;&#xD558;&#xC9C0;&#xB9CC; &#xC5B4;&#xB5A4; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC740; &#xC720;&#xC5F0;&#xD558;&#xB2E4;. &#xD2B9;&#xC815;&#xD55C; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC5D0;&#xC11C; command line&#xC774; &#xC5B4;&#xB5BB;&#xAC8C; &#xB3D9;&#xC791;&#xD558;&#xB294;&#xC9C0; &#xC54C;&#xC544;&#xB0B4;&#xB294; &#xAC83;&#xB3C4; &#xBB38;&#xC81C;&#xB2E4;. </p>
+<p>&#xC774;&#xB97C; &#xC54C;&#xC544;&#xB0B4;&#xB294; &#xAC00;&#xC7A5; &#xD655;&#xC2E4;&#xD55C; &#xBC29;&#xBC95;&#xC740; &#xB9AC;&#xBC84;&#xC2F1;&#xC774;&#xC9C0;&#xB9CC; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC758; &#xBCF5;&#xC7A1;&#xD568;&#xC744; &#xC0DD;&#xAC01;&#xD558;&#xBA74; &#xC2DC;&#xAC04;&#xC774; &#xB9CE;&#xC774; &#xB4E0;&#xB2E4;. &#xC880; &#xB354; &#xD6A8;&#xACFC;&#xC801;&#xC778; &#xBC29;&#xBC95;&#xC740; &#xBAA8;&#xB4E0; &#xC6B0;&#xD68C; &#xAE30;&#xBC95;&#xC744; &#xBC18;&#xBCF5;&#xC801;&#xC73C;&#xB85C; &#xC2DC;&#xB3C4;&#xD558;&#xACE0; &#xACB0;&#xACFC;&#xB97C; &#xD655;&#xC778;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;.</p>
+<p>&#xC774; &#xC811;&#xADFC;&#xBC95;&#xC758; PoC &#xAD6C;&#xD604;&#xC744; &#xD1B5;&#xD574; &#xC704;&#xC758; &#xB2E4;&#xC12F; &#xAC00;&#xC9C0; &#xAE30;&#xBC95; &#xC911; &#xC5B4;&#xB290; &#xAC83;&#xC774; &#xC801;&#xC6A9;&#xB418;&#xB294;&#xC9C0; &#xBD84;&#xC11D;&#xD560; &#xC218; &#xC788;&#xB2E4;. PoC&#xC758; &#xC790;&#xC138;&#xD55C; &#xC124;&#xBA85;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/wietze/windows-command-line-obfuscation">github</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<h1 id="&#xD0D0;&#xC9C0;-&#xBB38;&#xC81C;-Problems-for-detection-1"><a href="#&#xD0D0;&#xC9C0;-&#xBB38;&#xC81C;-Problems-for-detection-1" class="headerlink" title="&#xD0D0;&#xC9C0; &#xBB38;&#xC81C; (Problems for detection)"></a>&#xD0D0;&#xC9C0; &#xBB38;&#xC81C; (Problems for detection)</h1><p>&#xD2B9;&#xC815; command line &#xC778;&#xC790;&#xAC00; &#xC788;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xC2E4;&#xD589;&#xC744; &#xD0D0;&#xC9C0;&#xD558;&#xB824;&#xBA74; synonymous command-line &#xC778;&#xC790;&#xAC00; &#xBB38;&#xC81C;&#xB2E4;. &#xC608;&#xC2DC;&#xB85C; <code>urlcache</code>&#xC640; <code>f</code> &#xC778;&#xC790;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; <code>certutil</code> &#xC2E4;&#xD589; &#xD0D0;&#xC9C0; Sigma &#xB8F0;&#xC744; &#xC791;&#xC131;&#xD558;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xB2E4;.</p>
+<pre><code class="hljs less"><span class="hljs-attribute">detection</span>:
+    <span class="hljs-attribute">selection</span>:
+        <span class="hljs-attribute">Image</span>: <span class="hljs-string">&quot;*\\certutil.exe&quot;</span>
+        CommandLine|contains|<span class="hljs-attribute">all</span>:
+            - <span class="hljs-string">&quot;/urlcache&quot;</span>
+            - <span class="hljs-string">&quot;/f&quot;</span>
+    <span class="hljs-attribute">condition</span>: selection</code></pre>
+<p>&#xBB38;&#xC81C;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB294;&#xB370;, &#xD574;&#xCEE4;&#xAC00; <code>urlcache</code>, <code>/ur&#x1D38;cache</code>, <code>/&#x209E;urlcache</code>, <code>/url&quot;cach&quot;e</code>, &#xD30C;&#xBA78;&#xC801;&#xC73C;&#xB85C; <code>&#x209E;u&#x209E;r&#x1D38;&quot;c&#x209E;a&#x209E;ch&quot;e</code> &#xB4F1;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xACBD;&#xC6B0; command&#xB294; &#xB3D9;&#xC791;&#xD558;&#xC9C0;&#xB9CC; &#xD589;&#xC704;&#xB97C; &#xD0D0;&#xC9C0;&#xD560; &#xC218; &#xC5C6;&#xB2E4;. &#xADDC;&#xCE59;&#xC5D0; &#xBAA8;&#xB4E0; &#xBCC0;&#xD615;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xAC83;&#xB3C4; &#xBD88;&#xAC00;&#xB2A5;&#xD55C;&#xB370;, &#xB2E4;&#xC591;&#xD55C; &#xC6B0;&#xD68C; &#xAE30;&#xBC95;&#xC744; &#xC870;&#xD569;&#xD558;&#xBA74; &#xC218;&#xBC31;&#xB9CC; &#xAC1C;&#xAC00; &#xBC1C;&#xC0DD;&#xD560; &#xC218; &#xC788;&#xAE30; &#xB54C;&#xBB38;&#xC774;&#xB2E4;.</p>
+<p><img src="/2021/08/01/idioth/windows_cmd_obfuscation/Untitled%205.png" srcset="/img/loading.gif" alt></p>
+<blockquote>
+<p><code>certutil -f -urlcache -split [https://wietze.github.io/robots.txt](https://wietze.github.io/robots.txt) output.txt</code>&#xC758; &#xB09C;&#xB3C5;&#xD654; &#xBC84;&#xC804;</p>
+</blockquote>
+<p>&#xC2DC;&#xB3C4;&#xD560; &#xC218; &#xC788;&#xB294; &#xD55C; &#xAC00;&#xC9C0; &#xBC29;&#xBC95;&#xC740; &#xBCF4;&#xD3B8;&#xC801;&#xC778; &#xADDC;&#xCE59;&#xC744; &#xB9CC;&#xB4DC;&#xB294; &#xAC83;&#xC774;&#xB2E4;. option char&#xB97C; &#xC81C;&#xAC70;&#xD558;&#xC5EC; &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<pre><code class="hljs less"><span class="hljs-attribute">detection</span>:
+    <span class="hljs-attribute">selection</span>:
+        <span class="hljs-attribute">Image</span>: <span class="hljs-string">&quot;*\\certutil.exe&quot;</span>
+        CommandLine|contains|<span class="hljs-attribute">all</span>:
+            - <span class="hljs-string">&quot;urlcache&quot;</span>
+            - <span class="hljs-string">&quot;f&quot;</span>
+    <span class="hljs-attribute">condition</span>: selection</code></pre>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC644;&#xBCBD;&#xD55C; &#xD574;&#xACB0;&#xCC45;&#xC740; &#xC544;&#xB2CC;&#xB370;, <code>f</code>&#xB9CC; &#xCC3E;&#xB294; &#xAC70;&#xB294; &#xC624;&#xD0D0;&#xB960;&#xC774; &#xB9CE;&#xC774; &#xBC1C;&#xC0DD;&#xD560; &#xD655;&#xB960;&#xC774; &#xC788;&#xB2E4;.</p>
+<p>&#xB450; &#xBC88;&#xC9F8; &#xBC29;&#xBC95;&#xC740; matching option&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB2E4;. &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xC2E4;&#xD589;&#xC744; &#xAC80;&#xC0C9;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC774; &#xC788;&#xB294; &#xB9CE;&#xC740; EDR &#xB3C4;&#xAD6C;&#xB294; &#xC704;&#xC758; &#xC608;&#xC2DC;&#xC640; &#xAC19;&#xC774; &#xB2E8;&#xC21C;&#xD55C; &#xBB38;&#xC790;&#xC5F4; &#xD3EC;&#xD568; &#xAE30;&#xB2A5;&#xC744; &#xC0AC;&#xC6A9;&#xD55C;&#xB2E4;. &#xC815;&#xADDC;&#xC2DD;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xACBD;&#xC6B0;&#xB294; &#xB4DC;&#xBB3C;&#xB2E4;. Sigma&#xAC00; regex&#xB97C; &#xC9C0;&#xC6D0;&#xD558;&#xC9C0;&#xB9CC; 30&#xAC1C; &#xC911; 7&#xAC1C;&#xB9CC; &#xAD6C;&#xD604;&#xD55C;&#xB2E4;. &#xC81C;&#xC870; &#xC5C5;&#xCCB4;&#xAC00; &#xCC98;&#xC74C;&#xBD80;&#xD130; &#xC774; &#xC635;&#xC158;&#xC744; &#xC81C;&#xACF5;&#xD558;&#xC9C0; &#xC54A;&#xB294; &#xC774;&#xC720;&#xB294; &#xC131;&#xB2A5; &#xB54C;&#xBB38;&#xC774;&#xB2E4;.</p>
+<p>&#xD558;&#xC9C0;&#xB9CC; &#xC815;&#xADDC;&#xC2DD;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xD234;&#xC758; &#xACBD;&#xC6B0; option char &#xBB38;&#xC81C;&#xB97C; &#xD574;&#xACB0;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
+<pre><code class="hljs less"><span class="hljs-attribute">detection</span>:
+    <span class="hljs-attribute">selection</span>:
+        <span class="hljs-attribute">Image</span>: <span class="hljs-string">&quot;*\\certutil.exe&quot;</span>
+        CommandLine|<span class="hljs-attribute">re</span>: <span class="hljs-string">&quot;^(?=.*[-/\\]urlcache)(?=.*[-/\\]f).+.*&quot;</span>
+    <span class="hljs-attribute">condition</span>: selection</code></pre>
+<p>&#xC815;&#xADDC;&#xC2DD;&#xC740; &#xB610; shorthand&#xB97C; &#xD0D0;&#xC9C0;&#xD558;&#xB294; &#xB370; &#xB3C4;&#xC6C0;&#xC774; &#xB418;&#xC9C0;&#xB9CC;, character instertion&#xACFC; substituion&#xC740; &#xBD88;&#xAC00;&#xB2A5;&#xD558;&#xB2E4;.</p>
+<h1 id="Robust-and-resilient-detctions"><a href="#Robust-and-resilient-detctions" class="headerlink" title="Robust and resilient detctions"></a>Robust and resilient detctions</h1><p>&#xADDC;&#xCE59;&#xC744; &#xD569;&#xB9AC;&#xC801;&#xC73C;&#xB85C; &#xB113;&#xAC8C; &#xC815;&#xC758;&#xD558;&#xC5EC; &#xBAA8;&#xB4E0; &#xBCC0;&#xD615;&#xC744; &#xD0D0;&#xC9C0;&#xD558;&#xACE0; &#xC624;&#xD0D0;&#xB960;&#xC744; &#xACE0;&#xB824;&#xD574;&#xC57C; &#xD55C;&#xB2E4;. PoC&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xADDC;&#xCE59;&#xC774; &#xD5C8;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xB294; &#xBD80;&#xBD84;&#xC744; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xB2E4;.</p>
+<p>&#xB450;&#xBC88;&#xC9F8;&#xB85C; &#xBAA8;&#xB2C8;&#xD130;&#xB9C1; &#xD234;&#xC758; &#xCD9C;&#xB825;&#xC744; &#xD45C;&#xC900;&#xD654;&#xD558;&#xB294; &#xAC83;&#xB3C4; &#xB3C4;&#xC6C0;&#xC774; &#xB41C;&#xB2E4;. &#xB370;&#xC774;&#xD130;&#xAC00; &#xBD84;&#xC11D; &#xD50C;&#xB7AB;&#xD3FC;&#xC5D0;&#xC11C; &#xCC98;&#xB9AC;&#xB418;&#xAE30; &#xC804;&#xC5D0; &#xD30C;&#xC774;&#xD504;&#xB77C;&#xC778;&#xC5D0;&#xC11C; &#xCC98;&#xB9AC;&#xB418;&#xBA74; &#xBAA8;&#xB4E0; &#xD2B9;&#xC218; &#xBB38;&#xC790;&#xB97C; ASCII&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xACE0; &#xC54C;&#xD30C;&#xBCB3;&#xC774; &#xC544;&#xB2CC; &#xBAA8;&#xB4E0; &#xAC12;&#xC744; &#xC81C;&#xAC70;&#xD558;&#xB294; &#xD544;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xBA74; &#xC88B;&#xB2E4;.</p>
+<p>&#xB610; &#xB370;&#xC774;&#xD130; &#xBD84;&#xC11D;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xB09C;&#xB3C5;&#xD654; &#xC2DC;&#xB3C4; &#xC790;&#xCCB4;&#xB97C; &#xD0D0;&#xC9C0;&#xD560; &#xC218; &#xC788;&#xB2E4;. IT &#xC804;&#xBC18;&#xC5D0; &#xC0AC;&#xC6A9;&#xB960;&#xC774; &#xB0AE;&#xC740; &#xBB38;&#xC790;&#xAC00; &#xD3EC;&#xD568;&#xB41C; command line&#xC744; &#xD655;&#xC778;&#xD558;&#xAC70;&#xB098; &#xBB38;&#xC790; &#xBC00;&#xB3C4;, ASCII&#xAC00; &#xC544;&#xB2CC; &#xBB38;&#xC790;&#xAC00; &#xD3EC;&#xD568;&#xB41C; &#xC778;&#xC790; &#xD0D0;&#xC9C0; &#xB4F1;&#xC774; &#xB3C4;&#xC6C0;&#xC774; &#xB41C;&#xB2E4;.</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/Translation/">Translation</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  
+                  <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
+                  
+                  <a class="hover-with-bg" href="/tags/obfuscation/">obfuscation</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cmd/">cmd</a>
+                  
+                </div>
+                
+              </div>
+
+              <div class="post-metas mb-3">
+                <a class="hover-with-bg" style="display: flex;" href="/author">
+                  <div class="link-avatar-page">
+                    <img src="/img/profile_idioth.jpg" srcset="/img/loading.gif" alt="idioth">
+                  </div>
+
+                  <div class="link-text">
+                    <div class="link-title">idioth</div>
+                  </div>
+                </a>
+                <div class="link-text">
+                  <div class="link-more">
+                    <a href="/tags/idioth">
+                      Read more
+                      <i class="iconfont icon-arrowdown"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <script data-ad-client="ca-pub-3672652207808168" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                  <a href="/2021/08/02/fabu1ous/2021-08-02/">
+                    <i class="iconfont icon-arrowleft"></i>
+                    <span class="hidden-mobile">[하루한줄] CVE-2021-3490: Kernel Pwning with eBPF: a Love Story</span>
+                    <span class="visible-mobile">Previous</span>
+                  </a>
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2021/07/30/j0ker/2021-07-30/">
+                    <span class="hidden-mobile">[하루한줄] CVE-2021-31956 Exploiting the Windows Kernel (NTFS with WNF) – Part 1</span>
+                    <span class="visible-mobile">Next</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://hackyboiz.github.io/2021/08/01/idioth/windows_cmd_obfuscation/';
+        this.page.identifier = '/2021/08/01/idioth/windows_cmd_obfuscation/';
+      };
+      function loadDisqus() {
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'hackyboiz' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="external nofollow noopener noreferrer">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="/js/debouncer.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Plugins -->
+
+
+  
+    <script src="/js/lazyload.js"></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
+  <script src="/js/clipboard-use.js"></script>
+
+
+
+
+
+
+
+  <script src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "[Translation] Windows Command-Line Obfuscation&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-177243668-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177243668-2"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-177243668-2');
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
