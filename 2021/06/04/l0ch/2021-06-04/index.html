@@ -250,7 +250,6 @@
 <pre><code class="hljs c"><span class="hljs-keyword">if</span> (msgsz &gt; msghdr-&gt;msg_ts) {
 		msgsz = msghdr-&gt;msg_ts;
 	}</code></pre>
-
 <p>&#xC774;&#xD6C4; &#xC544;&#xB798;&#xC758; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB3CC;&#xBA70; &#xCEE4;&#xB110; <code>msgpool</code>&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">1</span>		<span class="hljs-comment">// msg.h</span>
 <span class="hljs-number">2</span>		<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MSGSSZ	8		<span class="hljs-comment">/* Each segment must be 2^N long */</span></span>
@@ -281,13 +280,12 @@
 <span class="hljs-number">27</span>			SYSV_MSG_SUBSYS_UNLOCK();
 <span class="hljs-number">28</span>			eval = copyout(&amp;msgpool[next * msginfo.msgssz], user_msgp, tlen);
 <span class="hljs-number">29</span>		...</code></pre>
-
 <p>&#xBC18;&#xBCF5;&#xBB38;&#xC758; &#xC99D;&#xAC00; &#xAC12;&#xC778; <code>msginfo.msgssz</code>&#xB294; <code>msginit()</code>&#xC5D0;&#xC11C; <code>#define MSGSSZ 8</code> &#xB85C; &#xC120;&#xC5B8;&#xB41C; <code>MSGSSZ</code>&#xB85C; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC5B4; &#xD2B9;&#xC815; &#xC870;&#xAC74;&#xC744; &#xB9CC;&#xC871;&#xD558;&#xBA74; <code>8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC5D0; &#xBCF5;&#xC0AC;&#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; &#xC694;&#xCCAD;&#xB41C; &#xD06C;&#xAE30;&#xAC00; 8&#xC758; &#xBC30;&#xC218;&#xAC00; &#xC544;&#xB2D0; &#xACBD;&#xC6B0; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; <code>1~7 bytes</code> &#xD06C;&#xAE30;&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xCD9C;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><code>9 bytes</code> &#xD06C;&#xAE30;&#xC758; <code>SYS_msgsnd_nocancel</code> syscall&#xC744; &#xBCF4;&#xB0BC; &#xACBD;&#xC6B0; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li><code>msghdr&#x2192;msg_ts</code>&#xC640; <code>msgsz</code>&#xAC00; 9&#xB85C; &#xC124;&#xC815;&#xB429;&#xB2C8;&#xB2E4;.</li>
 <li>line 16&#xC758; &#xC870;&#xAC74;&#xBB38;&#xC5D0; &#xC758;&#xD574;  <code>tlen</code>&#xC774; 8&#xC774; &#xB429;&#xB2C8;&#xB2E4;.</li>
-<li><code> 8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB450; &#xBC88; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code>8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB450; &#xBC88; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li><code>16 bytes</code>&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xB418;&#xC5B4; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; <code>7 bytes</code> &#xD06C;&#xAE30;&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
@@ -309,15 +307,15 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
-                  
-                  <a class="hover-with-bg" href="/tags/ios/">ios</a>
-                  
                   <a class="hover-with-bg" href="/tags/information-disclosure/">information disclosure</a>
+                  
+                  <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
                   <a class="hover-with-bg" href="/tags/apple/">apple</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
+                  
+                  <a class="hover-with-bg" href="/tags/ios/">ios</a>
                   
                   <a class="hover-with-bg" href="/tags/macos/">macos</a>
                   

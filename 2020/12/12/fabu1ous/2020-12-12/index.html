@@ -250,7 +250,6 @@
 	ExFreePoolWithTag(oldFileBuf, <span class="hljs-number">0</span>);
 <span class="hljs-keyword">if</span> ( v11 )
 	memmove(newFileBuf, oldFileBuf, <span class="hljs-number">2</span>i64 * v11);</code></pre>
-
 <p>old lease name&#xC744; &#xB2F4;&#xACE0; &#xC788;&#xB358; oldFileBuf&#xB97C; &#xD560;&#xB2F9; &#xD574;&#xC81C;&#xD55C; &#xD6C4;&#xC5D0; newFileBuf&#xC5D0; &#xBCF5;&#xC0AC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; use after free&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. oldFileBuf&#xB97C; &#xD574;&#xC81C;&#xD55C; &#xD6C4; &#xB315;&#xAE00;&#xB9C1; &#xD3EC;&#xC778;&#xD130;&#xC758; &#xC0C1;&#xD0DC;&#xC5D0; &#xB530;&#xB77C; kernel info leak &#xB610;&#xB294; BSoD&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -269,11 +268,11 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
                   <a class="hover-with-bg" href="/tags/use-after-free/">use after free</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/smb/">smb</a>
                   

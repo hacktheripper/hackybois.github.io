@@ -267,7 +267,6 @@
     <span class="hljs-keyword">char</span>    d_name[<span class="hljs-number">255</span> + <span class="hljs-number">1</span>];    <span class="hljs-comment">/* name must be no longer than this */</span>          
 <span class="hljs-meta">#<span class="hljs-meta-keyword">endif</span>                                                                          </span>
 };</code></pre>
-
 <p>&#xC774;&#xC911; msdosfs&#xC758; &#xCDE8;&#xC57D;&#xC810;&#xC740; <code>msdosfs_readdir</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; MSDOS &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC758; &#xB8E8;&#xD2B8;&#xC5D0;&#xC11C; <code>readdir</code> &#xC774; &#xD638;&#xCD9C;&#xB41C; &#xACBD;&#xC6B0; <code>dirent_terminate</code>&#xC5D0;&#xC11C; <code>d_pad0</code>, <code>d_pad1</code>,<code>d_name</code> &#xD544;&#xB4DC;&#xB97C; &#xCD08;&#xAE30;&#xD654;&#xD55C; &#xC774;&#xD6C4; <code>uiomove</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>struct dirent dirbuf</code> &#xAC1D;&#xCCB4;&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xC800; &#xB79C;&#xB4DC;&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; &#xB8E8;&#xD2B8; &#xC774;&#xC678;&#xC758; MSDOS &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; <code>readdir</code>&#xC744; &#xD638;&#xCD9C;&#xD55C; &#xACBD;&#xC6B0; <code>d_pad0</code>, <code>d_pad1</code> &#xD544;&#xB4DC;&#xAC00; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C1;&#xD0DC;&#xB85C; <code>uiomove</code> &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC720;&#xC800; &#xB79C;&#xB4DC;&#xB85C; &#xBCF5;&#xC0AC;&#xB418;&#xC5B4; &#xCEE4;&#xB110;&#xC758; &#xC2A4;&#xD0DD; &#xC8FC;&#xC18C;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>msdosfs&#xB97C; &#xC81C;&#xC678;&#xD55C; &#xD30C;&#xC77C; &#xC2DC;&#xC2A4;&#xD15C;&#xC740; &#xB2E4;&#xC74C; &#xD568;&#xC218; &#xBAA9;&#xB85D;&#xC5D0;&#xC11C; &#xCEE4;&#xB110; &#xC2A4;&#xD0DD;&#xC5D0; <code>struct dirent</code> &#xAC1D;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
@@ -297,9 +296,9 @@
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
-                  <a class="hover-with-bg" href="/tags/uninitialized-stack/">uninitialized stack</a>
-                  
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
+                  
+                  <a class="hover-with-bg" href="/tags/uninitialized-stack/">uninitialized stack</a>
                   
                   <a class="hover-with-bg" href="/tags/freeBSD/">freeBSD</a>
                   
