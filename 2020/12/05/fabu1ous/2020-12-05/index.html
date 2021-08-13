@@ -240,15 +240,13 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.fortinet.com/blog/threat-research/leaking-browser-url-protocol-handlers?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed:+fortinet/blog/threat-research+(Fortinet+Threat+Research+Blog)">leaking browser url/protocol handler</a></p>
+              <h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.fortinet.com/blog/threat-research/leaking-browser-url-protocol-handlers?utm_source=feedburner&amp;utm_medium=feed&amp;utm_campaign=Feed%3A+fortinet%2Fblog%2Fthreat-research+%28Fortinet+Threat+Research+Blog%29">leaking browser url/protocol handler</a></p>
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>Firebox 78.01</p>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Firefox&#xC5D0;&#xC11C; Protocol Handler&#xB97C; &#xC774;&#xC6A9;&#xD55C; Information Disclosure &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. Protocol Handler&#xB294; &#xC751;&#xC6A9; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xC790;&#xC2E0;&#xC758; URI scheme&#xB97C; &#xB4F1;&#xB85D;&#xD560; &#xC218; &#xC788;&#xB294; &#xB9E4;&#xCEE4;&#xB2C8;&#xC998;&#xC73C;&#xB85C; &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xAC00; Protocol Handler URI&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#x201C;&#xC6F9;&#xC0AC;&#xC774;&#xD2B8;&#xC5D0;&#xC11C; &#xC774; &#xC560;&#xD50C;&#xB9AC;&#xCF00;&#xC774;&#xC158;&#xC744; &#xC5F4;&#xB824;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.&#x201D;&#xB77C;&#xB294; &#xC54C;&#xB9BC;&#xC774; &#xB739;&#xB2C8;&#xB2E4;.  </p>
 <p>Firefox&#xAC00; &#xC774;&#xBBF8;&#xC9C0; &#xD0DC;&#xADF8;&#xC758; &#xC18C;&#xC2A4;&#xB97C; &#xB80C;&#xB354;&#xB9C1; &#xD560; &#xB54C;, Protocol Handler&#xC758; &#xC874;&#xC7AC; &#xC5EC;&#xBD80;&#xC5D0; &#xB530;&#xB77C; &#xB80C;&#xB354;&#xB9C1; &#xACB0;&#xACFC;&#xAC00; &#xB2E4;&#xB985;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; &#xC774;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; &#xC6D0;&#xACA9;&#xC73C;&#xB85C; victim&#xC5D0; &#xC124;&#xCE58;&#xB41C; &#xD504;&#xB85C;&#xADF8;&#xB7A8; &#xB9AC;&#xC2A4;&#xD2B8;&#xB97C; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&#xC874;&#xC7AC;&#xD558;&#xB294;ProtocolHandler://abc&quot;</span>&gt;</span></code></pre>
-
 <p>victim&#xC5D0; &#xC874;&#xC7AC;&#xD558;&#xB294; Protocol Handler&#xB97C; &#xC774;&#xBBF8;&#xC9C0; src&#xC5D0; &#xB123;&#xC73C;&#xBA74; broken image&#xC5D0; &#xB300;&#xD55C; &#xAE30;&#xBCF8; &#xC124;&#xC815;&#xC5D0; &#xB530;&#xB77C; Element&#xC758; size&#xAC00; 24x24&#xB85C; &#xB80C;&#xB354;&#xB9C1; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs HTML"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;&#xC874;&#xC7AC;&#xD558;&#xC9C0;&#xC54A;&#xB294;ProtocolHandler://abc&quot;</span>&gt;</span></code></pre>
-
 <p>&#xBC18;&#xBA74;, &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xB294; Protocol Handler&#xB97C; &#xC774;&#xBBF8;&#xC9C0; src&#xC5D0; &#xB123;&#xC73C;&#xBA74; Element&#xC758; size&#xB294; 0x0&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <p>&#xB530;&#xB77C;&#xC11C; &#xD574;&#xCEE4;&#xB294; &#xAC04;&#xB2E8;&#xD55C; JS script&#xB85C; Element&#xC758; width&#xB97C; &#xAC80;&#xC0AC;&#xD574; Protocol Handler&#xC758; &#xC874;&#xC7AC; &#xC5EC;&#xBD80;&#xB97C; &#xD655;&#xC778;&#xD558;&#xB294; brute force &#xACF5;&#xACA9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs javascript">known_handlers = [
@@ -268,11 +266,6 @@
   
   $(<span class="hljs-string">&apos;#&apos;</span> + hander_id).remove()
 }</code></pre>
-
-
-
-
-
 
             </div>
             <hr>

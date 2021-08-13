@@ -260,12 +260,10 @@
     <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">EVT</span> <span class="hljs-title">array</span>[63];</span>
     UINT64 flags;
 } <span class="hljs-comment">/* sizeof == 0x18*63 + 8 == 0x5f0 */</span></code></pre>
-
 <p><code>MEVT</code>&#xC758; <code>EVT</code> &#xAD6C;&#xC870;&#xCCB4;&#xB294; 63&#xAC1C;&#xC758; &#xACE0;&#xC815;&#xB41C; &#xD06C;&#xAE30;&#xC758; &#xBC30;&#xC5F4;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">input_index = *(_DWORD *)IrpSystemBuffer;
 v5 = Crash(mevts, <span class="hljs-built_in">stack</span>-&gt;FileObject, unk, &amp;mevts-&gt;<span class="hljs-built_in">array</span>[input_index].event,
         (KSPIN_LOCK *)&amp;mevts-&gt;<span class="hljs-built_in">array</span>[input_index]);</code></pre>
-
 <p>&#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; <code>0x225f04</code> IOCTL &#xCF54;&#xB4DC;&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xBA74; &#xC720;&#xC800;&#xBC84;&#xD37C;&#xC778; <code>IrpSystemBuffer</code>&#xC758; &#xCCAB; &#xBC88;&#xC9F8; DWORD &#xB370;&#xC774;&#xD130;&#xAC00; <code>input_index</code>&#xC5D0; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. <code>input_index</code>&#xB294; &#xC704; <code>Crash</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>(KSPIN_LOCK *)&amp;mevts-&gt;array[input_index]</code>&#xC640; &#xAC19;&#xC774; <code>MEVT</code>&#xC758; <code>EVT</code> &#xBC30;&#xC5F4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xB54C; &#xC778;&#xB371;&#xC2A4;&#xB85C; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xD574;&#xCEE4;&#xB294; IOCTL &#xC785;&#xB825; &#xBC84;&#xD37C;&#xB97C; &#xD1B5;&#xD574; <code>input_index</code>&#xB97C; &#xC784;&#xC758;&#xC758; &#xAC12;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC5B4; Out Of Bound Access&#xB85C; &#xC774;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 
             </div>

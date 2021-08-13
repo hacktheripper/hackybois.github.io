@@ -259,7 +259,6 @@
   response.Headers.Location = <span class="hljs-keyword">new</span> Uri(redirect);
   <span class="hljs-keyword">return</span> response;
 }</code></pre>
-
 <p><code>EPiServer.Find.UI.Controllers.ClickController.Index()</code> &#xBA54;&#xC18C;&#xB4DC;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. <code>_t_redirect</code>&#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC758; &#xAC12;&#xC774; Location header&#xC778; 301 redirect reponse&#xB97C; &#xB9AC;&#xD134;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a><strong>PoC</strong></h2><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>{vulnerable}<span class="hljs-regexp">/find_v2/</span>_click?_t_id=&amp;_t_q=&amp;_t_hit.id=&amp;_t_redirect=https:/hackyboiz.github.io</code></pre>
             </div>

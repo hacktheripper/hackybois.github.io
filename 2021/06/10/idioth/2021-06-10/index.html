@@ -248,16 +248,13 @@
 <p>&#xD638;&#xC2A4;&#xD2B8;&#xAC00; <em>files.slack.com</em>&#xC774; &#xC544;&#xB2D0; &#xB54C;, &#xD574;&#xB2F9; URL&#xC740; 500 Internal server error&#xB97C; &#xBC18;&#xD658;&#xD558;&#xB294; &#xC720;&#xD6A8;&#xC131; &#xAC80;&#xC0AC;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; &#xD638;&#xC2A4;&#xD2B8; &#xC774;&#xB984;&#xC758; &#xB05D; &#xBD80;&#xBD84;&#xC5D0; &#x2018;@&#x2019;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xD574;&#xB2F9; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xD574;&#xB2F9; request&#xB294; &#xD504;&#xB860;&#xD2B8; &#xC5D4;&#xB4DC;&#xAC00; &#xC544;&#xB2CC; &#xBC31; &#xC5D4;&#xB4DC;&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xC5B4; Blind SSRF &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xBA74; &#xC778;&#xD2B8;&#xB77C;&#xB137;&#xC5D0; arbitrary request&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xC5EC; &#xC751;&#xB2F5; &#xC2DC;&#xAC04;&#xC744; &#xD1B5;&#xD574; &#xB2E4;&#xC591;&#xD55C; &#xC815;&#xBCF4;&#xB97C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC778;&#xD2B8;&#xB77C;&#xB137;&#xC5D0; &#xC5F4;&#xB824;&#xC788;&#xB294; &#xD3EC;&#xD2B8;&#xB97C; &#xD655;&#xC778;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
-<li><p>&#xC2AC;&#xB799;&#xC5D0; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD558;&#xACE0; &#x201C;Open original&#x201D;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xBCF8; &#xC774;&#xBBF8;&#xC9C0; &#xACBD;&#xB85C;&#xB97C; &#xCC3E;&#xC544; burp suite&#xB85C; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;.</p>
-</li>
-<li><p>repeater&#xB85C; &#xC804;&#xC1A1;&#xD558;&#xACE0; &#xD074;&#xB9AD;&#xD558;&#xC5EC; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC811;&#xADFC;&#xB418;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
-</li>
+<li>&#xC2AC;&#xB799;&#xC5D0; &#xD30C;&#xC77C;&#xC744; &#xC5C5;&#xB85C;&#xB4DC;&#xD558;&#xACE0; &#x201C;Open original&#x201D;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xBCF8; &#xC774;&#xBBF8;&#xC9C0; &#xACBD;&#xB85C;&#xB97C; &#xCC3E;&#xC544; burp suite&#xB85C; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;.</li>
+<li>repeater&#xB85C; &#xC804;&#xC1A1;&#xD558;&#xACE0; &#xD074;&#xB9AD;&#xD558;&#xC5EC; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC811;&#xADFC;&#xB418;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li><p><code>X-Forwarded-Host: xxx.com</code>&#xC744; &#xD5E4;&#xB354;&#xC5D0; &#xCD94;&#xAC00;&#xD558;&#xC5EC; 500 error&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p><code>X-Forwarded-Host: file.slack.com@YOUR_DOMAIN</code>&#xC73C;&#xB85C; &#xD5E4;&#xB354;&#xB97C; &#xC218;&#xC815;&#xD558;&#xACE0; 302 response&#xAC00; &#xC624;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. &#xACBD;&#xB85C;&#xB294; <code>YOUR_DOMAIN/files-pri/...</code>&#xB85C; &#xC9C0;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
-<li><p>&#xB3C4;&#xBA54;&#xC778;&#xC5D0; request&#xAC00; &#xC804;&#xC1A1;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0; &#xB3C4;&#xBA54;&#xC778;&#xC744; &#xC778;&#xD2B8;&#xB77C;&#xB137; IP&#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;. &#xD3EC;&#xD2B8;&#xB97C; &#xBC14;&#xAFD4;&#xAC00;&#xBA70; &#xC751;&#xB2F5; &#xC2DC;&#xAC04;&#xC744; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
-</li>
+<li>&#xB3C4;&#xBA54;&#xC778;&#xC5D0; request&#xAC00; &#xC804;&#xC1A1;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xACE0; &#xB3C4;&#xBA54;&#xC778;&#xC744; &#xC778;&#xD2B8;&#xB77C;&#xB137; IP&#xB85C; &#xBCC0;&#xACBD;&#xD569;&#xB2C8;&#xB2E4;. &#xD3EC;&#xD2B8;&#xB97C; &#xBC14;&#xAFD4;&#xAC00;&#xBA70; &#xC751;&#xB2F5; &#xC2DC;&#xAC04;&#xC744; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
             </div>
@@ -278,11 +275,11 @@
                   
                   <a class="hover-with-bg" href="/tags/information-disclosure/">information disclosure</a>
                   
+                  <a class="hover-with-bg" href="/tags/ssrf/">ssrf</a>
+                  
                   <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
                   
                   <a class="hover-with-bg" href="/tags/slack/">slack</a>
-                  
-                  <a class="hover-with-bg" href="/tags/ssrf/">ssrf</a>
                   
                 </div>
                 

