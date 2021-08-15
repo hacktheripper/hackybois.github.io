@@ -1,0 +1,1151 @@
+
+
+<!DOCTYPE html>
+<html lang="ko-KR" data-default-color-scheme="&#34;auto&#34;">
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="hack &amp; life">
+  <meta name="author" content="j0dev, y2sman">
+  <meta name="keywords" content>
+  <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
+
+  <meta property="og:type" content="website"> 
+  <meta property="og:title" content="[Research] 핵린이의 angr 정복기 - (4) angr_ctf part.2 - hackyboiz">
+  <meta property="og:description" content="hack &amp; life">
+  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:url" content="https://hackyboiz.github.io/">
+
+  <link rel="canonical" href="https://hackyboiz.github.io/2021/08/15/j0ker/angr_part4/">
+
+  <title>[Research] 핵린이의 angr 정복기 - (4) angr_ctf part.2 - hackyboiz</title>
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
+  <link rel="stylesheet" href="/lib/hint/hint.min.css">
+
+  
+    
+    <link rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css">
+  
+
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_6peoq002giu.css">
+<link rel="stylesheet" href="/.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+<link rel="stylesheet" href="/.css">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script src="/js/utils.js"></script>
+  <script src="/js/color-schema.js"></script>
+
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/rss2.xml" title="hackyboiz" type="application/rss+xml">
+</head>
+
+<body>
+  <header style="height: 40vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">&nbsp;<strong>Hackyboiz</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                Home
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                Archives
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                Categories
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                Tags
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-addrcard"></i>
+                About
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/author/">
+                <i class="iconfont icon-user-fill"></i>
+                Author
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner intro-2" id="background" parallax="true" style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container page-header text-center fade-in-up">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+              
+  <div class="mt-3 post-meta">
+    <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+    <time datetime="2021-08-15 18:00" pubdate>
+      2021년 8월 15일 오후
+    </time>
+  </div>
+
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.4k 자
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      127
+       분
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2">
+      <script data-ad-client="ca-pub-3672652207808168" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    </div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto" id="post">
+            <!-- SEO header -->
+            <h1 style="display: none">[Research] 핵린이의 angr 정복기 - (4) angr_ctf part.2</h1>
+            
+            <div class="markdown-body" id="post-body">
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- hackyboiz_horizen_index -->
+              <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-3672652207808168" data-ad-slot="8887862313" data-ad-format="auto" data-full-width-responsive="true"></ins>
+              <script>
+                   (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+              <h1 id="&#xD575;&#xB9B0;&#xC774;&#xC758;-angr-&#xC815;&#xBCF5;&#xAE30;-4-angr-ctf-part-2"><a href="#&#xD575;&#xB9B0;&#xC774;&#xC758;-angr-&#xC815;&#xBCF5;&#xAE30;-4-angr-ctf-part-2" class="headerlink" title="&#xD575;&#xB9B0;&#xC774;&#xC758; angr &#xC815;&#xBCF5;&#xAE30; - (4) angr_ctf part.2"></a>&#xD575;&#xB9B0;&#xC774;&#xC758; angr &#xC815;&#xBCF5;&#xAE30; - (4) angr_ctf part.2</h1><p><img src="/2021/08/15/j0ker/angr_part4/5jnh8a.jpg" srcset="/img/loading.gif" alt="5jnh8a.jpg"></p>
+<h1 id="&#xC774;&#xC804;-&#xAE00;-&#xBC14;&#xB85C;&#xAC00;&#xAE30;"><a href="#&#xC774;&#xC804;-&#xAE00;-&#xBC14;&#xB85C;&#xAC00;&#xAE30;" class="headerlink" title="&#xC774;&#xC804; &#xAE00; &#xBC14;&#xB85C;&#xAC00;&#xAE30;"></a>&#xC774;&#xC804; &#xAE00; &#xBC14;&#xB85C;&#xAC00;&#xAE30;</h1><p><a href="https://hackyboiz.github.io/2021/07/10/j0ker/angr_part1/">[Research] &#xD575;&#xB9B0;&#xC774;&#xC758; angr &#xC815;&#xBCF5;&#xAE30; - (1) &#xC2DC;&#xC791;</a></p>
+<p><a href="https://hackyboiz.github.io/2021/07/21/j0ker/angr_part2/">[Research] &#xD575;&#xB9B0;&#xC774;&#xC758; angr &#xC815;&#xBCF5;&#xAE30; - (2) Symbolic Execution</a></p>
+<p><a href="https://hackyboiz.github.io/2021/08/04/j0ker/angr_part3/">[Research] &#xD575;&#xB9B0;&#xC774;&#xC758; angr &#xC815;&#xBCF5;&#xAE30; - (3) angr_ctf part.1</a></p>
+<p>[Research] &#xD575;&#xB9B0;&#xC774;&#xC758; angr &#xC815;&#xBCF5;&#xAE30; - (4) angr_ctf part.2 &#x2190; Here!</p>
+<h1 id="&#xC778;&#xC0AC;&#xB9D0;"><a href="#&#xC778;&#xC0AC;&#xB9D0;" class="headerlink" title="&#xC778;&#xC0AC;&#xB9D0;"></a>&#xC778;&#xC0AC;&#xB9D0;</h1><p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694;. j0ker &#xC785;&#xB2C8;&#xB2E4;! &#xC774;&#xBC88;&#xC5D0;&#xB3C4; angr_ctf &#xBB38;&#xC81C;&#xB4E4;&#xC744; &#xD480;&#xC5B4;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADFC;&#xB370; &#xC2DC;&#xB9AC;&#xC988;&#xAC00; &#xB9E4;&#xC6B0; &#xAE38;&#xC5B4;&#xC9C8;&#xAC70; &#xAC19;&#xC740; &#xC608;&#xAC10;&#xC740; &#xD2C0;&#xB9AC;&#xC9C0; &#xC54A;&#xC558;&#xB2E4;&#xB294;&#xAC70;&#x2026; &#xC0DD;&#xAC01;&#xBCF4;&#xB2E4; &#xC2DC;&#xB9AC;&#xC988;&#xAC00; &#xB354; &#xAE38;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;&#x2026; &#xADF8;&#xB9AC;&#xACE0; &#xC0DD;&#xAC01;&#xBCF4;&#xB2E4; &#xB354; &#xACE0;&#xD1B5;&#xC2A4;&#xB7FD;&#x2026;. &#xD558;&#xD558;</p>
+<h1 id="06-angr-symbolic-dynamic-memory"><a href="#06-angr-symbolic-dynamic-memory" class="headerlink" title="06_angr_symbolic_dynamic_memory"></a>06_angr_symbolic_dynamic_memory</h1><p>&#xC55E;&#xC5D0; 5&#xBC88; &#xBB38;&#xC81C;&#xC5D0;&#xC11C;&#xB294; &#xC804;&#xC5ED;&#xBCC0;&#xC218;&#xC5D0; &#xB300;&#xD55C; &#xC2EC;&#xBCFC;&#xC744; &#xC9C0;&#xC815;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xC81C;&#xBAA9;&#xC5D0; &#xB2E4;&#xC774;&#xB098;&#xBBF9; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xB098;&#xC628;&#xAC83;&#xC744; &#xBCF4;&#xB2C8; &#xC790;&#xC5F0;&#xC2A4;&#xB7FD;&#xAC8C; &#xC774;&#xBC88;&#xC5D0;&#xB294; &#xD799;&#xC5D0; &#xC2EC;&#xBCFC;&#xC744; &#xC9C0;&#xC815;&#xD558;&#xB294; &#xAD6C;&#xB098;&#xB77C;&#xACE0; &#xCD94;&#xCE21;&#xD574;&#xBCFC; &#xC218; &#xC788;&#xACA0;&#xB124;&#xC694;. &#xBC14;&#xB85C; &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xAE4C;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><img src="/2021/08/15/j0ker/angr_part4/Untitled.png" srcset="/img/loading.gif" alt="angr_part4/Untitled.png"></p>
+<p>&#xC5ED;&#xC2DC; &#xD799;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xB450; &#xAC1C;&#xC758; &#xBCC0;&#xC218;&#xAC00; &#xD799;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC55E;&#xC5D0;&#xC11C;&#xC640; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xACE0; &#xBD84;&#xC11D;&#xC740; scanf &#xB4A4;&#xC5D0;&#xC11C;&#xBD80;&#xD130; &#xC2DC;&#xC791;&#xD574;&#xC57C;&#xACA0;&#xB124;&#xC694;. &#xC774; &#xBB38;&#xC81C;&#xB97C; &#xB4E4;&#xC5EC;&#xB2E4;&#xBCF4;&#xBA74; &#xC55E;&#xC5D0;&#xC11C; &#xC2A4;&#xD0DD;&#xAD00;&#xB828;&#xB41C; &#xBB38;&#xC81C;&#xB97C; &#xD480;&#xC5C8;&#xC744; &#xB54C;&#xC640; &#xAC19;&#xC774; angr&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xBD84;&#xC11D;&#xD560; &#xB54C; <code>malloc</code>&#xC758; &#xACB0;&#xACFC;&#xAC12;, &#xC989; &#xD799;&#xC774; &#xC5B4;&#xB514;&#xC5D0; &#xD560;&#xB2F9;&#xB418;&#xC5B4; &#xC788;&#xB294;&#xC9C0; &#xADF8; &#xC8FC;&#xC18C;&#xB97C; &#xBAA8;&#xB978;&#xB2E4;&#xB294; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;. &#xADF8;&#xB807;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC774; &#xBB38;&#xC81C;&#xC5D0;&#xC11C;&#xB294; &#xAC00;&#xC0C1;&#xC758; &#xD799; &#xC8FC;&#xC18C;&#xB97C; &#xC6B0;&#xB9AC;&#xAC00; &#xC784;&#xC758;&#xB85C; &#xC9C0;&#xC815;&#xC744; &#xD574;&#xC918;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python">fake_heap_address0 = <span class="hljs-number">0x41414140</span>
+pointer_to_malloc_memory_address0 = <span class="hljs-number">0x0ABCC8A4</span>
+initial_state.memory.store(pointer_to_malloc_memory_address0, fake_heap_address0, endness=project.arch.memory_endness)
+fake_heap_address1 = <span class="hljs-number">0x41414150</span>
+pointer_to_malloc_memory_address1 = <span class="hljs-number">0x0ABCC8AC</span>
+initial_state.memory.store(pointer_to_malloc_memory_address1, fake_heap_address1, endness=project.arch.memory_endness)</code></pre>
+<p>&#xAC01;&#xAC01; &#xBCC0;&#xC218;&#xC758; &#xD06C;&#xAE30;&#xAC00; 9&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; alignment&#xB85C; &#xC778;&#xD574; &#xC544;&#xB9C8; 16&#xBC14;&#xC774;&#xD2B8;&#xC529; &#xD560;&#xB2F9;&#xC774; &#xB420;&#xAC81;&#xB2C8;&#xB2E4;. &#xC800;&#xB294; &#xC77C;&#xB2E8; 0x41414140&#xACFC; 0x41414150&#xC73C;&#xB85C; 16&#xBC14;&#xC774;&#xD2B8; &#xAC04;&#xACA9;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD574; &#xC8FC;&#xC5C8;&#xACE0; &#xD799; &#xC8FC;&#xC18C;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xACE0; &#xC788;&#xB294; &#xC804;&#xC5ED; &#xBCC0;&#xC218;&#xC758; &#xC8FC;&#xC18C;&#xB4E4;&#xC744; &#xAC01;&#xAC01; <code>initial_state</code>&#xC5D0; &#xC124;&#xC815;&#xD574;&#xC8FC;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC544;&#xB9C8; &#xC8FC;&#xC18C;&#xB294; &#xB2E4;&#xB974;&#xAC8C; &#xBC14;&#xAFB8;&#xACE0; &#xAC04;&#xACA9;&#xB9CC; &#xC2E0;&#xACBD;&#xC4F0;&#xBA74; &#xD070; &#xBB38;&#xC81C;&#xB294; &#xC5C6;&#xC744; &#xB4EF; &#xC2BE;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2E4;&#xB978; &#xBD80;&#xBD84;&#xC740; &#xC55E; &#xBB38;&#xC81C;&#xB4E4;&#xACFC; &#xB611;&#xAC19;&#xB124;&#xC694;!</p>
+<h2 id="sol06-py"><a href="#sol06-py" class="headerlink" title="sol06.py"></a>sol06.py</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> angr
+<span class="hljs-keyword">import</span> claripy
+<span class="hljs-keyword">import</span> sys
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>(<span class="hljs-params">argv</span>):</span>
+  path_to_binary = argv[<span class="hljs-number">1</span>]
+  project = angr.Project(path_to_binary)
+
+  start_address = <span class="hljs-number">0x08048696</span>
+  initial_state = project.factory.blank_state(addr=start_address)
+
+  password0 = claripy.BVS(<span class="hljs-string">&apos;password0&apos;</span>, <span class="hljs-number">64</span>)
+  password1 = claripy.BVS(<span class="hljs-string">&apos;password1&apos;</span>, <span class="hljs-number">64</span>)
+  
+  fake_heap_address0 = <span class="hljs-number">0x41414140</span>
+  pointer_to_malloc_memory_address0 = <span class="hljs-number">0x0ABCC8A4</span>
+  initial_state.memory.store(pointer_to_malloc_memory_address0, fake_heap_address0, endness=project.arch.memory_endness)
+  fake_heap_address1 = <span class="hljs-number">0x41414150</span>
+  pointer_to_malloc_memory_address1 = <span class="hljs-number">0x0ABCC8AC</span>
+  initial_state.memory.store(pointer_to_malloc_memory_address1, fake_heap_address1, endness=project.arch.memory_endness)
+  
+
+  initial_state.memory.store(fake_heap_address0, password0)
+  initial_state.memory.store(fake_heap_address1, password1)
+  
+
+  simulation = project.factory.simgr(initial_state)
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_successful</span>(<span class="hljs-params">state</span>):</span>
+    stdout_output = state.posix.dumps(sys.stdout.fileno())
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">&apos;Good Job&apos;</span> <span class="hljs-keyword">in</span> stdout_output.decode(<span class="hljs-string">&apos;ascii&apos;</span>))
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">should_abort</span>(<span class="hljs-params">state</span>):</span>
+    stdout_output = state.posix.dumps(sys.stdout.fileno())
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">&apos;Try again&apos;</span> <span class="hljs-keyword">in</span> stdout_output.decode(<span class="hljs-string">&apos;ascii&apos;</span>))
+
+  simulation.explore(find=is_successful, avoid=should_abort)
+
+  <span class="hljs-keyword">if</span> simulation.found:
+    solution_state = simulation.found[<span class="hljs-number">0</span>]
+
+    solution0 = solution_state.se.eval(password0, cast_to=bytes)
+    solution1 = solution_state.se.eval(password1, cast_to=bytes)
+    
+    solution = <span class="hljs-string">&apos;{} {}&apos;</span>.format(solution0, solution1)
+
+    print(solution)
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&apos;Could not find the solution&apos;</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+  main(sys.argv)</code></pre>
+<pre><code class="hljs python">j0ker@angr:~/angr_ctf/dist$ python3 sol06.py <span class="hljs-number">06</span>_angr_symbolic_dynamic_memory 
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">145</span> | angr.storage.memory_mixins.bvv_conversion_mixin | Unknown size <span class="hljs-keyword">for</span> memory data <span class="hljs-number">0x41414140</span>. Default to arch.bits.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">145</span> | angr.storage.memory_mixins.bvv_conversion_mixin | Unknown size <span class="hljs-keyword">for</span> memory data <span class="hljs-number">0x41414150</span>. Default to arch.bits.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">150</span> | angr.storage.memory_mixins.default_filler_mixin | The program <span class="hljs-keyword">is</span> accessing memory <span class="hljs-keyword">or</span> registers <span class="hljs-keyword">with</span> an unspecified value. This could indicate unwanted behavior.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">150</span> | angr.storage.memory_mixins.default_filler_mixin | angr will cope <span class="hljs-keyword">with</span> this by generating an unconstrained symbolic variable <span class="hljs-keyword">and</span> continuing. You can resolve this by:
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">150</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">1</span>) setting a value to the initial state
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">150</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">2</span>) adding the state option ZERO_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to make unknown regions hold null
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">150</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">3</span>) adding the state option SYMBOL_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to suppress these messages.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">25</span>,<span class="hljs-number">150</span> | angr.storage.memory_mixins.default_filler_mixin | Filling register ebp <span class="hljs-keyword">with</span> <span class="hljs-number">4</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0x8048699</span> (main+<span class="hljs-number">0x8d</span> <span class="hljs-keyword">in</span> <span class="hljs-number">06</span>_angr_symbolic_dynamic_memory (<span class="hljs-number">0x8048699</span>))
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">26</span>,<span class="hljs-number">815</span> | angr.storage.memory_mixins.default_filler_mixin | Filling memory at <span class="hljs-number">0x41414148</span> <span class="hljs-keyword">with</span> <span class="hljs-number">8</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0xac8a520</span> (strncmp+<span class="hljs-number">0x0</span> <span class="hljs-keyword">in</span> libc.so<span class="hljs-number">.6</span> (<span class="hljs-number">0x8a520</span>))
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">26</span>,<span class="hljs-number">816</span> | angr.storage.memory_mixins.default_filler_mixin | Filling memory at <span class="hljs-number">0x41414158</span> <span class="hljs-keyword">with</span> <span class="hljs-number">105</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0xac8a520</span> (strncmp+<span class="hljs-number">0x0</span> <span class="hljs-keyword">in</span> libc.so<span class="hljs-number">.6</span> (<span class="hljs-number">0x8a520</span>))
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">28</span>,<span class="hljs-number">576</span> | angr.storage.memory_mixins.default_filler_mixin | Filling memory at <span class="hljs-number">0x414141c1</span> <span class="hljs-keyword">with</span> <span class="hljs-number">16</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0xac8a520</span> (strncmp+<span class="hljs-number">0x0</span> <span class="hljs-keyword">in</span> libc.so<span class="hljs-number">.6</span> (<span class="hljs-number">0x8a520</span>))
+CRITICAL | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">35</span>:<span class="hljs-number">30</span>,<span class="hljs-number">932</span> | angr.sim_state | The name state.se <span class="hljs-keyword">is</span> deprecated; please use state.solver.
+<span class="hljs-string">b&apos;UBDKLMBV&apos;</span> <span class="hljs-string">b&apos;UNOERNYS&apos;</span>
+j0ker@angr:~/angr_ctf/dist$ ./<span class="hljs-number">06</span>_angr_symbolic_dynamic_memory 
+Enter the password: UBDKLMBV
+UNOERNYS
+Good Job.
+j0ker@angr:~/angr_ctf/dist$</code></pre>
+<h1 id="07-angr-symbolic-file"><a href="#07-angr-symbolic-file" class="headerlink" title="07_angr_symbolic_file"></a>07_angr_symbolic_file</h1><p>&#xC774;&#xC81C; &#xB2E4;&#xB4E4; &#xB208;&#xCE58; &#xCC44;&#xC2DC;&#xACA0;&#xC8E0;? &#xB108;&#xBB34; &#xBED4;&#xD558;&#xAC8C; &#xD30C;&#xC77C;&#xC744; &#xC2EC;&#xBCFC;&#xB85C; &#xC9C0;&#xC815;&#xD558;&#xB294; &#xBB38;&#xC81C;&#xACA0;&#xB124;&#xC694; &#x314B;&#x314B; &#xD558;&#xD558; &#xC774;&#xCBE4;&#xB418;&#xBA74; &#xB208;&#xAC10;&#xACE0;&#xB3C4; &#xBB38;&#xC81C; &#xC720;&#xD615;&#xC740; &#xB9DE;&#xCD94;&#xC2E4; &#xC218; &#xC788;&#xC73C;&#xC2E4; &#xAC81;&#xB2C8;&#xB2E4;.</p>
+<p><img src="/2021/08/15/j0ker/angr_part4/Untitled1.png" srcset="/img/loading.gif" alt="angr_part4/Untitled 1.png"></p>
+<p>&#xC77C;&#xB2E8; &#xBA3C;&#xC800; 64&#xBC14;&#xC774;&#xD2B8; &#xC785;&#xB825;&#xAC12;&#xC744; &#xBC1B;&#xACE0; &#xD30C;&#xC77C;&#xC5D0; &#xC501;&#xB2C8;&#xB2E4;. &#xC911;&#xAC04;&#xC5D0; <code>ignore_me</code>&#xB77C;&#xB294; &#xD568;&#xC218;&#xAC00; &#xC788;&#xB294; &#xAC78; &#xBCF4;&#xB2C8; &#xC800; &#xD568;&#xC218; &#xB4A4;&#xBD80;&#xD130; &#xBD84;&#xC11D;&#xD558;&#xB3C4;&#xB85D; &#xB9CC;&#xB4E4;&#xBA74; &#xB420;&#xAC70; &#xAC19;&#xB124;&#xC694;. &#xADF8;&#xB9AC;&#xACE0; &#xD30C;&#xC77C;&#xC744; &#xC4F0;&#xACE0; &#xC9C0;&#xC6B4; &#xB2E4;&#xC74C; &#xADF8; &#xAC12;&#xC73C;&#xB85C; &#xBB54;&#xAC00; &#xD55C; &#xB2E4;&#xC74C;&#xC5D0; &#xBB38;&#xC790;&#xC5F4;&#xACFC; &#xBE44;&#xAD50;&#xD569;&#xB2C8;&#xB2E4;. &#xCC98;&#xC74C;&#xC5D0; &#xC0DD;&#xAC01;&#xD588;&#xB358;&#xAC70;&#xB294; &#xBA54;&#xBAA8;&#xB9AC; &#xBB38;&#xC81C;&#xCC98;&#xB7FC; <code>buffer</code> &#xC8FC;&#xC18C;&#xB97C; &#xBA54;&#xBAA8;&#xB9AC; &#xC2EC;&#xBCFC;&#xB85C; &#xC9C0;&#xC815;&#xD558;&#xACE0; &#xD480;&#xAE4C;&#xD588;&#xB294;&#xB370;, &#xBB38;&#xC81C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xBCF4;&#xB2C8; &#xADF8;&#xB807;&#xAC8C; &#xD480; &#xC218; &#xC788;&#xC9C0;&#xB9CC; &#xC81C;&#xBC1C; &#xBB38;&#xC81C; &#xC758;&#xB3C4;&#xC5D0; &#xB530;&#xB77C; &#xB2EC;&#xB77C;&#xACE0; &#xD569;&#xB2C8;&#xB2E4; &#x314B;&#x314B;&#x314B; &#xADF8;&#xB7FC; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0; &#xB530;&#xB77C; &#xBB38;&#xC81C;&#xB97C; &#xD480;&#xC5B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD569;&#xC2DC;&#xB2E4;. &#xC77C;&#xB2E8; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xACFC; &#xC0AC;&#xC774;&#xC988;&#xB97C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xAC70;&#xB294; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xAE4C;&#xBA74; &#xB2E4; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC8E0;?</p>
+<p>&#xADF8;&#xB7F0; &#xB2E4;&#xC74C; &#xC774;&#xC81C; &#xD30C;&#xC77C;&#xC5D0; &#xC2EC;&#xBCFC;&#xC744; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python">symbolic_file_backing_memory = angr.state_plugins.SimSymbolicMemory()
+symbolic_file_backing_memory.set_state(initial_state)
+
+password = claripy.BVS(<span class="hljs-string">&apos;password&apos;</span>, symbolic_file_size_bytes * <span class="hljs-number">8</span>)
+symbolic_file_backing_memory.store(address_of_buffer, password)
+
+file_options = <span class="hljs-string">&apos;r&apos;</span>
+password_file = angr.storage.SimFile(filename, file_options, content=symbolic_file_backing_memory, size=symbolic_file_size_bytes)
+
+symbolic_filesystem = {
+    filename : password_file
+  }
+initial_state.posix.fs = symbolic_filesystem
+</code></pre>
+<p><code>SimSymbolicMemory</code>&#xB97C; &#xD1B5;&#xD574; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC2EC;&#xBCFC;&#xC744; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;? &#xC65C;&#xC8E0;???</p>
+<p>&#xC124;&#xBA85;&#xC744; &#xBCF4;&#xBA74; &#xB9AC;&#xB205;&#xC2A4;&#xC5D0;&#xC11C; &#xD30C;&#xC77C;&#xC740; &#xC2DC;&#xD000;&#xC15C; &#xB370;&#xC774;&#xD130;&#xC758; &#xC2A4;&#xD2B8;&#xB9BC;&#xC774;&#xB77C;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. &#xAF2D; &#xD30C;&#xC77C;&#xC77C; &#xD544;&#xC694;&#xB294; &#xC5C6;&#xACE0; &#xB124;&#xD2B8;&#xC6CC;&#xD06C;&#xB098; &#xB2E4;&#xB978; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC758; &#xACB0;&#xACFC;&#xAC12;&#xC774; &#xB420; &#xC218;&#xB3C4; &#xC788;&#xB2E4;&#xACE0; &#xD558;&#xB294;&#xB370;&#xC694;. &#xC554;&#xD2BC; &#xBB34;&#xC5C7;&#xC778;&#xAC00;&#xB97C; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB9E4;&#xD551;&#xD574;&#xC8FC;&#xB294; &#xB290;&#xB08C;&#xC778;&#xAC70; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xD574;&#xB2F9; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC2EC;&#xBCFC;&#xC744; &#xC9C0;&#xC815;&#xD558;&#xAD6C;&#xC694;. <code>SimFile</code> &#xD568;&#xC218;&#xB97C; &#xD1B5;&#xD574; &#xD30C;&#xC77C;&#xC744; &#xC2DC;&#xBBAC;&#xB808;&#xC774;&#xC158;&#xD574;&#xC8FC;&#xACE0; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xACFC; &#xB9E4;&#xD551;&#xC744; &#xC2DC;&#xCF1C;&#xC90D;&#xB2C8;&#xB2E4;. &#xC774;&#xB807;&#xAC8C;&#xD558;&#xBA74; &#xB05D;&#xC778;&#xAC70; &#xAC19;&#xB124;&#xC694;! &#xADF8;&#xB7FC; &#xB3CC;&#xB824;&#xBD05;&#xC2DC;&#xB2E4;!</p>
+<pre><code class="hljs python">j0ker@angr:~/angr_ctf/dist$ ./<span class="hljs-number">06</span>_angr_symbolic_dynamic_memory 
+Enter the password: UBDKLMBV
+UNOERNYS
+Good Job.
+j0ker@angr:~/angr_ctf/dist$ python3 scaffold07.py <span class="hljs-number">07</span>_angr_symbolic_file 
+WARNING | 2021-08-15 05:39:36,180 | angr.storage.memory_mixins.bvv_conversion_mixin | Encoding unicode string for memory as utf-8. Did you mean to use a bytestring?
+Traceback (most recent call last):
+  File <span class="hljs-string">&quot;scaffold07.py&quot;</span>, line <span class="hljs-number">130</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+    main(sys.argv)
+  File <span class="hljs-string">&quot;scaffold07.py&quot;</span>, line <span class="hljs-number">47</span>, <span class="hljs-keyword">in</span> main
+    symbolic_file_backing_memory = angr.state_plugins.SimSymbolicMemory()
+AttributeError: module <span class="hljs-string">&apos;angr.state_plugins&apos;</span> has no attribute <span class="hljs-string">&apos;SimSymbolicMemory&apos;</span></code></pre>
+<p>???????????????????????????????????? &#xC5C6;&#xB2E4;&#xACE0;?????? &#xC65C;&#xC5C6;&#xB294;&#xB370;???????</p>
+<p>&#xD558;&#xC544; &#xC774; &#xB54C;&#xBD80;&#xD130; &#xBA58;&#xD0C8;&#xC774; &#xB098;&#xAC00;&#xAE30; &#xC2DC;&#xC791;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xD558; &#xC774;&#xB7F0; &#xACE0;&#xB09C; &#xC5C6;&#xC774;&#xB3C4; &#xB0B4; &#xC778;&#xC0DD;&#xC740; &#xCDA9;&#xBD84;&#xD788; &#xACE0;&#xD1B5;&#xC2A4;&#xB7EC;&#xC6B4;&#xAC70; &#xAC19;&#xC740;&#xB370;&#x2026;</p>
+<p>&#xC554;&#xD2BC; &#xC774; &#xBB38;&#xC81C;&#xB97C; &#xACE0;&#xCE58;&#xAE30; &#xC704;&#xD574; &#xAC80;&#xC0C9;&#xC744; &#xC880; &#xD574;&#xBCF4;&#xB2E4;&#xAC00; &#xC544;&#xB798; &#xAE00;&#xC744; &#xCC3E;&#xAC8C; &#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://jasper.la/posts/angr-9-simfile-without-simsymbolicmemory/">Angr 9 SimFile without SimSymbolicMemory</a></p>
+<p>&#xC774; &#xAE00;&#xC744; &#xBCF4;&#xBA74; &#xC774; angr_ctf&#xAC00; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4;&#xC9C0; &#xB9E4;&#xC6B0; &#xC624;&#xB798;&#xB418;&#xC5C8;&#xACE0; angr&#xB3C4; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB418;&#xBA74;&#xC11C; &#xAE30;&#xB2A5;&#xC774; &#xD1B5;&#xD569;&#xB418;&#xACE0; &#xAD6C;&#xC870;&#xD654;&#xB418;&#xBA74;&#xC11C; <code>SimFile</code>&#xC774; &#xC62E;&#xACA8;&#xC84C;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB798;&#xC11C; &#xC704;&#xC5D0;&#xC11C; &#xC124;&#xBA85;&#xD55C; &#xBD80;&#xBD84;&#xC744; &#xB0A0;&#xB824;&#xC8FC;&#xACE0; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xC218;&#xC815;&#xD574;&#xC8FC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python">password_file = angr.SimFile(filename,
+          content = password,
+          size = symbolic_file_size_bytes)
+
+initial_state = project.factory.blank_state(
+          addr = start_address,
+          fs = {filename: password_file}
+)</code></pre>
+<p>&#xC774;&#xB807;&#xAC8C;&#xB9CC; &#xBD10;&#xB3C4; &#xD6E8;&#xC52C;&#xB354; &#xC4F0;&#xAE30; &#xD3B8;&#xD574;&#xC9C4;&#xAC70; &#xAC19;&#xB124;&#xC694;. &#xC77C;&#xB2E8; <code>SimFile</code>&#xC744; &#xD1B5;&#xD574; &#xBC14;&#xB85C; &#xD30C;&#xC77C;&#xC744; &#xC2DC;&#xBBAC;&#xB808;&#xC774;&#xC158;&#xD574;&#xC904; &#xC218; &#xC788;&#xAC8C; &#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>black_state</code>&#xC758; <code>fs</code> &#xC778;&#xC790;&#xC5D0; &#xD30C;&#xC77C; &#xC774;&#xB984;&#xACFC; &#xD30C;&#xC77C; &#xC2DC;&#xBBAC;&#xB808;&#xC774;&#xD130;&#xB9CC; &#xB9E4;&#xD551;&#xD574;&#xC11C; &#xC804;&#xB2EC;&#xB9CC; &#xD574;&#xC8FC;&#xBA74; &#xB05D;!!!</p>
+<h2 id="sol07-py"><a href="#sol07-py" class="headerlink" title="sol07.py"></a>sol07.py</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> angr
+<span class="hljs-keyword">import</span> claripy
+<span class="hljs-keyword">import</span> sys
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>():</span>
+  project = angr.Project(<span class="hljs-string">&apos;07_angr_symbolic_file&apos;</span>)
+  start_address = <span class="hljs-number">0x080488D6</span>
+
+  filename = <span class="hljs-string">&apos;OJKSQYDP.txt&apos;</span>
+  symbolic_file_size_bytes = <span class="hljs-number">0x40</span>
+
+  password = claripy.BVS(<span class="hljs-string">&apos;password&apos;</span>, symbolic_file_size_bytes * <span class="hljs-number">8</span>)
+
+  password_file = angr.SimFile(filename,
+          content = password,
+          size = symbolic_file_size_bytes)
+
+  initial_state = project.factory.blank_state(
+          addr = start_address,
+          fs = {filename: password_file}
+  )
+
+  simulation = project.factory.simgr(initial_state)
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_successful</span>(<span class="hljs-params">state</span>):</span>
+    stdout_output = state.posix.dumps(sys.stdout.fileno())
+    <span class="hljs-keyword">return</span> <span class="hljs-string">b&apos;Good Job.&apos;</span> <span class="hljs-keyword">in</span> stdout_output
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">should_abort</span>(<span class="hljs-params">state</span>):</span>
+    stdout_output = state.posix.dumps(sys.stdout.fileno())
+    <span class="hljs-keyword">return</span> <span class="hljs-string">b&apos;Try again.&apos;</span> <span class="hljs-keyword">in</span> stdout_output
+
+  simulation.explore(find=is_successful, avoid=should_abort)
+
+  <span class="hljs-keyword">if</span> simulation.found:
+    solution_state = simulation.found[<span class="hljs-number">0</span>]
+
+    solution = solution_state.solver.eval(password,cast_to=bytes).decode()
+    print(solution)
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&apos;Could not find the solution&apos;</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+  main()</code></pre>
+<pre><code class="hljs python">j0ker@angr:~/angr_ctf/dist$ python3 sol07.py <span class="hljs-number">07</span>_angr_symbolic_file 
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">56</span>:<span class="hljs-number">08</span>,<span class="hljs-number">302</span> | angr.storage.memory_mixins.default_filler_mixin | The program <span class="hljs-keyword">is</span> accessing memory <span class="hljs-keyword">or</span> registers <span class="hljs-keyword">with</span> an unspecified value. This could indicate unwanted behavior.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">56</span>:<span class="hljs-number">08</span>,<span class="hljs-number">302</span> | angr.storage.memory_mixins.default_filler_mixin | angr will cope <span class="hljs-keyword">with</span> this by generating an unconstrained symbolic variable <span class="hljs-keyword">and</span> continuing. You can resolve this by:
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">56</span>:<span class="hljs-number">08</span>,<span class="hljs-number">302</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">1</span>) setting a value to the initial state
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">56</span>:<span class="hljs-number">08</span>,<span class="hljs-number">302</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">2</span>) adding the state option ZERO_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to make unknown regions hold null
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">56</span>:<span class="hljs-number">08</span>,<span class="hljs-number">302</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">3</span>) adding the state option SYMBOL_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to suppress these messages.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">05</span>:<span class="hljs-number">56</span>:<span class="hljs-number">08</span>,<span class="hljs-number">302</span> | angr.storage.memory_mixins.default_filler_mixin | Filling register ebp <span class="hljs-keyword">with</span> <span class="hljs-number">4</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0x804893c</span> (main+<span class="hljs-number">0xc2</span> <span class="hljs-keyword">in</span> <span class="hljs-number">07</span>_angr_symbolic_file (<span class="hljs-number">0x804893c</span>))
+AZOMMMZM
+j0ker@angr:~/angr_ctf/dist$ ./<span class="hljs-number">07</span>_angr_symbolic_file 
+Enter the password: AZOMMMZM
+Good Job.</code></pre>
+<h1 id="08-angr-constraints"><a href="#08-angr-constraints" class="headerlink" title="08_angr_constraints"></a>08_angr_constraints</h1><p>&#xC774;&#xBC88;&#xC5D0;&#xB294; &#xACBD;&#xB85C;&#xC81C;&#xC57D;&#xC870;&#xAC74;&#xC5D0; &#xB300;&#xD55C; &#xBB38;&#xC81C;&#xC77C;&#xB4EF; &#xC2F6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xAE4C;&#xBCF4;&#xBA74; &#xADF8;&#xB0E5; &#xC77C;&#xBC18;&#xC801;&#xC778; &#xBB38;&#xC81C;&#xC785;&#xB2C8;&#xB2E4;.</p>
+<p><img src="/2021/08/15/j0ker/angr_part4/Untitled 2.png" srcset="/img/loading.gif" alt="angr_part4/Untitled 2.png"></p>
+<p><code>password</code>&#xC5D0; &#xBB38;&#xC790;&#xC5F4;&#xC774; &#xC788;&#xACE0; 16&#xBC14;&#xC774;&#xD2B8; &#xC785;&#xB825;&#xAC12;&#xC744; &#xBC1B;&#xC740; &#xB4A4; &#xC785;&#xB825;&#xAC12;&#xACFC; <code>password</code>&#xB97C; &#xC9EC;&#xC9DC;&#xBBF8;&#xD558;&#xC5EC; &#xD2B9;&#xC815; &#xBB38;&#xC790;&#xC5F4;&#xACFC; &#xAC19;&#xC740;&#xC9C0; &#xBE44;&#xAD50;&#xD558;&#xB294; &#xAC70;&#xACA0;&#xC8E0;. &#xADFC;&#xB370; &#xC5F0;&#xC0B0; &#xACB0;&#xACFC;&#xAC12;&#xC744; &#xBE44;&#xAD50;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xD568;&#xC218;&#xB85C; &#xB418;&#xC5B4; &#xC788;&#xB124;&#xC694;. &#xC774; &#xD568;&#xC218;&#xB3C4; &#xBD05;&#xC2DC;&#xB2E4;.</p>
+<p><img src="/2021/08/15/j0ker/angr_part4/Untitled 3.png" srcset="/img/loading.gif" alt="Untitled"></p>
+<p>&#xD568;&#xC218;&#xB97C; &#xBCF4;&#xBA74; &#xB450; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xBE44;&#xAD50;&#xD558;&#xB294; &#xAC74; &#xB9DE;&#xC9C0;&#xB9CC; &#xD2C0;&#xB9AC;&#xB294; &#xC989;&#xC2DC; &#xB9AC;&#xD134;&#xD558;&#xB294;&#xAC8C; &#xC544;&#xB2C8;&#xB77C; &#xBB38;&#xC790; &#xBA87;&#xAC1C;&#xAC00; &#xB9DE;&#xB294;&#xC9C0; &#xC13C;&#xB2E4;&#xC74C; &#xBA87;&#xAC1C;&#xAC00; &#xB9DE;&#xB294;&#xC9C0; 16&#xBC14;&#xC774;&#xD2B8;&#xAC00; &#xB9DE;&#xB294;&#xC9C0;&#xB97C; &#xBE44;&#xAD50;&#xD558;&#xACE0; &#xB9AC;&#xD134;&#xD558;&#xB124;&#xC694;. angr&#xC5D0;&#xC11C; &#xC774;&#xB7F0; &#xD568;&#xC218;&#xB97C; &#xBD84;&#xC11D;&#xD558;&#xAC8C; &#xB418;&#xBA74; &#xBB34;&#xC218;&#xD788; &#xB9CE;&#xC740; state&#xAC00; &#xC0DD;&#xC131;&#xB420;&#xAC8C; &#xBED4;&#xD569;&#xB2C8;&#xB2E4;. &#xC911;&#xAC04;&#xC5D0; &#xBA48;&#xCD9C;&#xC218;&#xAC00; &#xC5C6;&#xC73C;&#xB2C8; &#xB9D0;&#xC774;&#xC8E0;. &#xAC70;&#xAE30;&#xC5D0;&#xB2E4;&#xAC00; 16&#xBC14;&#xC774;&#xD2B8;&#xC9DC;&#xB9AC; &#xBB38;&#xC790;&#xC5F4;&#xC774;&#xBA74; &#xC5C4;&#xCCAD;&#xB09C; &#xACBD;&#xC6B0;&#xC758; &#xC218;(branch)&#xAC00; &#xC788;&#xC73C;&#xB2C8; &#xC774; &#xD568;&#xC218;&#xB294; &#xC560;&#xCD08;&#xC5D0; &#xBD84;&#xC11D;&#xD558;&#xBA74; &#xC548;&#xB420;&#xB4EF; &#xC2F6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC774; &#xD568;&#xC218;&#xC5D0; &#xB4E4;&#xC5B4;&#xAC00;&#xAE30; &#xC804;&#xC5D0; &#xC5F0;&#xC0B0; &#xACB0;&#xACFC;&#xAC12;&#xC744; &#xC6B0;&#xB9AC;&#xAC00; &#xC9C1;&#xC811; &#xBE44;&#xAD50;&#xD558;&#xB294;&#xAC8C; &#xC880; &#xB354; &#xD6A8;&#xC728;&#xC801;&#xC77C;&#xB4EF; &#xC2F6;&#xB124;&#xC694;.</p>
+<p>&#xC77C;&#xB2E8; &#xBA3C;&#xC800; <code>scanf</code> &#xB4A4;&#xC5D0;&#xC11C; &#xC2DC;&#xC791;&#xD574;&#xC11C; <code>check_equals_</code> &#xD568;&#xC218;&#xAE4C;&#xC9C0; &#xBD84;&#xC11D;&#xD574; &#xB3C4;&#xB2EC;&#xD560; &#xC218; &#xC788;&#xB3C4;&#xB85D; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC791;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>check_equals_</code>&#xD568;&#xC218;&#xC5D0; &#xB4E4;&#xC5B4;&#xAC00;&#xAE30; &#xC804;&#xC5D0; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xCCB4;&#xD06C;&#xD569;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python">constrained_parameter_address = <span class="hljs-number">0x0804A050</span>
+constrained_parameter_size_bytes = <span class="hljs-number">16</span>
+constrained_parameter_bitvector = solution_state.memory.load(
+  constrained_parameter_address,
+  constrained_parameter_size_bytes
+)
+
+constrained_parameter_desired_value = <span class="hljs-string">&apos;AUPDNNPROEZRJWKB&apos;</span>
+solution_state.add_constraints(constrained_parameter_bitvector == constrained_parameter_desired_value)</code></pre>
+<p>&#xC77C;&#xB2E8; &#xC785;&#xB825;&#xAC12;&#xC758; &#xC8FC;&#xC18C;&#xC640; &#xC0AC;&#xC774;&#xC988;&#xB97C; &#xC9C0;&#xC815;&#xD574;&#xC8FC;&#xACE0; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; &#xD574;&#xB2F9; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC788;&#xB294; &#xAC12;&#xACFC; &#xC6B0;&#xB9AC;&#xAC00; &#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB85C; &#xB9DE;&#xC544;&#xC57C;&#xD560; &#xAC12;&#xC774; &#xAC19;&#xC544;&#xC57C;&#xD55C;&#xB2E4;&#xB294; &#xC81C;&#xC57D; &#xC870;&#xAC74;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xC774;&#xB807;&#xAC8C; &#xB418;&#xBA74; z3&#xC5D0;&#xC11C; &#xACB0;&#xACFC;&#xAC12;&#xC744; &#xB3C4;&#xCD9C;&#xD560; &#xB54C; &#xC6B0;&#xB9AC;&#xAC00; &#xC124;&#xC815;&#xD55C; &#xC81C;&#xC57D;&#xC870;&#xAC74;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xACC4;&#xC0B0;&#xC744; &#xD574;&#xC90D;&#xB2C8;&#xB2E4;! &#xADF8;&#xB7EC;&#xBA74; &#xB05D;!</p>
+<p>&#xC774; &#xBB38;&#xC81C;&#xC5D0;&#xC11C; &#xC870;&#xAE08; &#xC758;&#xBB38;&#xC774;&#xC5C8;&#xB358; &#xC810;&#xC740; &#xCC98;&#xC74C;&#xC5D0; &#xC785;&#xB825;&#xAC12;&#xC774; &#xD558;&#xB098;&#xC778; &#xAC83;&#xC744; &#xBCF4;&#xACE0; &#xADF8;&#xB0E5; <code>entry_state</code>&#xBD80;&#xD130; &#xBD84;&#xC11D;&#xD558;&#xB3C4;&#xB85D; &#xD504;&#xB85C;&#xC81D;&#xD2B8;&#xB97C; &#xC124;&#xC815;&#xD588;&#xB294;&#xB370; &#xC548;&#xB418;&#xB354;&#xB77C;&#xACE0;&#xC694;? &#xADF8;&#xB798;&#xC11C; &#xC800;&#xB294; &#xC81C;&#xAC00; &#xBB38;&#xC81C;&#xB97C; &#xC798;&#xBABB;&#xD47C; &#xC904; &#xC54C;&#xC558;&#xB294;&#xB370;, <code>scanf</code> &#xB4A4;&#xB85C; &#xC124;&#xC815;&#xD558;&#xB2C8;&#xAE4C; &#xBB38;&#xC81C;&#xAC00; &#xD480;&#xB838;&#xC2B5;&#xB2C8;&#xB2E4;&#x2026; &#xCC98;&#xC74C;&#xC5D0;&#xB294; angr&#xC5D0;&#xC11C; &#xD2B9;&#xC815; &#xD06C;&#xAE30; &#xC774;&#xC0C1;&#xC758; &#xC785;&#xB825;&#xAC12;&#xC744; &#xC778;&#xC2DD;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xB098;? &#xD588;&#xB294;&#xB370;, &#xB2E4;&#xC74C; &#xBB38;&#xC81C;&#xC5D0;&#xC11C;&#xB294; &#xB610; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xB429;&#xB2C8;&#xB2E4; &#x314B;&#x314B;&#x314B; &#xC774;&#xAC8C; &#xBB54;&#xC9C0;&#x2026;</p>
+<h2 id="sol08-py"><a href="#sol08-py" class="headerlink" title="sol08.py"></a>sol08.py</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> angr
+<span class="hljs-keyword">import</span> claripy
+<span class="hljs-keyword">import</span> sys
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>(<span class="hljs-params">argv</span>):</span>
+  path_to_binary = argv[<span class="hljs-number">1</span>]
+  project = angr.Project(path_to_binary)
+
+  start_address = <span class="hljs-number">0x08048625</span>
+  initial_state = project.factory.blank_state(addr=start_address)
+
+  <span class="hljs-comment"># initial_state = project.factory.entry_state()</span>
+
+  password = claripy.BVS(<span class="hljs-string">&apos;password&apos;</span>, <span class="hljs-number">8</span>*<span class="hljs-number">16</span>)
+
+  password_address =  <span class="hljs-number">0x0804A050</span>
+  initial_state.memory.store(password_address, password)
+
+  simulation = project.factory.simgr(initial_state)
+
+  address_to_check_constraint = <span class="hljs-number">0x08048673</span>
+  simulation.explore(find=address_to_check_constraint)
+
+  <span class="hljs-keyword">if</span> simulation.found:
+    solution_state = simulation.found[<span class="hljs-number">0</span>]
+
+    constrained_parameter_address = <span class="hljs-number">0x0804A050</span>
+    constrained_parameter_size_bytes = <span class="hljs-number">16</span>
+    constrained_parameter_bitvector = solution_state.memory.load(
+      constrained_parameter_address,
+      constrained_parameter_size_bytes
+    )
+
+    constrained_parameter_desired_value = <span class="hljs-string">&apos;AUPDNNPROEZRJWKB&apos;</span>
+    solution_state.add_constraints(constrained_parameter_bitvector == constrained_parameter_desired_value)
+
+    solution = solution_state.se.eval(password, cast_to=bytes)
+
+    print(solution)
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&apos;Could not find the solution&apos;</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+  main(sys.argv)</code></pre>
+<pre><code class="hljs python">j0ker@angr:~/angr_ctf/dist$ python3 sol08.py <span class="hljs-number">08</span>_angr_constraints 
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">55</span>,<span class="hljs-number">285</span> | angr.storage.memory_mixins.default_filler_mixin | The program <span class="hljs-keyword">is</span> accessing memory <span class="hljs-keyword">or</span> registers <span class="hljs-keyword">with</span> an unspecified value. This could indicate unwanted behavior.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">55</span>,<span class="hljs-number">285</span> | angr.storage.memory_mixins.default_filler_mixin | angr will cope <span class="hljs-keyword">with</span> this by generating an unconstrained symbolic variable <span class="hljs-keyword">and</span> continuing. You can resolve this by:
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">55</span>,<span class="hljs-number">285</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">1</span>) setting a value to the initial state
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">55</span>,<span class="hljs-number">285</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">2</span>) adding the state option ZERO_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to make unknown regions hold null
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">55</span>,<span class="hljs-number">285</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">3</span>) adding the state option SYMBOL_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to suppress these messages.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">55</span>,<span class="hljs-number">285</span> | angr.storage.memory_mixins.default_filler_mixin | Filling register ebp <span class="hljs-keyword">with</span> <span class="hljs-number">4</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0x8048625</span> (main+<span class="hljs-number">0x72</span> <span class="hljs-keyword">in</span> <span class="hljs-number">08</span>_angr_constraints (<span class="hljs-number">0x8048625</span>))
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">57</span>,<span class="hljs-number">291</span> | claripy.ast.bv | BVV value <span class="hljs-keyword">is</span> being coerced <span class="hljs-keyword">from</span> a unicode string, encoding <span class="hljs-keyword">as</span> utf<span class="hljs-number">-8</span>
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">57</span>,<span class="hljs-number">292</span> | claripy.ast.bv | BVV value <span class="hljs-keyword">is</span> being coerced <span class="hljs-keyword">from</span> a unicode string, encoding <span class="hljs-keyword">as</span> utf<span class="hljs-number">-8</span>
+CRITICAL | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">22</span>:<span class="hljs-number">57</span>,<span class="hljs-number">310</span> | angr.sim_state | The name state.se <span class="hljs-keyword">is</span> deprecated; please use state.solver.
+<span class="hljs-string">b&apos;LGCRCDGJHYUNGUJB&apos;</span>
+j0ker@angr:~/angr_ctf/dist$ ./<span class="hljs-number">08</span>_angr_constraints 
+Enter the password: LGCRCDGJHYUNGUJB
+Good Job.</code></pre>
+<h1 id="09-angr-hooks"><a href="#09-angr-hooks" class="headerlink" title="09_angr_hooks"></a>09_angr_hooks</h1><p>&#xC81C;&#xBAA9;&#xB9CC; &#xBCF4;&#xBA74; &#xBB54;&#xAC08; &#xD6C4;&#xD0B9;&#xD574;&#xC57C;&#xD558;&#xB294;&#xAC70; &#xAC19;&#xB124;&#xC694;. &#xBB58; &#xD6C4;&#xD0B9;&#xD574;&#xC57C;&#xD560; &#xC9C0; &#xBD05;&#xC2DC;&#xB2E4;.</p>
+<p><img src="/2021/08/15/j0ker/angr_part4/Untitled 4.png" srcset="/img/loading.gif" alt="Untitled"></p>
+<p>&#xBCF4;&#xBA74; &#xC785;&#xB825;&#xC744; &#xB450;&#xBC88; &#xBC1B;&#xB294;&#xB370;, &#xC77C;&#xB2E8; &#xCCAB;&#xBC88;&#xC9F8; &#xBC1B;&#xB294;&#xAC78; &#xC544;&#xAE4C;&#xC640; &#xAC19;&#xC740; &#xD568;&#xC218;&#xB85C; &#xCCB4;&#xD06C;&#xB97C; &#xD558;&#xB124;&#xC694;. &#xC774; &#xBD80;&#xBD84;&#xC744; &#xD6C4;&#xD0B9;&#xD574;&#xC11C; &#xB6F0;&#xC5B4;&#xB118;&#xC5B4;&#xC57C;&#xD560;&#xB4EF; &#xBCF4;&#xC785;&#xB2C8;&#xB2E4;. &#xB4A4;&#xC5D0;&#xB294; &#xBB50; &#xADF8;&#xB0E5; &#xBE44;&#xAD50;&#xD558;&#xB294;&#xAC70;&#xB2C8; &#xBCC4;&#xAC70; &#xC5C6;&#xAD6C;&#xC694;. &#xD6C4;&#xD0B9;&#xC740; &#xD574;&#xBCF8;&#xC801;&#xC774; &#xC5C6;&#xC73C;&#xB2C8; &#xBB38;&#xC81C; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xBCF4;&#xBA74;&#xC11C; &#xD480;&#xC5B4;&#xBCF4;&#xC8E0;!</p>
+<pre><code class="hljs python">check_equals_called_address = <span class="hljs-number">0x080486B3</span>
+instruction_to_skip_length = <span class="hljs-number">5</span></code></pre>
+<p>&#xC77C;&#xB2E8; &#xC5B4;&#xB514;&#xC11C;&#xBD80;&#xD130; &#xD6C4;&#xD0AC;&#xD560; &#xAC83;&#xC778;&#xC9C0; &#xC9C0;&#xC815;&#xC744; &#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xC800; &#xAC19;&#xC740; &#xACBD;&#xC6B0;&#xC5D0;&#xB294; &#xB531; check<em>equals</em> &#xD568;&#xC218;&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xB294; &#xBD80;&#xBD84;&#xBD80;&#xD130; &#xD6C4;&#xD0B9;&#xD558;&#xB3C4;&#xB85D; &#xC8FC;&#xC18C;&#xB97C; &#xC9C0;&#xC815;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xC778;&#xC2A4;&#xD2B8;&#xB7ED;&#xC158;&#xC758; &#xAE38;&#xC774;&#xAC00; 5&#xC774;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC0AC;&#xC774;&#xC988;&#xB294; 5&#xB85C; &#xC9C0;&#xC815;&#xC744; &#xD574;&#xC8FC;&#xC5C8;&#xAD6C;&#xC694;. &#xADF8;&#xB9AC;&#xACE0; &#xC774;&#xC81C; &#xD6C4;&#xD0B9; &#xD568;&#xC218;&#xB97C; &#xC9C0;&#xC815;&#xD574; &#xC90D;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python"><span class="hljs-meta">@project.hook(check_equals_called_address, length=instruction_to_skip_length)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">skip_check_equals_</span>(<span class="hljs-params">state</span>):</span>
+  user_input_buffer_address = <span class="hljs-number">0x0804A054</span>
+  user_input_buffer_length = <span class="hljs-number">16</span>
+
+  user_input_string = state.memory.load(
+    user_input_buffer_address, 
+    user_input_buffer_length
+  )
+  
+  check_against_string = <span class="hljs-string">&apos;XYMKBKUHNIQYNQXE&apos;</span> <span class="hljs-comment"># :string</span>
+
+  state.regs.eax = claripy.If(
+    user_input_string == check_against_string, 
+    claripy.BVV(<span class="hljs-number">1</span>, <span class="hljs-number">32</span>), 
+    claripy.BVV(<span class="hljs-number">0</span>, <span class="hljs-number">32</span>)
+  )
+
+simulation = project.factory.simgr(initial_state)</code></pre>
+<p>hook &#xD568;&#xC218;&#xC5D0; &#xC704;&#xC5D0;&#xC11C; &#xC124;&#xC815;&#xD55C; &#xB0B4;&#xC6A9;&#xB4E4;&#xC744; &#xC778;&#xC790;&#xB85C; &#xB118;&#xACA8;&#xC8FC;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C;&#xBD80;&#xD130; &#xD6C4;&#xD0B9;&#xD558;&#xB3C4;&#xB85D; &#xC9C0;&#xC2DC;&#xB97C; &#xD558;&#xB294;&#xAC70;&#xACA0;&#xC8E0;. &#xADF8;&#xB7F0; &#xB2E4;&#xC74C; &#xD568;&#xC218;&#xB97C; &#xD558;&#xB098; &#xC120;&#xC5B8;&#xD574;&#xC8FC;&#xB294;&#xB370; &#xC774;&#xAC8C; &#xC774;&#xC81C; &#xD6C4;&#xD0B9;&#xD560; &#xB300;&#xC0C1;&#xC744; &#xAC74;&#xB108;&#xB6F0;&#xB294; &#xB300;&#xC2E0; &#xC2E4;&#xD589;&#xD560; &#xB0B4;&#xC6A9;&#xC778;&#xB4EF; &#xD569;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC5EC;&#xAE30;&#xC5D0;&#xC11C;&#xB294; &#xC5F0;&#xC0B0;&#xB41C; &#xACB0;&#xACFC;&#xAC12;&#xC774; &#xD2B9;&#xC815; &#xBB38;&#xC790;&#xC5F4;&#xC778;&#xC9C0; &#xBE44;&#xAD50;&#xD574;&#xC8FC;&#xACE0; &#xACB0;&#xACFC; &#xAC12;&#xC774; 1&#xC774; &#xB418;&#xB294;&#xB3C4;&#xB85D; &#xD574;&#xC57C;&#xACA0;&#xC8E0;? &#xBA3C;&#xC800; &#xBE44;&#xAD50;&#xD574;&#xC57C;&#xD560; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xAC12;&#xC744; &#xB85C;&#xD2B8;&#xD558;&#xACE0; &#xCD5C;&#xC885;&#xC801;&#xC73C;&#xB85C; &#xBE44;&#xAD50;&#xD574;&#xC57C;&#xD560; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xC9C0;&#xC815;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xC544;&#xC2DC;&#xB2E4;&#xC2DC;&#xD53C; &#xD568;&#xC218;&#xC758; &#xB9AC;&#xD134;&#xAC12;&#xC740; &#xBCF4;&#xD1B5; eax&#xC5D0; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0; claripy&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC11C; &#xC778;&#xC790;&#xB85C; &#xB123;&#xC740; &#xC870;&#xAC74;, &#xC989; &#xC5F0;&#xC0B0;&#xAC12;&#xC774; &#xC6B0;&#xB9AC;&#xAC00; &#xBE44;&#xAD50;&#xD574;&#xC57C;&#xD560; &#xBB38;&#xC790;&#xC5F4;&#xACFC; &#xAC19;&#xC740;&#xC9C0; &#xC5EC;&#xBD80;&#xC5D0; &#xB530;&#xB77C; eax&#xB97C; 1&#xB85C; &#xC124;&#xC815;&#xD560; &#xAC83;&#xC774;&#xB0D0; 0&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD560; &#xAC83;&#xC774;&#xB0D0;&#xB97C; &#xC9C0;&#xC815;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xBA74; &#xC2DC;&#xBBAC;&#xB808;&#xC774;&#xD130;&#xAC00; &#xC54C;&#xC544;&#xC11C; &#xC2DC;&#xBBAC;&#xB808;&#xC774;&#xC158;&#xC744; &#xD574;&#xC8FC;&#xACA0;&#xC8E0;. &#xB098;&#xBA38;&#xC9C0; &#xB4A4;&#xC5D0; &#xBD80;&#xBD84;&#xC740; &#xC55E; &#xBB38;&#xC81C;&#xB4E4;&#xACE0; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
+<h2 id="sol09-py"><a href="#sol09-py" class="headerlink" title="sol09.py"></a>sol09.py</h2><pre><code class="hljs python"><span class="hljs-keyword">import</span> angr
+<span class="hljs-keyword">import</span> claripy
+<span class="hljs-keyword">import</span> sys
+<span class="hljs-keyword">import</span> traceback
+<span class="hljs-keyword">import</span> logging
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">main</span>(<span class="hljs-params">argv</span>):</span>
+  path_to_binary = argv[<span class="hljs-number">1</span>]
+  project = angr.Project(path_to_binary)
+
+  initial_state = project.factory.entry_state()
+
+  check_equals_called_address = <span class="hljs-number">0x080486B3</span>
+  instruction_to_skip_length = <span class="hljs-number">5</span>
+  print(type(project.hook))
+<span class="hljs-meta">  @project.hook(check_equals_called_address, length=instruction_to_skip_length)</span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">skip_check_equals_</span>(<span class="hljs-params">state</span>):</span>
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> traceback.format_stack():
+      print(line.strip())
+    user_input_buffer_address = <span class="hljs-number">0x0804A054</span>
+    user_input_buffer_length = <span class="hljs-number">16</span>
+
+    user_input_string = state.memory.load(
+      user_input_buffer_address, 
+      user_input_buffer_length
+    )
+    
+    check_against_string = <span class="hljs-string">&apos;XYMKBKUHNIQYNQXE&apos;</span>
+
+    state.regs.eax = claripy.If(
+      user_input_string == check_against_string, 
+      claripy.BVV(<span class="hljs-number">1</span>, <span class="hljs-number">32</span>), 
+      claripy.BVV(<span class="hljs-number">0</span>, <span class="hljs-number">32</span>)
+    )
+
+  simulation = project.factory.simgr(initial_state)
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">is_successful</span>(<span class="hljs-params">state</span>):</span>
+    stdout_output = state.posix.dumps(sys.stdout.fileno())
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">&apos;Good Job&apos;</span> <span class="hljs-keyword">in</span> stdout_output.decode(<span class="hljs-string">&apos;ascii&apos;</span>))
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">should_abort</span>(<span class="hljs-params">state</span>):</span>
+    stdout_output = state.posix.dumps(sys.stdout.fileno())
+    <span class="hljs-keyword">return</span> (<span class="hljs-string">&apos;Try again&apos;</span> <span class="hljs-keyword">in</span> stdout_output.decode(<span class="hljs-string">&apos;ascii&apos;</span>))
+
+  simulation.explore(find=is_successful, avoid=should_abort)
+
+  <span class="hljs-keyword">if</span> simulation.found:
+    solution_state = simulation.found[<span class="hljs-number">0</span>]
+    solution = solution_state.posix.dumps(sys.stdin.fileno())
+    print(solution)
+  <span class="hljs-keyword">else</span>:
+    <span class="hljs-keyword">raise</span> Exception(<span class="hljs-string">&apos;Could not find the solution&apos;</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&apos;__main__&apos;</span>:
+  main(sys.argv)</code></pre>
+<pre><code class="hljs python">j0ker@angr:~/angr_ctf/dist$ python3 sol09.py <span class="hljs-number">09</span>_angr_hooks 
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">36</span>,<span class="hljs-number">774</span> | angr.storage.memory_mixins.default_filler_mixin | The program <span class="hljs-keyword">is</span> accessing memory <span class="hljs-keyword">or</span> registers <span class="hljs-keyword">with</span> an unspecified value. This could indicate unwanted behavior.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">36</span>,<span class="hljs-number">774</span> | angr.storage.memory_mixins.default_filler_mixin | angr will cope <span class="hljs-keyword">with</span> this by generating an unconstrained symbolic variable <span class="hljs-keyword">and</span> continuing. You can resolve this by:
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">36</span>,<span class="hljs-number">774</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">1</span>) setting a value to the initial state
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">36</span>,<span class="hljs-number">774</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">2</span>) adding the state option ZERO_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to make unknown regions hold null
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">36</span>,<span class="hljs-number">774</span> | angr.storage.memory_mixins.default_filler_mixin | <span class="hljs-number">3</span>) adding the state option SYMBOL_FILL_UNCONSTRAINED_{MEMORY,REGISTERS}, to suppress these messages.
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">36</span>,<span class="hljs-number">775</span> | angr.storage.memory_mixins.default_filler_mixin | Filling register edi <span class="hljs-keyword">with</span> <span class="hljs-number">4</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0x8048791</span> (__libc_csu_init+<span class="hljs-number">0x1</span> <span class="hljs-keyword">in</span> <span class="hljs-number">09</span>_angr_hooks (<span class="hljs-number">0x8048791</span>))
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">36</span>,<span class="hljs-number">776</span> | angr.storage.memory_mixins.default_filler_mixin | Filling register ebx <span class="hljs-keyword">with</span> <span class="hljs-number">4</span> unconstrained bytes referenced <span class="hljs-keyword">from</span> <span class="hljs-number">0x8048793</span> (__libc_csu_init+<span class="hljs-number">0x3</span> <span class="hljs-keyword">in</span> <span class="hljs-number">09</span>_angr_hooks (<span class="hljs-number">0x8048793</span>))
+WARNING | <span class="hljs-number">2021</span><span class="hljs-number">-08</span><span class="hljs-number">-15</span> <span class="hljs-number">06</span>:<span class="hljs-number">44</span>:<span class="hljs-number">38</span>,<span class="hljs-number">681</span> | claripy.ast.bv | BVV value <span class="hljs-keyword">is</span> being coerced <span class="hljs-keyword">from</span> a unicode string, encoding <span class="hljs-keyword">as</span> utf<span class="hljs-number">-8</span>
+<span class="hljs-string">b&apos;ZXIDRXEORJOTFFJNWUFAOUBLOGLQCCGK&apos;</span>
+j0ker@angr:~/angr_ctf/dist$ ./<span class="hljs-number">09</span>_angr_hooks 
+Enter the password: ZXIDRXEORJOTFFJNWUFAOUBLOGLQCCGK
+Good Job.</code></pre>
+<h2 id="&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;-&#xADF8;&#xB9AC;&#xACE0;-hook-&#xC791;&#xB3D9;&#xC6D0;&#xB9AC;"><a href="#&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;-&#xADF8;&#xB9AC;&#xACE0;-hook-&#xC791;&#xB3D9;&#xC6D0;&#xB9AC;" class="headerlink" title="&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; @ &#xADF8;&#xB9AC;&#xACE0; hook &#xC791;&#xB3D9;&#xC6D0;&#xB9AC;?"></a>&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; @ &#xADF8;&#xB9AC;&#xACE0; hook &#xC791;&#xB3D9;&#xC6D0;&#xB9AC;?</h2><p>&#xC0AC;&#xC2E4; &#xC774;&#xB807;&#xAC8C; &#xBB38;&#xC81C;&#xB294; &#xD480;&#xB838;&#xC9C0;&#xB9CC; &#xC800;&#xB294; &#xC774; &#xD6C4;&#xD0B9;&#xC774; &#xC5B4;&#xB5BB;&#xAC8C; &#xB3D9;&#xC791;&#xD558;&#xB294;&#xC9C0; &#xB9E4;&#xC6B0; &#xAD81;&#xAE08;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB77C;&#xB294; &#xAC83;&#xB3C4; &#xCF54;&#xB4DC;&#xB97C; &#xBCFC; &#xB54C; &#xC5B4;&#xB834;&#xD48B;&#xC774; &#xC54C;&#xACE0;&#xB9CC; &#xC788;&#xC5C8;&#xC9C0; &#xC81C;&#xB300;&#xB85C;&#xB294; &#xBAB0;&#xB77C;&#xC11C; &#xC774;&#xCC38;&#xC5D0; &#xC880; &#xB354; &#xACF5;&#xBD80;&#xD574; &#xBCF4;&#xAE30;&#xB85C; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h3 id="&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;"><a href="#&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;" class="headerlink" title="&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;"></a>&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;</h3><p>&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB294; &#xC544;&#xB798; &#xD568;&#xC218;&#xB97C; <code>wrapping</code>&#xD574;&#xC11C; &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB420; &#xB54C; &#xC790;&#xC2E0;&#xC774; &#xC6D0;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xAE30;&#xB2A5;&#xC774;&#xB77C;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. &#xC8FC;&#xB85C; &#xB514;&#xBC84;&#xAE45;&#xD560; &#xB54C;&#xB098; &#xCF54;&#xB4DC; &#xAC04;&#xACB0;&#xD654;&#xB97C; &#xC704;&#xD574; &#xB9CE;&#xC774; &#xC4F0;&#xC778;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. </p>
+<p>&#xAC04;&#xB2E8;&#xD55C; &#xC608;&#xC2DC;&#xB97C; &#xD55C;&#xBC88; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p>Code:</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">decoratorFunctionWithArguments</span>(<span class="hljs-params">arg1, arg2, arg3</span>):</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrap</span>(<span class="hljs-params">f</span>):</span>
+        <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Inside wrap()&quot;</span>
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">wrapped_f</span>(<span class="hljs-params">*args</span>):</span>
+            <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Inside wrapped_f()&quot;</span>
+            <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Decorator arguments:&quot;</span>, arg1, arg2, arg3
+            f(*args)
+            <span class="hljs-keyword">print</span> <span class="hljs-string">&quot;After f(*args)&quot;</span>
+        <span class="hljs-keyword">return</span> wrapped_f
+    <span class="hljs-keyword">return</span> wrap
+
+<span class="hljs-meta">@decoratorFunctionWithArguments(&quot;hello&quot;, &quot;world&quot;, 42)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params">a1, a2, a3, a4</span>):</span>
+    <span class="hljs-keyword">print</span> <span class="hljs-string">&apos;sayHello arguments:&apos;</span>, a1, a2, a3, a4
+
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;After decoration&quot;</span>
+
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;Preparing to call sayHello()&quot;</span>
+sayHello(<span class="hljs-string">&quot;say&quot;</span>, <span class="hljs-string">&quot;hello&quot;</span>, <span class="hljs-string">&quot;argument&quot;</span>, <span class="hljs-string">&quot;list&quot;</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;after first sayHello() call&quot;</span>
+sayHello(<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;different&quot;</span>, <span class="hljs-string">&quot;set of&quot;</span>, <span class="hljs-string">&quot;arguments&quot;</span>)
+<span class="hljs-keyword">print</span> <span class="hljs-string">&quot;after second sayHello() call&quot;</span></code></pre>
+<p>Output:</p>
+<pre><code class="hljs python">Inside wrap()
+After decoration
+Preparing to call sayHello()
+Inside wrapped_f()
+Decorator arguments: hello world <span class="hljs-number">42</span>
+sayHello arguments: say hello argument list
+After f(*args)
+after first sayHello() call
+Inside wrapped_f()
+Decorator arguments: hello world <span class="hljs-number">42</span>
+sayHello arguments: a different set of arguments
+After f(*args)
+after second sayHello() call</code></pre>
+<blockquote>
+<p>&#xCD9C;&#xCC98; : <a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.artima.com/weblogs/viewpost.jsp?thread=240845">Python Decorators II: Decorator Arguments</a></p>
+</blockquote>
+<p>&#xBB38;&#xC81C;&#xC5D0;&#xC11C; <code>hook</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xAC83;&#xACFC; &#xBE44;&#xC2B7;&#xD55C; &#xC608;&#xC2DC;&#xB97C; &#xAC00;&#xC838;&#xC640; &#xBD24;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC77C;&#xB2E8; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; @&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xB4A4;&#xC5D0; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C; wrap &#xD568;&#xC218;&#xC758; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xC9C0;&#xB9CC; &#xC2E4;&#xD589;&#xC740; &#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBC18;&#xBA74;&#xC5D0; <code>sayHello</code> &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xBA74; &#xC774; &#xB54C; wrap &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xC774; &#xB418;&#xBA74;&#xC11C; <code>wrapped_f</code> &#xD568;&#xC218;&#xB97C; &#xB9AC;&#xD134;&#xD558;&#xB294;&#xB370;, &#xC774; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xB2E4;&#xC2DC; &#xBC1B;&#xC544;&#xC11C; <code>sayHello</code>&#xC5D0; &#xC804;&#xB2EC;&#xB41C; &#xC778;&#xC790;&#xB4E4;&#xC774; <code>wrapped_f</code> &#xD568;&#xC218;&#xC5D0; &#xC804;&#xB2EC;&#xB418;&#xBA74;&#xC11C; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>wrapped_f</code> &#xD568;&#xC218; &#xC548;&#xC5D0;&#xC11C; <code>f(*args)</code>&#xB97C; &#xD1B5;&#xD574; <code>sayHello</code> &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
+<p>&#xC989; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB294; @ &#xB4A4;&#xC5D0; &#xBD99;&#xC740; &#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xACE0; &#xB9AC;&#xD134;&#xB41C; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xBC1B;&#xC544; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xBC11;&#xC5D0; &#xC788;&#xB294; &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xBA74; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xC778;&#xC790;&#xB85C; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xC5D0;&#xC11C; &#xB9AC;&#xD134;&#xBC1B;&#xC740; &#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD55C;&#xB2E4;&#xB294; &#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xBB54;&#xAC00; &#xC880; &#xBCF5;&#xC7A1;&#xD558;&#xB124;&#xC694;&#x2026;.</p>
+<pre><code class="hljs python">sayHello(a,b,c,d) -&gt; wrap(sayHello) -&gt; wrapped(a,b,c,d) -&gt; sayHello(a,b,c,d)</code></pre>
+<p>&#xC800;&#xB3C4; &#xACF5;&#xBD80;&#xD558;&#xBA74;&#xC11C; &#xC815;&#xB9AC;&#xB97C; &#xD558;&#xACE0; &#xC788;&#xB294;&#xB370; &#xC880; &#xB354; &#xC790;&#xC138;&#xD55C; &#xC124;&#xBA85;&#xC740; &#xC544;&#xB798; &#xB9C1;&#xD06C;&#xB97C; &#xD655;&#xC778;&#xD558;&#xC2DC;&#xBA74; &#xB420;&#xAC70; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.artima.com/weblogs/viewpost.jsp?thread=240808">Decorators I: Introduction to Python Decorators</a></p>
+<p>&#xB370;&#xCF54;&#xB808;&#xC774;&#xD130;&#xB97C; &#xACF5;&#xBD80;&#xD558;&#xACE0; &#xB098;&#xC11C; &#xC81C;&#xAC00; &#xAC00;&#xC7A5; &#xC758;&#xBB38;&#xC774;&#xC5C8;&#xB358; &#xC810;&#xC740; &#xBAA8;&#xB4E0; &#xC608;&#xC2DC;&#xC5D0;&#xC11C;&#xB294; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xC544;&#xB798; &#xC120;&#xC5B8;&#xB41C; &#xD568;&#xC218;&#xB4E4;&#xC774; &#xD638;&#xCD9C;&#xC774; &#xB418;&#xB294;&#xB370;, &#xC65C; &#xC194;&#xB8E8;&#xC158; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xC5D0;&#xC11C;&#xB294; &#xD638;&#xCD9C;&#xC774; &#xC548;&#xB410;&#xC74C;&#xC5D0;&#xB3C4; &#xBD88;&#xAD6C;&#xD558;&#xACE0; &#xC798; &#xB3D9;&#xC791;&#xC744; &#xD558;&#xB294;&#xAC00;? &#xC600;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; &#xBD80;&#xBD84;&#xC744; &#xD655;&#xC778;&#xD558;&#xAE30; &#xC704;&#xD574; angr &#xCF54;&#xB4DC;&#xB97C; &#xC880; &#xC0B4;&#xD3B4;&#xBD24;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hook</span>(<span class="hljs-params">self, addr, hook=None, length=<span class="hljs-number">0</span>, kwargs=None, replace=False</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        Hook a section of code with a custom function. This is used internally to provide symbolic</span>
+<span class="hljs-string">        summaries of library functions, and can be used to instrument execution or to modify</span>
+<span class="hljs-string">        control flow.</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        When hook is not specified, it returns a function decorator that allows easy hooking.</span>
+<span class="hljs-string">        Usage::</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">            # Assuming proj is an instance of angr.Project, we will add a custom hook at the entry</span>
+<span class="hljs-string">            # point of the project.</span>
+<span class="hljs-string">            @proj.hook(proj.entry)</span>
+<span class="hljs-string">            def my_hook(state):</span>
+<span class="hljs-string">                print(&quot;Welcome to execution!&quot;)</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :param addr:        The address to hook.</span>
+<span class="hljs-string">        :param hook:        A :class:`angr.project.Hook` describing a procedure to run at the</span>
+<span class="hljs-string">                            given address. You may also pass in a SimProcedure class or a function</span>
+<span class="hljs-string">                            directly and it will be wrapped in a Hook object for you.</span>
+<span class="hljs-string">        :param length:      If you provide a function for the hook, this is the number of bytes</span>
+<span class="hljs-string">                            that will be skipped by executing the hook by default.</span>
+<span class="hljs-string">        :param kwargs:      If you provide a SimProcedure for the hook, these are the keyword</span>
+<span class="hljs-string">                            arguments that will be passed to the procedure&apos;s `run` method</span>
+<span class="hljs-string">                            eventually.</span>
+<span class="hljs-string">        :param replace:     Control the behavior on finding that the address is already hooked. If</span>
+<span class="hljs-string">                            true, silently replace the hook. If false (default), warn and do not</span>
+<span class="hljs-string">                            replace the hook. If none, warn and replace the hook.</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">if</span> hook <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:
+            <span class="hljs-comment"># if we haven&apos;t been passed a thing to hook with, assume we&apos;re being used as a decorator</span>
+            <span class="hljs-keyword">return</span> self._hook_decorator(addr, length=length, kwargs=kwargs)
+
+        <span class="hljs-keyword">if</span> kwargs <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>: kwargs = {}
+
+        l.debug(<span class="hljs-string">&apos;hooking %s with %s&apos;</span>, self._addr_to_str(addr), str(hook))
+
+        <span class="hljs-keyword">if</span> self.is_hooked(addr):
+            <span class="hljs-keyword">if</span> replace <span class="hljs-keyword">is</span> <span class="hljs-literal">True</span>:
+                <span class="hljs-keyword">pass</span>
+            <span class="hljs-keyword">elif</span> replace <span class="hljs-keyword">is</span> <span class="hljs-literal">False</span>:
+                l.warning(<span class="hljs-string">&quot;Address is already hooked, during hook(%s, %s). Not re-hooking.&quot;</span>, self._addr_to_str(addr), hook)
+                <span class="hljs-keyword">return</span>
+            <span class="hljs-keyword">else</span>:
+                l.warning(<span class="hljs-string">&quot;Address is already hooked, during hook(%s, %s). Re-hooking.&quot;</span>, self._addr_to_str(addr), hook)
+
+        <span class="hljs-keyword">if</span> isinstance(hook, type):
+            <span class="hljs-keyword">raise</span> TypeError(<span class="hljs-string">&quot;Please instanciate your SimProcedure before hooking with it&quot;</span>)
+
+        <span class="hljs-keyword">if</span> callable(hook):
+            hook = SIM_PROCEDURES[<span class="hljs-string">&apos;stubs&apos;</span>][<span class="hljs-string">&apos;UserHook&apos;</span>](user_func=hook, length=length, **kwargs)
+
+        self._sim_procedures[addr] = hook</code></pre>
+<p><code>hook</code> &#xD568;&#xC218;&#xB97C; &#xBCF4;&#xBA74; &#xBA3C;&#xC800; &#xC778;&#xC790; <code>hook</code>&#xC774; <code>None</code>&#xC774;&#xBA74; <code>_hook_decorator</code> &#xD568;&#xC218;&#xAC00; &#xC2E4;&#xD589;&#xC774; &#xB429;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_hook_decorator</span>(<span class="hljs-params">self, addr, length=<span class="hljs-number">0</span>, kwargs=None</span>):</span>
+        <span class="hljs-string">&quot;&quot;&quot;</span>
+<span class="hljs-string">        Return a function decorator that allows easy hooking. Please refer to hook() for its usage.</span>
+<span class="hljs-string"></span>
+<span class="hljs-string">        :return: The function decorator.</span>
+<span class="hljs-string">        &quot;&quot;&quot;</span>
+
+        <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hook_decorator</span>(<span class="hljs-params">func</span>):</span>
+            self.hook(addr, func, length=length, kwargs=kwargs)
+            <span class="hljs-keyword">return</span> func
+
+        <span class="hljs-keyword">return</span> hook_decorator
+
+    <span class="hljs-comment">#</span>
+    <span class="hljs-comment"># Pickling</span>
+    <span class="hljs-comment">#</span></code></pre>
+<p>&#xC774; &#xD568;&#xC218;&#xB294; &#xC704; &#xC608;&#xC81C;&#xC5D0;&#xC11C; &#xBCF8; <code>wrap</code> &#xD568;&#xC218;&#xAC00; &#xC548;&#xC5D0; &#xB4E4;&#xC5B4; &#xC788;&#xB294;&#xAC83;&#xCC98;&#xB7FC; &#xBCF4;&#xC774;&#xB124;&#xC694;. &#xADF8;&#xB9AC;&#xACE0; &#xC548;&#xC5D0;&#xC11C; &#xC120;&#xC5B8;&#xD55C; <code>hook_decorator</code> &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xB97C; &#xB9AC;&#xD134;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; <code>hook_decorator</code> &#xD568;&#xC218;&#xAC00; &#xBD88;&#xB9AC;&#xBA74; &#xB2E4;&#xC2DC; <code>hook</code> &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294;&#xB370;, &#xC774; &#xB54C;&#xB294; &#xC804;&#xB2EC;&#xB41C; &#xB370;&#xCF54;&#xB808;&#xC774;&#xD130; &#xC544;&#xB798; &#xD568;&#xC218;&#xC758; &#xD3EC;&#xC778;&#xD130;&#xB3C4; &#xAC19;&#xC774; &#xC804;&#xB2EC;&#xC774; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xBA74; <code>hook</code> &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; <code>SIM_PROCEDURES[&apos;stubs&apos;][&apos;UserHook&apos;](user_func=hook, length=length, **kwargs)</code>&#xC5D0;&#xC11C; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAC83;&#xCC98;&#xB7FC; &#xBCF4;&#xC774;&#xACE0;&#xC694;. &#xD760; &#xC77C;&#xB2E8; &#xB370;&#xCF54;&#xB808;&#xC774;&#xC158; &#xD3EC;&#xB9F7;?&#xC5D0; &#xB9DE;&#xCDB0; &#xC81C;&#xC791;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xAC83;&#xC740; &#xC54C;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB798;&#xC11C; skip<em>check_equals</em> &#xD568;&#xC218;&#xB294; &#xC5B4;&#xB514;&#xC11C; &#xD638;&#xCD9C;&#xD558;&#xB0D0;&#xACE0;!!! </p>
+<p>&#xC77C;&#xB2E8; &#xCF5C;&#xC2A4;&#xD0DD;&#xC744; &#xBD10;&#xC57C;&#xD560;&#xAC70; &#xAC19;&#xC544;&#xC11C; &#xC544;&#xB798; &#xCF54;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD574;&#xBCF4;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<pre><code class="hljs python"><span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> traceback.format_stack():
+      print(line.strip())</code></pre>
+<pre><code class="hljs python">File <span class="hljs-string">&quot;scaffold09.py&quot;</span>, line <span class="hljs-number">99</span>, <span class="hljs-keyword">in</span> &lt;module&gt;
+    main(sys.argv)
+File <span class="hljs-string">&quot;scaffold09.py&quot;</span>, line <span class="hljs-number">86</span>, <span class="hljs-keyword">in</span> main
+    simulation.explore(find=is_successful, avoid=should_abort)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/sim_manager.py&quot;</span>, line <span class="hljs-number">250</span>, <span class="hljs-keyword">in</span> explore
+    self.run(stash=stash, n=n, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/sim_manager.py&quot;</span>, line <span class="hljs-number">280</span>, <span class="hljs-keyword">in</span> run
+    self.step(stash=stash, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/misc/hookset.py&quot;</span>, line <span class="hljs-number">75</span>, <span class="hljs-keyword">in</span> __call__
+    result = current_hook(self.func.__self__, *args, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/exploration_techniques/explorer.py&quot;</span>, line <span class="hljs-number">96</span>, <span class="hljs-keyword">in</span> step
+    <span class="hljs-keyword">return</span> simgr.step(stash=stash, extra_stop_points=base_extra_stop_points | self._extra_stop_points, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/misc/hookset.py&quot;</span>, line <span class="hljs-number">80</span>, <span class="hljs-keyword">in</span> __call__
+    <span class="hljs-keyword">return</span> self.func(*args, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/sim_manager.py&quot;</span>, line <span class="hljs-number">365</span>, <span class="hljs-keyword">in</span> step
+    successors = self.step_state(state, successor_func=successor_func, **run_args)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/sim_manager.py&quot;</span>, line <span class="hljs-number">402</span>, <span class="hljs-keyword">in</span> step_state
+    successors = self.successors(state, successor_func=successor_func, **run_args)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/sim_manager.py&quot;</span>, line <span class="hljs-number">441</span>, <span class="hljs-keyword">in</span> successors
+    <span class="hljs-keyword">return</span> self._project.factory.successors(state, **run_args)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/factory.py&quot;</span>, line <span class="hljs-number">60</span>, <span class="hljs-keyword">in</span> successors
+    <span class="hljs-keyword">return</span> self.default_engine.process(*args, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/engines/vex/light/slicing.py&quot;</span>, line <span class="hljs-number">19</span>, <span class="hljs-keyword">in</span> process
+    <span class="hljs-keyword">return</span> super().process(*args, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/engines/engine.py&quot;</span>, line <span class="hljs-number">149</span>, <span class="hljs-keyword">in</span> process
+    self.process_successors(self.successors, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/engines/failure.py&quot;</span>, line <span class="hljs-number">21</span>, <span class="hljs-keyword">in</span> process_successors
+    <span class="hljs-keyword">return</span> super().process_successors(successors, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/engines/syscall.py&quot;</span>, line <span class="hljs-number">18</span>, <span class="hljs-keyword">in</span> process_successors
+    <span class="hljs-keyword">return</span> super().process_successors(successors, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/engines/hook.py&quot;</span>, line <span class="hljs-number">61</span>, <span class="hljs-keyword">in</span> process_successors
+    <span class="hljs-keyword">return</span> self.process_procedure(state, successors, procedure, **kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/engines/procedure.py&quot;</span>, line <span class="hljs-number">37</span>, <span class="hljs-keyword">in</span> process_procedure
+    inst = procedure.execute(state, successors, ret_to=ret_to, arguments=arguments)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/sim_procedure.py&quot;</span>, line <span class="hljs-number">230</span>, <span class="hljs-keyword">in</span> execute
+    r = getattr(inst, inst.run_func)(*sim_args, **inst.kwargs)
+File <span class="hljs-string">&quot;/home/j0ker/.local/lib/python3.8/site-packages/angr/procedures/stubs/UserHook.py&quot;</span>, line <span class="hljs-number">8</span>, <span class="hljs-keyword">in</span> run
+    result = user_func(self.state)
+File <span class="hljs-string">&quot;scaffold09.py&quot;</span>, line <span class="hljs-number">42</span>, <span class="hljs-keyword">in</span> skip_check_equals_
+    <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> traceback.format_stack():</code></pre>
+<p>&#xC0AC;&#xC2E4; &#xC774; &#xB54C;&#xBD80;&#xD130; &#xAC10;&#xC774; &#xC654;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB0B4;&#xAC00; &#xAC10;&#xB2F9;&#xD560; &#xC218; &#xC5C6;&#xB294; &#xC601;&#xC5ED;&#xC744; &#xAC74;&#xB4DC;&#xB838;&#xAD6C;&#xB098;&#x2026; &#xC774;&#xAC78; &#xC5B8;&#xC81C; &#xB2E4; &#xBD84;&#xC11D;&#xD558;&#xACE0; &#xC788;&#xB0D0;&#x2026; &#xB9C8;&#xAC10;&#xC774; &#xCF54;&#xC55E;&#xC778;&#xB370;&#x2026; &#xD558;&#xC544;&#x2026;</p>
+<p>&#xADF8;&#xB798;&#xC11C; &#xC624;&#xB298;&#xC740; &#xC5EC;&#xAE30;&#xC11C; &#xB05D;!!!! &#xCEAC;&#xCEAC; &#xC774; &#xBD80;&#xBD84;&#xC740; &#xC81C;&#xAC00; &#xBD84;&#xC11D;&#xC744; &#xB2E4; &#xD574;&#xC11C; &#xC2DC;&#xB9AC;&#xC988; &#xC911;&#xAC04;&#xC5D0; &#xB530;&#xB85C; &#xC815;&#xB9AC;&#xD574; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC5B8;&#xC81C; &#xB05D;&#xB0A0;&#xC9C0;&#xB294; &#xC7A5;&#xB2F4;&#xC744; &#xBABB;&#xD558;&#xC9C0;&#xB9CC;&#x2026; &#xADF8;&#xB798;&#xB3C4; &#xAD81;&#xAE08;&#xD55C; &#xC810;&#xC774; &#xC788;&#xC73C;&#xBA74; &#xC5B4;&#xB5BB;&#xAC8C;&#xB4E0; &#xD574;&#xACB0;&#xC740; &#xD574;&#xC57C;&#xACA0;&#xC8E0;.</p>
+<h1 id="&#xB9C8;&#xBB34;&#xB9AC;"><a href="#&#xB9C8;&#xBB34;&#xB9AC;" class="headerlink" title="&#xB9C8;&#xBB34;&#xB9AC;"></a>&#xB9C8;&#xBB34;&#xB9AC;</h1><p>&#xC608;&#xC0C1;&#xBCF4;&#xB2E4; &#xC0BD;&#xC9C8;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xB9CE;&#xC544;&#xC11C; &#xC2DC;&#xB9AC;&#xC988;&#xAC00; &#xC880; &#xB8E8;&#xC988;&#xD574;&#xC9C0;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC870;&#xD68C;&#xC218;&#xAC00; &#xB9CE;&#xC774; &#xB098;&#xC62C;&#xB9CC;&#xD55C; &#xAE00;&#xB3C4; &#xC544;&#xB2C8;&#xC5B4;&#xC11C; &#xD6C4;&#xB531; &#xC9C4;&#xD589;&#xD574;&#xC57C;&#xD558;&#xB294;&#xB370;&#x2026; &#xB2E4;&#xC74C;&#xC774;&#xB098; &#xB2E4;&#xB2E4;&#xC74C;&#xC5D0;&#xB294; angr_ctf &#xB05D;&#xB0B4;&#xACE0; &#xB9AC;&#xC5BC; CTF &#xBB38;&#xC81C;&#xB97C; &#xD480;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2F5;&#xB2F5;&#xD558;&#xC2E0; &#xBD84;&#xB4E4;&#xC774; &#xC788;&#xC73C;&#xBA74; &#xC8C4;&#xC1A1;&#xD569;&#xB2C8;&#xB2E4;. &#xAD81;&#xAE08;&#xD55C; &#xBD80;&#xBD84;&#xC740; &#xADF8;&#xB0E5; &#xB118;&#xC5B4;&#xAC08; &#xC218;&#xAC00; &#xC5C6;&#xC5C8;&#xC5B4;&#xC694; &#x3160;&#x3160; &#xC544;&#xB9C8; &#xB098;&#xBA38;&#xC9C0; &#xBB38;&#xC81C; &#xD478;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C;&#xB3C4; &#xAD81;&#xAE08;&#xD55C;&#xAC8C; &#xB9CE;&#xC774; &#xC788;&#xC744;&#xAC70; &#xAC19;&#xC740;&#xB370;, &#xCD5C;&#xB300;&#xD55C; &#xB2E4; &#xC81C;&#xB300;&#xB85C; &#xC9DA;&#xACE0; &#xB118;&#xC5B4;&#xAC00;&#xBA74;&#xC11C; &#xB2E4;&#xB904;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;(&#xC55E;&#xC73C;&#xB85C;&#xB3C4; &#xB2F5;&#xB2F5;&#xD560; &#xC608;&#xC815;&#xC774;&#xB77C;&#xB294; &#xB73B;).</p>
+<p>&#xADF8;&#xB7FC; &#xC870;-&#xBC14;!</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                <div class="post-meta mr-3">
+                  <i class="iconfont icon-category"></i>
+                  
+                  <a class="hover-with-bg" href="/categories/Research/">Research</a>
+                  
+                </div>
+                
+                
+                <div class="post-meta">
+                  <i class="iconfont icon-tags"></i>
+                  
+                  <a class="hover-with-bg" href="/tags/j0ker/">j0ker</a>
+                  
+                  <a class="hover-with-bg" href="/tags/angr/">angr</a>
+                  
+                  <a class="hover-with-bg" href="/tags/symbolic-execution/">symbolic_execution</a>
+                  
+                  <a class="hover-with-bg" href="/tags/exploit/">exploit</a>
+                  
+                  <a class="hover-with-bg" href="/tags/newbie/">newbie</a>
+                  
+                </div>
+                
+              </div>
+
+              <div class="post-metas mb-3">
+                <a class="hover-with-bg" style="display: flex;" href="/author">
+                  <div class="link-avatar-page">
+                    <img src="/img/profile_j0ker.jpg" srcset="/img/loading.gif" alt="j0ker">
+                  </div>
+
+                  <div class="link-text">
+                    <div class="link-title">j0ker</div>
+                  </div>
+                </a>
+                <div class="link-text">
+                  <div class="link-more">
+                    <a href="/tags/j0ker">
+                      Read more
+                      <i class="iconfont icon-arrowdown"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <hr>
+
+              <script data-ad-client="ca-pub-3672652207808168" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              
+              <!--  -->
+              <p class="note note-warning">본 글은 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.ko" rel="external nofollow noopener noreferrer">CC BY-SA 4.0</a> 라이선스로 배포됩니다. 공유 또는 변경 시 반드시 출처를 남겨주시기 바랍니다.</p>
+              
+              
+              
+              <div class="post-prevnext row">
+                <article class="post-prev col-6">
+                  
+                  
+                </article>
+                <article class="post-next col-6">
+                  
+                  
+                  <a href="/2021/08/13/j0ker/2021-08-13/">
+                    <span class="hidden-mobile">[하루한줄] A New Attack Surface on MS Exchange Part 1 - ProxyLogon!</span>
+                    <span class="visible-mobile">Next</span>
+                    <i class="iconfont icon-arrowright"></i>
+                  </a>
+                  
+                </article>
+              </div>
+              
+            </div>
+
+            
+            <!-- Comments -->
+            <article class="comments" id="comments">
+              
+              
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://hackyboiz.github.io/2021/08/15/j0ker/angr_part4/';
+        this.page.identifier = '/2021/08/15/j0ker/angr_part4/';
+      };
+      function loadDisqus() {
+        (function () {
+          var d = document,
+            s = d.createElement('script');
+          s.src = '//' + 'hackyboiz' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      }
+      waitElementVisible('disqus_thread', loadDisqus);
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="external nofollow noopener noreferrer">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+            </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+      <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;TOC</p>
+  <div id="tocbot"></div>
+</div>
+
+    </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+    
+  </main>
+
+  
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
+  
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="external nofollow noopener noreferrer"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="external nofollow noopener noreferrer">
+        <span>Fluid</span></a>
+    </div>
+    
+
+    
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="/js/debouncer.js"></script>
+<script src="/js/main.js"></script>
+
+<!-- Plugins -->
+
+
+  
+    <script src="/js/lazyload.js"></script>
+  
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js"></script>
+  <script src="/js/clipboard-use.js"></script>
+
+
+
+
+
+
+
+  <script src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var boardCtn = $('#board-ctn');
+      var boardTop = boardCtn.offset().top;
+
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '#post-body',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        collapseDepth: 0,
+        scrollSmooth: true,
+        headingsOffset: -boardTop
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc').css('visibility', 'visible');
+      }
+    });
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js"></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "[Research] 핵린이의 angr 정복기 - (4) angr_ctf part.2&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js"></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script src="/js/local-search.js"></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+  <script src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  <script>
+    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
+      function () {
+        var element = document.createElement('a');
+        $(element).attr('data-fancybox', 'images');
+        $(element).attr('href', $(this).attr('src'));
+        $(this).wrap(element);
+      }
+    );
+  </script>
+
+
+
+
+
+  
+
+  
+    <!-- MathJax -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        options: {
+          renderActions: {
+            findScript: [10, doc => {
+              document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+                const display = !!node.type.match(/; *mode=display/);
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                const text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = { node: text, delim: '', n: 0 };
+                math.end = { node: text, delim: '', n: 0 };
+                doc.math.push(math);
+              });
+            }, '', false],
+            insertedScript: [200, () => {
+              document.querySelectorAll('mjx-container').forEach(node => {
+                let target = node.parentNode;
+                if (target.nodeName.toLowerCase() === 'li') {
+                  target.parentNode.classList.add('has-jax');
+                }
+              });
+            }, '', false]
+          }
+        }
+      };
+    </script>
+
+    <script async src="https://cdn.staticfile.org/mathjax/3.0.5/es5/tex-svg.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script defer>
+      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) };
+      ga.l = +new Date;
+      ga('create', 'UA-177243668-2', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src="https://www.google-analytics.com/analytics.js"></script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-177243668-2"></script>
+    <script defer>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-177243668-2');
+    </script>
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+</body>
+</html>
