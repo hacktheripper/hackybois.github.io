@@ -249,6 +249,7 @@
     <span class="hljs-keyword">if</span> (__reg64_bound_u32(reg-&gt;umax_value))     
         reg-&gt;u32_max_value = (u32)reg-&gt;umax_value;
 ...</code></pre>
+
 <p>&#xC704;&#xB294; &#xCDE8;&#xC57D;&#xD55C; &#xCF54;&#xB4DC; &#xBD80;&#xBD84;&#xC758; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;. &#xAE30;&#xC874; eBPF &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xACFC; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; CVE-2021-31440 &#xB610;&#xD55C; 64 bit range&#xC758; &#xD558;&#xC704; 32 &#xBE44;&#xD2B8;&#xB85C;&#xBD80;&#xD130; 32 bit range&#xB97C; &#xB3C4;&#xCD9C;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>umin_value</code>&#xAC00; 1, <code>umax_value</code> &#xAC00; 1&lt;&lt;32&#xC774;&#xB77C; &#xD560; &#xB54C; <code>u32_min_value</code>&#xB294; 1, <code>u32_max_value</code>&#xB294; 0&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xACE0; &#xC2E4;&#xC81C; runtime range&#xC640; &#xB2E4;&#xB978; &#xAC12;&#xC744; Verifier&#xC5D0;&#xAC8C; &#xC804;&#xB2EC;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <p>Verifier&#xB294; &#xC798;&#xBABB;&#xB41C; &#xB808;&#xC9C0;&#xC2A4;&#xD130; &#xD5C8;&#xC6A9;&#xBC94;&#xC704;&#xB97C; &#xAC16;&#xAC8C; &#xB418;&#xACE0; &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xCEE4;&#xB294; out-of-bound read/write access&#xAC00; &#xAC00;&#xB2A5;&#xD574; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
@@ -270,13 +271,13 @@
                   
                   <a class="hover-with-bg" href="/tags/oob/">oob</a>
                   
-                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
-                  
-                  <a class="hover-with-bg" href="/tags/linux/">linux</a>
-                  
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
                   <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
+                  
+                  <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                  
+                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                 </div>
                 

