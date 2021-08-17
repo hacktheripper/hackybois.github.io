@@ -244,7 +244,7 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul>
 <li>Windows 21H1</li>
 </ul>
-<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/%EB%8D%B0%EC%8A%A4%ED%81%AC%ED%86%B1_%EC%B0%BD_%EA%B4%80%EB%A6%AC%EC%9E%90">Windows &#xB370;&#xC2A4;&#xD06C;&#xD1B1; &#xCC3D; &#xAD00;&#xB9AC;&#xC790;</a>(Desktop Window Manager, dwm.exe)&#xC758; <code>dwmcore.dll</code> &#xBAA8;&#xB4C8;&#xC5D0;&#xC11C; UAF&#xB85C; &#xC778;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
+<h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://ko.wikipedia.org/wiki/&#xB370;&#xC2A4;&#xD06C;&#xD1B1;_&#xCC3D;_&#xAD00;&#xB9AC;&#xC790;">Windows &#xB370;&#xC2A4;&#xD06C;&#xD1B1; &#xCC3D; &#xAD00;&#xB9AC;&#xC790;</a>(Desktop Window Manager, dwm.exe)&#xC758; <code>dwmcore.dll</code> &#xBAA8;&#xB4C8;&#xC5D0;&#xC11C; UAF&#xB85C; &#xC778;&#xD55C; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5B4; &#xC138;&#xBD80; &#xC815;&#xBCF4;&#xAC00; &#xACF5;&#xAC1C;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><code>dwmcore.dll</code> &#xBAA8;&#xB4C8;&#xC758; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xB294; &#xCC38;&#xC870; &#xD69F;&#xC218;(reference count)&#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xD574;&#xC81C; &#xC2DC;&#xC810;&#xC774; &#xACB0;&#xC815;&#xB429;&#xB2C8;&#xB2E4;. &#xAC1D;&#xCCB4;&#xB97C; &#xBC14;&#xC778;&#xB529;&#xD558;&#xB294; &#xACBD;&#xC6B0;<code>CInteractionTrackerBindingManager::ProcessSetTrackerBindingMode</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xACE0; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 1 &#xC99D;&#xAC00;&#xD558;&#xBA70;, &#xBC14;&#xC778;&#xB529; &#xD574;&#xC81C;&#xD558;&#xB294; &#xACBD;&#xC6B0; <code>CInteractionTrackerBindingManager::RemoveTrackerBindings</code> &#xD568;&#xC218;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA70; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 1 &#xAC10;&#xC18C;&#xD569;&#xB2C8;&#xB2E4;. &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 0&#xC774; &#xB41C; &#xAC1D;&#xCCB4;&#xB294; <code>CMILCOMBase::InternalRelease</code> &#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xD574;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.</p>
 <p>&#xCDE8;&#xC57D;&#xC810;&#xC740; &#xAC19;&#xC740; &#xAC1D;&#xCCB4;&#xB97C; &#xBC14;&#xC778;&#xB529;&#xD558;&#xB294; &#xB9AC;&#xC18C;&#xC2A4;&#xAC00; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xB97C; &#xCC38;&#xC870;&#xD588;&#xC744; &#xB54C; &#xBC1C;&#xC0DD;&#xD558;&#xBA70; &#xD574;&#xCEE4;&#xAC00; DirectComposition API&#xB97C; &#xC0AC;&#xC6A9;&#xD574; &#xCF54;&#xB4DC; &#xC218;&#xC900;&#xC5D0;&#xC11C; &#xD2B8;&#xB9AC;&#xAC70;&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
@@ -253,14 +253,14 @@
 <li><p><code>CInteractionTrackerBindingManager::ProcessSetTrackerBindingMode</code> &#xD568;&#xC218;&#xB294; &#xB3D9;&#xC77C;&#xD55C; <code>CinteractionTrackerMarshaler</code>&#xC5D0; &#xB300;&#xD574; &#xD55C; &#xBC88;&#xB9CC; &#xD638;&#xCD9C;&#xB418;&#xC5B4; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xB294; 1 &#xC99D;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>&#xB9AC;&#xC18C;&#xC2A4;&#xC758; &#xC0AC;&#xC6A9;&#xC774; &#xC885;&#xB8CC;&#xB418;&#xACE0; &#xD574;&#xC81C;&#xB420; &#xB54C; <code>CInteractionTrackerBindingManager::RemoveTrackerBindings</code> &#xD568;&#xC218;&#xB294; &#xAC01;&#xAC01;&#xC758; &#xB9AC;&#xC18C;&#xC2A4;&#xC5D0; &#xB300;&#xD574; &#xB450; &#xBC88; &#xD638;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;.</p>
-</li>
-</ol>
 <ul>
 <li><p>&#xCCAB; &#xD638;&#xCD9C; &#xC2DC; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xC758; &#xCC38;&#xC870; &#xD69F;&#xC218;&#xAC00; 1 &#xAC10;&#xC18C;&#xD569;&#xB2C8;&#xB2E4;. 0&#xC774; &#xB41C; &#xACBD;&#xC6B0; <code>CMILCOMBase::InternalRelease</code> &#xD568;&#xC218;&#xC5D0; &#xC758;&#xD574; &#xD574;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 <li><p>&#xB450; &#xBC88;&#xC9F8; &#xD638;&#xCD9C; &#xC2DC; &#xD574;&#xC81C;&#xB41C; <code>CinteractionTrackerBindingManager</code> &#xAC1D;&#xCCB4;&#xC5D0; &#xC811;&#xADFC;&#xD558;&#xAC8C; &#xB418;&#xC5B4; UAF&#xAC00; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ul>
+</li>
+</ol>
 <p>&#xACF5;&#xAC1C;&#xB41C; PoC&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/mavillon1/CVE-2021-33739-POC">https://github.com/mavillon1/CVE-2021-33739-POC</a> &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC73C;&#xBA70;  <code>dwmcore.dll</code> &#xC5D0;&#xC11C;&#xB294; &#xC9C0;&#xB09C; 4&#xC6D4; <a href="https://hackyboiz.github.io/2021/04/15/idioth/2021-04-15/">out of bounds write &#xCDE8;&#xC57D;&#xC810;(CVE-2021-28310)</a>&#xC774; &#xACF5;&#xAC1C;&#xB418;&#xAE30;&#xB3C4; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -281,11 +281,11 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
+                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/uaf/">uaf</a>
-                  
-                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

