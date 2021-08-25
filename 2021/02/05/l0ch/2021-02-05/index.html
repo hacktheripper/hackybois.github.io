@@ -247,9 +247,11 @@
 <p><code>login_mar.cgi</code>&#xC758; <code>wd_login()</code> &#xD568;&#xC218;&#xB294; ID&#xC640; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xB97C; &#xAC01;&#xAC01; <code>username</code>&#xACFC; <code>pwd</code> &#xB9E4;&#xAC1C; &#xBCC0;&#xC218;&#xB85C; &#xBC1B;&#xC544; &#xC778;&#xC99D; &#xC2DC;&#xB3C4;&#xB97C; &#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; <code>pwd</code>&#xB294; Base64 &#xC778;&#xCF54;&#xB529; &#xB41C; &#xAC12;&#xC774;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; <code>cgiFormString()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>username</code>&#xACFC; <code>pwd</code>&#xB97C; &#xC2A4;&#xD0DD; &#xBC84;&#xD37C; &#xC778; <code>username</code>&#xACFC; <code>pwd_b64</code>&#xC5D0; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.  <code>base64decode()</code> &#xD568;&#xC218;&#xB294; <code>pwd_b64</code>&#xB97C; Base64 &#xB514;&#xCF54;&#xB529;&#xD574; <code>pwd_decoded</code>&#xC5D0; &#xC800;&#xC7A5;&#xD558;&#xBA70; &#xB514;&#xCF54;&#xB529;&#xC740; &#xB0B4;&#xBD80;&#xC801;&#xC73C;&#xB85C; glibc&#xC758; <code>b64_pton()</code>&#xC5D0;&#xC11C; &#xC774;&#xB8E8;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">char</span> pwd_decoded[<span class="hljs-number">64</span>]; <span class="hljs-comment">// [rsp+90h] [rbp-1178h] BYREF</span>
 <span class="hljs-keyword">char</span> pwd_b64[<span class="hljs-number">256</span>];    <span class="hljs-comment">// [rsp+D0h] [rbp-1138h] BYREF</span></code></pre>
+
 <p>&#xB514;&#xCF54;&#xB529; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xB514;&#xCF54;&#xB529; &#xC804; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xC778; <code>pwd_b64</code>&#xC758; &#xD06C;&#xAE30;&#xB294; 256 bytes&#xC774;&#xC9C0;&#xB9CC; &#xB514;&#xCF54;&#xB529;&#xB41C; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC;&#xAC00; &#xBCF5;&#xC0AC;&#xB418;&#xB294; <code>pwd_decoded</code>&#xC758; &#xD06C;&#xAE30;&#xB294; 64 bytes&#xC785;&#xB2C8;&#xB2E4;. 256 bytes &#xAE38;&#xC774;&#xC758; base64 &#xC778;&#xCF54;&#xB529; &#xAC12;&#xC758; &#xCD5C;&#xB300; &#xB514;&#xCF54;&#xB529; &#xBB38;&#xC790;&#xC5F4; &#xAE38;&#xC774;&#xB294; 192 bytes&#xB85C; 64 bytes &#xD06C;&#xAE30;&#xC778; <code>pwd_decoded</code>&#xC5D0; 128 bytes &#xB9CC;&#xD07C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xB354; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">char</span> password_copy_shadow[<span class="hljs-number">80</span>]; <span class="hljs-comment">// [rsp+ 0h] [rbp-C8h] BYREF</span>
 <span class="hljs-keyword">char</span> password_copy_input[<span class="hljs-number">88</span>];  <span class="hljs-comment">// [rsp+50h] [rbp-78h] BYREF</span></code></pre>
+
 <p>&#xC774;&#xD6C4; <code>check_login()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>/etc/shadow</code>&#xC758; &#xD328;&#xC2A4;&#xC6CC;&#xB4DC; &#xD574;&#xC2DC;&#xC640; &#xBE44;&#xAD50;&#xD558;&#xAE30; &#xC704;&#xD574; <code>strcpy()</code>&#xB85C; <code>pwd_decoded</code> &#xC5D0;&#xC11C; <code>password_copy_input</code>&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB54C; &#xC774;&#xC804; &#xC624;&#xBC84;&#xD50C;&#xB85C; &#xCDE8;&#xC57D;&#xC810;&#xC73C;&#xB85C; &#xC778;&#xD574; 192 bytes &#xD06C;&#xAE30;&#xC758; &#xB370;&#xC774;&#xD130;&#xAC00; &#xC788;&#xB294; <code>pwd_decoded</code>&#xC5D0;&#xC11C; &#xBCF5;&#xC0AC;&#xD558;&#xACE0; &#xC774;&#xB294; <code>check_login()</code>&#xC758; &#xBC18;&#xD658; &#xC8FC;&#xC18C;&#xB97C; &#xB36E;&#xC5B4; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -268,9 +270,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
-                  
                   <a class="hover-with-bg" href="/tags/bof/">bof</a>
+                  
+                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   
                   <a class="hover-with-bg" href="/tags/buffer-overflow/">buffer overflow</a>
                   

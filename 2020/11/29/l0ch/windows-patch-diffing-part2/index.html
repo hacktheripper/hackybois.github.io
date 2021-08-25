@@ -243,28 +243,23 @@
               <p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694; &#xC5EC;&#xB7EC;&#xBD84;! L0ch&#xC785;&#xB2C8;&#xB2E4;. &#xC9C0;&#xB09C; Windows Patch Diffing&#xAE00;&#xC758; &#xBD84;&#xB7C9; &#xC870;&#xC808; &#xC2E4;&#xD328;&#xB85C; &#xD30C;&#xD2B8; 1&#xC5D0; &#xC774;&#xC5B4; &#xD30C;&#xD2B8; 2&#xB85C; &#xB3CC;&#xC544;&#xC654;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
 <p><a href="https://hackyboiz.github.io/2020/11/15/l0ch/windows-patch-diffing-part1/">[Research]WIndows Patch Diffing &#xB9DB;&#xBCF4;&#xAE30; Part 1</a></p>
 <p>&#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xD328;&#xD0A4;&#xC9C0; &#xCD94;&#xCD9C;&#xB3C4; &#xD588;&#xC73C;&#xB2C8; &#xC774;&#xC81C; &#xC9C4;&#xC9DC; &#xD328;&#xCE58; diffing&#xC744; &#xC2DC;&#xC791;&#x2026;&#xD558;&#xAE30; &#xC804;&#xC5D0;! &#xD574;&#xC57C; &#xD560;&#xAC8C; &#xD55C; &#xAC00;&#xC9C0; &#xB354; &#xB0A8;&#xC544;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/1.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/1.png" srcset="/img/loading.gif"></p>
 <blockquote>
 <p>&#xC544;&#xB2C8; &#xADF8;&#xB7FC; diffing&#xC740; &#xB300;&#xCCB4; &#xC5B8;&#xC81C; &#xD568;?</p>
 </blockquote>
 <p>&#xC708;&#xB3C4;&#xC6B0;&#xC5D0;&#xC11C; &#xD328;&#xCE58;&#xB97C; &#xD560; &#xB54C; &#xC5B4;&#xB5A4; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xD558;&#xB294;&#xC9C0;&#xB97C; &#xBA3C;&#xC800; &#xC54C;&#xC544;&#xBD10;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB798;&#xC57C; diffing &#xD560; &#xBC84;&#xC804; &#xBCC4; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xC5B4;&#xC694; &#x314E;&#x314E;</p>
 <h1 id="&#xD328;&#xCE58;-&#xD30C;&#xC77C;-&#xC720;&#xD615;"><a href="#&#xD328;&#xCE58;-&#xD30C;&#xC77C;-&#xC720;&#xD615;" class="headerlink" title="&#xD328;&#xCE58; &#xD30C;&#xC77C; &#xC720;&#xD615;"></a>&#xD328;&#xCE58; &#xD30C;&#xC77C; &#xC720;&#xD615;</h1><p>&#xC774;&#xC804; &#xAE00;&#xC5D0;&#xC11C; &#xCD94;&#xCD9C;&#xD55C; null, forward, reverse differential&#xC5D0; &#xB300;&#xD574; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; &#xC0B4;&#xD3B4;&#xBD24;&#xC5C8;&#xC8E0;. &#xC774; diff &#xC720;&#xD615;&#xC758; &#xD30C;&#xC77C;&#xB4E4;&#xC740; diffing &#xD560; &#xBC84;&#xC804;&#xBCC4; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; &#xB370; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC740; &#xC5ED;&#xD560;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
-<li><p>Forward diff</p>
-<ul>
+<li>Forward diff<ul>
 <li>&#xAE30;&#xBCF8; &#xBC14;&#xC774;&#xB108;&#xB9AC; (.1)&#xB97C; &#xD2B9;&#xC815; &#xD328;&#xCE58; &#xC218;&#xC900;&#xAE4C;&#xC9C0; &#xAC00;&#xC838;&#xC635;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
-<li><p>Reverse diff</p>
-<ul>
+<li>Reverse diff<ul>
 <li>&#xD328;&#xCE58;&#xAC00; &#xC801;&#xC6A9;&#xB41C; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xAE30;&#xBCF8; &#xBC14;&#xC774;&#xB108;&#xB9AC; (.1)&#xB85C; &#xB864;&#xBC31;&#xD569;&#xB2C8;&#xB2E4;.</li>
 </ul>
 </li>
-<li><p>NULL diff</p>
-<ul>
-<li><p>&#xD328;&#xCE58;&#xC5D0;&#xC11C; &#xC0C8; &#xD30C;&#xC77C;&#xC774; &#xCD94;&#xAC00;&#xB420; &#xACBD;&#xC6B0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p>
-<p>&lt;/br&gt;</p>
-</li>
+<li>NULL diff<ul>
+<li>&#xD328;&#xCE58;&#xC5D0;&#xC11C; &#xC0C8; &#xD30C;&#xC77C;&#xC774; &#xCD94;&#xAC00;&#xB420; &#xACBD;&#xC6B0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.<br></li>
 </ul>
 </li>
 </ul>
@@ -275,8 +270,7 @@
 </ol>
 <ul>
 <li><p>NULL diff&#xC77C; &#xACBD;&#xC6B0; &#xD328;&#xCE58;&#xD560; &#xACBD;&#xB85C;&#xC5D0; &#xBCF5;&#xC0AC;</p>
-<p>&lt;/br&gt;</p>
-</li>
+<br></li>
 </ul>
 <p>&#xC6B0;&#xB9AC;&#xAC00; diffing &#xD560; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xAD6C;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
@@ -288,7 +282,7 @@
 <h1 id="&#xD328;&#xCE58;-&#xC801;&#xC6A9;"><a href="#&#xD328;&#xCE58;-&#xC801;&#xC6A9;" class="headerlink" title="&#xD328;&#xCE58; &#xC801;&#xC6A9;"></a>&#xD328;&#xCE58; &#xC801;&#xC6A9;</h1><p><code>ntoskrnl.exe</code> &#xC758; &#xBC84;&#xC804; &#xBCC4; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0DD;&#xC131;&#xD574;&#xC11C; diffing &#xD574;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <p>diffing &#xB300;&#xC0C1; &#xC120;&#xC815;&#xC740; &#xCDE8;&#xC57D;&#xC810; &#xC815;&#xBCF4;&#xC640; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58; &#xB9B4;&#xB9AC;&#xC988; &#xBC84;&#xC804;&#xC744; &#xBCF4;&#xACE0; &#xD310;&#xB2E8;&#xD558;&#xBA74; &#xB418;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>powershell&#xC5D0;&#xC11C; &#xB2E4;&#xC74C; &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC785;&#xB825;&#xD558;&#xBA74; WinSxS&#xC5D0; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xB41C; &#xBC84;&#xC804;&#xBCC4; differential &#xD30C;&#xC77C;&#xB4E4;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p><code>Get-ChildItem -Recurse C:\windows\WinSxS\ | ? {$_.Name -eq &quot;ntoskrnl.exe&quot;}</code><br><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/2.png" srcset="/img/loading.gif" alt></p>
+<p><code>Get-ChildItem -Recurse C:\windows\WinSxS\ | ? {$_.Name -eq &quot;ntoskrnl.exe&quot;}</code><br><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/2.png" srcset="/img/loading.gif"></p>
 <p>&#xD658;&#xACBD;&#xB9C8;&#xB2E4; &#xB204;&#xC801;&#xB41C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xAC00; &#xB2EC;&#xB77C;&#xC11C; &#xACB0;&#xACFC;&#xB294; &#xB2E4;&#xB97C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.  &#xD604;&#xC7AC; &#xC81C; &#xC708;&#xB3C4;&#xC6B0; &#xC2DC;&#xC2A4;&#xD15C;&#xC758; <code>ntoskrnl.exe</code> &#xBC84;&#xC804;&#xC778; 10.0.18362.1082&#xB97C; &#xAE30;&#xC900;&#xC73C;&#xB85C; &#xC9C4;&#xD589;&#xD574; &#xBCFC;&#xAC8C;&#xC694;.</p>
 <p>&#xD604;&#xC7AC; ntoskrnl.exe &#xBC84;&#xC804; - 10.0.18362.1082</p>
 <p>&#xCD94;&#xCD9C;&#xD55C; ntoskrnl.exe &#xBC84;&#xC804; - 10.0.18362.1016</p>
@@ -404,36 +398,41 @@ gle = windll.kernel32.GetLastError
 
 	print(str(len(args.patches)) + <span class="hljs-string">&quot; pathces successfully applied.&quot;</span>)
 	print(<span class="hljs-string">&quot;hash : &quot;</span> + base64.b64encode(hash.digest()).decode())</code></pre>
+
 <p>&#xC635;&#xC158; &#xBCC4; &#xAE30;&#xB2A5;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>-i :  reverse &#xB610;&#xB294; forward differential &#xD328;&#xCE58; &#xD560; &#xBC14;&#xC774;&#xB108;&#xB9AC; &#xC9C0;&#xC815;</p>
 <p>-n : null differential</p>
 <p>-o : &#xD328;&#xCE58; &#xB41C; &#xACB0;&#xACFC; &#xD30C;&#xC77C; &#xC0DD;&#xC131;</p>
 <p>-p : &#xD328;&#xCE58; diff&#xD30C;&#xC77C; &#xC9C0;&#xC815;</p>
-<p>&lt;/br&gt;</p>
+<br>
+
 <pre><code class="hljs powershell">python delta_patch.py <span class="hljs-literal">-i</span> C:\\Windows\\WinSxS\\amd64...<span class="hljs-number">10.0</span>.<span class="hljs-number">18362.1082</span>\\ntoskrnl.exe ^
 <span class="hljs-literal">-o</span> result_ntoskrnl.exe <span class="hljs-literal">-p</span> C:\\Windows\\WinSxS\\amd64...<span class="hljs-number">10.0</span>.<span class="hljs-number">18362.1082</span>\\r\\ntoskrnl.exe</code></pre>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/3.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/3.png" srcset="/img/loading.gif"></p>
 <p>1082 &#xBC84;&#xC804;&#xC758; <code>ntoskrnl.exe</code>&#xB97C; &#xAC19;&#xC740; &#xBC84;&#xC804;&#xC758; reverse diff &#xD30C;&#xC77C;&#xB85C; &#xD328;&#xCE58;&#xD574; &#xAE30;&#xBCF8; &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xB864;&#xBC31;&#xD55C; &#xACB0;&#xACFC;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC0AC;&#xC9C4;&#xACFC; &#xAC19;&#xC774; successfully applied &#xBA54;&#xC2DC;&#xC9C0;&#xC640; hash &#xAC12;&#xC774; &#xB728;&#xBA74; &#xD328;&#xCE58;&#xAC00; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC9C4; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC788;&#xC5B4;&#xC694;.</p>
-<p>&lt;/br&gt;</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/4.png" srcset="/img/loading.gif" alt></p>
+<br>
+
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/4.png" srcset="/img/loading.gif"></p>
 <p>&#xC18D;&#xC131;&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD574; &#xBCF4;&#xBA74; 10.0.18362.1 &#xAE30;&#xBCF8; &#xBC84;&#xC804;&#xC73C;&#xB85C; &#xB864;&#xBC31;&#xC774; &#xC798; &#xB410;&#xB124;&#xC694;!</p>
 <p>&#xC774;&#xC81C; &#xC6B0;&#xB9AC;&#xAC00; &#xC5C5;&#xB370;&#xC774;&#xD2B8; &#xD328;&#xD0A4;&#xC9C0;&#xC5D0;&#xC11C; &#xCD94;&#xCD9C;&#xD55C; <code>ntoskrnl</code>&#xC758; 1016&#xBC84;&#xC804; forward diff&#xB85C; &#xD328;&#xCE58;&#xB97C; &#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;</p>
-<p>&lt;/br&gt;</p>
+<br>
+
 <pre><code class="hljs powershell">python delta_patch.py <span class="hljs-literal">-i</span> result_ntoskrnl.exe <span class="hljs-literal">-o</span> ntoskrnl_1016.exe ^
 <span class="hljs-literal">-p</span> [<span class="hljs-type">EXTRACTED</span> <span class="hljs-type">PATH</span>]\\amd64_microsoft...<span class="hljs-number">10.0</span>.<span class="hljs-number">18362.1016</span>...\\f\\ntoskrnl.exe</code></pre>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/5.png" srcset="/img/loading.gif" alt></p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/6.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/5.png" srcset="/img/loading.gif"></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/6.png" srcset="/img/loading.gif"></p>
 <p>&#xBC84;&#xC804;&#xC740; 1016&#xC73C;&#xB85C; &#xC798; &#xC62C;&#xB77C;&#xAC04; &#xAC83; &#xAC19;&#xAD70;&#xC694;. hash&#xB3C4; &#xBE44;&#xAD50;&#xD574;&#xBCF4;&#xC8E0;.</p>
-<p>&lt;/br&gt;</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/7.png" srcset="/img/loading.gif" alt></p>
+<br>
+
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/7.png" srcset="/img/loading.gif"></p>
 <p>JUNK&#xC758; ntoskrnl manifest&#xC5D0;&#xC11C; &#xCC38;&#xACE0;&#xD55C; hash&#xB3C4; &#xC77C;&#xCE58;&#xD558;&#xB124;&#xC694;! &#xC774;&#xB85C;&#xC368; &#xD328;&#xCE58; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB85C; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xD328;&#xCE58; &#xB41C; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<h1 id="Binary-Diffing"><a href="#Binary-Diffing" class="headerlink" title="Binary Diffing"></a>Binary Diffing</h1><p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/8.png" srcset="/img/loading.gif" alt></p>
+<h1 id="Binary-Diffing"><a href="#Binary-Diffing" class="headerlink" title="Binary Diffing"></a>Binary Diffing</h1><p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/8.png" srcset="/img/loading.gif"></p>
 <p>(&#xAE00;&#xC744; &#xC4F0;&#xACE0; &#xC788;&#xB294; &#xC9C0;&#xAE08; &#xB0B4; &#xC0C1;&#xD0DC;)</p>
 <p>&#xBC14;&#xC774;&#xB108;&#xB9AC; &#xD328;&#xCE58;&#xAC00; &#xC774;&#xB807;&#xAC8C; &#xD798;&#xB4E4; &#xC77C;&#xC778;&#xAC00;..? &#xACA9;&#xD558;&#xAC8C; &#xC544;&#xBB34;&#xAC83;&#xB3C4; &#xC548;&#xD558;&#xACE0; &#xC2F6;&#xC5B4;&#xC84C;&#xC9C0;&#xB9CC; &#xAE30;&#xC655; &#xC4F0;&#xAE30; &#xC2DC;&#xC791;&#xD55C; &#xAC70; &#xB05D;&#xC740; &#xBD10;&#xC57C; &#xD558;&#xC9C0; &#xC54A;&#xACA0;&#xC2B5;&#xB2C8;&#xAE4C; &#xC73C;&#xC544;&#xC545; &#xBE68;&#xB9AC; &#xB05D;&#xB0B4;&#xACE0; &#xC220; &#xBA39;&#xC73C;&#xB7EC; &#xAC00;&#xC57C;&#xC9C0;</p>
 <p>&#xB9C8;&#xC9C0;&#xB9C9;! diffing tool&#xACFC; &#xBD84;&#xC11D; &#xBC29;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <p>Diffing&#xC740; IDA&#xC5D0;&#xC11C; &#xC9C4;&#xD589;&#xD558;&#xBA70; BinDiff&#xB77C;&#xB294; &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC744; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.  BinDiff&#xB294; &#xBB34;&#xB8CC;&#xB85C; &#xBC30;&#xD3EC;&#xB418;&#xB294; &#xCF54;&#xB4DC; &#xBD84;&#xC11D; IDA &#xD50C;&#xB7EC;&#xADF8;&#xC778;&#xC785;&#xB2C8;&#xB2E4;. &#xC720;&#xBA85;&#xD55C; &#xB9CC;&#xD07C; &#xC131;&#xB2A5; &#xD558;&#xB098;&#xB294; &#xD655;&#xC2E4;&#xD55C; &#xCE5C;&#xAD6C;&#xC8E0;?</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/9.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/9.png" srcset="/img/loading.gif"></p>
 <p>BinDiff&#xB294; &#xC544;&#xB798; &#xB9C1;&#xD06C;&#xC5D0;&#xC11C; &#xC124;&#xCE58;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.zynamics.com/software.html">zynamics.com - Software</a></p>
 <blockquote>
@@ -441,31 +440,35 @@ gle = windll.kernel32.GetLastError
 </blockquote>
 <p>IDA&#xAC00; &#xC124;&#xCE58;&#xB41C; &#xACBD;&#xB85C;&#xB97C; &#xC785;&#xB825;&#xD558;&#xACE0; &#xC124;&#xCE58;&#xD558;&#xBA74; &#xB418;&#xBA70; &#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC124;&#xCE58;&#xAC00; &#xB418;&#xC5C8;&#xB2E4;&#xBA74; IDA&#xC758; Edit &#x2192; Plugins&#xC5D0;&#xC11C; BinDiff&#xB97C; &#xBCF4;&#xC2E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC6B0;&#xC120; 1016, 1082&#xB97C; &#xAC01;&#xAC01; &#xC744; &#xC5F4;&#xACE0; Edit&#x2192;Plugins&#x2192;BinExport10&#xC744; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/10.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/10.png" srcset="/img/loading.gif"></p>
 <p>&#xADF8;&#xB9AC;&#xACE0; BinExport v2 Binary Export&#xB85C; &#xAC01;&#xAC01; Export &#xD574;&#xC8FC;&#xBA74; &#xC900;&#xBE44;&#xB294; &#xB05D;!</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/11.png" srcset="/img/loading.gif" alt></p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/12.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/11.png" srcset="/img/loading.gif"></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/12.png" srcset="/img/loading.gif"></p>
 <p>&#xC774;&#xC81C; BinDiff&#xB97C; &#xC2E4;&#xD589;&#xD574;&#xC11C; Workspace&#xB97C; &#xB9CC;&#xB4E4;&#xACE0; Diff&#x2192;New Diff&#xC5D0;&#xC11C; Export &#xD55C; &#xB450; &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC120;&#xD0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<p>&lt;/br&gt;</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/13.png" srcset="/img/loading.gif" alt></p>
+<br>
+
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/13.png" srcset="/img/loading.gif"></p>
 <p>Export&#xD55C; &#xD30C;&#xC77C;&#xC744; &#xC120;&#xD0DD;&#xD558;&#xACE0; Diff&#xD558;&#xBA74;..!</p>
-<p>&lt;/br&gt;</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/14.png" srcset="/img/loading.gif" alt></p>
+<br>
+
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/14.png" srcset="/img/loading.gif"></p>
 <p>&#xC774;&#xB807;&#xAC8C; Overview&#xB97C; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. Similarity&#xB294; &#xC720;&#xC0AC;&#xB3C4;&#xB97C; &#xB098;&#xD0C0;&#xB0B4;&#xB294;&#xB370;, 1&#xC5D0; &#xAC00;&#xAE4C;&#xC6B8;&#xC218;&#xB85D; &#xCC28;&#xC774;&#xAC00; &#xC5C6;&#xB2E4;&#xB294; &#xB73B;&#xC785;&#xB2C8;&#xB2E4;.</p>
-<p>&lt;/br&gt;</p>
+<br>
+
 <p>&#xC544;&#xB798;&#xB85C; &#xB0B4;&#xB824;&#xBCF4;&#xBA74; Similarity&#xAC00; &#xB0AE;&#xC740; &#xD56D;&#xBAA9;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB294;&#xB370;, &#xC774; &#xC911; &#xD55C; &#xD56D;&#xBAA9;&#xC744; &#xC6B0;&#xD074;&#xB9AD;&#x2192;Open Flow Graph&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74;</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/15.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/15.png" srcset="/img/loading.gif"></p>
 <p>&#xC774;&#xB807;&#xAC8C; &#xADF8;&#xB798;&#xD504;&#xB85C; &#xBCF4;&#xC5EC;&#xC90D;&#xB2C8;&#xB2E4;.  &#xAC01; &#xB178;&#xB4DC; &#xC0C9;&#xBCC4; &#xC758;&#xBBF8;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xCD08;&#xB85D;&#xC0C9; - &#xBCC0;&#xACBD;&#xC810; &#xC5C6;&#xC74C;</p>
 <p>&#xB178;&#xB780;&#xC0C9; - &#xBCC0;&#xACBD;&#xC810; &#xC788;&#xC74C;</p>
 <p>&#xBE68;&#xAC04;&#xC0C9;  - &#xD328;&#xCE58;&#xC5D0; &#xC758;&#xD574; &#xC81C;&#xAC70;&#xB428;</p>
 <p>&#xD68C;&#xC0C9; - &#xD328;&#xCE58;&#xC5D0; &#xC758;&#xD574; &#xCD94;&#xAC00;&#xB428;</p>
 <p>&#xC880; &#xB354; &#xC790;&#xC138;&#xD788; &#xBCFC;&#xAE4C;&#xC694;? &#xBCF4;&#xB824;&#xB294; &#xB178;&#xB4DC;&#xB97C; &#xC120;&#xD0DD;&#xD574;&#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p>&lt;/br&gt;</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/16.png" srcset="/img/loading.gif" alt></p>
+<br>
+
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/16.png" srcset="/img/loading.gif"></p>
 <p>&#xC774;&#xB807;&#xAC8C; &#xC5B4;&#xC148;&#xBE14;&#xB9AC; &#xCF54;&#xB4DC;&#xAE4C;&#xC9C0; &#xBCFC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB7F0; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xBCC0;&#xACBD;&#xC810;&#xC744; &#xD2B8;&#xB808;&#xC774;&#xC2F1;&#xD558;&#xBA74; &#xC5B4;&#xB5A4; &#xBD80;&#xBD84;&#xC774; &#xD328;&#xCE58;&#xB418;&#xC5C8;&#xB294;&#xC9C0; &#xC790;&#xC138;&#xD788; &#xBCFC; &#xC218; &#xC788;&#xACA0;&#xC8E0;!</p>
 <h1 id="&#xB9C8;&#xCE58;&#xBA70;"><a href="#&#xB9C8;&#xCE58;&#xBA70;" class="headerlink" title="&#xB9C8;&#xCE58;&#xBA70;.."></a>&#xB9C8;&#xCE58;&#xBA70;..</h1><p>&#xD328;&#xCE58; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xB9CC;&#xB4E4;&#xC5B4; &#xB480;&#xC73C;&#xB2C8; &#xC6D0;&#xB370;&#xC774; &#xBD84;&#xC11D;&#xD560; &#xB54C; &#xC720;&#xC6A9;&#xD558;&#xAC8C; &#xC4F8; &#xC218; &#xC788;&#xC744; &#xAC83; &#xAC19;&#xB124;&#xC694; &#x314E;&#x314E; &#xC774;&#xC81C; &#xCDE8;&#xC57D;&#xC810;.. &#xCDE8;&#xC57D;&#xC810;&#xB9CC; &#xCC3E;&#xC73C;&#xBA74; &#xB418;&#xB294;&#xB370;&#x2026;.</p>
-<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/17.png" srcset="/img/loading.gif" alt></p>
+<p><img src="/2020/11/29/l0ch/windows-patch-diffing-part2/17.png" srcset="/img/loading.gif"></p>
 <blockquote>
 <p>&#xC544;&#xB9C8; &#xC548;&#xB420;&#xAC70;&#xC57C;..</p>
 </blockquote>
