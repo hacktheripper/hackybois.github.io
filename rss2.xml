@@ -9,8 +9,48 @@
     <atom:link href="https://hackyboiz.github.io/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>hack &amp; life</description>
-    <pubDate>Fri, 03 Sep 2021 05:02:34 GMT</pubDate>
+    <pubDate>Sat, 04 Sep 2021 06:28:58 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>[하루한줄] A deep-dive into the SolarWinds Serv-U SSH vulnerability</title>
+      <link>https://hackyboiz.github.io/2021/09/04/j0ker/2021-09-04/</link>
+      <guid>https://hackyboiz.github.io/2021/09/04/j0ker/2021-09-04/</guid>
+      <pubDate>Sat, 04 Sep 2021 05:00:00 GMT</pubDate>
+      
+        
+        
+      <description>&lt;h2 id=&quot;URL&quot;&gt;&lt;a href=&quot;#URL&quot; class=&quot;headerlink&quot; title=&quot;URL&quot;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://www.microsoft.com/security/blog/2021/09/02/a-deep</description>
+        
+      
+      
+      
+      <content:encoded><![CDATA[<h2 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h2><p><a href="https://www.microsoft.com/security/blog/2021/09/02/a-deep-dive-into-the-solarwinds-serv-u-ssh-vulnerability/">https://www.microsoft.com/security/blog/2021/09/02/a-deep-dive-into-the-solarwinds-serv-u-ssh-vulnerability/</a></p><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><ul><li>SolarWinds Serv-U</li></ul><h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>&#xC774;&#xBC88; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC2E4;&#xC81C;&#xB85C; &#xACF5;&#xACA9;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xC5C8;&#xB358; &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. Microsoft Threat Intelligence Center(MSTIC)&#xC5D0;&#xC11C; &#xC774;&#xB7F0; &#xACF5;&#xACA9; &#xD589;&#xC704;&#xB97C; &#xD3EC;&#xCC29;&#xD558;&#xC600;&#xACE0; &#xC774;&#xC640; &#xAD00;&#xB828;&#xB41C; &#xB370;&#xC774;&#xD130;&#xB97C; Microsoft Offensive Research &amp; Security Engineering team&#xC5D0; &#xB118;&#xACA8; &#xBD84;&#xC11D;&#xD558;&#xACE0; SolarWinds&#xC5D0; &#xBD84;&#xC11D; &#xB0B4;&#xC6A9;&#xC744; &#xC804;&#xB2EC;&#xD558;&#xC600;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xB7F0; &#xC5F0;&#xACC4;&#xC131;&#xC740; &#xC2E0;&#xAE30;&#xD558;&#xB124;&#xC694;. &#xADF8;&#xB9AC;&#xACE0; Microsoft Offensive Research &amp; Security Engineering team&#xC740; &#xB370;&#xC774;&#xD130;&#xB97C; &#xBC1B;&#xC740; &#xD6C4; &#xBC14;&#xB85C; &#xD37C;&#xC800;&#xB97C; &#xC791;&#xC131;&#xD588;&#xB2E4;&#xACE0; &#xD558;&#xB294;&#xB370;&#x2026; &#xC5C4;&#xCCAD;&#xB098;&#xB124;&#xC694;&#x2026;</p><p>&#xC544;&#xBB34;&#xD2BC; &#xCDE8;&#xC57D;&#xC810;&#xC740; Serv-U FTP &#xC11C;&#xBC84;&#xC758; SSH &#xBAA8;&#xB4C8;&#xC5D0;&#xC11C; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC11C;&#xBC84;&#xC5D0;&#xC11C;&#xB294; &#xB8E8;&#xD504;&#xB97C; &#xB3CC;&#xBA70; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8;&#xC5D0;&#xC11C; &#xC804;&#xB2EC;&#xB41C; &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C; &#xBA54;&#xC2DC;&#xC9C0;&#xC5D0;&#xB294; &#xBA54;&#xC2DC;&#xC9C0; ID&#xB3C4; &#xAC19;&#xC774; &#xB4E4;&#xC5B4; &#xC788;&#xB294;&#xB370;, &#xC774;&#xC5D0; &#xB530;&#xB77C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xB8E8;&#xD2F4;&#xC774; &#xB2EC;&#xB77C;&#xC9D1;&#xB2C8;&#xB2E4;.</p><p><img src="https://www.microsoft.com/security/blog/uploads/securityprod/2021/09/Fig6a-Serv-U-SSH-blog.png" alt="https://www.microsoft.com/security/blog/uploads/securityprod/2021/09/Fig6a-Serv-U-SSH-blog.png"></p><p>&#xBA3C;&#xC800; &#xBC84;&#xC804;&#xC744; &#xD655;&#xC778;&#xD558;&#xACE0; &#xC544;&#xB798; &#xBA54;&#xC2DC;&#xC9C0;&#xB4E4;&#xC744; &#xC21C;&#xCC28;&#xC801;&#xC73C;&#xB85C; &#xCC98;&#xB9AC;&#xD569;&#xB2C8;&#xB2E4;. &#xC774; &#xB54C; EVP_EncryptInit_ex &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294;&#xB370;, &#xD568;&#xC218; &#xD504;&#xB85C;&#xD1A0;&#xD0C0;&#xC785;&#xACFC; &#xD638;&#xCD9C;&#xD560; &#xB54C;&#xC758; &#xCF54;&#xB4DC;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">EVP_EncryptInit_ex</span><span class="hljs-params">(EVP_CIPHER_CTX *ctx, <span class="hljs-keyword">const</span> EVP_CIPHER *type,</span></span><span class="hljs-function"><span class="hljs-params">         ENGINE *impl, <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *key, <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> *iv)</span></span>;</code></pre><p><img src="https://www.microsoft.com/security/blog/uploads/securityprod/2021/09/Fig6b-Serv-U-SSH-blog.png" alt="https://www.microsoft.com/security/blog/uploads/securityprod/2021/09/Fig6b-Serv-U-SSH-blog.png"></p><p>&#xC774; &#xB54C;, 4&#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC778; key&#xAC00; NULL&#xB85C; &#xC804;&#xB2EC;&#xC774; &#xB418;&#xB294;&#xB370;, &#xC774;&#xB294; ctx&#xAC00; key&#xAC00; &#xC138;&#xD305;&#xB418;&#xAE30; &#xC804; KEXINIT &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xD578;&#xB4E4;&#xB9C1;&#xD560; &#xB54C; &#xC0DD;&#xC131;&#xC774;&#xB418;&#xAE30;&#xC5D0; &#xC0C1;&#xAD00;&#xC774; &#xC5C6;&#xC9C0;&#xB9CC; ctx&#x2192;cipher_data &#xAD6C;&#xC870;&#xCCB4; &#xC548;&#xC5D0; &#xC800;&#xC7A5;&#xB418;&#xB294; &#xB370;&#xC774;&#xD130;&#xB294; AES key expansion&#xC740;  key expansion&#xC774; &#xBC1C;&#xC0DD;&#xD574;&#xC57C;&#xB9CC; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xC0C1;&#xD0DC;&#xB85C; &#xB0A8;&#xC544;&#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p><p><img src="https://www.microsoft.com/security/blog/uploads/securityprod/2021/09/Fig5a-Serv-U-SSH-blog.png" alt="https://www.microsoft.com/security/blog/uploads/securityprod/2021/09/Fig5a-Serv-U-SSH-blog.png"></p><p>&#xC774;&#xB85C; &#xC778;&#xD574; &#xB370;&#xC774;&#xD130;&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB358; &#xC911; aes_ctr_cipher &#xD568;&#xC218;&#xC5D0;&#xC11C; ctx&#x2192;cipher_data&#xB97C; &#xD558;&#xAC8C; &#xB418;&#xACE0; &#xADF8; &#xC548;&#xC5D0; &#xBA64;&#xBC84; &#xBCC0;&#xC218;&#xB97C; CRYPTO_ctr128_encrypt &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xBC14;&#xB85C; &#xD568;&#xC218; &#xD3EC;&#xC778;&#xD130;&#xB85C; &#xC0AC;&#xC6A9;&#xD558;&#xAC8C; &#xB418;&#xC5B4; rip&#xB97C; &#xBC14;&#xB85C; &#xC81C;&#xC5B4;&#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>]]></content:encoded>
+      
+      
+      <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
+      
+      
+      <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/solarwinds/">solarwinds</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/serv-u/">serv-u</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/ssh/">ssh</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/ftp/">ftp</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/cve-2021-35211/">cve-2021-35211</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/uninitialized-memory/">uninitialized memory</category>
+      
+      
+      <comments>https://hackyboiz.github.io/2021/09/04/j0ker/2021-09-04/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>[해키피디아] Dynamic Link Library</title>
@@ -64,9 +104,9 @@
       
       <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
       
-      <category domain="https://hackyboiz.github.io/tags/uaf/">uaf</category>
-      
       <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/uaf/">uaf</category>
       
       <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
       
@@ -156,9 +196,9 @@
       <category domain="https://hackyboiz.github.io/categories/1day1line/">1day1line</category>
       
       
-      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
-      
       <category domain="https://hackyboiz.github.io/tags/razer/">razer</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
       
       <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
       
@@ -222,13 +262,13 @@
       <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
       
       
-      <category domain="https://hackyboiz.github.io/tags/angr/">angr</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/exploit/">exploit</category>
-      
       <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
       
+      <category domain="https://hackyboiz.github.io/tags/angr/">angr</category>
+      
       <category domain="https://hackyboiz.github.io/tags/symbolic-execution/">symbolic_execution</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/exploit/">exploit</category>
       
       <category domain="https://hackyboiz.github.io/tags/newbie/">newbie</category>
       
@@ -258,9 +298,9 @@
       
       <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
       
-      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
-      
       <category domain="https://hackyboiz.github.io/tags/rce/">rce</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
       
       <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
       
@@ -320,11 +360,11 @@
       <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
       
       
+      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
+      
       <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
       
       <category domain="https://hackyboiz.github.io/tags/fuzzing/">fuzzing</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
       
       <category domain="https://hackyboiz.github.io/tags/harness/">harness</category>
       
@@ -392,9 +432,9 @@
       <category domain="https://hackyboiz.github.io/categories/Translation/">Translation</category>
       
       
-      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
-      
       <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
       
       <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
       
@@ -492,13 +532,13 @@
       <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
       
       
-      <category domain="https://hackyboiz.github.io/tags/angr/">angr</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/exploit/">exploit</category>
-      
       <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
       
+      <category domain="https://hackyboiz.github.io/tags/angr/">angr</category>
+      
       <category domain="https://hackyboiz.github.io/tags/symbolic-execution/">symbolic_execution</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/exploit/">exploit</category>
       
       <category domain="https://hackyboiz.github.io/tags/newbie/">newbie</category>
       
@@ -531,9 +571,9 @@
       
       <category domain="https://hackyboiz.github.io/tags/microsoft/">microsoft</category>
       
-      <category domain="https://hackyboiz.github.io/tags/ssrf/">ssrf</category>
-      
       <category domain="https://hackyboiz.github.io/tags/j0ker/">j0ker</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/ssrf/">ssrf</category>
       
       <category domain="https://hackyboiz.github.io/tags/arbitrary-file-write/">arbitrary_file_write</category>
       
@@ -565,11 +605,11 @@
       <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
       
       
-      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
+      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
       
       <category domain="https://hackyboiz.github.io/tags/kernel/">kernel</category>
       
-      <category domain="https://hackyboiz.github.io/tags/windows/">windows</category>
+      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
       
       <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
       
@@ -609,11 +649,11 @@
       
       <category domain="https://hackyboiz.github.io/tags/cve/">cve</category>
       
-      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
-      
       <category domain="https://hackyboiz.github.io/tags/eop/">eop</category>
       
       <category domain="https://hackyboiz.github.io/tags/intel/">intel</category>
+      
+      <category domain="https://hackyboiz.github.io/tags/lpe/">lpe</category>
       
       <category domain="https://hackyboiz.github.io/tags/L0ch/">L0ch</category>
       
@@ -651,38 +691,6 @@
       
       
       <comments>https://hackyboiz.github.io/2021/08/09/fabu1ous/2021-08-09/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>[Research] 퍼징 교양 수업 fuzz 101 - part1</title>
-      <link>https://hackyboiz.github.io/2021/08/08/fabu1ous/fuzz-1/</link>
-      <guid>https://hackyboiz.github.io/2021/08/08/fabu1ous/fuzz-1/</guid>
-      <pubDate>Sun, 08 Aug 2021 05:00:00 GMT</pubDate>
-      
-        
-        
-      <description>&lt;h1 id=&quot;&amp;#xBA38;&amp;#xB9BF;&amp;#xB9D0;&quot;&gt;&lt;a href=&quot;#&amp;#xBA38;&amp;#xB9BF;&amp;#xB9D0;&quot; class=&quot;headerlink&quot; title=&quot;&amp;#xBA38;&amp;#xB9BF;&amp;#xB9D0;&quot;&gt;&lt;/a&gt;&amp;#xBA38;&amp;#xB9B</description>
-        
-      
-      
-      
-      <content:encoded><![CDATA[<h1 id="&#xBA38;&#xB9BF;&#xB9D0;"><a href="#&#xBA38;&#xB9BF;&#xB9D0;" class="headerlink" title="&#xBA38;&#xB9BF;&#xB9D0;"></a>&#xBA38;&#xB9BF;&#xB9D0;</h1><p><img src="/2021/08/08/fabu1ous/fuzz-1/1.png"></p><p>&#xC548;&#xB155;&#xD558;&#xC138;&#xC694; Fabu1ous&#xC785;&#xB2C8;&#xB2E4;.</p><p>&#xC81C;&#xAC00; &#xCD5C;&#xADFC;&#xC5D0; &#xC62C;&#xB9B0; &#xC5F0;&#xAD6C;&#xAE00;&#xC774; &#xBAA8;&#xB450; &#xD37C;&#xC800;&#xC5D0; &#xB300;&#xD55C; &#xAE00;&#xC774;&#xC5C8;&#xC8E0;? &#xD37C;&#xC9D5;&#xC758; &#xAC1C;&#xB150;&#xC740; &#xB9E4;&#xC6B0; &#xB2E8;&#xC21C;&#xD574;&#xC11C; &#xCDE8;&#xC57D;&#xC810; &#xD0D0;&#xC0C9; &#xAE30;&#xC220; &#xC911; &#xB192;&#xC740; &#xC778;&#xAE30;&#xB97C; &#xC720;&#xC9C0; &#xC911;&#xC774;&#xBA70; &#xAFB8;&#xC900;&#xD788; &#xC5F0;&#xAD6C;&#xB418;&#xB294; &#xBD84;&#xC57C;&#xC785;&#xB2C8;&#xB2E4;. &#xBB3C;&#xB860; &#xAC1C;&#xB150;&#xB9CC; &#xB2E8;&#xC21C;&#xD560; &#xBFD0; &#xD37C;&#xC9D5;&#xC758; &#xD6A8;&#xC728; &#xD5A5;&#xC0C1;&#xC744; &#xC704;&#xD55C; &#xC5F0;&#xAD6C;&#xB4E4;&#xC744; &#xD558;&#xB098;&#xD558;&#xB098; &#xC0B4;&#xD3B4;&#xBCF8;&#xB2E4;&#xBA74; &#xB300;&#xB2E8;&#xD788; &#xBC29;&#xB300;&#xD558;&#xACE0; &#xC5B4;&#xB835;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB7EC;&#xD55C; &#xD37C;&#xC9D5; &#xBD84;&#xC57C;&#xC758; &#xACF5;&#xBD80;&#xB97C; &#xC2DC;&#xC791;&#xD558;&#xAE30; &#xC704;&#xD574; &#xB531; &#xC54C;&#xB9DE;&#xC740; &#xB17C;&#xBB38;&#xC774; &#xC788;&#xC5B4; &#xACF5;&#xBD80;&#xD558;&#xACE0; &#xC815;&#xB9AC;&#xD574;&#xBD24;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xBC88; &#xD30C;&#xD2B8;&#xC5D0;&#xC120; &#xD37C;&#xC9D5;&#xC758; &#xAE30;&#xBCF8; &#xAC1C;&#xB150;&#xACFC; &#xC6A9;&#xC5B4;, &#xADF8;&#xB9AC;&#xACE0; &#xD37C;&#xC800;&#xC758; &#xBD84;&#xB958;&#xC5D0; &#xB300;&#xD574; &#xC815;&#xB9AC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><a href="https://arxiv.org/pdf/1812.00140.pdf">https://arxiv.org/pdf/1812.00140.pdf</a></p><h1 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h1><p>1990&#xB144;&#xB300; fuzzing&#xC774;&#xB77C;&#xB294; &#xC6A9;&#xC5B4;&#xAC00; &#xCC98;&#xC74C; &#xC0AC;&#xC6A9;&#xB41C; &#xC774;&#xD6C4;, &#xD37C;&#xC9D5;&#xC740; exploit generation&#xACFC; penetration testing &#xB4F1; &#xB2E4;&#xC591;&#xD55C; &#xCDE8;&#xC57D;&#xC810; &#xD0D0;&#xC0C9;&#xBC95;&#xC5D0; &#xC801;&#xC6A9;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB2E8;&#xC21C;&#xD788; Attacker&#xC758; &#xC785;&#xC7A5;&#xC5D0;&#xC11C;&#xB9CC;&#xC774; &#xC544;&#xB2C8;&#xB77C; Defender&#xC758; &#xC785;&#xC7A5;&#xC5D0;&#xC11C; &#xAC1C;&#xBC1C; &#xB2E8;&#xACC4;&#xBD80;&#xD130; &#xD37C;&#xC9D5;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;&#xB3C4; &#xD569;&#xB2C8;&#xB2E4;. &#xD604;&#xC7AC; &#xD37C;&#xC9D5; &#xCEE4;&#xBBA4;&#xB2C8;&#xD2F0;&#xB294; &#xC815;&#xB9D0; &#xBC29;&#xB300;&#xD55C;&#xB370;, &#xAE43;&#xD5D9;&#xC5D0;&#xB9CC; &#xD37C;&#xC9D5;&#xC5D0; &#xB300;&#xD55C; &#xD37C;&#xBE14;&#xB9AD; &#xB808;&#xD3EC;&#xAC00; &#xCC9C; &#xAC1C; &#xC774;&#xC0C1; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/08/08/fabu1ous/fuzz-1/2.png"></p><p>&#xC774;&#xB807;&#xAC8C; &#xBC29;&#xB300;&#xD55C; &#xBD84;&#xC57C;&#xB97C; &#xD558;&#xB098;&#xD558;&#xB098; &#xB530;&#xB77C;&#xAC00;&#xAE30; &#xC27D;&#xC9C0; &#xC54A;&#xC744;&#xBFD0;&#xB354;&#xB7EC; &#xAC01; &#xD37C;&#xC800;&#xC5D0;&#xC11C; &#xC0C8;&#xB85C; &#xCD94;&#xAC00;&#xB418;&#xAC70;&#xB098; &#xD5A5;&#xC0C1;&#xB41C; &#xAE30;&#xB2A5; &#xB4F1;&#xC744; &#xB73B;&#xD558;&#xB294; &#xC6A9;&#xC5B4;&#xB4E4;&#xC774; &#xD558;&#xB098;&#xB85C; &#xD655;&#xB9BD;&#xB418;&#xC5B4; &#xC788;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xC608;&#xB97C; &#xB4E4;&#xBA74; AFL&#xC758; &#x201C;test case minimization&#x201D;&#xACFC; funfuzz&#xC758; &#x201C;test case reduction&#x201D;&#xC758; &#xACBD;&#xC6B0; &#xAC19;&#xC740; &#xB3D9;&#xC791;&#xC744; &#xC11C;&#xB85C; &#xB2E4;&#xB974;&#xAC8C; &#xBD80;&#xB974;&#xACE0; &#xC788;&#xC8E0;. &#xB610;&#xD55C; BFF&#xC758; &#x201C;crash minimization&#x201D;&#xACFC; &#xAC19;&#xC774; &#xC774;&#xB984;&#xC740; &#xBE44;&#xC2B7;&#xD558;&#xC9C0;&#xB9CC; &#xB3D9;&#xC791;&#xC774; &#xC804;&#xD600; &#xB2E4;&#xB978; &#xACBD;&#xC6B0;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>&#xC7A5;&#xAE30;&#xC801;&#xC73C;&#xB85C; &#xBCFC; &#xB54C; &#xC774;&#xB7F0; &#xD604;&#xC0C1;&#xC740; &#xD37C;&#xC9D5; &#xC5F0;&#xAD6C;&#xC758; &#xC7A5;&#xC560;&#xBB3C;&#xC774; &#xB420; &#xAC83;&#xC774;&#xB77C; &#xC0DD;&#xAC01;&#xD574;, &#xBCF8; &#xB17C;&#xBB38;&#xC744; &#xD1B5;&#xD574; &#xD37C;&#xC9D5;&#xC744; &#xBD84;&#xB958;&#xD558;&#xACE0; &#xD1B5;&#xC77C;&#xB41C; &#xBAA8;&#xB378;&#xC744; &#xC81C;&#xC2DC;&#xD569;&#xB2C8;&#xB2E4;.</p><h1 id="2-Systemization-Taxonomy-Test-Programs"><a href="#2-Systemization-Taxonomy-Test-Programs" class="headerlink" title="2. Systemization, Taxonomy, Test Programs"></a>2. Systemization, Taxonomy, Test Programs</h1><p><img src="/2021/08/08/fabu1ous/fuzz-1/3.png"></p><blockquote><p>generates a stream of random characters to be consumed by a target program</p><p>-Miller-</p></blockquote><p>&#x201C;fuzz&#x201D;&#xB77C;&#xB294; &#xB2E8;&#xC5B4;&#xB294; 1990&#xB144; &#xCC98;&#xC74C; &#xC704;&#xC640; &#xAC19;&#xC740; &#xC758;&#xBBF8;&#xB85C; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4;&#xB85C; fuzz&#xC640; fuzzing&#xC758; &#xAC1C;&#xB150; &#xBC0F; &#xB3D9;&#xC791;&#xC774; &#xC11C;&#xB85C; &#xB2E4;&#xB978; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xD30C;&#xC0DD;&#xB418;&#xC5B4; &#xD63C;&#xC6A9;&#xB418;&#xACE0; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <s>&#xC77C;&#xB809;&#xAE30;&#xD0C0; &#xC774;&#xD399;&#xD130; &#xD398;&#xB2EC;&#xC911;&#xC5D0; fuzz&#xB77C;&#xB294; &#xB188;&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</s></p><ul><li><p>dynamic symbolic execution</p></li><li><p>grammarbased test case generation</p></li><li><p>permission testing</p></li><li><p>behavioral testing</p></li><li><p>complexity testing</p></li><li><p>kernel testing</p></li><li><p>representation dependence testing</p></li><li><p>function detection</p></li><li><p>robustness evaluation</p></li><li><p>exploit development</p></li><li><p>GUI testing</p></li><li><p>signature generation</p></li><li><p>penetration testing</p></li></ul><h2 id="2-1-fuzzing-amp-fuzz-testing"><a href="#2-1-fuzzing-amp-fuzz-testing" class="headerlink" title="2.1 fuzzing &amp; fuzz testing"></a>2.1 fuzzing &amp; fuzz testing</h2><p>&#xB530;&#xB77C;&#xC11C; &#xC880; &#xB354; &#xCCB4;&#xACC4;&#xC801;&#xC73C;&#xB85C; &#xC815;&#xB9AC;&#xD558;&#xAE30; &#xC704;&#xD574; &#xC6A9;&#xC5B4;&#xB97C; &#xBA3C;&#xC800; &#xC815;&#xC758;&#xD569;&#xC2DC;&#xB2E4;.</p><p>&#xD37C;&#xC9D5; &#xB3D9;&#xC791;&#xC774;&#xB780; &#x201C;fuzz input&#x201D;&#xC744; &#xC0AC;&#xC6A9;&#xD574; PUT(Program Under Test)&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC774;&#xACE0;, &#x201C;fuzz input&#x201D;&#xC774;&#xB780; PUT&#xAC00; &#xC608;&#xC0C1;&#xD558;&#xC9C0; &#xBABB;&#xD560; input&#xC744; &#xB73B;&#xD569;&#xB2C8;&#xB2E4;. PUT&#xC774; &#xC798;&#xBABB; &#xCC98;&#xB9AC;&#xD558;&#xB294; input &#xD639;&#xC740; &#xAC1C;&#xBC1C; &#xC758;&#xB3C4;&#xC640;&#xB294; &#xB2E4;&#xB978; &#xD589;&#xB3D9;&#xC744; &#xBCF4;&#xC774;&#xB294; input&#xC744; &#xB123;&#xC5B4; PUT&#xC744; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAC83;&#xC774;&#xB77C;&#xACE0; &#xD574;&#xC11D;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; &#xD1B5;&#xD574; fuzzing&#xC744; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC815;&#xC758;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><blockquote><p>Definition 1 (Fuzzing) Fuzzing is the execution of the PUT using input(s) sampled from an input space (the &#x201C;fuzz input space&#x201D;) that protrudes the expected input space of the PUT.<br>fuzzing&#xC774;&#xB780; PUT&#xC758; &#xC608;&#xC0C1; &#xAC00;&#xB2A5; &#xC785;&#xB825; &#xACF5;&#xAC04;&#xC744; &#xCD08;&#xACFC;&#xD55C; &#xC785;&#xB825; &#xACF5;&#xAC04;(fuzz &#xC785;&#xB825; &#xACF5;&#xAC04;) &#xC911;&#xC5D0;&#xC11C; &#xC120;&#xBCC4;&#xB41C; &#xC785;&#xB825;&#xC744; PUT&#xC5D0; &#xB123;&#xC5B4; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xAC83;</p></blockquote><p><img src="/2021/08/08/fabu1ous/fuzz-1/4.png"></p><ol><li>fuzz input space&#xAC00; expected input space&#xB97C; &#xD3EC;&#xD568; &#xAC00;&#xB2A5;</li><li>&#xBC18;&#xBCF5; &#xC2E4;&#xD589;&#xC740; fuzzing&#xC758; &#xD544;&#xC218;&#xC870;&#xAC74;&#xACFC; &#xAC19;&#xC73C;&#xB2C8; &#xAD73;&#xC774; &#xC815;&#xC758;&#xD560; &#xD544;&#xC694;&#xB294; &#xC5C6;&#xB2E4;.(= &#xBC18;&#xBCF5; &#xC2E4;&#xD589;&#xC774; &#xC544;&#xB2C8;&#xC5B4;&#xB3C4; &#xD37C;&#xC9D5;&#xC774;&#xB77C; &#xBD80;&#xB97C; &#xC218; &#xC788;&#xB2E4;)</li><li>sampling &#xC791;&#xC5C5;&#xC740; &#xAF2D; &#xB79C;&#xB364; &#xD558;&#xC9C0; &#xC54A;&#xB2E4;. (= &#xAF2D; &#xB79C;&#xB364; &#xC778;&#xD48B;&#xC744; &#xB123;&#xB294; &#xAC83;&#xC740; &#xC544;&#xB2C8;&#xB2E4;)</li></ol><p>Fuzz testing&#xC744; fuzzing &#xAE30;&#xC220;&#xC744; &#xC0AC;&#xC6A9;&#xD55C; &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; &#xAC80;&#xC0AC; &#xAE30;&#xC220;&#xC774;&#xB77C;&#xACE0; &#xC815;&#xC758;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC18C;&#xD504;&#xD2B8;&#xC6E8;&#xC5B4; &#xAC80;&#xC0AC; &#xAE30;&#xC220;&#xACFC; fuzzing&#xC758; &#xAC00;&#xC7A5; &#xD070; &#xCC28;&#xBCC4;&#xC810;&#xC740; &#xBC14;&#xB85C; &#xBAA9;&#xC801;&#xC131;&#xC785;&#xB2C8;&#xB2E4;. fuzzing&#xC758; &#xC8FC;&#xC694; &#xBAA9;&#xC801;&#xC740; crash&#xC640; &#xAC19;&#xC740; &#xBCF4;&#xC548; &#xAD00;&#xB828; &#xBC84;&#xADF8; &#xD0D0;&#xC0C9;&#xC774;&#xBBC0;&#xB85C; &#xBE44;&#xC2B7;&#xD55C; &#xB3D9;&#xC791;&#xC744; &#xD558;&#xC9C0;&#xB9CC; &#xBAA9;&#xC801;&#xC774; &#xB2E4;&#xB978; &#xAE30;&#xC220;&#xB4E4;&#xACFC; &#xAD6C;&#xBD84;&#xD558;&#xACE0; &#xAC15;&#xC870;&#xD558;&#xAE30; &#xC704;&#xD574; fuzz testing, fuzzer, fuzz campaign&#xC774;&#xB77C;&#xB294; &#xC6A9;&#xC5B4;&#xB97C; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xC815;&#xC758;&#xD569;&#xB2C8;&#xB2E4;.</p><blockquote><p>Definition 2 (Fuzz Testing) Fuzz testing is the use of fuzzing to test if a PUT violates a security policy.<br>fuzz testing&#xC774;&#xB780; fuzzing &#xAE30;&#xC220;&#xC744; &#xC0AC;&#xC6A9;&#xD574; PUT&#xAC00; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC5D0; &#xC5B4;&#xAE0B;&#xB098;&#xB294;&#xC9C0; &#xAC80;&#xC0AC;&#xD558;&#xB294; &#xAC83;</p></blockquote><blockquote><p>Definition 3 (Fuzzer) A fuzzer is a program that performs fuzz testing on a PUT. fuzzer&#xB780; PUT&#xC5D0; fuzz testing&#xC744; &#xC218;&#xD589;&#xD558;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8;</p></blockquote><blockquote><p>Definition 4 (Fuzz Campaign) A fuzz campaign is a specific execution of a fuzzer on a PUT with a specific security policy.<br>fuzz campaign&#xC774;&#xB780; &#xD2B9;&#xC815; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC744; &#xAC16;&#xB294; PUT&#xC5D0; &#xB300;&#xD55C; fuzzer&#xC758; &#xD2B9;&#xC815; &#xC2E4;&#xD589;</p></blockquote><p>&#xCD08;&#xCC3D;&#xAE30; &#xD37C;&#xC800;&#xB4E4;&#xC740; test case&#xAC00; PUT&#xC758; crash&#xB97C; &#xBC1C;&#xC0DD;&#xC2DC;&#xD0A4;&#xB294;&#xC9C0;&#xB9CC;&#xC744; &#xAC80;&#xC0AC;&#xD588;&#xC2B5;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; fuzz testing&#xC740; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xB3D9;&#xC548; &#xAD00;&#xCE21;&#xD560; &#xC218; &#xC788;&#xB294; &#xBAA8;&#xB4E0; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC744; &#xAC80;&#xC0AC;&#xD560; &#xC218; &#xC788;&#xACE0; &#xD2B9;&#xC815; &#xC2E4;&#xD589;&#xC774; &#xBCF4;&#xC548;&#xC815;&#xCC45;&#xC5D0; &#xC5B4;&#xAE0B;&#xB098;&#xB294;&#xC9C0; &#xD655;&#xC778;&#xD558;&#xB294; &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC744; Bug Oracle&#xC774;&#xB77C; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;.</p><blockquote><p>Definition 5 (Bug Oracle) A bug oracle is a program, perhaps as part of a fuzzer, that determines whether a given execution of the PUT violates a specific security policy.<br>Bug Oracle&#xC774;&#xB780; &#xC81C;&#xACF5;&#xB41C; PUT&#xC758; &#xC2E4;&#xD589;&#xC774; &#xD2B9;&#xC815; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC5D0; &#xC5B4;&#xAE0B;&#xB098;&#xB294;&#xC9C0; &#xAD6C;&#xBD84;&#xD558;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8;</p></blockquote><p>fuzz algorithm&#xC740; fuzzer&#xC5D0; &#xAD6C;&#xD604;&#xB41C; &#xC54C;&#xACE0;&#xB9AC;&#xC998;&#xC73C;&#xB85C; PUT&#xC758; &#xBA87; &#xAC00;&#xC9C0; parameter&#xB4E4;&#xC5D0; &#xC758;&#xC874;&#xD558;&#xBA70; &#xADF8; parameter&#xB4E4;&#xC5D0; &#xB300;&#xD55C; &#xC124;&#xC815;&#xC744; fuzz configuration&#xC774;&#xB77C; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;.</p><blockquote><p>Definition 6 (Fuzz Configuration) A fuzz configuration of a fuzz algorithm comprises the parameter value(s) that control(s) the fuzz algorithm.<br>Fuzz algorithm&#xC758; Fuzz configuration&#xC740; fuzz algorithm&#xC744; &#xC81C;&#xC5B4;&#xD558;&#xB294; parameter&#xAC12;&#xB4E4;&#xB85C; &#xC774;&#xB8E8;&#xC5B4;&#xC838; &#xC788;&#xB2E4;.</p></blockquote><p>&#xC989;, fuzz configuration&#xC740; fuzz algorithm &#xC885;&#xB958;&#xC5D0; &#xB530;&#xB77C; &#xB2EC;&#xB77C;&#xC9D1;&#xB2C8;&#xB2E4;. fuzz configuration&#xC744; fuzzing&#xC774; &#xC9C4;&#xD589;&#xB428;&#xC5D0; &#xB530;&#xB77C; &#xBC1C;&#xC804;&#xC2DC;&#xD0A4;&#xB294; fuzzer&#xAC00; &#xC788;&#xB294; &#xBC18;&#xBA74;, fuzz configuration&#xC744; &#xCC98;&#xC74C;&#xBD80;&#xD130; &#xB05D;&#xAE4C;&#xC9C0; &#xB3D9;&#xC77C;&#xD55C; &#xB0B4;&#xC6A9;&#xC73C;&#xB85C; &#xC720;&#xC9C0;&#xD558;&#xB294; fuzzer&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>seed&#xB780; test case&#xB97C; &#xB9CC;&#xB4E4;&#xAE30; &#xC704;&#xD574; &#xC0AC;&#xC6A9;&#xB418;&#xB294; PUT&#xC758; input&#xC785;&#xB2C8;&#xB2E4;. fuzzer&#xB4E4;&#xC740; &#xB300;&#xAC1C; &#xC5EC;&#xB7EC; seed(seed pool)&#xB97C; &#xAC16;&#xACE0; &#xC788;&#xACE0; fuzz campaign&#xC774; &#xC9C4;&#xD589;&#xB418;&#xB294; &#xB3D9;&#xC548; &#xBCC0;&#xD654;&#xB97C; &#xC8FC;&#xB294; &#xC54C;&#xACE0;&#xB9AC;&#xC998;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30;&#xB3C4; &#xD569;&#xB2C8;&#xB2E4;.</p><p>&#xB610;&#xD55C; coverage-guided fuzzer&#xB4E4;&#xC740; coverage&#xB77C;&#xACE0; &#xD558;&#xB294; &#xC2E4;&#xD589; &#xC815;&#xBCF4;&#xB97C; &#xC800;&#xC7A5;&#xD574; &#xAC01; configuration&#xC758; &#xBC1C;&#xC804;&#xC744; &#xAE30;&#xB85D;&#xD569;&#xB2C8;&#xB2E4;.</p><h2 id="2-3-Fuzz-testing-algorithm"><a href="#2-3-Fuzz-testing-algorithm" class="headerlink" title="2.3 Fuzz testing algorithm"></a>2.3 Fuzz testing algorithm</h2><p><img src="/2021/08/08/fabu1ous/fuzz-1/5.png"></p><p>&#xC704; &#xC0AC;&#xC9C4;&#xC740; fuzz testing&#xC758; &#xBCF4;&#xD3B8;&#xC801;&#xC778; &#xC54C;&#xACE0;&#xB9AC;&#xC998;&#xC744; &#xC758;&#xC0AC; &#xCF54;&#xB4DC;&#xB85C; &#xC791;&#xC131;&#xD55C; &#xAC83;&#xC785;&#xB2C8;&#xB2E4;. Black-box, Grey-box, White-box&#xC758; &#xAE30;&#xCD08;&#xAC00; &#xB418;&#xB294; &#xCF54;&#xB4DC;&#xC774;&#xBA70; &#xB450;&#xAC1C;&#xC758; &#xAD6C;&#xC131;&#xC73C;&#xB85C; &#xB098;&#xB20C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><ol><li>Preprocess&#xB294; fuzz campaign&#xC758; &#xC2DC;&#xC791;&#xC73C;&#xB85C; &#x201C;&#xC804;&#xCC98;&#xB9AC;&#x201D; &#xB2E8;&#xACC4;&#xB77C; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;.</li><li>5&#xAC1C;&#xC758; &#xD568;&#xC218;&#xB97C; &#xB8E8;&#xD504;&#xB85C; &#xC2E4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.<ul><li>Schedule, InputGen, InputEval, ConfUpdate, Continue</li><li>&#xD55C; &#xBC88;&#xC758; &#xB8E8;&#xD504; &#xC2E4;&#xD589;&#xC744; fuzz iteration&#xC774;&#xB77C; &#xBD80;&#xB984;</li><li>InputEval &#xB2E8;&#xACC4;&#xC5D0;&#xC11C; &#xC2E4;&#xC81C;&#xB85C; PUT&#xC774; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xAC83;&#xC744; fuzz run&#xC774;&#xB77C; &#xBD80;&#xB984;</li></ul></li></ol><p>&#xC704;&#xC5D0;&#xC11C; &#xC5B8;&#xAE09;&#xD55C; &#xB300;&#xB85C; ConfUpdate &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD558;&#xC9C0; &#xC54A;&#xB294; fuzzer&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB4EF; &#xD574;&#xB2F9; 5&#xB2E8;&#xACC4; &#xC911; &#xC77C;&#xBD80;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC9C0; &#xC54A;&#xB294; fuzzer&#xB3C4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><ul><li><p>Preprocess(C) &#x2192; C</p><p>Preprocess &#xB2E8;&#xACC4;&#xB294; fuzz configuration&#xC744; input&#xC73C;&#xB85C; &#xBC1B;&#xC544; &#xC218;&#xC815;&#xD558;&#xACE0; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. fuzz algorithm&#xB9C8;&#xB2E4; &#xB2E4;&#xB978; &#xB3D9;&#xC791;&#xC744; &#xD558;&#xBA70; PUT&#xC5D0; Instrumentaion code&#xB97C; &#xC0BD;&#xC785;&#xD558;&#xAC70;&#xB098; seed file&#xC758; &#xC2E4;&#xD589; &#xC18D;&#xB3C4;&#xB97C; &#xCE21;&#xC815;&#xD558;&#xB294; &#xB4F1;&#xC758; &#xC791;&#xC5C5;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p></li><li><p>Schedule(C, t_elapsed, t_limit) &#x2192; conf</p><p>&#xD604;&#xC7AC; set of fuzz configuration(C), current time(t_elapesed), timeout(t_limit)&#xC744; &#xC778;&#xD48B;&#xC73C;&#xB85C; &#xBC1B;&#xC544; &#xD604;&#xC7AC; iteration&#xC5D0; &#xC801;&#xC6A9;&#xC2DC;&#xD0AC; configuration(conf)&#xC744; &#xC120;&#xD0DD;&#xD569;&#xB2C8;&#xB2E4;.</p></li><li><p>InputGen(conf) &#x2192; tcs</p><p>fuzz configuration(conf)&#xC744; input&#xC73C;&#xB85C; &#xBC1B;&#xC544; teset cases(tcs)&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. InputGen&#xC740; conf&#xC758; &#xD2B9;&#xC815;&#xD55C; parameter&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xBA70; conf&#xC18D; seed&#xB97C; &#xC0AC;&#xC6A9;&#xD574; input&#xC744; &#xC0DD;&#xC131;&#xD558;&#xAC70;&#xB098; model &#xD639;&#xC740; &#xBB38;&#xBC95;&#xC744; parameter&#xB85C; &#xC0AC;&#xC6A9;&#xD569;&#xB2C8;&#xB2E4;.</p></li><li><p>InputEval(conf, tsc, Obug) &#x2192; B&#x2019;, execinfo</p><p>fuzz configuration(conf)&#xACFC; teset cases(tcs), bug oracle(Obug)&#xC744; input&#xC73C;&#xB85C; &#xBC1B;&#xC544; tcs&#xAC00; PUT&#xC758; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC5D0; &#xC5B4;&#xAE0B;&#xB098;&#xB294; &#xD589;&#xB3D9;&#xC744; &#xC720;&#xBC1C;&#xD558;&#xB294;&#xC9C0; &#xAC80;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. set of bug(B&#x2019;)&#xC640; &#xAC01; fuzz run&#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4;(execinfo)&#xB97C; &#xBC18;&#xD658;&#xD558;&#xBA70; execinfo&#xB294; fuzz configuration update&#xC5D0; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;.</p></li><li><p>ConfUpdate(C, conf, execinfo) &#x2192; C</p><p>set of fuzz configuration(C), current configuration(conf), info of fuzz run(execinfo)&#xB97C; &#xC778;&#xD48B;&#xC73C;&#xB85C; &#xBC1B;&#xC74C; set of fuzz configuration(C)&#xC744; &#xC218;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. &#xB9CE;&#xC740; gray-box fuzzer&#xB4E4;&#xC740; execinfo&#xB97C; &#xD1B5;&#xD574; set of fuzz configuration(C)&#xC758; &#xAC1C;&#xC218;&#xB97C; &#xC904;&#xC774;&#xB294; &#xC791;&#xC5C5;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p></li><li><p>Continue(C) &#x2192; {True, False}</p><p>set of fuzz configuration(C) C&#xB97C; &#xBC1B;&#xC544; &#xB2E4;&#xC74C; iteration&#xC758; &#xC2E4;&#xD589; &#xC5EC;&#xBD80;&#xB97C; &#xACB0;&#xC815;&#xD569;&#xB2C8;&#xB2E4;. white-box fuzzer&#xC5D0;&#xC120; &#xB354; &#xC774;&#xC0C1; &#xBC1C;&#xACAC;&#xD560; path&#xAC00; &#xC5C6;&#xC73C;&#xBA74; &#xC885;&#xB8CC;&#xD558;&#xB294; &#xB4F1;&#xC758; &#xC791;&#xC5C5;&#xC744; &#xD569;&#xB2C8;&#xB2E4;.</p></li></ul><h2 id="2-4-Texonomy-of-fuzzer"><a href="#2-4-Texonomy-of-fuzzer" class="headerlink" title="2.4 Texonomy of fuzzer"></a>2.4 Texonomy of fuzzer</h2><p>fuzzer &#xB9C8;&#xB2E4; &#xAC01; fuzz run&#xC5D0;&#xC11C; &#xC218;&#xC9D1;&#xD558;&#xB294; data&#xC758; &#xC885;&#xB958;&#xAC00; &#xB2E4;&#xB974;&#xBA70; &#xC774;&#xB97C; &#xD1B5;&#xD574; fuzzer&#xB97C; 3&#xAC00;&#xC9C0;&#xB85C; &#xAD6C;&#xBD84;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p><img src="/2021/08/08/fabu1ous/fuzz-1/6.png"></p><h3 id="2-4-1-Black-box-fuzzer"><a href="#2-4-1-Black-box-fuzzer" class="headerlink" title="2.4.1 Black-box fuzzer"></a>2.4.1 Black-box fuzzer</h3><p>PUT&#xC758; &#xB0B4;&#xBD80;&#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4; &#xC5C6;&#xC774; &#xD589;&#xD574;&#xC9C0;&#xB294; software-testing&#xACFC; fuzzing&#xC744; black-box&#xB77C; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;. PUT&#xC758; input/output &#xB3D9;&#xC791;&#xB9CC;&#xC744; &#xAD00;&#xCE21;&#xD558;&#xACE0; &#xC0AC;&#xC6A9;&#xD558;&#xBBC0;&#xB85C; software-testing&#xC5D0;&#xC120; IO-driven &#xD639;&#xC740; data-driven testing&#xC774;&#xB77C;&#xACE0;&#xB3C4; &#xBD80;&#xB985;&#xB2C8;&#xB2E4;. &#xACE0;&#xC804;&#xC801;&#xC778; fuzzer&#xB4E4;&#xC740; &#xB300;&#xBD80;&#xBD84; black-box fuzzer&#xC5D0; &#xC18D;&#xD569;&#xB2C8;&#xB2E4;.</p><h3 id="2-4-2-White-box-fuzzer"><a href="#2-4-2-White-box-fuzzer" class="headerlink" title="2.4.2 White-box fuzzer"></a>2.4.2 White-box fuzzer</h3><p>PUT&#xC758; internals&#xB97C; &#xBD84;&#xC11D;&#xD55C; &#xC815;&#xBCF4;&#xC640; PUT&#xC744; &#xC2E4;&#xD589;&#xD574; &#xC218;&#xC9D1;&#xD55C; &#xC815;&#xBCF4;&#xB97C; &#xD1B5;&#xD574; test case&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xB294; fuzzer&#xC785;&#xB2C8;&#xB2E4;. White-box fuzzing&#xC740; 2007&#xB144; Godefroid&#xC5D0; &#xC758;&#xD574; &#xC18C;&#xAC1C;&#xB418;&#xC5C8;&#xACE0; DSE(Dynamic Symbolic execution)&#xC758; dynamic instrumentaion&#xACFC; SMT solving&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; overhead&#xAC00; black-box&#xBCF4;&#xB2E4; &#xB192;&#xC740; &#xAC8C; &#xC77C;&#xBC18;&#xC801;&#xC785;&#xB2C8;&#xB2E4;.</p><h3 id="2-4-3-Grey-box-fuzzer"><a href="#2-4-3-Grey-box-fuzzer" class="headerlink" title="2.4.3 Grey-box fuzzer"></a>2.4.3 Grey-box fuzzer</h3><p>black-box&#xC640; white-box&#xC758; &#xC911;&#xB2E8; &#xB2E8;&#xACC4;&#xB97C; &#xD0DD;&#xD55C; fuzzer&#xC785;&#xB2C8;&#xB2E4;. &#xAC04;&#xB2E8;&#xD55C; &#xC815;&#xC801; &#xBD84;&#xC11D;&#xACFC; &#xC2E4;&#xD589;&#xC5D0; &#xB300;&#xD55C; &#xB3D9;&#xC801; &#xC815;&#xBCF4;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; &#xB4F1; PUT&#xC758; internals&#xC640; &#xC2E4;&#xD589;&#xC5D0; &#xB300;&#xD55C; &#xC77C;&#xBD80; &#xC815;&#xBCF4;&#xB97C; &#xC218;&#xC9D1;&#xD558;&#xBA70; white-box&#xC640; &#xB2EC;&#xB9AC; PUT&#xC5D0; &#xB300;&#xD55C; &#xC644;&#xBCBD;&#xD55C; &#xBD84;&#xC11D; &#xC815;&#xBCF4;&#xAC00; &#xD544;&#xC694; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. grey-box&#xC758; &#xAC00;&#xC7A5; &#xD754;&#xD55C; &#xC608;&#xB85C; code coverage &#xAE30;&#xBC18; &#xC18D;&#xB3C4; &#xAC1C;&#xC120;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p><p>black-box, grey-box, white-box fuzzer&#xC5D0; &#xB300;&#xD55C; &#xC774;&#xB7F0; &#xAD6C;&#xBD84;&#xC740; &#xBA85;&#xD655;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. PUT&#xC5D0; &#xB300;&#xD55C; &#xC815;&#xBCF4;&#xC218;&#xC9D1;&#xC744; &#xD558;&#xB294; black-box&#xB3C4; &#xC874;&#xC7AC;&#xD558;&#xBA70; &#xADFC;&#xC0AC;&#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xB294; white-box &#xB610;&#xD55C; &#xC874;&#xC7AC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xC5EC;&#xC804;&#xD788; &#xADF8; &#xACBD;&#xACC4;&#xAC00; &#xBAA8;&#xD638;&#xD569;&#xB2C8;&#xB2E4;.</p><h1 id="&#xB2E4;&#xC74C;-&#xD30C;&#xD2B8;-&#xC608;&#xACE0;"><a href="#&#xB2E4;&#xC74C;-&#xD30C;&#xD2B8;-&#xC608;&#xACE0;" class="headerlink" title="&#xB2E4;&#xC74C; &#xD30C;&#xD2B8; &#xC608;&#xACE0;"></a>&#xB2E4;&#xC74C; &#xD30C;&#xD2B8; &#xC608;&#xACE0;</h1><p><img src="/2021/08/08/fabu1ous/fuzz-1/7.png"></p><p>&#xC774;&#xBC88; &#xD30C;&#xD2B8;&#xB294; &#xCD08;&#xBC18;&#xBD80;&#xB77C; &#xC26C;&#xC6B4; &#xD3B8;&#xC5D0; &#xC18D;&#xD569;&#xB2C8;&#xB2E4;. &#xB2E4;&#xC74C; &#xD30C;&#xD2B8;&#xBD80;&#xD130;&#xB294; intsrumentaion, bug oracle, seed selection &#xB4F1; &#xC774;&#xB984;&#xB9CC; &#xB4E4;&#xC5B4;&#xB3C4; &#xBA38;&#xB9AC;&#xAC00; &#xC544;&#xD30C;&#xC624;&#xB294;, &#xAC01;&#xAC01; &#xC5F0;&#xAD6C;&#xAE00; &#xD558;&#xB098;&#xB294; &#xCDA9;&#xBD84;&#xD788; &#xC4F0;&#xACE0;&#xB3C4; &#xB0A8;&#xC744; &#xC8FC;&#xC81C;&#xB4E4;&#xC744; &#xB2E4;&#xB8F0; &#xC608;&#xC815;&#xC785;&#xB2C8;&#xB2E4;. &#xC774;&#xBC88; &#xAE00;&#xC740; &#xB2E8;&#xC21C;&#xD788; &#xC815;&#xB9AC;&#xD558;&#xBA74; &#xB05D;&#xC774;&#xC5C8;&#xC9C0;&#xB9CC; &#xB2E4;&#xC74C; &#xAE00;&#xBD80;&#xD134; &#xCD94;&#xAC00;&#xB85C; &#xACF5;&#xBD80;&#xD574;&#xC57C; &#xD560;&#xAC8C; &#xC0B0;&#xB354;&#xBBF8;&#xB77C;&#x2026; &#xD37C;&#xC800;101 &#xC2DC;&#xB9AC;&#xC988;&#xB294; &#xC815;&#xB9D0; &#xC624;&#xB798;&#xC624;&#xB798; &#xD2C8;&#xD2C8;&#xC774; &#xC791;&#xC131;&#xD560; &#xAC70; &#xAC19;&#xAD70;&#xC694;.</p>]]></content:encoded>
-      
-      
-      <category domain="https://hackyboiz.github.io/categories/Research/">Research</category>
-      
-      
-      <category domain="https://hackyboiz.github.io/tags/fuzzing/">fuzzing</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/Fabu1ous/">Fabu1ous</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/fuzzer/">fuzzer</category>
-      
-      <category domain="https://hackyboiz.github.io/tags/servey/">servey</category>
-      
-      
-      <comments>https://hackyboiz.github.io/2021/08/08/fabu1ous/fuzz-1/#disqus_thread</comments>
       
     </item>
     
