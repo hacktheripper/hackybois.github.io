@@ -13,15 +13,45 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/7/19/cve-2021-31969-underflowing-in-the-clouds&#34;&gt;CVE-2021-31969: UNDERFLOWING IN THE CLOUDS&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Cloud Files Mini Filter Driver (cldflt.sys)&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Cloud Files Mini Filter Driver&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; integer underflow &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; kernel buffer overflow&amp;#xB97C; &amp;#xBC1C;&amp;#xC0DD; &amp;#xC2DC;&amp;#xCF1C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9; &amp;#xBC0F; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt; Windows&amp;#xC758; Cloud Files API&amp;#xB294; &amp;#xD074;&amp;#xB77C;&amp;#xC6B0;&amp;#xB4DC; &amp;#xB3D9;&amp;#xAE30;&amp;#xD654; &amp;#xC5D4;&amp;#xC9C4;&amp;#xC744; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD558;&amp;#xACE0; placeholder &amp;#xD30C;&amp;#xC77C; &amp;#xBC0F; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; &amp;#xC0DD;&amp;#xC131;&amp;#xACFC; &amp;#xAD00;&amp;#xB9AC; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB3D9;&amp;#xAE30;&amp;#xD654; &amp;#xC5D4;&amp;#xC9C4;&amp;#xC740; &amp;#xD638;&amp;#xC2A4;&amp;#xD305;&amp;#xB41C; &amp;#xD30C;&amp;#xC77C; &amp;#xBC0F; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&amp;#xB97C; Windows &amp;#xD30C;&amp;#xC77C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xACFC; &amp;#xD30C;&amp;#xC77C; &amp;#xD0D0;&amp;#xC0C9;&amp;#xAE30;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xC6D0;&amp;#xACA9; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&amp;#xC640; &amp;#xB85C;&amp;#xCEEC; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8; &amp;#xAC04;&amp;#xC5D0; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xB3D9;&amp;#xAE30;&amp;#xD654; &amp;#xD558;&amp;#xB294; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4; &amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; placeholder &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD560; &amp;#xB54C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD568;&amp;#xC218; &lt;code&gt;HsmFltProcessUpdatePlaceholder&lt;/code&gt;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; &amp;#xB3D9;&amp;#xC791;&amp;#xC744; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;HsmpRpReadBuffer&lt;/code&gt; &amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; reparse point data&amp;#xB97C; &amp;#xAC80;&amp;#xC0C9;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;HsmpRpiDecompressBuffer&lt;/code&gt; &amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; length(Attacker-controled data) + 8 &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBC84;&amp;#xD37C; &amp;#xD560;&amp;#xB2F9;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;RtlDecompressBuffer&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xC555;&amp;#xCD95; &amp;#xD574;&amp;#xC81C;, &amp;#xC804; &amp;#xB2E8;&amp;#xACC4;&amp;#xC5D0;&amp;#xC11C; &amp;#xD560;&amp;#xB2F9;&amp;#xD55C; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xBB38;&amp;#xC81C;&amp;#xB294; &amp;#xBC84;&amp;#xD37C; &amp;#xB0B4;&amp;#xC5D0; metadata&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD560; 12 bytes &amp;#xACF5;&amp;#xAC04;&amp;#xC744; &amp;#xD655;&amp;#xBCF4;&amp;#xD574;&amp;#xC57C; &amp;#xD558;&amp;#xACE0;, &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xD568;&amp;#xC218; &lt;code&gt;RtlDecompressBuffer&lt;/code&gt;&amp;#xC5D0; &amp;#xC804;&amp;#xB2EC; &amp;#xB418;&amp;#xB294; length &amp;#xAC12;&amp;#xC740; (&amp;#xBC84;&amp;#xD37C; &amp;#xD06C;&amp;#xAE30;-12)&amp;#xAC00; &amp;#xB418;&amp;#xBBC0;&amp;#xB85C; integer underflow &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC989;, &amp;#xBC84;&amp;#xD37C; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; 8&amp;#xC774;&amp;#xB418;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD55C;&amp;#xB2E4;&amp;#xBA74; length&amp;#xAC00; &lt;code&gt;0xfffffff4&lt;/code&gt;&amp;#xAC00; &amp;#xB418;&amp;#xACE0; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xC640; &amp;#xCEE4;&amp;#xB110; &amp;#xAD8C;&amp;#xD55C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-31969: UNDERFLOWING IN THE CLOUDS - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/7/19/cve-2021-31969-underflowing-in-the-clouds&#34;&gt;CVE-2021-31969: UNDERFLOWING IN THE CLOUDS&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Cloud Files Mini Filter Driver (cldflt.sys)&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Cloud Files Mini Filter Driver&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; integer underflow &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; kernel buffer overflow&amp;#xB97C; &amp;#xBC1C;&amp;#xC0DD; &amp;#xC2DC;&amp;#xCF1C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9; &amp;#xBC0F; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt; Windows&amp;#xC758; Cloud Files API&amp;#xB294; &amp;#xD074;&amp;#xB77C;&amp;#xC6B0;&amp;#xB4DC; &amp;#xB3D9;&amp;#xAE30;&amp;#xD654; &amp;#xC5D4;&amp;#xC9C4;&amp;#xC744; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD558;&amp;#xACE0; placeholder &amp;#xD30C;&amp;#xC77C; &amp;#xBC0F; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; &amp;#xC0DD;&amp;#xC131;&amp;#xACFC; &amp;#xAD00;&amp;#xB9AC; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB3D9;&amp;#xAE30;&amp;#xD654; &amp;#xC5D4;&amp;#xC9C4;&amp;#xC740; &amp;#xD638;&amp;#xC2A4;&amp;#xD305;&amp;#xB41C; &amp;#xD30C;&amp;#xC77C; &amp;#xBC0F; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&amp;#xB97C; Windows &amp;#xD30C;&amp;#xC77C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xACFC; &amp;#xD30C;&amp;#xC77C; &amp;#xD0D0;&amp;#xC0C9;&amp;#xAE30;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xC6D0;&amp;#xACA9; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&amp;#xC640; &amp;#xB85C;&amp;#xCEEC; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8; &amp;#xAC04;&amp;#xC5D0; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xB3D9;&amp;#xAE30;&amp;#xD654; &amp;#xD558;&amp;#xB294; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4; &amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; placeholder &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD560; &amp;#xB54C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD568;&amp;#xC218; &lt;code&gt;HsmFltProcessUpdatePlaceholder&lt;/code&gt;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; &amp;#xB3D9;&amp;#xC791;&amp;#xC744; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;HsmpRpReadBuffer&lt;/code&gt; &amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; reparse point data&amp;#xB97C; &amp;#xAC80;&amp;#xC0C9;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;HsmpRpiDecompressBuffer&lt;/code&gt; &amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; length(Attacker-controled data) + 8 &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBC84;&amp;#xD37C; &amp;#xD560;&amp;#xB2F9;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;RtlDecompressBuffer&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xC555;&amp;#xCD95; &amp;#xD574;&amp;#xC81C;, &amp;#xC804; &amp;#xB2E8;&amp;#xACC4;&amp;#xC5D0;&amp;#xC11C; &amp;#xD560;&amp;#xB2F9;&amp;#xD55C; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xBB38;&amp;#xC81C;&amp;#xB294; &amp;#xBC84;&amp;#xD37C; &amp;#xB0B4;&amp;#xC5D0; metadata&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD560; 12 bytes &amp;#xACF5;&amp;#xAC04;&amp;#xC744; &amp;#xD655;&amp;#xBCF4;&amp;#xD574;&amp;#xC57C; &amp;#xD558;&amp;#xACE0;, &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xD568;&amp;#xC218; &lt;code&gt;RtlDecompressBuffer&lt;/code&gt;&amp;#xC5D0; &amp;#xC804;&amp;#xB2EC; &amp;#xB418;&amp;#xB294; length &amp;#xAC12;&amp;#xC740; (&amp;#xBC84;&amp;#xD37C; &amp;#xD06C;&amp;#xAE30;-12)&amp;#xAC00; &amp;#xB418;&amp;#xBBC0;&amp;#xB85C; integer underflow &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC989;, &amp;#xBC84;&amp;#xD37C; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; 8&amp;#xC774;&amp;#xB418;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD55C;&amp;#xB2E4;&amp;#xBA74; length&amp;#xAC00; &lt;code&gt;0xfffffff4&lt;/code&gt;&amp;#xAC00; &amp;#xB418;&amp;#xACE0; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xC640; &amp;#xCEE4;&amp;#xB110; &amp;#xAD8C;&amp;#xD55C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/07/26/fabu1ous/2021-07-26/">
@@ -272,13 +302,13 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
+                  <a class="hover-with-bg" href="/tags/bof/">bof</a>
                   
                   <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
-                  <a class="hover-with-bg" href="/tags/bof/">bof</a>
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/integer-underflow/">integer underflow</a>
                   

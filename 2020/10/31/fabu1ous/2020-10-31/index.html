@@ -13,15 +13,35 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.exploit-db.com/exploits/48963&#34;&gt;Blueman &amp;lt; 2.1.4 - Local Privilege Escalation&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Blueman 2.1.4 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;D-bus(Desktop-bus)&amp;#xB294; IPC &amp;#xD639;&amp;#xC740; RPC &amp;#xBA54;&amp;#xCEE4;&amp;#xB2C8;&amp;#xC998;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. D-bus&amp;#xC758; DHCPClient &amp;#xBA54;&amp;#xC18C;&amp;#xB4DC;&amp;#xC640; Blueman &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0; arguments sanitizing &amp;#xACFC;&amp;#xC815;&amp;#xC774; &amp;#xC5C6;&amp;#xC5B4; argument injection&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xACE0;, &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xAD6C;&amp;#xC131;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; impact&amp;#xAC00; 2&amp;#xAC00;&amp;#xC9C0;&amp;#xB85C; &amp;#xB098;&amp;#xB269;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs routeros&#34;&gt;1. isc-dhcp-client &amp;#xC0AC;&amp;#xC6A9; &amp;#xC2DC;
+&lt;span class=&#34;hljs-built_in&#34;&gt;	ip &lt;/span&gt;&amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xC5D0; argument injection, &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB97C; &amp;#xC885;&amp;#xB8CC;&amp;#xD558;&amp;#xB294; Dos
+
+2. dhcpd package &amp;#xC0AC;&amp;#xC6A9; &amp;#xC2DC;
+	&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;-c/arbitrary_script_path&amp;quot;&lt;/span&gt;&amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB300;&amp;#xBD80;&amp;#xBD84;&amp;#xC758;  D-bus &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB294; PolicyKit&amp;#xC73C;&amp;#xB85C; Authentication&amp;#xC744; &amp;#xAC70;&amp;#xCE58;&amp;#xC9C0;&amp;#xB9CC; Blueman 2.0.6 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&amp;#xC740; Polkit-1&amp;#xC774; &amp;#xAE30;&amp;#xBCF8;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xBE44;&amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC5B4;, &amp;#xBAA8;&amp;#xB4E0; &amp;#xB85C;&amp;#xCEEC; &amp;#xC720;&amp;#xC800;&amp;#xAC00; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html&#34;&gt;https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-15238: Blueman argument injection - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.exploit-db.com/exploits/48963&#34;&gt;Blueman &amp;lt; 2.1.4 - Local Privilege Escalation&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Blueman 2.1.4 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;D-bus(Desktop-bus)&amp;#xB294; IPC &amp;#xD639;&amp;#xC740; RPC &amp;#xBA54;&amp;#xCEE4;&amp;#xB2C8;&amp;#xC998;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. D-bus&amp;#xC758; DHCPClient &amp;#xBA54;&amp;#xC18C;&amp;#xB4DC;&amp;#xC640; Blueman &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0; arguments sanitizing &amp;#xACFC;&amp;#xC815;&amp;#xC774; &amp;#xC5C6;&amp;#xC5B4; argument injection&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xACE0;, &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xAD6C;&amp;#xC131;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; impact&amp;#xAC00; 2&amp;#xAC00;&amp;#xC9C0;&amp;#xB85C; &amp;#xB098;&amp;#xB269;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs routeros&#34;&gt;1. isc-dhcp-client &amp;#xC0AC;&amp;#xC6A9; &amp;#xC2DC;
+&lt;span class=&#34;hljs-built_in&#34;&gt;	ip &lt;/span&gt;&amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xC5D0; argument injection, &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB97C; &amp;#xC885;&amp;#xB8CC;&amp;#xD558;&amp;#xB294; Dos
+
+2. dhcpd package &amp;#xC0AC;&amp;#xC6A9; &amp;#xC2DC;
+	&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;-c/arbitrary_script_path&amp;quot;&lt;/span&gt;&amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB300;&amp;#xBD80;&amp;#xBD84;&amp;#xC758;  D-bus &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB294; PolicyKit&amp;#xC73C;&amp;#xB85C; Authentication&amp;#xC744; &amp;#xAC70;&amp;#xCE58;&amp;#xC9C0;&amp;#xB9CC; Blueman 2.0.6 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&amp;#xC740; Polkit-1&amp;#xC774; &amp;#xAE30;&amp;#xBCF8;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xBE44;&amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC5B4;, &amp;#xBAA8;&amp;#xB4E0; &amp;#xB85C;&amp;#xCEEC; &amp;#xC720;&amp;#xC800;&amp;#xAC00; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html&#34;&gt;https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/10/31/fabu1ous/2020-10-31/">
@@ -248,7 +268,6 @@
 
 2. dhcpd package &#xC0AC;&#xC6A9; &#xC2DC;
 	<span class="hljs-string">&quot;-c/arbitrary_script_path&quot;</span>&#xC635;&#xC158;&#xC744; &#xC0AC;&#xC6A9;&#xD574; &#xC784;&#xC758;&#xC758; &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC2E4;&#xD589;</code></pre>
-
 <p>&#xB300;&#xBD80;&#xBD84;&#xC758;  D-bus &#xC778;&#xD130;&#xD398;&#xC774;&#xC2A4;&#xB294; PolicyKit&#xC73C;&#xB85C; Authentication&#xC744; &#xAC70;&#xCE58;&#xC9C0;&#xB9CC; Blueman 2.0.6 &#xC774;&#xC804; &#xBC84;&#xC804;&#xC740; Polkit-1&#xC774; &#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; &#xBE44;&#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC5B4;, &#xBAA8;&#xB4E0; &#xB85C;&#xCEEC; &#xC720;&#xC800;&#xAC00; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html">https://www.eyecontrol.nl/blog/the-story-of-3-cves-in-ubuntu-desktop.html</a></p>
 
@@ -268,13 +287,13 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/blueman/">blueman</a>
                   

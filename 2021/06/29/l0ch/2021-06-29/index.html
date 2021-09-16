@@ -13,15 +13,65 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/0vercl0k/CVE-2021-32537&#34;&gt;CVE-2021-32537: Out-of-bounds access in RTKVHD64 leading to pool corruption.&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Microsoft Surface Book/Pro&lt;/li&gt;
+&lt;li&gt;Lenovo Thinkpad&lt;/li&gt;
+&lt;li&gt;Dell XPS 13&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Realtek&amp;#xC758; &amp;#xC624;&amp;#xB514;&amp;#xC624; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC5D0;&amp;#xC11C; OOB Access &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4; &amp;#xBC0F; PoC&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xC624;&amp;#xB514;&amp;#xC624; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84; &lt;code&gt;RTKVHD64.sys&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; &amp;#xCD08;&amp;#xAE30;&amp;#xD654; &amp;#xC911; &lt;code&gt;PcAddAdapterDevice&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xC778; &lt;code&gt;StartDevice&lt;/code&gt;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xD638;&amp;#xCD9C;&amp;#xB41C; &lt;code&gt;InitDeviceExtension&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xCEE4;&amp;#xB110; &amp;#xD480;&amp;#xC5D0; &lt;code&gt;MEVT&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;devext-&amp;gt;unk-&amp;gt;events = ExAllocatePoolWithTag(pooltype, 0x5F0ui64, &amp;apos;mEvt&amp;apos;);
+
+&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;EVT&lt;/span&gt; {&lt;/span&gt;
+    PKSPIN_LOCK lock;
+    PVOID       event;
+    UINT64      someflag;
+} &lt;span class=&#34;hljs-comment&#34;&gt;/* sizeof == 0x18 */&lt;/span&gt;
+
+&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;MEVT&lt;/span&gt; {&lt;/span&gt;
+    &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;EVT&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;array&lt;/span&gt;[63];&lt;/span&gt;
+    UINT64 flags;
+} &lt;span class=&#34;hljs-comment&#34;&gt;/* sizeof == 0x18*63 + 8 == 0x5f0 */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;MEVT&lt;/code&gt;&amp;#xC758; &lt;code&gt;EVT&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB294; 63&amp;#xAC1C;&amp;#xC758; &amp;#xACE0;&amp;#xC815;&amp;#xB41C; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xBC30;&amp;#xC5F4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;input_index = *(_DWORD *)IrpSystemBuffer;
+v5 = Crash(mevts, &lt;span class=&#34;hljs-built_in&#34;&gt;stack&lt;/span&gt;-&amp;gt;FileObject, unk, &amp;amp;mevts-&amp;gt;&lt;span class=&#34;hljs-built_in&#34;&gt;array&lt;/span&gt;[input_index].event,
+        (KSPIN_LOCK *)&amp;amp;mevts-&amp;gt;&lt;span class=&#34;hljs-built_in&#34;&gt;array&lt;/span&gt;[input_index]);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC5D0; &lt;code&gt;0x225f04&lt;/code&gt; IOCTL &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC804;&amp;#xC1A1;&amp;#xD558;&amp;#xBA74; &amp;#xC720;&amp;#xC800;&amp;#xBC84;&amp;#xD37C;&amp;#xC778; &lt;code&gt;IrpSystemBuffer&lt;/code&gt;&amp;#xC758; &amp;#xCCAB; &amp;#xBC88;&amp;#xC9F8; DWORD &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xAC00; &lt;code&gt;input_index&lt;/code&gt;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;input_index&lt;/code&gt;&amp;#xB294; &amp;#xC704; &lt;code&gt;Crash&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;(KSPIN_LOCK *)&amp;amp;mevts-&amp;gt;array[input_index]&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &lt;code&gt;MEVT&lt;/code&gt;&amp;#xC758; &lt;code&gt;EVT&lt;/code&gt; &amp;#xBC30;&amp;#xC5F4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xB54C; &amp;#xC778;&amp;#xB371;&amp;#xC2A4;&amp;#xB85C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; IOCTL &amp;#xC785;&amp;#xB825; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &lt;code&gt;input_index&lt;/code&gt;&amp;#xB97C; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; Out Of Bound Access&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-32537: Realtek 드라이버의 OOB Access 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/0vercl0k/CVE-2021-32537&#34;&gt;CVE-2021-32537: Out-of-bounds access in RTKVHD64 leading to pool corruption.&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Microsoft Surface Book/Pro&lt;/li&gt;
+&lt;li&gt;Lenovo Thinkpad&lt;/li&gt;
+&lt;li&gt;Dell XPS 13&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Realtek&amp;#xC758; &amp;#xC624;&amp;#xB514;&amp;#xC624; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC5D0;&amp;#xC11C; OOB Access &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4; &amp;#xBC0F; PoC&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xC624;&amp;#xB514;&amp;#xC624; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84; &lt;code&gt;RTKVHD64.sys&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; &amp;#xCD08;&amp;#xAE30;&amp;#xD654; &amp;#xC911; &lt;code&gt;PcAddAdapterDevice&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xC778; &lt;code&gt;StartDevice&lt;/code&gt;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xD638;&amp;#xCD9C;&amp;#xB41C; &lt;code&gt;InitDeviceExtension&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xCEE4;&amp;#xB110; &amp;#xD480;&amp;#xC5D0; &lt;code&gt;MEVT&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;devext-&amp;gt;unk-&amp;gt;events = ExAllocatePoolWithTag(pooltype, 0x5F0ui64, &amp;apos;mEvt&amp;apos;);
+
+&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;EVT&lt;/span&gt; {&lt;/span&gt;
+    PKSPIN_LOCK lock;
+    PVOID       event;
+    UINT64      someflag;
+} &lt;span class=&#34;hljs-comment&#34;&gt;/* sizeof == 0x18 */&lt;/span&gt;
+
+&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;MEVT&lt;/span&gt; {&lt;/span&gt;
+    &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;EVT&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;array&lt;/span&gt;[63];&lt;/span&gt;
+    UINT64 flags;
+} &lt;span class=&#34;hljs-comment&#34;&gt;/* sizeof == 0x18*63 + 8 == 0x5f0 */&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;MEVT&lt;/code&gt;&amp;#xC758; &lt;code&gt;EVT&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB294; 63&amp;#xAC1C;&amp;#xC758; &amp;#xACE0;&amp;#xC815;&amp;#xB41C; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xBC30;&amp;#xC5F4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;input_index = *(_DWORD *)IrpSystemBuffer;
+v5 = Crash(mevts, &lt;span class=&#34;hljs-built_in&#34;&gt;stack&lt;/span&gt;-&amp;gt;FileObject, unk, &amp;amp;mevts-&amp;gt;&lt;span class=&#34;hljs-built_in&#34;&gt;array&lt;/span&gt;[input_index].event,
+        (KSPIN_LOCK *)&amp;amp;mevts-&amp;gt;&lt;span class=&#34;hljs-built_in&#34;&gt;array&lt;/span&gt;[input_index]);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC5D0; &lt;code&gt;0x225f04&lt;/code&gt; IOCTL &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC804;&amp;#xC1A1;&amp;#xD558;&amp;#xBA74; &amp;#xC720;&amp;#xC800;&amp;#xBC84;&amp;#xD37C;&amp;#xC778; &lt;code&gt;IrpSystemBuffer&lt;/code&gt;&amp;#xC758; &amp;#xCCAB; &amp;#xBC88;&amp;#xC9F8; DWORD &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xAC00; &lt;code&gt;input_index&lt;/code&gt;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;input_index&lt;/code&gt;&amp;#xB294; &amp;#xC704; &lt;code&gt;Crash&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;(KSPIN_LOCK *)&amp;amp;mevts-&amp;gt;array[input_index]&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &lt;code&gt;MEVT&lt;/code&gt;&amp;#xC758; &lt;code&gt;EVT&lt;/code&gt; &amp;#xBC30;&amp;#xC5F4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xB54C; &amp;#xC778;&amp;#xB371;&amp;#xC2A4;&amp;#xB85C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; IOCTL &amp;#xC785;&amp;#xB825; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &lt;code&gt;input_index&lt;/code&gt;&amp;#xB97C; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; Out Of Bound Access&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/06/29/l0ch/2021-06-29/">
@@ -260,12 +310,10 @@
     <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">EVT</span> <span class="hljs-title">array</span>[63];</span>
     UINT64 flags;
 } <span class="hljs-comment">/* sizeof == 0x18*63 + 8 == 0x5f0 */</span></code></pre>
-
 <p><code>MEVT</code>&#xC758; <code>EVT</code> &#xAD6C;&#xC870;&#xCCB4;&#xB294; 63&#xAC1C;&#xC758; &#xACE0;&#xC815;&#xB41C; &#xD06C;&#xAE30;&#xC758; &#xBC30;&#xC5F4;&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">input_index = *(_DWORD *)IrpSystemBuffer;
 v5 = Crash(mevts, <span class="hljs-built_in">stack</span>-&gt;FileObject, unk, &amp;mevts-&gt;<span class="hljs-built_in">array</span>[input_index].event,
         (KSPIN_LOCK *)&amp;mevts-&gt;<span class="hljs-built_in">array</span>[input_index]);</code></pre>
-
 <p>&#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0; <code>0x225f04</code> IOCTL &#xCF54;&#xB4DC;&#xB97C; &#xC804;&#xC1A1;&#xD558;&#xBA74; &#xC720;&#xC800;&#xBC84;&#xD37C;&#xC778; <code>IrpSystemBuffer</code>&#xC758; &#xCCAB; &#xBC88;&#xC9F8; DWORD &#xB370;&#xC774;&#xD130;&#xAC00; <code>input_index</code>&#xC5D0; &#xC800;&#xC7A5;&#xB429;&#xB2C8;&#xB2E4;. <code>input_index</code>&#xB294; &#xC704; <code>Crash</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>(KSPIN_LOCK *)&amp;mevts-&gt;array[input_index]</code>&#xC640; &#xAC19;&#xC774; <code>MEVT</code>&#xC758; <code>EVT</code> &#xBC30;&#xC5F4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xB54C; &#xC778;&#xB371;&#xC2A4;&#xB85C; &#xC0AC;&#xC6A9;&#xB429;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xD574;&#xCEE4;&#xB294; IOCTL &#xC785;&#xB825; &#xBC84;&#xD37C;&#xB97C; &#xD1B5;&#xD574; <code>input_index</code>&#xB97C; &#xC784;&#xC758;&#xC758; &#xAC12;&#xC73C;&#xB85C; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xC5B4; Out Of Bound Access&#xB85C; &#xC774;&#xC5B4;&#xC9D1;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -286,11 +334,11 @@ v5 = Crash(mevts, <span class="hljs-built_in">stack</span>-&gt;FileObject, unk, 
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
+                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
+                  
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
-                  
-                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
                   
                   <a class="hover-with-bg" href="/tags/driver/">driver</a>
                   

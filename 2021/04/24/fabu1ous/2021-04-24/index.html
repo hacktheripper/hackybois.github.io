@@ -13,15 +13,57 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/4/22/cve-2021-20226-a-reference-counting-bug-in-the-linux-kernel-iouring-subsystem&#34;&gt;CVE-2021-20226&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel 5.6&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel 5.1&amp;#xC5D0;&amp;#xC11C; &amp;#xD558;&amp;#xB098;&amp;#xC758; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xCF5C;&amp;#xB85C; &amp;#xC5EC;&amp;#xB7EC; I/O&amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; io_uring(&amp;#xBE44;&amp;#xB3D9;&amp;#xAE30; I/O) &amp;#xAE30;&amp;#xB2A5;&amp;#xC774; &amp;#xB3C4;&amp;#xC785;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Linux kernel 5.6&amp;#xC73C;&amp;#xB85C; &amp;#xC62C;&amp;#xB77C;&amp;#xC624;&amp;#xBA74;&amp;#xC11C; &amp;#xD574;&amp;#xB2F9; &amp;#xAE30;&amp;#xB2A5;&amp;#xC5D0; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC0DD;&amp;#xACBC;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xCF5C;&amp;#xC774; &amp;#xCEE4;&amp;#xB110; &amp;#xC4F0;&amp;#xB808;&amp;#xB4DC;&amp;#xB85C; &lt;code&gt;files_structure&lt;/code&gt;&amp;#xB97C; &amp;#xC804;&amp;#xB2EC;&amp;#xD574;&amp;#xB3C4; &lt;code&gt;io_grab_files()&lt;/code&gt;&amp;#xC758; reference counter&amp;#xAC00; &amp;#xC99D;&amp;#xAC00;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &lt;code&gt;IORING_OP_CLOSE&lt;/code&gt;&amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xC9C4;&amp;#xD589;&amp;#xB418;&amp;#xB294; &amp;#xB3D9;&amp;#xC548; &lt;code&gt;files_structure&lt;/code&gt;&amp;#xC758; &amp;#xC874;&amp;#xC7AC; &amp;#xC720;&amp;#xBB34;&amp;#xB97C; &amp;#xD310;&amp;#xB2E8;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC989;, &amp;#xD574;&amp;#xB2F9; &lt;code&gt;files_structure&lt;/code&gt;&amp;#xAC00; &amp;#xD560;&amp;#xB2F9; &amp;#xD574;&amp;#xCCB4;&amp;#xB41C; &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0;&amp;#xB3C4; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB418;&amp;#xACE0; DoS&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;io_grab_files&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(struct io_kiocb *req)&lt;/span&gt; &lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{ 
+&lt;span class=&#34;hljs-comment&#34;&gt;// ... &lt;/span&gt;
+ 
+    rcu_read_lock(); 
+    spin_lock_irq(&amp;amp;ctx-&amp;gt;inflight_lock);spin_lock_irq(&amp;amp;ctx-&amp;gt;inflight_lock); 
+ 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (fcheck(ctx-&amp;gt;ring_fd) == ctx-&amp;gt;ring_file) { 
+        list_add(&amp;amp;req-&amp;gt;inflight_entry, &amp;amp;ctx-&amp;gt;inflight_list); 
+        req-&amp;gt;flags |= REQ_F_INFLIGHT; 
+        req-&amp;gt;work.files = current-&amp;gt;files;  &lt;span class=&#34;hljs-comment&#34;&gt;// vuln here&lt;/span&gt;
+        ret = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; 
+    } 
+    spin_unlock_irq(&amp;amp;ctx-&amp;gt;inflight_lock); 
+    rcu_read_unlock(); 
+ 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; ret; 
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-20226: Linux kernel Reference counting bug - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/4/22/cve-2021-20226-a-reference-counting-bug-in-the-linux-kernel-iouring-subsystem&#34;&gt;CVE-2021-20226&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel 5.6&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel 5.1&amp;#xC5D0;&amp;#xC11C; &amp;#xD558;&amp;#xB098;&amp;#xC758; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xCF5C;&amp;#xB85C; &amp;#xC5EC;&amp;#xB7EC; I/O&amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; io_uring(&amp;#xBE44;&amp;#xB3D9;&amp;#xAE30; I/O) &amp;#xAE30;&amp;#xB2A5;&amp;#xC774; &amp;#xB3C4;&amp;#xC785;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Linux kernel 5.6&amp;#xC73C;&amp;#xB85C; &amp;#xC62C;&amp;#xB77C;&amp;#xC624;&amp;#xBA74;&amp;#xC11C; &amp;#xD574;&amp;#xB2F9; &amp;#xAE30;&amp;#xB2A5;&amp;#xC5D0; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC0DD;&amp;#xACBC;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xCF5C;&amp;#xC774; &amp;#xCEE4;&amp;#xB110; &amp;#xC4F0;&amp;#xB808;&amp;#xB4DC;&amp;#xB85C; &lt;code&gt;files_structure&lt;/code&gt;&amp;#xB97C; &amp;#xC804;&amp;#xB2EC;&amp;#xD574;&amp;#xB3C4; &lt;code&gt;io_grab_files()&lt;/code&gt;&amp;#xC758; reference counter&amp;#xAC00; &amp;#xC99D;&amp;#xAC00;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &lt;code&gt;IORING_OP_CLOSE&lt;/code&gt;&amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xC9C4;&amp;#xD589;&amp;#xB418;&amp;#xB294; &amp;#xB3D9;&amp;#xC548; &lt;code&gt;files_structure&lt;/code&gt;&amp;#xC758; &amp;#xC874;&amp;#xC7AC; &amp;#xC720;&amp;#xBB34;&amp;#xB97C; &amp;#xD310;&amp;#xB2E8;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC989;, &amp;#xD574;&amp;#xB2F9; &lt;code&gt;files_structure&lt;/code&gt;&amp;#xAC00; &amp;#xD560;&amp;#xB2F9; &amp;#xD574;&amp;#xCCB4;&amp;#xB41C; &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0;&amp;#xB3C4; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB418;&amp;#xACE0; DoS&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;io_grab_files&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(struct io_kiocb *req)&lt;/span&gt; &lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{ 
+&lt;span class=&#34;hljs-comment&#34;&gt;// ... &lt;/span&gt;
+ 
+    rcu_read_lock(); 
+    spin_lock_irq(&amp;amp;ctx-&amp;gt;inflight_lock);spin_lock_irq(&amp;amp;ctx-&amp;gt;inflight_lock); 
+ 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (fcheck(ctx-&amp;gt;ring_fd) == ctx-&amp;gt;ring_file) { 
+        list_add(&amp;amp;req-&amp;gt;inflight_entry, &amp;amp;ctx-&amp;gt;inflight_list); 
+        req-&amp;gt;flags |= REQ_F_INFLIGHT; 
+        req-&amp;gt;work.files = current-&amp;gt;files;  &lt;span class=&#34;hljs-comment&#34;&gt;// vuln here&lt;/span&gt;
+        ret = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; 
+    } 
+    spin_unlock_irq(&amp;amp;ctx-&amp;gt;inflight_lock); 
+    rcu_read_unlock(); 
+ 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; ret; 
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/24/fabu1ous/2021-04-24/">
@@ -262,7 +304,6 @@
     <span class="hljs-keyword">return</span> ret; 
 }</code></pre>
 
-
             </div>
             <hr>
             <div>
@@ -279,11 +320,11 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                 </div>
                 

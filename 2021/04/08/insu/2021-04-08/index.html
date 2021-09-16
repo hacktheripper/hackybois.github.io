@@ -13,15 +13,43 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://seclists.org/oss-sec/2021/q2/10&#34;&gt;CVE-2021-3483: Linux kernel: a use-after-free bug in nosy driver&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Linux Kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Linux Kernel&amp;#xC758; &lt;code&gt;Linux/drivers/firewire/nosy.c&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; UAF &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Nosy&amp;#xB294; IEEE 1394 &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;, &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158; &amp;#xB610;&amp;#xB294; &amp;#xD38C;&amp;#xC6E8;&amp;#xC5B4; &amp;#xAC1C;&amp;#xBC1C;&amp;#xACFC; &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C; &amp;#xBD84;&amp;#xC11D;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; IEEE 1394 &amp;#xD328;&amp;#xD0B7; &amp;#xC2A4;&amp;#xB2C8;&amp;#xD37C;&amp;#xC774;&amp;#xBA70; nosy driver&amp;#xB294; &amp;#xAC01;&amp;#xAC01;&amp;#xC758; device&amp;#xC5D0;&amp;#xC11C; &lt;a href=&#34;https://docs.huihoo.com/doxygen/linux/kernel/3.7/structpcilynx.html&#34;&gt;pcilynx structure&lt;/a&gt;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; nosy driver&amp;#xAC00; device&amp;#xC5D0; pciynx structure&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xACE0; &amp;#xD574;&amp;#xC81C;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xBA70; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xC2DC;&amp;#xB098;&amp;#xB9AC;&amp;#xC624;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;#xCC98;&amp;#xC74C; nosy device&amp;#xB97C; &amp;#xC5F4;&amp;#xACE0; &lt;code&gt;NOSY_IOC_START&lt;/code&gt; ioctl &amp;#xCEE4;&amp;#xB9E8;&amp;#xB4DC;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; client A&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0;, doubly linked list&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xB450;&amp;#xBC88;&amp;#xC9F8;&amp;#xB85C;, nosy device&amp;#xB97C; &amp;#xC5F4;&amp;#xACE0; &lt;code&gt;NOSY_IOC_START&lt;/code&gt; ioctl &amp;#xCEE4;&amp;#xB9E8;&amp;#xB4DC;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; client B&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0; &amp;#xB611;&amp;#xAC19;&amp;#xC774; doubly linked list&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;client A&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;NOSY_IOC_START ioctl&lt;/code&gt; &amp;#xCEE4;&amp;#xB9E8;&amp;#xB4DC;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; client A&amp;#xB294; doubly linked list&amp;#xC5D0;&amp;#xC11C; &amp;#xC77D;&amp;#xC5B4;&amp;#xC9C0;&amp;#xACE0;, doubly linked list&amp;#xB294; &amp;#xC5C9;&amp;#xB9DD;&amp;#xC774; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xCC98;&amp;#xC74C; nosy device&amp;#xB97C; &amp;#xB2EB;&amp;#xC73C;&amp;#xBA74; &lt;code&gt;nosy_release&lt;/code&gt;&amp;#xAC00; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xBA70; &lt;code&gt;nosy_release&lt;/code&gt; &amp;#xC5D0;&amp;#xC11C; client A&amp;#xAC00; unlink &amp;#xB418;&amp;#xACE0; free &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xB450;&amp;#xBC88;&amp;#xC9F8; nosy device&amp;#xB97C; &amp;#xB2EB;&amp;#xC73C;&amp;#xBA74;, client A&amp;#xAC00; &amp;#xCC38;&amp;#xC870;&amp;#xB418;&amp;#xC5B4; UAF&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ol&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-3483: Linux kernel의 nosy driver에서 발견된 UAF bug - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://seclists.org/oss-sec/2021/q2/10&#34;&gt;CVE-2021-3483: Linux kernel: a use-after-free bug in nosy driver&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Linux Kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Linux Kernel&amp;#xC758; &lt;code&gt;Linux/drivers/firewire/nosy.c&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; UAF &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Nosy&amp;#xB294; IEEE 1394 &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;, &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158; &amp;#xB610;&amp;#xB294; &amp;#xD38C;&amp;#xC6E8;&amp;#xC5B4; &amp;#xAC1C;&amp;#xBC1C;&amp;#xACFC; &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C; &amp;#xBD84;&amp;#xC11D;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; IEEE 1394 &amp;#xD328;&amp;#xD0B7; &amp;#xC2A4;&amp;#xB2C8;&amp;#xD37C;&amp;#xC774;&amp;#xBA70; nosy driver&amp;#xB294; &amp;#xAC01;&amp;#xAC01;&amp;#xC758; device&amp;#xC5D0;&amp;#xC11C; &lt;a href=&#34;https://docs.huihoo.com/doxygen/linux/kernel/3.7/structpcilynx.html&#34;&gt;pcilynx structure&lt;/a&gt;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; nosy driver&amp;#xAC00; device&amp;#xC5D0; pciynx structure&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xACE0; &amp;#xD574;&amp;#xC81C;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xBA70; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xC2DC;&amp;#xB098;&amp;#xB9AC;&amp;#xC624;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;#xCC98;&amp;#xC74C; nosy device&amp;#xB97C; &amp;#xC5F4;&amp;#xACE0; &lt;code&gt;NOSY_IOC_START&lt;/code&gt; ioctl &amp;#xCEE4;&amp;#xB9E8;&amp;#xB4DC;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; client A&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0;, doubly linked list&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xB450;&amp;#xBC88;&amp;#xC9F8;&amp;#xB85C;, nosy device&amp;#xB97C; &amp;#xC5F4;&amp;#xACE0; &lt;code&gt;NOSY_IOC_START&lt;/code&gt; ioctl &amp;#xCEE4;&amp;#xB9E8;&amp;#xB4DC;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; client B&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0; &amp;#xB611;&amp;#xAC19;&amp;#xC774; doubly linked list&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;client A&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;NOSY_IOC_START ioctl&lt;/code&gt; &amp;#xCEE4;&amp;#xB9E8;&amp;#xB4DC;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; client A&amp;#xB294; doubly linked list&amp;#xC5D0;&amp;#xC11C; &amp;#xC77D;&amp;#xC5B4;&amp;#xC9C0;&amp;#xACE0;, doubly linked list&amp;#xB294; &amp;#xC5C9;&amp;#xB9DD;&amp;#xC774; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xCC98;&amp;#xC74C; nosy device&amp;#xB97C; &amp;#xB2EB;&amp;#xC73C;&amp;#xBA74; &lt;code&gt;nosy_release&lt;/code&gt;&amp;#xAC00; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xBA70; &lt;code&gt;nosy_release&lt;/code&gt; &amp;#xC5D0;&amp;#xC11C; client A&amp;#xAC00; unlink &amp;#xB418;&amp;#xACE0; free &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xB450;&amp;#xBC88;&amp;#xC9F8; nosy device&amp;#xB97C; &amp;#xB2EB;&amp;#xC73C;&amp;#xBA74;, client A&amp;#xAC00; &amp;#xCC38;&amp;#xC870;&amp;#xB418;&amp;#xC5B4; UAF&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ol&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/08/insu/2021-04-08/">
@@ -271,17 +299,17 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
+                  <a class="hover-with-bg" href="/tags/insu/">insu</a>
+                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
+                  
+                  <a class="hover-with-bg" href="/tags/nosy-driver/">nosy driver</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
                   <a class="hover-with-bg" href="/tags/uaf/">uaf</a>
-                  
-                  <a class="hover-with-bg" href="/tags/insu/">insu</a>
-                  
-                  <a class="hover-with-bg" href="/tags/nosy-driver/">nosy driver</a>
                   
                 </div>
                 

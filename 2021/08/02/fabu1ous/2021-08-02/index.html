@@ -13,15 +13,51 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.graplsecurity.com/post/kernel-pwning-with-ebpf-a-love-story&#34;&gt;Kernel Pwning with eBPF: a Love Story&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Ubuntu 20.10&lt;/p&gt;
+&lt;p&gt;kernel 5.8.0-25.26 ~ 5.8.0-52.58&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;eBPF&amp;#xB294; &amp;#xB7F0;&amp;#xD0C0;&amp;#xC784; &amp;#xC911; &amp;#xC548;&amp;#xC804;&amp;#xD558;&amp;#xAC8C; &amp;#xCEE4;&amp;#xB110; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0BD;&amp;#xC785;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; Verifier&amp;#xC640; BPF instruction&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. Verifier&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC758; &amp;#xAC12;&amp;#xC758; &amp;#xBCC0;&amp;#xD654;&amp;#xC640; &amp;#xADF8; &amp;#xAC12;&amp;#xB4E4;&amp;#xC758; &amp;#xD5C8;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;(&amp;#xC774;&amp;#xD558; range)&amp;#xB4F1;&amp;#xC744; &amp;#xCD94;&amp;#xC801;&amp;#xD574; memory load&amp;#xC640; store&amp;#xC758; out-of-bound &amp;#xC5EC;&amp;#xBD80;&amp;#xB97C; &amp;#xAC80;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. 32-bit range&amp;#xB97C; &amp;#xAC16;&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC640; 64-bit range&amp;#xB97C; &amp;#xAC16;&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xB07C;&amp;#xB9AC;&amp;#xC758; Bitwise &amp;#xC5F0;&amp;#xC0B0;(BPF_AND, BPF_OR, BPF_XOR)&amp;#xC774; &amp;#xB05D;&amp;#xB09C; &amp;#xD6C4; &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xAC8C; 32-bit range&amp;#xB97C; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xC624;&amp;#xB958;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD574; out-of-bound read/write&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs rust&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; void scalar_min_max_and(&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;bpf_reg_state&lt;/span&gt;&lt;/span&gt; *dst_reg,
+                              &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;bpf_reg_state&lt;/span&gt;&lt;/span&gt; *src_reg)
+{
+    &lt;span class=&#34;hljs-built_in&#34;&gt;bool&lt;/span&gt; src_known = tnum_is_const(src_reg-&amp;gt;var_off);
+    &lt;span class=&#34;hljs-built_in&#34;&gt;bool&lt;/span&gt; dst_known = tnum_is_const(dst_reg-&amp;gt;var_off);
+    s64 smin_val = src_reg-&amp;gt;smin_value;
+    &lt;span class=&#34;hljs-built_in&#34;&gt;u64&lt;/span&gt; umin_val = src_reg-&amp;gt;umin_value;
+
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (src_known &amp;amp;&amp;amp; dst_known) {
+            __mark_reg_known(dst_reg, dst_reg-&amp;gt;var_off.value);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
+    }
+  ...
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-3490: Kernel Pwning with eBPF: a Love Story - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.graplsecurity.com/post/kernel-pwning-with-ebpf-a-love-story&#34;&gt;Kernel Pwning with eBPF: a Love Story&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Ubuntu 20.10&lt;/p&gt;
+&lt;p&gt;kernel 5.8.0-25.26 ~ 5.8.0-52.58&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;eBPF&amp;#xB294; &amp;#xB7F0;&amp;#xD0C0;&amp;#xC784; &amp;#xC911; &amp;#xC548;&amp;#xC804;&amp;#xD558;&amp;#xAC8C; &amp;#xCEE4;&amp;#xB110; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0BD;&amp;#xC785;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; Verifier&amp;#xC640; BPF instruction&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. Verifier&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC758; &amp;#xAC12;&amp;#xC758; &amp;#xBCC0;&amp;#xD654;&amp;#xC640; &amp;#xADF8; &amp;#xAC12;&amp;#xB4E4;&amp;#xC758; &amp;#xD5C8;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;(&amp;#xC774;&amp;#xD558; range)&amp;#xB4F1;&amp;#xC744; &amp;#xCD94;&amp;#xC801;&amp;#xD574; memory load&amp;#xC640; store&amp;#xC758; out-of-bound &amp;#xC5EC;&amp;#xBD80;&amp;#xB97C; &amp;#xAC80;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. 32-bit range&amp;#xB97C; &amp;#xAC16;&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC640; 64-bit range&amp;#xB97C; &amp;#xAC16;&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xB07C;&amp;#xB9AC;&amp;#xC758; Bitwise &amp;#xC5F0;&amp;#xC0B0;(BPF_AND, BPF_OR, BPF_XOR)&amp;#xC774; &amp;#xB05D;&amp;#xB09C; &amp;#xD6C4; &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xAC8C; 32-bit range&amp;#xB97C; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xC624;&amp;#xB958;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD574; out-of-bound read/write&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs rust&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; void scalar_min_max_and(&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;bpf_reg_state&lt;/span&gt;&lt;/span&gt; *dst_reg,
+                              &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;bpf_reg_state&lt;/span&gt;&lt;/span&gt; *src_reg)
+{
+    &lt;span class=&#34;hljs-built_in&#34;&gt;bool&lt;/span&gt; src_known = tnum_is_const(src_reg-&amp;gt;var_off);
+    &lt;span class=&#34;hljs-built_in&#34;&gt;bool&lt;/span&gt; dst_known = tnum_is_const(dst_reg-&amp;gt;var_off);
+    s64 smin_val = src_reg-&amp;gt;smin_value;
+    &lt;span class=&#34;hljs-built_in&#34;&gt;u64&lt;/span&gt; umin_val = src_reg-&amp;gt;umin_value;
+
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (src_known &amp;amp;&amp;amp; dst_known) {
+            __mark_reg_known(dst_reg, dst_reg-&amp;gt;var_off.value);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
+    }
+  ...
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/08/02/fabu1ous/2021-08-02/">
@@ -259,7 +295,6 @@
   ...
 }</code></pre>
 
-
             </div>
             <hr>
             <div>
@@ -276,15 +311,15 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
+                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
-                  <a class="hover-with-bg" href="/tags/ebpf/">ebpf</a>
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
-                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  <a class="hover-with-bg" href="/tags/ebpf/">ebpf</a>
                   
                 </div>
                 

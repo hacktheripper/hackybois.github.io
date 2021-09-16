@@ -13,15 +13,67 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2137&amp;amp;q=&amp;amp;can=1&amp;amp;sort=-reported&#34;&gt;Issue 2137: Windows: Out-of-bounds write in WindowsCodecsRaw!COlympusE300LoadRaw&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows 10 20H1&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; Olympus E300&amp;#xC758; raw &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD560; &amp;#xB54C;, &lt;code&gt;Windows Imaging Component (WIC)&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xCC98;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; &amp;#xB54C; &lt;code&gt;WindowsCodecsRaw.dll&lt;/code&gt;&amp;#xC758; &lt;code&gt;COlympusE300LoadRaw::olympus_e300_load_raw()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD55C; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; CLASS &lt;span class=&#34;hljs-title&#34;&gt;olympus_e300_load_raw&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+  uchar  *data,  *dp;
+  ushort *pixel, *pix;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; dwide, row, col;
+
+  dwide = raw_width * &lt;span class=&#34;hljs-number&#34;&gt;16&lt;/span&gt; / &lt;span class=&#34;hljs-number&#34;&gt;10&lt;/span&gt;;               &lt;span class=&#34;hljs-comment&#34;&gt;// (1)&lt;/span&gt;
+  data = &lt;span class=&#34;hljs-built_in&#34;&gt;malloc&lt;/span&gt; (dwide + raw_width*&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;);
+  merror (data, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;olympus_e300_load_raw()&amp;quot;&lt;/span&gt;);
+  pixel = (ushort *) (data + dwide);
+  &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (row=&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; row &amp;lt; height; row++) {
+    fread (data, &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;, dwide, ifp);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (dp=data, pix=pixel; pix &amp;lt; pixel+raw_width; dp+=&lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;, pix+=&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;) {  &lt;span class=&#34;hljs-comment&#34;&gt;//  (2)&lt;/span&gt;
+      &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (((dp-data) &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;15&lt;/span&gt;) == &lt;span class=&#34;hljs-number&#34;&gt;15&lt;/span&gt;) dp++;
+      pix[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;] = dp[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt; | dp[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;];                                    &lt;span class=&#34;hljs-comment&#34;&gt;// (3)&lt;/span&gt;
+      pix[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] = dp[&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;] &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt; | dp[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] &amp;gt;&amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;;                               &lt;span class=&#34;hljs-comment&#34;&gt;// (4)&lt;/span&gt;
+    }
+    &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (col=&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; col &amp;lt; width; col++)
+      BAYER(row,col) = (pixel[col] &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;);
+  }
+  &lt;span class=&#34;hljs-built_in&#34;&gt;free&lt;/span&gt; (data);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xBA3C;&amp;#xC800; (1)&amp;#xC5D0;&amp;#xC11C; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xB41C; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD560; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xC740; &amp;#xC5F4; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xC744; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xD55C; &amp;#xC5F4;&amp;#xC5D0;&amp;#xB294; &lt;code&gt;height&lt;/code&gt;&amp;#xB9CC;&amp;#xD07C;&amp;#xC758; &amp;#xD53D;&amp;#xC140;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xBA70; &amp;#xD53D;&amp;#xC140;&amp;#xC740; &amp;#xAC01;&amp;#xAC01; 2 bytes&amp;#xC758; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB85C; &amp;#xB514;&amp;#xCF54;&amp;#xB529; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB9AC;&amp;#xACE0; (2)&amp;#xC5D0;&amp;#xC11C;&amp;#xBD80;&amp;#xD130; &amp;#xC2E4;&amp;#xC9C8;&amp;#xC801;&amp;#xC778; &amp;#xB514;&amp;#xCF54;&amp;#xB529; &amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xC9C4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC870;&amp;#xAC74;&amp;#xBB38;&amp;#xC744; &lt;code&gt;pix &amp;lt; pixel+raw_width&lt;/code&gt;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD568;&amp;#xC73C;&amp;#xB85C;&amp;#xC368; &amp;#xB514;&amp;#xCF54;&amp;#xB529; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; OOB&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB3C4;&amp;#xB85D; &amp;#xC2E0;&amp;#xACBD;&amp;#xC37C;&amp;#xC9C0;&amp;#xB9CC; &lt;code&gt;raw_width&lt;/code&gt;&amp;#xAC00; &lt;code&gt;0xd79&lt;/code&gt;&amp;#xAC19;&amp;#xC774; &amp;#xD640;&amp;#xC218;&amp;#xC77C; &amp;#xACBD;&amp;#xC6B0;, &amp;#xD55C; &amp;#xD53D;&amp;#xC140; &amp;#xB2F9; 2 bytes &amp;#xC529; &amp;#xB514;&amp;#xCF54;&amp;#xB4DC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xD574;&amp;#xB2F9; loop&amp;#xC758; &amp;#xB9C8;&amp;#xC9C0;&amp;#xB9C9;&amp;#xC5D0;&amp;#xC11C; (3)&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xBC84;&amp;#xD37C;&amp;#xC758; &amp;#xB9C8;&amp;#xC9C0;&amp;#xB9C9;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC4F0;&amp;#xC9C0;&amp;#xB9CC; (4)&amp;#xC5D0;&amp;#xC11C; &amp;#xBC84;&amp;#xD37C; &amp;#xBC16;&amp;#xC758; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC601;&amp;#xC5ED;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC4F0;&amp;#xAC8C; &amp;#xB418;&amp;#xC5B4; 1 byte &amp;#xC758; OOB Write&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Windows: Out-of-bounds write in WindowsCodecsRaw!COlympusE300LoadRaw - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2137&amp;amp;q=&amp;amp;can=1&amp;amp;sort=-reported&#34;&gt;Issue 2137: Windows: Out-of-bounds write in WindowsCodecsRaw!COlympusE300LoadRaw&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows 10 20H1&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; Olympus E300&amp;#xC758; raw &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD560; &amp;#xB54C;, &lt;code&gt;Windows Imaging Component (WIC)&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xCC98;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; &amp;#xB54C; &lt;code&gt;WindowsCodecsRaw.dll&lt;/code&gt;&amp;#xC758; &lt;code&gt;COlympusE300LoadRaw::olympus_e300_load_raw()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD55C; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; CLASS &lt;span class=&#34;hljs-title&#34;&gt;olympus_e300_load_raw&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+  uchar  *data,  *dp;
+  ushort *pixel, *pix;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; dwide, row, col;
+
+  dwide = raw_width * &lt;span class=&#34;hljs-number&#34;&gt;16&lt;/span&gt; / &lt;span class=&#34;hljs-number&#34;&gt;10&lt;/span&gt;;               &lt;span class=&#34;hljs-comment&#34;&gt;// (1)&lt;/span&gt;
+  data = &lt;span class=&#34;hljs-built_in&#34;&gt;malloc&lt;/span&gt; (dwide + raw_width*&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;);
+  merror (data, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;olympus_e300_load_raw()&amp;quot;&lt;/span&gt;);
+  pixel = (ushort *) (data + dwide);
+  &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (row=&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; row &amp;lt; height; row++) {
+    fread (data, &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;, dwide, ifp);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (dp=data, pix=pixel; pix &amp;lt; pixel+raw_width; dp+=&lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;, pix+=&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;) {  &lt;span class=&#34;hljs-comment&#34;&gt;//  (2)&lt;/span&gt;
+      &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (((dp-data) &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;15&lt;/span&gt;) == &lt;span class=&#34;hljs-number&#34;&gt;15&lt;/span&gt;) dp++;
+      pix[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;] = dp[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt; | dp[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;];                                    &lt;span class=&#34;hljs-comment&#34;&gt;// (3)&lt;/span&gt;
+      pix[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] = dp[&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;] &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt; | dp[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] &amp;gt;&amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;;                               &lt;span class=&#34;hljs-comment&#34;&gt;// (4)&lt;/span&gt;
+    }
+    &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (col=&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; col &amp;lt; width; col++)
+      BAYER(row,col) = (pixel[col] &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;);
+  }
+  &lt;span class=&#34;hljs-built_in&#34;&gt;free&lt;/span&gt; (data);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xBA3C;&amp;#xC800; (1)&amp;#xC5D0;&amp;#xC11C; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xB41C; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD560; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xC740; &amp;#xC5F4; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xC744; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xD55C; &amp;#xC5F4;&amp;#xC5D0;&amp;#xB294; &lt;code&gt;height&lt;/code&gt;&amp;#xB9CC;&amp;#xD07C;&amp;#xC758; &amp;#xD53D;&amp;#xC140;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xBA70; &amp;#xD53D;&amp;#xC140;&amp;#xC740; &amp;#xAC01;&amp;#xAC01; 2 bytes&amp;#xC758; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB85C; &amp;#xB514;&amp;#xCF54;&amp;#xB529; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB9AC;&amp;#xACE0; (2)&amp;#xC5D0;&amp;#xC11C;&amp;#xBD80;&amp;#xD130; &amp;#xC2E4;&amp;#xC9C8;&amp;#xC801;&amp;#xC778; &amp;#xB514;&amp;#xCF54;&amp;#xB529; &amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xC9C4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC870;&amp;#xAC74;&amp;#xBB38;&amp;#xC744; &lt;code&gt;pix &amp;lt; pixel+raw_width&lt;/code&gt;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD568;&amp;#xC73C;&amp;#xB85C;&amp;#xC368; &amp;#xB514;&amp;#xCF54;&amp;#xB529; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; OOB&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB3C4;&amp;#xB85D; &amp;#xC2E0;&amp;#xACBD;&amp;#xC37C;&amp;#xC9C0;&amp;#xB9CC; &lt;code&gt;raw_width&lt;/code&gt;&amp;#xAC00; &lt;code&gt;0xd79&lt;/code&gt;&amp;#xAC19;&amp;#xC774; &amp;#xD640;&amp;#xC218;&amp;#xC77C; &amp;#xACBD;&amp;#xC6B0;, &amp;#xD55C; &amp;#xD53D;&amp;#xC140; &amp;#xB2F9; 2 bytes &amp;#xC529; &amp;#xB514;&amp;#xCF54;&amp;#xB4DC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xD574;&amp;#xB2F9; loop&amp;#xC758; &amp;#xB9C8;&amp;#xC9C0;&amp;#xB9C9;&amp;#xC5D0;&amp;#xC11C; (3)&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xBC84;&amp;#xD37C;&amp;#xC758; &amp;#xB9C8;&amp;#xC9C0;&amp;#xB9C9;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC4F0;&amp;#xC9C0;&amp;#xB9CC; (4)&amp;#xC5D0;&amp;#xC11C; &amp;#xBC84;&amp;#xD37C; &amp;#xBC16;&amp;#xC758; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC601;&amp;#xC5ED;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC4F0;&amp;#xAC8C; &amp;#xB418;&amp;#xC5B4; 1 byte &amp;#xC758; OOB Write&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/06/06/j0ker/2021-06-06/">
@@ -265,7 +317,6 @@
   }
   <span class="hljs-built_in">free</span> (data);
 }</code></pre>
-
 <p>&#xBA3C;&#xC800; (1)&#xC5D0;&#xC11C; &#xB514;&#xCF54;&#xB529;&#xB41C; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC800;&#xC7A5;&#xD560; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xD560;&#xB2F9;&#xD569;&#xB2C8;&#xB2E4;. &#xB514;&#xCF54;&#xB529;&#xC740; &#xC5F4; &#xB2E8;&#xC704;&#xB85C; &#xB514;&#xCF54;&#xB529;&#xC744; &#xC9C4;&#xD589;&#xD558;&#xB294;&#xB370;, &#xD55C; &#xC5F4;&#xC5D0;&#xB294; <code>height</code>&#xB9CC;&#xD07C;&#xC758; &#xD53D;&#xC140;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xBA70; &#xD53D;&#xC140;&#xC740; &#xAC01;&#xAC01; 2 bytes&#xC758; &#xB370;&#xC774;&#xD130;&#xB85C; &#xB514;&#xCF54;&#xB529; &#xB429;&#xB2C8;&#xB2E4;. &#xADF8;&#xB9AC;&#xACE0; (2)&#xC5D0;&#xC11C;&#xBD80;&#xD130; &#xC2E4;&#xC9C8;&#xC801;&#xC778; &#xB514;&#xCF54;&#xB529; &#xC791;&#xC5C5;&#xC774; &#xC9C4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;. &#xC870;&#xAC74;&#xBB38;&#xC744; <code>pix &lt; pixel+raw_width</code>&#xB85C; &#xC124;&#xC815;&#xD568;&#xC73C;&#xB85C;&#xC368; &#xB514;&#xCF54;&#xB529; &#xACFC;&#xC815;&#xC5D0;&#xC11C; OOB&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xC9C0; &#xC54A;&#xB3C4;&#xB85D; &#xC2E0;&#xACBD;&#xC37C;&#xC9C0;&#xB9CC; <code>raw_width</code>&#xAC00; <code>0xd79</code>&#xAC19;&#xC774; &#xD640;&#xC218;&#xC77C; &#xACBD;&#xC6B0;, &#xD55C; &#xD53D;&#xC140; &#xB2F9; 2 bytes &#xC529; &#xB514;&#xCF54;&#xB4DC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD574;&#xB2F9; loop&#xC758; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0;&#xC11C; (3)&#xC5D0;&#xC11C;&#xB294; &#xBC84;&#xD37C;&#xC758; &#xB9C8;&#xC9C0;&#xB9C9;&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F0;&#xC9C0;&#xB9CC; (4)&#xC5D0;&#xC11C; &#xBC84;&#xD37C; &#xBC16;&#xC758; &#xBA54;&#xBAA8;&#xB9AC; &#xC601;&#xC5ED;&#xC5D0; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC4F0;&#xAC8C; &#xB418;&#xC5B4; 1 byte &#xC758; OOB Write&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -284,11 +335,11 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
+                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
+                  
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/microsoft/">microsoft</a>
-                  
-                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
                   
                   <a class="hover-with-bg" href="/tags/j0ker/">j0ker</a>
                   

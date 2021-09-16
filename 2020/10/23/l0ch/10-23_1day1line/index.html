@@ -13,15 +13,27 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/ioncodes/CVE-2020-16938&#34;&gt;POC using Windows API calls&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Windows 10 2004/Server 2004&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC5C6;&amp;#xB294; &amp;#xC77C;&amp;#xBC18; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &amp;#xB85C;&amp;#xCEEC; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xC758; &amp;#xC804;&amp;#xCCB4; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC5F4;&amp;#xB78C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; POC&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;br&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xCD5C;&amp;#xADFC; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xB85C; &amp;#xD30C;&amp;#xD2F0;&amp;#xC158;, &amp;#xBCFC;&amp;#xB968; &amp;#xC7A5;&amp;#xCE58;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xBCC0;&amp;#xACBD;&amp;#xB418;&amp;#xC5B4; &lt;code&gt;\\.\PhysicalDrive0\&lt;/code&gt;&amp;#xACBD;&amp;#xB85C;&amp;#xB85C; &amp;#xC7A5;&amp;#xCE58;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD558;&amp;#xBA74; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xC6B0;&amp;#xD68C;&amp;#xD574; arbitrary file read&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/10/23/l0ch/10-23_1day1line/image1.png&#34; alt=&#34;image1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;NTFS parser&amp;#xC778; 7zip&amp;#xC73C;&amp;#xB85C;&amp;#xB3C4; arbitrary file read &amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://twitter.com/jonasLyk/status/1316104870987010048&#34;&gt;https://twitter.com/jonasLyk/status/1316104870987010048&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Bypassing NTFS permissions to read any files as unprivileged user - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/ioncodes/CVE-2020-16938&#34;&gt;POC using Windows API calls&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Windows 10 2004/Server 2004&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC5C6;&amp;#xB294; &amp;#xC77C;&amp;#xBC18; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &amp;#xB85C;&amp;#xCEEC; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xC758; &amp;#xC804;&amp;#xCCB4; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC5F4;&amp;#xB78C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; POC&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;br&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xCD5C;&amp;#xADFC; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xB85C; &amp;#xD30C;&amp;#xD2F0;&amp;#xC158;, &amp;#xBCFC;&amp;#xB968; &amp;#xC7A5;&amp;#xCE58;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xBCC0;&amp;#xACBD;&amp;#xB418;&amp;#xC5B4; &lt;code&gt;\\.\PhysicalDrive0\&lt;/code&gt;&amp;#xACBD;&amp;#xB85C;&amp;#xB85C; &amp;#xC7A5;&amp;#xCE58;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD558;&amp;#xBA74; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xC6B0;&amp;#xD68C;&amp;#xD574; arbitrary file read&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/10/23/l0ch/10-23_1day1line/image1.png&#34; alt=&#34;image1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;NTFS parser&amp;#xC778; 7zip&amp;#xC73C;&amp;#xB85C;&amp;#xB3C4; arbitrary file read &amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://twitter.com/jonasLyk/status/1316104870987010048&#34;&gt;https://twitter.com/jonasLyk/status/1316104870987010048&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/10/23/l0ch/10-23_1day1line/">

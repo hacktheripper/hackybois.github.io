@@ -13,15 +13,43 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.whtaguy.com/2020/09/utorrent-cve-2020-8437-vulnerability.html&#34;&gt;CVE-2020-8437 Vulnerability And Exploit Overview&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;uTorrent &amp;lt;= 3.5.5&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;CVE-2020-8437&amp;#xC740; uTorrent&amp;#xC758; peer&amp;#xB07C;&amp;#xB9AC; &amp;#xC8FC;&amp;#xACE0;&amp;#xBC1B;&amp;#xB294; BitTorrent protocol&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. BitTorrent protocol&amp;#xC744; &amp;#xC2DC;&amp;#xC791;&amp;#xD558;&amp;#xB294; Handshake &amp;#xD398;&amp;#xD0B7;&amp;#xC5D0;&amp;#xB294; bencoded dictionary&amp;#xB97C; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB294; &lt;code&gt;M field&lt;/code&gt;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;bencoded dictionary&amp;#xB294; python dictionary&amp;#xC640; &amp;#xB9E4;&amp;#xC6B0; &amp;#xC720;&amp;#xC0AC;&amp;#xD558;&amp;#xBA70; Key&amp;#xC640; Value&amp;#xB97C; &amp;#xAC16;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5EC;&amp;#xAE30;&amp;#xC11C; &amp;#xC911;&amp;#xC694;&amp;#xD55C; &amp;#xC810;&amp;#xC740; nested(&amp;#xC911;&amp;#xCCA9;&amp;#xB41C;) dictionary&amp;#xC758; &amp;#xC874;&amp;#xC7AC;&amp;#xC778;&amp;#xB370;, &amp;#xC989; Value&amp;#xAC00; &amp;#xB610; &amp;#xB2E4;&amp;#xB978; &amp;#xD558;&amp;#xB098;&amp;#xC758; dictionary&amp;#xAC00; &amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC911;&amp;#xCCA9;&amp;#xB41C; dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs Bencoded&#34;&gt;d
+	4:keyA 6:valueA
+	4:keyB
+	d
+		5:apple 3:pie
+		6:orange 5:juice
+	e
+e&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xCDA9;&amp;#xC811;&amp;#xB41C; dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1; &amp;#xD560; &amp;#xB54C; &amp;#xBA87; &amp;#xBC88;&amp;#xC9F8; layer&amp;#xC5D0;&amp;#xC11C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xACE0; &amp;#xC788;&amp;#xB294;&amp;#xC9C0;&amp;#xB97C; 32bit &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &lt;code&gt;bit field&lt;/code&gt;&amp;#xC5D0; &amp;#xAE30;&amp;#xB85D;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. layer&amp;#xB97C; &amp;#xD558;&amp;#xB098; &amp;#xB4E4;&amp;#xC5B4;&amp;#xAC08; &amp;#xB54C;&amp;#xB9C8;&amp;#xB2E4; &amp;#xC774; bit field&amp;#xC5D0; &amp;#xD55C; &amp;#xBE44;&amp;#xD2B8;&amp;#xC529; &amp;#xD50C;&amp;#xB798;&amp;#xADF8;&amp;#xB97C; &amp;#xC124;&amp;#xC815;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;( ex. 2&amp;#xBC88;&amp;#xC9F8; layer &amp;#xD30C;&amp;#xC2F1; &amp;#xC911; : 0000 0000 0000 0011 ). &amp;#xB9CC;&amp;#xC57D; layer&amp;#xAC00; 32&amp;#xBCF4;&amp;#xB2E4; &amp;#xB9CE;&amp;#xC774; &amp;#xC911;&amp;#xCCA9;&amp;#xB41C; dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xAC8C; &amp;#xB41C;&amp;#xB2E4;&amp;#xBA74; Crash&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;malicious bencoded dictionary&amp;#xB97C; &amp;#xB2F4;&amp;#xC740; &lt;code&gt;.torrent&lt;/code&gt;&amp;#xB97C; &amp;#xBC1B;&amp;#xB294; peer&amp;#xC758; uTorrent&amp;#xB294; nested dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; Crash&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xACE0; RCE&amp;#xAE4C;&amp;#xC9C0; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-8437: uTorrent vulnerability, misparse to RCE - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.whtaguy.com/2020/09/utorrent-cve-2020-8437-vulnerability.html&#34;&gt;CVE-2020-8437 Vulnerability And Exploit Overview&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;uTorrent &amp;lt;= 3.5.5&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;CVE-2020-8437&amp;#xC740; uTorrent&amp;#xC758; peer&amp;#xB07C;&amp;#xB9AC; &amp;#xC8FC;&amp;#xACE0;&amp;#xBC1B;&amp;#xB294; BitTorrent protocol&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. BitTorrent protocol&amp;#xC744; &amp;#xC2DC;&amp;#xC791;&amp;#xD558;&amp;#xB294; Handshake &amp;#xD398;&amp;#xD0B7;&amp;#xC5D0;&amp;#xB294; bencoded dictionary&amp;#xB97C; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB294; &lt;code&gt;M field&lt;/code&gt;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;bencoded dictionary&amp;#xB294; python dictionary&amp;#xC640; &amp;#xB9E4;&amp;#xC6B0; &amp;#xC720;&amp;#xC0AC;&amp;#xD558;&amp;#xBA70; Key&amp;#xC640; Value&amp;#xB97C; &amp;#xAC16;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5EC;&amp;#xAE30;&amp;#xC11C; &amp;#xC911;&amp;#xC694;&amp;#xD55C; &amp;#xC810;&amp;#xC740; nested(&amp;#xC911;&amp;#xCCA9;&amp;#xB41C;) dictionary&amp;#xC758; &amp;#xC874;&amp;#xC7AC;&amp;#xC778;&amp;#xB370;, &amp;#xC989; Value&amp;#xAC00; &amp;#xB610; &amp;#xB2E4;&amp;#xB978; &amp;#xD558;&amp;#xB098;&amp;#xC758; dictionary&amp;#xAC00; &amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC911;&amp;#xCCA9;&amp;#xB41C; dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs Bencoded&#34;&gt;d
+	4:keyA 6:valueA
+	4:keyB
+	d
+		5:apple 3:pie
+		6:orange 5:juice
+	e
+e&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xCDA9;&amp;#xC811;&amp;#xB41C; dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1; &amp;#xD560; &amp;#xB54C; &amp;#xBA87; &amp;#xBC88;&amp;#xC9F8; layer&amp;#xC5D0;&amp;#xC11C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xACE0; &amp;#xC788;&amp;#xB294;&amp;#xC9C0;&amp;#xB97C; 32bit &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &lt;code&gt;bit field&lt;/code&gt;&amp;#xC5D0; &amp;#xAE30;&amp;#xB85D;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. layer&amp;#xB97C; &amp;#xD558;&amp;#xB098; &amp;#xB4E4;&amp;#xC5B4;&amp;#xAC08; &amp;#xB54C;&amp;#xB9C8;&amp;#xB2E4; &amp;#xC774; bit field&amp;#xC5D0; &amp;#xD55C; &amp;#xBE44;&amp;#xD2B8;&amp;#xC529; &amp;#xD50C;&amp;#xB798;&amp;#xADF8;&amp;#xB97C; &amp;#xC124;&amp;#xC815;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;( ex. 2&amp;#xBC88;&amp;#xC9F8; layer &amp;#xD30C;&amp;#xC2F1; &amp;#xC911; : 0000 0000 0000 0011 ). &amp;#xB9CC;&amp;#xC57D; layer&amp;#xAC00; 32&amp;#xBCF4;&amp;#xB2E4; &amp;#xB9CE;&amp;#xC774; &amp;#xC911;&amp;#xCCA9;&amp;#xB41C; dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xAC8C; &amp;#xB41C;&amp;#xB2E4;&amp;#xBA74; Crash&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;malicious bencoded dictionary&amp;#xB97C; &amp;#xB2F4;&amp;#xC740; &lt;code&gt;.torrent&lt;/code&gt;&amp;#xB97C; &amp;#xBC1B;&amp;#xB294; peer&amp;#xC758; uTorrent&amp;#xB294; nested dictionary&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; Crash&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xACE0; RCE&amp;#xAE4C;&amp;#xC9C0; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/12/19/fabu1ous/2020-12-19/">
@@ -252,7 +280,6 @@
 		6:orange 5:juice
 	e
 e</code></pre>
-
 <p>&#xCDA9;&#xC811;&#xB41C; dictionary&#xB97C; &#xD30C;&#xC2F1; &#xD560; &#xB54C; &#xBA87; &#xBC88;&#xC9F8; layer&#xC5D0;&#xC11C; &#xD30C;&#xC2F1;&#xD558;&#xACE0; &#xC788;&#xB294;&#xC9C0;&#xB97C; 32bit &#xD06C;&#xAE30;&#xC758; <code>bit field</code>&#xC5D0; &#xAE30;&#xB85D;&#xD569;&#xB2C8;&#xB2E4;. layer&#xB97C; &#xD558;&#xB098; &#xB4E4;&#xC5B4;&#xAC08; &#xB54C;&#xB9C8;&#xB2E4; &#xC774; bit field&#xC5D0; &#xD55C; &#xBE44;&#xD2B8;&#xC529; &#xD50C;&#xB798;&#xADF8;&#xB97C; &#xC124;&#xC815;&#xD569;&#xB2C8;&#xB2E4;( ex. 2&#xBC88;&#xC9F8; layer &#xD30C;&#xC2F1; &#xC911; : 0000 0000 0000 0011 ). &#xB9CC;&#xC57D; layer&#xAC00; 32&#xBCF4;&#xB2E4; &#xB9CE;&#xC774; &#xC911;&#xCCA9;&#xB41C; dictionary&#xB97C; &#xD30C;&#xC2F1;&#xD558;&#xAC8C; &#xB41C;&#xB2E4;&#xBA74; Crash&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>malicious bencoded dictionary&#xB97C; &#xB2F4;&#xC740; <code>.torrent</code>&#xB97C; &#xBC1B;&#xB294; peer&#xC758; uTorrent&#xB294; nested dictionary&#xB97C; &#xD30C;&#xC2F1;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; Crash&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xACE0; RCE&#xAE4C;&#xC9C0; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 

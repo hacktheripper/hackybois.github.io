@@ -13,15 +13,47 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2104&#34;&gt;Windows Kernel cng.sys pool-based buffer overflow in IOCTL 0x390400&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows 10 1903(64-bit)&lt;/li&gt;
+&lt;li&gt;Maybe since at least Windows 7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xCEE4;&amp;#xB110; &amp;#xC554;&amp;#xD638;&amp;#xD654; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC778; cng.sys&amp;#xC5D0;&amp;#xC11C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; IOCTL 0x390400 &amp;#xCC98;&amp;#xB9AC; &amp;#xC911; &lt;code&gt;cng!CfgAdtpFormatPropertyBlock&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; 16-bit integer truncation&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;CONST USHORT DestinationSize = (USHORT)(&lt;span class=&#34;hljs-number&#34;&gt;6&lt;/span&gt; * SourceLength);
+PWCHAR OutputBuffer = BCryptAlloc(DestinationSize);
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (USHORT i = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; i &amp;lt; SourceLength; i++) {
+	*OutputBuffer++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;0123456789abcdef&amp;quot;&lt;/span&gt;[*SourceBuffer &amp;gt;&amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;];
+	*OutputBuffer++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;0123456789abcdef&amp;quot;&lt;/span&gt;[*SourceBuffer &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;0xF&lt;/span&gt;];
+	*OutputBuffer++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos; &amp;apos;&lt;/span&gt;;
+	SourceBuffer++;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;SourceLength&lt;/code&gt;&amp;#xC758; &amp;#xAC12;&amp;#xC774; &lt;code&gt;0x2AAB&lt;/code&gt;&amp;#xBCF4;&amp;#xB2E4; &amp;#xD06C;&amp;#xAC70;&amp;#xB098; &amp;#xAC19;&amp;#xC73C;&amp;#xBA74; NonPagedPool&amp;#xC5D0; &amp;#xBE44;&amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xC791;&amp;#xC740; &amp;#xBC84;&amp;#xD37C;&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0; binary-to-hex &amp;#xBCC0;&amp;#xD658; &amp;#xB8E8;&amp;#xD504;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xC624;&amp;#xBC84; &amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; 10 1903&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xB418;&amp;#xC5C8;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; 7&amp;#xBD80;&amp;#xD130; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC608;&amp;#xC0C1;&amp;#xB418;&amp;#xBA70; &amp;#xD604;&amp;#xC7AC; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC545;&amp;#xC6A9;&amp;#xB418;&amp;#xACE0; &amp;#xC788;&amp;#xB2E4;&amp;#xACE0; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-17087: Windows kernel cng.sys pool-based buffer overflow - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2104&#34;&gt;Windows Kernel cng.sys pool-based buffer overflow in IOCTL 0x390400&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows 10 1903(64-bit)&lt;/li&gt;
+&lt;li&gt;Maybe since at least Windows 7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xCEE4;&amp;#xB110; &amp;#xC554;&amp;#xD638;&amp;#xD654; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC778; cng.sys&amp;#xC5D0;&amp;#xC11C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; IOCTL 0x390400 &amp;#xCC98;&amp;#xB9AC; &amp;#xC911; &lt;code&gt;cng!CfgAdtpFormatPropertyBlock&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; 16-bit integer truncation&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;CONST USHORT DestinationSize = (USHORT)(&lt;span class=&#34;hljs-number&#34;&gt;6&lt;/span&gt; * SourceLength);
+PWCHAR OutputBuffer = BCryptAlloc(DestinationSize);
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (USHORT i = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; i &amp;lt; SourceLength; i++) {
+	*OutputBuffer++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;0123456789abcdef&amp;quot;&lt;/span&gt;[*SourceBuffer &amp;gt;&amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;];
+	*OutputBuffer++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;0123456789abcdef&amp;quot;&lt;/span&gt;[*SourceBuffer &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;0xF&lt;/span&gt;];
+	*OutputBuffer++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos; &amp;apos;&lt;/span&gt;;
+	SourceBuffer++;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;SourceLength&lt;/code&gt;&amp;#xC758; &amp;#xAC12;&amp;#xC774; &lt;code&gt;0x2AAB&lt;/code&gt;&amp;#xBCF4;&amp;#xB2E4; &amp;#xD06C;&amp;#xAC70;&amp;#xB098; &amp;#xAC19;&amp;#xC73C;&amp;#xBA74; NonPagedPool&amp;#xC5D0; &amp;#xBE44;&amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xC791;&amp;#xC740; &amp;#xBC84;&amp;#xD37C;&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0; binary-to-hex &amp;#xBCC0;&amp;#xD658; &amp;#xB8E8;&amp;#xD504;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xC624;&amp;#xBC84; &amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; 10 1903&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xB418;&amp;#xC5C8;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; 7&amp;#xBD80;&amp;#xD130; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC608;&amp;#xC0C1;&amp;#xB418;&amp;#xBA70; &amp;#xD604;&amp;#xC7AC; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC545;&amp;#xC6A9;&amp;#xB418;&amp;#xACE0; &amp;#xC788;&amp;#xB2E4;&amp;#xACE0; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/11/02/idioth/2020-11-02/">
@@ -255,7 +287,6 @@ PWCHAR OutputBuffer = BCryptAlloc(DestinationSize);
 	*OutputBuffer++ = <span class="hljs-string">&apos; &apos;</span>;
 	SourceBuffer++;
 }</code></pre>
-
 <p><code>SourceLength</code>&#xC758; &#xAC12;&#xC774; <code>0x2AAB</code>&#xBCF4;&#xB2E4; &#xD06C;&#xAC70;&#xB098; &#xAC19;&#xC73C;&#xBA74; NonPagedPool&#xC5D0; &#xBE44;&#xC815;&#xC0C1;&#xC801;&#xC73C;&#xB85C; &#xC791;&#xC740; &#xBC84;&#xD37C;&#xAC00; &#xD560;&#xB2F9;&#xB418;&#xACE0; binary-to-hex &#xBCC0;&#xD658; &#xB8E8;&#xD504;&#xC5D0; &#xC758;&#xD574; &#xC624;&#xBC84; &#xD50C;&#xB85C;&#xC6B0;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. &#xC708;&#xB3C4;&#xC6B0; 10 1903&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xB418;&#xC5C8;&#xC9C0;&#xB9CC; &#xC708;&#xB3C4;&#xC6B0; 7&#xBD80;&#xD130; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xAC83;&#xC73C;&#xB85C; &#xC608;&#xC0C1;&#xB418;&#xBA70; &#xD604;&#xC7AC; &#xCDE8;&#xC57D;&#xC810;&#xC774; &#xC545;&#xC6A9;&#xB418;&#xACE0; &#xC788;&#xB2E4;&#xACE0; &#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>

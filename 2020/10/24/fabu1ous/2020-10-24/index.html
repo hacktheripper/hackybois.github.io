@@ -13,15 +13,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://savannah.nongnu.org/bugs/?59308&#34;&gt;Heap buffer overflow due to integer truncation in Load_SBit_Png&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Google Chrome&lt;/p&gt;
+&lt;p&gt;Freetype&lt;/p&gt;
+&lt;p&gt;libpng&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;2020-10-21&amp;#xC77C; Chrome &amp;#xAE34;&amp;#xAE09; &amp;#xD328;&amp;#xCE58;&amp;#xAC00; &amp;#xB9B4;&amp;#xB9AC;&amp;#xC988; &amp;#xB410;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. CVE-2020-15999&amp;#xB294; Chrome&amp;#xC5D0;&amp;#xC11C; &amp;#xD3F0;&amp;#xD2B8;&amp;#xB97C; &amp;#xB80C;&amp;#xB354;&amp;#xB9C1; &amp;#xD560; &amp;#xB54C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC; Freetype&amp;#xC640; &amp;#xACF5;&amp;#xC2DD; PNG &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC; libpng &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xC774;&amp;#xC288;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAC01; &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xB294; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; 32-bit integer&amp;#xD06C;&amp;#xAE30;&amp;#xC758; width&amp;#xC640; height&amp;#xAC12;&amp;#xC744; &amp;#xCC38;&amp;#xC870;&amp;#xD574; &amp;#xB3D9;&amp;#xC791;&amp;#xD558;&amp;#xB294;&amp;#xB370;, Freetype&amp;#xC740; 16-bit&amp;#xB85C; truncate(&amp;#xCD95;&amp;#xC18C;)&amp;#xD55C; &amp;#xB4A4; bitmap &amp;#xD560;&amp;#xB2F9;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; size&amp;#xB97C; &amp;#xACC4;&amp;#xC0B0;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0;&amp;#xC758; width&amp;#xC640; height&amp;#xAC00; 16-bit &amp;#xBCF4;&amp;#xB2E4; &amp;#xD06C;&amp;#xB2E4;&amp;#xBA74; Freetype&amp;#xC5D0;&amp;#xC11C; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; bitmap&amp;#xC774; &amp;#xC2E4;&amp;#xC81C; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0;&amp;#xBCF4;&amp;#xB2E4; &amp;#xC791;&amp;#xACA0;&amp;#xC8E0;? &amp;#xC774;  bitmap&amp;#xC744; libpng&amp;#xAC00; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74;&amp;#xC11C; heap buffer overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-15999: Chrome 0-day, Heap buffer overflow - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://savannah.nongnu.org/bugs/?59308&#34;&gt;Heap buffer overflow due to integer truncation in Load_SBit_Png&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Google Chrome&lt;/p&gt;
+&lt;p&gt;Freetype&lt;/p&gt;
+&lt;p&gt;libpng&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;2020-10-21&amp;#xC77C; Chrome &amp;#xAE34;&amp;#xAE09; &amp;#xD328;&amp;#xCE58;&amp;#xAC00; &amp;#xB9B4;&amp;#xB9AC;&amp;#xC988; &amp;#xB410;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. CVE-2020-15999&amp;#xB294; Chrome&amp;#xC5D0;&amp;#xC11C; &amp;#xD3F0;&amp;#xD2B8;&amp;#xB97C; &amp;#xB80C;&amp;#xB354;&amp;#xB9C1; &amp;#xD560; &amp;#xB54C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC; Freetype&amp;#xC640; &amp;#xACF5;&amp;#xC2DD; PNG &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC; libpng &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xC774;&amp;#xC288;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAC01; &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xB294; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; 32-bit integer&amp;#xD06C;&amp;#xAE30;&amp;#xC758; width&amp;#xC640; height&amp;#xAC12;&amp;#xC744; &amp;#xCC38;&amp;#xC870;&amp;#xD574; &amp;#xB3D9;&amp;#xC791;&amp;#xD558;&amp;#xB294;&amp;#xB370;, Freetype&amp;#xC740; 16-bit&amp;#xB85C; truncate(&amp;#xCD95;&amp;#xC18C;)&amp;#xD55C; &amp;#xB4A4; bitmap &amp;#xD560;&amp;#xB2F9;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; size&amp;#xB97C; &amp;#xACC4;&amp;#xC0B0;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0;&amp;#xC758; width&amp;#xC640; height&amp;#xAC00; 16-bit &amp;#xBCF4;&amp;#xB2E4; &amp;#xD06C;&amp;#xB2E4;&amp;#xBA74; Freetype&amp;#xC5D0;&amp;#xC11C; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; bitmap&amp;#xC774; &amp;#xC2E4;&amp;#xC81C; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0;&amp;#xBCF4;&amp;#xB2E4; &amp;#xC791;&amp;#xACA0;&amp;#xC8E0;? &amp;#xC774;  bitmap&amp;#xC744; libpng&amp;#xAC00; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74;&amp;#xC11C; heap buffer overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/10/24/fabu1ous/2020-10-24/">
@@ -262,9 +272,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/heap-bof/">heap bof</a>
                   

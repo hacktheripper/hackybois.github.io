@@ -13,15 +13,75 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://movaxbx.ru/2021/03/13/new-old-bugs-in-the-linux-kernel/?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=new-old-bugs-in-the-linux-kernel&#34;&gt;New Old Bugs in the Linux Kernel&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Linux &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;(RHEL 8.1, 8.2 &amp;#xBC0F; 8.3&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xB428;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Linux &amp;#xCEE4;&amp;#xB110;&amp;#xC758; &amp;#xD558;&amp;#xC704; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC778; &lt;a href=&#34;https://ko.wikipedia.org/wiki/SCSI&#34;&gt;SCSI (Small Computer System Interface)&lt;/a&gt;&amp;#xC774; &amp;#xD3EC;&amp;#xD568;&amp;#xB41C; &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC5D0;&amp;#xC11C; heap buffer overflow&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; 15&amp;#xB144;&amp;#xAC04; &amp;#xC874;&amp;#xC7AC;&amp;#xD588;&amp;#xB358; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC54C;&amp;#xB824;&amp;#xC84C;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;code&gt;iscsi_session_get_param&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC720;&amp;#xC800;&amp;#xB294; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8; &amp;#xC774;&amp;#xB984;, &amp;#xC720;&amp;#xC800; &amp;#xC774;&amp;#xB984;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; iSCSI &amp;#xC5F0;&amp;#xACB0;&amp;#xACFC; &amp;#xAD00;&amp;#xB828;&amp;#xB41C; &amp;#xC18D;&amp;#xC131;&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xB294; iSCSI &amp;#xD558;&amp;#xC704; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; netlink &amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xB97C; &amp;#xBCF4;&amp;#xB0BC; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. netlink &amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xC758; &amp;#xCD5C;&amp;#xB300; &amp;#xAE38;&amp;#xC774;&amp;#xB294; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &lt;code&gt;2^32&lt;/code&gt; &amp;#xB610;&amp;#xB294; &lt;code&gt;2^16&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;switch&lt;/span&gt;(param) {
+...
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_USERNAME:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;username);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_USERNAME_IN:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;username_in);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_PASSWORD:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;password);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_PASSWORD_IN:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;password_in);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_IFACE_NAME:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;ifacename);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_INITIATOR_NAME:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;initiatorname);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xC758; &amp;#xAC01; &amp;#xC18D;&amp;#xC131;&amp;#xC740; &lt;code&gt;sprintf&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB85C; &amp;#xCC98;&amp;#xB9AC;&amp;#xB418;&amp;#xACE0; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xB294; &amp;#xBC84;&amp;#xD37C; &amp;#xD06C;&amp;#xAE30;&amp;#xB294; &amp;#xCEE4;&amp;#xB110;&amp;#xC758; &lt;code&gt;PAGE_SIZE&lt;/code&gt;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB418;&amp;#xBA70; &amp;#xD06C;&amp;#xAE30;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC0AC;&amp;#xAC00; &amp;#xC5C6;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC18D;&amp;#xC131;&amp;#xC744; &lt;code&gt;PAGE_SIZE&lt;/code&gt;&amp;#xBCF4;&amp;#xB2E4; &amp;#xB9CE;&amp;#xC774; &amp;#xC785;&amp;#xB825;&amp;#xD558;&amp;#xBA74; buffer overflow&amp;#xB97C; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD604;&amp;#xC7AC;&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xB41C; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC740; &lt;code&gt;libiscsi&lt;/code&gt; &amp;#xCEE4;&amp;#xB110; &amp;#xBAA8;&amp;#xB4C8;&amp;#xC744; &amp;#xC790;&amp;#xB3D9; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xB294; CentOS &amp;#xBC0F; RHEL &amp;#xBC84;&amp;#xC804; 8.1, 8.2, 8.3&amp;#xC774;&amp;#xBA70; &amp;#xB2E4;&amp;#xB978; &amp;#xBC30;&amp;#xD3EC;&amp;#xD310; &amp;#xB610;&amp;#xD55C; &amp;#xD574;&amp;#xB2F9; &amp;#xBAA8;&amp;#xB4C8;&amp;#xC774; &amp;#xB85C;&amp;#xB4DC;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC73C;&amp;#xBA74; &amp;#xACF5;&amp;#xACA9; &amp;#xC870;&amp;#xAC74;&amp;#xC744; &amp;#xB9CC;&amp;#xC871;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8; &amp;#xC678; CVE-2021-27363(&amp;#xCEE4;&amp;#xB110; &amp;#xD3EC;&amp;#xC778;&amp;#xD130; &amp;#xC720;&amp;#xCD9C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;), CVE-2021-27364(&amp;#xCEE4;&amp;#xB110; OOB read &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;) &amp;#xB610;&amp;#xD55C; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; SCSI &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xD328;&amp;#xCE58; &amp;#xD788;&amp;#xC2A4;&amp;#xD1A0;&amp;#xB9AC;&amp;#xB294; &lt;a href=&#34;https://github.com/torvalds/linux/commit/ec98ea7070e94cc25a422ec97d1421e28d97b7ee#diff-156a34b787dc5569ae3b78903bbda80af9e2264786c6cb8efb16c7ee32bd4bca&#34;&gt;torvalds/linux&lt;/a&gt; &amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-27365: Linux 커널에서 발견된 15년간 존재한 권한상승 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://movaxbx.ru/2021/03/13/new-old-bugs-in-the-linux-kernel/?utm_source=rss&amp;amp;utm_medium=rss&amp;amp;utm_campaign=new-old-bugs-in-the-linux-kernel&#34;&gt;New Old Bugs in the Linux Kernel&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Linux &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;(RHEL 8.1, 8.2 &amp;#xBC0F; 8.3&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xB428;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Linux &amp;#xCEE4;&amp;#xB110;&amp;#xC758; &amp;#xD558;&amp;#xC704; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC778; &lt;a href=&#34;https://ko.wikipedia.org/wiki/SCSI&#34;&gt;SCSI (Small Computer System Interface)&lt;/a&gt;&amp;#xC774; &amp;#xD3EC;&amp;#xD568;&amp;#xB41C; &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC5D0;&amp;#xC11C; heap buffer overflow&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; 15&amp;#xB144;&amp;#xAC04; &amp;#xC874;&amp;#xC7AC;&amp;#xD588;&amp;#xB358; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC54C;&amp;#xB824;&amp;#xC84C;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;code&gt;iscsi_session_get_param&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC720;&amp;#xC800;&amp;#xB294; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8; &amp;#xC774;&amp;#xB984;, &amp;#xC720;&amp;#xC800; &amp;#xC774;&amp;#xB984;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; iSCSI &amp;#xC5F0;&amp;#xACB0;&amp;#xACFC; &amp;#xAD00;&amp;#xB828;&amp;#xB41C; &amp;#xC18D;&amp;#xC131;&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xB294; iSCSI &amp;#xD558;&amp;#xC704; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; netlink &amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xB97C; &amp;#xBCF4;&amp;#xB0BC; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. netlink &amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xC758; &amp;#xCD5C;&amp;#xB300; &amp;#xAE38;&amp;#xC774;&amp;#xB294; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &lt;code&gt;2^32&lt;/code&gt; &amp;#xB610;&amp;#xB294; &lt;code&gt;2^16&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;switch&lt;/span&gt;(param) {
+...
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_USERNAME:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;username);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_USERNAME_IN:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;username_in);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_PASSWORD:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;password);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_PASSWORD_IN:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;password_in);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_IFACE_NAME:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;ifacename);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+	&lt;span class=&#34;hljs-keyword&#34;&gt;case&lt;/span&gt; ISCSI_PARAM_INITIATOR_NAME:
+		len = &lt;span class=&#34;hljs-built_in&#34;&gt;sprintf&lt;/span&gt;(buf, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;%s\\n&amp;quot;&lt;/span&gt;, session-&amp;gt;initiatorname);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xC758; &amp;#xAC01; &amp;#xC18D;&amp;#xC131;&amp;#xC740; &lt;code&gt;sprintf&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB85C; &amp;#xCC98;&amp;#xB9AC;&amp;#xB418;&amp;#xACE0; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xB294; &amp;#xBC84;&amp;#xD37C; &amp;#xD06C;&amp;#xAE30;&amp;#xB294; &amp;#xCEE4;&amp;#xB110;&amp;#xC758; &lt;code&gt;PAGE_SIZE&lt;/code&gt;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB418;&amp;#xBA70; &amp;#xD06C;&amp;#xAE30;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC0AC;&amp;#xAC00; &amp;#xC5C6;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC18D;&amp;#xC131;&amp;#xC744; &lt;code&gt;PAGE_SIZE&lt;/code&gt;&amp;#xBCF4;&amp;#xB2E4; &amp;#xB9CE;&amp;#xC774; &amp;#xC785;&amp;#xB825;&amp;#xD558;&amp;#xBA74; buffer overflow&amp;#xB97C; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD604;&amp;#xC7AC;&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xB41C; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC740; &lt;code&gt;libiscsi&lt;/code&gt; &amp;#xCEE4;&amp;#xB110; &amp;#xBAA8;&amp;#xB4C8;&amp;#xC744; &amp;#xC790;&amp;#xB3D9; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xB294; CentOS &amp;#xBC0F; RHEL &amp;#xBC84;&amp;#xC804; 8.1, 8.2, 8.3&amp;#xC774;&amp;#xBA70; &amp;#xB2E4;&amp;#xB978; &amp;#xBC30;&amp;#xD3EC;&amp;#xD310; &amp;#xB610;&amp;#xD55C; &amp;#xD574;&amp;#xB2F9; &amp;#xBAA8;&amp;#xB4C8;&amp;#xC774; &amp;#xB85C;&amp;#xB4DC;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC73C;&amp;#xBA74; &amp;#xACF5;&amp;#xACA9; &amp;#xC870;&amp;#xAC74;&amp;#xC744; &amp;#xB9CC;&amp;#xC871;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8; &amp;#xC678; CVE-2021-27363(&amp;#xCEE4;&amp;#xB110; &amp;#xD3EC;&amp;#xC778;&amp;#xD130; &amp;#xC720;&amp;#xCD9C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;), CVE-2021-27364(&amp;#xCEE4;&amp;#xB110; OOB read &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;) &amp;#xB610;&amp;#xD55C; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; SCSI &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xD328;&amp;#xCE58; &amp;#xD788;&amp;#xC2A4;&amp;#xD1A0;&amp;#xB9AC;&amp;#xB294; &lt;a href=&#34;https://github.com/torvalds/linux/commit/ec98ea7070e94cc25a422ec97d1421e28d97b7ee#diff-156a34b787dc5569ae3b78903bbda80af9e2264786c6cb8efb16c7ee32bd4bca&#34;&gt;torvalds/linux&lt;/a&gt; &amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/03/16/l0ch/2021-03-16/">
@@ -267,7 +327,6 @@
 		len = <span class="hljs-built_in">sprintf</span>(buf, <span class="hljs-string">&quot;%s\\n&quot;</span>, session-&gt;initiatorname);
 		<span class="hljs-keyword">break</span>;
 ...</code></pre>
-
 <p>&#xBA54;&#xC2DC;&#xC9C0;&#xC758; &#xAC01; &#xC18D;&#xC131;&#xC740; <code>sprintf</code> &#xD568;&#xC218;&#xB85C; &#xCC98;&#xB9AC;&#xB418;&#xACE0; &#xD560;&#xB2F9;&#xB418;&#xB294; &#xBC84;&#xD37C; &#xD06C;&#xAE30;&#xB294; &#xCEE4;&#xB110;&#xC758; <code>PAGE_SIZE</code>&#xB85C; &#xC124;&#xC815;&#xB418;&#xBA70; &#xD06C;&#xAE30;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC0AC;&#xAC00; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC18D;&#xC131;&#xC744; <code>PAGE_SIZE</code>&#xBCF4;&#xB2E4; &#xB9CE;&#xC774; &#xC785;&#xB825;&#xD558;&#xBA74; buffer overflow&#xB97C; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xD604;&#xC7AC;&#xAE4C;&#xC9C0; &#xD655;&#xC778;&#xB41C; &#xCDE8;&#xC57D;&#xD55C; &#xBC30;&#xD3EC;&#xD310;&#xC740; <code>libiscsi</code> &#xCEE4;&#xB110; &#xBAA8;&#xB4C8;&#xC744; &#xC790;&#xB3D9; &#xB85C;&#xB4DC;&#xD558;&#xB294; CentOS &#xBC0F; RHEL &#xBC84;&#xC804; 8.1, 8.2, 8.3&#xC774;&#xBA70; &#xB2E4;&#xB978; &#xBC30;&#xD3EC;&#xD310; &#xB610;&#xD55C; &#xD574;&#xB2F9; &#xBAA8;&#xB4C8;&#xC774; &#xB85C;&#xB4DC;&#xB418;&#xC5B4; &#xC788;&#xC73C;&#xBA74; &#xACF5;&#xACA9; &#xC870;&#xAC74;&#xC744; &#xB9CC;&#xC871;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8; &#xC678; CVE-2021-27363(&#xCEE4;&#xB110; &#xD3EC;&#xC778;&#xD130; &#xC720;&#xCD9C; &#xCDE8;&#xC57D;&#xC810;), CVE-2021-27364(&#xCEE4;&#xB110; OOB read &#xCDE8;&#xC57D;&#xC810;) &#xB610;&#xD55C; &#xB3D9;&#xC77C;&#xD55C; SCSI &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xC5D0;&#xC11C; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xD328;&#xCE58; &#xD788;&#xC2A4;&#xD1A0;&#xB9AC;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/torvalds/linux/commit/ec98ea7070e94cc25a422ec97d1421e28d97b7ee#diff-156a34b787dc5569ae3b78903bbda80af9e2264786c6cb8efb16c7ee32bd4bca">torvalds/linux</a> &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -290,13 +349,13 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/heap-bof/">heap bof</a>
+                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
-                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  <a class="hover-with-bg" href="/tags/heap-bof/">heap bof</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

@@ -13,15 +13,107 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://talosintelligence.com/vulnerability_reports/TALOS-2021-1248&#34;&gt;Accusoft ImageGear JPG format SOF marker processing out-of-bounds write vulnerability&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Accusoft ImageGear &amp;#x2264; 19.8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Accusoft&amp;#xC758; ImageGear &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xC5D0;&amp;#xC11C; JPG &amp;#xD3EC;&amp;#xB9F7;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD560; &amp;#xB54C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; OOB write &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. ImageGear&amp;#xB294; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xBCC0;&amp;#xD658;, &amp;#xC0DD;&amp;#xC131;, &amp;#xD3B8;&amp;#xC9D1;, &amp;#xC8FC;&amp;#xC11D; &amp;#xB4F1;&amp;#xC744; &amp;#xC81C;&amp;#xACF5;&amp;#xD558;&amp;#xB294; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xD234;&amp;#xD0B7;&amp;#xC774;&amp;#xBA70; DICOM, PDF, Microsoft Office &amp;#xB4F1; 100&amp;#xAC1C; &amp;#xC774;&amp;#xC0C1;&amp;#xC758; &amp;#xD615;&amp;#xC2DD;&amp;#xC744; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; JPG&amp;#xD30C;&amp;#xC77C; &amp;#xB85C;&amp;#xB4DC; &amp;#xACFC;&amp;#xC815;&amp;#xC758; &lt;code&gt;handle_color_channel_with_high_precision&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;handle_color_channel_with_high_precision&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(undefined4 param_1,&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; width,&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *param_3,&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-params&#34;&gt;                                &lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *param_,&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *param_5,&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *raster_buffer,&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; param_7,&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; param_8)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;	&lt;/span&gt;{
+   [...]  
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; &amp;lt; width) {
+		raster_buffer = raster_buffer + &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;;
+		&lt;span class=&#34;hljs-keyword&#34;&gt;do&lt;/span&gt; {
+...
+				&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (short_3 &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;){
+					short_3 = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+				}
+				&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+					&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt; &amp;lt; short_3)
+						short_3 = &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;;
+				}
+				raster_buffer[&lt;span class=&#34;hljs-number&#34;&gt;-2&lt;/span&gt;] = (&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt;)short_3;
+				&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (short_2 &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;){
+					short_2 = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+				}
+				&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+					&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt; &amp;lt; short_2)
+						short_2 = &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;;
+				}
+				raster_buffer[&lt;span class=&#34;hljs-number&#34;&gt;-1&lt;/span&gt;] = (&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt;)short_2;
+				&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (short_1 &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;){
+					short_1 = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+				}
+				&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+					&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt; &amp;lt; short_1)
+						short_1 = &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;;
+				}
+				*raster_buffer = (&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt;)short_1;      
+...
+				raster_buffer = raster_buffer + &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;;
+				width = width + &lt;span class=&#34;hljs-number&#34;&gt;-1&lt;/span&gt;;
+			} &lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (width != &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
+		}
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
+	}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218;&amp;#xB294; &lt;code&gt;width&lt;/code&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xB9CC;&amp;#xD07C; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB3CC;&amp;#xBA70; &lt;code&gt;raster_buffer&lt;/code&gt;&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;width&lt;/code&gt;&amp;#xB294; JPG &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD5E4;&amp;#xB354; &amp;#xC694;&amp;#xC18C;&amp;#xC778; SOF(Start Of Frame, JPG &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD06C;&amp;#xAE30; &amp;#xBC0F; &amp;#xC0D8;&amp;#xD50C;&amp;#xB9C1; &amp;#xC815;&amp;#xBCF4;) &amp;#xB9C8;&amp;#xCEE4;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xB294;&amp;#xB370;, &lt;code&gt;raster_buffer&lt;/code&gt;&amp;#xC640; &lt;code&gt;width&lt;/code&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; SOF &amp;#xB9C8;&amp;#xCEE4;&amp;#xB97C; &amp;#xC870;&amp;#xC791;&amp;#xD574; &lt;code&gt;raster_buffer&lt;/code&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; SOF &amp;#xB9C8;&amp;#xCEE4;&amp;#xC5D0;&amp;#xC11C; &amp;#xD30C;&amp;#xC2F1; &amp;#xD55C; &lt;code&gt;width&lt;/code&gt;&amp;#xC5D0; 3&amp;#xC744; &amp;#xACF1;&amp;#xD55C; &amp;#xAC12;&amp;#xBCF4;&amp;#xB2E4; &amp;#xC791;&amp;#xC73C;&amp;#xBA74; buffer overflow&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xBC97;&amp;#xC5B4;&amp;#xB09C; &amp;#xC4F0;&amp;#xAE30;&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD558;&amp;#xBA70; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-21784: Accusoft ImageGear의 OOB write를 통한 임의 코드 실행 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://talosintelligence.com/vulnerability_reports/TALOS-2021-1248&#34;&gt;Accusoft ImageGear JPG format SOF marker processing out-of-bounds write vulnerability&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Accusoft ImageGear &amp;#x2264; 19.8&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Accusoft&amp;#xC758; ImageGear &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xC5D0;&amp;#xC11C; JPG &amp;#xD3EC;&amp;#xB9F7;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD560; &amp;#xB54C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; OOB write &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. ImageGear&amp;#xB294; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xBCC0;&amp;#xD658;, &amp;#xC0DD;&amp;#xC131;, &amp;#xD3B8;&amp;#xC9D1;, &amp;#xC8FC;&amp;#xC11D; &amp;#xB4F1;&amp;#xC744; &amp;#xC81C;&amp;#xACF5;&amp;#xD558;&amp;#xB294; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xD234;&amp;#xD0B7;&amp;#xC774;&amp;#xBA70; DICOM, PDF, Microsoft Office &amp;#xB4F1; 100&amp;#xAC1C; &amp;#xC774;&amp;#xC0C1;&amp;#xC758; &amp;#xD615;&amp;#xC2DD;&amp;#xC744; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; JPG&amp;#xD30C;&amp;#xC77C; &amp;#xB85C;&amp;#xB4DC; &amp;#xACFC;&amp;#xC815;&amp;#xC758; &lt;code&gt;handle_color_channel_with_high_precision&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;handle_color_channel_with_high_precision&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(undefined4 param_1,&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; width,&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *param_3,&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-params&#34;&gt;                                &lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *param_,&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *param_5,&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt; *raster_buffer,&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; param_7,&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; param_8)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;	&lt;/span&gt;{
+   [...]  
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt; &amp;lt; width) {
+		raster_buffer = raster_buffer + &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;;
+		&lt;span class=&#34;hljs-keyword&#34;&gt;do&lt;/span&gt; {
+...
+				&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (short_3 &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;){
+					short_3 = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+				}
+				&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+					&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt; &amp;lt; short_3)
+						short_3 = &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;;
+				}
+				raster_buffer[&lt;span class=&#34;hljs-number&#34;&gt;-2&lt;/span&gt;] = (&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt;)short_3;
+				&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (short_2 &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;){
+					short_2 = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+				}
+				&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+					&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt; &amp;lt; short_2)
+						short_2 = &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;;
+				}
+				raster_buffer[&lt;span class=&#34;hljs-number&#34;&gt;-1&lt;/span&gt;] = (&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt;)short_2;
+				&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (short_1 &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;){
+					short_1 = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+				}
+				&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+					&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt; &amp;lt; short_1)
+						short_1 = &lt;span class=&#34;hljs-number&#34;&gt;0xfff&lt;/span&gt;;
+				}
+				*raster_buffer = (&lt;span class=&#34;hljs-keyword&#34;&gt;short&lt;/span&gt;)short_1;      
+...
+				raster_buffer = raster_buffer + &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;;
+				width = width + &lt;span class=&#34;hljs-number&#34;&gt;-1&lt;/span&gt;;
+			} &lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (width != &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
+		}
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
+	}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218;&amp;#xB294; &lt;code&gt;width&lt;/code&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xB9CC;&amp;#xD07C; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB3CC;&amp;#xBA70; &lt;code&gt;raster_buffer&lt;/code&gt;&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;width&lt;/code&gt;&amp;#xB294; JPG &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD5E4;&amp;#xB354; &amp;#xC694;&amp;#xC18C;&amp;#xC778; SOF(Start Of Frame, JPG &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD06C;&amp;#xAE30; &amp;#xBC0F; &amp;#xC0D8;&amp;#xD50C;&amp;#xB9C1; &amp;#xC815;&amp;#xBCF4;) &amp;#xB9C8;&amp;#xCEE4;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xB294;&amp;#xB370;, &lt;code&gt;raster_buffer&lt;/code&gt;&amp;#xC640; &lt;code&gt;width&lt;/code&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; SOF &amp;#xB9C8;&amp;#xCEE4;&amp;#xB97C; &amp;#xC870;&amp;#xC791;&amp;#xD574; &lt;code&gt;raster_buffer&lt;/code&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; SOF &amp;#xB9C8;&amp;#xCEE4;&amp;#xC5D0;&amp;#xC11C; &amp;#xD30C;&amp;#xC2F1; &amp;#xD55C; &lt;code&gt;width&lt;/code&gt;&amp;#xC5D0; 3&amp;#xC744; &amp;#xACF1;&amp;#xD55C; &amp;#xAC12;&amp;#xBCF4;&amp;#xB2E4; &amp;#xC791;&amp;#xC73C;&amp;#xBA74; buffer overflow&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xBC97;&amp;#xC5B4;&amp;#xB09C; &amp;#xC4F0;&amp;#xAE30;&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD558;&amp;#xBA70; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/03/05/l0ch/2021-03-05/">
@@ -285,7 +377,6 @@
 		}
 		<span class="hljs-keyword">return</span>;
 	}</code></pre>
-
 <p>&#xCDE8;&#xC57D;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294; &#xD568;&#xC218;&#xB294; <code>width</code>&#xC758; &#xD06C;&#xAE30;&#xB9CC;&#xD07C; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB3CC;&#xBA70; <code>raster_buffer</code>&#xC5D0; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;. <code>width</code>&#xB294; JPG &#xD30C;&#xC77C;&#xC758; &#xD5E4;&#xB354; &#xC694;&#xC18C;&#xC778; SOF(Start Of Frame, JPG &#xD30C;&#xC77C;&#xC758; &#xD06C;&#xAE30; &#xBC0F; &#xC0D8;&#xD50C;&#xB9C1; &#xC815;&#xBCF4;) &#xB9C8;&#xCEE4;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC624;&#xB294;&#xB370;, <code>raster_buffer</code>&#xC640; <code>width</code>&#xC758; &#xD06C;&#xAE30; &#xAC80;&#xC0AC;&#xB97C; &#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xD574;&#xCEE4;&#xAC00; SOF &#xB9C8;&#xCEE4;&#xB97C; &#xC870;&#xC791;&#xD574; <code>raster_buffer</code>&#xC758; &#xD06C;&#xAE30;&#xAC00; SOF &#xB9C8;&#xCEE4;&#xC5D0;&#xC11C; &#xD30C;&#xC2F1; &#xD55C; <code>width</code>&#xC5D0; 3&#xC744; &#xACF1;&#xD55C; &#xAC12;&#xBCF4;&#xB2E4; &#xC791;&#xC73C;&#xBA74; buffer overflow&#xB85C; &#xC778;&#xD574; &#xBC94;&#xC704;&#xB97C; &#xBC97;&#xC5B4;&#xB09C; &#xC4F0;&#xAE30;&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xBA70; &#xC6D0;&#xACA9; &#xCF54;&#xB4DC; &#xC2E4;&#xD589;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -306,11 +397,11 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
+                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
                   
                   <a class="hover-with-bg" href="/tags/bof/">bof</a>
                   
-                  <a class="hover-with-bg" href="/tags/oob/">oob</a>
+                  <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   
                   <a class="hover-with-bg" href="/tags/buffer-overflow/">buffer overflow</a>
                   

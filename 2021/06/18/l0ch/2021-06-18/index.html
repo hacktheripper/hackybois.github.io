@@ -13,15 +13,67 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/6/15/zdi-21-502-an-information-disclosure-bug-in-isc-bind-server&#34;&gt;ZDI-21-502: AN INFORMATION DISCLOSURE BUG IN ISC BIND SERVER&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;BIND 9.11.31, 9.16.15 &amp;#xC774;&amp;#xC804; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;ISC&amp;#xC0AC;&amp;#xC758; DNS &amp;#xC11C;&amp;#xBC84; &amp;#xC18C;&amp;#xD504;&amp;#xD2B8;&amp;#xC6E8;&amp;#xC5B4;&amp;#xC778; BIND&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC815;&amp;#xBCF4; &amp;#xC720;&amp;#xCD9C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;der_match_tag_and_length()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xD0DC;&amp;#xADF8;&amp;#xB97C; &amp;#xB9E4;&amp;#xCE6D;&amp;#xD558;&amp;#xACE0; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xD328;&amp;#xD0B7;&amp;#xC5D0;&amp;#xC11C; &amp;#xAE38;&amp;#xC774;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xD544;&amp;#xB4DC;&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218;&amp;#xB85C;, &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs jsx&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; int der_match_tag_and_length(&lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; unsigned char *p, size_t len, Der_class xclass, 
+					                Der_type type, int tag, size_t *length_ret,  size_t *size) 
+{ 
+    size_t l, ret = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; 
+    int e; 
+ 
+    e = der_match_tag(p, len, xclass, type, tag, &amp;amp;l); 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (e) { 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; (e); 
+    } 
+    p += l; 
+    len -= l; 
+    ret += l; 
+    e = der_get_length(p, len, length_ret, &amp;amp;l);  &lt;span class=&#34;hljs-comment&#34;&gt;// (1) &lt;/span&gt;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (e) { 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; (e); 
+    } 
+...
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; &lt;code&gt;der_get_length()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xC778;&amp;#xC790; &amp;#xC911; &lt;code&gt;length_ret&lt;/code&gt;&amp;#xC740; &amp;#xD638;&amp;#xCD9C;&amp;#xC790;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC12;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xC774; &amp;#xC774;&amp;#xB904;&amp;#xC838;&amp;#xC57C; &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xAC80;&amp;#xC99D;&amp;#xC744; &amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xACE0; &amp;#xBC18;&amp;#xD658;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;der_match_tag_and_length()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC18;&amp;#xD658;&amp;#xB41C; &amp;#xAC80;&amp;#xC99D;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xAE38;&amp;#xC774; &amp;#xAC12;&amp;#xC740; &amp;#xC774;&amp;#xD6C4; &lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc4178#section-4.2.1&#34;&gt;negTokenInit&lt;/a&gt;&amp;#xC744; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xD558;&amp;#xB294; &lt;code&gt;decode_NegTokenInit()&lt;/code&gt; &amp;#xD568;&amp;#xC218; &amp;#xB0B4;&amp;#xC758; &amp;#xC5EC;&amp;#xB7EC; &amp;#xAC80;&amp;#xC0AC;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xC5B4; OOB Access&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] ISC BIND 서버의 정보 유출 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/6/15/zdi-21-502-an-information-disclosure-bug-in-isc-bind-server&#34;&gt;ZDI-21-502: AN INFORMATION DISCLOSURE BUG IN ISC BIND SERVER&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;BIND 9.11.31, 9.16.15 &amp;#xC774;&amp;#xC804; &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;ISC&amp;#xC0AC;&amp;#xC758; DNS &amp;#xC11C;&amp;#xBC84; &amp;#xC18C;&amp;#xD504;&amp;#xD2B8;&amp;#xC6E8;&amp;#xC5B4;&amp;#xC778; BIND&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC815;&amp;#xBCF4; &amp;#xC720;&amp;#xCD9C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;der_match_tag_and_length()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xD0DC;&amp;#xADF8;&amp;#xB97C; &amp;#xB9E4;&amp;#xCE6D;&amp;#xD558;&amp;#xACE0; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xD328;&amp;#xD0B7;&amp;#xC5D0;&amp;#xC11C; &amp;#xAE38;&amp;#xC774;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xD544;&amp;#xB4DC;&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218;&amp;#xB85C;, &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs jsx&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; int der_match_tag_and_length(&lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; unsigned char *p, size_t len, Der_class xclass, 
+					                Der_type type, int tag, size_t *length_ret,  size_t *size) 
+{ 
+    size_t l, ret = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; 
+    int e; 
+ 
+    e = der_match_tag(p, len, xclass, type, tag, &amp;amp;l); 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (e) { 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; (e); 
+    } 
+    p += l; 
+    len -= l; 
+    ret += l; 
+    e = der_get_length(p, len, length_ret, &amp;amp;l);  &lt;span class=&#34;hljs-comment&#34;&gt;// (1) &lt;/span&gt;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (e) { 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; (e); 
+    } 
+...
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; &lt;code&gt;der_get_length()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xC778;&amp;#xC790; &amp;#xC911; &lt;code&gt;length_ret&lt;/code&gt;&amp;#xC740; &amp;#xD638;&amp;#xCD9C;&amp;#xC790;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC12;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xC774; &amp;#xC774;&amp;#xB904;&amp;#xC838;&amp;#xC57C; &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xAC80;&amp;#xC99D;&amp;#xC744; &amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xACE0; &amp;#xBC18;&amp;#xD658;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;der_match_tag_and_length()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC18;&amp;#xD658;&amp;#xB41C; &amp;#xAC80;&amp;#xC99D;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xAE38;&amp;#xC774; &amp;#xAC12;&amp;#xC740; &amp;#xC774;&amp;#xD6C4; &lt;a href=&#34;https://datatracker.ietf.org/doc/html/rfc4178#section-4.2.1&#34;&gt;negTokenInit&lt;/a&gt;&amp;#xC744; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xD558;&amp;#xB294; &lt;code&gt;decode_NegTokenInit()&lt;/code&gt; &amp;#xD568;&amp;#xC218; &amp;#xB0B4;&amp;#xC758; &amp;#xC5EC;&amp;#xB7EC; &amp;#xAC80;&amp;#xC0AC;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xC5B4; OOB Access&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/06/18/l0ch/2021-06-18/">
@@ -265,7 +317,6 @@
     } 
 ...
 }</code></pre>
-
 <p>&#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xD638;&#xCD9C;&#xD558;&#xB294; <code>der_get_length()</code> &#xD568;&#xC218;&#xC758; &#xC778;&#xC790; &#xC911; <code>length_ret</code>&#xC740; &#xD638;&#xCD9C;&#xC790;&#xC5D0;&#xC11C; &#xAC12;&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC99D;&#xC774; &#xC774;&#xB904;&#xC838;&#xC57C; &#xD558;&#xC9C0;&#xB9CC; &#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C;&#xB294; &#xAC80;&#xC99D;&#xC744; &#xD558;&#xC9C0; &#xC54A;&#xACE0; &#xBC18;&#xD658;&#xD569;&#xB2C8;&#xB2E4;. <code>der_match_tag_and_length()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xBC18;&#xD658;&#xB41C; &#xAC80;&#xC99D;&#xB418;&#xC9C0; &#xC54A;&#xC740; &#xAE38;&#xC774; &#xAC12;&#xC740; &#xC774;&#xD6C4; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://datatracker.ietf.org/doc/html/rfc4178#section-4.2.1">negTokenInit</a>&#xC744; &#xB514;&#xCF54;&#xB529;&#xD558;&#xB294; <code>decode_NegTokenInit()</code> &#xD568;&#xC218; &#xB0B4;&#xC758; &#xC5EC;&#xB7EC; &#xAC80;&#xC0AC;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xC5B4; OOB Access&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>

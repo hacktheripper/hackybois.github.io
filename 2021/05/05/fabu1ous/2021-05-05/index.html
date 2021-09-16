@@ -13,15 +13,41 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2144&#34;&gt;OOB Write in NFC stack when handling MIFARE Classic TLVs&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Android-10&lt;/p&gt;
+&lt;p&gt;Android-11&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&amp;#xC545;&amp;#xC131; NFC &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xC548;&amp;#xB4DC;&amp;#xB85C;&amp;#xC774;&amp;#xB4DC; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC548;&amp;#xB4DC;&amp;#xB85C;&amp;#xC774;&amp;#xB4DC; NFC&amp;#xB294; &amp;#xD568;&amp;#xC218;&lt;code&gt;rw_mfc_handle_read_op()&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574;  &amp;#xBE14;&amp;#xB85D; &amp;#xB2E8;&amp;#xC704; &amp;#xC694;&amp;#xCCAD;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4;&amp;#xACE0; MFC(MIFARE Classic) &amp;#xCE74;&amp;#xB4DC;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; NDEF(NFC Data Exchange Format)&amp;#xB97C; &amp;#xBC1B;&amp;#xC544;&amp;#xC635;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD568;&amp;#xC218; &lt;code&gt;rw_mfc_handle_read_op()&lt;/code&gt; &amp;#xB294; STATE&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xB3D9;&amp;#xC791;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;RW_MFC_STATE_DETECT_TLV&lt;/p&gt;
+&lt;p&gt;&amp;#xBE14;&amp;#xB85D;&amp;#xC758; TLV&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD574;  &lt;code&gt;p_mfc-&amp;gt;ndef_length&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xC800;&amp;#xC7A5;&amp;#xD558;&amp;#xACE0; &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xB294; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RW_MFC_STATE_READ_NDEF&lt;/p&gt;
+&lt;p&gt;&amp;#xBE14;&amp;#xB85D;&amp;#xC758; TLV&amp;#xB97C; &amp;#xB2E4;&amp;#xC2DC; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xD574; &lt;code&gt;p_mfc-&amp;gt;ndef_length&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xD55C; &amp;#xB4A4; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xC545;&amp;#xC131; NFC &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xB450; STATE&amp;#xC5D0;&amp;#xC11C; &amp;#xC11C;&amp;#xB85C; &amp;#xB2E4;&amp;#xB978; &lt;code&gt;p_mfc-&amp;gt;ndef_length&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; buffer overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBA70; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Android OOB write in NFC stack - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2144&#34;&gt;OOB Write in NFC stack when handling MIFARE Classic TLVs&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Android-10&lt;/p&gt;
+&lt;p&gt;Android-11&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&amp;#xC545;&amp;#xC131; NFC &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xC548;&amp;#xB4DC;&amp;#xB85C;&amp;#xC774;&amp;#xB4DC; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC548;&amp;#xB4DC;&amp;#xB85C;&amp;#xC774;&amp;#xB4DC; NFC&amp;#xB294; &amp;#xD568;&amp;#xC218;&lt;code&gt;rw_mfc_handle_read_op()&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574;  &amp;#xBE14;&amp;#xB85D; &amp;#xB2E8;&amp;#xC704; &amp;#xC694;&amp;#xCCAD;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4;&amp;#xACE0; MFC(MIFARE Classic) &amp;#xCE74;&amp;#xB4DC;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; NDEF(NFC Data Exchange Format)&amp;#xB97C; &amp;#xBC1B;&amp;#xC544;&amp;#xC635;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD568;&amp;#xC218; &lt;code&gt;rw_mfc_handle_read_op()&lt;/code&gt; &amp;#xB294; STATE&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xB3D9;&amp;#xC791;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;RW_MFC_STATE_DETECT_TLV&lt;/p&gt;
+&lt;p&gt;&amp;#xBE14;&amp;#xB85D;&amp;#xC758; TLV&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1;&amp;#xD574;  &lt;code&gt;p_mfc-&amp;gt;ndef_length&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xC800;&amp;#xC7A5;&amp;#xD558;&amp;#xACE0; &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xB294; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RW_MFC_STATE_READ_NDEF&lt;/p&gt;
+&lt;p&gt;&amp;#xBE14;&amp;#xB85D;&amp;#xC758; TLV&amp;#xB97C; &amp;#xB2E4;&amp;#xC2DC; &amp;#xB514;&amp;#xCF54;&amp;#xB529;&amp;#xD574; &lt;code&gt;p_mfc-&amp;gt;ndef_length&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xD55C; &amp;#xB4A4; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xC545;&amp;#xC131; NFC &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xB450; STATE&amp;#xC5D0;&amp;#xC11C; &amp;#xC11C;&amp;#xB85C; &amp;#xB2E4;&amp;#xB978; &lt;code&gt;p_mfc-&amp;gt;ndef_length&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; buffer overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBA70; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/05/05/fabu1ous/2021-05-05/">

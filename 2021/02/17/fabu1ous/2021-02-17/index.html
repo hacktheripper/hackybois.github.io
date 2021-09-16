@@ -13,15 +13,53 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-26937&#34;&gt;CVE-2021-26937&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;GNU screen &amp;lt;= 4.8.0&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Debian 9 ( GNU Screen 4.05.00 )&lt;/li&gt;
+&lt;li&gt;Raspbian 10 ( GNU Screen 4.06.02 )&lt;/li&gt;
+&lt;li&gt;Ubuntu 20.04.1 ( GNU Screen 4.08.00, Windows WSL )&lt;/li&gt;
+&lt;li&gt;Ubuntu 20.04 ( GNU Screen 4.08.00 )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;GNU Screen&amp;#xC740; &amp;#xC5EC;&amp;#xB7EC; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &amp;#xD130;&amp;#xBBF8;&amp;#xB110;&amp;#xC744; &amp;#xD55C; &amp;#xD654;&amp;#xBA74;&amp;#xC5D0;&amp;#xC11C; &amp;#xC870;&amp;#xC791;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB3C4;&amp;#xC640;&amp;#xC8FC;&amp;#xB294; multiplexer&amp;#xB85C;, Mac OSX&amp;#xC640; &amp;#xB300;&amp;#xBD80;&amp;#xBD84;&amp;#xC758; Linux &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC5D0; &amp;#xD3EC;&amp;#xD568;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. GNU Screen 4.8.0 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&amp;#xC740; &amp;#xD2B9;&amp;#xC815; UTF-8 &amp;#xBB38;&amp;#xC790; &amp;#xC870;&amp;#xD569;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(CVE-2021-26937)&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xC6D0;&amp;#xACA9; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC744; &amp;#xB300;&amp;#xC0C1;&amp;#xC73C;&amp;#xB85C; invalid write access&amp;#xC640; Dos&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!combchars[i])
+{
+	combchars[i] = (strcut comchar *)&lt;span class=&#34;hljs-built_in&#34;&gt;malloc&lt;/span&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(struct combchar));
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!comchars[i])
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
+	combchars[i]-&amp;gt;prev = i;
+	combchars[i]-&amp;gt;next = i;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;encode.c&amp;#xC758; &amp;#xC77C;&amp;#xBD80; &amp;#xCF54;&amp;#xB4DC;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;comchars[i]&lt;/code&gt;&amp;#xC758; out-of-range&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xD2B9;&amp;#xC815; UTF-8 &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC774; &amp;#xD654;&amp;#xBA74;&amp;#xC5D0; &amp;#xCD9C;&amp;#xB825;&amp;#xB418;&amp;#xBA74; GNU Screen&amp;#xC774; &amp;#xBE44;&amp;#xC815;&amp;#xC0C1; &amp;#xC885;&amp;#xB8CC;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;PoC&#34;&gt;&lt;a href=&#34;#PoC&#34; class=&#34;headerlink&#34; title=&#34;PoC&#34;&gt;&lt;/a&gt;&lt;strong&gt;PoC&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/2021/02/17/fabu1ous/2021-02-17/1.png&#34; alt&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] GNU Screen crashs while processing characters - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-26937&#34;&gt;CVE-2021-26937&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;GNU screen &amp;lt;= 4.8.0&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Debian 9 ( GNU Screen 4.05.00 )&lt;/li&gt;
+&lt;li&gt;Raspbian 10 ( GNU Screen 4.06.02 )&lt;/li&gt;
+&lt;li&gt;Ubuntu 20.04.1 ( GNU Screen 4.08.00, Windows WSL )&lt;/li&gt;
+&lt;li&gt;Ubuntu 20.04 ( GNU Screen 4.08.00 )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;GNU Screen&amp;#xC740; &amp;#xC5EC;&amp;#xB7EC; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &amp;#xD130;&amp;#xBBF8;&amp;#xB110;&amp;#xC744; &amp;#xD55C; &amp;#xD654;&amp;#xBA74;&amp;#xC5D0;&amp;#xC11C; &amp;#xC870;&amp;#xC791;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB3C4;&amp;#xC640;&amp;#xC8FC;&amp;#xB294; multiplexer&amp;#xB85C;, Mac OSX&amp;#xC640; &amp;#xB300;&amp;#xBD80;&amp;#xBD84;&amp;#xC758; Linux &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC5D0; &amp;#xD3EC;&amp;#xD568;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. GNU Screen 4.8.0 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&amp;#xC740; &amp;#xD2B9;&amp;#xC815; UTF-8 &amp;#xBB38;&amp;#xC790; &amp;#xC870;&amp;#xD569;&amp;#xC744; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(CVE-2021-26937)&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xC6D0;&amp;#xACA9; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC744; &amp;#xB300;&amp;#xC0C1;&amp;#xC73C;&amp;#xB85C; invalid write access&amp;#xC640; Dos&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!combchars[i])
+{
+	combchars[i] = (strcut comchar *)&lt;span class=&#34;hljs-built_in&#34;&gt;malloc&lt;/span&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(struct combchar));
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!comchars[i])
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
+	combchars[i]-&amp;gt;prev = i;
+	combchars[i]-&amp;gt;next = i;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;encode.c&amp;#xC758; &amp;#xC77C;&amp;#xBD80; &amp;#xCF54;&amp;#xB4DC;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;comchars[i]&lt;/code&gt;&amp;#xC758; out-of-range&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xD2B9;&amp;#xC815; UTF-8 &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC774; &amp;#xD654;&amp;#xBA74;&amp;#xC5D0; &amp;#xCD9C;&amp;#xB825;&amp;#xB418;&amp;#xBA74; GNU Screen&amp;#xC774; &amp;#xBE44;&amp;#xC815;&amp;#xC0C1; &amp;#xC885;&amp;#xB8CC;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;PoC&#34;&gt;&lt;a href=&#34;#PoC&#34; class=&#34;headerlink&#34; title=&#34;PoC&#34;&gt;&lt;/a&gt;&lt;strong&gt;PoC&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/2021/02/17/fabu1ous/2021-02-17/1.png&#34; alt&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/02/17/fabu1ous/2021-02-17/">
@@ -257,9 +295,8 @@
 	combchars[i]-&gt;prev = i;
 	combchars[i]-&gt;next = i;
 }</code></pre>
-
 <p>encode.c&#xC758; &#xC77C;&#xBD80; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. <code>comchars[i]</code>&#xC758; out-of-range&#xB85C; &#xC778;&#xD574; &#xD2B9;&#xC815; UTF-8 &#xBB38;&#xC790;&#xC5F4;&#xC774; &#xD654;&#xBA74;&#xC5D0; &#xCD9C;&#xB825;&#xB418;&#xBA74; GNU Screen&#xC774; &#xBE44;&#xC815;&#xC0C1; &#xC885;&#xB8CC;&#xB429;&#xB2C8;&#xB2E4;.</p>
-<h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a><strong>PoC</strong></h2><p><img src="/2021/02/17/fabu1ous/2021-02-17/1.png" srcset="/img/loading.gif"></p>
+<h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a><strong>PoC</strong></h2><p><img src="/2021/02/17/fabu1ous/2021-02-17/1.png" srcset="/img/loading.gif" alt></p>
 
             </div>
             <hr>
@@ -277,11 +314,11 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                 </div>
                 

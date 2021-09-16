@@ -13,15 +13,69 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/4/26/parallels-desktop-rdpmc-hypercall-interface-and-vulnerabilities&#34;&gt;PARALLELS DESKTOP RDPMC HYPERCALL INTERFACE AND VULN&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Parallels Desktop 15.1.5 (Guest)&lt;/p&gt;
+&lt;p&gt;macOS Caltalina 10.15.7 (Host)&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Parallels Desktop&amp;#xC5D0;&amp;#xC11C; hypercall &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Guest &amp;#xC720;&amp;#xC800;&amp;#xAC00; Host &amp;#xCEE4;&amp;#xB110;&amp;#xC5D0;&amp;#xC11C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Parallels Desktop&amp;#xC740; RDPMC(Read Performance-Monitor Counter) instruction&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; hypercall &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; guest&amp;#xC640; host&amp;#xC758; &amp;#xD1B5;&amp;#xC2E0;&amp;#xC744; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB294; guest &amp;#xC720;&amp;#xC800; &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C;&amp;#xB3C4; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; host VMM(Virtual Machine Monitor)&amp;#xC758; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD574; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;CVE-2021-31424 : Heap overflow&lt;/p&gt;
+&lt;p&gt;host VMM&amp;#xC740; guest&amp;#xC640; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC8FC;&amp;#xACE0;&amp;#xBC1B;&amp;#xC744; &amp;#xB54C; &lt;code&gt;ReadLinear()&lt;/code&gt;&amp;#xC640; &lt;code&gt;WriteLinear()&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. guest &amp;#xC720;&amp;#xC800;&amp;#xAC00; &amp;#xC81C;&amp;#xC5B4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xB370;&amp;#xC774;&amp;#xD130;(UEFI variable name)&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAE38;&amp;#xC774; &amp;#xAC80;&amp;#xC99D; &amp;#xBBF8;&amp;#xD761;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xD574;&amp;#xB2F9; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; Heap overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;uint64_t&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;OTGHandleGenericCommand&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;uint64_t&lt;/span&gt; x)&lt;/span&gt; &lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{  
+ 
+        &lt;span class=&#34;hljs-comment&#34;&gt;/* case 9 */&lt;/span&gt; 
+        MonReadLinear(regs.rsi, &amp;amp;request, &lt;span class=&#34;hljs-number&#34;&gt;0x30&lt;/span&gt;); 
+ 
+        SharedMem-&amp;gt;EFIVar.op = request.op; 
+ 
+        ReadLinear(request.name, SharedMem-&amp;gt;EFIVar.name, &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt; * request.size);
+        &lt;span class=&#34;hljs-comment&#34;&gt;// heap overflow when copying variable name from guest &lt;/span&gt;
+        SharedMem-&amp;gt;EFIVar.name[request.size] = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+        
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;CVE-2021-31427 : TOCTOU&lt;/p&gt;
+&lt;p&gt;guest&amp;#xC5D0; &amp;#xBCF4;&amp;#xB0B4;&amp;#xC57C; &amp;#xD560; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xC758; &amp;#xD06C;&amp;#xAE30; &amp;#xAC12;(&lt;code&gt;EFIVar.datasize&lt;/code&gt;) &amp;#xAC80;&amp;#xC99D;&amp;#xC740; user space&amp;#xC5D0;&amp;#xC11C; &amp;#xC774;&amp;#xB8E8;&amp;#xC5B4;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;. VMM&amp;#xACFC; userspace &amp;#xC0AC;&amp;#xC774; &amp;#xCEE8;&amp;#xD2B8;&amp;#xB864; &amp;#xC704;&amp;#xC784;&amp;#xC744; &amp;#xB2F4;&amp;#xB2F9;&amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218; &lt;code&gt;MonRetToHostSwitch()&lt;/code&gt;&amp;#xC640; &amp;#xACF5;&amp;#xC720; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB85C;&amp;#xBD80;&amp;#xD130;  &lt;code&gt;EFIVar.datasize&lt;/code&gt;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD574;&amp;#xC624;&amp;#xB294; &amp;#xD568;&amp;#xC218; &lt;code&gt;WriteLinear()&lt;/code&gt; &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0;&amp;#xC11C; race condition&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xAE38;&amp;#xC774; &amp;#xAC80;&amp;#xC99D;&amp;#xACFC; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xBCF5;&amp;#xC0AC; &amp;#xC791;&amp;#xC5C5; &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0; &lt;code&gt;EFIVar.datasize&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xBC88;&amp;#xACBD;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD558;&amp;#xBBC0;&amp;#xB85C; host kernel &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; OOB(out-of-bound) read&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Two CVEs in Parallels Desktop RDPMC - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.zerodayinitiative.com/blog/2021/4/26/parallels-desktop-rdpmc-hypercall-interface-and-vulnerabilities&#34;&gt;PARALLELS DESKTOP RDPMC HYPERCALL INTERFACE AND VULN&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Parallels Desktop 15.1.5 (Guest)&lt;/p&gt;
+&lt;p&gt;macOS Caltalina 10.15.7 (Host)&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Parallels Desktop&amp;#xC5D0;&amp;#xC11C; hypercall &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Guest &amp;#xC720;&amp;#xC800;&amp;#xAC00; Host &amp;#xCEE4;&amp;#xB110;&amp;#xC5D0;&amp;#xC11C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Parallels Desktop&amp;#xC740; RDPMC(Read Performance-Monitor Counter) instruction&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; hypercall &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; guest&amp;#xC640; host&amp;#xC758; &amp;#xD1B5;&amp;#xC2E0;&amp;#xC744; &amp;#xC9C0;&amp;#xC6D0;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;&amp;#xB294; guest &amp;#xC720;&amp;#xC800; &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C;&amp;#xB3C4; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; host VMM(Virtual Machine Monitor)&amp;#xC758; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD574; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;CVE-2021-31424 : Heap overflow&lt;/p&gt;
+&lt;p&gt;host VMM&amp;#xC740; guest&amp;#xC640; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC8FC;&amp;#xACE0;&amp;#xBC1B;&amp;#xC744; &amp;#xB54C; &lt;code&gt;ReadLinear()&lt;/code&gt;&amp;#xC640; &lt;code&gt;WriteLinear()&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. guest &amp;#xC720;&amp;#xC800;&amp;#xAC00; &amp;#xC81C;&amp;#xC5B4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xB370;&amp;#xC774;&amp;#xD130;(UEFI variable name)&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAE38;&amp;#xC774; &amp;#xAC80;&amp;#xC99D; &amp;#xBBF8;&amp;#xD761;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xD574;&amp;#xB2F9; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; Heap overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;uint64_t&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;OTGHandleGenericCommand&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;uint64_t&lt;/span&gt; x)&lt;/span&gt; &lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{  
+ 
+        &lt;span class=&#34;hljs-comment&#34;&gt;/* case 9 */&lt;/span&gt; 
+        MonReadLinear(regs.rsi, &amp;amp;request, &lt;span class=&#34;hljs-number&#34;&gt;0x30&lt;/span&gt;); 
+ 
+        SharedMem-&amp;gt;EFIVar.op = request.op; 
+ 
+        ReadLinear(request.name, SharedMem-&amp;gt;EFIVar.name, &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt; * request.size);
+        &lt;span class=&#34;hljs-comment&#34;&gt;// heap overflow when copying variable name from guest &lt;/span&gt;
+        SharedMem-&amp;gt;EFIVar.name[request.size] = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+        
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;CVE-2021-31427 : TOCTOU&lt;/p&gt;
+&lt;p&gt;guest&amp;#xC5D0; &amp;#xBCF4;&amp;#xB0B4;&amp;#xC57C; &amp;#xD560; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xC758; &amp;#xD06C;&amp;#xAE30; &amp;#xAC12;(&lt;code&gt;EFIVar.datasize&lt;/code&gt;) &amp;#xAC80;&amp;#xC99D;&amp;#xC740; user space&amp;#xC5D0;&amp;#xC11C; &amp;#xC774;&amp;#xB8E8;&amp;#xC5B4;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;. VMM&amp;#xACFC; userspace &amp;#xC0AC;&amp;#xC774; &amp;#xCEE8;&amp;#xD2B8;&amp;#xB864; &amp;#xC704;&amp;#xC784;&amp;#xC744; &amp;#xB2F4;&amp;#xB2F9;&amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218; &lt;code&gt;MonRetToHostSwitch()&lt;/code&gt;&amp;#xC640; &amp;#xACF5;&amp;#xC720; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB85C;&amp;#xBD80;&amp;#xD130;  &lt;code&gt;EFIVar.datasize&lt;/code&gt;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD574;&amp;#xC624;&amp;#xB294; &amp;#xD568;&amp;#xC218; &lt;code&gt;WriteLinear()&lt;/code&gt; &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0;&amp;#xC11C; race condition&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xAE38;&amp;#xC774; &amp;#xAC80;&amp;#xC99D;&amp;#xACFC; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xBCF5;&amp;#xC0AC; &amp;#xC791;&amp;#xC5C5; &amp;#xC0AC;&amp;#xC774;&amp;#xC5D0; &lt;code&gt;EFIVar.datasize&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &amp;#xBC88;&amp;#xACBD;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD558;&amp;#xBBC0;&amp;#xB85C; host kernel &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; OOB(out-of-bound) read&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/05/01/fabu1ous/2021-05-01/">
@@ -259,7 +313,8 @@
         <span class="hljs-comment">// heap overflow when copying variable name from guest </span>
         SharedMem-&gt;EFIVar.name[request.size] = <span class="hljs-number">0</span>;
         
-...</code></pre></li>
+...</code></pre>
+</li>
 </ul>
 <ul>
 <li><p>CVE-2021-31427 : TOCTOU</p>
@@ -283,15 +338,15 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
+                  
+                  <a class="hover-with-bg" href="/tags/mac/">mac</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/race-condition/">race condition</a>
                   
                   <a class="hover-with-bg" href="/tags/heap-overflow/">heap overflow</a>
-                  
-                  <a class="hover-with-bg" href="/tags/mac/">mac</a>
                   
                   <a class="hover-with-bg" href="/tags/parallels/">parallels</a>
                   

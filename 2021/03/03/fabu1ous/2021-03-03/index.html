@@ -13,15 +13,39 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.vonahi.io/srclient-dll-hijacking/&#34;&gt;SrClient DLL Hijacking&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Server 2012&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Server 2012 R2&amp;#xB97C; &amp;#xC81C;&amp;#xC678;&amp;#xD55C; &amp;#xBAA8;&amp;#xB4E0; Windows Server 2012&amp;#xC5D0;&amp;#xC11C; &amp;#xC545;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; DLL hijacking&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Windows Module Installer Service&amp;#xC758; &lt;code&gt;TiWork.exe&lt;/code&gt;&amp;#xAC00; Windows search order&amp;#xC5D0; &amp;#xC758;&amp;#xAC70;&amp;#xD558;&amp;#xC5EC; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xB9AC;&amp;#xC18C;&amp;#xC2A4;(&lt;code&gt;SrClient.dll&lt;/code&gt;)&amp;#xC758; &amp;#xB85C;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2DC;&amp;#xB3C4;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;TiWork.exe&lt;/code&gt;&amp;#xB294; NT AUTHORITY\SYSTEM &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &lt;code&gt;SrClient.dll&lt;/code&gt;&amp;#xC744; hijacking &amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xACE0;&amp;#xC790; &amp;#xD558;&amp;#xB294; DLL&amp;#xC758; &amp;#xC808;&amp;#xB300; &amp;#xC8FC;&amp;#xC18C; &amp;#xD639;&amp;#xC740; &amp;#xC815;&amp;#xD655;&amp;#xD55C; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC9C0;&amp;#xC815;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC73C;&amp;#xBA74; Windows&amp;#xB294; DLL search order&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xD574;&amp;#xB2F9; DLL &amp;#xC704;&amp;#xCE58;&amp;#xB97C; &amp;#xAC80;&amp;#xC0C9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xC9C0;&amp;#xC815;&amp;#xD55C; &amp;#xC8FC;&amp;#xC18C;&lt;/li&gt;
+&lt;li&gt;System &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; (&lt;code&gt;system32&lt;/code&gt;, &lt;code&gt;systemWOW64&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Windows &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; (&lt;code&gt;C:\Windows\&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&amp;#xD604;&amp;#xC7AC; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%PATH%&lt;/code&gt;&amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218;&amp;#xC5D0; &amp;#xB4F1;&amp;#xB85D;&amp;#xB41C; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Third-party App&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBD80;&amp;#xC801;&amp;#xC808;&amp;#xD55C; &amp;#xC811;&amp;#xADFC; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC124;&amp;#xC815;&amp;#xB41C; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&amp;#xAC00; &lt;code&gt;%PATH%&lt;/code&gt; &amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &amp;#xB4F1;&amp;#xB85D;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB2E4;&amp;#xBA74; &lt;code&gt;SrClient.dll&lt;/code&gt;&amp;#xB97C; hijacking &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Windows&amp;#xC758; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xCCB4;&amp;#xD06C;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574;  &lt;code&gt;TiWork.exe&lt;/code&gt;&amp;#xC758; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0; &amp;#xC720;&amp;#xC800; &amp;#xAD8C;&amp;#xD55C;&amp;#xC5D0;&amp;#xC11C; System &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] SrClient DLL hijacking - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.vonahi.io/srclient-dll-hijacking/&#34;&gt;SrClient DLL Hijacking&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Server 2012&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Server 2012 R2&amp;#xB97C; &amp;#xC81C;&amp;#xC678;&amp;#xD55C; &amp;#xBAA8;&amp;#xB4E0; Windows Server 2012&amp;#xC5D0;&amp;#xC11C; &amp;#xC545;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; DLL hijacking&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Windows Module Installer Service&amp;#xC758; &lt;code&gt;TiWork.exe&lt;/code&gt;&amp;#xAC00; Windows search order&amp;#xC5D0; &amp;#xC758;&amp;#xAC70;&amp;#xD558;&amp;#xC5EC; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xB9AC;&amp;#xC18C;&amp;#xC2A4;(&lt;code&gt;SrClient.dll&lt;/code&gt;)&amp;#xC758; &amp;#xB85C;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2DC;&amp;#xB3C4;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;TiWork.exe&lt;/code&gt;&amp;#xB294; NT AUTHORITY\SYSTEM &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &lt;code&gt;SrClient.dll&lt;/code&gt;&amp;#xC744; hijacking &amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xACE0;&amp;#xC790; &amp;#xD558;&amp;#xB294; DLL&amp;#xC758; &amp;#xC808;&amp;#xB300; &amp;#xC8FC;&amp;#xC18C; &amp;#xD639;&amp;#xC740; &amp;#xC815;&amp;#xD655;&amp;#xD55C; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC9C0;&amp;#xC815;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC73C;&amp;#xBA74; Windows&amp;#xB294; DLL search order&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xD574;&amp;#xB2F9; DLL &amp;#xC704;&amp;#xCE58;&amp;#xB97C; &amp;#xAC80;&amp;#xC0C9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xC9C0;&amp;#xC815;&amp;#xD55C; &amp;#xC8FC;&amp;#xC18C;&lt;/li&gt;
+&lt;li&gt;System &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; (&lt;code&gt;system32&lt;/code&gt;, &lt;code&gt;systemWOW64&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Windows &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; (&lt;code&gt;C:\Windows\&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&amp;#xD604;&amp;#xC7AC; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;%PATH%&lt;/code&gt;&amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218;&amp;#xC5D0; &amp;#xB4F1;&amp;#xB85D;&amp;#xB41C; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Third-party App&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBD80;&amp;#xC801;&amp;#xC808;&amp;#xD55C; &amp;#xC811;&amp;#xADFC; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC124;&amp;#xC815;&amp;#xB41C; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&amp;#xAC00; &lt;code&gt;%PATH%&lt;/code&gt; &amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &amp;#xB4F1;&amp;#xB85D;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB2E4;&amp;#xBA74; &lt;code&gt;SrClient.dll&lt;/code&gt;&amp;#xB97C; hijacking &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Windows&amp;#xC758; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xCCB4;&amp;#xD06C;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574;  &lt;code&gt;TiWork.exe&lt;/code&gt;&amp;#xC758; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0; &amp;#xC720;&amp;#xC800; &amp;#xAD8C;&amp;#xD55C;&amp;#xC5D0;&amp;#xC11C; System &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/03/03/fabu1ous/2021-03-03/">
@@ -269,9 +293,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/eop/">eop</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/dll-hijacking/">dll hijacking</a>
                   

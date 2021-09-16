@@ -13,15 +13,51 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.mcafee.com/blogs/other-blogs/mcafee-labs/analyzing-cve-2021-1665-remote-code-execution-vulnerability-in-windows-gdi/&#34;&gt;Analyzing CVE-2021-1665 &amp;#x2013; Remote Code Execution Vulnerability in Windows GDI+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Windows&amp;#xC758; &amp;#xADF8;&amp;#xB798;&amp;#xD53D; &amp;#xC7A5;&amp;#xCE58; &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;(Graphic Device Interface, GDI)&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;code&gt;gdiplus.dll&lt;/code&gt; &amp;#xC5D0;&amp;#xC11C; EMF &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xD30C;&amp;#xC2F1; &amp;#xD560; &amp;#xB54C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;EMF : WMF &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD655;&amp;#xC7A5;&amp;#xC73C;&amp;#xB85C; &amp;#xC751;&amp;#xC6A9;&amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC5D0;&amp;#xC11C; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xB610;&amp;#xB294; &amp;#xADF8;&amp;#xB798;&amp;#xD53D;&amp;#xC744; &amp;#xB80C;&amp;#xB354;&amp;#xB9C1; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xB294; &amp;#xBA54;&amp;#xD0C0; &amp;#xD30C;&amp;#xC77C;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;Builtline::BuildAllLines&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C; &amp;#xB8E8;&amp;#xD504; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;0x60&lt;/code&gt; bytes &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Builtline::BuiltLine&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xBCF5;&amp;#xC0AC;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BuiltLine::GetUntrimmedCharacterCount&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xACE0; &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xBC18;&amp;#xD658; &amp;#xAC12;(1)&amp;#xC744; &amp;#xB8E8;&amp;#xD504; &amp;#xCE74;&amp;#xC6B4;&amp;#xD130; &amp;#xB354;&amp;#xD568;&lt;/li&gt;
+&lt;li&gt;&amp;#xB8E8;&amp;#xD504; &amp;#xCE74;&amp;#xC6B4;&amp;#xD130;&amp;#xAC00; EMF &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &lt;code&gt;Length&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xBCF4;&amp;#xB2E4; &amp;#xD06C;&amp;#xBA74; &amp;#xB8E8;&amp;#xD504; &amp;#xC885;&amp;#xB8CC;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xADF8;&amp;#xB7EC;&amp;#xB098; &lt;code&gt;BuiltLine::GetUntrimmedCharacterCount&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xBC18;&amp;#xD658; &amp;#xAC12;&amp;#xC774; 0&amp;#xC774; &amp;#xB418;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0;&amp;#xB97C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xCF54;&amp;#xB4DC;&amp;#xAC00; &amp;#xC5C6;&amp;#xC5B4; &amp;#xC9C0;&amp;#xC815;&amp;#xB41C; &lt;code&gt;Length&lt;/code&gt; &amp;#xD544;&amp;#xB4DC; &amp;#xAC12; &amp;#xC774;&amp;#xC0C1;&amp;#xC73C;&amp;#xB85C; &amp;#xB8E8;&amp;#xD504;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xACE0; &amp;#xC774;&amp;#xB294; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xC190;&amp;#xC0C1;&amp;#xACFC; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Microsoft&amp;#xB294; &lt;code&gt;BuiltLine::GetUntrimmedCharacterCount&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xBC18;&amp;#xD658; &amp;#xAC12;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xB294; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD55C; &amp;#xD328;&amp;#xCE58;&amp;#xB97C; &amp;#xBC30;&amp;#xD3EC;&amp;#xD558;&amp;#xC600;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-1665: Windows 그래픽 드라이버 원격 코드 실행 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.mcafee.com/blogs/other-blogs/mcafee-labs/analyzing-cve-2021-1665-remote-code-execution-vulnerability-in-windows-gdi/&#34;&gt;Analyzing CVE-2021-1665 &amp;#x2013; Remote Code Execution Vulnerability in Windows GDI+&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Windows&amp;#xC758; &amp;#xADF8;&amp;#xB798;&amp;#xD53D; &amp;#xC7A5;&amp;#xCE58; &amp;#xC778;&amp;#xD130;&amp;#xD398;&amp;#xC774;&amp;#xC2A4;(Graphic Device Interface, GDI)&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;code&gt;gdiplus.dll&lt;/code&gt; &amp;#xC5D0;&amp;#xC11C; EMF &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xD30C;&amp;#xC2F1; &amp;#xD560; &amp;#xB54C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;EMF : WMF &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD655;&amp;#xC7A5;&amp;#xC73C;&amp;#xB85C; &amp;#xC751;&amp;#xC6A9;&amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC5D0;&amp;#xC11C; &amp;#xC774;&amp;#xBBF8;&amp;#xC9C0; &amp;#xB610;&amp;#xB294; &amp;#xADF8;&amp;#xB798;&amp;#xD53D;&amp;#xC744; &amp;#xB80C;&amp;#xB354;&amp;#xB9C1; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xB294; &amp;#xBA54;&amp;#xD0C0; &amp;#xD30C;&amp;#xC77C;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;Builtline::BuildAllLines&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C; &amp;#xB8E8;&amp;#xD504; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;0x60&lt;/code&gt; bytes &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Builtline::BuiltLine&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xBCF5;&amp;#xC0AC;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;BuiltLine::GetUntrimmedCharacterCount&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xACE0; &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xBC18;&amp;#xD658; &amp;#xAC12;(1)&amp;#xC744; &amp;#xB8E8;&amp;#xD504; &amp;#xCE74;&amp;#xC6B4;&amp;#xD130; &amp;#xB354;&amp;#xD568;&lt;/li&gt;
+&lt;li&gt;&amp;#xB8E8;&amp;#xD504; &amp;#xCE74;&amp;#xC6B4;&amp;#xD130;&amp;#xAC00; EMF &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &lt;code&gt;Length&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xBCF4;&amp;#xB2E4; &amp;#xD06C;&amp;#xBA74; &amp;#xB8E8;&amp;#xD504; &amp;#xC885;&amp;#xB8CC;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xADF8;&amp;#xB7EC;&amp;#xB098; &lt;code&gt;BuiltLine::GetUntrimmedCharacterCount&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xBC18;&amp;#xD658; &amp;#xAC12;&amp;#xC774; 0&amp;#xC774; &amp;#xB418;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0;&amp;#xB97C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xCF54;&amp;#xB4DC;&amp;#xAC00; &amp;#xC5C6;&amp;#xC5B4; &amp;#xC9C0;&amp;#xC815;&amp;#xB41C; &lt;code&gt;Length&lt;/code&gt; &amp;#xD544;&amp;#xB4DC; &amp;#xAC12; &amp;#xC774;&amp;#xC0C1;&amp;#xC73C;&amp;#xB85C; &amp;#xB8E8;&amp;#xD504;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xACE0; &amp;#xC774;&amp;#xB294; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xC190;&amp;#xC0C1;&amp;#xACFC; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Microsoft&amp;#xB294; &lt;code&gt;BuiltLine::GetUntrimmedCharacterCount&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xBC18;&amp;#xD658; &amp;#xAC12;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xB294; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD55C; &amp;#xD328;&amp;#xCE58;&amp;#xB97C; &amp;#xBC30;&amp;#xD3EC;&amp;#xD558;&amp;#xC600;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/07/06/l0ch/2021-07-06/">

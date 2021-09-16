@@ -13,15 +13,115 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://google.github.io/security-research/pocs/linux/bleedingtooth/writeup&#34;&gt;BleedingTooth: Linux Bluetooth Zero-Click RCE&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel 4.19 (with Bluetooth 5)&lt;/p&gt;
+&lt;p&gt;Linux kernel &amp;lt;= 3.6&lt;/p&gt;
+&lt;p&gt;Linux kernel &amp;gt;= 4.8&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;BleedingTooth&amp;#xB77C; &amp;#xBD88;&amp;#xB9AC;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; 3&amp;#xAC1C;&amp;#xC758; Write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. BleedingTooth&amp;#xB294; Linux Bluetooth subsystem&amp;#xC758; &amp;#xC81C;&amp;#xB85C; &amp;#xD074;&amp;#xB9AD; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xB4E4;&amp;#xB85C;, &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0;&amp;#xC11C; &amp;#xCEE4;&amp;#xB110; &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC8FC;&amp;#xB85C; &amp;#xBE14;&amp;#xB8E8;&amp;#xD22C;&amp;#xC2A4; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xB4E4;&amp;#xC758; &amp;#xC601;&amp;#xD5A5;&amp;#xC740; &amp;#xD38C;&amp;#xC6E8;&amp;#xC5B4; &amp;#xC120;&amp;#xC5D0; &amp;#xBA38;&amp;#xBB3C;&amp;#xAC70;&amp;#xB098; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xB3C4;&amp;#xCCAD; &amp;#xBC0F; &amp;#xC870;&amp;#xC791;&amp;#xC5D0; &amp;#xBA38;&amp;#xBB34;&amp;#xB294; &amp;#xBC18;&amp;#xBA74; BleedingTooth&amp;#xB294; &amp;#xAE30;&amp;#xAE30; &amp;#xC804;&amp;#xCCB4;&amp;#xB97C; &amp;#xC644;&amp;#xC804;&amp;#xD788; &amp;#xC81C;&amp;#xC5B4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;BadVibes(CVE-2020-24490) Heap-based Buffer Overflow&lt;/p&gt;
+&lt;p&gt;&amp;#xAE30;&amp;#xC874; 31 bytes &amp;#xC600;&amp;#xB358;  &lt;a href=&#34;https://www.silabs.com/community/wireless/bluetooth/knowledge-base.entry.html/2017/02/10/bluetooth_advertisin-hGsf&#34;&gt;Advertising data&lt;/a&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; &amp;#xBE14;&amp;#xB8E8;&amp;#xD22C;&amp;#xC2A4;5&amp;#xC5D0;&amp;#xC120; 255 bytes&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC7A5;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xCDB0; 255 bytes&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC7A5;&amp;#xB41C; Advertisement report&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1; &amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218; &lt;code&gt;hci_le_ext_adv_report()&lt;/code&gt;&amp;#xAC00; &amp;#xCD94;&amp;#xAC00;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB2E4;&amp;#xB9CC; &amp;#xAE30;&amp;#xC874;&lt;code&gt;hci_le_adv_report()&lt;/code&gt;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB358; size check&amp;#xAC00; &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xB294; &amp;#xC5C6;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; overflow&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;BadChoice(CVE-2020-12352) Stack-Based Information Leak&lt;/p&gt;
+&lt;p&gt;A2MP &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C;&amp;#xC758; &lt;code&gt;A2MP_GETINFO_REQ&lt;/code&gt; &amp;#xCEE4;&amp;#xBA58;&amp;#xB4DC;&amp;#xB85C; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xB294; &lt;code&gt;a2mp_getinfo_req()&lt;/code&gt;&amp;#xB294; HCI device id&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9; &amp;#xC911;&amp;#xC778; AMP&amp;#xCEE8;&amp;#xD2B8;&amp;#xB864;&amp;#xB7EC;&amp;#xC758; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xC694;&amp;#xCCAD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC;, &amp;#xB9CC;&amp;#xC57D; &lt;code&gt;HCI_AMP&lt;/code&gt;&amp;#xAC00; &amp;#xC720;&amp;#xD6A8;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB2E4;&amp;#xBA74; request&amp;#xB97C; &amp;#xBC1B;&amp;#xC740; &amp;#xD0C0;&amp;#xAC9F; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC740;  &lt;code&gt;A2MP_STATUS_INVALID_CTRL_ID&lt;/code&gt;&amp;#xB97C; &amp;#xC751;&amp;#xB2F5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.  &amp;#xC774; &amp;#xB54C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654; &amp;#xC644;&amp;#xC804;&amp;#xD788; &amp;#xC774;&amp;#xB8E8;&amp;#xC5B4;&amp;#xC9C0;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xD0D3;&amp;#xC5D0; &lt;code&gt;A2MP_STATUS_INVALID_CTRL_ID&lt;/code&gt;&amp;#xAC00; 16 bytes&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xC2A4;&amp;#xD0DD; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C; &amp;#xCC44;&amp;#xB85C; &amp;#xD574;&amp;#xCEE4;&amp;#xC5D0;&amp;#xAC8C; &amp;#xC804;&amp;#xB2EC;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;BadKarma: Heap-Based Type Confusion (CVE-2020-12351)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;l2cap_data_rcv&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(struct l2cap_chan *chan, struct sk_buff *skb)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+	...
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ((chan-&amp;gt;mode == L2CAP_MODE_ERTM ||
+	     chan-&amp;gt;mode == L2CAP_MODE_STREAMING) &amp;amp;&amp;amp; sk_filter(chan-&amp;gt;data, skb))
+		&lt;span class=&#34;hljs-keyword&#34;&gt;goto&lt;/span&gt; drop;
+	...
+}
+
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; struct amp_mgr *&lt;span class=&#34;hljs-title&#34;&gt;amp_mgr_create&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(struct l2cap_conn *conn, &lt;span class=&#34;hljs-keyword&#34;&gt;bool&lt;/span&gt; locked)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+	&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;amp_mgr&lt;/span&gt; *&lt;span class=&#34;hljs-title&#34;&gt;mgr&lt;/span&gt;;&lt;/span&gt;
+	&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;l2cap_chan&lt;/span&gt; *&lt;span class=&#34;hljs-title&#34;&gt;chan&lt;/span&gt;;&lt;/span&gt;
+
+	mgr = kzalloc(&lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(*mgr), GFP_KERNEL);
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!mgr)
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;;
+	...
+	chan = a2mp_chan_open(conn, locked);
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!chan) {
+		kfree(mgr);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;;
+	}
+
+	mgr-&amp;gt;a2mp_chan = chan;
+	chan-&amp;gt;data = mgr;
+	...
+	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; mgr;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD568;&amp;#xC218; &lt;code&gt;sk_filter()&lt;/code&gt;&amp;#xB294; &lt;code&gt;struct sock&lt;/code&gt;&amp;#xB97C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xBC18;&amp;#xBA74;, argument&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xB418;&amp;#xB294; &lt;code&gt;chan-&amp;gt;data&lt;/code&gt;&amp;#xC758; &amp;#xD0C0;&amp;#xC785;&amp;#xC740; &lt;code&gt;struct amp_mgr&lt;/code&gt;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; remote type confusion &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] BleedingTooth: Zero-Click RCE - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://google.github.io/security-research/pocs/linux/bleedingtooth/writeup&#34;&gt;BleedingTooth: Linux Bluetooth Zero-Click RCE&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel 4.19 (with Bluetooth 5)&lt;/p&gt;
+&lt;p&gt;Linux kernel &amp;lt;= 3.6&lt;/p&gt;
+&lt;p&gt;Linux kernel &amp;gt;= 4.8&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;BleedingTooth&amp;#xB77C; &amp;#xBD88;&amp;#xB9AC;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; 3&amp;#xAC1C;&amp;#xC758; Write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. BleedingTooth&amp;#xB294; Linux Bluetooth subsystem&amp;#xC758; &amp;#xC81C;&amp;#xB85C; &amp;#xD074;&amp;#xB9AD; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xB4E4;&amp;#xB85C;, &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0;&amp;#xC11C; &amp;#xCEE4;&amp;#xB110; &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC8FC;&amp;#xB85C; &amp;#xBE14;&amp;#xB8E8;&amp;#xD22C;&amp;#xC2A4; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xB4E4;&amp;#xC758; &amp;#xC601;&amp;#xD5A5;&amp;#xC740; &amp;#xD38C;&amp;#xC6E8;&amp;#xC5B4; &amp;#xC120;&amp;#xC5D0; &amp;#xBA38;&amp;#xBB3C;&amp;#xAC70;&amp;#xB098; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xB3C4;&amp;#xCCAD; &amp;#xBC0F; &amp;#xC870;&amp;#xC791;&amp;#xC5D0; &amp;#xBA38;&amp;#xBB34;&amp;#xB294; &amp;#xBC18;&amp;#xBA74; BleedingTooth&amp;#xB294; &amp;#xAE30;&amp;#xAE30; &amp;#xC804;&amp;#xCCB4;&amp;#xB97C; &amp;#xC644;&amp;#xC804;&amp;#xD788; &amp;#xC81C;&amp;#xC5B4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;BadVibes(CVE-2020-24490) Heap-based Buffer Overflow&lt;/p&gt;
+&lt;p&gt;&amp;#xAE30;&amp;#xC874; 31 bytes &amp;#xC600;&amp;#xB358;  &lt;a href=&#34;https://www.silabs.com/community/wireless/bluetooth/knowledge-base.entry.html/2017/02/10/bluetooth_advertisin-hGsf&#34;&gt;Advertising data&lt;/a&gt;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; &amp;#xBE14;&amp;#xB8E8;&amp;#xD22C;&amp;#xC2A4;5&amp;#xC5D0;&amp;#xC120; 255 bytes&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC7A5;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xCDB0; 255 bytes&amp;#xAE4C;&amp;#xC9C0; &amp;#xD655;&amp;#xC7A5;&amp;#xB41C; Advertisement report&amp;#xB97C; &amp;#xD30C;&amp;#xC2F1; &amp;#xD558;&amp;#xB294; &amp;#xD568;&amp;#xC218; &lt;code&gt;hci_le_ext_adv_report()&lt;/code&gt;&amp;#xAC00; &amp;#xCD94;&amp;#xAC00;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB2E4;&amp;#xB9CC; &amp;#xAE30;&amp;#xC874;&lt;code&gt;hci_le_adv_report()&lt;/code&gt;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB358; size check&amp;#xAC00; &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xB294; &amp;#xC5C6;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; overflow&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;BadChoice(CVE-2020-12352) Stack-Based Information Leak&lt;/p&gt;
+&lt;p&gt;A2MP &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C;&amp;#xC758; &lt;code&gt;A2MP_GETINFO_REQ&lt;/code&gt; &amp;#xCEE4;&amp;#xBA58;&amp;#xB4DC;&amp;#xB85C; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xB294; &lt;code&gt;a2mp_getinfo_req()&lt;/code&gt;&amp;#xB294; HCI device id&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9; &amp;#xC911;&amp;#xC778; AMP&amp;#xCEE8;&amp;#xD2B8;&amp;#xB864;&amp;#xB7EC;&amp;#xC758; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xC694;&amp;#xCCAD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC;, &amp;#xB9CC;&amp;#xC57D; &lt;code&gt;HCI_AMP&lt;/code&gt;&amp;#xAC00; &amp;#xC720;&amp;#xD6A8;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB2E4;&amp;#xBA74; request&amp;#xB97C; &amp;#xBC1B;&amp;#xC740; &amp;#xD0C0;&amp;#xAC9F; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC740;  &lt;code&gt;A2MP_STATUS_INVALID_CTRL_ID&lt;/code&gt;&amp;#xB97C; &amp;#xC751;&amp;#xB2F5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.  &amp;#xC774; &amp;#xB54C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654; &amp;#xC644;&amp;#xC804;&amp;#xD788; &amp;#xC774;&amp;#xB8E8;&amp;#xC5B4;&amp;#xC9C0;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xD0D3;&amp;#xC5D0; &lt;code&gt;A2MP_STATUS_INVALID_CTRL_ID&lt;/code&gt;&amp;#xAC00; 16 bytes&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xC2A4;&amp;#xD0DD; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C; &amp;#xCC44;&amp;#xB85C; &amp;#xD574;&amp;#xCEE4;&amp;#xC5D0;&amp;#xAC8C; &amp;#xC804;&amp;#xB2EC;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;BadKarma: Heap-Based Type Confusion (CVE-2020-12351)&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;l2cap_data_rcv&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(struct l2cap_chan *chan, struct sk_buff *skb)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+	...
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ((chan-&amp;gt;mode == L2CAP_MODE_ERTM ||
+	     chan-&amp;gt;mode == L2CAP_MODE_STREAMING) &amp;amp;&amp;amp; sk_filter(chan-&amp;gt;data, skb))
+		&lt;span class=&#34;hljs-keyword&#34;&gt;goto&lt;/span&gt; drop;
+	...
+}
+
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; struct amp_mgr *&lt;span class=&#34;hljs-title&#34;&gt;amp_mgr_create&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(struct l2cap_conn *conn, &lt;span class=&#34;hljs-keyword&#34;&gt;bool&lt;/span&gt; locked)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+	&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;amp_mgr&lt;/span&gt; *&lt;span class=&#34;hljs-title&#34;&gt;mgr&lt;/span&gt;;&lt;/span&gt;
+	&lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;l2cap_chan&lt;/span&gt; *&lt;span class=&#34;hljs-title&#34;&gt;chan&lt;/span&gt;;&lt;/span&gt;
+
+	mgr = kzalloc(&lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(*mgr), GFP_KERNEL);
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!mgr)
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;;
+	...
+	chan = a2mp_chan_open(conn, locked);
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!chan) {
+		kfree(mgr);
+		&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;;
+	}
+
+	mgr-&amp;gt;a2mp_chan = chan;
+	chan-&amp;gt;data = mgr;
+	...
+	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; mgr;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD568;&amp;#xC218; &lt;code&gt;sk_filter()&lt;/code&gt;&amp;#xB294; &lt;code&gt;struct sock&lt;/code&gt;&amp;#xB97C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xBC18;&amp;#xBA74;, argument&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xB418;&amp;#xB294; &lt;code&gt;chan-&amp;gt;data&lt;/code&gt;&amp;#xC758; &amp;#xD0C0;&amp;#xC785;&amp;#xC740; &lt;code&gt;struct amp_mgr&lt;/code&gt;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; remote type confusion &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/14/fabu1ous/2021-04-14/">
@@ -287,7 +387,6 @@
 	...
 	<span class="hljs-keyword">return</span> mgr;
 }</code></pre>
-
 <p>&#xD568;&#xC218; <code>sk_filter()</code>&#xB294; <code>struct sock</code>&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xBC18;&#xBA74;, argument&#xB85C; &#xC804;&#xB2EC;&#xB418;&#xB294; <code>chan-&gt;data</code>&#xC758; &#xD0C0;&#xC785;&#xC740; <code>struct amp_mgr</code>&#xC785;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; remote type confusion &#xCDE8;&#xC57D;&#xC810;&#xC785;&#xB2C8;&#xB2E4;. </p>
 </li>
 </ul>
@@ -351,9 +450,9 @@
                 <article class="post-prev col-6">
                   
                   
-                  <a href="/2021/04/15/insu/2021-04-15/">
+                  <a href="/2021/04/15/idioth/2021-04-15/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[하루한줄] Windows SCM Remote Access Check Limit Bypass EoP</span>
+                    <span class="hidden-mobile">[하루한줄] CVE-2021-28310: Desktop Window Manager out-of-bound write 취약점</span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   

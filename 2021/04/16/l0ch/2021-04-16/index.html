@@ -13,15 +13,31 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://seclists.org/oss-sec/2021/q2/23&#34;&gt;CVE-2021-27850: Apache Tapestry: Bypass of the fix for CVE-2019-0195&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Apache Tapestry 5.4.5, 5.5.0, 5.6.2 &amp;#xBC0F; 5.7.0 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xC6F9; &amp;#xD504;&amp;#xB808;&amp;#xC784;&amp;#xC6CC;&amp;#xD06C;&amp;#xC778; Apache Tapestry&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; CVE-2019-0195 &amp;#xD328;&amp;#xCE58; &amp;#xC6B0;&amp;#xD68C;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;CVE-2019-0195&amp;#xB294; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xB2E4;&amp;#xC6B4;&amp;#xB85C;&amp;#xB4DC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC774;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; serialized Java &amp;#xAC1D;&amp;#xCCB4; &amp;#xC11C;&amp;#xBA85;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; &lt;code&gt;HMAC&lt;/code&gt; &amp;#xBE44;&amp;#xBC00; &amp;#xD0A4;&amp;#xB97C; &amp;#xC54C;&amp;#xC544;&amp;#xB0BC; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xD68D;&amp;#xB4DD;&amp;#xD55C; &lt;code&gt;HMAC&lt;/code&gt; &amp;#xBE44;&amp;#xBC00; &amp;#xD0A4;&amp;#xB85C; &lt;code&gt;CommonsBeanUtils1&lt;/code&gt;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; Java RCE gadget &amp;#xCCB4;&amp;#xC778;&amp;#xC5D0; &amp;#xC11C;&amp;#xBA85;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0; &amp;#xC774;&amp;#xB294; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC704; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; URL request&amp;#xC5D0; &lt;code&gt;.class&lt;/code&gt; , &lt;code&gt;.properties&lt;/code&gt; , &lt;code&gt;.xml&lt;/code&gt; &amp;#xC774; &amp;#xC788;&amp;#xB294;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xACE0; &amp;#xC774;&amp;#xB97C; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC73C;&amp;#xB098; payload URL&amp;#xC758; &amp;#xB05D;&amp;#xC5D0; &lt;code&gt;/&lt;/code&gt; &amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD558;&amp;#xBA74; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xC744; &amp;#xAC04;&amp;#xB2E8;&amp;#xD558;&amp;#xAC8C; &amp;#xC6B0;&amp;#xD68C;&amp;#xD574; &amp;#xAE30;&amp;#xC874; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD65C;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xD655;&amp;#xC778;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;http:&lt;span class=&#34;hljs-comment&#34;&gt;//[host ip]/assets/.../services/AppModule.class   -&amp;gt; &amp;quot;.class&amp;quot; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC801;&amp;#xC6A9;&amp;#xB428; &lt;/span&gt;
+http:&lt;span class=&#34;hljs-comment&#34;&gt;//[host ip]/assets/.../services/AppModule.class/  -&amp;gt; &amp;quot;.class&amp;quot; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC6B0;&amp;#xD68C;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-27850: Apache Tapestry CVE-2019-0195 Bypass  - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://seclists.org/oss-sec/2021/q2/23&#34;&gt;CVE-2021-27850: Apache Tapestry: Bypass of the fix for CVE-2019-0195&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Apache Tapestry 5.4.5, 5.5.0, 5.6.2 &amp;#xBC0F; 5.7.0 &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xC6F9; &amp;#xD504;&amp;#xB808;&amp;#xC784;&amp;#xC6CC;&amp;#xD06C;&amp;#xC778; Apache Tapestry&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; CVE-2019-0195 &amp;#xD328;&amp;#xCE58; &amp;#xC6B0;&amp;#xD68C;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;CVE-2019-0195&amp;#xB294; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xD074;&amp;#xB798;&amp;#xC2A4; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xB2E4;&amp;#xC6B4;&amp;#xB85C;&amp;#xB4DC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC774;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; serialized Java &amp;#xAC1D;&amp;#xCCB4; &amp;#xC11C;&amp;#xBA85;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; &lt;code&gt;HMAC&lt;/code&gt; &amp;#xBE44;&amp;#xBC00; &amp;#xD0A4;&amp;#xB97C; &amp;#xC54C;&amp;#xC544;&amp;#xB0BC; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xD68D;&amp;#xB4DD;&amp;#xD55C; &lt;code&gt;HMAC&lt;/code&gt; &amp;#xBE44;&amp;#xBC00; &amp;#xD0A4;&amp;#xB85C; &lt;code&gt;CommonsBeanUtils1&lt;/code&gt;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; Java RCE gadget &amp;#xCCB4;&amp;#xC778;&amp;#xC5D0; &amp;#xC11C;&amp;#xBA85;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0; &amp;#xC774;&amp;#xB294; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC704; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; URL request&amp;#xC5D0; &lt;code&gt;.class&lt;/code&gt; , &lt;code&gt;.properties&lt;/code&gt; , &lt;code&gt;.xml&lt;/code&gt; &amp;#xC774; &amp;#xC788;&amp;#xB294;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xACE0; &amp;#xC774;&amp;#xB97C; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC73C;&amp;#xB098; payload URL&amp;#xC758; &amp;#xB05D;&amp;#xC5D0; &lt;code&gt;/&lt;/code&gt; &amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD558;&amp;#xBA74; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xC744; &amp;#xAC04;&amp;#xB2E8;&amp;#xD558;&amp;#xAC8C; &amp;#xC6B0;&amp;#xD68C;&amp;#xD574; &amp;#xAE30;&amp;#xC874; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD65C;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xD655;&amp;#xC778;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;http:&lt;span class=&#34;hljs-comment&#34;&gt;//[host ip]/assets/.../services/AppModule.class   -&amp;gt; &amp;quot;.class&amp;quot; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC801;&amp;#xC6A9;&amp;#xB428; &lt;/span&gt;
+http:&lt;span class=&#34;hljs-comment&#34;&gt;//[host ip]/assets/.../services/AppModule.class/  -&amp;gt; &amp;quot;.class&amp;quot; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC6B0;&amp;#xD68C;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/16/l0ch/2021-04-16/">
@@ -267,13 +283,13 @@ http:<span class="hljs-comment">//[host ip]/assets/.../services/AppModule.class/
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
+                  <a class="hover-with-bg" href="/tags/bypass/">bypass</a>
+                  
                   <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   
                   <a class="hover-with-bg" href="/tags/deserialization/">deserialization</a>
                   
                   <a class="hover-with-bg" href="/tags/apache/">apache</a>
-                  
-                  <a class="hover-with-bg" href="/tags/bypass/">bypass</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   
@@ -324,8 +340,8 @@ http:<span class="hljs-comment">//[host ip]/assets/.../services/AppModule.class/
                 <article class="post-next col-6">
                   
                   
-                  <a href="/2021/04/15/idioth/2021-04-15/">
-                    <span class="hidden-mobile">[하루한줄] CVE-2021-28310: Desktop Window Manager out-of-bound write 취약점</span>
+                  <a href="/2021/04/15/insu/2021-04-15/">
+                    <span class="hidden-mobile">[하루한줄] Windows SCM Remote Access Check Limit Bypass EoP</span>
                     <span class="visible-mobile">Next</span>
                     <i class="iconfont icon-arrowright"></i>
                   </a>

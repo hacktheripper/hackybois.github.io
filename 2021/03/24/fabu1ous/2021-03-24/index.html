@@ -13,15 +13,35 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://guix.gnu.org/en/blog/2021/risk-of-local-privilege-escalation-via-guix-daemon/&#34;&gt;Risk of local privilege escalation via guix-daemon&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Guix&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Guix&amp;#xB294; GNU &amp;#xD504;&amp;#xB85C;&amp;#xC81D;&amp;#xD2B8;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC1C;&amp;#xBC1C;&amp;#xD55C; GNU &amp;#xC6B4;&amp;#xC601; &amp;#xCCB4;&amp;#xC81C;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. Guix&amp;#xC758; guix-daemon&amp;#xC5D0;&amp;#xC11C; &amp;#xB85C;&amp;#xCEEC; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xBCF4;&amp;#xC548; &amp;#xCDE8;&amp;#xC57D;&amp;#xC131;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Multi-user setup&amp;#xC774; &amp;#xB41C; &amp;#xB85C;&amp;#xCEEC; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD658;&amp;#xACBD;&amp;#xC5D0;&amp;#xC11C; &amp;#xC720;&amp;#xC800; &amp;#xAD8C;&amp;#xD55C;&amp;#xC758; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; guix build&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xBE4C;&amp;#xB4DC; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD574; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC811;&amp;#xADFC; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; world-writable&amp;#xB85C; &amp;#xBCC0;&amp;#xACBD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&amp;#xACF5;&amp;#xACA9; &amp;#xC2DC;&amp;#xB098;&amp;#xB9AC;&amp;#xC624;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;#xBE4C;&amp;#xB4DC; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; &amp;#xC18D;&amp;#xC5D0; &lt;code&gt;/etc/shadow&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC774; root &amp;#xC18C;&amp;#xC720;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC758;  hardlink&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--keep-failed&lt;/code&gt; &amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xBD99;&amp;#xC778; &amp;#xBE4C;&amp;#xB4DC; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xD638;&amp;#xCD9C;&lt;/li&gt;
+&lt;li&gt;&amp;#xBE4C;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD328; &amp;#xC2DC; daemon&amp;#xC740; &amp;#xC804;&amp;#xCCB4; &amp;#xBE4C;&amp;#xB4DC; &amp;#xD2B8;&amp;#xB9AC;&amp;#xB97C; &amp;#xD604;&amp;#xC7AC; &amp;#xC720;&amp;#xC800; &amp;#xC18C;&amp;#xC720;&amp;#xB85C; &amp;#xBCC0;&amp;#xACBD;&lt;/li&gt;
+&lt;li&gt;hardlink &amp;#xB41C; root &amp;#xC18C;&amp;#xC720;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; &amp;#xC4F0;&amp;#xAE30; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC0DD;&amp;#xAE40;&lt;/li&gt;
+&lt;/ol&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Guix lpe via guix-daemon - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://guix.gnu.org/en/blog/2021/risk-of-local-privilege-escalation-via-guix-daemon/&#34;&gt;Risk of local privilege escalation via guix-daemon&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Guix&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Guix&amp;#xB294; GNU &amp;#xD504;&amp;#xB85C;&amp;#xC81D;&amp;#xD2B8;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC1C;&amp;#xBC1C;&amp;#xD55C; GNU &amp;#xC6B4;&amp;#xC601; &amp;#xCCB4;&amp;#xC81C;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. Guix&amp;#xC758; guix-daemon&amp;#xC5D0;&amp;#xC11C; &amp;#xB85C;&amp;#xCEEC; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xBCF4;&amp;#xC548; &amp;#xCDE8;&amp;#xC57D;&amp;#xC131;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Multi-user setup&amp;#xC774; &amp;#xB41C; &amp;#xB85C;&amp;#xCEEC; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD658;&amp;#xACBD;&amp;#xC5D0;&amp;#xC11C; &amp;#xC720;&amp;#xC800; &amp;#xAD8C;&amp;#xD55C;&amp;#xC758; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; guix build&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xBE4C;&amp;#xB4DC; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD574; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC811;&amp;#xADFC; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; world-writable&amp;#xB85C; &amp;#xBCC0;&amp;#xACBD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&amp;#xACF5;&amp;#xACA9; &amp;#xC2DC;&amp;#xB098;&amp;#xB9AC;&amp;#xC624;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;#xBE4C;&amp;#xB4DC; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC; &amp;#xC18D;&amp;#xC5D0; &lt;code&gt;/etc/shadow&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC774; root &amp;#xC18C;&amp;#xC720;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC758;  hardlink&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;--keep-failed&lt;/code&gt; &amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xBD99;&amp;#xC778; &amp;#xBE4C;&amp;#xB4DC; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xD638;&amp;#xCD9C;&lt;/li&gt;
+&lt;li&gt;&amp;#xBE4C;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD328; &amp;#xC2DC; daemon&amp;#xC740; &amp;#xC804;&amp;#xCCB4; &amp;#xBE4C;&amp;#xB4DC; &amp;#xD2B8;&amp;#xB9AC;&amp;#xB97C; &amp;#xD604;&amp;#xC7AC; &amp;#xC720;&amp;#xC800; &amp;#xC18C;&amp;#xC720;&amp;#xB85C; &amp;#xBCC0;&amp;#xACBD;&lt;/li&gt;
+&lt;li&gt;hardlink &amp;#xB41C; root &amp;#xC18C;&amp;#xC720;&amp;#xC758; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; &amp;#xC4F0;&amp;#xAE30; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC0DD;&amp;#xAE40;&lt;/li&gt;
+&lt;/ol&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/03/24/fabu1ous/2021-03-24/">
@@ -267,9 +287,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/gnu/">gnu</a>
                   

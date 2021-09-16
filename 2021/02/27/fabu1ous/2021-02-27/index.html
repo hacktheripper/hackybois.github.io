@@ -13,15 +13,77 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.thezdi.com/blog/2021/2/24/cve-2020-8625-a-fifteen-year-old-rce-bug-returns-in-isc-bind-server&#34;&gt;CVE-2020-8625: A FIFTEEN-YEAR-OLD RCE BUG RETURNS IN ISC BIND SERVER&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;BIND version 9.11 ~ 9.16&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;15&amp;#xB144; &amp;#xC804; ISC BIND &amp;#xC11C;&amp;#xBC84;&amp;#xC5D0;&amp;#xC11C; 4-byte &amp;#xD799; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD55C; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(CVE-2006-5989)&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB410;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xD328;&amp;#xCE58;&amp;#xAC00; merge &amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &amp;#xBC29;&amp;#xCE58;&amp;#xB410;&amp;#xACE0;, &amp;#xC791;&amp;#xB144;(2020&amp;#xB144;)&amp;#xC5D0; CVE-2020-8625&amp;#xB77C;&amp;#xB294; &amp;#xBC88;&amp;#xD638;&amp;#xB85C; &amp;#xD328;&amp;#xCE58;&amp;#xB410;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; 
+der_get_oid(&lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt; *p, &lt;span class=&#34;hljs-keyword&#34;&gt;size_t&lt;/span&gt; len, oid *data, &lt;span class=&#34;hljs-keyword&#34;&gt;size_t&lt;/span&gt; *size) { 
+&lt;span class=&#34;hljs-comment&#34;&gt;// ... &lt;/span&gt;
+data-&amp;gt;components = &lt;span class=&#34;hljs-built_in&#34;&gt;malloc&lt;/span&gt;(len * &lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(*data-&amp;gt;components));   &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (1) &lt;/span&gt;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (data-&amp;gt;components == &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;) { 
+      &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; (ENOMEM); 
+    } 
+    data-&amp;gt;components[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;] = (*p) / &lt;span class=&#34;hljs-number&#34;&gt;40&lt;/span&gt;;    &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (2) &lt;/span&gt;
+    data-&amp;gt;components[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] = (*p) % &lt;span class=&#34;hljs-number&#34;&gt;40&lt;/span&gt;; 
+    --len;               &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (3) &lt;/span&gt;
+    ++p; 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (n = &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;; len &amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;0U&lt;/span&gt;; ++n) { 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; u = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; 
+ 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;do&lt;/span&gt; { 
+            --len; 
+            u = u * &lt;span class=&#34;hljs-number&#34;&gt;128&lt;/span&gt; + (*p++ % &lt;span class=&#34;hljs-number&#34;&gt;128&lt;/span&gt;); 
+        } &lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (len &amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;0U&lt;/span&gt; &amp;amp;&amp;amp; p[&lt;span class=&#34;hljs-number&#34;&gt;-1&lt;/span&gt;] &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;0x80&lt;/span&gt;); 
+        data-&amp;gt;components[n] = u;      &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (4) &lt;/span&gt;
+    } 
+&lt;span class=&#34;hljs-comment&#34;&gt;// ... &lt;/span&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD799; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0; &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; lib/dns/spnego.c&amp;#xC758; &amp;#xD568;&amp;#xC218; &lt;code&gt;der_get_old()&lt;/code&gt; &amp;#xC77C;&amp;#xBD80;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;(1): &amp;#xBC30;&amp;#xC5F4;&amp;#xD615; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xACE0; len &amp;#xBCC0;&amp;#xC218;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xB0A8;&amp;#xC544;&amp;#xC788;&amp;#xB294; element &amp;#xC218;&amp;#xB97C; &amp;#xCD94;&amp;#xC801;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;(2): &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; 2&amp;#xAC1C;&amp;#xC758; element&amp;#xB97C; &amp;#xB2F4;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;(3): len&amp;#xC758; &amp;#xAC12;&amp;#xC744; 1&amp;#xBC88;&amp;#xB9CC; &amp;#xAC10;&amp;#xC18C;&amp;#xC2DC;&amp;#xD0B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;(4): &amp;#xD55C; &amp;#xAC1C;&amp;#xC758; int element(4 byte) &amp;#xB9CC;&amp;#xD07C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC11C;&amp;#xBC84;&amp;#xB85C; &amp;#xC870;&amp;#xC791;&amp;#xB41C; request&amp;#xB97C; &amp;#xBCF4;&amp;#xB0B4; &lt;code&gt;der_get_old()&lt;/code&gt;&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xB294; &amp;#xBC84;&amp;#xD37C;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xC640; &amp;#xADF8; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC870;&amp;#xC791;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0;, &lt;code&gt;der_get_old()&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; loop count&amp;#xB97C; &amp;#xC870;&amp;#xC791;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; &amp;#xC5F0;&amp;#xC18D;&amp;#xB41C; &amp;#xD799; &amp;#xCCAD;&amp;#xD06C;&amp;#xC758; &amp;#xC7AC;&amp;#xD560;&amp;#xB2F9;&amp;#xC744; &amp;#xC720;&amp;#xB3C4;&amp;#xD574; exploit&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-8625: Fifteen-year-old RCE bug - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.thezdi.com/blog/2021/2/24/cve-2020-8625-a-fifteen-year-old-rce-bug-returns-in-isc-bind-server&#34;&gt;CVE-2020-8625: A FIFTEEN-YEAR-OLD RCE BUG RETURNS IN ISC BIND SERVER&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;BIND version 9.11 ~ 9.16&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;15&amp;#xB144; &amp;#xC804; ISC BIND &amp;#xC11C;&amp;#xBC84;&amp;#xC5D0;&amp;#xC11C; 4-byte &amp;#xD799; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD55C; RCE &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(CVE-2006-5989)&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB410;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xD328;&amp;#xCE58;&amp;#xAC00; merge &amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &amp;#xBC29;&amp;#xCE58;&amp;#xB410;&amp;#xACE0;, &amp;#xC791;&amp;#xB144;(2020&amp;#xB144;)&amp;#xC5D0; CVE-2020-8625&amp;#xB77C;&amp;#xB294; &amp;#xBC88;&amp;#xD638;&amp;#xB85C; &amp;#xD328;&amp;#xCE58;&amp;#xB410;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; 
+der_get_oid(&lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt; *p, &lt;span class=&#34;hljs-keyword&#34;&gt;size_t&lt;/span&gt; len, oid *data, &lt;span class=&#34;hljs-keyword&#34;&gt;size_t&lt;/span&gt; *size) { 
+&lt;span class=&#34;hljs-comment&#34;&gt;// ... &lt;/span&gt;
+data-&amp;gt;components = &lt;span class=&#34;hljs-built_in&#34;&gt;malloc&lt;/span&gt;(len * &lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(*data-&amp;gt;components));   &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (1) &lt;/span&gt;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (data-&amp;gt;components == &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;) { 
+      &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; (ENOMEM); 
+    } 
+    data-&amp;gt;components[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;] = (*p) / &lt;span class=&#34;hljs-number&#34;&gt;40&lt;/span&gt;;    &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (2) &lt;/span&gt;
+    data-&amp;gt;components[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;] = (*p) % &lt;span class=&#34;hljs-number&#34;&gt;40&lt;/span&gt;; 
+    --len;               &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (3) &lt;/span&gt;
+    ++p; 
+    &lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (n = &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;; len &amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;0U&lt;/span&gt;; ++n) { 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; u = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; 
+ 
+        &lt;span class=&#34;hljs-keyword&#34;&gt;do&lt;/span&gt; { 
+            --len; 
+            u = u * &lt;span class=&#34;hljs-number&#34;&gt;128&lt;/span&gt; + (*p++ % &lt;span class=&#34;hljs-number&#34;&gt;128&lt;/span&gt;); 
+        } &lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (len &amp;gt; &lt;span class=&#34;hljs-number&#34;&gt;0U&lt;/span&gt; &amp;amp;&amp;amp; p[&lt;span class=&#34;hljs-number&#34;&gt;-1&lt;/span&gt;] &amp;amp; &lt;span class=&#34;hljs-number&#34;&gt;0x80&lt;/span&gt;); 
+        data-&amp;gt;components[n] = u;      &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- (4) &lt;/span&gt;
+    } 
+&lt;span class=&#34;hljs-comment&#34;&gt;// ... &lt;/span&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD799; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0; &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; lib/dns/spnego.c&amp;#xC758; &amp;#xD568;&amp;#xC218; &lt;code&gt;der_get_old()&lt;/code&gt; &amp;#xC77C;&amp;#xBD80;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;(1): &amp;#xBC30;&amp;#xC5F4;&amp;#xD615; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xACE0; len &amp;#xBCC0;&amp;#xC218;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xB0A8;&amp;#xC544;&amp;#xC788;&amp;#xB294; element &amp;#xC218;&amp;#xB97C; &amp;#xCD94;&amp;#xC801;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;(2): &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; 2&amp;#xAC1C;&amp;#xC758; element&amp;#xB97C; &amp;#xB2F4;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;(3): len&amp;#xC758; &amp;#xAC12;&amp;#xC744; 1&amp;#xBC88;&amp;#xB9CC; &amp;#xAC10;&amp;#xC18C;&amp;#xC2DC;&amp;#xD0B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;(4): &amp;#xD55C; &amp;#xAC1C;&amp;#xC758; int element(4 byte) &amp;#xB9CC;&amp;#xD07C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC11C;&amp;#xBC84;&amp;#xB85C; &amp;#xC870;&amp;#xC791;&amp;#xB41C; request&amp;#xB97C; &amp;#xBCF4;&amp;#xB0B4; &lt;code&gt;der_get_old()&lt;/code&gt;&amp;#xAC00; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xB294; &amp;#xBC84;&amp;#xD37C;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xC640; &amp;#xADF8; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC870;&amp;#xC791;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0;, &lt;code&gt;der_get_old()&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; loop count&amp;#xB97C; &amp;#xC870;&amp;#xC791;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; &amp;#xC5F0;&amp;#xC18D;&amp;#xB41C; &amp;#xD799; &amp;#xCCAD;&amp;#xD06C;&amp;#xC758; &amp;#xC7AC;&amp;#xD560;&amp;#xB2F9;&amp;#xC744; &amp;#xC720;&amp;#xB3C4;&amp;#xD574; exploit&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/02/27/fabu1ous/2021-02-27/">
@@ -265,7 +327,6 @@ data-&gt;components = <span class="hljs-built_in">malloc</span>(len * <span clas
     } 
 <span class="hljs-comment">// ... </span>
 }</code></pre>
-
 <p>&#xD799; &#xC624;&#xBC84;&#xD50C;&#xB85C;&#xC6B0; &#xBC84;&#xADF8;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294; lib/dns/spnego.c&#xC758; &#xD568;&#xC218; <code>der_get_old()</code> &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;. </p>
 <p>(1): &#xBC30;&#xC5F4;&#xD615; &#xBC84;&#xD37C;&#xB97C; &#xD560;&#xB2F9;&#xD558;&#xACE0; len &#xBCC0;&#xC218;&#xB97C; &#xD1B5;&#xD574; &#xBC84;&#xD37C;&#xC5D0; &#xB0A8;&#xC544;&#xC788;&#xB294; element &#xC218;&#xB97C; &#xCD94;&#xC801;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>(2): &#xBC84;&#xD37C;&#xC5D0; 2&#xAC1C;&#xC758; element&#xB97C; &#xB2F4;&#xC2B5;&#xB2C8;&#xB2E4;. </p>

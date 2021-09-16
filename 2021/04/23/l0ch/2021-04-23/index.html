@@ -13,15 +13,51 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2174&#34;&gt;Issue 2174: xscreensaver: raw socket leaked&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Debian xscreensaver 5.42 + dfsg1-1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;linux&amp;#xC6A9; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xD654;&amp;#xBA74; &amp;#xBCF4;&amp;#xD638;&amp;#xAE30;&amp;#xC778; xscreensaver&amp;#xC758; debian &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC18C;&amp;#xCF13; &amp;#xC815;&amp;#xBCF4;&amp;#xC720;&amp;#xCD9C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;xscreensaver&amp;#xC758; &amp;#xB2E4;&amp;#xC74C; &amp;#xACBD;&amp;#xB85C;&amp;#xC5D0; &amp;#xC77C;&amp;#xBC18; &amp;#xACC4;&amp;#xC815;&amp;#xC758; &amp;#xD328;&amp;#xD0B7; &amp;#xCEA1;&amp;#xCC98;&amp;#xB97C; &amp;#xD5C8;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; &lt;code&gt;cap_net_raw=p&lt;/code&gt; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;$ getcap /usr/libexec/xscreensaver/sonar
+/usr/libexec/xscreensaver/sonar cap_net_raw=p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xC774;&amp;#xC6A9;&amp;#xD574; &amp;#xC6D0;&amp;#xC2DC; &amp;#xC18C;&amp;#xCF13;&amp;#xC744; &amp;#xC5BB;&amp;#xACE0; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xCD9C;&amp;#xB825;&amp;#xD558;&amp;#xB294; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD558;&amp;#xAC70;&amp;#xB098; tcpdump &amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB97C; &amp;#xCEF4;&amp;#xD30C;&amp;#xC77C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// Enable CAP_NET_RAW&lt;/span&gt;
+caps = cap_get_proc();
+cap_set_flag(caps, CAP_EFFECTIVE, &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;, caplist, CAP_SET);
+cap_set_proc(caps);
+cap_free(caps);
+
+&lt;span class=&#34;hljs-comment&#34;&gt;// Now we can get a raw socket.&lt;/span&gt;
+sock = socket(PF_INET, SOCK_RAW, IPPROTO_TCP);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xB97C; &lt;code&gt;MESA_LOADER_DRIVER_OVERRIDE&lt;/code&gt; &amp;#xD658;&amp;#xACBD;&amp;#xBCC0;&amp;#xC218; &amp;#xC124;&amp;#xC815;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; xscreensaver&amp;#xC5D0;&amp;#xC11C; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xBA74; root&amp;#xAC00; &amp;#xC544;&amp;#xB2CC; &amp;#xC77C;&amp;#xBC18; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790; &amp;#xACC4;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xC18C;&amp;#xCF13; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xC720;&amp;#xCD9C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-31523: linux 화면보호기 xscreensaver의 소켓 정보유출 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2174&#34;&gt;Issue 2174: xscreensaver: raw socket leaked&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Debian xscreensaver 5.42 + dfsg1-1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;linux&amp;#xC6A9; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xD654;&amp;#xBA74; &amp;#xBCF4;&amp;#xD638;&amp;#xAE30;&amp;#xC778; xscreensaver&amp;#xC758; debian &amp;#xBC30;&amp;#xD3EC;&amp;#xD310;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; &amp;#xC18C;&amp;#xCF13; &amp;#xC815;&amp;#xBCF4;&amp;#xC720;&amp;#xCD9C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;xscreensaver&amp;#xC758; &amp;#xB2E4;&amp;#xC74C; &amp;#xACBD;&amp;#xB85C;&amp;#xC5D0; &amp;#xC77C;&amp;#xBC18; &amp;#xACC4;&amp;#xC815;&amp;#xC758; &amp;#xD328;&amp;#xD0B7; &amp;#xCEA1;&amp;#xCC98;&amp;#xB97C; &amp;#xD5C8;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; &lt;code&gt;cap_net_raw=p&lt;/code&gt; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB418;&amp;#xC5B4;&amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;$ getcap /usr/libexec/xscreensaver/sonar
+/usr/libexec/xscreensaver/sonar cap_net_raw=p&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xC774;&amp;#xC6A9;&amp;#xD574; &amp;#xC6D0;&amp;#xC2DC; &amp;#xC18C;&amp;#xCF13;&amp;#xC744; &amp;#xC5BB;&amp;#xACE0; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xCD9C;&amp;#xB825;&amp;#xD558;&amp;#xB294; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD558;&amp;#xAC70;&amp;#xB098; tcpdump &amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB97C; &amp;#xCEF4;&amp;#xD30C;&amp;#xC77C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// Enable CAP_NET_RAW&lt;/span&gt;
+caps = cap_get_proc();
+cap_set_flag(caps, CAP_EFFECTIVE, &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;, caplist, CAP_SET);
+cap_set_proc(caps);
+cap_free(caps);
+
+&lt;span class=&#34;hljs-comment&#34;&gt;// Now we can get a raw socket.&lt;/span&gt;
+sock = socket(PF_INET, SOCK_RAW, IPPROTO_TCP);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xB97C; &lt;code&gt;MESA_LOADER_DRIVER_OVERRIDE&lt;/code&gt; &amp;#xD658;&amp;#xACBD;&amp;#xBCC0;&amp;#xC218; &amp;#xC124;&amp;#xC815;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; xscreensaver&amp;#xC5D0;&amp;#xC11C; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xBA74; root&amp;#xAC00; &amp;#xC544;&amp;#xB2CC; &amp;#xC77C;&amp;#xBC18; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790; &amp;#xACC4;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xC18C;&amp;#xCF13; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xC720;&amp;#xCD9C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/23/l0ch/2021-04-23/">
@@ -248,7 +284,6 @@
 <p>xscreensaver&#xC758; &#xB2E4;&#xC74C; &#xACBD;&#xB85C;&#xC5D0; &#xC77C;&#xBC18; &#xACC4;&#xC815;&#xC758; &#xD328;&#xD0B7; &#xCEA1;&#xCC98;&#xB97C; &#xD5C8;&#xC6A9;&#xD558;&#xB294; <code>cap_net_raw=p</code> &#xAD8C;&#xD55C;&#xC774; &#xD65C;&#xC131;&#xD654;&#xB418;&#xC5B4;&#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cpp">$ getcap /usr/libexec/xscreensaver/sonar
 /usr/libexec/xscreensaver/sonar cap_net_raw=p</code></pre>
-
 <p>&#xD574;&#xCEE4;&#xB294; &#xC774;&#xB7EC;&#xD55C; &#xAD8C;&#xD55C;&#xC744; &#xC774;&#xC6A9;&#xD574; &#xC6D0;&#xC2DC; &#xC18C;&#xCF13;&#xC744; &#xC5BB;&#xACE0; &#xC815;&#xBCF4;&#xB97C; &#xCD9C;&#xB825;&#xD558;&#xB294; &#xCF54;&#xB4DC;&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xAC70;&#xB098; tcpdump &#xBA85;&#xB839;&#xC5B4;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xB97C; &#xCEF4;&#xD30C;&#xC77C;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-comment">// Enable CAP_NET_RAW</span>
 caps = cap_get_proc();
@@ -258,7 +293,6 @@ cap_free(caps);
 
 <span class="hljs-comment">// Now we can get a raw socket.</span>
 sock = socket(PF_INET, SOCK_RAW, IPPROTO_TCP);</code></pre>
-
 <p>&#xC774;&#xB97C; <code>MESA_LOADER_DRIVER_OVERRIDE</code> &#xD658;&#xACBD;&#xBCC0;&#xC218; &#xC124;&#xC815;&#xC744; &#xD1B5;&#xD574; xscreensaver&#xC5D0;&#xC11C; &#xB85C;&#xB4DC;&#xD558;&#xB3C4;&#xB85D; &#xD558;&#xBA74; root&#xAC00; &#xC544;&#xB2CC; &#xC77C;&#xBC18; &#xC0AC;&#xC6A9;&#xC790; &#xACC4;&#xC815;&#xC5D0;&#xC11C; &#xC18C;&#xCF13; &#xC815;&#xBCF4;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>

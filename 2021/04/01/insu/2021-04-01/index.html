@@ -13,15 +13,41 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.openssl.org/news/secadv/20210325.txt&#34;&gt;OpenSSL Security Advisory [25 March 2021]&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;OpenSSL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;OpenSSL&amp;#xC5D0;&amp;#xC11C; CA &amp;#xC778;&amp;#xC99D; bypass&amp;#xC640; Null Pointer Dereference &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(Denial-of-Service)&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CA certificate check bypass&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;X509_V_FLAG_X509_STRICT flag&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xCD94;&amp;#xAC00; &amp;#xBCF4;&amp;#xC548; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD0C0;&amp;#xC6D0; &amp;#xACE1;&amp;#xC120; &amp;#xBCC0;&amp;#xC218;&amp;#xB97C; &amp;#xC778;&amp;#xCF54;&amp;#xB529;&amp;#xD55C; &amp;#xCCB4;&amp;#xC778;&amp;#xC758; &amp;#xC778;&amp;#xC99D;&amp;#xC11C;&amp;#xB97C; &amp;#xD5C8;&amp;#xC6A9;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xAC80;&amp;#xC0AC;&amp;#xAC00; &amp;#xCD94;&amp;#xAC00;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xC774; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xC9C4;&amp;#xD589;&amp;#xD560; &amp;#xB54C;, &amp;#xC778;&amp;#xC99D;&amp;#xC11C;&amp;#xAC00; &amp;#xC720;&amp;#xD6A8;&amp;#xD55C; CA &amp;#xC778;&amp;#xC815;&amp;#xC11C;&amp;#xC778;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xB294; &amp;#xC774;&amp;#xC804;&amp;#xC758; &amp;#xAC80;&amp;#xC0AC; &amp;#xACB0;&amp;#xACFC;&amp;#xB97C; &amp;#xB36E;&amp;#xC5B4; &amp;#xC50C;&amp;#xC6CC; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Null pointer dereference&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;client&amp;#xC5D0;&amp;#xC11C; &amp;#xC870;&amp;#xC791;&amp;#xB41C; renegotiation ClientHello message&amp;#xB97C; &amp;#xBCF4;&amp;#xB0B8; &amp;#xACBD;&amp;#xC6B0;, &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB9CC;&amp;#xC57D; initalize&amp;#xC5D0;&amp;#xC11C; TLSv1.2 renegotiation ClientHello&amp;#xAC00; signature_algorithms extension&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC9C0;&amp;#xB9CC;, signature_algorithms_cert extension&amp;#xC744; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C;&amp;#xB2E4;&amp;#xBA74; null pointer deref &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;a href=&#34;https://github.com/terorie/cve-2021-3449&#34;&gt;&amp;#xB9C1;&amp;#xD06C;&lt;/a&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CA certificate check bypass &amp; NULL pointer deref in OpenSSL - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.openssl.org/news/secadv/20210325.txt&#34;&gt;OpenSSL Security Advisory [25 March 2021]&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;OpenSSL&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;OpenSSL&amp;#xC5D0;&amp;#xC11C; CA &amp;#xC778;&amp;#xC99D; bypass&amp;#xC640; Null Pointer Dereference &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(Denial-of-Service)&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CA certificate check bypass&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;X509_V_FLAG_X509_STRICT flag&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xCD94;&amp;#xAC00; &amp;#xBCF4;&amp;#xC548; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD0C0;&amp;#xC6D0; &amp;#xACE1;&amp;#xC120; &amp;#xBCC0;&amp;#xC218;&amp;#xB97C; &amp;#xC778;&amp;#xCF54;&amp;#xB529;&amp;#xD55C; &amp;#xCCB4;&amp;#xC778;&amp;#xC758; &amp;#xC778;&amp;#xC99D;&amp;#xC11C;&amp;#xB97C; &amp;#xD5C8;&amp;#xC6A9;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xAC80;&amp;#xC0AC;&amp;#xAC00; &amp;#xCD94;&amp;#xAC00;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xC774; &amp;#xAC80;&amp;#xC0AC;&amp;#xB97C; &amp;#xC9C4;&amp;#xD589;&amp;#xD560; &amp;#xB54C;, &amp;#xC778;&amp;#xC99D;&amp;#xC11C;&amp;#xAC00; &amp;#xC720;&amp;#xD6A8;&amp;#xD55C; CA &amp;#xC778;&amp;#xC815;&amp;#xC11C;&amp;#xC778;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xB294; &amp;#xC774;&amp;#xC804;&amp;#xC758; &amp;#xAC80;&amp;#xC0AC; &amp;#xACB0;&amp;#xACFC;&amp;#xB97C; &amp;#xB36E;&amp;#xC5B4; &amp;#xC50C;&amp;#xC6CC; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Null pointer dereference&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;client&amp;#xC5D0;&amp;#xC11C; &amp;#xC870;&amp;#xC791;&amp;#xB41C; renegotiation ClientHello message&amp;#xB97C; &amp;#xBCF4;&amp;#xB0B8; &amp;#xACBD;&amp;#xC6B0;, &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB9CC;&amp;#xC57D; initalize&amp;#xC5D0;&amp;#xC11C; TLSv1.2 renegotiation ClientHello&amp;#xAC00; signature_algorithms extension&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC9C0;&amp;#xB9CC;, signature_algorithms_cert extension&amp;#xC744; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C;&amp;#xB2E4;&amp;#xBA74; null pointer deref &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &lt;a href=&#34;https://github.com/terorie/cve-2021-3449&#34;&gt;&amp;#xB9C1;&amp;#xD06C;&lt;/a&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/01/insu/2021-04-01/">
@@ -270,9 +296,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
-                  
                   <a class="hover-with-bg" href="/tags/insu/">insu</a>
+                  
+                  <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/openssl/">openssl</a>
                   

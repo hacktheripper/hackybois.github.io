@@ -13,15 +13,37 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blogs.360.cn/post/CVE-2020-17140-Analysis.html&#34;&gt;Windows SMB Information Disclousure Analysis&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Windows 7 ~ Windows 10&lt;/p&gt;
+&lt;p&gt;svr2.sys &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;patch Tuesday(2020.12.08)&amp;#xC5D0;&amp;#xC11C; CVE-2020-17140&amp;#xAC00; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5B4; Write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. CVE-2020-17140&amp;#xC740; &lt;code&gt;SMB2_SET_INFO&lt;/code&gt; &amp;#xD328;&amp;#xD0B7;&amp;#xC758; &amp;#xCC98;&amp;#xB9AC; &amp;#xB85C;&amp;#xC9C1;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; use after free&amp;#xB85C; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xB178;&amp;#xCD9C;&amp;#xC2DC;&amp;#xD0A4;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;SMBv2 &amp;#xC774;&amp;#xD6C4;&amp;#xBD80;&amp;#xD130; LEASE&amp;#xB77C;&amp;#xB294; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; caching mechanism&amp;#xC774; &amp;#xB3C4;&amp;#xC785;&amp;#xB418;&amp;#xC5C8;&amp;#xACE0; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xB294; &lt;code&gt;SMB2_CREATE_REQEUST_LEASE_V2&lt;/code&gt; &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4; &amp;#xACF5;&amp;#xC720; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; lease&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xACE0;, &lt;code&gt;SMB2_SET_INFO&lt;/code&gt; &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4; &amp;#xACF5;&amp;#xC720; &amp;#xD30C;&amp;#xC77C;&amp;#xC758; lease&amp;#xB97C; &amp;#xC218;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;srv2.sys &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; SMB2_SET_INFO &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xBC1B;&amp;#xC73C;&amp;#xBA74; &lt;code&gt;srv2!Smb2UpdateLeaseFileName&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574;&amp;#xC11C; lease &amp;#xC774;&amp;#xB984;&amp;#xC744; &amp;#xC218;&amp;#xC815;&amp;#xD558;&amp;#xB294;&amp;#xB370;, new lease name&amp;#xC774; &amp;#xAE30;&amp;#xC874;&amp;#xC758; old lease name&amp;#xBCF4;&amp;#xB2E4; &amp;#xAE38; &amp;#xACBD;&amp;#xC6B0; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;(newFileBuf)&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD574; old lease name&amp;#xC744; &amp;#xBC31;&amp;#xC5C5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( *(_BYTE *)(v6 + &lt;span class=&#34;hljs-number&#34;&gt;114&lt;/span&gt;) )
+	ExFreePoolWithTag(oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( v11 )
+	memmove(newFileBuf, oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;i64 * v11);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;old lease name&amp;#xC744; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB358; oldFileBuf&amp;#xB97C; &amp;#xD560;&amp;#xB2F9; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4;&amp;#xC5D0; newFileBuf&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; use after free&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. oldFileBuf&amp;#xB97C; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4; &amp;#xB315;&amp;#xAE00;&amp;#xB9C1; &amp;#xD3EC;&amp;#xC778;&amp;#xD130;&amp;#xC758; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; kernel info leak &amp;#xB610;&amp;#xB294; BSoD&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-17140 : SMB uaf to info disclosure - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blogs.360.cn/post/CVE-2020-17140-Analysis.html&#34;&gt;Windows SMB Information Disclousure Analysis&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Windows 7 ~ Windows 10&lt;/p&gt;
+&lt;p&gt;svr2.sys &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;patch Tuesday(2020.12.08)&amp;#xC5D0;&amp;#xC11C; CVE-2020-17140&amp;#xAC00; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5B4; Write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. CVE-2020-17140&amp;#xC740; &lt;code&gt;SMB2_SET_INFO&lt;/code&gt; &amp;#xD328;&amp;#xD0B7;&amp;#xC758; &amp;#xCC98;&amp;#xB9AC; &amp;#xB85C;&amp;#xC9C1;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; use after free&amp;#xB85C; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xB178;&amp;#xCD9C;&amp;#xC2DC;&amp;#xD0A4;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;SMBv2 &amp;#xC774;&amp;#xD6C4;&amp;#xBD80;&amp;#xD130; LEASE&amp;#xB77C;&amp;#xB294; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; caching mechanism&amp;#xC774; &amp;#xB3C4;&amp;#xC785;&amp;#xB418;&amp;#xC5C8;&amp;#xACE0; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xB294; &lt;code&gt;SMB2_CREATE_REQEUST_LEASE_V2&lt;/code&gt; &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4; &amp;#xACF5;&amp;#xC720; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; lease&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xACE0;, &lt;code&gt;SMB2_SET_INFO&lt;/code&gt; &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xBCF4;&amp;#xB0B4; &amp;#xACF5;&amp;#xC720; &amp;#xD30C;&amp;#xC77C;&amp;#xC758; lease&amp;#xB97C; &amp;#xC218;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;srv2.sys &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; SMB2_SET_INFO &amp;#xD328;&amp;#xD0B7;&amp;#xC744; &amp;#xBC1B;&amp;#xC73C;&amp;#xBA74; &lt;code&gt;srv2!Smb2UpdateLeaseFileName&lt;/code&gt;&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD574;&amp;#xC11C; lease &amp;#xC774;&amp;#xB984;&amp;#xC744; &amp;#xC218;&amp;#xC815;&amp;#xD558;&amp;#xB294;&amp;#xB370;, new lease name&amp;#xC774; &amp;#xAE30;&amp;#xC874;&amp;#xC758; old lease name&amp;#xBCF4;&amp;#xB2E4; &amp;#xAE38; &amp;#xACBD;&amp;#xC6B0; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;(newFileBuf)&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD574; old lease name&amp;#xC744; &amp;#xBC31;&amp;#xC5C5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( *(_BYTE *)(v6 + &lt;span class=&#34;hljs-number&#34;&gt;114&lt;/span&gt;) )
+	ExFreePoolWithTag(oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( v11 )
+	memmove(newFileBuf, oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;i64 * v11);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;old lease name&amp;#xC744; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB358; oldFileBuf&amp;#xB97C; &amp;#xD560;&amp;#xB2F9; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4;&amp;#xC5D0; newFileBuf&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; use after free&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. oldFileBuf&amp;#xB97C; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4; &amp;#xB315;&amp;#xAE00;&amp;#xB9C1; &amp;#xD3EC;&amp;#xC778;&amp;#xD130;&amp;#xC758; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; kernel info leak &amp;#xB610;&amp;#xB294; BSoD&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/12/12/fabu1ous/2020-12-12/">
@@ -250,7 +272,6 @@
 	ExFreePoolWithTag(oldFileBuf, <span class="hljs-number">0</span>);
 <span class="hljs-keyword">if</span> ( v11 )
 	memmove(newFileBuf, oldFileBuf, <span class="hljs-number">2</span>i64 * v11);</code></pre>
-
 <p>old lease name&#xC744; &#xB2F4;&#xACE0; &#xC788;&#xB358; oldFileBuf&#xB97C; &#xD560;&#xB2F9; &#xD574;&#xC81C;&#xD55C; &#xD6C4;&#xC5D0; newFileBuf&#xC5D0; &#xBCF5;&#xC0AC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; use after free&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. oldFileBuf&#xB97C; &#xD574;&#xC81C;&#xD55C; &#xD6C4; &#xB315;&#xAE00;&#xB9C1; &#xD3EC;&#xC778;&#xD130;&#xC758; &#xC0C1;&#xD0DC;&#xC5D0; &#xB530;&#xB77C; kernel info leak &#xB610;&#xB294; BSoD&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -269,9 +290,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/use-after-free/">use after free</a>
                   

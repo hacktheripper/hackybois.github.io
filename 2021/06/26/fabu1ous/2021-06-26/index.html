@@ -13,15 +13,37 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2175&#34;&gt;Windows Filtering Platform Token Access Check EoP&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows 10 20H2&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Filtering Platform(WFP)&amp;#xC758; TCP/IP &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; token impersonation level&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D; &amp;#xBBF8;&amp;#xD761;&amp;#xC73C;&amp;#xB85C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xBC29;&amp;#xD654;&amp;#xBCBD; &amp;#xC815;&amp;#xCC45; &amp;#xC6B0;&amp;#xD68C; &amp;#xBC0F; &amp;#xAD8C;&amp;#xD55C;&amp;#xC0C1;&amp;#xC2B9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;WFP&amp;#xB294; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xC744; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; API &amp;#xBC0F; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xB4E4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC18C;&amp;#xCEA3;&amp;#xC5D0; &amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xB4E4;&amp;#xC5B4;&amp;#xC624;&amp;#xBA74; &amp;#xAE30;&amp;#xBCF8; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC5D4;&amp;#xC9C4; &amp;#xBC0F; Windows &amp;#xBC29;&amp;#xD654;&amp;#xBCBD;&amp;#xC5D0;&amp;#xC11C; &amp;#xAD6C;&amp;#xC131;&amp;#xD55C; &amp;#xC815;&amp;#xCC45;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xD5C8;&amp;#xC6A9;&amp;#xB418;&amp;#xB294;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xB294;&amp;#xB370; &amp;#xADF8; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC815;&amp;#xCC45;&amp;#xC740; &amp;#xD638;&amp;#xCD9C;&amp;#xC790;&amp;#xC758; &amp;#xD1A0;&amp;#xD070; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xB2EC;&amp;#xB77C;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC774; &amp;#xC815;&amp;#xCC45;&amp;#xB4E4;&amp;#xC744; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; &amp;#xBB38;&amp;#xC81C;&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xC6B0;&amp;#xD68C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PsReferenceImpersonationToken&amp;#xC744; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; TOKEN_ACCESS_INFORMATION &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB85C; &amp;#xBCC0;&amp;#xD658;&amp;#xD560; &amp;#xB54C; impersonation level&amp;#xC774; SecurityImpersonation &amp;#xC774;&amp;#xC0C1;&amp;#xC778;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;TCP/IP &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; &amp;#xD1A0;&amp;#xD070; impersonating &amp;#xB3C4;&amp;#xC911;&amp;#xC5D0; &amp;#xC18C;&amp;#xCEA3; &amp;#xC0DD;&amp;#xC131;&amp;#xC744; &amp;#xD5C8;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xC77C;&amp;#xBC18; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xCEA1;&amp;#xCC98;&amp;#xD558;&amp;#xACE0; impersonat &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB418;&amp;#xBBC0;&amp;#xB85C; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xBC29;&amp;#xD654;&amp;#xBCBD; &amp;#xC815;&amp;#xCC45;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBA85;&amp;#xC2DC;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xD5C8;&amp;#xC6A9;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-31970: Windows Filtering Platform EoP - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2175&#34;&gt;Windows Filtering Platform Token Access Check EoP&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows 10 20H2&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Windows Filtering Platform(WFP)&amp;#xC758; TCP/IP &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; token impersonation level&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D; &amp;#xBBF8;&amp;#xD761;&amp;#xC73C;&amp;#xB85C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; &amp;#xBC29;&amp;#xD654;&amp;#xBCBD; &amp;#xC815;&amp;#xCC45; &amp;#xC6B0;&amp;#xD68C; &amp;#xBC0F; &amp;#xAD8C;&amp;#xD55C;&amp;#xC0C1;&amp;#xC2B9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;WFP&amp;#xB294; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xC744; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; API &amp;#xBC0F; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xB4E4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC18C;&amp;#xCEA3;&amp;#xC5D0; &amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xB4E4;&amp;#xC5B4;&amp;#xC624;&amp;#xBA74; &amp;#xAE30;&amp;#xBCF8; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC5D4;&amp;#xC9C4; &amp;#xBC0F; Windows &amp;#xBC29;&amp;#xD654;&amp;#xBCBD;&amp;#xC5D0;&amp;#xC11C; &amp;#xAD6C;&amp;#xC131;&amp;#xD55C; &amp;#xC815;&amp;#xCC45;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xC791;&amp;#xC5C5;&amp;#xC774; &amp;#xD5C8;&amp;#xC6A9;&amp;#xB418;&amp;#xB294;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xB294;&amp;#xB370; &amp;#xADF8; &amp;#xD544;&amp;#xD130;&amp;#xB9C1; &amp;#xC815;&amp;#xCC45;&amp;#xC740; &amp;#xD638;&amp;#xCD9C;&amp;#xC790;&amp;#xC758; &amp;#xD1A0;&amp;#xD070; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xB2EC;&amp;#xB77C;&amp;#xC9D1;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC774; &amp;#xC815;&amp;#xCC45;&amp;#xB4E4;&amp;#xC744; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC740; &amp;#xBB38;&amp;#xC81C;&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xC6B0;&amp;#xD68C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;PsReferenceImpersonationToken&amp;#xC744; &amp;#xD638;&amp;#xCD9C;&amp;#xD574; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; TOKEN_ACCESS_INFORMATION &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB85C; &amp;#xBCC0;&amp;#xD658;&amp;#xD560; &amp;#xB54C; impersonation level&amp;#xC774; SecurityImpersonation &amp;#xC774;&amp;#xC0C1;&amp;#xC778;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;TCP/IP &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xB294; &amp;#xD1A0;&amp;#xD070; impersonating &amp;#xB3C4;&amp;#xC911;&amp;#xC5D0; &amp;#xC18C;&amp;#xCEA3; &amp;#xC0DD;&amp;#xC131;&amp;#xC744; &amp;#xD5C8;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xC77C;&amp;#xBC18; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xCEA1;&amp;#xCC98;&amp;#xD558;&amp;#xACE0; impersonat &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB418;&amp;#xBBC0;&amp;#xB85C; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xBC29;&amp;#xD654;&amp;#xBCBD; &amp;#xC815;&amp;#xCC45;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBA85;&amp;#xC2DC;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xD5C8;&amp;#xC6A9;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xB294; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/06/26/fabu1ous/2021-06-26/">
@@ -268,11 +290,11 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
+                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
-                  <a class="hover-with-bg" href="/tags/windows/">windows</a>
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/tcpip/">tcpip</a>
                   

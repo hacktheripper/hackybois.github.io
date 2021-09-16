@@ -13,15 +13,67 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.redteam-pentesting.de/2020/websocket-vulnerability-tomcat/&#34;&gt;DIVING INTO A WEBSOCKET VULNERABILITY IN APACHE TOMCAT&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Apache Tomcat&lt;ul&gt;
+&lt;li&gt;10.0.0-M1 ~ 10.0.0-M6&lt;/li&gt;
+&lt;li&gt;9.0.0.M1 ~ 9.0.36&lt;/li&gt;
+&lt;li&gt;8.5.0 ~ 8.5.56&lt;/li&gt;
+&lt;li&gt;7.0.27 ~ 7.0.104&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; Apache Tomcat&amp;#xC758; WebSocket &amp;#xD504;&amp;#xB808;&amp;#xC784;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;payloadLength&lt;/code&gt;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBB34;&amp;#xD55C; &amp;#xB8E8;&amp;#xD504;&amp;#xAC00; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xB418;&amp;#xC5B4; DoS &amp;#xACF5;&amp;#xACA9;&amp;#xC73C;&amp;#xB85C; &amp;#xC5F0;&amp;#xACB0;&amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc6455#section-5.2&#34;&gt;RFC6455&lt;/a&gt;&amp;#xC758; WebSocket &amp;#xD504;&amp;#xB808;&amp;#xC784;&amp;#xC5D0;&amp;#xC11C; payload length &amp;#xD544;&amp;#xB4DC;&amp;#xAC00; 127(2&amp;#xC9C4;&amp;#xC218; 1111111)&amp;#xC774;&amp;#xBA74; 64&amp;#xBE44;&amp;#xD2B8; &amp;#xD655;&amp;#xC7A5; payload length&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; payload length&amp;#xB294; 64&amp;#xBE44;&amp;#xD2B8; unsigned integer&amp;#xC774;&amp;#xC9C0;&amp;#xB9CC; RFC&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xCD5C;&amp;#xC0C1;&amp;#xC704; &amp;#xBE44;&amp;#xD2B8;&amp;#xAC00; &amp;#xD56D;&amp;#xC0C1; 0&amp;#xC774; &amp;#xB418;&amp;#xB3C4;&amp;#xB85D; &amp;#xC694;&amp;#xAD6C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB530;&amp;#xB77C;&amp;#xC11C; payload length &amp;#xD544;&amp;#xB4DC;&amp;#xB97C; 127&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD574;&amp;#xC900; &amp;#xD6C4; &amp;#xB2E4;&amp;#xC74C; 8&amp;#xBC14;&amp;#xC774;&amp;#xD2B8;&amp;#xC758; MSB&amp;#xB97C; 1&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD574;&amp;#xC8FC;&amp;#xAE30;&amp;#xB9CC; &amp;#xD558;&amp;#xBA74; DoS &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xACFC; &amp;#xAD00;&amp;#xB828;&amp;#xB41C; &amp;#xD328;&amp;#xCE58;&amp;#xB294; &lt;code&gt;payloadLength&lt;/code&gt;&amp;#xAC00; &amp;#xC74C;&amp;#xC218;&amp;#xAC00; &amp;#xB420; &amp;#xACBD;&amp;#xC6B0; exception&amp;#xC744; &amp;#xBC1C;&amp;#xC0DD;&amp;#xC2DC;&amp;#xD0A4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs java&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// The most significant bit of those 8 bytes is required to be zero&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;// (see RFC 6455, section 5.2). If the most significant bit is set,&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;// the resulting payload length will be negative so test for that.&lt;/span&gt;
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (payloadLength &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;) {
+    &lt;span class=&#34;hljs-keyword&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; WsIOException(
+        &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; CloseReason(
+            CloseCodes.PROTOCOL_ERROR,
+            sm.getString(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;wsFrame.payloadMsbInvalid&amp;quot;&lt;/span&gt;)
+        )
+    );
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC5D0; &amp;#xAD00;&amp;#xD55C; PoC Code&amp;#xB294; &lt;a href=&#34;https://github.com/RedTeamPentesting/CVE-2020-13935&#34;&gt;&amp;#xC5EC;&amp;#xAE30;&lt;/a&gt;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-13935: Apache Tomcat Websocket 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.redteam-pentesting.de/2020/websocket-vulnerability-tomcat/&#34;&gt;DIVING INTO A WEBSOCKET VULNERABILITY IN APACHE TOMCAT&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Apache Tomcat&lt;ul&gt;
+&lt;li&gt;10.0.0-M1 ~ 10.0.0-M6&lt;/li&gt;
+&lt;li&gt;9.0.0.M1 ~ 9.0.36&lt;/li&gt;
+&lt;li&gt;8.5.0 ~ 8.5.56&lt;/li&gt;
+&lt;li&gt;7.0.27 ~ 7.0.104&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; Apache Tomcat&amp;#xC758; WebSocket &amp;#xD504;&amp;#xB808;&amp;#xC784;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;payloadLength&lt;/code&gt;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xBB34;&amp;#xD55C; &amp;#xB8E8;&amp;#xD504;&amp;#xAC00; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xB418;&amp;#xC5B4; DoS &amp;#xACF5;&amp;#xACA9;&amp;#xC73C;&amp;#xB85C; &amp;#xC5F0;&amp;#xACB0;&amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://tools.ietf.org/html/rfc6455#section-5.2&#34;&gt;RFC6455&lt;/a&gt;&amp;#xC758; WebSocket &amp;#xD504;&amp;#xB808;&amp;#xC784;&amp;#xC5D0;&amp;#xC11C; payload length &amp;#xD544;&amp;#xB4DC;&amp;#xAC00; 127(2&amp;#xC9C4;&amp;#xC218; 1111111)&amp;#xC774;&amp;#xBA74; 64&amp;#xBE44;&amp;#xD2B8; &amp;#xD655;&amp;#xC7A5; payload length&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; payload length&amp;#xB294; 64&amp;#xBE44;&amp;#xD2B8; unsigned integer&amp;#xC774;&amp;#xC9C0;&amp;#xB9CC; RFC&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xCD5C;&amp;#xC0C1;&amp;#xC704; &amp;#xBE44;&amp;#xD2B8;&amp;#xAC00; &amp;#xD56D;&amp;#xC0C1; 0&amp;#xC774; &amp;#xB418;&amp;#xB3C4;&amp;#xB85D; &amp;#xC694;&amp;#xAD6C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB530;&amp;#xB77C;&amp;#xC11C; payload length &amp;#xD544;&amp;#xB4DC;&amp;#xB97C; 127&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD574;&amp;#xC900; &amp;#xD6C4; &amp;#xB2E4;&amp;#xC74C; 8&amp;#xBC14;&amp;#xC774;&amp;#xD2B8;&amp;#xC758; MSB&amp;#xB97C; 1&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xD574;&amp;#xC8FC;&amp;#xAE30;&amp;#xB9CC; &amp;#xD558;&amp;#xBA74; DoS &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xACFC; &amp;#xAD00;&amp;#xB828;&amp;#xB41C; &amp;#xD328;&amp;#xCE58;&amp;#xB294; &lt;code&gt;payloadLength&lt;/code&gt;&amp;#xAC00; &amp;#xC74C;&amp;#xC218;&amp;#xAC00; &amp;#xB420; &amp;#xACBD;&amp;#xC6B0; exception&amp;#xC744; &amp;#xBC1C;&amp;#xC0DD;&amp;#xC2DC;&amp;#xD0A4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD328;&amp;#xCE58;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs java&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;// The most significant bit of those 8 bytes is required to be zero&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;// (see RFC 6455, section 5.2). If the most significant bit is set,&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;// the resulting payload length will be negative so test for that.&lt;/span&gt;
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (payloadLength &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;) {
+    &lt;span class=&#34;hljs-keyword&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; WsIOException(
+        &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; CloseReason(
+            CloseCodes.PROTOCOL_ERROR,
+            sm.getString(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;wsFrame.payloadMsbInvalid&amp;quot;&lt;/span&gt;)
+        )
+    );
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC5D0; &amp;#xAD00;&amp;#xD55C; PoC Code&amp;#xB294; &lt;a href=&#34;https://github.com/RedTeamPentesting/CVE-2020-13935&#34;&gt;&amp;#xC5EC;&amp;#xAE30;&lt;/a&gt;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/11/05/idioth/2020-11-05/">
@@ -265,7 +317,6 @@
         )
     );
 }</code></pre>
-
 <p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC5D0; &#xAD00;&#xD55C; PoC Code&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/RedTeamPentesting/CVE-2020-13935">&#xC5EC;&#xAE30;</a>&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>

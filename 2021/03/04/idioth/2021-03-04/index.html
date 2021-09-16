@@ -13,15 +13,131 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.thezdi.com/blog/2021/3/1/cve-2020-3992-amp-cve-2021-21974-pre-auth-remote-code-execution-in-vmware-esxi&#34;&gt;CVE-2020-3992 &amp;amp; CVE-2021-21974: PRE-AUTH REMOTE CODE EXECUTION IN VMWARE ESXI&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;VMware ESXi&lt;ul&gt;
+&lt;li&gt;7.0 before ESXi70U1c-17325551&lt;/li&gt;
+&lt;li&gt;6.7 before ESXi670-202102401-SG&lt;/li&gt;
+&lt;li&gt;6.5 before ESXi650-202102101-SG&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;VMware ESXi&amp;#xC5D0;&amp;#xC11C; pre-authentication remote code execution &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; Service Location Protocol(SLP) &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Service Location Protocol(SLP)&amp;#xB294; VMware ESXi &amp;#xAE30;&amp;#xBCF8; &amp;#xC124;&amp;#xCE58; &amp;#xC2DC; TCP&amp;#xC640; UDP&amp;#xC758; 427 &amp;#xD3EC;&amp;#xD2B8;&amp;#xB97C; &amp;#xB9AC;&amp;#xC2A4;&amp;#xB2DD;&amp;#xD558;&amp;#xB294; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. VMware&amp;#xB294; OpenSLP 1.0.1&amp;#xC744; &amp;#xAE30;&amp;#xBC18;&amp;#xC73C;&amp;#xB85C; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xCD94;&amp;#xAC00;&amp;#xD558;&amp;#xC5EC; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xB97C; &amp;#xAD6C;&amp;#xD604;&amp;#xD558;&amp;#xC600;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xB294; &amp;#xC778;&amp;#xC99D; &amp;#xC5C6;&amp;#xC774; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; input&amp;#xC744; &amp;#xAD6C;&amp;#xBB38; &amp;#xBD84;&amp;#xC11D;&amp;#xD558;&amp;#xACE0; root &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xBBC0;&amp;#xB85C; ESXi SLP &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC758; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; pre-auth remote code execution&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;VMware&amp;#xC758; SLP &amp;#xCF54;&amp;#xB4DC;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xBD84;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;__int64 __fastcall &lt;span class=&#34;hljs-title&#34;&gt;SLPParseSrvUrl&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; srvurllen, &lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt; *srvurl, _QWORD *a3)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+  obuf = &lt;span class=&#34;hljs-built_in&#34;&gt;calloc&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;1u&lt;/span&gt;LL, srvurllen + &lt;span class=&#34;hljs-number&#34;&gt;53L&lt;/span&gt;L);
+  &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( !obuf )
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;12L&lt;/span&gt;L;
+  v6 = &lt;span class=&#34;hljs-built_in&#34;&gt;strstr&lt;/span&gt;(srvurl, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;:/&amp;quot;&lt;/span&gt;);        &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- out-of-bounds string search&lt;/span&gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( !v6 )
+  {
+    &lt;span class=&#34;hljs-built_in&#34;&gt;free&lt;/span&gt;(obuf);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;22L&lt;/span&gt;L;
+  }
+  &lt;span class=&#34;hljs-built_in&#34;&gt;memcpy&lt;/span&gt;((&lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt; *)obuf + &lt;span class=&#34;hljs-number&#34;&gt;41&lt;/span&gt;, srvurl, v6 - srvurl);  &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- heap overflow&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;srvurl&lt;/code&gt;&amp;#xC740; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; input&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xBC1B;&amp;#xB294; &amp;#xAC12;&amp;#xC774;&amp;#xC9C0;&amp;#xB9CC; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;strstr()&lt;/code&gt;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xAE30; &amp;#xC804;&amp;#xC5D0; &lt;code&gt;srvurl&lt;/code&gt;&amp;#xC758; &amp;#xB05D;&amp;#xC5D0; NULL &amp;#xBC14;&amp;#xC774;&amp;#xD2B8;&amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xBC94;&amp;#xC704; &amp;#xBC16;&amp;#xC758; &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC744; &amp;#xAC80;&amp;#xC0AC;&amp;#xD558;&amp;#xC5EC; &lt;code&gt;memcpy&lt;/code&gt; &amp;#xBD80;&amp;#xBD84;&amp;#xC5D0;&amp;#xC11C; heap overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;SLP&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Remote Code Execution&amp;#xC744; &amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; SLP&amp;#xC5D0;&amp;#xC11C; &amp;#xC1A1;&amp;#xC218;&amp;#xC2E0;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; &lt;code&gt;struct SLPBuffer&lt;/code&gt;&amp;#xC758; &amp;#xAD6C;&amp;#xC870;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs arduino&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; _&lt;span class=&#34;hljs-title&#34;&gt;SLPBuffer&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-class&#34;&gt;{&lt;/span&gt;
+    SLPListItem listitem;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;size_t&lt;/span&gt;  allocated;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt;*   start;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt;*   curpos;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt;*   &lt;span class=&#34;hljs-built_in&#34;&gt;end&lt;/span&gt;;
+    &lt;span class=&#34;hljs-comment&#34;&gt;// buffer data is appended&lt;/span&gt;
+}*SLPBuffer;
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; _&lt;span class=&#34;hljs-title&#34;&gt;SLPDSocket&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-class&#34;&gt;{&lt;/span&gt;
+    SLPListItem         listitem;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt;                 fd;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;time_t&lt;/span&gt;              age;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt;                 state;
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+    SLPBuffer           recvbuf; &lt;span class=&#34;hljs-comment&#34;&gt;/* Incoming socket stuff */&lt;/span&gt;
+    SLPBuffer           sendbuf;
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+}SLPDSocket;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;VMware&amp;#xC758; SLP &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Remote Code execution&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;connection-&amp;gt;state&lt;/code&gt;&amp;#xB97C; &lt;code&gt;STREAM_WRITE_FIRST&lt;/code&gt;&amp;#xB85C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; leak &amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &lt;code&gt;sendbuf-&amp;gt;curpos&lt;/code&gt;&amp;#xB97C; &lt;code&gt;sendbuf-&amp;gt;start&lt;/code&gt;&amp;#xB85C; &amp;#xB9AC;&amp;#xC14B;&amp;#xC2DC;&amp;#xCF1C;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sendbuf-&amp;gt;start&lt;/code&gt;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xBD84;&amp;#xC744; 2&amp;#xAC1C;&amp;#xC758; &amp;#xB110; &amp;#xBC14;&amp;#xC774;&amp;#xD2B8;&amp;#xB85C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5F0;&amp;#xACB0; &amp;#xD6C4; &amp;#xC218;&amp;#xC2E0;&amp;#xC744; &amp;#xAE30;&amp;#xB2E4;&amp;#xB9AC;&amp;#xBA74;, &lt;code&gt;sendbuf&lt;/code&gt;&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; leak &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mmap()&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &lt;code&gt;recvbuf&lt;/code&gt;&amp;#xB97C; leak &amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xC5F0;&amp;#xACB0;&amp;#xC744; &amp;#xD558;&amp;#xACE0; &lt;code&gt;sendbuf-&amp;gt;curpos&lt;/code&gt;&amp;#xB97C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. mmap &amp;#xB41C; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; libc base &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC5BB;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;free_hook&lt;/code&gt;&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xC5F0;&amp;#xACB0;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;recvbuf-&amp;gt;curpos&lt;/code&gt;&amp;#xB97C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5F0;&amp;#xACB0; &amp;#xD6C4; &amp;#xC804;&amp;#xC1A1;&amp;#xC774; &amp;#xC2DC;&amp;#xC791;&amp;#xB418;&amp;#xBA74; &lt;code&gt;free_hook&lt;/code&gt;&amp;#xC744; &amp;#xB36E;&amp;#xC5B4;&amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xC811;&amp;#xC18D;&amp;#xC744; &amp;#xC885;&amp;#xB8CC;&amp;#xD558;&amp;#xBA74; &lt;code&gt;free_hook&lt;/code&gt;&amp;#xC774; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xC5B4; ROP &amp;#xCCB4;&amp;#xC778;&amp;#xC774; &amp;#xC2DC;&amp;#xC791;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ol&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] SLP heap overflow를 통한 VMware ESXi pre-auth RCE 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.thezdi.com/blog/2021/3/1/cve-2020-3992-amp-cve-2021-21974-pre-auth-remote-code-execution-in-vmware-esxi&#34;&gt;CVE-2020-3992 &amp;amp; CVE-2021-21974: PRE-AUTH REMOTE CODE EXECUTION IN VMWARE ESXI&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;VMware ESXi&lt;ul&gt;
+&lt;li&gt;7.0 before ESXi70U1c-17325551&lt;/li&gt;
+&lt;li&gt;6.7 before ESXi670-202102401-SG&lt;/li&gt;
+&lt;li&gt;6.5 before ESXi650-202102101-SG&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;VMware ESXi&amp;#xC5D0;&amp;#xC11C; pre-authentication remote code execution &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; Service Location Protocol(SLP) &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Service Location Protocol(SLP)&amp;#xB294; VMware ESXi &amp;#xAE30;&amp;#xBCF8; &amp;#xC124;&amp;#xCE58; &amp;#xC2DC; TCP&amp;#xC640; UDP&amp;#xC758; 427 &amp;#xD3EC;&amp;#xD2B8;&amp;#xB97C; &amp;#xB9AC;&amp;#xC2A4;&amp;#xB2DD;&amp;#xD558;&amp;#xB294; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. VMware&amp;#xB294; OpenSLP 1.0.1&amp;#xC744; &amp;#xAE30;&amp;#xBC18;&amp;#xC73C;&amp;#xB85C; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xCD94;&amp;#xAC00;&amp;#xD558;&amp;#xC5EC; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xB97C; &amp;#xAD6C;&amp;#xD604;&amp;#xD558;&amp;#xC600;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xB294; &amp;#xC778;&amp;#xC99D; &amp;#xC5C6;&amp;#xC774; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; input&amp;#xC744; &amp;#xAD6C;&amp;#xBB38; &amp;#xBD84;&amp;#xC11D;&amp;#xD558;&amp;#xACE0; root &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xBBC0;&amp;#xB85C; ESXi SLP &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;&amp;#xC758; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; pre-auth remote code execution&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;VMware&amp;#xC758; SLP &amp;#xCF54;&amp;#xB4DC;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xBD84;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;__int64 __fastcall &lt;span class=&#34;hljs-title&#34;&gt;SLPParseSrvUrl&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(&lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt; srvurllen, &lt;span class=&#34;hljs-keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt; *srvurl, _QWORD *a3)&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-function&#34;&gt;&lt;/span&gt;{
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+  obuf = &lt;span class=&#34;hljs-built_in&#34;&gt;calloc&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;1u&lt;/span&gt;LL, srvurllen + &lt;span class=&#34;hljs-number&#34;&gt;53L&lt;/span&gt;L);
+  &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( !obuf )
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;12L&lt;/span&gt;L;
+  v6 = &lt;span class=&#34;hljs-built_in&#34;&gt;strstr&lt;/span&gt;(srvurl, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;:/&amp;quot;&lt;/span&gt;);        &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- out-of-bounds string search&lt;/span&gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( !v6 )
+  {
+    &lt;span class=&#34;hljs-built_in&#34;&gt;free&lt;/span&gt;(obuf);
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;22L&lt;/span&gt;L;
+  }
+  &lt;span class=&#34;hljs-built_in&#34;&gt;memcpy&lt;/span&gt;((&lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt; *)obuf + &lt;span class=&#34;hljs-number&#34;&gt;41&lt;/span&gt;, srvurl, v6 - srvurl);  &lt;span class=&#34;hljs-comment&#34;&gt;// &amp;lt;-- heap overflow&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;srvurl&lt;/code&gt;&amp;#xC740; &amp;#xB124;&amp;#xD2B8;&amp;#xC6CC;&amp;#xD06C; input&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xBC1B;&amp;#xB294; &amp;#xAC12;&amp;#xC774;&amp;#xC9C0;&amp;#xB9CC; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;strstr()&lt;/code&gt;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xAE30; &amp;#xC804;&amp;#xC5D0; &lt;code&gt;srvurl&lt;/code&gt;&amp;#xC758; &amp;#xB05D;&amp;#xC5D0; NULL &amp;#xBC14;&amp;#xC774;&amp;#xD2B8;&amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xBC94;&amp;#xC704; &amp;#xBC16;&amp;#xC758; &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xC744; &amp;#xAC80;&amp;#xC0AC;&amp;#xD558;&amp;#xC5EC; &lt;code&gt;memcpy&lt;/code&gt; &amp;#xBD80;&amp;#xBD84;&amp;#xC5D0;&amp;#xC11C; heap overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;SLP&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Remote Code Execution&amp;#xC744; &amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; SLP&amp;#xC5D0;&amp;#xC11C; &amp;#xC1A1;&amp;#xC218;&amp;#xC2E0;&amp;#xC5D0; &amp;#xC0AC;&amp;#xC6A9;&amp;#xB418;&amp;#xB294; &lt;code&gt;struct SLPBuffer&lt;/code&gt;&amp;#xC758; &amp;#xAD6C;&amp;#xC870;&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs arduino&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; _&lt;span class=&#34;hljs-title&#34;&gt;SLPBuffer&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-class&#34;&gt;{&lt;/span&gt;
+    SLPListItem listitem;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;size_t&lt;/span&gt;  allocated;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt;*   start;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt;*   curpos;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;hljs-keyword&#34;&gt;char&lt;/span&gt;*   &lt;span class=&#34;hljs-built_in&#34;&gt;end&lt;/span&gt;;
+    &lt;span class=&#34;hljs-comment&#34;&gt;// buffer data is appended&lt;/span&gt;
+}*SLPBuffer;
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; _&lt;span class=&#34;hljs-title&#34;&gt;SLPDSocket&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&#34;hljs-class&#34;&gt;{&lt;/span&gt;
+    SLPListItem         listitem;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt;                 fd;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;time_t&lt;/span&gt;              age;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt;                 state;
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+    SLPBuffer           recvbuf; &lt;span class=&#34;hljs-comment&#34;&gt;/* Incoming socket stuff */&lt;/span&gt;
+    SLPBuffer           sendbuf;
+&lt;span class=&#34;hljs-comment&#34;&gt;// ...&lt;/span&gt;
+}SLPDSocket;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;VMware&amp;#xC758; SLP &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; Remote Code execution&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;connection-&amp;gt;state&lt;/code&gt;&amp;#xB97C; &lt;code&gt;STREAM_WRITE_FIRST&lt;/code&gt;&amp;#xB85C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; leak &amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &lt;code&gt;sendbuf-&amp;gt;curpos&lt;/code&gt;&amp;#xB97C; &lt;code&gt;sendbuf-&amp;gt;start&lt;/code&gt;&amp;#xB85C; &amp;#xB9AC;&amp;#xC14B;&amp;#xC2DC;&amp;#xCF1C;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sendbuf-&amp;gt;start&lt;/code&gt;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xBD84;&amp;#xC744; 2&amp;#xAC1C;&amp;#xC758; &amp;#xB110; &amp;#xBC14;&amp;#xC774;&amp;#xD2B8;&amp;#xB85C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5F0;&amp;#xACB0; &amp;#xD6C4; &amp;#xC218;&amp;#xC2E0;&amp;#xC744; &amp;#xAE30;&amp;#xB2E4;&amp;#xB9AC;&amp;#xBA74;, &lt;code&gt;sendbuf&lt;/code&gt;&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; leak &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mmap()&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &lt;code&gt;recvbuf&lt;/code&gt;&amp;#xB97C; leak &amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xC5F0;&amp;#xACB0;&amp;#xC744; &amp;#xD558;&amp;#xACE0; &lt;code&gt;sendbuf-&amp;gt;curpos&lt;/code&gt;&amp;#xB97C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. mmap &amp;#xB41C; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; libc base &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC5BB;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;free_hook&lt;/code&gt;&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xC5F0;&amp;#xACB0;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;recvbuf-&amp;gt;curpos&lt;/code&gt;&amp;#xB97C; &amp;#xB36E;&amp;#xC5B4;&amp;#xC501;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5F0;&amp;#xACB0; &amp;#xD6C4; &amp;#xC804;&amp;#xC1A1;&amp;#xC774; &amp;#xC2DC;&amp;#xC791;&amp;#xB418;&amp;#xBA74; &lt;code&gt;free_hook&lt;/code&gt;&amp;#xC744; &amp;#xB36E;&amp;#xC5B4;&amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&amp;#xC811;&amp;#xC18D;&amp;#xC744; &amp;#xC885;&amp;#xB8CC;&amp;#xD558;&amp;#xBA74; &lt;code&gt;free_hook&lt;/code&gt;&amp;#xC774; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xC5B4; ROP &amp;#xCCB4;&amp;#xC778;&amp;#xC774; &amp;#xC2DC;&amp;#xC791;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;/ol&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/03/04/idioth/2021-03-04/">
@@ -267,7 +383,6 @@
   <span class="hljs-built_in">memcpy</span>((<span class="hljs-keyword">char</span> *)obuf + <span class="hljs-number">41</span>, srvurl, v6 - srvurl);  <span class="hljs-comment">// &lt;-- heap overflow</span>
 <span class="hljs-comment">// ...</span>
 }</code></pre>
-
 <p><code>srvurl</code>&#xC740; &#xB124;&#xD2B8;&#xC6CC;&#xD06C; input&#xC744; &#xD1B5;&#xD574; &#xBC1B;&#xB294; &#xAC12;&#xC774;&#xC9C0;&#xB9CC; &#xD568;&#xC218;&#xC5D0;&#xC11C; <code>strstr()</code>&#xC744; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC804;&#xC5D0; <code>srvurl</code>&#xC758; &#xB05D;&#xC5D0; NULL &#xBC14;&#xC774;&#xD2B8;&#xB97C; &#xCD94;&#xAC00;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xBC94;&#xC704; &#xBC16;&#xC758; &#xBB38;&#xC790;&#xC5F4;&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xC5EC; <code>memcpy</code> &#xBD80;&#xBD84;&#xC5D0;&#xC11C; heap overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>SLP&#xB97C; &#xD1B5;&#xD574; Remote Code Execution&#xC744; &#xD558;&#xAE30; &#xC704;&#xD574; SLP&#xC5D0;&#xC11C; &#xC1A1;&#xC218;&#xC2E0;&#xC5D0; &#xC0AC;&#xC6A9;&#xB418;&#xB294; <code>struct SLPBuffer</code>&#xC758; &#xAD6C;&#xC870;&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs arduino"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> _<span class="hljs-title">SLPBuffer</span></span>
@@ -291,7 +406,6 @@
     SLPBuffer           sendbuf;
 <span class="hljs-comment">// ...</span>
 }SLPDSocket;</code></pre>
-
 <p>VMware&#xC758; SLP &#xCF54;&#xB4DC;&#xB97C; &#xD1B5;&#xD574; Remote Code execution&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li><code>connection-&gt;state</code>&#xB97C; <code>STREAM_WRITE_FIRST</code>&#xB85C; &#xB36E;&#xC5B4;&#xC501;&#xB2C8;&#xB2E4;. &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; leak &#xD558;&#xAE30; &#xC704;&#xD574; <code>sendbuf-&gt;curpos</code>&#xB97C; <code>sendbuf-&gt;start</code>&#xB85C; &#xB9AC;&#xC14B;&#xC2DC;&#xCF1C;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</li>

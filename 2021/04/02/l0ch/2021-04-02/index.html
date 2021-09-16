@@ -13,15 +13,97 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2139&#34;&gt;Issue 2139: Windows Kernel win32k UAF of the PDEVOBJ object via a race condition in NtGdiGetDeviceCapsAll&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;win32k kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Google Project Zero&amp;#xD300;&amp;#xC774; Windows Kernel&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; race condition&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; UAF &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xBCF4;&amp;#xACE0;&amp;#xC11C;&amp;#xB97C; &amp;#xACF5;&amp;#xAC1C;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &lt;code&gt;NtGdiGetDeviceCapsAll&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; GDI&amp;#xC5D0;&amp;#xC11C; &amp;#xB0B4;&amp;#xBD80;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; system call&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;...
+&lt;span class=&#34;hljs-function&#34;&gt;BOOL &lt;span class=&#34;hljs-title&#34;&gt;NtGdiGetDeviceCapsAll&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(HDC hdc, DEVCAPS *devcaps)&lt;/span&gt; &lt;/span&gt;{
+	BOOL bRet = TRUE;
+	PDEVOBJ *pdevobj;
+
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (PsGetWin32KFilterSet() == &lt;span class=&#34;hljs-number&#34;&gt;5&lt;/span&gt; &amp;amp;&amp;amp; hdc == &lt;span class=&#34;hljs-number&#34;&gt;0xFFFFFFFFDCDE5000&lt;/span&gt;) {
+		pdevobj = gpDispInfo-&amp;gt;pdevobj;
+	&lt;span class=&#34;hljs-comment&#34;&gt;// DCOBJ scope&lt;/span&gt;
+	} &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+		DCOBJ dc(hdc); &lt;span class=&#34;hljs-comment&#34;&gt;//[1]&lt;/span&gt;
+
+		&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!dc.valid) {
+			EngSetLastError(ERROR_INVALID_HANDLE);
+			DCOBJ::~DCOBJ(dc);
+			&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; FALSE;
+		}
+
+		pdevobj = dc.pdevobj;
+		DCOBJ::~DCOBJ(dc);
+	}
+	&lt;span class=&#34;hljs-comment&#34;&gt;// DCOBJ scope&lt;/span&gt;
+
+__try {
+	ProbeForWrite(devcaps, &lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(DEVCAPS), &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;);
+	vGetDeviceCaps(pdevobj, devcaps);  &lt;span class=&#34;hljs-comment&#34;&gt;//[2]&lt;/span&gt;
+	}except(EXCEPTION_EXECUTE_HANDLER) {
+		bRet = FALSE;
+	}
+
+	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; bRet;
+}
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xB294; &lt;a href=&#34;https://docs.microsoft.com/ko-kr/cpp/mfc/device-contexts?view=msvc-160&#34;&gt;Device Context(DC)&lt;/a&gt; &amp;#xD578;&amp;#xB4E4;&amp;#xC744; &amp;#xC5BB;&amp;#xC5B4; &amp;#xC7A5;&amp;#xCE58; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &lt;code&gt;DEVCAPS&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xD558;&amp;#xB294; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DCOBJ&lt;/code&gt; &amp;#xAC1D;&amp;#xCCB4;&amp;#xC778; &lt;code&gt;dc&lt;/code&gt;&amp;#xB97C; &lt;code&gt;else&lt;/code&gt; &amp;#xBB38; &amp;#xB0B4;&amp;#xBD80;&amp;#xC5D0;&amp;#xC11C; &amp;#xC120;&amp;#xC5B8;&amp;#xD574; &amp;#xD574;&amp;#xB2F9; &amp;#xAC1D;&amp;#xCCB4;&amp;#xC758; scope&amp;#xAC00; &lt;code&gt;else&lt;/code&gt;&amp;#xBB38;&amp;#xC73C;&amp;#xB85C; &amp;#xD55C;&amp;#xC815;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB610;&amp;#xD55C; &amp;#xAC1D;&amp;#xCCB4;&amp;#xAC00; syscall &amp;#xC804;&amp;#xCCB4;&amp;#xC5D0;&amp;#xC11C; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB41C; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB97C; &amp;#xC720;&amp;#xC9C0;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xBA54;&amp;#xCEE4;&amp;#xB2C8;&amp;#xC998;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &lt;code&gt;else&lt;/code&gt; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xBC97;&amp;#xC5B4;&amp;#xB098;&amp;#xBA74; &lt;code&gt;DCOBJ::~DCOBJ(dc)&lt;/code&gt; &amp;#xC18C;&amp;#xBA78;&amp;#xC790;&amp;#xAC00; &amp;#xC790;&amp;#xB3D9;&amp;#xC73C;&amp;#xB85C; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xC5B4; &lt;code&gt;dc&lt;/code&gt;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xCC38;&amp;#xC870;&amp;#xAC00; &amp;#xC0AD;&amp;#xC81C;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xACB0;&amp;#xACFC;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &lt;code&gt;dc&lt;/code&gt;&amp;#xB97C; &amp;#xCC38;&amp;#xC870;&amp;#xD558;&amp;#xB294; &lt;code&gt;pdevobj&lt;/code&gt; &amp;#xAC1D;&amp;#xCCB4;&amp;#xAC00; race condition&amp;#xC758; &amp;#xC601;&amp;#xD5A5;&amp;#xC744; &amp;#xBC1B;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC704; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; [1]&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;DCOBJ&lt;/code&gt;&amp;#xC0DD;&amp;#xC131;&amp;#xC790;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xCC38;&amp;#xC870;&amp;#xB41C; &amp;#xC774;&amp;#xD6C4; &amp;#xB2E4;&amp;#xB978; &amp;#xC2A4;&amp;#xB808;&amp;#xB4DC;&amp;#xAC00; [2]&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;vGetDeviceCaps()&lt;/code&gt; &amp;#xD638;&amp;#xCD9C; &amp;#xC804; &amp;#xB610;&amp;#xB294; &amp;#xB3C4;&amp;#xC911; &lt;code&gt;Device Context&lt;/code&gt;&amp;#xB97C; &amp;#xB2EB;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0; &amp;#xD574;&amp;#xC81C;&amp;#xB41C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-26863: race condition을 통한 win32k 커널 UAF 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://bugs.chromium.org/p/project-zero/issues/detail?id=2139&#34;&gt;Issue 2139: Windows Kernel win32k UAF of the PDEVOBJ object via a race condition in NtGdiGetDeviceCapsAll&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;win32k kernel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Google Project Zero&amp;#xD300;&amp;#xC774; Windows Kernel&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; race condition&amp;#xC744; &amp;#xD1B5;&amp;#xD55C; UAF &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xC138;&amp;#xBD80; &amp;#xBCF4;&amp;#xACE0;&amp;#xC11C;&amp;#xB97C; &amp;#xACF5;&amp;#xAC1C;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &lt;code&gt;NtGdiGetDeviceCapsAll&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; GDI&amp;#xC5D0;&amp;#xC11C; &amp;#xB0B4;&amp;#xBD80;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xB294; system call&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs cpp&#34;&gt;...
+&lt;span class=&#34;hljs-function&#34;&gt;BOOL &lt;span class=&#34;hljs-title&#34;&gt;NtGdiGetDeviceCapsAll&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(HDC hdc, DEVCAPS *devcaps)&lt;/span&gt; &lt;/span&gt;{
+	BOOL bRet = TRUE;
+	PDEVOBJ *pdevobj;
+
+	&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (PsGetWin32KFilterSet() == &lt;span class=&#34;hljs-number&#34;&gt;5&lt;/span&gt; &amp;amp;&amp;amp; hdc == &lt;span class=&#34;hljs-number&#34;&gt;0xFFFFFFFFDCDE5000&lt;/span&gt;) {
+		pdevobj = gpDispInfo-&amp;gt;pdevobj;
+	&lt;span class=&#34;hljs-comment&#34;&gt;// DCOBJ scope&lt;/span&gt;
+	} &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+		DCOBJ dc(hdc); &lt;span class=&#34;hljs-comment&#34;&gt;//[1]&lt;/span&gt;
+
+		&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!dc.valid) {
+			EngSetLastError(ERROR_INVALID_HANDLE);
+			DCOBJ::~DCOBJ(dc);
+			&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; FALSE;
+		}
+
+		pdevobj = dc.pdevobj;
+		DCOBJ::~DCOBJ(dc);
+	}
+	&lt;span class=&#34;hljs-comment&#34;&gt;// DCOBJ scope&lt;/span&gt;
+
+__try {
+	ProbeForWrite(devcaps, &lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(DEVCAPS), &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;);
+	vGetDeviceCaps(pdevobj, devcaps);  &lt;span class=&#34;hljs-comment&#34;&gt;//[2]&lt;/span&gt;
+	}except(EXCEPTION_EXECUTE_HANDLER) {
+		bRet = FALSE;
+	}
+
+	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; bRet;
+}
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xB294; &lt;a href=&#34;https://docs.microsoft.com/ko-kr/cpp/mfc/device-contexts?view=msvc-160&#34;&gt;Device Context(DC)&lt;/a&gt; &amp;#xD578;&amp;#xB4E4;&amp;#xC744; &amp;#xC5BB;&amp;#xC5B4; &amp;#xC7A5;&amp;#xCE58; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &lt;code&gt;DEVCAPS&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xD558;&amp;#xB294; &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;DCOBJ&lt;/code&gt; &amp;#xAC1D;&amp;#xCCB4;&amp;#xC778; &lt;code&gt;dc&lt;/code&gt;&amp;#xB97C; &lt;code&gt;else&lt;/code&gt; &amp;#xBB38; &amp;#xB0B4;&amp;#xBD80;&amp;#xC5D0;&amp;#xC11C; &amp;#xC120;&amp;#xC5B8;&amp;#xD574; &amp;#xD574;&amp;#xB2F9; &amp;#xAC1D;&amp;#xCCB4;&amp;#xC758; scope&amp;#xAC00; &lt;code&gt;else&lt;/code&gt;&amp;#xBB38;&amp;#xC73C;&amp;#xB85C; &amp;#xD55C;&amp;#xC815;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB610;&amp;#xD55C; &amp;#xAC1D;&amp;#xCCB4;&amp;#xAC00; syscall &amp;#xC804;&amp;#xCCB4;&amp;#xC5D0;&amp;#xC11C; &amp;#xD65C;&amp;#xC131;&amp;#xD654;&amp;#xB41C; &amp;#xC0C1;&amp;#xD0DC;&amp;#xB97C; &amp;#xC720;&amp;#xC9C0;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xBA54;&amp;#xCEE4;&amp;#xB2C8;&amp;#xC998;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &lt;code&gt;else&lt;/code&gt; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xBC97;&amp;#xC5B4;&amp;#xB098;&amp;#xBA74; &lt;code&gt;DCOBJ::~DCOBJ(dc)&lt;/code&gt; &amp;#xC18C;&amp;#xBA78;&amp;#xC790;&amp;#xAC00; &amp;#xC790;&amp;#xB3D9;&amp;#xC73C;&amp;#xB85C; &amp;#xD638;&amp;#xCD9C;&amp;#xB418;&amp;#xC5B4; &lt;code&gt;dc&lt;/code&gt;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xCC38;&amp;#xC870;&amp;#xAC00; &amp;#xC0AD;&amp;#xC81C;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xACB0;&amp;#xACFC;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &lt;code&gt;dc&lt;/code&gt;&amp;#xB97C; &amp;#xCC38;&amp;#xC870;&amp;#xD558;&amp;#xB294; &lt;code&gt;pdevobj&lt;/code&gt; &amp;#xAC1D;&amp;#xCCB4;&amp;#xAC00; race condition&amp;#xC758; &amp;#xC601;&amp;#xD5A5;&amp;#xC744; &amp;#xBC1B;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC704; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; [1]&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;DCOBJ&lt;/code&gt;&amp;#xC0DD;&amp;#xC131;&amp;#xC790;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xCC38;&amp;#xC870;&amp;#xB41C; &amp;#xC774;&amp;#xD6C4; &amp;#xB2E4;&amp;#xB978; &amp;#xC2A4;&amp;#xB808;&amp;#xB4DC;&amp;#xAC00; [2]&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;vGetDeviceCaps()&lt;/code&gt; &amp;#xD638;&amp;#xCD9C; &amp;#xC804; &amp;#xB610;&amp;#xB294; &amp;#xB3C4;&amp;#xC911; &lt;code&gt;Device Context&lt;/code&gt;&amp;#xB97C; &amp;#xB2EB;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0; &amp;#xD574;&amp;#xC81C;&amp;#xB41C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0; &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/04/02/l0ch/2021-04-02/">
@@ -278,7 +360,6 @@ __try {
 	<span class="hljs-keyword">return</span> bRet;
 }
 ...</code></pre>
-
 <p>&#xD574;&#xB2F9; &#xD568;&#xC218;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://docs.microsoft.com/ko-kr/cpp/mfc/device-contexts?view=msvc-160">Device Context(DC)</a> &#xD578;&#xB4E4;&#xC744; &#xC5BB;&#xC5B4; &#xC7A5;&#xCE58; &#xC815;&#xBCF4;&#xB97C; <code>DEVCAPS</code> &#xAD6C;&#xC870;&#xCCB4;&#xC5D0; &#xC800;&#xC7A5;&#xD558;&#xB294; &#xAE30;&#xB2A5;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p><code>DCOBJ</code> &#xAC1D;&#xCCB4;&#xC778; <code>dc</code>&#xB97C; <code>else</code> &#xBB38; &#xB0B4;&#xBD80;&#xC5D0;&#xC11C; &#xC120;&#xC5B8;&#xD574; &#xD574;&#xB2F9; &#xAC1D;&#xCCB4;&#xC758; scope&#xAC00; <code>else</code>&#xBB38;&#xC73C;&#xB85C; &#xD55C;&#xC815;&#xB429;&#xB2C8;&#xB2E4;. &#xB610;&#xD55C; &#xAC1D;&#xCCB4;&#xAC00; syscall &#xC804;&#xCCB4;&#xC5D0;&#xC11C; &#xD65C;&#xC131;&#xD654;&#xB41C; &#xC0C1;&#xD0DC;&#xB97C; &#xC720;&#xC9C0;&#xD560; &#xC218; &#xC788;&#xB294; &#xBA54;&#xCEE4;&#xB2C8;&#xC998;&#xC774; &#xC874;&#xC7AC;&#xD558;&#xC9C0; &#xC54A;&#xC544; <code>else</code> &#xCF54;&#xB4DC;&#xB97C; &#xBC97;&#xC5B4;&#xB098;&#xBA74; <code>DCOBJ::~DCOBJ(dc)</code> &#xC18C;&#xBA78;&#xC790;&#xAC00; &#xC790;&#xB3D9;&#xC73C;&#xB85C; &#xD638;&#xCD9C;&#xB418;&#xC5B4; <code>dc</code>&#xC5D0; &#xB300;&#xD55C; &#xCC38;&#xC870;&#xAC00; &#xC0AD;&#xC81C;&#xB429;&#xB2C8;&#xB2E4;. &#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB85C; <code>dc</code>&#xB97C; &#xCC38;&#xC870;&#xD558;&#xB294; <code>pdevobj</code> &#xAC1D;&#xCCB4;&#xAC00; race condition&#xC758; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC704; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC545;&#xC6A9;&#xD574; [1]&#xC5D0;&#xC11C; <code>DCOBJ</code>&#xC0DD;&#xC131;&#xC790;&#xC5D0; &#xC758;&#xD574; &#xCC38;&#xC870;&#xB41C; &#xC774;&#xD6C4; &#xB2E4;&#xB978; &#xC2A4;&#xB808;&#xB4DC;&#xAC00; [2]&#xC5D0;&#xC11C; <code>vGetDeviceCaps()</code> &#xD638;&#xCD9C; &#xC804; &#xB610;&#xB294; &#xB3C4;&#xC911; <code>Device Context</code>&#xB97C; &#xB2EB;&#xB294; &#xACBD;&#xC6B0; &#xD574;&#xC81C;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xC561;&#xC138;&#xC2A4; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -305,9 +386,9 @@ __try {
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
-                  <a class="hover-with-bg" href="/tags/race-condition/">race condition</a>
-                  
                   <a class="hover-with-bg" href="/tags/uaf/">uaf</a>
+                  
+                  <a class="hover-with-bg" href="/tags/race-condition/">race condition</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

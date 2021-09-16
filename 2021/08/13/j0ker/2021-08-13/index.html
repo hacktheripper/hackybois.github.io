@@ -13,15 +13,123 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.orange.tw/2021/08/proxylogon-a-new-attack-surface-on-ms-exchange-part-1.html&#34;&gt;https://blog.orange.tw/2021/08/proxylogon-a-new-attack-surface-on-ms-exchange-part-1.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;MS Exchange&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC774;&amp;#xBC88;&amp;#xC5D0;&amp;#xB294; Pwnie Awards&amp;#xC5D0;&amp;#xC11C; Best Server-Side Bug&amp;#xB85C; &amp;#xC120;&amp;#xC815;&amp;#xB41C; Orange&amp;#xC758; MS Exchange &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; &amp;#xAE00; &amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;! &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xD06C;&amp;#xB9AC;&amp;#xD2F0;&amp;#xCEEC;&amp;#xD560; &amp;#xBFD0;&amp;#xB9CC; &amp;#xC544;&amp;#xB2C8;&amp;#xB77C; &amp;#xC644;&amp;#xC804; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xACF5;&amp;#xACA9; &amp;#xD3EC;&amp;#xC778;&amp;#xD2B8;&amp;#xB97C; &amp;#xCC3E;&amp;#xC558;&amp;#xB2E4;&amp;#xB294; &amp;#xC88B;&amp;#xC740; &amp;#xD3C9;&amp;#xAC00;&amp;#xB97C; &amp;#xBC1B;&amp;#xC558;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;CVE-2021-26855&#34;&gt;&lt;a href=&#34;#CVE-2021-26855&#34; class=&#34;headerlink&#34; title=&#34;CVE-2021-26855&#34;&gt;&lt;/a&gt;CVE-2021-26855&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;hljs powershell&#34;&gt;protected virtual Uri GetTargetBackEndServerUrl() {
+    this.LogElapsedTime(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;E_TargetBEUrl&amp;quot;&lt;/span&gt;);
+    Uri result;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;try&lt;/span&gt; {
+        UrlAnchorMailbox urlAnchorMailbox = this.AnchoredRoutingTarget.AnchorMailbox as UrlAnchorMailbox;
+        &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (urlAnchorMailbox != null) {
+            result = urlAnchorMailbox.Url;
+        } &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+            UriBuilder clientUrlForProxy = this.GetClientUrlForProxy();
+            clientUrlForProxy.Scheme = Uri.UriSchemeHttps;
+            clientUrlForProxy.Host = this.AnchoredRoutingTarget.BackEndServer.Fqdn; //here
+            clientUrlForProxy.Port = &lt;span class=&#34;hljs-number&#34;&gt;444&lt;/span&gt;;
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xBCF4;&amp;#xBA74; &lt;code&gt;AnchoredRoutingTarget.BackEndServer.Fqdn&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; host &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xB294; &amp;#xAC83;&amp;#xC744; &amp;#xC54C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; host &amp;#xC815;&amp;#xBCF4;&amp;#xB294; &amp;#xCFE0;&amp;#xD0A4;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xB294; &amp;#xAC83;&amp;#xC778;&amp;#xB370; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xACE0; Request&amp;#xB97C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xC5B4;&amp;#xB5A0;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xB3C4; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs powershell&#34;&gt;protected override AnchorMailbox ResolveAnchorMailbox() {
+    HttpCookie httpCookie = base.ClientRequest.Cookies[&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;X-AnonResource-Backend&amp;quot;&lt;/span&gt;];
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (httpCookie != null) {
+        this.savedBackendServer = httpCookie.Value;
+    }
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!string.IsNullOrEmpty(this.savedBackendServer)) {
+        base.Logger.Set(&lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;X-AnonResource-Backend-Cookie&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (ExTraceGlobals.VerboseTracer.IsTraceEnabled(&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;)) {
+            ExTraceGlobals.VerboseTracer.TraceDebug&amp;lt;HttpCookie, int&amp;gt;((long)this.GetHashCode(), &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[OwaResourceProxyRequestHandler::ResolveAnchorMailbox]: AnonResourceBackend cookie used: {0}; context {1}.&amp;quot;&lt;/span&gt;, httpCookie, base.TraceContext);
+        }
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; new ServerInfoAnchorMailbox(BackEndServer.FromString(this.savedBackendServer), this);  //here
+    }
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; new AnonymousAnchorMailbox(this);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xAC04;&amp;#xB2E8;&amp;#xD558;&amp;#xAC8C; URL&amp;#xC744; &amp;#xC870;&amp;#xC791;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xB9CC;&amp;#xC73C;&amp;#xB85C; SSRF&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;CVE-2021-27065&#34;&gt;&lt;a href=&#34;#CVE-2021-27065&#34; class=&#34;headerlink&#34; title=&#34;CVE-2021-27065&#34;&gt;&lt;/a&gt;CVE-2021-27065&lt;/h2&gt;&lt;p&gt;&amp;#xBA3C;&amp;#xC800; &lt;code&gt;msExchLogonMailbox&lt;/code&gt; &amp;#xD5E4;&amp;#xB354;&amp;#xB97C; &amp;#xC218;&amp;#xC815;&amp;#xD558;&amp;#xC5EC; SYSTEM &amp;#xC720;&amp;#xC800; &amp;#xACC4;&amp;#xC815;&amp;#xC758; ECP &amp;#xC138;&amp;#xC158;&amp;#xC744; &amp;#xD68D;&amp;#xB4DD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://1.bp.blogspot.com/-FFb5p1z14TE/YQz_1xyoTNI/AAAAAAAAE3s/9mcld7lD76kPK_3OdE5cJeYIn0t_KcSowCPcBGAYYCw/s2048/upload_1a0b42f94b1e337c5937fc77ff058f0c.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;DDIService&amp;#xB294; XAML&amp;#xC744; &amp;#xD1B5;&amp;#xD574; powershell &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xC544;&amp;#xB798; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; powershell &amp;#xCF54;&amp;#xB4DC;&amp;#xC758; &amp;#xCD9C;&amp;#xB825; &amp;#xB0B4;&amp;#xC6A9;&amp;#xC744; &amp;#xC6D0;&amp;#xD558;&amp;#xB294; &amp;#xACBD;&amp;#xB85C;&amp;#xC5D0; &amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs powershell&#34;&gt;public override RunResult Run(DataRow input, DataTable dataTable, DataObjectStore store, &lt;span class=&#34;hljs-built_in&#34;&gt;Type&lt;/span&gt; codeBehind, Workflow.UpdateTableDelegate updateTableDelegate) {
+    DataRow dataRow = dataTable.Rows[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;];
+    string value = (string)input[&lt;span class=&#34;hljs-type&#34;&gt;this.InputVariable&lt;/span&gt;];
+    string path = (string)input[&lt;span class=&#34;hljs-type&#34;&gt;this.OutputFileNameVariable&lt;/span&gt;];
+    RunResult runResult = new RunResult();
+    &lt;span class=&#34;hljs-keyword&#34;&gt;try&lt;/span&gt; {
+        runResult.ErrorOccur = true;
+        &lt;span class=&#34;hljs-keyword&#34;&gt;using&lt;/span&gt; (StreamWriter streamWriter = new StreamWriter(File.Open(path, FileMode.CreateNew)))
+        {
+            streamWriter.WriteLine(value);
+        }
+        runResult.ErrorOccur = false;
+    }
+    
+    // ...
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] A New Attack Surface on MS Exchange Part 1 - ProxyLogon! - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.orange.tw/2021/08/proxylogon-a-new-attack-surface-on-ms-exchange-part-1.html&#34;&gt;https://blog.orange.tw/2021/08/proxylogon-a-new-attack-surface-on-ms-exchange-part-1.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;MS Exchange&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;&amp;#xC774;&amp;#xBC88;&amp;#xC5D0;&amp;#xB294; Pwnie Awards&amp;#xC5D0;&amp;#xC11C; Best Server-Side Bug&amp;#xB85C; &amp;#xC120;&amp;#xC815;&amp;#xB41C; Orange&amp;#xC758; MS Exchange &amp;#xCDE8;&amp;#xC57D;&amp;#xC810; &amp;#xAE00; &amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;! &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xD06C;&amp;#xB9AC;&amp;#xD2F0;&amp;#xCEEC;&amp;#xD560; &amp;#xBFD0;&amp;#xB9CC; &amp;#xC544;&amp;#xB2C8;&amp;#xB77C; &amp;#xC644;&amp;#xC804; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; &amp;#xACF5;&amp;#xACA9; &amp;#xD3EC;&amp;#xC778;&amp;#xD2B8;&amp;#xB97C; &amp;#xCC3E;&amp;#xC558;&amp;#xB2E4;&amp;#xB294; &amp;#xC88B;&amp;#xC740; &amp;#xD3C9;&amp;#xAC00;&amp;#xB97C; &amp;#xBC1B;&amp;#xC558;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;CVE-2021-26855&#34;&gt;&lt;a href=&#34;#CVE-2021-26855&#34; class=&#34;headerlink&#34; title=&#34;CVE-2021-26855&#34;&gt;&lt;/a&gt;CVE-2021-26855&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;hljs powershell&#34;&gt;protected virtual Uri GetTargetBackEndServerUrl() {
+    this.LogElapsedTime(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;E_TargetBEUrl&amp;quot;&lt;/span&gt;);
+    Uri result;
+    &lt;span class=&#34;hljs-keyword&#34;&gt;try&lt;/span&gt; {
+        UrlAnchorMailbox urlAnchorMailbox = this.AnchoredRoutingTarget.AnchorMailbox as UrlAnchorMailbox;
+        &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (urlAnchorMailbox != null) {
+            result = urlAnchorMailbox.Url;
+        } &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
+            UriBuilder clientUrlForProxy = this.GetClientUrlForProxy();
+            clientUrlForProxy.Scheme = Uri.UriSchemeHttps;
+            clientUrlForProxy.Host = this.AnchoredRoutingTarget.BackEndServer.Fqdn; //here
+            clientUrlForProxy.Port = &lt;span class=&#34;hljs-number&#34;&gt;444&lt;/span&gt;;
+...&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xBCF4;&amp;#xBA74; &lt;code&gt;AnchoredRoutingTarget.BackEndServer.Fqdn&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; host &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xB294; &amp;#xAC83;&amp;#xC744; &amp;#xC54C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774; host &amp;#xC815;&amp;#xBCF4;&amp;#xB294; &amp;#xCFE0;&amp;#xD0A4;&amp;#xC5D0;&amp;#xC11C; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xB294; &amp;#xAC83;&amp;#xC778;&amp;#xB370; &amp;#xAC00;&amp;#xC838;&amp;#xC624;&amp;#xACE0; Request&amp;#xB97C; &amp;#xCC98;&amp;#xB9AC;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xC5B4;&amp;#xB5A0;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xB3C4; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs powershell&#34;&gt;protected override AnchorMailbox ResolveAnchorMailbox() {
+    HttpCookie httpCookie = base.ClientRequest.Cookies[&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;X-AnonResource-Backend&amp;quot;&lt;/span&gt;];
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (httpCookie != null) {
+        this.savedBackendServer = httpCookie.Value;
+    }
+    &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!string.IsNullOrEmpty(this.savedBackendServer)) {
+        base.Logger.Set(&lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;X-AnonResource-Backend-Cookie&amp;quot;&lt;/span&gt;);
+        &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (ExTraceGlobals.VerboseTracer.IsTraceEnabled(&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;)) {
+            ExTraceGlobals.VerboseTracer.TraceDebug&amp;lt;HttpCookie, int&amp;gt;((long)this.GetHashCode(), &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[OwaResourceProxyRequestHandler::ResolveAnchorMailbox]: AnonResourceBackend cookie used: {0}; context {1}.&amp;quot;&lt;/span&gt;, httpCookie, base.TraceContext);
+        }
+        &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; new ServerInfoAnchorMailbox(BackEndServer.FromString(this.savedBackendServer), this);  //here
+    }
+    &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; new AnonymousAnchorMailbox(this);&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xAC04;&amp;#xB2E8;&amp;#xD558;&amp;#xAC8C; URL&amp;#xC744; &amp;#xC870;&amp;#xC791;&amp;#xD558;&amp;#xB294; &amp;#xAC83;&amp;#xB9CC;&amp;#xC73C;&amp;#xB85C; SSRF&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;CVE-2021-27065&#34;&gt;&lt;a href=&#34;#CVE-2021-27065&#34; class=&#34;headerlink&#34; title=&#34;CVE-2021-27065&#34;&gt;&lt;/a&gt;CVE-2021-27065&lt;/h2&gt;&lt;p&gt;&amp;#xBA3C;&amp;#xC800; &lt;code&gt;msExchLogonMailbox&lt;/code&gt; &amp;#xD5E4;&amp;#xB354;&amp;#xB97C; &amp;#xC218;&amp;#xC815;&amp;#xD558;&amp;#xC5EC; SYSTEM &amp;#xC720;&amp;#xC800; &amp;#xACC4;&amp;#xC815;&amp;#xC758; ECP &amp;#xC138;&amp;#xC158;&amp;#xC744; &amp;#xD68D;&amp;#xB4DD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://1.bp.blogspot.com/-FFb5p1z14TE/YQz_1xyoTNI/AAAAAAAAE3s/9mcld7lD76kPK_3OdE5cJeYIn0t_KcSowCPcBGAYYCw/s2048/upload_1a0b42f94b1e337c5937fc77ff058f0c.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;DDIService&amp;#xB294; XAML&amp;#xC744; &amp;#xD1B5;&amp;#xD574; powershell &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xC544;&amp;#xB798; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; powershell &amp;#xCF54;&amp;#xB4DC;&amp;#xC758; &amp;#xCD9C;&amp;#xB825; &amp;#xB0B4;&amp;#xC6A9;&amp;#xC744; &amp;#xC6D0;&amp;#xD558;&amp;#xB294; &amp;#xACBD;&amp;#xB85C;&amp;#xC5D0; &amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs powershell&#34;&gt;public override RunResult Run(DataRow input, DataTable dataTable, DataObjectStore store, &lt;span class=&#34;hljs-built_in&#34;&gt;Type&lt;/span&gt; codeBehind, Workflow.UpdateTableDelegate updateTableDelegate) {
+    DataRow dataRow = dataTable.Rows[&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;];
+    string value = (string)input[&lt;span class=&#34;hljs-type&#34;&gt;this.InputVariable&lt;/span&gt;];
+    string path = (string)input[&lt;span class=&#34;hljs-type&#34;&gt;this.OutputFileNameVariable&lt;/span&gt;];
+    RunResult runResult = new RunResult();
+    &lt;span class=&#34;hljs-keyword&#34;&gt;try&lt;/span&gt; {
+        runResult.ErrorOccur = true;
+        &lt;span class=&#34;hljs-keyword&#34;&gt;using&lt;/span&gt; (StreamWriter streamWriter = new StreamWriter(File.Open(path, FileMode.CreateNew)))
+        {
+            streamWriter.WriteLine(value);
+        }
+        runResult.ErrorOccur = false;
+    }
+    
+    // ...
+}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/08/13/j0ker/2021-08-13/">
@@ -260,7 +368,6 @@
             clientUrlForProxy.Host = this.AnchoredRoutingTarget.BackEndServer.Fqdn; //here
             clientUrlForProxy.Port = <span class="hljs-number">444</span>;
 ...</code></pre>
-
 <p>&#xBCF4;&#xBA74; <code>AnchoredRoutingTarget.BackEndServer.Fqdn</code>&#xC5D0;&#xC11C; host &#xC815;&#xBCF4;&#xB97C; &#xAC00;&#xC838;&#xC624;&#xB294; &#xAC83;&#xC744; &#xC54C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774; host &#xC815;&#xBCF4;&#xB294; &#xCFE0;&#xD0A4;&#xC5D0;&#xC11C; &#xAC00;&#xC838;&#xC624;&#xB294; &#xAC83;&#xC778;&#xB370; &#xAC00;&#xC838;&#xC624;&#xACE0; Request&#xB97C; &#xCC98;&#xB9AC;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xC5B4;&#xB5A0;&#xD55C; &#xAC80;&#xC99D;&#xB3C4; &#xC9C4;&#xD589;&#xD558;&#xC9C0; &#xC54A;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs powershell">protected override AnchorMailbox ResolveAnchorMailbox() {
     HttpCookie httpCookie = base.ClientRequest.Cookies[<span class="hljs-string">&quot;X-AnonResource-Backend&quot;</span>];
@@ -275,10 +382,9 @@
         <span class="hljs-keyword">return</span> new ServerInfoAnchorMailbox(BackEndServer.FromString(this.savedBackendServer), this);  //here
     }
     <span class="hljs-keyword">return</span> new AnonymousAnchorMailbox(this);</code></pre>
-
 <p>&#xB530;&#xB77C;&#xC11C; &#xAC04;&#xB2E8;&#xD558;&#xAC8C; URL&#xC744; &#xC870;&#xC791;&#xD558;&#xB294; &#xAC83;&#xB9CC;&#xC73C;&#xB85C; SSRF&#xB97C; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <h2 id="CVE-2021-27065"><a href="#CVE-2021-27065" class="headerlink" title="CVE-2021-27065"></a>CVE-2021-27065</h2><p>&#xBA3C;&#xC800; <code>msExchLogonMailbox</code> &#xD5E4;&#xB354;&#xB97C; &#xC218;&#xC815;&#xD558;&#xC5EC; SYSTEM &#xC720;&#xC800; &#xACC4;&#xC815;&#xC758; ECP &#xC138;&#xC158;&#xC744; &#xD68D;&#xB4DD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p><img src="https://1.bp.blogspot.com/-FFb5p1z14TE/YQz_1xyoTNI/AAAAAAAAE3s/9mcld7lD76kPK_3OdE5cJeYIn0t_KcSowCPcBGAYYCw/s2048/upload_1a0b42f94b1e337c5937fc77ff058f0c.png" srcset="/img/loading.gif"></p>
+<p><img src="https://1.bp.blogspot.com/-FFb5p1z14TE/YQz_1xyoTNI/AAAAAAAAE3s/9mcld7lD76kPK_3OdE5cJeYIn0t_KcSowCPcBGAYYCw/s2048/upload_1a0b42f94b1e337c5937fc77ff058f0c.png" srcset="/img/loading.gif" alt></p>
 <p>DDIService&#xB294; XAML&#xC744; &#xD1B5;&#xD574; powershell &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xB294;&#xB370;, &#xC544;&#xB798; &#xD568;&#xC218;&#xB97C; &#xC774;&#xC6A9;&#xD558;&#xBA74; powershell &#xCF54;&#xB4DC;&#xC758; &#xCD9C;&#xB825; &#xB0B4;&#xC6A9;&#xC744; &#xC6D0;&#xD558;&#xB294; &#xACBD;&#xB85C;&#xC5D0; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs powershell">public override RunResult Run(DataRow input, DataTable dataTable, DataObjectStore store, <span class="hljs-built_in">Type</span> codeBehind, Workflow.UpdateTableDelegate updateTableDelegate) {
     DataRow dataRow = dataTable.Rows[<span class="hljs-number">0</span>];
@@ -317,9 +423,9 @@
                   
                   <a class="hover-with-bg" href="/tags/microsoft/">microsoft</a>
                   
-                  <a class="hover-with-bg" href="/tags/j0ker/">j0ker</a>
-                  
                   <a class="hover-with-bg" href="/tags/ssrf/">ssrf</a>
+                  
+                  <a class="hover-with-bg" href="/tags/j0ker/">j0ker</a>
                   
                   <a class="hover-with-bg" href="/tags/arbitrary-file-write/">arbitrary_file_write</a>
                   

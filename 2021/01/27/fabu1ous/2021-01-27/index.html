@@ -13,15 +13,55 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.qualys.com/vulnerabilities-research/2021/01/26/cve-2021-3156-heap-based-buffer-overflow-in-sudo-baron-samedit&#34;&gt;CVE-2021-3156 : heap-based buffer overflow in sudo&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;sudo &amp;lt; 1.9.5p2&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Qualys Research Team&amp;#xC5D0;&amp;#xC11C; CVE-2021-3156&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xACF5;&amp;#xAC1C;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. sudo&amp;#xB294; &amp;#xC7A0;&amp;#xC2DC; &amp;#xB2E4;&amp;#xB978; &amp;#xC720;&amp;#xC800;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xAC16;&amp;#xACE0; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC744; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xD574;&amp;#xC8FC;&amp;#xB294; &amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xB85C; &amp;#xAC70;&amp;#xC758; &amp;#xBAA8;&amp;#xB4E0; Unix &amp;#xACC4;&amp;#xC5F4; &amp;#xC6B4;&amp;#xC601;&amp;#xCCB4;&amp;#xC81C;&amp;#xC5D0;&amp;#xC11C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. sudo&amp;#xC5D0; Heap-based Buffer Overlow &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC5EC; &amp;#xC774;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; root &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;sudo&amp;#xC5D0; &lt;code&gt;-s&lt;/code&gt; &amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xBD99;&amp;#xC5EC; &lt;code&gt;MODE_SHELL&lt;/code&gt; flag&amp;#xAC12;&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xAC70;&amp;#xB098; &lt;code&gt;-i&lt;/code&gt; &amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xBD99;&amp;#xC5EC; &lt;code&gt;MODE_LOGIN_SHELL&lt;/code&gt; flag&amp;#xAC12;&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xBA74; sudo&amp;#xC758; &lt;code&gt;main()&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; argv&amp;#xB97C; &amp;#xC7AC;&amp;#xC124;&amp;#xC815;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xBAA8;&amp;#xB4E0; command line argument&amp;#xC758; meta-character&amp;#xC55E;&amp;#xC5D0; &lt;code&gt;\&lt;/code&gt;(&amp;#xBC31;&amp;#xC2AC;&amp;#xB798;&amp;#xC26C;)&amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD574; escape &amp;#xD55C; &amp;#xB4A4; &amp;#xD558;&amp;#xB098;&amp;#xC758; &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xB85C; &amp;#xBB36;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;(concatenate). &amp;#xB9CC;&amp;#xC57D; &amp;#xD558;&amp;#xB098;&amp;#xB85C; &amp;#xBB36;&amp;#xC778; command line argument&amp;#xAC00; &lt;code&gt;\&lt;/code&gt;&amp;#xB85C; &amp;#xB05D;&amp;#xB098;&amp;#xBA74; &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs routeros&#34;&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;..&lt;/span&gt;.
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (ISSET(sudo_mode, MODE_SHELL|MODE_LOGIN_SHELL)) { 
+&lt;span class=&#34;hljs-built_in&#34;&gt;..&lt;/span&gt;. 
+	&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt; = user_args, av = NewArgv + 1; (&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; = &lt;span class=&#34;hljs-number&#34;&gt;*a&lt;/span&gt;v); av++) { 
+		&lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;*f&lt;/span&gt;rom) { 
+			&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt;[0] == &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;\\&amp;apos;&lt;/span&gt; &amp;amp;&amp;amp; !isspace((unsigned char)&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt;[1])) 
+				&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt;++; 
+			*&lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt;++ = &lt;span class=&#34;hljs-number&#34;&gt;*f&lt;/span&gt;rom++; 
+		} 
+		*&lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt;++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos; &amp;apos;&lt;/span&gt;; 
+	} 
+&lt;span class=&#34;hljs-built_in&#34;&gt;..&lt;/span&gt;. 
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xB97C; heap-based buffer(&lt;code&gt;user_args&lt;/code&gt;)&amp;#xC5D0; &amp;#xC62E;&amp;#xAE30;&amp;#xB294; &amp;#xC791;&amp;#xC5C5; &amp;#xC911; NULL-terminator&amp;#xB97C; &amp;#xBB34;&amp;#xC2DC;&amp;#xD558;&amp;#xACE0; out-of-bound copy&amp;#xB97C; &amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h1 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://www.gastonsanchez.com/r4strings/metacharacters.html&#34;&gt;https://www.gastonsanchez.com/r4strings/metacharacters.html&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-3156 : heap overflow in sudo - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://blog.qualys.com/vulnerabilities-research/2021/01/26/cve-2021-3156-heap-based-buffer-overflow-in-sudo-baron-samedit&#34;&gt;CVE-2021-3156 : heap-based buffer overflow in sudo&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;sudo &amp;lt; 1.9.5p2&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;Qualys Research Team&amp;#xC5D0;&amp;#xC11C; CVE-2021-3156&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC138;&amp;#xBD80; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xACF5;&amp;#xAC1C;&amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. sudo&amp;#xB294; &amp;#xC7A0;&amp;#xC2DC; &amp;#xB2E4;&amp;#xB978; &amp;#xC720;&amp;#xC800;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xAC16;&amp;#xACE0; &amp;#xD504;&amp;#xB85C;&amp;#xADF8;&amp;#xB7A8;&amp;#xC744; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xAC8C; &amp;#xD574;&amp;#xC8FC;&amp;#xB294; &amp;#xBA85;&amp;#xB839;&amp;#xC5B4;&amp;#xB85C; &amp;#xAC70;&amp;#xC758; &amp;#xBAA8;&amp;#xB4E0; Unix &amp;#xACC4;&amp;#xC5F4; &amp;#xC6B4;&amp;#xC601;&amp;#xCCB4;&amp;#xC81C;&amp;#xC5D0;&amp;#xC11C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. sudo&amp;#xC5D0; Heap-based Buffer Overlow &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xC5EC; &amp;#xC774;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; root &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;sudo&amp;#xC5D0; &lt;code&gt;-s&lt;/code&gt; &amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xBD99;&amp;#xC5EC; &lt;code&gt;MODE_SHELL&lt;/code&gt; flag&amp;#xAC12;&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xAC70;&amp;#xB098; &lt;code&gt;-i&lt;/code&gt; &amp;#xC635;&amp;#xC158;&amp;#xC744; &amp;#xBD99;&amp;#xC5EC; &lt;code&gt;MODE_LOGIN_SHELL&lt;/code&gt; flag&amp;#xAC12;&amp;#xC744; &amp;#xC124;&amp;#xC815;&amp;#xD558;&amp;#xBA74; sudo&amp;#xC758; &lt;code&gt;main()&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; argv&amp;#xB97C; &amp;#xC7AC;&amp;#xC124;&amp;#xC815;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xBAA8;&amp;#xB4E0; command line argument&amp;#xC758; meta-character&amp;#xC55E;&amp;#xC5D0; &lt;code&gt;\&lt;/code&gt;(&amp;#xBC31;&amp;#xC2AC;&amp;#xB798;&amp;#xC26C;)&amp;#xB97C; &amp;#xCD94;&amp;#xAC00;&amp;#xD574; escape &amp;#xD55C; &amp;#xB4A4; &amp;#xD558;&amp;#xB098;&amp;#xC758; &amp;#xBB38;&amp;#xC790;&amp;#xC5F4;&amp;#xB85C; &amp;#xBB36;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;(concatenate). &amp;#xB9CC;&amp;#xC57D; &amp;#xD558;&amp;#xB098;&amp;#xB85C; &amp;#xBB36;&amp;#xC778; command line argument&amp;#xAC00; &lt;code&gt;\&lt;/code&gt;&amp;#xB85C; &amp;#xB05D;&amp;#xB098;&amp;#xBA74; &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs routeros&#34;&gt;&lt;span class=&#34;hljs-built_in&#34;&gt;..&lt;/span&gt;.
+
+&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (ISSET(sudo_mode, MODE_SHELL|MODE_LOGIN_SHELL)) { 
+&lt;span class=&#34;hljs-built_in&#34;&gt;..&lt;/span&gt;. 
+	&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (&lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt; = user_args, av = NewArgv + 1; (&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; = &lt;span class=&#34;hljs-number&#34;&gt;*a&lt;/span&gt;v); av++) { 
+		&lt;span class=&#34;hljs-keyword&#34;&gt;while&lt;/span&gt; (&lt;span class=&#34;hljs-number&#34;&gt;*f&lt;/span&gt;rom) { 
+			&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt;[0] == &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;\\&amp;apos;&lt;/span&gt; &amp;amp;&amp;amp; !isspace((unsigned char)&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt;[1])) 
+				&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt;++; 
+			*&lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt;++ = &lt;span class=&#34;hljs-number&#34;&gt;*f&lt;/span&gt;rom++; 
+		} 
+		*&lt;span class=&#34;hljs-keyword&#34;&gt;to&lt;/span&gt;++ = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos; &amp;apos;&lt;/span&gt;; 
+	} 
+&lt;span class=&#34;hljs-built_in&#34;&gt;..&lt;/span&gt;. 
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xB97C; heap-based buffer(&lt;code&gt;user_args&lt;/code&gt;)&amp;#xC5D0; &amp;#xC62E;&amp;#xAE30;&amp;#xB294; &amp;#xC791;&amp;#xC5C5; &amp;#xC911; NULL-terminator&amp;#xB97C; &amp;#xBB34;&amp;#xC2DC;&amp;#xD558;&amp;#xACE0; out-of-bound copy&amp;#xB97C; &amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h1 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://www.gastonsanchez.com/r4strings/metacharacters.html&#34;&gt;https://www.gastonsanchez.com/r4strings/metacharacters.html&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/01/27/fabu1ous/2021-01-27/">
@@ -258,7 +298,6 @@
 	} 
 <span class="hljs-built_in">..</span>. 
 }</code></pre>
-
 <p>&#xC774;&#xB97C; heap-based buffer(<code>user_args</code>)&#xC5D0; &#xC62E;&#xAE30;&#xB294; &#xC791;&#xC5C5; &#xC911; NULL-terminator&#xB97C; &#xBB34;&#xC2DC;&#xD558;&#xACE0; out-of-bound copy&#xB97C; &#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.gastonsanchez.com/r4strings/metacharacters.html">https://www.gastonsanchez.com/r4strings/metacharacters.html</a></p>
 
@@ -278,13 +317,13 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/eop/">eop</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/unix/">unix</a>
                   

@@ -13,15 +13,25 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://flattsecurity.medium.com/cve-2021-20226-a-reference-counting-bug-which-leads-to-local-privilege-escalation-in-io-uring-e946bd69177a&#34;&gt;CVE-2021&amp;#x2013;20226 a reference counting bug which leads to local privilege escalation in io_uring.&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;io_uring in Linux kernel 5.6&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel &amp;#xBE44;&amp;#xB3D9;&amp;#xAE30; I/O &amp;#xBA54;&amp;#xCEE4;&amp;#xB2C8;&amp;#xC998;&amp;#xC778; io_uring&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; Use-after-free &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. File structure&amp;#xB97C; worker &amp;#xC2A4;&amp;#xB808;&amp;#xB4DC;&amp;#xAC00; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB85C; &amp;#xC62E;&amp;#xAE30;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; reference &amp;#xCE74;&amp;#xC6B4;&amp;#xD130;&amp;#xB97C; &amp;#xB298;&amp;#xB9AC;&amp;#xC9C0; &amp;#xC54A;&amp;#xACE0; file descriptor table&amp;#xC744; &amp;#xACF5;&amp;#xC720;&amp;#xD558;&amp;#xBA74; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;Worker &amp;#xC2A4;&amp;#xB808;&amp;#xB4DC;&amp;#xB294; file_struct &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; reference&amp;#xB97C; &amp;#xCC3E;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &amp;#xD568;&amp;#xC218; &lt;code&gt;fdget()&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &lt;code&gt;fdget()&lt;/code&gt;&amp;#xB294; file_struct&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; reference counter&amp;#xAC00; 1&amp;#xC77C; &amp;#xB54C; &amp;#xC774;&amp;#xB97C; &amp;#xC99D;&amp;#xAC00;&amp;#xC2DC;&amp;#xD0A4;&amp;#xC9C0; &amp;#xC54A;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; &lt;code&gt;fdget()&lt;/code&gt;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xC5BB;&amp;#xC740; &amp;#xD30C;&amp;#xC77C;&amp;#xC740; &amp;#xC774;&amp;#xBBF8; &amp;#xB2EB;&amp;#xD788;&amp;#xACE0; &amp;#xD574;&amp;#xC81C;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC744; &amp;#xC218;&amp;#xB3C4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xBBF8; &amp;#xB2EB;&amp;#xD788;&amp;#xACE0; &amp;#xD574;&amp;#xC81C;&amp;#xB41C; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD574; &amp;#xC791;&amp;#xC5C5;&amp;#xD55C;&amp;#xB2E4;&amp;#xB294; &amp;#xAC83;&amp;#xC740; Use-after-free &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC73C;&amp;#xB85C; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xB85C;&amp;#xCEEC; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4; &amp;#xAC70;&amp;#xBD80; &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2021-20226: 리눅스 커널의 UAF 취약점 - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://flattsecurity.medium.com/cve-2021-20226-a-reference-counting-bug-which-leads-to-local-privilege-escalation-in-io-uring-e946bd69177a&#34;&gt;CVE-2021&amp;#x2013;20226 a reference counting bug which leads to local privilege escalation in io_uring.&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;&lt;strong&gt;Target&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;io_uring in Linux kernel 5.6&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;&lt;strong&gt;Explain&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Linux kernel &amp;#xBE44;&amp;#xB3D9;&amp;#xAE30; I/O &amp;#xBA54;&amp;#xCEE4;&amp;#xB2C8;&amp;#xC998;&amp;#xC778; io_uring&amp;#xC5D0;&amp;#xC11C; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294; Use-after-free &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xC0C8;&amp;#xB85C;&amp;#xC6B4; write-up&amp;#xC774; &amp;#xACF5;&amp;#xAC1C;&amp;#xB418;&amp;#xC5C8;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. File structure&amp;#xB97C; worker &amp;#xC2A4;&amp;#xB808;&amp;#xB4DC;&amp;#xAC00; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB85C; &amp;#xC62E;&amp;#xAE30;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; reference &amp;#xCE74;&amp;#xC6B4;&amp;#xD130;&amp;#xB97C; &amp;#xB298;&amp;#xB9AC;&amp;#xC9C0; &amp;#xC54A;&amp;#xACE0; file descriptor table&amp;#xC744; &amp;#xACF5;&amp;#xC720;&amp;#xD558;&amp;#xBA74; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;Worker &amp;#xC2A4;&amp;#xB808;&amp;#xB4DC;&amp;#xB294; file_struct &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; reference&amp;#xB97C; &amp;#xCC3E;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &amp;#xD568;&amp;#xC218; &lt;code&gt;fdget()&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; &lt;code&gt;fdget()&lt;/code&gt;&amp;#xB294; file_struct&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; reference counter&amp;#xAC00; 1&amp;#xC77C; &amp;#xB54C; &amp;#xC774;&amp;#xB97C; &amp;#xC99D;&amp;#xAC00;&amp;#xC2DC;&amp;#xD0A4;&amp;#xC9C0; &amp;#xC54A;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; &lt;code&gt;fdget()&lt;/code&gt;&amp;#xC5D0; &amp;#xC758;&amp;#xD574; &amp;#xC5BB;&amp;#xC740; &amp;#xD30C;&amp;#xC77C;&amp;#xC740; &amp;#xC774;&amp;#xBBF8; &amp;#xB2EB;&amp;#xD788;&amp;#xACE0; &amp;#xD574;&amp;#xC81C;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC744; &amp;#xC218;&amp;#xB3C4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;p&gt;&amp;#xC774;&amp;#xBBF8; &amp;#xB2EB;&amp;#xD788;&amp;#xACE0; &amp;#xD574;&amp;#xC81C;&amp;#xB41C; &amp;#xD30C;&amp;#xC77C;&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD574; &amp;#xC791;&amp;#xC5C5;&amp;#xD55C;&amp;#xB2E4;&amp;#xB294; &amp;#xAC83;&amp;#xC740; Use-after-free &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC73C;&amp;#xB85C; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD574; &amp;#xB85C;&amp;#xCEEC; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC5D0; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4; &amp;#xAC70;&amp;#xBD80; &amp;#xACF5;&amp;#xACA9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2021/06/23/fabu1ous/2021-06-23/">
@@ -262,13 +272,13 @@
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
                   <a class="hover-with-bg" href="/tags/uaf/">uaf</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                 </div>
                 

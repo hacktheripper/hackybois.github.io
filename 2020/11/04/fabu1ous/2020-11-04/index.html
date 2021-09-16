@@ -13,15 +13,39 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#2f4154">
-  <meta name="description" content="hack &amp; life">
+  <meta name="description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://scannell.me/fuzzing-for-ebpf-jit-bugs-in-the-linux-kernel/&#34;&gt;Fuzzing for eBPF JIT bugs in the Linux kernel&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Linux kernel&lt;/p&gt;
+&lt;p&gt;eBPF&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;eBPF&amp;#xB294; &amp;#xB7F0;&amp;#xD0C0;&amp;#xC784; &amp;#xC911; &amp;#xC548;&amp;#xC804;&amp;#xD558;&amp;#xAC8C; &amp;#xCEE4;&amp;#xB110; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0BD;&amp;#xC785;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; Verifier&amp;#xC640; BPF instruction&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. Verifier&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC758; &amp;#xAC12;&amp;#xC758; &amp;#xBCC0;&amp;#xD654;&amp;#xC640; &amp;#xADF8; &amp;#xAC12;&amp;#xB4E4;&amp;#xC758; &amp;#xD5C8;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;(&amp;#xC774;&amp;#xD558; range)&amp;#xB4F1;&amp;#xC744; &amp;#xD2B8;&amp;#xB798;&amp;#xD0B9;&amp;#xD574;  memory load&amp;#xC640; store&amp;#xC758; out-of-bound &amp;#xC5EC;&amp;#xBD80;&amp;#xB97C; &amp;#xAC80;&amp;#xC0AC;&amp;#xD558;&amp;#xBA70;,  32-bit&amp;#xC640; 64-bit &amp;#xAC01;&amp;#xAC01;&amp;#xC758; range&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD574; &amp;#xAD00;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. OR&amp;#xC5F0;&amp;#xC0B0;&amp;#xC774; &amp;#xB05D;&amp;#xB09C; &amp;#xD6C4; &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xAC8C;  32-bit &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC758; range&amp;#xB97C; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xD558;&amp;#xB294; &lt;code&gt;scalar32_min_max_or()&lt;/code&gt;&amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xC774; &amp;#xAD6C;&amp;#xBD84;&amp;#xC774; &amp;#xD655;&amp;#xC2E4;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xACE0;, &amp;#xBC84;&amp;#xADF8;&amp;#xB97C; &amp;#xC720;&amp;#xBC1C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;/* ORing two positives gives a positive, so safe to&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;* cast result into s64.&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;*/&lt;/span&gt;
+dst_reg-&amp;gt;s32_min_value = dst_reg-&amp;gt;umin_value;
+dst_reg-&amp;gt;s32_max_value = dst_reg-&amp;gt;umax_value;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;64-bit range&amp;#xB97C; 32-bit range&amp;#xB85C; casting &amp;#xD558;&amp;#xB294; &lt;code&gt;scalar32_min_max_or()&lt;/code&gt;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xBD80;&amp;#xBD84;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. Verifier&amp;#xB294; &lt;code&gt;s32_min_value&lt;/code&gt;&amp;#xC640; &lt;code&gt;s32_max_value&lt;/code&gt;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD574; range&amp;#xB97C; &amp;#xD2B8;&amp;#xB798;&amp;#xD0B9; &amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xB9CC;&amp;#xC57D; &amp;#xC774; &amp;#xB450; &amp;#xAC12;&amp;#xC774; &amp;#xAC19;&amp;#xB2E4;&amp;#xBA74; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130; &amp;#xAC12;&amp;#xC744; &amp;#xC0C1;&amp;#xC218;&amp;#xB85C; &amp;#xC778;&amp;#xC2DD;&amp;#xD558;&amp;#xACE0; &amp;#xADF8;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xCF54;&amp;#xB4DC;&amp;#xAC00; &amp;#xBD84;&amp;#xAE30;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&amp;#xB9CC;&amp;#xC57D; &amp;#xC704; &amp;#xCF54;&amp;#xB4DC;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;dst_reg-&amp;gt;umin_value&lt;/code&gt;&amp;#xAC00; 1&amp;#xC774;&amp;#xACE0;, &lt;code&gt;dst_reg-&amp;gt;umax_value&lt;/code&gt;&amp;#xAC00; 25769803777&amp;#xC774;&amp;#xB77C;&amp;#xBA74; &lt;code&gt;dst_reg-&amp;gt;s32_min_value&lt;/code&gt;&amp;#xC640; &lt;code&gt;dst_reg-&amp;gt;s32_max_value&lt;/code&gt; &amp;#xB458; &amp;#xB2E4; 1&amp;#xB85C; &amp;#xC800;&amp;#xC7A5;&amp;#xB418;&amp;#xC5B4; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xB97C; range&amp;#xAC00; &amp;#xC544;&amp;#xB2CC; &amp;#xC0C1;&amp;#xC218;&amp;#xB85C; &amp;#xC778;&amp;#xC2DD;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.sosconhistory.net/soscon2018/pdf/day2_1100_3.pdf&#34;&gt;https://www.sosconhistory.net/soscon2018/pdf/day2_1100_3.pdf&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
   <meta name="google-site-verification" content="DXkyiaX95-ws53Tyt0m91_umRf4gfV2qJIQZ5zQDIO4">
 
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="[하루한줄] CVE-2020-27194: eBPF verifier bug - hackyboiz">
-  <meta property="og:description" content="hack &amp; life">
-  <meta property="og:image" content="/img/favicon.ico">
+  <meta property="og:description" content="&lt;h2 id=&#34;URL&#34;&gt;&lt;a href=&#34;#URL&#34; class=&#34;headerlink&#34; title=&#34;URL&#34;&gt;&lt;/a&gt;URL&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://scannell.me/fuzzing-for-ebpf-jit-bugs-in-the-linux-kernel/&#34;&gt;Fuzzing for eBPF JIT bugs in the Linux kernel&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;Target&#34;&gt;&lt;a href=&#34;#Target&#34; class=&#34;headerlink&#34; title=&#34;Target&#34;&gt;&lt;/a&gt;Target&lt;/h2&gt;&lt;p&gt;Linux kernel&lt;/p&gt;
+&lt;p&gt;eBPF&lt;/p&gt;
+&lt;h2 id=&#34;Explain&#34;&gt;&lt;a href=&#34;#Explain&#34; class=&#34;headerlink&#34; title=&#34;Explain&#34;&gt;&lt;/a&gt;Explain&lt;/h2&gt;&lt;p&gt;eBPF&amp;#xB294; &amp;#xB7F0;&amp;#xD0C0;&amp;#xC784; &amp;#xC911; &amp;#xC548;&amp;#xC804;&amp;#xD558;&amp;#xAC8C; &amp;#xCEE4;&amp;#xB110; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC0BD;&amp;#xC785;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; Verifier&amp;#xC640; BPF instruction&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. Verifier&amp;#xB294; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC758; &amp;#xAC12;&amp;#xC758; &amp;#xBCC0;&amp;#xD654;&amp;#xC640; &amp;#xADF8; &amp;#xAC12;&amp;#xB4E4;&amp;#xC758; &amp;#xD5C8;&amp;#xC6A9; &amp;#xBC94;&amp;#xC704;(&amp;#xC774;&amp;#xD558; range)&amp;#xB4F1;&amp;#xC744; &amp;#xD2B8;&amp;#xB798;&amp;#xD0B9;&amp;#xD574;  memory load&amp;#xC640; store&amp;#xC758; out-of-bound &amp;#xC5EC;&amp;#xBD80;&amp;#xB97C; &amp;#xAC80;&amp;#xC0AC;&amp;#xD558;&amp;#xBA70;,  32-bit&amp;#xC640; 64-bit &amp;#xAC01;&amp;#xAC01;&amp;#xC758; range&amp;#xB97C; &amp;#xAD6C;&amp;#xBD84;&amp;#xD574; &amp;#xAD00;&amp;#xB9AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. OR&amp;#xC5F0;&amp;#xC0B0;&amp;#xC774; &amp;#xB05D;&amp;#xB09C; &amp;#xD6C4; &amp;#xADF8;&amp;#xC5D0; &amp;#xB9DE;&amp;#xAC8C;  32-bit &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xC758; range&amp;#xB97C; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xD558;&amp;#xB294; &lt;code&gt;scalar32_min_max_or()&lt;/code&gt;&amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xC774; &amp;#xAD6C;&amp;#xBD84;&amp;#xC774; &amp;#xD655;&amp;#xC2E4;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xACE0;, &amp;#xBC84;&amp;#xADF8;&amp;#xB97C; &amp;#xC720;&amp;#xBC1C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-comment&#34;&gt;/* ORing two positives gives a positive, so safe to&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;* cast result into s64.&lt;/span&gt;
+&lt;span class=&#34;hljs-comment&#34;&gt;*/&lt;/span&gt;
+dst_reg-&amp;gt;s32_min_value = dst_reg-&amp;gt;umin_value;
+dst_reg-&amp;gt;s32_max_value = dst_reg-&amp;gt;umax_value;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;64-bit range&amp;#xB97C; 32-bit range&amp;#xB85C; casting &amp;#xD558;&amp;#xB294; &lt;code&gt;scalar32_min_max_or()&lt;/code&gt;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC; &amp;#xBD80;&amp;#xBD84;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. Verifier&amp;#xB294; &lt;code&gt;s32_min_value&lt;/code&gt;&amp;#xC640; &lt;code&gt;s32_max_value&lt;/code&gt;&amp;#xB97C; &amp;#xC774;&amp;#xC6A9;&amp;#xD574; range&amp;#xB97C; &amp;#xD2B8;&amp;#xB798;&amp;#xD0B9; &amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xB9CC;&amp;#xC57D; &amp;#xC774; &amp;#xB450; &amp;#xAC12;&amp;#xC774; &amp;#xAC19;&amp;#xB2E4;&amp;#xBA74; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130; &amp;#xAC12;&amp;#xC744; &amp;#xC0C1;&amp;#xC218;&amp;#xB85C; &amp;#xC778;&amp;#xC2DD;&amp;#xD558;&amp;#xACE0; &amp;#xADF8;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xCF54;&amp;#xB4DC;&amp;#xAC00; &amp;#xBD84;&amp;#xAE30;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
+&lt;p&gt;&amp;#xB9CC;&amp;#xC57D; &amp;#xC704; &amp;#xCF54;&amp;#xB4DC;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;dst_reg-&amp;gt;umin_value&lt;/code&gt;&amp;#xAC00; 1&amp;#xC774;&amp;#xACE0;, &lt;code&gt;dst_reg-&amp;gt;umax_value&lt;/code&gt;&amp;#xAC00; 25769803777&amp;#xC774;&amp;#xB77C;&amp;#xBA74; &lt;code&gt;dst_reg-&amp;gt;s32_min_value&lt;/code&gt;&amp;#xC640; &lt;code&gt;dst_reg-&amp;gt;s32_max_value&lt;/code&gt; &amp;#xB458; &amp;#xB2E4; 1&amp;#xB85C; &amp;#xC800;&amp;#xC7A5;&amp;#xB418;&amp;#xC5B4; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130;&amp;#xB97C; range&amp;#xAC00; &amp;#xC544;&amp;#xB2CC; &amp;#xC0C1;&amp;#xC218;&amp;#xB85C; &amp;#xC778;&amp;#xC2DD;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
+&lt;h2 id=&#34;Reference&#34;&gt;&lt;a href=&#34;#Reference&#34; class=&#34;headerlink&#34; title=&#34;Reference&#34;&gt;&lt;/a&gt;Reference&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://www.sosconhistory.net/soscon2018/pdf/day2_1100_3.pdf&#34;&gt;https://www.sosconhistory.net/soscon2018/pdf/day2_1100_3.pdf&lt;/a&gt;&lt;/p&gt;
+ - hack &amp; life">
+  <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
 
   <link rel="canonical" href="https://hackyboiz.github.io/2020/11/04/fabu1ous/2020-11-04/">
@@ -249,7 +273,6 @@
 <span class="hljs-comment">*/</span>
 dst_reg-&gt;s32_min_value = dst_reg-&gt;umin_value;
 dst_reg-&gt;s32_max_value = dst_reg-&gt;umax_value;</code></pre>
-
 <p>64-bit range&#xB97C; 32-bit range&#xB85C; casting &#xD558;&#xB294; <code>scalar32_min_max_or()</code>&#xC758; &#xCF54;&#xB4DC; &#xBD80;&#xBD84;&#xC785;&#xB2C8;&#xB2E4;. Verifier&#xB294; <code>s32_min_value</code>&#xC640; <code>s32_max_value</code>&#xB97C; &#xC774;&#xC6A9;&#xD574; range&#xB97C; &#xD2B8;&#xB798;&#xD0B9; &#xD558;&#xB294;&#xB370;, &#xB9CC;&#xC57D; &#xC774; &#xB450; &#xAC12;&#xC774; &#xAC19;&#xB2E4;&#xBA74; &#xB808;&#xC9C0;&#xC2A4;&#xD130; &#xAC12;&#xC744; &#xC0C1;&#xC218;&#xB85C; &#xC778;&#xC2DD;&#xD558;&#xACE0; &#xADF8;&#xC5D0; &#xB530;&#xB77C; &#xCF54;&#xB4DC;&#xAC00; &#xBD84;&#xAE30;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <p>&#xB9CC;&#xC57D; &#xC704; &#xCF54;&#xB4DC;&#xC5D0;&#xC11C; <code>dst_reg-&gt;umin_value</code>&#xAC00; 1&#xC774;&#xACE0;, <code>dst_reg-&gt;umax_value</code>&#xAC00; 25769803777&#xC774;&#xB77C;&#xBA74; <code>dst_reg-&gt;s32_min_value</code>&#xC640; <code>dst_reg-&gt;s32_max_value</code> &#xB458; &#xB2E4; 1&#xB85C; &#xC800;&#xC7A5;&#xB418;&#xC5B4; &#xB808;&#xC9C0;&#xC2A4;&#xD130;&#xB97C; range&#xAC00; &#xC544;&#xB2CC; &#xC0C1;&#xC218;&#xB85C; &#xC778;&#xC2DD;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://www.sosconhistory.net/soscon2018/pdf/day2_1100_3.pdf">https://www.sosconhistory.net/soscon2018/pdf/day2_1100_3.pdf</a></p>
@@ -270,13 +293,13 @@ dst_reg-&gt;s32_max_value = dst_reg-&gt;umax_value;</code></pre>
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
-                  
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   
                   <a class="hover-with-bg" href="/tags/ebpf/">ebpf</a>
                   
