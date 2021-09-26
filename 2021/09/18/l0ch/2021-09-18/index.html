@@ -34,6 +34,7 @@
 	&lt;span class=&#34;hljs-built_in&#34;&gt;memcpy&lt;/span&gt;(htx_get_blk_ptr(htx, blk)  + name.len, value.ptr, value.len);
 	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; blk;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;htx_add_header&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xD5E4;&amp;#xB354; &amp;#xC774;&amp;#xB984; &lt;code&gt;name&lt;/code&gt;&amp;#xACFC; &amp;#xD5E4;&amp;#xB354; &amp;#xAC12; &lt;code&gt;value&lt;/code&gt;&amp;#xB97C; &amp;#xB9E4;&amp;#xAC1C;&amp;#xBCC0;&amp;#xC218;&amp;#xB85C; &amp;#xBC1B;&amp;#xC544; &amp;#xB2E4;&amp;#xC74C; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&amp;#xD5E4;&amp;#xB354; &amp;#xD0C0;&amp;#xC785;(&lt;code&gt;b0010&lt;/code&gt;)&amp;#xC758; &amp;#xC0C8; HTX block&amp;#xC744; &amp;#xCD94;&amp;#xAC00;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/li&gt;
@@ -48,6 +49,7 @@
 &lt;span class=&#34;hljs-comment&#34;&gt;// MyName length : 0x6&lt;/span&gt;
 &lt;span class=&#34;hljs-comment&#34;&gt;// MyValue Length : 0x7 &lt;/span&gt;
 block-&amp;gt;info = (&lt;span class=&#34;hljs-number&#34;&gt;0x2&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;28&lt;/span&gt;) + (&lt;span class=&#34;hljs-number&#34;&gt;0x7&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt;) + &lt;span class=&#34;hljs-number&#34;&gt;0x06&lt;/span&gt; = &lt;span class=&#34;hljs-number&#34;&gt;0x20000706&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xD5E4;&amp;#xB354; &amp;#xC774;&amp;#xB984; &lt;code&gt;name&lt;/code&gt;&amp;#xC758; &amp;#xAE38;&amp;#xC774;&amp;#xB97C; &amp;#xAC80;&amp;#xC99D;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; 255 bytes&amp;#xBCF4;&amp;#xB2E4; &amp;#xAE34; &amp;#xC774;&amp;#xB984;&amp;#xC758; &amp;#xD5E4;&amp;#xB354;&amp;#xB97C; &amp;#xC804;&amp;#xB2EC;&amp;#xD574; &amp;#xC774;&amp;#xD6C4; &amp;#xD30C;&amp;#xC2F1; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xB2E4;&amp;#xB978; &amp;#xD5E4;&amp;#xB354; &amp;#xC774;&amp;#xB984;&amp;#xC73C;&amp;#xB85C; &amp;#xBCF4;&amp;#xC774;&amp;#xAC8C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; HTTP Reuest Smuggling &amp;#xACF5;&amp;#xACA9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
@@ -77,6 +79,7 @@ block-&amp;gt;info = (&lt;span class=&#34;hljs-number&#34;&gt;0x2&lt;/span&gt; &
 	&lt;span class=&#34;hljs-built_in&#34;&gt;memcpy&lt;/span&gt;(htx_get_blk_ptr(htx, blk)  + name.len, value.ptr, value.len);
 	&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; blk;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;htx_add_header&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB294; &amp;#xD5E4;&amp;#xB354; &amp;#xC774;&amp;#xB984; &lt;code&gt;name&lt;/code&gt;&amp;#xACFC; &amp;#xD5E4;&amp;#xB354; &amp;#xAC12; &lt;code&gt;value&lt;/code&gt;&amp;#xB97C; &amp;#xB9E4;&amp;#xAC1C;&amp;#xBCC0;&amp;#xC218;&amp;#xB85C; &amp;#xBC1B;&amp;#xC544; &amp;#xB2E4;&amp;#xC74C; &amp;#xC791;&amp;#xC5C5;&amp;#xC744; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&amp;#xD5E4;&amp;#xB354; &amp;#xD0C0;&amp;#xC785;(&lt;code&gt;b0010&lt;/code&gt;)&amp;#xC758; &amp;#xC0C8; HTX block&amp;#xC744; &amp;#xCD94;&amp;#xAC00;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;/li&gt;
@@ -91,6 +94,7 @@ block-&amp;gt;info = (&lt;span class=&#34;hljs-number&#34;&gt;0x2&lt;/span&gt; &
 &lt;span class=&#34;hljs-comment&#34;&gt;// MyName length : 0x6&lt;/span&gt;
 &lt;span class=&#34;hljs-comment&#34;&gt;// MyValue Length : 0x7 &lt;/span&gt;
 block-&amp;gt;info = (&lt;span class=&#34;hljs-number&#34;&gt;0x2&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;28&lt;/span&gt;) + (&lt;span class=&#34;hljs-number&#34;&gt;0x7&lt;/span&gt; &amp;lt;&amp;lt; &lt;span class=&#34;hljs-number&#34;&gt;8&lt;/span&gt;) + &lt;span class=&#34;hljs-number&#34;&gt;0x06&lt;/span&gt; = &lt;span class=&#34;hljs-number&#34;&gt;0x20000706&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xD5E4;&amp;#xB354; &amp;#xC774;&amp;#xB984; &lt;code&gt;name&lt;/code&gt;&amp;#xC758; &amp;#xAE38;&amp;#xC774;&amp;#xB97C; &amp;#xAC80;&amp;#xC99D;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; 255 bytes&amp;#xBCF4;&amp;#xB2E4; &amp;#xAE34; &amp;#xC774;&amp;#xB984;&amp;#xC758; &amp;#xD5E4;&amp;#xB354;&amp;#xB97C; &amp;#xC804;&amp;#xB2EC;&amp;#xD574; &amp;#xC774;&amp;#xD6C4; &amp;#xD30C;&amp;#xC2F1; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xB2E4;&amp;#xB978; &amp;#xD5E4;&amp;#xB354; &amp;#xC774;&amp;#xB984;&amp;#xC73C;&amp;#xB85C; &amp;#xBCF4;&amp;#xC774;&amp;#xAC8C; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; HTTP Reuest Smuggling &amp;#xACF5;&amp;#xACA9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
   <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
@@ -333,6 +337,7 @@ block-&amp;gt;info = (&lt;span class=&#34;hljs-number&#34;&gt;0x2&lt;/span&gt; &
 	<span class="hljs-built_in">memcpy</span>(htx_get_blk_ptr(htx, blk)  + name.len, value.ptr, value.len);
 	<span class="hljs-keyword">return</span> blk;
 }</code></pre>
+
 <p><code>htx_add_header</code> &#xD568;&#xC218;&#xB294; &#xD5E4;&#xB354; &#xC774;&#xB984; <code>name</code>&#xACFC; &#xD5E4;&#xB354; &#xAC12; <code>value</code>&#xB97C; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xBC1B;&#xC544; &#xB2E4;&#xC74C; &#xC791;&#xC5C5;&#xC744; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;. </p>
 <ol>
 <li>&#xD5E4;&#xB354; &#xD0C0;&#xC785;(<code>b0010</code>)&#xC758; &#xC0C8; HTX block&#xC744; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;. </li>
@@ -347,6 +352,7 @@ block-&amp;gt;info = (&lt;span class=&#34;hljs-number&#34;&gt;0x2&lt;/span&gt; &
 <span class="hljs-comment">// MyName length : 0x6</span>
 <span class="hljs-comment">// MyValue Length : 0x7 </span>
 block-&gt;info = (<span class="hljs-number">0x2</span> &lt;&lt; <span class="hljs-number">28</span>) + (<span class="hljs-number">0x7</span> &lt;&lt; <span class="hljs-number">8</span>) + <span class="hljs-number">0x06</span> = <span class="hljs-number">0x20000706</span></code></pre>
+
 <p>&#xC774; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xD5E4;&#xB354; &#xC774;&#xB984; <code>name</code>&#xC758; &#xAE38;&#xC774;&#xB97C; &#xAC80;&#xC99D;&#xD558;&#xC9C0; &#xC54A;&#xC544; 255 bytes&#xBCF4;&#xB2E4; &#xAE34; &#xC774;&#xB984;&#xC758; &#xD5E4;&#xB354;&#xB97C; &#xC804;&#xB2EC;&#xD574; &#xC774;&#xD6C4; &#xD30C;&#xC2F1; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xB2E4;&#xB978; &#xD5E4;&#xB354; &#xC774;&#xB984;&#xC73C;&#xB85C; &#xBCF4;&#xC774;&#xAC8C; &#xD560; &#xC218; &#xC788;&#xC5B4; HTTP Reuest Smuggling &#xACF5;&#xACA9;&#xC774; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 
             </div>

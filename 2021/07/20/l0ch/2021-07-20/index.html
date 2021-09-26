@@ -48,6 +48,7 @@
 &lt;span class=&#34;hljs-number&#34;&gt;26&lt;/span&gt;		*size += off;
 &lt;span class=&#34;hljs-number&#34;&gt;27&lt;/span&gt;		*dstptr += tsize;
 &lt;span class=&#34;hljs-number&#34;&gt;28&lt;/span&gt;	}&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;line 16&amp;#xC5D0;&amp;#xC11C; &amp;#xC815;&amp;#xB82C;&amp;#xB41C; &lt;code&gt;targetsize&lt;/code&gt;&amp;#xC758; &amp;#xCC28;&amp;#xC774;&amp;#xB97C; &amp;#xACC4;&amp;#xC0B0;&amp;#xD55C; &amp;#xB4A4; line 18&amp;#xC758; &lt;code&gt;memset()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xACC4;&amp;#xC0B0;&amp;#xB41C; &amp;#xCC28;&amp;#xC774;&amp;#xB9CC;&amp;#xD07C; NULL padding&amp;#xC744; &amp;#xCD94;&amp;#xAC00;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7EC;&amp;#xB098; &lt;code&gt;target-&amp;gt;targetsize&lt;/code&gt; &amp;#xAC00; &amp;#xACE0;&amp;#xB824;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &amp;#xD06C;&amp;#xAE30;&amp;#xB97C; &amp;#xB118;&amp;#xC5B4; &amp;#xC778;&amp;#xC811;&amp;#xD55C; &amp;#xAC1D;&amp;#xCCB4;&amp;#xC5D0; NULL&amp;#xC744; &amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xC81C;&amp;#xD55C;&amp;#xB41C; OOB write&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD558;&amp;#xBA70; &amp;#xC774;&amp;#xB294; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xC774;&amp;#xC804;&amp;#xC5D0; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; CVE-2016-3134/CVE-2016-4997&amp;#xC640; &amp;#xC720;&amp;#xC0AC;&amp;#xD55C; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC54C;&amp;#xB824;&amp;#xC84C;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
@@ -92,6 +93,7 @@
 &lt;span class=&#34;hljs-number&#34;&gt;26&lt;/span&gt;		*size += off;
 &lt;span class=&#34;hljs-number&#34;&gt;27&lt;/span&gt;		*dstptr += tsize;
 &lt;span class=&#34;hljs-number&#34;&gt;28&lt;/span&gt;	}&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;line 16&amp;#xC5D0;&amp;#xC11C; &amp;#xC815;&amp;#xB82C;&amp;#xB41C; &lt;code&gt;targetsize&lt;/code&gt;&amp;#xC758; &amp;#xCC28;&amp;#xC774;&amp;#xB97C; &amp;#xACC4;&amp;#xC0B0;&amp;#xD55C; &amp;#xB4A4; line 18&amp;#xC758; &lt;code&gt;memset()&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xACC4;&amp;#xC0B0;&amp;#xB41C; &amp;#xCC28;&amp;#xC774;&amp;#xB9CC;&amp;#xD07C; NULL padding&amp;#xC744; &amp;#xCD94;&amp;#xAC00;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7EC;&amp;#xB098; &lt;code&gt;target-&amp;gt;targetsize&lt;/code&gt; &amp;#xAC00; &amp;#xACE0;&amp;#xB824;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC544; &amp;#xD560;&amp;#xB2F9;&amp;#xB41C; &amp;#xD06C;&amp;#xAE30;&amp;#xB97C; &amp;#xB118;&amp;#xC5B4; &amp;#xC778;&amp;#xC811;&amp;#xD55C; &amp;#xAC1D;&amp;#xCCB4;&amp;#xC5D0; NULL&amp;#xC744; &amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xB294; &amp;#xC81C;&amp;#xD55C;&amp;#xB41C; OOB write&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD558;&amp;#xBA70; &amp;#xC774;&amp;#xB294; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xC774;&amp;#xC804;&amp;#xC5D0; &amp;#xBC1C;&amp;#xACAC;&amp;#xB41C; CVE-2016-3134/CVE-2016-4997&amp;#xC640; &amp;#xC720;&amp;#xC0AC;&amp;#xD55C; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC54C;&amp;#xB824;&amp;#xC84C;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
@@ -349,6 +351,7 @@
 <span class="hljs-number">26</span>		*size += off;
 <span class="hljs-number">27</span>		*dstptr += tsize;
 <span class="hljs-number">28</span>	}</code></pre>
+
 <p>line 16&#xC5D0;&#xC11C; &#xC815;&#xB82C;&#xB41C; <code>targetsize</code>&#xC758; &#xCC28;&#xC774;&#xB97C; &#xACC4;&#xC0B0;&#xD55C; &#xB4A4; line 18&#xC758; <code>memset()</code> &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xACC4;&#xC0B0;&#xB41C; &#xCC28;&#xC774;&#xB9CC;&#xD07C; NULL padding&#xC744; &#xCD94;&#xAC00;&#xD569;&#xB2C8;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; <code>target-&gt;targetsize</code> &#xAC00; &#xACE0;&#xB824;&#xB418;&#xC9C0; &#xC54A;&#xC544; &#xD560;&#xB2F9;&#xB41C; &#xD06C;&#xAE30;&#xB97C; &#xB118;&#xC5B4; &#xC778;&#xC811;&#xD55C; &#xAC1D;&#xCCB4;&#xC5D0; NULL&#xC744; &#xC4F8; &#xC218; &#xC788;&#xB294; &#xC81C;&#xD55C;&#xB41C; OOB write&#xAC00; &#xAC00;&#xB2A5;&#xD558;&#xBA70; &#xC774;&#xB294; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC73C;&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xC774;&#xC804;&#xC5D0; &#xBC1C;&#xACAC;&#xB41C; CVE-2016-3134/CVE-2016-4997&#xC640; &#xC720;&#xC0AC;&#xD55C; &#xAC83;&#xC73C;&#xB85C; &#xC54C;&#xB824;&#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
@@ -372,9 +375,9 @@
                   
                   <a class="hover-with-bg" href="/tags/oob/">oob</a>
                   
-                  <a class="hover-with-bg" href="/tags/linux/">linux</a>
-                  
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/linux/">linux</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

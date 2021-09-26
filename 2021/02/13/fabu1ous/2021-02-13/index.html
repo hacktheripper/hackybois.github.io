@@ -32,6 +32,7 @@
   response.Headers.Location = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; Uri(redirect);
   &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; response;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;EPiServer.Find.UI.Controllers.ClickController.Index()&lt;/code&gt; &amp;#xBA54;&amp;#xC18C;&amp;#xB4DC;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;_t_redirect&lt;/code&gt;&amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xC758; &amp;#xAC12;&amp;#xC774; Location header&amp;#xC778; 301 redirect reponse&amp;#xB97C; &amp;#xB9AC;&amp;#xD134;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;h2 id=&#34;PoC&#34;&gt;&lt;a href=&#34;#PoC&#34; class=&#34;headerlink&#34; title=&#34;PoC&#34;&gt;&lt;/a&gt;&lt;strong&gt;PoC&lt;/strong&gt;&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;hljs awk&#34;&gt;http:&lt;span class=&#34;hljs-regexp&#34;&gt;//&lt;/span&gt;{vulnerable}&lt;span class=&#34;hljs-regexp&#34;&gt;/find_v2/&lt;/span&gt;_click?_t_id=&amp;amp;_t_q=&amp;amp;_t_hit.id=&amp;amp;_t_redirect=https:/hackyboiz.github.io&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
@@ -59,6 +60,7 @@
   response.Headers.Location = &lt;span class=&#34;hljs-keyword&#34;&gt;new&lt;/span&gt; Uri(redirect);
   &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; response;
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;EPiServer.Find.UI.Controllers.ClickController.Index()&lt;/code&gt; &amp;#xBA54;&amp;#xC18C;&amp;#xB4DC;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;_t_redirect&lt;/code&gt;&amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xC758; &amp;#xAC12;&amp;#xC774; Location header&amp;#xC778; 301 redirect reponse&amp;#xB97C; &amp;#xB9AC;&amp;#xD134;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;h2 id=&#34;PoC&#34;&gt;&lt;a href=&#34;#PoC&#34; class=&#34;headerlink&#34; title=&#34;PoC&#34;&gt;&lt;/a&gt;&lt;strong&gt;PoC&lt;/strong&gt;&lt;/h2&gt;&lt;pre&gt;&lt;code class=&#34;hljs awk&#34;&gt;http:&lt;span class=&#34;hljs-regexp&#34;&gt;//&lt;/span&gt;{vulnerable}&lt;span class=&#34;hljs-regexp&#34;&gt;/find_v2/&lt;/span&gt;_click?_t_id=&amp;amp;_t_q=&amp;amp;_t_hit.id=&amp;amp;_t_redirect=https:/hackyboiz.github.io&lt;/code&gt;&lt;/pre&gt; - hack &amp; life">
   <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
@@ -299,6 +301,7 @@
   response.Headers.Location = <span class="hljs-keyword">new</span> Uri(redirect);
   <span class="hljs-keyword">return</span> response;
 }</code></pre>
+
 <p><code>EPiServer.Find.UI.Controllers.ClickController.Index()</code> &#xBA54;&#xC18C;&#xB4DC;&#xC758; &#xCF54;&#xB4DC;&#xC785;&#xB2C8;&#xB2E4;. <code>_t_redirect</code>&#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xC758; &#xAC12;&#xC774; Location header&#xC778; 301 redirect reponse&#xB97C; &#xB9AC;&#xD134;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <h2 id="PoC"><a href="#PoC" class="headerlink" title="PoC"></a><strong>PoC</strong></h2><pre><code class="hljs awk">http:<span class="hljs-regexp">//</span>{vulnerable}<span class="hljs-regexp">/find_v2/</span>_click?_t_id=&amp;_t_q=&amp;_t_hit.id=&amp;_t_redirect=https:/hackyboiz.github.io</code></pre>
             </div>

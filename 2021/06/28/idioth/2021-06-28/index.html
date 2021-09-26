@@ -28,6 +28,7 @@
 &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
     &lt;span class=&#34;hljs-built_in&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[-] No permission to write the shellcode.&amp;quot;&lt;/span&gt;);
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;img src=&#34;https://xret2pwn.github.io/assets/img/posts/Process_Injection/cpp_write_the_shellcode_executed.png&#34; alt=&#34;screenshot_4&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&amp;#xC131;&amp;#xACF5;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; shellcode&amp;#xAC00; &amp;#xC791;&amp;#xC131;&amp;#xB428;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8; &amp;#xD6C4; &amp;#xD574;&amp;#xB2F9; &amp;#xC601;&amp;#xC5ED; (non-executable allocation)&amp;#xC5D0; &lt;code&gt;PAGE_READONLY&lt;/code&gt; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xBD80;&amp;#xC5EC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; DEP (Data Execution Prevention) &amp;#xBCF4;&amp;#xD638; &amp;#xAE30;&amp;#xBC95;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0;&amp;#xC11C; &amp;#xC9C1;&amp;#xC811; shellcode&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; DEP&amp;#xAC00; &amp;#xAC78;&amp;#xB824;&amp;#xC788;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xCC3E;&amp;#xC544; &amp;#xD574;&amp;#xB2F9; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC5D0; shellcode&amp;#xB97C; injection &amp;#xD558;&amp;#xBA74; &amp;#xC77D;&amp;#xAE30;/&amp;#xC4F0;&amp;#xAE30; &amp;#xAD8C;&amp;#xD55C; &amp;#xC5C6;&amp;#xC774; shellcode&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;POC&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
@@ -71,6 +72,7 @@
 
     &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
 }&lt;/code&gt;&lt;/pre&gt;
+
  - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
   <meta name="keywords" content>
@@ -93,6 +95,7 @@
 &lt;span class=&#34;hljs-keyword&#34;&gt;else&lt;/span&gt; {
     &lt;span class=&#34;hljs-built_in&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;[-] No permission to write the shellcode.&amp;quot;&lt;/span&gt;);
 }&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;img src=&#34;https://xret2pwn.github.io/assets/img/posts/Process_Injection/cpp_write_the_shellcode_executed.png&#34; alt=&#34;screenshot_4&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&amp;#xC131;&amp;#xACF5;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; shellcode&amp;#xAC00; &amp;#xC791;&amp;#xC131;&amp;#xB428;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xADF8; &amp;#xD6C4; &amp;#xD574;&amp;#xB2F9; &amp;#xC601;&amp;#xC5ED; (non-executable allocation)&amp;#xC5D0; &lt;code&gt;PAGE_READONLY&lt;/code&gt; &amp;#xAD8C;&amp;#xD55C;&amp;#xC744; &amp;#xBD80;&amp;#xC5EC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xD558;&amp;#xC9C0;&amp;#xB9CC; DEP (Data Execution Prevention) &amp;#xBCF4;&amp;#xD638; &amp;#xAE30;&amp;#xBC95;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xC5D0;&amp;#xC11C; &amp;#xC9C1;&amp;#xC811; shellcode&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; DEP&amp;#xAC00; &amp;#xAC78;&amp;#xB824;&amp;#xC788;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xCC3E;&amp;#xC544; &amp;#xD574;&amp;#xB2F9; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC5D0; shellcode&amp;#xB97C; injection &amp;#xD558;&amp;#xBA74; &amp;#xC77D;&amp;#xAE30;/&amp;#xC4F0;&amp;#xAE30; &amp;#xAD8C;&amp;#xD55C; &amp;#xC5C6;&amp;#xC774; shellcode&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;POC&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
@@ -136,6 +139,7 @@
 
     &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;;
 }&lt;/code&gt;&lt;/pre&gt;
+
  - hack &amp; life">
   <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
   <meta property="og:url" content="https://hackyboiz.github.io/">
@@ -371,6 +375,7 @@
 <span class="hljs-keyword">else</span> {
     <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;[-] No permission to write the shellcode.&quot;</span>);
 }</code></pre>
+
 <p><img src="https://xret2pwn.github.io/assets/img/posts/Process_Injection/cpp_write_the_shellcode_executed.png" srcset="/img/loading.gif" alt="screenshot_4"></p>
 <p>&#xC131;&#xACF5;&#xC801;&#xC73C;&#xB85C; shellcode&#xAC00; &#xC791;&#xC131;&#xB428;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xADF8; &#xD6C4; &#xD574;&#xB2F9; &#xC601;&#xC5ED; (non-executable allocation)&#xC5D0; <code>PAGE_READONLY</code> &#xAD8C;&#xD55C;&#xC744; &#xBD80;&#xC5EC;&#xD569;&#xB2C8;&#xB2E4;. &#xD558;&#xC9C0;&#xB9CC; DEP (Data Execution Prevention) &#xBCF4;&#xD638; &#xAE30;&#xBC95;&#xC73C;&#xB85C; &#xC778;&#xD574; &#xBA54;&#xBAA8;&#xB9AC;&#xC5D0;&#xC11C; &#xC9C1;&#xC811; shellcode&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC5C6;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; DEP&#xAC00; &#xAC78;&#xB824;&#xC788;&#xC9C0; &#xC54A;&#xC740; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xCC3E;&#xC544; &#xD574;&#xB2F9; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC5D0; shellcode&#xB97C; injection &#xD558;&#xBA74; &#xC77D;&#xAE30;/&#xC4F0;&#xAE30; &#xAD8C;&#xD55C; &#xC5C6;&#xC774; shellcode&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>POC&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
@@ -414,6 +419,7 @@
 
     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 }</code></pre>
+
 
             </div>
             <hr>

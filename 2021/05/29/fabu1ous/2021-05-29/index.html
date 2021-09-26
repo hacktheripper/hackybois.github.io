@@ -22,6 +22,7 @@
     &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (__reg64_bound_u32(reg-&amp;gt;umax_value))     
         reg-&amp;gt;u32_max_value = (u32)reg-&amp;gt;umax_value;
 ...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC704;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xCF54;&amp;#xB4DC; &amp;#xBD80;&amp;#xBD84;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAE30;&amp;#xC874; eBPF &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xB4E4;&amp;#xACFC; &amp;#xB9C8;&amp;#xCC2C;&amp;#xAC00;&amp;#xC9C0;&amp;#xB85C; CVE-2021-31440 &amp;#xB610;&amp;#xD55C; 64 bit range&amp;#xC758; &amp;#xD558;&amp;#xC704; 32 &amp;#xBE44;&amp;#xD2B8;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; 32 bit range&amp;#xB97C; &amp;#xB3C4;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;umin_value&lt;/code&gt;&amp;#xAC00; 1, &lt;code&gt;umax_value&lt;/code&gt; &amp;#xAC00; 1&amp;lt;&amp;lt;32&amp;#xC774;&amp;#xB77C; &amp;#xD560; &amp;#xB54C; &lt;code&gt;u32_min_value&lt;/code&gt;&amp;#xB294; 1, &lt;code&gt;u32_max_value&lt;/code&gt;&amp;#xB294; 0&amp;#xC73C;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB418;&amp;#xACE0; &amp;#xC2E4;&amp;#xC81C; runtime range&amp;#xC640; &amp;#xB2E4;&amp;#xB978; &amp;#xAC12;&amp;#xC744; Verifier&amp;#xC5D0;&amp;#xAC8C; &amp;#xC804;&amp;#xB2EC;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;Verifier&amp;#xB294; &amp;#xC798;&amp;#xBABB;&amp;#xB41C; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130; &amp;#xD5C8;&amp;#xC6A9;&amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xAC16;&amp;#xAC8C; &amp;#xB418;&amp;#xACE0; &amp;#xC774;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; out-of-bound read/write access&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD574; &amp;#xB85C;&amp;#xCEEC; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
@@ -40,6 +41,7 @@
     &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (__reg64_bound_u32(reg-&amp;gt;umax_value))     
         reg-&amp;gt;u32_max_value = (u32)reg-&amp;gt;umax_value;
 ...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC704;&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xD55C; &amp;#xCF54;&amp;#xB4DC; &amp;#xBD80;&amp;#xBD84;&amp;#xC758; &amp;#xC77C;&amp;#xBD80;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xAE30;&amp;#xC874; eBPF &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xB4E4;&amp;#xACFC; &amp;#xB9C8;&amp;#xCC2C;&amp;#xAC00;&amp;#xC9C0;&amp;#xB85C; CVE-2021-31440 &amp;#xB610;&amp;#xD55C; 64 bit range&amp;#xC758; &amp;#xD558;&amp;#xC704; 32 &amp;#xBE44;&amp;#xD2B8;&amp;#xB85C;&amp;#xBD80;&amp;#xD130; 32 bit range&amp;#xB97C; &amp;#xB3C4;&amp;#xCD9C;&amp;#xD558;&amp;#xB294; &amp;#xACFC;&amp;#xC815;&amp;#xC5D0;&amp;#xC11C; &amp;#xBC84;&amp;#xADF8;&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;umin_value&lt;/code&gt;&amp;#xAC00; 1, &lt;code&gt;umax_value&lt;/code&gt; &amp;#xAC00; 1&amp;lt;&amp;lt;32&amp;#xC774;&amp;#xB77C; &amp;#xD560; &amp;#xB54C; &lt;code&gt;u32_min_value&lt;/code&gt;&amp;#xB294; 1, &lt;code&gt;u32_max_value&lt;/code&gt;&amp;#xB294; 0&amp;#xC73C;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB418;&amp;#xACE0; &amp;#xC2E4;&amp;#xC81C; runtime range&amp;#xC640; &amp;#xB2E4;&amp;#xB978; &amp;#xAC12;&amp;#xC744; Verifier&amp;#xC5D0;&amp;#xAC8C; &amp;#xC804;&amp;#xB2EC;&amp;#xD558;&amp;#xAC8C; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;Verifier&amp;#xB294; &amp;#xC798;&amp;#xBABB;&amp;#xB41C; &amp;#xB808;&amp;#xC9C0;&amp;#xC2A4;&amp;#xD130; &amp;#xD5C8;&amp;#xC6A9;&amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xAC16;&amp;#xAC8C; &amp;#xB418;&amp;#xACE0; &amp;#xC774;&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xD574;&amp;#xCEE4;&amp;#xB294; out-of-bound read/write access&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD574; &amp;#xB85C;&amp;#xCEEC; &amp;#xAD8C;&amp;#xD55C; &amp;#xC0C1;&amp;#xC2B9;&amp;#xC744; &amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
@@ -271,6 +273,7 @@
     <span class="hljs-keyword">if</span> (__reg64_bound_u32(reg-&gt;umax_value))     
         reg-&gt;u32_max_value = (u32)reg-&gt;umax_value;
 ...</code></pre>
+
 <p>&#xC704;&#xB294; &#xCDE8;&#xC57D;&#xD55C; &#xCF54;&#xB4DC; &#xBD80;&#xBD84;&#xC758; &#xC77C;&#xBD80;&#xC785;&#xB2C8;&#xB2E4;. &#xAE30;&#xC874; eBPF &#xCDE8;&#xC57D;&#xC810;&#xB4E4;&#xACFC; &#xB9C8;&#xCC2C;&#xAC00;&#xC9C0;&#xB85C; CVE-2021-31440 &#xB610;&#xD55C; 64 bit range&#xC758; &#xD558;&#xC704; 32 &#xBE44;&#xD2B8;&#xB85C;&#xBD80;&#xD130; 32 bit range&#xB97C; &#xB3C4;&#xCD9C;&#xD558;&#xB294; &#xACFC;&#xC815;&#xC5D0;&#xC11C; &#xBC84;&#xADF8;&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. <code>umin_value</code>&#xAC00; 1, <code>umax_value</code> &#xAC00; 1&lt;&lt;32&#xC774;&#xB77C; &#xD560; &#xB54C; <code>u32_min_value</code>&#xB294; 1, <code>u32_max_value</code>&#xB294; 0&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xACE0; &#xC2E4;&#xC81C; runtime range&#xC640; &#xB2E4;&#xB978; &#xAC12;&#xC744; Verifier&#xC5D0;&#xAC8C; &#xC804;&#xB2EC;&#xD558;&#xAC8C; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <p>Verifier&#xB294; &#xC798;&#xBABB;&#xB41C; &#xB808;&#xC9C0;&#xC2A4;&#xD130; &#xD5C8;&#xC6A9;&#xBC94;&#xC704;&#xB97C; &#xAC16;&#xAC8C; &#xB418;&#xACE0; &#xC774;&#xB97C; &#xD1B5;&#xD574; &#xD574;&#xCEE4;&#xB294; out-of-bound read/write access&#xAC00; &#xAC00;&#xB2A5;&#xD574; &#xB85C;&#xCEEC; &#xAD8C;&#xD55C; &#xC0C1;&#xC2B9;&#xC744; &#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
@@ -292,11 +295,11 @@
                   
                   <a class="hover-with-bg" href="/tags/oob/">oob</a>
                   
+                  <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
                   <a class="hover-with-bg" href="/tags/linux/">linux</a>
-                  
-                  <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
                   
                   <a class="hover-with-bg" href="/tags/Fabu1ous/">Fabu1ous</a>
                   

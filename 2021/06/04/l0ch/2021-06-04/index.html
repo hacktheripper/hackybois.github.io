@@ -23,6 +23,7 @@
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (msgsz &amp;gt; msghdr-&amp;gt;msg_ts) {
 		msgsz = msghdr-&amp;gt;msg_ts;
 	}&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xD6C4; &amp;#xC544;&amp;#xB798;&amp;#xC758; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB3CC;&amp;#xBA70; &amp;#xCEE4;&amp;#xB110; &lt;code&gt;msgpool&lt;/code&gt;&amp;#xC758; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC720;&amp;#xC800; &amp;#xACF5;&amp;#xAC04;&amp;#xC73C;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;		&lt;span class=&#34;hljs-comment&#34;&gt;// msg.h&lt;/span&gt;
 &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;		&lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;define&lt;/span&gt; MSGSSZ	8		&lt;span class=&#34;hljs-comment&#34;&gt;/* Each segment must be 2^N long */&lt;/span&gt;&lt;/span&gt;
@@ -53,12 +54,13 @@
 &lt;span class=&#34;hljs-number&#34;&gt;27&lt;/span&gt;			SYSV_MSG_SUBSYS_UNLOCK();
 &lt;span class=&#34;hljs-number&#34;&gt;28&lt;/span&gt;			eval = copyout(&amp;amp;msgpool[next * msginfo.msgssz], user_msgp, tlen);
 &lt;span class=&#34;hljs-number&#34;&gt;29&lt;/span&gt;		...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC758; &amp;#xC99D;&amp;#xAC00; &amp;#xAC12;&amp;#xC778; &lt;code&gt;msginfo.msgssz&lt;/code&gt;&amp;#xB294; &lt;code&gt;msginit()&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;#define MSGSSZ 8&lt;/code&gt; &amp;#xB85C; &amp;#xC120;&amp;#xC5B8;&amp;#xB41C; &lt;code&gt;MSGSSZ&lt;/code&gt;&amp;#xB85C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC5B4; &amp;#xD2B9;&amp;#xC815; &amp;#xC870;&amp;#xAC74;&amp;#xC744; &amp;#xB9CC;&amp;#xC871;&amp;#xD558;&amp;#xBA74; &lt;code&gt;8 bytes&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xC720;&amp;#xC800; &amp;#xACF5;&amp;#xAC04;&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xC774;&amp;#xB54C; &amp;#xC694;&amp;#xCCAD;&amp;#xB41C; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; 8&amp;#xC758; &amp;#xBC30;&amp;#xC218;&amp;#xAC00; &amp;#xC544;&amp;#xB2D0; &amp;#xACBD;&amp;#xC6B0; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &lt;code&gt;1~7 bytes&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC00; &amp;#xC720;&amp;#xCD9C;&amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;9 bytes&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &lt;code&gt;SYS_msgsnd_nocancel&lt;/code&gt; syscall&amp;#xC744; &amp;#xBCF4;&amp;#xB0BC; &amp;#xACBD;&amp;#xC6B0; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;msghdr&amp;#x2192;msg_ts&lt;/code&gt;&amp;#xC640; &lt;code&gt;msgsz&lt;/code&gt;&amp;#xAC00; 9&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
 &lt;li&gt;line 16&amp;#xC758; &amp;#xC870;&amp;#xAC74;&amp;#xBB38;&amp;#xC5D0; &amp;#xC758;&amp;#xD574;  &lt;code&gt;tlen&lt;/code&gt;&amp;#xC774; 8&amp;#xC774; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;8 bytes&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB450; &amp;#xBC88; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt; 8 bytes&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB450; &amp;#xBC88; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;16 bytes&lt;/code&gt;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC00; &amp;#xC720;&amp;#xC800; &amp;#xACF5;&amp;#xAC04;&amp;#xC73C;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xB418;&amp;#xC5B4; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &lt;code&gt;7 bytes&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC00; &amp;#xC720;&amp;#xCD9C;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
 &lt;/ol&gt;
  - hack &amp; life">
@@ -78,6 +80,7 @@
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; (msgsz &amp;gt; msghdr-&amp;gt;msg_ts) {
 		msgsz = msghdr-&amp;gt;msg_ts;
 	}&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xD6C4; &amp;#xC544;&amp;#xB798;&amp;#xC758; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB3CC;&amp;#xBA70; &amp;#xCEE4;&amp;#xB110; &lt;code&gt;msgpool&lt;/code&gt;&amp;#xC758; &amp;#xB370;&amp;#xC774;&amp;#xD130;&amp;#xB97C; &amp;#xC720;&amp;#xC800; &amp;#xACF5;&amp;#xAC04;&amp;#xC73C;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;&lt;span class=&#34;hljs-number&#34;&gt;1&lt;/span&gt;		&lt;span class=&#34;hljs-comment&#34;&gt;// msg.h&lt;/span&gt;
 &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;		&lt;span class=&#34;hljs-meta&#34;&gt;#&lt;span class=&#34;hljs-meta-keyword&#34;&gt;define&lt;/span&gt; MSGSSZ	8		&lt;span class=&#34;hljs-comment&#34;&gt;/* Each segment must be 2^N long */&lt;/span&gt;&lt;/span&gt;
@@ -108,12 +111,13 @@
 &lt;span class=&#34;hljs-number&#34;&gt;27&lt;/span&gt;			SYSV_MSG_SUBSYS_UNLOCK();
 &lt;span class=&#34;hljs-number&#34;&gt;28&lt;/span&gt;			eval = copyout(&amp;amp;msgpool[next * msginfo.msgssz], user_msgp, tlen);
 &lt;span class=&#34;hljs-number&#34;&gt;29&lt;/span&gt;		...&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC758; &amp;#xC99D;&amp;#xAC00; &amp;#xAC12;&amp;#xC778; &lt;code&gt;msginfo.msgssz&lt;/code&gt;&amp;#xB294; &lt;code&gt;msginit()&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;#define MSGSSZ 8&lt;/code&gt; &amp;#xB85C; &amp;#xC120;&amp;#xC5B8;&amp;#xB41C; &lt;code&gt;MSGSSZ&lt;/code&gt;&amp;#xB85C; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC5B4; &amp;#xD2B9;&amp;#xC815; &amp;#xC870;&amp;#xAC74;&amp;#xC744; &amp;#xB9CC;&amp;#xC871;&amp;#xD558;&amp;#xBA74; &lt;code&gt;8 bytes&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xB97C; &amp;#xC720;&amp;#xC800; &amp;#xACF5;&amp;#xAC04;&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294;&amp;#xB370;, &amp;#xC774;&amp;#xB54C; &amp;#xC694;&amp;#xCCAD;&amp;#xB41C; &amp;#xD06C;&amp;#xAE30;&amp;#xAC00; 8&amp;#xC758; &amp;#xBC30;&amp;#xC218;&amp;#xAC00; &amp;#xC544;&amp;#xB2D0; &amp;#xACBD;&amp;#xC6B0; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &lt;code&gt;1~7 bytes&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC00; &amp;#xC720;&amp;#xCD9C;&amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;9 bytes&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &lt;code&gt;SYS_msgsnd_nocancel&lt;/code&gt; syscall&amp;#xC744; &amp;#xBCF4;&amp;#xB0BC; &amp;#xACBD;&amp;#xC6B0; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xB2E4;&amp;#xC74C;&amp;#xACFC; &amp;#xAC19;&amp;#xC774; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;msghdr&amp;#x2192;msg_ts&lt;/code&gt;&amp;#xC640; &lt;code&gt;msgsz&lt;/code&gt;&amp;#xAC00; 9&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
 &lt;li&gt;line 16&amp;#xC758; &amp;#xC870;&amp;#xAC74;&amp;#xBB38;&amp;#xC5D0; &amp;#xC758;&amp;#xD574;  &lt;code&gt;tlen&lt;/code&gt;&amp;#xC774; 8&amp;#xC774; &amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;8 bytes&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB450; &amp;#xBC88; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt; 8 bytes&lt;/code&gt; &amp;#xB2E8;&amp;#xC704;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xB294; &amp;#xBC18;&amp;#xBCF5;&amp;#xBB38;&amp;#xC744; &amp;#xB450; &amp;#xBC88; &amp;#xC218;&amp;#xD589;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;16 bytes&lt;/code&gt;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC00; &amp;#xC720;&amp;#xC800; &amp;#xACF5;&amp;#xAC04;&amp;#xC73C;&amp;#xB85C; &amp;#xBCF5;&amp;#xC0AC;&amp;#xB418;&amp;#xC5B4; &amp;#xCD08;&amp;#xAE30;&amp;#xD654;&amp;#xB418;&amp;#xC9C0; &amp;#xC54A;&amp;#xC740; &lt;code&gt;7 bytes&lt;/code&gt; &amp;#xD06C;&amp;#xAE30;&amp;#xC758; &amp;#xCEE4;&amp;#xB110; &amp;#xBA54;&amp;#xBAA8;&amp;#xB9AC;&amp;#xAC00; &amp;#xC720;&amp;#xCD9C;&amp;#xB429;&amp;#xB2C8;&amp;#xB2E4;.&lt;/li&gt;
 &lt;/ol&gt;
  - hack &amp; life">
@@ -346,6 +350,7 @@
 <pre><code class="hljs c"><span class="hljs-keyword">if</span> (msgsz &gt; msghdr-&gt;msg_ts) {
 		msgsz = msghdr-&gt;msg_ts;
 	}</code></pre>
+
 <p>&#xC774;&#xD6C4; &#xC544;&#xB798;&#xC758; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB3CC;&#xBA70; &#xCEE4;&#xB110; <code>msgpool</code>&#xC758; &#xB370;&#xC774;&#xD130;&#xB97C; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c"><span class="hljs-number">1</span>		<span class="hljs-comment">// msg.h</span>
 <span class="hljs-number">2</span>		<span class="hljs-meta">#<span class="hljs-meta-keyword">define</span> MSGSSZ	8		<span class="hljs-comment">/* Each segment must be 2^N long */</span></span>
@@ -376,12 +381,13 @@
 <span class="hljs-number">27</span>			SYSV_MSG_SUBSYS_UNLOCK();
 <span class="hljs-number">28</span>			eval = copyout(&amp;msgpool[next * msginfo.msgssz], user_msgp, tlen);
 <span class="hljs-number">29</span>		...</code></pre>
+
 <p>&#xBC18;&#xBCF5;&#xBB38;&#xC758; &#xC99D;&#xAC00; &#xAC12;&#xC778; <code>msginfo.msgssz</code>&#xB294; <code>msginit()</code>&#xC5D0;&#xC11C; <code>#define MSGSSZ 8</code> &#xB85C; &#xC120;&#xC5B8;&#xB41C; <code>MSGSSZ</code>&#xB85C; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC5B4; &#xD2B9;&#xC815; &#xC870;&#xAC74;&#xC744; &#xB9CC;&#xC871;&#xD558;&#xBA74; <code>8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xB97C; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC5D0; &#xBCF5;&#xC0AC;&#xD558;&#xB294;&#xB370;, &#xC774;&#xB54C; &#xC694;&#xCCAD;&#xB41C; &#xD06C;&#xAE30;&#xAC00; 8&#xC758; &#xBC30;&#xC218;&#xAC00; &#xC544;&#xB2D0; &#xACBD;&#xC6B0; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; <code>1~7 bytes</code> &#xD06C;&#xAE30;&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xCD9C;&#xB420; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><code>9 bytes</code> &#xD06C;&#xAE30;&#xC758; <code>SYS_msgsnd_nocancel</code> syscall&#xC744; &#xBCF4;&#xB0BC; &#xACBD;&#xC6B0; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xB2E4;&#xC74C;&#xACFC; &#xAC19;&#xC774; &#xD2B8;&#xB9AC;&#xAC70; &#xB429;&#xB2C8;&#xB2E4;.</p>
 <ol>
 <li><code>msghdr&#x2192;msg_ts</code>&#xC640; <code>msgsz</code>&#xAC00; 9&#xB85C; &#xC124;&#xC815;&#xB429;&#xB2C8;&#xB2E4;.</li>
 <li>line 16&#xC758; &#xC870;&#xAC74;&#xBB38;&#xC5D0; &#xC758;&#xD574;  <code>tlen</code>&#xC774; 8&#xC774; &#xB429;&#xB2C8;&#xB2E4;.</li>
-<li><code>8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB450; &#xBC88; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</li>
+<li><code> 8 bytes</code> &#xB2E8;&#xC704;&#xB85C; &#xBCF5;&#xC0AC;&#xD558;&#xB294; &#xBC18;&#xBCF5;&#xBB38;&#xC744; &#xB450; &#xBC88; &#xC218;&#xD589;&#xD569;&#xB2C8;&#xB2E4;.</li>
 <li><code>16 bytes</code>&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xC800; &#xACF5;&#xAC04;&#xC73C;&#xB85C; &#xBCF5;&#xC0AC;&#xB418;&#xC5B4; &#xCD08;&#xAE30;&#xD654;&#xB418;&#xC9C0; &#xC54A;&#xC740; <code>7 bytes</code> &#xD06C;&#xAE30;&#xC758; &#xCEE4;&#xB110; &#xBA54;&#xBAA8;&#xB9AC;&#xAC00; &#xC720;&#xCD9C;&#xB429;&#xB2C8;&#xB2E4;.</li>
 </ol>
 
@@ -403,9 +409,9 @@
                   
                   <a class="hover-with-bg" href="/tags/cve/">cve</a>
                   
-                  <a class="hover-with-bg" href="/tags/information-disclosure/">information disclosure</a>
-                  
                   <a class="hover-with-bg" href="/tags/kernel/">kernel</a>
+                  
+                  <a class="hover-with-bg" href="/tags/information-disclosure/">information disclosure</a>
                   
                   <a class="hover-with-bg" href="/tags/ios/">ios</a>
                   

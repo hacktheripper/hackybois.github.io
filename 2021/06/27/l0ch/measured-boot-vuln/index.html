@@ -247,6 +247,7 @@ Since the ELAM hive isn&lt;span class=&#34;hljs-number&#34;&gt;&amp;apos;&lt;/sp
 ## Possible solution
 
 Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#34;hljs-keyword&#34;&gt;using&lt;/span&gt; the Windows loader.&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xAD00;&amp;#xB828; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9B0;&amp;#xC0F7;&amp;#xC740; &amp;#xC544;&amp;#xB798;&amp;#xC5D0; &amp;#xCCA8;&amp;#xBD80;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/06/27/l0ch/measured-boot-vuln/Untitled%2013.png&#34; alt=&#34;measured-boot-vuln/Untitled%2013.png&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -271,7 +272,9 @@ Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#
 &lt;blockquote&gt;
 &lt;p&gt;&amp;#xC5ED;&amp;#xC790;:&lt;br&gt;&amp;#xD558;&amp;#xC774;&amp;#xBE0C; &amp;#xB9C8;&amp;#xC6B4;&amp;#xD2B8; &amp;#x2192; &amp;#xD45C;&amp;#xC900; API&amp;#xB85C; &amp;#xBE48; &amp;#xD0A4; &amp;#xC0DD;&amp;#xC131; &amp;#x2192; &amp;#xB9C8;&amp;#xC6B4;&amp;#xD2B8; &amp;#xD574;&amp;#xC81C; &amp;#x2192; &amp;#xD558;&amp;#xC774;&amp;#xBE0C; &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD0A4; &amp;#xC21C;&amp;#xC11C; &amp;#xBCC0;&amp;#xACBD;&lt;br&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xB098;&amp;#xD0C0;&amp;#xB0BC; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&amp;#xC704; &amp;#xC124;&amp;#xBA85;&amp;#xC758; &amp;#xC608;&amp;#xC2DC;&amp;#xB294; &amp;#xC544;&amp;#xB798; ELAM &amp;#xD558;&amp;#xC774;&amp;#xBE0C;&amp;#xC758; &amp;#xB808;&amp;#xC774;&amp;#xC544;&amp;#xC6C3;&amp;#xC744; &amp;#xC0B4;&amp;#xD3B4;&amp;#xBCF4;&amp;#xBA74; &amp;#xC774;&amp;#xD574;&amp;#xAC00; &amp;#xC27D;&amp;#xB2E4;.&lt;/p&gt;
+&lt;br&gt;
+&amp;#xC704; &amp;#xC124;&amp;#xBA85;&amp;#xC758; &amp;#xC608;&amp;#xC2DC;&amp;#xB294; &amp;#xC544;&amp;#xB798; ELAM &amp;#xD558;&amp;#xC774;&amp;#xBE0C;&amp;#xC758; &amp;#xB808;&amp;#xC774;&amp;#xC544;&amp;#xC6C3;&amp;#xC744; &amp;#xC0B4;&amp;#xD3B4;&amp;#xBCF4;&amp;#xBA74; &amp;#xC774;&amp;#xD574;&amp;#xAC00; &amp;#xC27D;&amp;#xB2E4;.
+
 &lt;ol&gt;
 &lt;li&gt;Key: Windows Defender&lt;ul&gt;
 &lt;li&gt;Value: Measured&lt;/li&gt;
@@ -299,8 +302,11 @@ Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#
 &lt;blockquote&gt;
 &lt;p&gt;&amp;#xD558;&amp;#xC704; &amp;#xD0A4; &amp;#xBAA9;&amp;#xB85D;&amp;#xC5D0;&amp;#xC11C; &amp;#xB450; &amp;#xC694;&amp;#xC18C;&amp;#xC758; &amp;#xC21C;&amp;#xC11C;&amp;#xB97C; &amp;#xBC18;&amp;#xB300;&amp;#xB85C;&amp;#xD558;&amp;#xBA74; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC774; &amp;#xAE68;&amp;#xC84C;&amp;#xB2E4;. &lt;/p&gt;
+&lt;br&gt;
+&amp;#xC774;&amp;#xC81C; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC774; &amp;#xAE68;&amp;#xC84C;&amp;#xB2E4;. 
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;Upcase(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;zz&amp;quot;&lt;/span&gt;) &amp;gt; Upcase(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;Windows Defender&amp;quot;&lt;/span&gt;)&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Windows Kernel&amp;#xC740; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC774; &amp;#xAE68;&amp;#xC84C;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; ELAM &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC5D0;&amp;#xC11C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xAE30; &amp;#xC804;&amp;#xC5D0; &amp;#x201C;Windows Defender&amp;#x201D;&amp;#xD0A4;&amp;#xB97C; &amp;#xC0AD;&amp;#xC81C;&amp;#xD55C;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7EC;&amp;#xB098; Windows Loader&amp;#xB294; &amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xC190;&amp;#xC0C1;&amp;#xC744; &amp;#xC778;&amp;#xC2DD;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xACE0;, &amp;#xCE21;&amp;#xC815;&amp;#xD560; &amp;#xAC12;&amp;#xC774; &amp;#xC5C6;&amp;#xB294; &amp;#x201C;zz&amp;#x201D;&amp;#xD0A4;&amp;#xB97C; &amp;#xAC74;&amp;#xB108;&amp;#xB6F0;&amp;#xC5B4; &amp;#xC774;&amp;#xBBF8; &amp;#xC0AD;&amp;#xC81C;&amp;#xB41C; &amp;#x201C;Windows Defender&amp;#x201D; &amp;#xD0A4;&amp;#xC5D0; &amp;#xC788;&amp;#xB294; &amp;#x201C;Measured&amp;#x201D;&amp;#xAC12;&amp;#xC744; &amp;#xCE21;&amp;#xC815;&amp;#xD55C;&amp;#xB2E4;. &lt;/p&gt;
 &lt;p&gt;&amp;#xACB0;&amp;#xACFC;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xB294; ELAM blob&amp;#xC774; ELAM &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xAE30; &amp;#xC804;&amp;#xC5D0; &amp;#xC0AD;&amp;#xC81C;&amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xC74C;&amp;#xC744; &amp;#xBCF4;&amp;#xC5EC;&amp;#xC900;&amp;#xB2E4;.&lt;/p&gt;
 &lt;h3 id=&#34;Root-cause&#34;&gt;&lt;a href=&#34;#Root-cause&#34; class=&#34;headerlink&#34; title=&#34;Root cause&#34;&gt;&lt;/a&gt;Root cause&lt;/h3&gt;&lt;p&gt;&amp;#xC774; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; Windows Loader&amp;#xAC00; &amp;#xD558;&amp;#xC704; &amp;#xD0A4; &amp;#xBAA9;&amp;#xB85D;&amp;#xC5D0; &amp;#xC788;&amp;#xB294; &amp;#xC694;&amp;#xC18C;&amp;#xC758; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD55C;&amp;#xB2E4;.&lt;/p&gt;
@@ -323,6 +329,7 @@ Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#
 &lt;/ol&gt;
 &lt;p&gt;Windows Loader&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xC778;&amp;#xC2DD;&amp;#xD55C;&amp;#xB2E4;. Loader&amp;#xB294; &amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xC815;&amp;#xB82C;&amp;#xC744; &amp;#xC190;&amp;#xC0C1;&amp;#xB41C; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xC2DD;&amp;#xD574; &amp;#xBD80;&amp;#xD305; &amp;#xD6C4; &amp;#x201C;&amp;#x42F;2&amp;#x201D;&amp;#xD0A4;&amp;#xAC00; &amp;#xC0AD;&amp;#xC81C;&amp;#xB418;&amp;#xB294; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;Upcase (&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x44F;1&amp;quot;&lt;/span&gt;)&amp;gt; Upcase (&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x42F;2&amp;quot;&lt;/span&gt;), Upcase (&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x44F;1&amp;quot;&lt;/span&gt;) = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x44F;1&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Microsoft&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD588;&amp;#xC9C0;&amp;#xB9CC; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xBC97;&amp;#xC5B4;&amp;#xB0AC;&amp;#xB2E4;&amp;#xB294; &amp;#xC774;&amp;#xC720;&amp;#xB85C; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC558;&amp;#xB2E4;.&lt;/p&gt;
 &lt;h3 id=&#34;Original-vulnerability-report-1&#34;&gt;&lt;a href=&#34;#Original-vulnerability-report-1&#34; class=&#34;headerlink&#34; title=&#34;Original vulnerability report&#34;&gt;&lt;/a&gt;Original vulnerability report&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;# Summary
 
@@ -365,6 +372,7 @@ This means that the &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;Windows De
 ## Possible solutions
 
 Either check the lexicographical order of subkeys in the Windows loader (which requires you to pick the NLS tables first) or measure empty keys together with non-empty ones.&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xAD00;&amp;#xB828; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9B0;&amp;#xC0F7;&amp;#xC740; &amp;#xC544;&amp;#xB798;&amp;#xC5D0; &amp;#xCCA8;&amp;#xBD80;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/06/27/l0ch/measured-boot-vuln/Untitled%2018.png&#34; alt=&#34;measured-boot-vuln/Untitled%2018.png&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -640,6 +648,7 @@ Since the ELAM hive isn&lt;span class=&#34;hljs-number&#34;&gt;&amp;apos;&lt;/sp
 ## Possible solution
 
 Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#34;hljs-keyword&#34;&gt;using&lt;/span&gt; the Windows loader.&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xAD00;&amp;#xB828; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9B0;&amp;#xC0F7;&amp;#xC740; &amp;#xC544;&amp;#xB798;&amp;#xC5D0; &amp;#xCCA8;&amp;#xBD80;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/06/27/l0ch/measured-boot-vuln/Untitled%2013.png&#34; alt=&#34;measured-boot-vuln/Untitled%2013.png&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -664,7 +673,9 @@ Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#
 &lt;blockquote&gt;
 &lt;p&gt;&amp;#xC5ED;&amp;#xC790;:&lt;br&gt;&amp;#xD558;&amp;#xC774;&amp;#xBE0C; &amp;#xB9C8;&amp;#xC6B4;&amp;#xD2B8; &amp;#x2192; &amp;#xD45C;&amp;#xC900; API&amp;#xB85C; &amp;#xBE48; &amp;#xD0A4; &amp;#xC0DD;&amp;#xC131; &amp;#x2192; &amp;#xB9C8;&amp;#xC6B4;&amp;#xD2B8; &amp;#xD574;&amp;#xC81C; &amp;#x2192; &amp;#xD558;&amp;#xC774;&amp;#xBE0C; &amp;#xD30C;&amp;#xC77C;&amp;#xC758; &amp;#xD0A4; &amp;#xC21C;&amp;#xC11C; &amp;#xBCC0;&amp;#xACBD;&lt;br&gt;&amp;#xC73C;&amp;#xB85C; &amp;#xB098;&amp;#xD0C0;&amp;#xB0BC; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&amp;#xC704; &amp;#xC124;&amp;#xBA85;&amp;#xC758; &amp;#xC608;&amp;#xC2DC;&amp;#xB294; &amp;#xC544;&amp;#xB798; ELAM &amp;#xD558;&amp;#xC774;&amp;#xBE0C;&amp;#xC758; &amp;#xB808;&amp;#xC774;&amp;#xC544;&amp;#xC6C3;&amp;#xC744; &amp;#xC0B4;&amp;#xD3B4;&amp;#xBCF4;&amp;#xBA74; &amp;#xC774;&amp;#xD574;&amp;#xAC00; &amp;#xC27D;&amp;#xB2E4;.&lt;/p&gt;
+&lt;br&gt;
+&amp;#xC704; &amp;#xC124;&amp;#xBA85;&amp;#xC758; &amp;#xC608;&amp;#xC2DC;&amp;#xB294; &amp;#xC544;&amp;#xB798; ELAM &amp;#xD558;&amp;#xC774;&amp;#xBE0C;&amp;#xC758; &amp;#xB808;&amp;#xC774;&amp;#xC544;&amp;#xC6C3;&amp;#xC744; &amp;#xC0B4;&amp;#xD3B4;&amp;#xBCF4;&amp;#xBA74; &amp;#xC774;&amp;#xD574;&amp;#xAC00; &amp;#xC27D;&amp;#xB2E4;.
+
 &lt;ol&gt;
 &lt;li&gt;Key: Windows Defender&lt;ul&gt;
 &lt;li&gt;Value: Measured&lt;/li&gt;
@@ -692,8 +703,11 @@ Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#
 &lt;blockquote&gt;
 &lt;p&gt;&amp;#xD558;&amp;#xC704; &amp;#xD0A4; &amp;#xBAA9;&amp;#xB85D;&amp;#xC5D0;&amp;#xC11C; &amp;#xB450; &amp;#xC694;&amp;#xC18C;&amp;#xC758; &amp;#xC21C;&amp;#xC11C;&amp;#xB97C; &amp;#xBC18;&amp;#xB300;&amp;#xB85C;&amp;#xD558;&amp;#xBA74; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD2B8;&amp;#xB9AC;&amp;#xAC70;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&amp;#xC774;&amp;#xC81C; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC774; &amp;#xAE68;&amp;#xC84C;&amp;#xB2E4;. &lt;/p&gt;
+&lt;br&gt;
+&amp;#xC774;&amp;#xC81C; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC774; &amp;#xAE68;&amp;#xC84C;&amp;#xB2E4;. 
+
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;Upcase(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;zz&amp;quot;&lt;/span&gt;) &amp;gt; Upcase(&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;Windows Defender&amp;quot;&lt;/span&gt;)&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Windows Kernel&amp;#xC740; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC774; &amp;#xAE68;&amp;#xC84C;&amp;#xC73C;&amp;#xBBC0;&amp;#xB85C; ELAM &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xC5D0;&amp;#xC11C; &amp;#xC0AC;&amp;#xC6A9;&amp;#xD558;&amp;#xAE30; &amp;#xC804;&amp;#xC5D0; &amp;#x201C;Windows Defender&amp;#x201D;&amp;#xD0A4;&amp;#xB97C; &amp;#xC0AD;&amp;#xC81C;&amp;#xD55C;&amp;#xB2E4;. &amp;#xADF8;&amp;#xB7EC;&amp;#xB098; Windows Loader&amp;#xB294; &amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xC190;&amp;#xC0C1;&amp;#xC744; &amp;#xC778;&amp;#xC2DD;&amp;#xD558;&amp;#xC9C0; &amp;#xBABB;&amp;#xD558;&amp;#xACE0;, &amp;#xCE21;&amp;#xC815;&amp;#xD560; &amp;#xAC12;&amp;#xC774; &amp;#xC5C6;&amp;#xB294; &amp;#x201C;zz&amp;#x201D;&amp;#xD0A4;&amp;#xB97C; &amp;#xAC74;&amp;#xB108;&amp;#xB6F0;&amp;#xC5B4; &amp;#xC774;&amp;#xBBF8; &amp;#xC0AD;&amp;#xC81C;&amp;#xB41C; &amp;#x201C;Windows Defender&amp;#x201D; &amp;#xD0A4;&amp;#xC5D0; &amp;#xC788;&amp;#xB294; &amp;#x201C;Measured&amp;#x201D;&amp;#xAC12;&amp;#xC744; &amp;#xCE21;&amp;#xC815;&amp;#xD55C;&amp;#xB2E4;. &lt;/p&gt;
 &lt;p&gt;&amp;#xACB0;&amp;#xACFC;&amp;#xC801;&amp;#xC73C;&amp;#xB85C; &amp;#xC774;&amp;#xB294; ELAM blob&amp;#xC774; ELAM &amp;#xB4DC;&amp;#xB77C;&amp;#xC774;&amp;#xBC84;&amp;#xAC00; &amp;#xC2E4;&amp;#xD589;&amp;#xB418;&amp;#xAE30; &amp;#xC804;&amp;#xC5D0; &amp;#xC0AD;&amp;#xC81C;&amp;#xB420; &amp;#xC218; &amp;#xC788;&amp;#xC74C;&amp;#xC744; &amp;#xBCF4;&amp;#xC5EC;&amp;#xC900;&amp;#xB2E4;.&lt;/p&gt;
 &lt;h3 id=&#34;Root-cause&#34;&gt;&lt;a href=&#34;#Root-cause&#34; class=&#34;headerlink&#34; title=&#34;Root cause&#34;&gt;&lt;/a&gt;Root cause&lt;/h3&gt;&lt;p&gt;&amp;#xC774; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; Windows Loader&amp;#xAC00; &amp;#xD558;&amp;#xC704; &amp;#xD0A4; &amp;#xBAA9;&amp;#xB85D;&amp;#xC5D0; &amp;#xC788;&amp;#xB294; &amp;#xC694;&amp;#xC18C;&amp;#xC758; &amp;#xC0AC;&amp;#xC804; &amp;#xC21C; &amp;#xC815;&amp;#xB82C;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD55C;&amp;#xB2E4;.&lt;/p&gt;
@@ -716,6 +730,7 @@ Handle the CM_BIG_DATA structure when parsing a registry value &lt;span class=&#
 &lt;/ol&gt;
 &lt;p&gt;Windows Loader&amp;#xC5D0;&amp;#xC11C;&amp;#xB294; &amp;#xC544;&amp;#xB798;&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xC778;&amp;#xC2DD;&amp;#xD55C;&amp;#xB2E4;. Loader&amp;#xB294; &amp;#xC774;&amp;#xB7EC;&amp;#xD55C; &amp;#xC815;&amp;#xB82C;&amp;#xC744; &amp;#xC190;&amp;#xC0C1;&amp;#xB41C; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC778;&amp;#xC2DD;&amp;#xD574; &amp;#xBD80;&amp;#xD305; &amp;#xD6C4; &amp;#x201C;&amp;#x42F;2&amp;#x201D;&amp;#xD0A4;&amp;#xAC00; &amp;#xC0AD;&amp;#xC81C;&amp;#xB418;&amp;#xB294; &amp;#xAC83;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;Upcase (&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x44F;1&amp;quot;&lt;/span&gt;)&amp;gt; Upcase (&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x42F;2&amp;quot;&lt;/span&gt;), Upcase (&lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x44F;1&amp;quot;&lt;/span&gt;) = &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;&amp;#x44F;1&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Microsoft&amp;#xB294; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xD655;&amp;#xC778;&amp;#xD588;&amp;#xC9C0;&amp;#xB9CC; &amp;#xBC94;&amp;#xC704;&amp;#xB97C; &amp;#xBC97;&amp;#xC5B4;&amp;#xB0AC;&amp;#xB2E4;&amp;#xB294; &amp;#xC774;&amp;#xC720;&amp;#xB85C; &amp;#xC5C5;&amp;#xB370;&amp;#xC774;&amp;#xD2B8;&amp;#xD558;&amp;#xC9C0; &amp;#xC54A;&amp;#xC558;&amp;#xB2E4;.&lt;/p&gt;
 &lt;h3 id=&#34;Original-vulnerability-report-1&#34;&gt;&lt;a href=&#34;#Original-vulnerability-report-1&#34; class=&#34;headerlink&#34; title=&#34;Original vulnerability report&#34;&gt;&lt;/a&gt;Original vulnerability report&lt;/h3&gt;&lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;# Summary
 
@@ -758,6 +773,7 @@ This means that the &lt;span class=&#34;hljs-string&#34;&gt;&amp;quot;Windows De
 ## Possible solutions
 
 Either check the lexicographical order of subkeys in the Windows loader (which requires you to pick the NLS tables first) or measure empty keys together with non-empty ones.&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC758; &amp;#xAD00;&amp;#xB828; &amp;#xC2A4;&amp;#xD06C;&amp;#xB9B0;&amp;#xC0F7;&amp;#xC740; &amp;#xC544;&amp;#xB798;&amp;#xC5D0; &amp;#xCCA8;&amp;#xBD80;&amp;#xB418;&amp;#xC5B4; &amp;#xC788;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/2021/06/27/l0ch/measured-boot-vuln/Untitled%2018.png&#34; alt=&#34;measured-boot-vuln/Untitled%2018.png&#34;&gt;&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1246,6 +1262,7 @@ Since the ELAM hive isn<span class="hljs-number">&apos;</span>t loaded after the
 ## Possible solution
 
 Handle the CM_BIG_DATA structure when parsing a registry value <span class="hljs-keyword">using</span> the Windows loader.</code></pre>
+
 <p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xAD00;&#xB828; &#xC2A4;&#xD06C;&#xB9B0;&#xC0F7;&#xC740; &#xC544;&#xB798;&#xC5D0; &#xCCA8;&#xBD80;&#xB418;&#xC5B4; &#xC788;&#xB2E4;.</p>
 <p><img src="/2021/06/27/l0ch/measured-boot-vuln/Untitled%2013.png" srcset="/img/loading.gif" alt="measured-boot-vuln/Untitled%2013.png"></p>
 <blockquote>
@@ -1270,7 +1287,9 @@ Handle the CM_BIG_DATA structure when parsing a registry value <span class="hljs
 <blockquote>
 <p>&#xC5ED;&#xC790;:<br>&#xD558;&#xC774;&#xBE0C; &#xB9C8;&#xC6B4;&#xD2B8; &#x2192; &#xD45C;&#xC900; API&#xB85C; &#xBE48; &#xD0A4; &#xC0DD;&#xC131; &#x2192; &#xB9C8;&#xC6B4;&#xD2B8; &#xD574;&#xC81C; &#x2192; &#xD558;&#xC774;&#xBE0C; &#xD30C;&#xC77C;&#xC758; &#xD0A4; &#xC21C;&#xC11C; &#xBCC0;&#xACBD;<br>&#xC73C;&#xB85C; &#xB098;&#xD0C0;&#xB0BC; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 </blockquote>
-<p><br><br>&#xC704; &#xC124;&#xBA85;&#xC758; &#xC608;&#xC2DC;&#xB294; &#xC544;&#xB798; ELAM &#xD558;&#xC774;&#xBE0C;&#xC758; &#xB808;&#xC774;&#xC544;&#xC6C3;&#xC744; &#xC0B4;&#xD3B4;&#xBCF4;&#xBA74; &#xC774;&#xD574;&#xAC00; &#xC27D;&#xB2E4;.</p>
+<br>
+&#xC704; &#xC124;&#xBA85;&#xC758; &#xC608;&#xC2DC;&#xB294; &#xC544;&#xB798; ELAM &#xD558;&#xC774;&#xBE0C;&#xC758; &#xB808;&#xC774;&#xC544;&#xC6C3;&#xC744; &#xC0B4;&#xD3B4;&#xBCF4;&#xBA74; &#xC774;&#xD574;&#xAC00; &#xC27D;&#xB2E4;.
+
 <ol>
 <li>Key: Windows Defender<ul>
 <li>Value: Measured</li>
@@ -1298,8 +1317,11 @@ Handle the CM_BIG_DATA structure when parsing a registry value <span class="hljs
 <blockquote>
 <p>&#xD558;&#xC704; &#xD0A4; &#xBAA9;&#xB85D;&#xC5D0;&#xC11C; &#xB450; &#xC694;&#xC18C;&#xC758; &#xC21C;&#xC11C;&#xB97C; &#xBC18;&#xB300;&#xB85C;&#xD558;&#xBA74; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD2B8;&#xB9AC;&#xAC70;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 </blockquote>
-<p><br><br>&#xC774;&#xC81C; &#xC0AC;&#xC804; &#xC21C; &#xC815;&#xB82C;&#xC774; &#xAE68;&#xC84C;&#xB2E4;. </p>
+<br>
+&#xC774;&#xC81C; &#xC0AC;&#xC804; &#xC21C; &#xC815;&#xB82C;&#xC774; &#xAE68;&#xC84C;&#xB2E4;. 
+
 <pre><code class="hljs c">Upcase(<span class="hljs-string">&quot;zz&quot;</span>) &gt; Upcase(<span class="hljs-string">&quot;Windows Defender&quot;</span>)</code></pre>
+
 <p>Windows Kernel&#xC740; &#xC0AC;&#xC804; &#xC21C; &#xC815;&#xB82C;&#xC774; &#xAE68;&#xC84C;&#xC73C;&#xBBC0;&#xB85C; ELAM &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xC5D0;&#xC11C; &#xC0AC;&#xC6A9;&#xD558;&#xAE30; &#xC804;&#xC5D0; &#x201C;Windows Defender&#x201D;&#xD0A4;&#xB97C; &#xC0AD;&#xC81C;&#xD55C;&#xB2E4;. &#xADF8;&#xB7EC;&#xB098; Windows Loader&#xB294; &#xC774;&#xB7EC;&#xD55C; &#xC190;&#xC0C1;&#xC744; &#xC778;&#xC2DD;&#xD558;&#xC9C0; &#xBABB;&#xD558;&#xACE0;, &#xCE21;&#xC815;&#xD560; &#xAC12;&#xC774; &#xC5C6;&#xB294; &#x201C;zz&#x201D;&#xD0A4;&#xB97C; &#xAC74;&#xB108;&#xB6F0;&#xC5B4; &#xC774;&#xBBF8; &#xC0AD;&#xC81C;&#xB41C; &#x201C;Windows Defender&#x201D; &#xD0A4;&#xC5D0; &#xC788;&#xB294; &#x201C;Measured&#x201D;&#xAC12;&#xC744; &#xCE21;&#xC815;&#xD55C;&#xB2E4;. </p>
 <p>&#xACB0;&#xACFC;&#xC801;&#xC73C;&#xB85C; &#xC774;&#xB294; ELAM blob&#xC774; ELAM &#xB4DC;&#xB77C;&#xC774;&#xBC84;&#xAC00; &#xC2E4;&#xD589;&#xB418;&#xAE30; &#xC804;&#xC5D0; &#xC0AD;&#xC81C;&#xB420; &#xC218; &#xC788;&#xC74C;&#xC744; &#xBCF4;&#xC5EC;&#xC900;&#xB2E4;.</p>
 <h3 id="Root-cause"><a href="#Root-cause" class="headerlink" title="Root cause"></a>Root cause</h3><p>&#xC774; &#xCDE8;&#xC57D;&#xC810;&#xC740; Windows Loader&#xAC00; &#xD558;&#xC704; &#xD0A4; &#xBAA9;&#xB85D;&#xC5D0; &#xC788;&#xB294; &#xC694;&#xC18C;&#xC758; &#xC0AC;&#xC804; &#xC21C; &#xC815;&#xB82C;&#xC744; &#xD655;&#xC778;&#xD558;&#xC9C0; &#xC54A;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; &#xBC1C;&#xC0DD;&#xD55C;&#xB2E4;.</p>
@@ -1322,6 +1344,7 @@ Handle the CM_BIG_DATA structure when parsing a registry value <span class="hljs
 </ol>
 <p>Windows Loader&#xC5D0;&#xC11C;&#xB294; &#xC544;&#xB798;&#xC640; &#xAC19;&#xC774; &#xC778;&#xC2DD;&#xD55C;&#xB2E4;. Loader&#xB294; &#xC774;&#xB7EC;&#xD55C; &#xC815;&#xB82C;&#xC744; &#xC190;&#xC0C1;&#xB41C; &#xAC83;&#xC73C;&#xB85C; &#xC778;&#xC2DD;&#xD574; &#xBD80;&#xD305; &#xD6C4; &#x201C;&#x42F;2&#x201D;&#xD0A4;&#xAC00; &#xC0AD;&#xC81C;&#xB418;&#xB294; &#xAC83;&#xC744; &#xD655;&#xC778;&#xD560; &#xC218; &#xC788;&#xB2E4;.</p>
 <pre><code class="hljs c">Upcase (<span class="hljs-string">&quot;&#x44F;1&quot;</span>)&gt; Upcase (<span class="hljs-string">&quot;&#x42F;2&quot;</span>), Upcase (<span class="hljs-string">&quot;&#x44F;1&quot;</span>) = <span class="hljs-string">&quot;&#x44F;1&quot;</span></code></pre>
+
 <p>Microsoft&#xB294; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xD655;&#xC778;&#xD588;&#xC9C0;&#xB9CC; &#xBC94;&#xC704;&#xB97C; &#xBC97;&#xC5B4;&#xB0AC;&#xB2E4;&#xB294; &#xC774;&#xC720;&#xB85C; &#xC5C5;&#xB370;&#xC774;&#xD2B8;&#xD558;&#xC9C0; &#xC54A;&#xC558;&#xB2E4;.</p>
 <h3 id="Original-vulnerability-report-1"><a href="#Original-vulnerability-report-1" class="headerlink" title="Original vulnerability report"></a>Original vulnerability report</h3><pre><code class="hljs c"># Summary
 
@@ -1364,6 +1387,7 @@ This means that the <span class="hljs-string">&quot;Windows Defender&quot;</span
 ## Possible solutions
 
 Either check the lexicographical order of subkeys in the Windows loader (which requires you to pick the NLS tables first) or measure empty keys together with non-empty ones.</code></pre>
+
 <p>&#xCDE8;&#xC57D;&#xC810;&#xC758; &#xAD00;&#xB828; &#xC2A4;&#xD06C;&#xB9B0;&#xC0F7;&#xC740; &#xC544;&#xB798;&#xC5D0; &#xCCA8;&#xBD80;&#xB418;&#xC5B4; &#xC788;&#xB2E4;.</p>
 <p><img src="/2021/06/27/l0ch/measured-boot-vuln/Untitled%2018.png" srcset="/img/loading.gif" alt="measured-boot-vuln/Untitled%2018.png"></p>
 <blockquote>

@@ -23,6 +23,7 @@
 	ExFreePoolWithTag(oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
 &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( v11 )
 	memmove(newFileBuf, oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;i64 * v11);&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;old lease name&amp;#xC744; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB358; oldFileBuf&amp;#xB97C; &amp;#xD560;&amp;#xB2F9; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4;&amp;#xC5D0; newFileBuf&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; use after free&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. oldFileBuf&amp;#xB97C; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4; &amp;#xB315;&amp;#xAE00;&amp;#xB9C1; &amp;#xD3EC;&amp;#xC778;&amp;#xD130;&amp;#xC758; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; kernel info leak &amp;#xB610;&amp;#xB294; BSoD&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
@@ -41,6 +42,7 @@
 	ExFreePoolWithTag(oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;0&lt;/span&gt;);
 &lt;span class=&#34;hljs-keyword&#34;&gt;if&lt;/span&gt; ( v11 )
 	memmove(newFileBuf, oldFileBuf, &lt;span class=&#34;hljs-number&#34;&gt;2&lt;/span&gt;i64 * v11);&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;old lease name&amp;#xC744; &amp;#xB2F4;&amp;#xACE0; &amp;#xC788;&amp;#xB358; oldFileBuf&amp;#xB97C; &amp;#xD560;&amp;#xB2F9; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4;&amp;#xC5D0; newFileBuf&amp;#xC5D0; &amp;#xBCF5;&amp;#xC0AC;&amp;#xD558;&amp;#xAE30; &amp;#xB54C;&amp;#xBB38;&amp;#xC5D0; use after free&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;. oldFileBuf&amp;#xB97C; &amp;#xD574;&amp;#xC81C;&amp;#xD55C; &amp;#xD6C4; &amp;#xB315;&amp;#xAE00;&amp;#xB9C1; &amp;#xD3EC;&amp;#xC778;&amp;#xD130;&amp;#xC758; &amp;#xC0C1;&amp;#xD0DC;&amp;#xC5D0; &amp;#xB530;&amp;#xB77C; kernel info leak &amp;#xB610;&amp;#xB294; BSoD&amp;#xB85C; &amp;#xC774;&amp;#xC5B4;&amp;#xC9C8; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
   <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
@@ -272,6 +274,7 @@
 	ExFreePoolWithTag(oldFileBuf, <span class="hljs-number">0</span>);
 <span class="hljs-keyword">if</span> ( v11 )
 	memmove(newFileBuf, oldFileBuf, <span class="hljs-number">2</span>i64 * v11);</code></pre>
+
 <p>old lease name&#xC744; &#xB2F4;&#xACE0; &#xC788;&#xB358; oldFileBuf&#xB97C; &#xD560;&#xB2F9; &#xD574;&#xC81C;&#xD55C; &#xD6C4;&#xC5D0; newFileBuf&#xC5D0; &#xBCF5;&#xC0AC;&#xD558;&#xAE30; &#xB54C;&#xBB38;&#xC5D0; use after free&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;. oldFileBuf&#xB97C; &#xD574;&#xC81C;&#xD55C; &#xD6C4; &#xB315;&#xAE00;&#xB9C1; &#xD3EC;&#xC778;&#xD130;&#xC758; &#xC0C1;&#xD0DC;&#xC5D0; &#xB530;&#xB77C; kernel info leak &#xB610;&#xB294; BSoD&#xB85C; &#xC774;&#xC5B4;&#xC9C8; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>

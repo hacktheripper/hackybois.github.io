@@ -33,8 +33,10 @@
 &lt;span class=&#34;hljs-number&#34;&gt;12&lt;/span&gt;:			&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
 &lt;span class=&#34;hljs-number&#34;&gt;13&lt;/span&gt;:		}
 &lt;span class=&#34;hljs-number&#34;&gt;14&lt;/span&gt;:	}&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;line 5&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;numSyms&lt;/code&gt;&amp;#xC758; type&amp;#xACFC; &lt;code&gt;seg&amp;#x2192;getSize()&lt;/code&gt;&amp;#xC758; return type&amp;#xC740; &amp;#xBAA8;&amp;#xB450; &lt;code&gt;unsigned int&lt;/code&gt;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;seg&lt;/code&gt;&amp;#xC758; &amp;#xCDA9;&amp;#xBD84;&amp;#xD788; &amp;#xD070; &amp;#xACBD;&amp;#xC6B0; &amp;#xB8E8;&amp;#xD504;&amp;#xB97C; &amp;#xC218;&amp;#xD589;&amp;#xD558;&amp;#xBA70; &lt;code&gt;seg&amp;#x2192;getSize()&lt;/code&gt;&amp;#xB97C; &lt;code&gt;numSyms&lt;/code&gt;&amp;#xC5D0; &amp;#xB204;&amp;#xC801;&amp;#xD558;&amp;#xB294; &amp;#xB3D9;&amp;#xC548; &lt;code&gt;numSyms&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; integer overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;syms = (JBIG2Bitmap **)gmallocn(numSyms, &lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(JBIG2Bitmap *)); &lt;span class=&#34;hljs-comment&#34;&gt;// size of JBIG2Bitmap = 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xD6C4; &lt;code&gt;gmallocn&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB85C; &lt;code&gt;numSyms * 8&lt;/code&gt;&amp;#xB9CC;&amp;#xD07C;&amp;#xC758; &lt;code&gt;syms&lt;/code&gt; &amp;#xD799;&amp;#xC744; &amp;#xD560;&amp;#xB2F9;&amp;#xD55C; &amp;#xB4A4; &amp;#xBE44;&amp;#xD2B8;&amp;#xB9F5;&amp;#xC758; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &lt;code&gt;syms&lt;/code&gt;&amp;#xB97C; &amp;#xCC44;&amp;#xC6B0;&amp;#xB294;&amp;#xB370;, integer overflow&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xBE44;&amp;#xD2B8;&amp;#xB9F5;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xBCF4;&amp;#xB2E4; &amp;#xC791;&amp;#xC740; &amp;#xD799;&amp;#xC774; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0; out-of-bounds write&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xD0C0;&amp;#xAC9F; &amp;#xC544;&amp;#xC774;&amp;#xD3F0;&amp;#xC5D0; &amp;#xC545;&amp;#xC131; &amp;#xCCA8;&amp;#xBD80; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C; &amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xB97C; &amp;#xBCF4;&amp;#xB0B4;&amp;#xAE30;&amp;#xB9CC; &amp;#xD558;&amp;#xBA74; &amp;#xD0C0;&amp;#xAC9F;&amp;#xC758; &amp;#xC0C1;&amp;#xD638;&amp;#xC791;&amp;#xC6A9; &amp;#xC5C6;&amp;#xC774; &amp;#xACF5;&amp;#xACA9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD55C; zero-click exploit&amp;#xC774;&amp;#xBA70; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD55C; &amp;#xC2A4;&amp;#xD30C;&amp;#xC774;&amp;#xC6E8;&amp;#xC5B4; Pegasus&amp;#xB294; &amp;#xC9C0;&amp;#xB09C; 2&amp;#xC6D4;&amp;#xBD80;&amp;#xD130; &amp;#xAC01;&amp;#xAD6D;&amp;#xC758; &amp;#xC815;&amp;#xBD80; &amp;#xAE30;&amp;#xAD00;&amp;#xC5D0; &amp;#xACF5;&amp;#xAE09;&amp;#xB418;&amp;#xC5B4; &amp;#xC8FC;&amp;#xC694; &amp;#xC778;&amp;#xC0AC; &amp;#xC0AC;&amp;#xCC30;&amp;#xC5D0; &amp;#xC4F0;&amp;#xC778; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC54C;&amp;#xB824;&amp;#xC84C;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
@@ -64,8 +66,10 @@
 &lt;span class=&#34;hljs-number&#34;&gt;12&lt;/span&gt;:			&lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt;;
 &lt;span class=&#34;hljs-number&#34;&gt;13&lt;/span&gt;:		}
 &lt;span class=&#34;hljs-number&#34;&gt;14&lt;/span&gt;:	}&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;line 5&amp;#xC5D0;&amp;#xC11C; &lt;code&gt;numSyms&lt;/code&gt;&amp;#xC758; type&amp;#xACFC; &lt;code&gt;seg&amp;#x2192;getSize()&lt;/code&gt;&amp;#xC758; return type&amp;#xC740; &amp;#xBAA8;&amp;#xB450; &lt;code&gt;unsigned int&lt;/code&gt;&amp;#xC785;&amp;#xB2C8;&amp;#xB2E4;. &lt;code&gt;seg&lt;/code&gt;&amp;#xC758; &amp;#xCDA9;&amp;#xBD84;&amp;#xD788; &amp;#xD070; &amp;#xACBD;&amp;#xC6B0; &amp;#xB8E8;&amp;#xD504;&amp;#xB97C; &amp;#xC218;&amp;#xD589;&amp;#xD558;&amp;#xBA70; &lt;code&gt;seg&amp;#x2192;getSize()&lt;/code&gt;&amp;#xB97C; &lt;code&gt;numSyms&lt;/code&gt;&amp;#xC5D0; &amp;#xB204;&amp;#xC801;&amp;#xD558;&amp;#xB294; &amp;#xB3D9;&amp;#xC548; &lt;code&gt;numSyms&lt;/code&gt;&amp;#xC5D0;&amp;#xC11C; integer overflow&amp;#xAC00; &amp;#xBC1C;&amp;#xC0DD;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs c&#34;&gt;syms = (JBIG2Bitmap **)gmallocn(numSyms, &lt;span class=&#34;hljs-keyword&#34;&gt;sizeof&lt;/span&gt;(JBIG2Bitmap *)); &lt;span class=&#34;hljs-comment&#34;&gt;// size of JBIG2Bitmap = 8&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xC774;&amp;#xD6C4; &lt;code&gt;gmallocn&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xB85C; &lt;code&gt;numSyms * 8&lt;/code&gt;&amp;#xB9CC;&amp;#xD07C;&amp;#xC758; &lt;code&gt;syms&lt;/code&gt; &amp;#xD799;&amp;#xC744; &amp;#xD560;&amp;#xB2F9;&amp;#xD55C; &amp;#xB4A4; &amp;#xBE44;&amp;#xD2B8;&amp;#xB9F5;&amp;#xC758; &amp;#xAC12;&amp;#xC73C;&amp;#xB85C; &lt;code&gt;syms&lt;/code&gt;&amp;#xB97C; &amp;#xCC44;&amp;#xC6B0;&amp;#xB294;&amp;#xB370;, integer overflow&amp;#xB85C; &amp;#xC778;&amp;#xD574; &amp;#xBE44;&amp;#xD2B8;&amp;#xB9F5;&amp;#xC758; &amp;#xD06C;&amp;#xAE30;&amp;#xBCF4;&amp;#xB2E4; &amp;#xC791;&amp;#xC740; &amp;#xD799;&amp;#xC774; &amp;#xD560;&amp;#xB2F9;&amp;#xB418;&amp;#xACE0; out-of-bounds write&amp;#xAC00; &amp;#xAC00;&amp;#xB2A5;&amp;#xD569;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC740; &amp;#xD574;&amp;#xCEE4;&amp;#xAC00; &amp;#xD0C0;&amp;#xAC9F; &amp;#xC544;&amp;#xC774;&amp;#xD3F0;&amp;#xC5D0; &amp;#xC545;&amp;#xC131; &amp;#xCCA8;&amp;#xBD80; &amp;#xD30C;&amp;#xC77C;&amp;#xC744; &amp;#xD3EC;&amp;#xD568;&amp;#xD55C; &amp;#xBA54;&amp;#xC2DC;&amp;#xC9C0;&amp;#xB97C; &amp;#xBCF4;&amp;#xB0B4;&amp;#xAE30;&amp;#xB9CC; &amp;#xD558;&amp;#xBA74; &amp;#xD0C0;&amp;#xAC9F;&amp;#xC758; &amp;#xC0C1;&amp;#xD638;&amp;#xC791;&amp;#xC6A9; &amp;#xC5C6;&amp;#xC774; &amp;#xACF5;&amp;#xACA9;&amp;#xC774; &amp;#xAC00;&amp;#xB2A5;&amp;#xD55C; zero-click exploit&amp;#xC774;&amp;#xBA70; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD55C; &amp;#xC2A4;&amp;#xD30C;&amp;#xC774;&amp;#xC6E8;&amp;#xC5B4; Pegasus&amp;#xB294; &amp;#xC9C0;&amp;#xB09C; 2&amp;#xC6D4;&amp;#xBD80;&amp;#xD130; &amp;#xAC01;&amp;#xAD6D;&amp;#xC758; &amp;#xC815;&amp;#xBD80; &amp;#xAE30;&amp;#xAD00;&amp;#xC5D0; &amp;#xACF5;&amp;#xAE09;&amp;#xB418;&amp;#xC5B4; &amp;#xC8FC;&amp;#xC694; &amp;#xC778;&amp;#xC0AC; &amp;#xC0AC;&amp;#xCC30;&amp;#xC5D0; &amp;#xC4F0;&amp;#xC778; &amp;#xAC83;&amp;#xC73C;&amp;#xB85C; &amp;#xC54C;&amp;#xB824;&amp;#xC84C;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
@@ -308,8 +312,10 @@
 <span class="hljs-number">12</span>:			<span class="hljs-keyword">return</span>;
 <span class="hljs-number">13</span>:		}
 <span class="hljs-number">14</span>:	}</code></pre>
+
 <p>line 5&#xC5D0;&#xC11C; <code>numSyms</code>&#xC758; type&#xACFC; <code>seg&#x2192;getSize()</code>&#xC758; return type&#xC740; &#xBAA8;&#xB450; <code>unsigned int</code>&#xC785;&#xB2C8;&#xB2E4;. <code>seg</code>&#xC758; &#xCDA9;&#xBD84;&#xD788; &#xD070; &#xACBD;&#xC6B0; &#xB8E8;&#xD504;&#xB97C; &#xC218;&#xD589;&#xD558;&#xBA70; <code>seg&#x2192;getSize()</code>&#xB97C; <code>numSyms</code>&#xC5D0; &#xB204;&#xC801;&#xD558;&#xB294; &#xB3D9;&#xC548; <code>numSyms</code>&#xC5D0;&#xC11C; integer overflow&#xAC00; &#xBC1C;&#xC0DD;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs c">syms = (JBIG2Bitmap **)gmallocn(numSyms, <span class="hljs-keyword">sizeof</span>(JBIG2Bitmap *)); <span class="hljs-comment">// size of JBIG2Bitmap = 8</span></code></pre>
+
 <p>&#xC774;&#xD6C4; <code>gmallocn</code> &#xD568;&#xC218;&#xB85C; <code>numSyms * 8</code>&#xB9CC;&#xD07C;&#xC758; <code>syms</code> &#xD799;&#xC744; &#xD560;&#xB2F9;&#xD55C; &#xB4A4; &#xBE44;&#xD2B8;&#xB9F5;&#xC758; &#xAC12;&#xC73C;&#xB85C; <code>syms</code>&#xB97C; &#xCC44;&#xC6B0;&#xB294;&#xB370;, integer overflow&#xB85C; &#xC778;&#xD574; &#xBE44;&#xD2B8;&#xB9F5;&#xC758; &#xD06C;&#xAE30;&#xBCF4;&#xB2E4; &#xC791;&#xC740; &#xD799;&#xC774; &#xD560;&#xB2F9;&#xB418;&#xACE0; out-of-bounds write&#xAC00; &#xAC00;&#xB2A5;&#xD569;&#xB2C8;&#xB2E4;.</p>
 <p>&#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC740; &#xD574;&#xCEE4;&#xAC00; &#xD0C0;&#xAC9F; &#xC544;&#xC774;&#xD3F0;&#xC5D0; &#xC545;&#xC131; &#xCCA8;&#xBD80; &#xD30C;&#xC77C;&#xC744; &#xD3EC;&#xD568;&#xD55C; &#xBA54;&#xC2DC;&#xC9C0;&#xB97C; &#xBCF4;&#xB0B4;&#xAE30;&#xB9CC; &#xD558;&#xBA74; &#xD0C0;&#xAC9F;&#xC758; &#xC0C1;&#xD638;&#xC791;&#xC6A9; &#xC5C6;&#xC774; &#xACF5;&#xACA9;&#xC774; &#xAC00;&#xB2A5;&#xD55C; zero-click exploit&#xC774;&#xBA70; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD55C; &#xC2A4;&#xD30C;&#xC774;&#xC6E8;&#xC5B4; Pegasus&#xB294; &#xC9C0;&#xB09C; 2&#xC6D4;&#xBD80;&#xD130; &#xAC01;&#xAD6D;&#xC758; &#xC815;&#xBD80; &#xAE30;&#xAD00;&#xC5D0; &#xACF5;&#xAE09;&#xB418;&#xC5B4; &#xC8FC;&#xC694; &#xC778;&#xC0AC; &#xC0AC;&#xCC30;&#xC5D0; &#xC4F0;&#xC778; &#xAC83;&#xC73C;&#xB85C; &#xC54C;&#xB824;&#xC84C;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
@@ -335,13 +341,13 @@
                   
                   <a class="hover-with-bg" href="/tags/integer-overflow/">integer overflow</a>
                   
-                  <a class="hover-with-bg" href="/tags/oob-write/">oob write</a>
-                  
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
                   
                   <a class="hover-with-bg" href="/tags/cve-2021-30860/">cve-2021-30860</a>
                   
                   <a class="hover-with-bg" href="/tags/pegasus/">pegasus</a>
+                  
+                  <a class="hover-with-bg" href="/tags/oob-write/">oob write</a>
                   
                   <a class="hover-with-bg" href="/tags/forcedentry/">forcedentry</a>
                   
@@ -384,7 +390,7 @@
                   
                   <a href="/2021/09/26/j0ker/angr_part6/">
                     <i class="iconfont icon-arrowleft"></i>
-                    <span class="hidden-mobile">[Research] 핵린이의 angr 정복기 - (6) angr_ctf part.5</span>
+                    <span class="hidden-mobile">[Research] 핵린이의 angr 정복기 - (6) angr_ctf part.4</span>
                     <span class="visible-mobile">Previous</span>
                   </a>
                   

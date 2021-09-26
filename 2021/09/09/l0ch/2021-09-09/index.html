@@ -30,6 +30,7 @@
     config = yaml.load(yaml_string)
   &lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; tensorflow.python.keras.layers &lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; deserialize  &lt;span class=&#34;hljs-comment&#34;&gt;# pylint: disable=g-import-not-at-top&lt;/span&gt;
   &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; deserialize(config, custom_objects=custom_objects)&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xB294; yaml&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xC774; &amp;#xBD80;&amp;#xC871;&amp;#xD574; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; &amp;#xC544;&amp;#xB798; &lt;code&gt;cat /etc/passwd&lt;/code&gt;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD558;&amp;#xB294; &amp;#xD398;&amp;#xC774;&amp;#xB85C;&amp;#xB4DC;&amp;#xB97C; &lt;code&gt;model_from_yaml&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xB9E4;&amp;#xAC1C;&amp;#xBCC0;&amp;#xC218;&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xD574; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; PoC&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; tensorflow.keras &lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; models
 
@@ -40,6 +41,7 @@ payload = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;&amp;apos;&amp;apos;
 &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;&amp;apos;&amp;apos;&lt;/span&gt;
   
 models.model_from_yaml(payload)&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Google&amp;#xC740; &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xC218;&amp;#xC815;&amp;#xD558;&amp;#xB294; &lt;a href=&#34;https://github.com/tensorflow/tensorflow/commit/23d6383eb6c14084a8fc3bdf164043b974818012&#34;&gt;&amp;#xCEE4;&amp;#xBC0B;&amp;#xC5D0;&amp;#xC11C;&lt;/a&gt; YAML &amp;#xC9C0;&amp;#xC6D0;&amp;#xC744; &amp;#xC911;&amp;#xB2E8;&amp;#xD558;&amp;#xACE0; &amp;#xD328;&amp;#xCE58;&amp;#xB97C; 2.6.0&amp;#xC5D0;&amp;#xC11C; &amp;#xB9B4;&amp;#xB9AC;&amp;#xC988;&amp;#xD568;&amp;#xACFC; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&amp;#xC5D0;&amp;#xB3C4; backporting &amp;#xD558;&amp;#xACA0;&amp;#xB2E4;&amp;#xACE0; &amp;#xBC1D;&amp;#xD614;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
   <meta name="author" content="j0dev, y2sman">
@@ -65,6 +67,7 @@ models.model_from_yaml(payload)&lt;/code&gt;&lt;/pre&gt;
     config = yaml.load(yaml_string)
   &lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; tensorflow.python.keras.layers &lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; deserialize  &lt;span class=&#34;hljs-comment&#34;&gt;# pylint: disable=g-import-not-at-top&lt;/span&gt;
   &lt;span class=&#34;hljs-keyword&#34;&gt;return&lt;/span&gt; deserialize(config, custom_objects=custom_objects)&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;&amp;#xD574;&amp;#xB2F9; &amp;#xD568;&amp;#xC218;&amp;#xC5D0;&amp;#xC11C; &amp;#xB85C;&amp;#xB4DC;&amp;#xD558;&amp;#xB294; yaml&amp;#xC5D0; &amp;#xB300;&amp;#xD55C; &amp;#xAC80;&amp;#xC99D;&amp;#xC774; &amp;#xBD80;&amp;#xC871;&amp;#xD574; &amp;#xC774;&amp;#xB97C; &amp;#xC545;&amp;#xC6A9;&amp;#xD558;&amp;#xBA74; &amp;#xC544;&amp;#xB798; &lt;code&gt;cat /etc/passwd&lt;/code&gt;&amp;#xB97C; &amp;#xD3EC;&amp;#xD568;&amp;#xD558;&amp;#xB294; &amp;#xD398;&amp;#xC774;&amp;#xB85C;&amp;#xB4DC;&amp;#xB97C; &lt;code&gt;model_from_yaml&lt;/code&gt; &amp;#xD568;&amp;#xC218;&amp;#xC758; &amp;#xB9E4;&amp;#xAC1C;&amp;#xBCC0;&amp;#xC218;&amp;#xB85C; &amp;#xC804;&amp;#xB2EC;&amp;#xD574; &amp;#xC2E4;&amp;#xD589;&amp;#xD558;&amp;#xB294; PoC&amp;#xC640; &amp;#xAC19;&amp;#xC774; &amp;#xC784;&amp;#xC758;&amp;#xC758; &amp;#xCF54;&amp;#xB4DC;&amp;#xB97C; &amp;#xC2E4;&amp;#xD589;&amp;#xD560; &amp;#xC218; &amp;#xC788;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;hljs python&#34;&gt;&lt;span class=&#34;hljs-keyword&#34;&gt;from&lt;/span&gt; tensorflow.keras &lt;span class=&#34;hljs-keyword&#34;&gt;import&lt;/span&gt; models
 
@@ -75,6 +78,7 @@ payload = &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;&amp;apos;&amp;apos;
 &lt;span class=&#34;hljs-string&#34;&gt;&amp;apos;&amp;apos;&amp;apos;&lt;/span&gt;
   
 models.model_from_yaml(payload)&lt;/code&gt;&lt;/pre&gt;
+
 &lt;p&gt;Google&amp;#xC740; &amp;#xD574;&amp;#xB2F9; &amp;#xCDE8;&amp;#xC57D;&amp;#xC810;&amp;#xC744; &amp;#xC218;&amp;#xC815;&amp;#xD558;&amp;#xB294; &lt;a href=&#34;https://github.com/tensorflow/tensorflow/commit/23d6383eb6c14084a8fc3bdf164043b974818012&#34;&gt;&amp;#xCEE4;&amp;#xBC0B;&amp;#xC5D0;&amp;#xC11C;&lt;/a&gt; YAML &amp;#xC9C0;&amp;#xC6D0;&amp;#xC744; &amp;#xC911;&amp;#xB2E8;&amp;#xD558;&amp;#xACE0; &amp;#xD328;&amp;#xCE58;&amp;#xB97C; 2.6.0&amp;#xC5D0;&amp;#xC11C; &amp;#xB9B4;&amp;#xB9AC;&amp;#xC988;&amp;#xD568;&amp;#xACFC; &amp;#xB3D9;&amp;#xC2DC;&amp;#xC5D0; &amp;#xC774;&amp;#xC804; &amp;#xBC84;&amp;#xC804;&amp;#xC5D0;&amp;#xB3C4; backporting &amp;#xD558;&amp;#xACA0;&amp;#xB2E4;&amp;#xACE0; &amp;#xBC1D;&amp;#xD614;&amp;#xC2B5;&amp;#xB2C8;&amp;#xB2E4;.&lt;/p&gt;
  - hack &amp; life">
   <meta property="og:image" content="https://hackyboiz.github.io/img/1day1line.png">
@@ -313,6 +317,7 @@ models.model_from_yaml(payload)&lt;/code&gt;&lt;/pre&gt;
     config = yaml.load(yaml_string)
   <span class="hljs-keyword">from</span> tensorflow.python.keras.layers <span class="hljs-keyword">import</span> deserialize  <span class="hljs-comment"># pylint: disable=g-import-not-at-top</span>
   <span class="hljs-keyword">return</span> deserialize(config, custom_objects=custom_objects)</code></pre>
+
 <p>&#xD574;&#xB2F9; &#xD568;&#xC218;&#xC5D0;&#xC11C; &#xB85C;&#xB4DC;&#xD558;&#xB294; yaml&#xC5D0; &#xB300;&#xD55C; &#xAC80;&#xC99D;&#xC774; &#xBD80;&#xC871;&#xD574; &#xC774;&#xB97C; &#xC545;&#xC6A9;&#xD558;&#xBA74; &#xC544;&#xB798; <code>cat /etc/passwd</code>&#xB97C; &#xD3EC;&#xD568;&#xD558;&#xB294; &#xD398;&#xC774;&#xB85C;&#xB4DC;&#xB97C; <code>model_from_yaml</code> &#xD568;&#xC218;&#xC758; &#xB9E4;&#xAC1C;&#xBCC0;&#xC218;&#xB85C; &#xC804;&#xB2EC;&#xD574; &#xC2E4;&#xD589;&#xD558;&#xB294; PoC&#xC640; &#xAC19;&#xC774; &#xC784;&#xC758;&#xC758; &#xCF54;&#xB4DC;&#xB97C; &#xC2E4;&#xD589;&#xD560; &#xC218; &#xC788;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 <pre><code class="hljs python"><span class="hljs-keyword">from</span> tensorflow.keras <span class="hljs-keyword">import</span> models
 
@@ -323,6 +328,7 @@ payload = <span class="hljs-string">&apos;&apos;&apos;</span>
 <span class="hljs-string">&apos;&apos;&apos;</span>
   
 models.model_from_yaml(payload)</code></pre>
+
 <p>Google&#xC740; &#xD574;&#xB2F9; &#xCDE8;&#xC57D;&#xC810;&#xC744; &#xC218;&#xC815;&#xD558;&#xB294; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/tensorflow/tensorflow/commit/23d6383eb6c14084a8fc3bdf164043b974818012">&#xCEE4;&#xBC0B;&#xC5D0;&#xC11C;</a> YAML &#xC9C0;&#xC6D0;&#xC744; &#xC911;&#xB2E8;&#xD558;&#xACE0; &#xD328;&#xCE58;&#xB97C; 2.6.0&#xC5D0;&#xC11C; &#xB9B4;&#xB9AC;&#xC988;&#xD568;&#xACFC; &#xB3D9;&#xC2DC;&#xC5D0; &#xC774;&#xC804; &#xBC84;&#xC804;&#xC5D0;&#xB3C4; backporting &#xD558;&#xACA0;&#xB2E4;&#xACE0; &#xBC1D;&#xD614;&#xC2B5;&#xB2C8;&#xB2E4;.</p>
 
             </div>
@@ -345,9 +351,9 @@ models.model_from_yaml(payload)</code></pre>
                   
                   <a class="hover-with-bg" href="/tags/deserialization/">deserialization</a>
                   
-                  <a class="hover-with-bg" href="/tags/google/">google</a>
-                  
                   <a class="hover-with-bg" href="/tags/L0ch/">L0ch</a>
+                  
+                  <a class="hover-with-bg" href="/tags/google/">google</a>
                   
                   <a class="hover-with-bg" href="/tags/tensorflow/">tensorflow</a>
                   
